@@ -1,0 +1,437 @@
+
+Papers
+  -------------------------------------
+  Action Recognition
+    [2022-05-19] ⚓📰📎 PYSKL: Towards Good Practices for Skeleton Action Recognition ; https://arxiv.org/pdf/2205.09443 📅 2024-10-11 13:24:32
+      https://arxiv.org/abs/2205.09443
+      # 1. Introduction
+      # 2. GCN-based approaches
+        # 2.1 Good Practices for GCN-based approaches
+          # 2.1.1 Data Pre-processing
+          # 2.1.2 Temporal Augmentations
+          # 2.1.3 Hyper Parameter Setting
+        # 2.2 The Design of ST-GCN++
+          # 2.2.1 Spatial Module Design
+          # 2.2.2 Temporal Module Design
+        # 2.3 Benchmarking GCN Algorithms
+        # 2.4 Spatial Augmentations
+      # 3. CNN-based approaches
+      # 4. Conclusion
+
+    [2022-04-09] ⚓📰📎 X3D: Expanding Architectures for Efficient Video Recognition ; https://arxiv.org/pdf/2004.04730
+      https://arxiv.org/abs/2004.04730
+      # 1. Introduction
+      # 2. X3D Networks
+        # 2.1 Basis Instantiation
+        # 2.2 Expansion Operations
+        # 2.3 Progressive Network Expansion
+      # 3. Experiments
+        # 3.1 Action Classification
+        # 3.2 AVA Action Detection
+      # 4. Ablation Experiments
+      # 5. Conclusion
+      # 6. Appendix
+        # A. Additional Implementation Details
+        # B. Further Results and Ablations
+
+
+    [2022-04-02] ⚓📰📎 Revisiting Skeleton-based Action Recognition ; https://arxiv.org/pdf/2104.13586 📅 2024-10-11 13:24:32
+      https://arxiv.org/abs/2104.13586
+      # 1. Introduction
+        Despite the considerable improvem`ents, the settings of different GCN approaches do not align well.
+        ... However, existing open-source repositories [3, 13, 18, 23] only implement a single algorithm with their own practices.
+      # 2. Related Work
+      # 3. Framework
+        # 3.1 Good Practices for Pose Extraction
+        # 3.2 From 2D Poses to 3D Heatmap Volumes
+        # 3.3 3D-CNN for Skeleton-based Action Recognition
+      # 4. Experiments
+        # 4.1 Dataset Preparation
+        # 4.2 Good Properties of PoseConv3D
+
+
+  -------------------------------------
+  ⚓ Multiple object tracking (MOT) ; https://en.wikipedia.org/wiki/Multiple_object_tracking
+    🪱 distractors
+      
+    ⚓ [2022-06-29] LITE: A Paradigm Shift in Multi-Object Tracking with Efficient ReID Feature Integration ; https://arxiv.org/pdf/2409.04187
+      https://arxiv.org/abs/2409.04187
+      https://github.com/Jumabek/LITE
+
+    ⚓ [2022-06-29] BoT-SORT: Robust Associations Multi-Pedestrian Tracking ; https://arxiv.org/pdf/2206.14651
+      https://arxiv.org/abs/2206.14651
+      # Camera Motion Compensation (CMC)
+        ... Global Motion Compensation (GMC)
+
+    ⚓ [2021-10-13] ByteTrack: Multi-Object Tracking by Associating Every Detection Box ; https://arxiv.org/pdf/2110.06864
+      https://arxiv.org/abs/2110.06864
+
+
+⚓ Yolo 🔪 Tasks ; https://docs.ultralytics.com/tasks/
+  # Tasks
+    ⚓ Pose ; https://docs.ultralytics.com/tasks/pose/
+      | Model          | FLOPs (B) | mAP (50-95) | FLOPs Growth (%) | mAP Growth (%) |
+      |----------------|-----------|-------------|------------------|----------------|
+      | YOLO11n-pose   | 7.6       | 50.0        | -                | -              |
+      | YOLO11s-pose   | 23.2      | 58.9        | +205.3%          | +17.8%         |
+      | YOLO11m-pose   | 71.7      | 64.9        | +842.1%          | +29.8%         | 
+      | YOLO11l-pose   | 90.7      | 66.1        | +1093.4%         | +32.2%         |
+      | YOLO11x-pose   | 203.3     | 69.5        | +2574.3%         | +39.0%         |
+
+  ⚓ Modes ; https://docs.ultralytics.com/modes/
+    ⚓ Multi-Object Tracking with Ultralytics YOLO ; https://docs.ultralytics.com/modes/track/
+    ... but has the added value of object IDs
+    
+    # Available Trackers
+      Ultralytics YOLO supports the following tracking algorithms. They can be enabled by passing the relevant YAML configuration file such as tracker=tracker_type.yaml:
+        - ⚓⚖️ Bytetrack on Tracking with ReID (BoT-SORT) - Use botsort.yaml to enable this tracker.
+          https://github.com/NirAharon/BoT-SORT
+        - ⚓ ByteTrack - Use bytetrack.yaml to enable this tracker.
+          https://github.com/ifzhang/ByteTrack
+        BoT-SORT is an extended version of ByteTrack4. BoT-SORT includes additional features such as ReID (Re-Identification) and GMC (Global Motion Compensation) algorithm.
+      🪱 Multiple Object Tracking Accuracy (MOTA)
+    # Configuration
+⚓ Yolo 🔪 Github ; https://github.com/ultralytics/ultralytics
+⚓ Yolo 🔪 Reference ; https://docs.ultralytics.com/reference
+  ⚓ ultralytics/engine/results.py ; https://docs.ultralytics.com/reference/engine/results/
+    # engine
+      ⚓ results ; https://docs.ultralytics.com/reference/engine/results/
+        # class ultralytics.engine.results.Results
+⚓ Yolo 🔪 Integration ; https://docs.ultralytics.com/integrations/
+  ⚓💡 Ultralytics Integrations ; https://docs.ultralytics.com/integrations/tensorrt/
+    # Exporting YOLOv8 Models to TensorRT
+      ⭕ It is critical to ensure that the same device that will use the TensorRT model weights for deployment is used for exporting with INT8 precision, as the calibration results can vary across devices.    
+
+
+
+⚓ NVIDIA Jetson Linux Archive ; https://developer.nvidia.com/embedded/jetson-linux-archive
+  # Jetson Linux 36.x
+
+  # Jetson Linux 34.X/35.X
+    # Jetson Nano
+      32.7.5
+⚓ NVIDIA 🔪 NGC Catalog ; https://catalog.ngc.nvidia.com/
+  ⚓ Container ; https://catalog.ngc.nvidia.com/containers
+    https://catalog.ngc.nvidia.com/orgs/nvidia/containers/l4t-pytorch
+
+VS Code 🔪 Docs 🔪 REMOTE
+  ⚓🖇️ Overview ; https://code.visualstudio.com/docs/remote/remote-overview 📅 2024-10-16 11:11:22
+
+  ⚓ SSH ; https://code.visualstudio.com/docs/remote/ssh
+    #️⃣ Getting Started ; https://code.visualstudio.com/docs/remote/ssh#_getting-started
+      # System requirements
+        🚣 Remote SSH host: A running SSH server on: ...
+        https://code.visualstudio.com/docs/remote/ssh#_getting-started
+      # Installation
+      # SSH host setup
+        📍 Optional: If your Linux or macOS SSH host will be accessed by multiple users at the same time
+          , consider enabling Remote.SSH: Remote Server Listen On Socket in VS Code User settings for improved security.
+        ⚙️📰 Remote.SSH: Remote Server Listen On Socket
+          When true, the remote VS Code server will listen on a socket path instead of opening a port.
+          ⚖️ Only valid for Linux and macOS remotes.
+          After toggling this setting, run the command "Kill VS Code Server on Host..." for it to take effect.
+          Requires OpenSSH 6.7.
+          Disables dynamic port forwarding and "local server" mode.
+          Requires AllowStreamLocalForwarding to be enabled for the SSH server.
+
+
+    #️⃣📍 Forwarding a port / creating SSH tunnel ; https://code.visualstudio.com/docs/remote/ssh#_forwarding-a-port-creating-ssh-tunnel
+      # Temporarily forwarding a port
+      # Change local port on tunnel
+      # Always forwarding a port
+    #️⃣ Opening a terminal on a remote host
+      # SSH host-specific settings
+        📄 ~/.vscode-server/data/Machine
+
+    #️⃣📍 Working with local tools
+      The Remote - SSH extension does not provide direct support for sync'ing source code or using local tools with content on a remote host. However, there are two ways to do this using common tools that will work with most Linux hosts.
+      Specifically, you can:
+        Mount the remote filesystem using SSHFS.
+        Sync files to/from the remote host to your local machine using rsync.
+      
+      SSHFS is the most convenient option and does not require any file sync'ing. However, performance will be significantly slower than working through VS Code
+      ⭕, so it is best used for single file edits and uploading/downloading content.
+      
+      If you need to use an application that bulk reads/write to many files at once (like a local source control tool)
+      ⭕ , rsync is a better choice.
+
+
+
+  ⚓🖇️ SSH Tutorial ; https://code.visualstudio.com/docs/remote/ssh-tutorial 📅 2024-10-16 12:05:38
+    #💡 Set up SSH
+      ssh-keygen -t ed25519
+      ```markdown
+      # SSH Key-based Authentication
+
+      1. **Public key** goes on the **server**.
+      2. **Private key** stays on the **client**.
+      3. Server uses the public key to verify the client during SSH connection.
+      4. Client keeps the private key safe and never uploads it to the server.
+      ```
+    # Add SSH key to your VM
+    # Connect using SSH
+      🧮 %vscode>Remote-SSH: Connect to Host...
+      ... VS Code will now open a new window (instance). You'll then see a notification that the "VS Code Server" is initializing on the SSH Host.
+      ... You'll know you're connected to your VM by looking at the indicator in the Status bar. It shows the hostname of your VM.
+      ... 🪱   select SSH Targets
+
+    # Create your Nod.js application
+      #💡 Port forwarding
+    # Edit and debug
+  
+  ⚓ Windows Subsystem for Linux ; https://code.visualstudio.com/docs/remote/wsl
+VS Code 🔪 Docs 🔪 DEV CONTAINERS
+  ⚓ Overview ; https://code.visualstudio.com/docs/devcontainers/containers
+    🚣 This lets VS Code provide a local-quality development experience including full IntelliSense (completions), code navigation, and debugging regardless of where your tools (or code) are located.
+    #️⃣ Getting started ; https://code.visualstudio.com/docs/devcontainers/containers#_getting-started
+      # System requirements
+        # Local / Remote Host: ...
+
+    #️⃣ Picking your quick start ; https://code.visualstudio.com/docs/devcontainers/containers#_picking-your-quick-start
+    #️⃣ Quick start: Try a development container ; https://code.visualstudio.com/docs/devcontainers/containers#_quick-start-try-a-development-container
+    #️⃣💡 Quick start: Open an existing folder in a container ; https://code.visualstudio.com/docs/devcontainers/containers#_quick-start-open-an-existing-folder-in-a-container
+      ⚠️ While using this approach to bind mount the local filesystem into a container is convenient, it does have some performance overhead on Windows and macOS
+      # Open a WSL 2 folder in a container on Windows
+      # Open a folder on a remote SSH host in a container
+      # Open a folder on a remote Tunnel host in a container
+      # Open an existing workspace in a container
+        ... if the workspace only references relative paths to sub-folders of the folder the .code-workspace file is in (or the folder itself).
+    #️⃣💡 Quick start: Open a Git repository or GitHub PR in an isolated container volume ; https://code.visualstudio.com/docs/devcontainers/containers#_quick-start-open-a-git-repository-or-github-pr-in-an-isolated-container-volume
+      ⭕ In addition to not polluting your file tree, local volumes have the added benefit of improved performance on Windows and macOS
+    #️⃣ Trusting your Workspace ; https://code.visualstudio.com/docs/devcontainers/containers#_trusting-your-workspace
+      # Reopn in container
+      # Attach to existing container
+      # Clone repository in a volume
+      # Inspect volume
+      # Docker daemon running remotely
+
+    #️⃣💡 Create a devcontainer.json file ; https://code.visualstudio.com/docs/devcontainers/containers#_create-a-devcontainerjson-file
+      ⚖️ Note: Additional configuration will already be added to the container based on what's in the base image. ...
+    #️⃣📰📍 Dev Container Features ; https://code.visualstudio.com/docs/devcontainers/containers#_dev-container-features
+      # "Always installed" Features
+      # Creating your own Feature
+      # Features specification and distribution
+    #️⃣💡 Pre-building dev container images ; https://code.visualstudio.com/docs/devcontainers/containers#_prebuilding-dev-container-images
+      📝 The core idea: 
+        The relationship between metadata and embedded image information means that configurations embedded within the image are automatically applied in Dev C`ontainers. 
+        📍 This approach eliminates the need to maintain complex configuration files locally, as the necessary settings are embedded in metadata and automatically applied when the image is referenced.
+
+        Key Reasons for Using Metadata-Embedded Dev Containers:
+          - Consistent Environments: Every time the image is referenced, the embedded settings ensure identical environments.
+          - Simplified Configuration Management: Metadata embedded in images eliminates the need for maintaining complex local configuration files.
+          
+          - Reduced Maintenance: Updates are handled by rebuilding the image, not by manually editing configuration files across projects.
+          
+          - Reusability Across Projects: The same image can be reused in multiple repositories or pipelines without reconfiguration.
+          
+          - Integration with CI/CD: Ensures seamless, reproducible environments in automated workflows like GitHub Actions or DevOps pipelines.
+
+      ⭕ We recommend pre-building images with the tools you need rather than creating and building a container image each time you open your project in a dev container.
+        Using pre-built images will result in a faster container startup, simpler configuration, and allows you to pin to a specific version of tools to improve supply-chain security and avoid potential breaks.
+      ...🚣 to improve supply-chain security and avoid potential breaks. 
+      ... Even better - pre-built images can contain Dev Container metadata ...
+      ⭕ We recommend using the Dev Container CLI (or other specification supporting utilities like the GitHub Action) to pre-build your images since it is kept in sync with the Dev Containers extension's latest capabilities - including dev container Features.
+    
+      # Inheriting metadata
+
+    #️⃣ Inspecting volumes ; https://code.visualstudio.com/docs/devcontainers/containers#_inspecting-volumes      
+    #️⃣⚖️ Managing extensions ; https://code.visualstudio.com/docs/devcontainers/containers#_managing-extensions
+      While extensions that affect the VS Code UI, like themes and snippets, are installed locally, most extensions will reside inside a particular container
+      There will be a Local - Installed category and also one for your container.
+
+      #💡 Adding an extension to devcontainer.json
+      #🚣 Opt out of extensions
+      #📍 "Always installed" extensions
+        If there are extensions that you would like always installed in any container, you can update the dev.containers.defaultExtensions User setting. 
+      # Advanced: Forcing an extension to run locally or remotely
+        Typically, this should only be used for testing unless otherwise noted in the extension's documentation since it can break extensions.
+        ➡️ https://code.visualstudio.com/api/advanced-topics/extension-host#preferred-extension-location
+
+    #️⃣📍 Forwarding or publishing a port ; https://code.visualstudio.com/docs/devcontainers/containers#_forwarding-or-publishing-a-port
+      🆚 "forward" or "publish" in docker ; https://stackoverflow.com/a/22150099
+      # Always forwarding a port
+      # Temporarily forwarding a port
+        ⚙️ "remote.restoreForwardedPorts": true
+      # Publishing a port
+
+    #️⃣⚖️ Opening a terminal ; https://code.visualstudio.com/docs/devcontainers/containers#_opening-a-terminal
+      You can also use the code command line
+    #️⃣ Debugging in a container ; https://code.visualstudio.com/docs/devcontainers/containers#_debugging-in-a-container
+
+    #️⃣🚣 Container specific settings ; https://code.visualstudio.com/docs/devcontainers/containers#_container-specific-settings
+      🧮 %vscode> Preferences: Open Remote Settings
+      #🛍️ e.g. Default container specific settings
+
+    #️⃣ Managing containers ; https://code.visualstudio.com/docs/devcontainers/containers#_managing-containers
+      🧮 %vscode> View: Show Remote Explorer
+        # Dev Containers
+        # Other Containers
+
+    #️⃣📰 Personalizing with dotfile repositories ; https://code.visualstudio.com/docs/devcontainers/containers#_personalizing-with-dotfile-repositories
+    #️⃣📰 Known limitations ; https://code.visualstudio.com/docs/devcontainers/containers#_known-limitations
+      - 📰 All roots/folders in a multi-root workspace will be opened in the same container, regardless of whether there are configuration files at lower levels.
+      - The unofficial Ubuntu Docker snap package for Linux is not supported.
+      - 📰 If you clone a Git repository using SSH and your SSH key has a passphrase, VS Code's pull and sync features may hang when running remotely. Either use an SSH key without a passphrase, clone using HTTPS, or run git push from the command line to work around the issue.
+      - 📰 Local proxy settings are not reused inside the container, which can prevent extensions from working unless the appropriate proxy information is configured (for example global HTTP_PROXY or HTTPS_PROXY environment variables with the appropriate proxy information).
+    #️⃣ Advanced container configuration ; https://code.visualstudio.com/docs/devcontainers/containers#_advanced-container-configuration
+    #️⃣ devcontainer.json reference ; https://code.visualstudio.com/docs/devcontainers/containers#_devcontainerjson-reference
+    #️⃣ Questions or feedback ; https://code.visualstudio.com/docs/devcontainers/containers#_devcontainerjson-reference
+    #️⃣ Next steps ; https://code.visualstudio.com/docs/devcontainers/containers#_next-steps
+  ⚓ Attach Container ; https://code.visualstudio.com/docs/devcontainers/attach-container
+  ⚓⭕ Dev Container CLI ; https://code.visualstudio.com/docs/devcontainers/devcontainer-cli
+    recommended from 🔗 Pre-building dev container images
+
+⚓ Dev Containers ; https://containers.dev/
+  ⚓ Overview ; https://containers.dev/overview
+    # What are development containers?
+    # A structured metadata format
+      🚣 It is a structured JSON with Comments (jsonc) metadata format that tools can use to store any needed configuration required to develop inside of local or cloud-based containerized coding.
+      💡 Since the spec was initally published, dev container metadata can now be stored in image labels and in reusable chunks of metadata and install scripts known as Dev Container Features.
+        ➡️ Available Features
+    #🖼️ Development vs production
+    # Build and test
+      The open-source CLI reference implementation ; https://github.com/devcontainers/cli
+        in GitHub Action ; https://github.com/devcontainers/ci
+    # Supporting tools
+  ⚓📰 Available Features ; https://containers.dev/features
+  # Specification
+    ⚓ Development Container Specification ; https://containers.dev/implementors/spec/
+    ⚓⚖️📍 devcontainer.json schema ; https://containers.dev/implementors/json_schema/
+    
+    ⚓📍 Dev Container metadata reference ; https://containers.dev/implementors/json_reference/
+
+    ⚓ Dev Container Features reference ; https://containers.dev/implementors/features/
+    ⚓📰 Dev container Features contribution and discovery ; https://containers.dev/implementors/features-distribution/
+
+⭕⚓ OCI Distribution Specification ; https://github.com/opencontainers/distribution-spec/tree/main
+  The OCI Distribution Spec project defines an API protocol to facilitate and standardize the distribution of content.
+⚓ Image-spec ; https://github.com/opencontainers/image-spec/tree/main
+
+
+🚣 QEMU Docs ; https://www.qemu.org/documentation/  >> https://www.qemu.org/docs/master/
+  ⚓ Tools ; https://www.qemu.org/docs/master/tools/index.html
+    ⚓ QEMU disk image utility ; https://www.qemu.org/docs/master/tools/qemu-img.html
+      🚣 https://www.qemu.org/docs/master/tools/qemu-img.html#cmdoption-qemu-img-commands-arg-snapshot
+      # snapshot
+        https://www.qemu.org/docs/master/tools/qemu-img.html#cmdoption-qemu-img-arg-snapshot
+
+⚓
+  fstab ; https://man7.org/linux/man-pages/man5/fstab.5.html
+    file systems table.
+    # The fourth field (fs_mntops).
+      #🚣 user
+        allow a user to mount
+
+
+
+fish - test ; https://fishshell.com/docs/current/cmds/test.html
+  -f FILE
+    Returns true if FILE is a regular file.
+  -e FILE
+    Returns true if FILE exists.
+
+  NUM1 -lt NUM2
+    Returns true if NUM1 is less than NUM2.
+
+
+⭕ Helix .. in snap.. ; https://snapcraft.io/install/helix/ubuntu
+  like in jetson nano
+  sudo snap install helix --classic
+
+⚓ GIMP ; 
+  Image - Canvas Size...
+
+  ⚓ Compositing ;https://en.wikipedia.org/wiki/Compositing  
+    # Contents
+    ⚓ Alpha compositing | Alpha blending ; https://en.wikipedia.org/wiki/Alpha_compositing
+
+⚓🖇️  Ubuntu 🔪 Install and Configure Samba ; https://ubuntu.com/tutorials/install-and-configure-samba 📅 2024-10-30 10:33:59
+  sudo apt update -y && sudo apt install -y samba
+  whereis samba
+  mkdir -p ~/sambashare/
+
+⚓ GSettings ; https://docs.gtk.org/gio/class.Settings.html
+  https://gitlab.gnome.org/GNOME/gnome-settings-daemon
+
+  ⚓⌨️💡 All available shortcuts list ; https://github.com/GNOME/gnome-settings-daemon/blob/master/plugins/media-keys/shortcuts-list.h
+  ⚓ Command API ; https://docs.gtk.org/gio/class.Settings.html
+    #💡 Instance methods
+
+  📝 How to change shortcut key
+    if you want to use GUI
+      System Settings - Keyboard
+        - Keyboard Shortcuts - View and Customize Shorcuts
+    if you want to use command %shell> 
+      gsettings set org.gnome.settings-daemon.plugins.media-keys home "['<Super>e']"
+      gsettings get org.gnome.settings-daemon.plugins.media-keys home
+
+
+⚓ cloud-init ; https://cloudinit.readthedocs.io/en/latest/
+  cloud-localds ; https://cloudinit.readthedocs.io/en/21.4/topics/faq.html#:~:text=The%20cloud%2Dlocalds%20command%20from,without%20running%20a%20network%20service.
+
+
+❓ This container can be used to run an application or to separate tools, libraries, or runtimes needed for working with a codebase.
+  ?? 라이브러리..? 어떻게?
+
+Workspace files are mounted from the local file system or copied or cloned into the container
+??copy clone 차이
+
+settings, tools, and configurations  차이
+
+Other glibc based Linux containers ??
+
+ㅡㅡ working with git?
+
+
+
+
+
+https://code.visualstudio.com/remote/advancedcontainers/improve-performance
+
+https://code.visualstudio.com/remote/advancedcontainers/develop-remote-host
+
+
+>> 지금 만들고 싶은 것. 이 파이프라인; https://containers.dev/img/dev-container-stages.png
+>> 봐야할 것 https://code.visualstudio.com/remote/advancedcontainers/develop-remote-host
+
+>> pyenv 
+
+
+🪱 Dev Container Template
+🧮 %vscode> Dev Containers: Open Folder in Container...
+🧮 %vscode> Dev Containers: Reopen in Container
+🧮 %vscode> Dev Containers: Open Workspace in Container
+# Tunnels
+  https://code.visualstudio.com/docs/remote/tunnels
+🧮🚣 %vscode> Dev Containers: Add Dev Container Configuration Files...
+🧮🚣 %vscode> Dev Containers: Configure Container Features
+🧮 %vscode> Containers: Explore a Volume in a Dev Container...
+
+🧮 %vscode> Forward a Port
+
+🧮 %vscode> Preferences: Open Remote Settings
+🧮 %vscode> Terminal: Create New Terminal
+🧮 %vscode> View: Show Remote Explorer
+
+🧮 %vscode> Dev Containers: Add Dev Container Configuration Files...
+  Add configuration to workspace
+    Select container configuration template or enter a custom template id
+      - Show All Templates... - [Standard-IO] Python with poetry
+    Python version to install with Pyenn
+      - 3.11 (latest version at the written time)
+    Select the os to install
+      - jammy (latest version at the written time)
+    Select additonal features to install
+      - [meanginful-ooo] fish
+
+
+DLSS
+
+
+
+
+
+
+
+
+mount | grep class

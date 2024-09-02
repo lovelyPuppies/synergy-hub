@@ -1,0 +1,3 @@
+[submodule "external/pyskl"]
+	path = external/pyskl
+	url = https://github.com/abcde111112/pyskl

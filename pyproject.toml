@@ -1,0 +1,136 @@
+# %shell> poetry install --with ml-framework
+# %shell> poetry install --all-extras
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+
+[tool.poetry]
+name = "python-study"
+version = "0.1.0"
+description = ""
+authors = ["wbfw109v2 <wbfw109v2@gmail.com>"]
+packages = [{ from = "prototypes/python-study", include = "python_study" }]
+
+
+[tool.poetry.dependencies]
+python = "~3.12.0"
+tensorflow = {extras = [], version = "^2.17.0", allow-prereleases = true}
+pandas = "^2.2.2"
+pyside6 = "^6.7.2"
+matplotlib = "^3.9.2"
+jupyter = "^1.1.1"
+tensorflow-datasets = "^4.9.6"
+gpustat = "^1.1.1"
+finance-datareader = "^0.9.94"
+bs4 = "^0.0.2"
+plotly = "^5.24.1"
+ultralytics = "^8.2.99"
+imageio = {extras = ["ffmpeg"], version = "^2.35.1"}
+pyserial = "^3.5"
+numpy = "<2.0.0"
+mediapipe = "^0.10.15"
+scikit-build = "^0.18.1"
+opencv-python = "^4.10.0.84"
+pyqt5 = "^5.15.11"
+tox = "^4.21.2" 
+yt-dlp = "^2024.10.7"
+ipykernel = "^6.29.5"
+onnxslim = "^0.1.35"
+onnxruntime-gpu = "^1.19.2"
+tensorrt = ">=7.0.0,<10.1.0"
+
+
+[tool.poetry.group.dev.dependencies]
+bandit = "*"
+pydocstringformatter = "^0.7.2"
+ruff = "^0.6.9"
+
+[tool.poetry.group.test.dependencies]
+pytest-cov = "*"
+pytest-bdd = "*"
+# pytest-factoryboy = "^2.5.1"
+
+[tool.pytest.ini_options]
+bdd_features_base_dir = "features/"
+addopts = ["--import-mode=importlib"]
+pythonpath = "src/python"
+
+[tool.poetry.group.ml-base.dependencies]
+pycuda = "^2024.1.2"
+torch = "^2.4.1"
+onnx = "^1.16.2"
+
+
+[tool.poetry.group.ml-pyskl]
+optional = true
+
+[tool.poetry.group.ml-pyskl.dependencies]
+#[⚠️ [📅 2024-10-14 06:38:07] You require to run %shell> poetry run pip install --no-build-isolation xtcocotools==1.14.3 chumpy
+pyskl = {path = "external/pyskl", develop = true}
+# [tool.poetry.group.ml-mmaction]
+# optional = true
+
+# [tool.poetry.group.ml-mmaction.dependencies]
+# mmaction2 = {path = "external/mmaction2", develop = true}
+# mmengine = "^0.10.5"
+# openmim = "^0.3.9"
+# torch = "^2.4.1"
+# torchvision = "^0.19.1"
+# mmcv = "<2.2.0"
+# moviepy = "^1.0.3"
+# einops = "^0.8.0"
+
+[tool.poetry.extras]
+mmaction_all = [
+    "decord", 
+    "einops", 
+    "matplotlib", 
+    "numpy", 
+    "opencv-contrib-python", 
+    "pillow", 
+    "scipy",
+    "av",
+    "future",
+    "imgaug",
+    "librosa",
+    "lmdb",
+    "openai-clip",
+    "packaging",
+    "pims",
+    "PyTurboJPEG",
+    "soundfile",
+    "tensorboard",
+    "wandb"
+]
+mmaction_tests = ["coverage", "flake8", "interrogate", "isort", "parameterized", "pytest", "pytest-runner", "xdoctest", "yapf"]
+mmaction_mim = ["openmim"]
+mmaction_multimodal = ["some-multimodal-package"]
+
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+
+
+
+# Define OpenVINO-specific group from https://openvinotoolkit.github.io/training_extensions/stable/guide/get_started/installation.html#run-tests
+# [tool.poetry.group.openvino.dependencies]
+# openvino = "*"
+# [tool.poetry.group.openmmlab.dependencies]
+# torchvision = "*"
+# torch = "*"
+# mmengine = "*"
+# mmcv = "*"
+# mmaction2 = "*"
+# [tool.poetry.group.efficientgcn.dependencies]
+# seaborn = "*"
+# pyyaml = "*"
+# nvidia-ml-py3 = "*"
+# tensorboardX = "*"
+# thop = "*"
+
+### 💡  https://pytorch.org/get-started/previous-versions/

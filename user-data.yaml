@@ -1,0 +1,64 @@
+#cloud-config
+users:
+  - default
+
+  - name: ubuntu19
+    gecos: wbfw109v2
+    primary_group: ubuntu19
+    groups: users, sudo
+    lock_passwd: false
+    shell: /bin/bash
+    # no password required
+    sudo: ["ALL=(ALL) NOPASSWD: ALL"]
+    ssh-authorized-keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCXNes1OcHwVF+v3uJdIVPj5vgZ3aaMjuTisjGA6sKiFFf2BYYHDOosRWctKJ49ZomHY5OWekiRBz2gdjEC/O57tZm29UWbgyN+viz9aklGNyHvi5ZuzT4X5U4hvGtCOkBpCRetnJCnZWrzk88yZJBg3M+RkcCYl6u9pf+nIMGSQEqhCtMhUoMAmrfem8zWkc/01XD1QAmHFPTeQgZxiVa0H1N9w84YyirsC2J/NFOQWh6aIHRHhabHtTmsGCk/41QPQBerRwQv8MI6N7EohmrcHD4Ung7ckfukG/tD/kY4TPIxpA/9ug2F9PSekFo4bisnjqTfQh5iPzQiizC76KdtrfGiQJuc1zZJzDM7q8TYCG/zLSu7bJuJyhMQt71PHVGwvNdNUilF5G2fppB9Yv10IbY3UK0HWKFRqGeeMd+AWeCVgQjAWIMTFpB22R09VwWqokxTz0Lt7NZeQ4SE5HpUnTtUnH5uLg1CpgwY4Z3XpfTN/EujT7tuC3ORHI7WnxRX38VUGylb/WAu4KCLcVO9fJTGkhwo4f8d6xR2si9SHjK7jL8ghMurHiceTqeXnQQt76K/47K36/fupusY3ULZ5RlXrbAV6N05og5L1pqLPT0lkz+1DFMTAs7hfNB4pKYOfP58Dd+ReI2MbxnpkrBh8Lg96HmOD0tHWP5CDCS0ZQ== wbfw109v2@gmail.com
+
+  - name: admin
+    gecos: wbfw109v2
+    primary_group: admin
+    groups: admin, users
+    lock_passwd: false
+    # openssl passwd -6 admin
+    passwd: $6$qYUOlf2vfzdo26Vs$9PW1h/8RVfS.nkJdqJYukxNyvAxW83MG0RsnKCQB9sORma3fXaKyrewqNVvqGueH3YfWTZuHbxoGelYdELaUR0
+    shell: /bin/bash
+
+final_message: "Cloud-init finished successfully"
+
+# sudo su - ubuntu19 -s /bin/bash
+
+
+# 📝 Note that '#cloud-config' must be located at first line.
+# https://cloudinit.readthedocs.io/en/21.4/topics/faq.html#cloud-localds
+#   user-data.yaml
+# # Set Passwords ; https://cloudinit.readthedocs.io/en/latest/reference/modules.html
+# https://cloudinit.readthedocs.io/en/latest/reference/examples.html
+# https://cloudinit.readthedocs.io/en/latest/reference/network-config-format-v2.html#network-config-v2
+
+# 📰 Reference
+# Define initial user setup and network configuration
+# The VM will have a static IP and configured network at boot
+# network:
+#   version: 2
+#   ethernets:
+#     enp0s2:  # VM 내부 인터페이스 이름에 맞게 사용
+#       dhcp4: false
+#       dhcp6: false
+#       addresses: [10.10.14.39/24]
+#       gateway4: 10.10.14.254
+#       nameservers:
+#         addresses: [203.248.252.2]
+# if set these, the user can not login
+#    lock_passwd: true
+#    shell: /usr/sbin/nologin
+## >>>>>>>>>> cloud-init clean && sudo reboot
+## >>>>>>>>>>> cloud-init status
+## The default password for the Ubuntu user created by cloud-init is locked. This is because the default /etc/cloud/cloud.cfg config uses cloud-init to create users, but locks the password. 
+# https://github.com/canonical/cloud-init/issues/4946
+# 비밀번호가 잠겨 있다는 것은 사용자가 비밀번호를 입력하여 로그인을 시도할 수 없다는 뜻입니다. 즉, 해당 계정으로 로그인하려고 해도 비밀번호 인증을 통해 로그인할 수 없는 상태입니다.
+# SSH 키 사용: 기본적으로 비밀번호가 잠긴 ubuntu 계정은 SSH 키를 사용하여 로그인할 수 있습니다. 따라서 SSH 클라이언트를 통해 공개 키를 추가하고 해당 키로 인증받아야 로그인할 수 있습니다.
+# 비밀번호가 잠겨 있어도 SSH 키 인증을 통해 접속이 가능하므로, 사용자 계정의 비밀번호를 잊어버리거나 설정하지 않더라도 문제가 발생하지 않습니다.
+
+# General Electric Comprehensive Operating System (gecos)
+# Change Finger (chfn)
+# sudo chfn -f "wbfw109v2" ubuntu19 해석. 
+

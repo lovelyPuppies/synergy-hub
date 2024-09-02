@@ -1,0 +1,16 @@
+network:
+  version: 2
+  ethernets:
+    # opaque ID for physical interfaces, only referred to by other stanzas
+    enp0s2:
+      match:
+        macaddress: "52:54:00:12:34:56"
+      # wakeonlan: true
+      dhcp4: false
+      addresses:
+        - 10.10.14.39/24
+      gateway4: 10.10.14.254
+      nameservers:
+        addresses: [203.248.252.2, 8.8.8.8]
+
+# cloud-localds cloud-init.iso user-data.yaml meta-data.yaml --network-config=network-config.yaml

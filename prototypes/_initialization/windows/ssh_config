@@ -1,0 +1,42 @@
+# from tailscale
+Host tailscale-machine
+  HostName 100.123.16.128
+  User wbfw109v2
+  ForwardX11Trusted yes
+  ForwardX11 yes
+  # start comamnd with %shell> code ~/repo/intel-edge-academy-6/.vscode/intel-edge-academy-6.code-workspace
+
+# from tailscale to Jetson Nano
+Host tailscale-machine-to-jetson-nano
+  HostName 10.10.14.90
+  User jsnano
+  ProxyJump tailscale-machine
+  ForwardX11 yes
+  ForwardX11Trusted yes
+
+# from tailscale to Jetson Nano
+Host tailscale-machine-to-intel-server
+  HostName 61.108.166.16
+  User team002
+  ProxyJump tailscale-machine
+  ForwardX11 yes
+  ForwardX11Trusted yes
+
+
+### SSH server setting
+## /etc/ssh/sshd_config
+# X11Forwarding yes
+# X11DisplayOffset 10
+# X11UseLocalhost no 
+## and run ssh in powershell (not Administrator), and %shell> export DISPLAY=100.92.131.76:0
+# or write automatic script for bash or fish
+
+### SSH client setting in Windows: VcXsrv (Xlaunch.exe)
+## 🔰 %shell:pwsh> & "C:\Program Files\VcXsrv\vcxsrv.exe" :0 -multiwindow -ac -clipboard -wgl -nounixkill
+# xlaunch.exe: Launches the X server program.
+# :0: Sets the display number. Typically, the first display is assigned as :0.
+# -multiwindow: Configures the X server to operate in multi-window mode, allowing each X11 application to open as a separate Windows window.
+# -ac: Stands for "Access Control." Disables access control, allowing all clients to connect freely to the X server.
+# -clipboard: Enables clipboard sharing so that text can be copied and pasted between Windows and X11 applications.
+# -wgl: Stands for "Windows Graphics Library." Activates native OpenGL support, allowing X11 applications to render graphics using Windows' OpenGL capabilities.
+# -nounixkill: Prevents the Unix-style 'Ctrl + Alt + Backspace' combination from terminating the X server. This helps prevent accidental shutdowns in a Windows environment.

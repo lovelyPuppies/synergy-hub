@@ -1,0 +1,58 @@
+# GPU Comparison for Edge Devices (1080p)
+
+| Device               | AI Performance (TOPS) | Power Consumption | Expected FPS (MoViNet, 1080p) | Expected FPS (PoseC3D, 1080p) | Expected FPS (YOLOv8-NAS, 1080p) | Expected FPS (MMPose, 1080p) | Expected FPS (OpenPose, 1080p) | Recommended Use                |
+|----------------------|----------------------|-------------------|------------------------------|-------------------------------|---------------------------------|------------------------------|--------------------------------|--------------------------------|
+| **Jetson AGX Orin**   | 200 TOPS             | 15–50W            | 30+ FPS                      | 20–30 FPS                     | 30–40 FPS                      | 25–30 FPS                    | 15–20 FPS                      | High-performance edge AI        |
+| **Jetson Xavier NX**  | 21 TOPS              | 10–15W            | 30 FPS                       | 10–15 FPS                     | 15–20 FPS                      | 10–15 FPS                    | 8–10 FPS                       | Power-efficient real-time tasks |
+| **Coral Edge TPU**    | 4 TOPS               | 2W                | 10–20 FPS (TensorFlow Lite)   | Not suitable                  | 5–10 FPS                       | Not suitable                 | Not suitable                  | Ultra-efficient, low-power      |
+| **Jetson Nano**       | 0.5 TFLOPS           | 5–10W             | 10–15 FPS                    | 5–10 FPS                      | 10 FPS                         | 5–10 FPS                     | Not suitable                  | Budget-friendly, low-power      |
+
+# GPU Comparison for Edge Devices (640x480)
+
+| Device               | AI Performance (TOPS) | Power Consumption | Expected FPS (MoViNet, 640x480) | Expected FPS (PoseC3D, 640x480) | Expected FPS (YOLOv8-NAS, 640x480) | Expected FPS (MMPose, 640x480) | Expected FPS (OpenPose, 640x480) | Recommended Use                |
+|----------------------|----------------------|-------------------|-------------------------------|--------------------------------|-----------------------------------|-------------------------------|--------------------------------|--------------------------------|
+| **Jetson AGX Orin**   | 200 TOPS             | 15–50W            | 40+ FPS                       | 30 FPS                         | 40+ FPS                          | 30+ FPS                       | 25–30 FPS                      | High-performance edge AI        |
+| **Jetson Xavier NX**  | 21 TOPS              | 10–15W            | 30+ FPS                       | 20 FPS                         | 25+ FPS                          | 20 FPS                        | 15 FPS                         | Power-efficient real-time tasks |
+| **Coral Edge TPU**    | 4 TOPS               | 2W                | 15+ FPS                       | Not suitable                   | 10 FPS                           | Not suitable                  | Not suitable                   | Ultra-efficient, low-power      |
+| **Jetson Nano**       | 0.5 TFLOPS           | 5–10W             | 15–20 FPS                     | 10 FPS                         | 15 FPS                           | 10–15 FPS                     | Not suitable                   | Budget-friendly, low-power      |
+
+# GPU Comparison for Desktop Devices (1080p)
+
+| GPU                    | AI Performance (TFLOPS) | VRAM              | Power Consumption | Expected FPS (MoViNet, 1080p) | Expected FPS (PoseC3D, 1080p) | Expected FPS (YOLOv8-NAS, 1080p) | Expected FPS (MMPose, 1080p) | Expected FPS (OpenPose, 1080p) | Recommended Use                  |
+|------------------------|------------------------|-------------------|-------------------|------------------------------|-------------------------------|---------------------------------|------------------------------|--------------------------------|----------------------------------|
+| **NVIDIA RTX 2060**     | 6.5 TFLOPS             | 6 GB GDDR6        | 160W              | 30 FPS                       | 10–15 FPS                     | 30 FPS                         | 15–20 FPS                    | 10–15 FPS                      | Entry-level desktop GPU          |
+| **NVIDIA RTX 3060**     | 13 TFLOPS              | 12 GB GDDR6       | 170W              | 30+ FPS                      | 15–20 FPS                     | 30+ FPS                        | 20–25 FPS                    | 15–20 FPS                      | Mid-range performance for AI     |
+| **NVIDIA RTX 3080**     | 29.8 TFLOPS            | 10 GB GDDR6X      | 320W              | 60 FPS                       | 30 FPS                        | 60+ FPS                        | 30+ FPS                      | 25–30 FPS                      | High-performance desktop AI      |
+| **NVIDIA RTX 3090**     | 35.6 TFLOPS            | 24 GB GDDR6X      | 350W              | 60+ FPS                      | 30+ FPS                       | 60+ FPS                        | 30+ FPS                      | 30 FPS                         | High-end performance, multi-tasking |
+| **NVIDIA A100**         | 19.5 TFLOPS            | 40 GB HBM2e       | 250–400W          | 60+ FPS                      | 30+ FPS                       | 60+ FPS                        | 30+ FPS                      | 30+ FPS                        | Enterprise-grade AI, server deployment |
+
+# GPU Comparison for Desktop Devices (640x480)
+
+| GPU                    | AI Performance (TFLOPS) | VRAM              | Power Consumption | Expected FPS (MoViNet, 640x480) | Expected FPS (PoseC3D, 640x480) | Expected FPS (YOLOv8-NAS, 640x480) | Expected FPS (MMPose, 640x480) | Expected FPS (OpenPose, 640x480) | Recommended Use                  |
+|------------------------|------------------------|-------------------|-------------------|-------------------------------|--------------------------------|-----------------------------------|-------------------------------|--------------------------------|----------------------------------|
+| **NVIDIA RTX 2060**     | 6.5 TFLOPS             | 6 GB GDDR6        | 160W              | 40 FPS                        | 20 FPS                         | 40 FPS                           | 25 FPS                        | 20–25 FPS                      | Entry-level desktop GPU          |
+| **NVIDIA RTX 3060**     | 13 TFLOPS              | 12 GB GDDR6       | 170W              | 45+ FPS                       | 25–30 FPS                      | 45 FPS                           | 30 FPS                        | 25–30 FPS                      | Mid-range performance for AI     |
+| **NVIDIA RTX 3080**     | 29.8 TFLOPS            | 10 GB GDDR6X      | 320W              | 60+ FPS                       | 40 FPS                         | 60+ FPS                          | 40+ FPS                       | 30+ FPS                        | High-performance desktop AI      |
+| **NVIDIA RTX 3090**     | 35.6 TFLOPS            | 24 GB GDDR6X      | 350W              | 60+ FPS                       | 45+ FPS                        | 60+ FPS                          | 45+ FPS                       | 40+ FPS                        | High-end performance, multi-tasking |
+| **NVIDIA A100**         | 19.5 TFLOPS            | 40 GB HBM2e       | 250–400W          | 60+ FPS                       | 50 FPS                         | 60+ FPS                          | 50+ FPS                       | 50+ FPS                        | Enterprise-grade AI, server deployment |
+
+
+# GPU Comparison for Edge Devices (1080p, Quantized Models)
+
+| Device               | AI Performance (TOPS) | Power Consumption | Expected FPS (MoViNet, 1080p, Quantized) | Expected FPS (PoseC3D, 1080p, Quantized) | Expected FPS (YOLOv8-NAS, 1080p, Quantized) | Expected FPS (MMPose, 1080p, Quantized) | Expected FPS (OpenPose, 1080p, Quantized) | Recommended Use                |
+|----------------------|----------------------|-------------------|-----------------------------------------|------------------------------------------|--------------------------------------------|-----------------------------------------|------------------------------------------|--------------------------------|
+| **Jetson AGX Orin**   | 200 TOPS             | 15–50W            | 35–45 FPS                               | 25–35 FPS                                | 35–45 FPS                                 | 30–35 FPS                               | 20–25 FPS                                | High-performance edge AI        |
+| **Jetson Xavier NX**  | 21 TOPS              | 10–15W            | 35 FPS                                  | 15–20 FPS                                | 20–25 FPS                                 | 15–20 FPS                               | 10–12 FPS                                | Power-efficient real-time tasks |
+| **Jetson Nano**       | 0.5 TFLOPS           | 5–10W             | 10–15 FPS                               | 5–8 FPS                                  | 10–15 FPS                                 | 7–10 FPS                                | 5–8 FPS                                  | Entry-level edge AI, limited performance |
+| **Coral Edge TPU**    | 4 TOPS               | 2W                | 20–25 FPS                               | Not suitable                             | 10–15 FPS                                 | Not suitable                            | Not suitable                             | Ultra-efficient, low-power      |
+
+
+# GPU Comparison for Edge Devices (640x480, Quantized Models)
+
+| Device               | AI Performance (TOPS) | Power Consumption | Expected FPS (MoViNet, 640x480, Quantized) | Expected FPS (PoseC3D, 640x480, Quantized) | Expected FPS (YOLOv8-NAS, 640x480, Quantized) | Expected FPS (MMPose, 640x480, Quantized) | Expected FPS (OpenPose, 640x480, Quantized) | Recommended Use                |
+|----------------------|----------------------|-------------------|------------------------------------------|-------------------------------------------|---------------------------------------------|------------------------------------------|-------------------------------------------|--------------------------------|
+| **Jetson AGX Orin**   | 200 TOPS             | 15–50W            | 45–55 FPS                                | 35+ FPS                                   | 50+ FPS                                    | 40+ FPS                                 | 30 FPS                                     | High-performance edge AI        |
+| **Jetson Xavier NX**  | 21 TOPS              | 10–15W            | 40 FPS                                   | 25 FPS                                    | 30 FPS                                     | 25 FPS                                  | 20 FPS                                      | Power-efficient real-time tasks |
+| **Jetson Nano**       | 0.5 TFLOPS           | 5–10W             | 15–20 FPS                                | 8–12 FPS                                  | 15–20 FPS                                  | 12–15 FPS                               | 10–12 FPS                                   | Entry-level edge AI, limited performance |
+| **Coral Edge TPU**    | 4 TOPS               | 2W                | 25–30 FPS                                | Not suitable                              | 15–20 FPS                                  | Not suitable                             | Not suitable                                | Ultra-efficient, low-power      |
+****
