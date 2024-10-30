@@ -1,0 +1,360 @@
+[
+  {
+    "abbreviation": "config (informal)",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/config"
+    ],
+    "word": "configuration"
+  },
+  {
+    "abbreviation": "dep (informal)",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/perm#Etymology_2"
+    ],
+    "word": "dependencies"
+  },
+  {
+    "abbreviation": "perm (informal)",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/perm#Etymology_2"
+    ],
+    "word": "permutation"
+  },
+  {
+    "abbreviation": "l",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/l#English"
+    ],
+    "word": "length"
+  },
+  {
+    "abbreviation": "mid",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/mid#English"
+    ],
+    "word": "middle point, middle part"
+  },
+  {
+    "abbreviation": "coord",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/coord#English"
+    ],
+    "word": "coordinate"
+  },
+  {
+    "abbreviation": "ans",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/ans#English"
+    ],
+    "word": "answer"
+  },
+  {
+    "abbreviation": "algo",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/algo#English"
+    ],
+    "word": "algorithm"
+  },
+  {
+    "abbreviation": "dest",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/dest#English"
+    ],
+    "word": "destination"
+  },
+  {
+    "abbreviation": "XP",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/XP#English"
+    ],
+    "word": "Experience Point"
+  },
+  {
+    "abbreviation": "comb",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/comb#English"
+    ],
+    "word": "combination"
+  },
+  {
+    "abbreviation": "lib",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/lib#English"
+    ],
+    "word": "library"
+  },
+  {
+    "abbreviation": "i",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/i#English"
+    ],
+    "word": "index"
+  },
+  {
+    "abbreviation": "math",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/math#English"
+    ],
+    "word": "mathematics"
+  },
+  {
+    "abbreviation": "retval",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/retval#English"
+    ],
+    "word": "return value"
+  },
+  {
+    "abbreviation": "TOC",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/TOC#English"
+    ],
+    "word": "Table of contents"
+  },
+  {
+    "abbreviation": "pub-sub",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/pub-sub#English"
+    ],
+    "word": "publish–subscribe pattern"
+  },
+  {
+    "abbreviation": "sock",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/sock#English"
+    ],
+    "word": "socket"
+  },
+  {
+    "abbreviation": "msg",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/msg#English"
+    ],
+    "word": "message"
+  },
+  {
+    "abbreviation": "impl",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/impl#English"
+    ],
+    "word": "implementation"
+  },
+  {
+    "abbreviation": "app",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/app#English"
+    ],
+    "word": "application"
+  },
+  {
+    "abbreviation": "docs",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/docs#English"
+    ],
+    "word": "documentation"
+  },
+  {
+    "abbreviation": "no",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/No.#English",
+      "https://en.wiktionary.org/wiki/no#English"
+    ],
+    "word": "number"
+  },
+  {
+    "abbreviation": "dir",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/directory#English"
+    ],
+    "word": "directory"
+  },
+  {
+    "abbreviation": "thumb",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/thumbnail#English"
+    ],
+    "word": "thumbnail"
+  },
+  {
+    "abbreviation": "eval",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/evaluation#English"
+    ],
+    "word": "evaluation"
+  },
+  {
+    "abbreviation": "std",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/standard#English"
+    ],
+    "word": "standard"
+  },
+  {
+    "abbreviation": "ENOENT",
+    "rationale": [
+      "in Unix-like system console"
+    ],
+    "word": "Error NO ENTry"
+  },
+  {
+    "abbreviation": "dist",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/dist#English"
+    ],
+    "word": "distribution"
+  },
+  {
+    "abbreviation": "config",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/config#English"
+    ],
+    "word": "configuration"
+  },
+  {
+    "abbreviation": "lib",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/lib#English"
+    ],
+    "word": "library"
+  },
+  {
+    "abbreviation": "src",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/src#English"
+    ],
+    "word": "source"
+  },
+  {
+    "abbreviation": "rep",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/rep#English"
+    ],
+    "word": "representative"
+  },
+  {
+    "abbreviation": "bin",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/bin#English"
+    ],
+    "word": "binary"
+  },
+  {
+    "abbreviation": "tf",
+    "rationale": [
+      "in Tensorflow Docs convention"
+    ],
+    "word": "tensorflow"
+  },
+  {
+    "abbreviation": "cls",
+    "rationale": [
+      "in Python Docs implementation"
+    ],
+    "word": "class"
+  },
+  {
+    "abbreviation": "del",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/del#English"
+    ],
+    "word": "delete"
+  },
+  {
+    "abbreviation": "demo",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/demo#English"
+    ],
+    "word": "demonstration"
+  },
+  {
+    "abbreviation": "dunder",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/dunder#English"
+    ],
+    "word": "double underscore (__)"
+  },
+  {
+    "abbreviation": "func",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/func#English"
+    ],
+    "word": "function"
+  },
+  {
+    "abbreviation": "gen",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/gen#English"
+    ],
+    "word": "generator"
+  },
+  {
+    "abbreviation": "info",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/info#English"
+    ],
+    "word": "information"
+  },
+  {
+    "abbreviation": "lab",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/lab"
+    ],
+    "word": "laboratory"
+  },
+  {
+    "abbreviation": "monorepo",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/monorepo#English"
+    ],
+    "word": "monolithic repository,"
+  },
+  {
+    "abbreviation": "np",
+    "rationale": [
+      "https://numpy.org/doc/stable/user/absolute_beginners.html#how-to-import-numpy"
+    ],
+    "word": "numpy"
+  },
+  {
+    "abbreviation": "obj",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/obj#English"
+    ],
+    "word": "object"
+  },
+  {
+    "abbreviation": "recap",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/recap#English"
+    ],
+    "word": "recapitulate"
+  },
+  {
+    "abbreviation": "ref",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/reference#English"
+    ],
+    "word": "reference"
+  },
+  {
+    "abbreviation": "sync",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/sync#English"
+    ],
+    "word": "synchronization"
+  },
+  {
+    "abbreviation": "temp",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/temporary#English"
+    ],
+    "word": "temporary"
+  },
+  {
+    "abbreviation": "var",
+    "rationale": [
+      "https://en.wiktionary.org/wiki/var#English"
+    ],
+    "word": "variable"
+  }
+]

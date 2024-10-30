@@ -1,0 +1,697 @@
+list of level 1 subjects
+  - Conan
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+🐞 Issue Tracking
+  https://github.com/conan-io/conan-center-index/issues/25075
+    [package] pulseaudio/14.2 : I'm using clang 18 but error; Compiler does not support -std=gnu11
+⚓⭕ Conan ; https://docs.conan.io/2/
+  Conan 2 - C and C++ Package Manager
+----------------------------------------------
+Conan 🔪⚓ Install ; https://conan.io/downloads
+  Recommended install (need python in your system):
+    %shell> pip install conan
+----------------------------------------------
+Conan 🔪⚓ Recipes ; https://conan.io/center/recipes
+  📦 opencv ; https://conan.io/center/recipes/opencv
+  📦 fmt ; https://conan.io/center/recipes/fmt
+  📦 gtest (Google's C++ test framework) ; https://conan.io/center/recipes/gtest
+    https://github.com/google/googletest
+
+----------------------------------------------
+Conan 🔪⚓ Tutorial ; https://docs.conan.io/2/tutorial.html
+  ⚓🖇️ Consuming packages ; https://docs.conan.io/2/tutorial/consuming_packages.html 📅 2024-08-19 02:31:21
+    🗺️ mind map
+      Build a simple CMake project using Conan: simple_cmake_project
+
+      Understanding the flexibility of using conanfile.py vs conanfile.txt: conanfile_py
+        Using build tools as Conan packages: tool_requires
+          Introduction to versioning
+        Building for multiple configurations: Release, Debug, Static and Shared: different_configurations
+        How to cross-compile your applications using Conan: host and build contexts : cross_building
+
+    ⚓ Build a simple CMake project using Conan ; https://docs.conan.io/2/tutorial/consuming_packages/build_simple_cmake_project.html
+      // dir name: simple_cmake_project
+        📍 Our application relies on the Zlib library. Conan, by default, tries to install libraries from a remote server called 🪱 ConanCenter.
+          You can search there for libraries and also check the available versions. In our case, after checking the available versions for Zlib we choose to use one of the latest versions: zlib/1.2.11.
+          https://conan.io/center
+
+        🚣 Conan, by default, will not try to detect a profile automatically, so we need to create one.
+          %shell> conan profile detect --force
+
+          This will detect the operating system, build architecture and compiler settings based on the environment. It will also set the build configuration as 💡 Release by default.
+          The generated profile will be stored in the Conan home folder with 🚣 name default and will be used by Conan in all commands by default unless another profile is specified via the command line.
+
+        💡 Conan installed the Zlib libra ry from the remote server, which should be the Conan Center server by default if the library is available.
+          This server stores both the Conan recipes, which are the files that define how libraries must be built, and the binaries that can be reused so we don’t have to build from sources every time.
+      
+
+
+    ⚓ Using build tools as Conan packages ; https://docs.conan.io/2/tutorial/consuming_packages/use_tools_as_conan_packages.html
+      // dir name: tool_requires
+      🔑 However, what happens if you want to build your project with a specific CMake version, different from the one already installed system-wide? 
+    
+
+
+    ⚓🔑 Building for multiple configurations: Release, Debug, Static and Shared ; https://docs.conan.io/2/tutorial/consuming_packages/different_configurations.html
+      // dir name: different_configurations
+      # Modifying settings: use Debug configuration for the application and its dependencies
+        🚣 Using profiles is not the only way to set the configuration you want to use.
+        You can also 🚣 override the profile settings in the Conan command using the --settings argument
+      
+
+      # Modifying options: linking the application dependencies as shared libraries
+        So far, we have been linking Zlib 🚣 statically in our application.
+        That’s because in the Zlib’s Conan package there’s an attribute set to build in that mode by default.
+        We can change from static to 🚣 shared linking by setting the shared option to True using the --options argument. To do so, please run:
+        ...
+        📍 Conan provides a mechanism to define those variables and make it possible, for executables, to find and load these shared libraries.
+          This mechanism is the 🪱 VirtualRunEnv generator.
+          This is the result of automatically invoking that VirtualRunEnv generator when we activated the shared option when doing the conan install.
+          This generated script will set the PATH, LD_LIBRARY_PATH, DYLD_LIBRARY_PATH and DYLD_FRAMEWORK_PATH environment variables so that executables can find the shared libraries.
+
+
+      #🆚📍 Difference between settings and options
+        ... project-wide configuration defined by the client machine.
+        ... package-specific configuration
+
+
+      # Introducing the concept of Package ID
+        ➡️ Conan packages binary compatibility: the package ID
+
+
+
+    ⚓🔑 Understanding the flexibility of using conanfile.py vs conanfile.txt ; https://docs.conan.io/2/tutorial/consuming_packages/the_flexibility_of_conanfile_py.html
+      // dir name: conanfile_py
+      Using a conanfile.txt to build your projects using Conan it’s enough for simple cases, but if you need more flexibility you should use a conanfile.py file where you can use Python code to make things such as adding requirements dynamically, changing options depending on other options or setting options for your requirements. 
+        🛍️ e.g.  In the case of using this file to create packages, it can define (among other things) how to download the package’s source code, how to build the binaries from those sources, how to package the binaries, and information for future consumers on how to consume the package. 
+      We will translate that same information to a conanfile.py. This file is what is typically called a 🪱 “Conan recipe”.
+      ... This is related to how Conan manages binary compatibility as these values will affect the value of 🚣 the package ID for Conan packages. We will explain how Conan uses this value to manage binary compatibility later.
+      
+      💡🆚 build_requirements() provides a dedicated place to define tool_requires and test_requires, which helps in keeping the structure organized and clear. For more information, please check the requirements() and build_requirements() docs.
+
+
+      #📍 Use the layout() method   // how to omit "--output-folder" option in command
+        ➡️ pre-defined layouts: cmake_layout()
+        🪱 self.folders.generators attribute in the layout() method.
+          This is the folder where all the auxiliary files generated by Conan (CMake toolchain and cmake dependencies files) will be placed.
+        🆚💡 Note that the definitions of the folders is different if it is a 🪱 multi-config generator (like Visual Studio), or a 🪱 single-config generator (like Unix Makefiles).
+          In the first case, the folder is the same irrespective of the build type, and the build system will manages the different build types 🚣 inside that folder.
+        
+
+      # Use the validate() method to raise an error for non-supported configurations
+      # Conditional requirements using a conanfile.py
+
+      #📰📍 Use the generate() method to copy resources from packages 
+        In some scenarios, Conan packages include files that are useful or even necessary for the consumption of the libraries they package.
+        ... refer to blog link in the site
+        🚣 Conan is designed to use the libraries from their locations in the Conan local cache using generators and environment tools without the need to copy them to the local folder
+
+
+
+    ⚓🔑 How to cross-compile your applications using Conan: host and build contexts ; https://docs.conan.io/2/tutorial/consuming_packages/cross_building_with_conan.html
+      // dir name: cross_building
+      🛍️ e.g. For all those examples, we used the same platform for building and running the application. But, what if you want to build the application on your machine running Ubuntu Linux and then run it on another platform like a Raspberry Pi?
+      
+      # Conan two profiles model: build and host profiles
+        📍 Even if you specify only one --profile argument when invoking Conan, Conan will internally use two profiles.
+        One for the machine that builds the binaries (called the build profile) and another for the machine that runs those binaries (called the host profile).
+        Calling this command: ...
+
+        📍 Note that when you just use one argument for the profile --profile is equivalent to --profile:host. If you don’t specify the --profile:build argument, Conan will use the default profile internally.
+        * 🪱 profile:build
+          🚣 <conan home>/profiles/default
+        * 🪱 profile:host
+          📍 <local folder>/profiles/raspberry
+          📍 ... you should have installed a toolchain that includes the compiler and all the tools to build the application for the proper architecture.
+            %shell> sudo apt install gcc-arm-linux-gnueabihf
+            %shell> arm-linux-gnueabihf-gcc --version
+          ... gnueabihf: GNU Embedded Application Binary Interface Hard-Float
+
+        [buildenv], ...VirtualBuildEnv  ...
+        
+      #📍🆚 Build and host contexts
+        The host context is populated with the root package (the one specified in the conan install or conan create command) ...
+        The build context contains the tool requirements used in the build machine. ...
+
+
+
+    ⚓ Introduction to versioning ; https://docs.conan.io/2/tutorial/consuming_packages/intro_to_versioning.html#
+      ➡️ Versioning
+      So far we have been using requires with fixed versions like requires = "zlib/1.2.12".
+      🔑 But sometimes dependencies evolve, new versions are released and consumers want to update to those versions as easy as possible.
+
+      # Version ranges
+        with the syntax: 🚣 pkgname/version#recipe_revision
+
+      # Revisions
+        🔑 What happens when a package creator does some change to the package recipe or to the source code, but they don’t bump the version to reflect those changes? Conan has an internal mechanism to keep track of those modifications, and it is called the revisions.
+        🪱 The recipe revision is the 🚣 hash ...
+
+      #🪱 Lockfiles
+        📍 And run conan install ., which by default will find the conan.lock, and run the equivalent conan install . --lockfile=conan.lock
+
+  ⚓📰~ Working with Conan repositories ; https://docs.conan.io/2/tutorial/conan_repositories.html#
+    ⚓ Setting up a Conan remote ; https://docs.conan.io/2/tutorial/conan_repositories/setting_up_conan_remotes.html
+    ⚓ Uploading Packages ; https://docs.conan.io/2/tutorial/conan_repositories/uploading_packages.html
+    ⚓ Contributing to Conan Center ; https://docs.conan.io/2/tutorial/conan_repositories/conan_center.html
+    ⚓ Local Recipes Index Repository ; https://docs.conan.io/2/tutorial/conan_repositories/setup_local_recipes_index.html
+      # Setup
+
+
+  ⚓ Creating packages ; https://docs.conan.io/2/tutorial/creating_packages.html 📅 2024-08-19 02:31:21
+    🗺️ mind map
+      Create your first Conan package 
+        Define information for consumers: the package_info() method: package_information
+
+        Handle sources in packages: handle_sources
+        Add dependencies to packages: add_requires
+
+        Configure settings and options in recipes: configure_options_settings: package id
+        Preparing the build: preparing_the_build: generate()
+        
+        Build packages: the build() method: build_method: tools.build:skip_test
+        Testing Conan packages: testing_packages
+
+      Other types of packages
+
+
+    ⚓🖇️ Create your first Conan package ; https://docs.conan.io/2/tutorial/creating_packages/create_your_first_package.html 📅 2024-08-19 02:31:21
+      ⭕ Then you can see, some attributes defining metadata. These are optional but recommended and define things like ...
+        - settings are project-wide configuration that 📍 cannot be defaulted in recipe
+        - options are package-specific configuration ...
+
+        📍 After that, the exports_sources attribute is set to define which sources are part of the Conan package.
+        ... for example, in Windows, there is no fPIC option, so it can be removed.
+        .. cmake_layout(). Calling this function will set the expected locations for a CMake project.
+
+        🚣 The generate() method prepare ...
+        📍 The build() method uses the CMake wrapper to call CMake commands, it is  ...
+          It will configure the project and build it from source.
+
+        📍 test_package folder is different from unit or integration tests. These tests are “package” tests, and validate that the package is properly created and that the package consumers will be able to link against it and reuse it.
+          ....It is a small Conan project itself, it contains its conanfile.py 
+          It doesn’t belong in the package. It only exists in the source repository, not in the package.
+
+        $ conan create .
+          📍 This is what has happened:
+          export;
+            The conanfile.py together with the contents of the src folder have been copied (🪱 exported, in Conan terms) to the local Conan cache.
+          build start;
+            A new build from source for the hello/1.0 package starts, calling the 🚣 generate(), 🚣 build() and 🚣 package() methods. This creates the binary package in the Conan cache. ...
+            Conan then moves to the test_package folder and executes a 📍 conan install + conan build + test() method, to check if the package was correctly created.
+        🚣 The conan create command receives the same parameters as conan install, so you can pass to it the same settings and options.
+          ... $ command~
+
+        $ conan list hello
+        $ conan list "hello/1.0:*"
+        
+        ... You will run ... 🔑
+        
+        A note about the Conan cache¶
+          Conan will use the ~/.conan2 folder... 
+          📝 An important note: ...
+
+
+
+    ⚓🖇️ Handle sources in packages ; https://docs.conan.io/2/tutorial/creating_packages/handle_sources_in_packages.html 📅 2024-08-19 02:31:21
+      // dir name: handle_sources
+      exports_sources attribute ...
+      🔑 However, sometimes the source files are stored in a repository or a file in a remote server, and not in the same location as the Conanfile. 
+      . In this section, we will modify the recipe we created previously by adding a 🪱 source() method and explain how to:
+
+      ⚠️ Please, be aware that using the head of the branch instead of an immutable tag or commit is a bad practice and not allowed by Conan
+
+      ⚠️ Warning
+        It is expected that retrieving the sources in the future produces the same results.
+        Using mutable source origins, like a moving reference in git (e.g HEAD branch), or the URL to a file where the contents may change over time, is strongly discouraged and not supported.
+        Not following this practice will result in undefined behavior likely to cause breakages
+
+      # Sources from a branch in a git repository
+        ⚠️ Warning ...
+        📰 Note that it’s also possible to run other commands by invoking the self.run() method.
+      
+      #📰📍 Using the conandata.yml file
+
+
+
+    ⚓🖇️ Add dependencies to packages ; https://docs.conan.io/2/tutorial/creating_packages/add_dependencies_to_packages.html 📅 2024-08-19 02:31:21
+      // dir name: add_requires
+      🔑 So far, the package does not have any dependency on other Conan packages.
+
+      ... conanfile.py
+        📍 First, we set the generators class attribute to make Conan invoke the CMakeDeps generator. This was not needed in the previous recipe as we did not have dependencies. 
+          https://conan.io/center/recipes/fmt
+
+
+
+    ⚓🖇️ Preparing the build ; https://docs.conan.io/2/tutorial/creating_packages/preparing_the_build.html 📅 2024-08-19 02:31:21
+      // dir name: preparing_the_build
+      https://github.com/conan-io/libhello/blob/optional_fmt/CMakeLists.txt
+      https://github.com/conan-io/libhello/blob/optional_fmt/src/hello.cpp
+      🔑 In this section, we focus on the generate() method of the recipe. The aim of this method generating all the information that could be needed while running the build step.
+        That means things like: ...
+          💡 Configuring the toolchain ...
+
+      📍 you could do in the 🪱 generate() method like:
+        - Create a complete custom toolchain based on your needs to use in your build.
+        - Access to certain information about the package dependencies, like:
+          - The configuration accessing the defined conf_info.
+          - Accessing the dependencies options.
+          - Import files from dependencies using the copy tool. You could also import the files create manifests for the package, collecting all dependencies versions and licenses.
+        - Use the Environment tools to generate information for the system environment.
+        - 📰 Adding custom configurations besides Release and Debug, taking into account the settings, like ReleaseShared or DebugShared.
+
+
+    ⚓🖇️ Configure settings and options in recipes ; https://docs.conan.io/2/tutorial/creating_packages/configure_options_settings.html 📅 2024-08-19 02:31:21
+      // dir name: configure_options_settings
+      🔑 We will introduce briefly how Conan models binary compatibility and how that relates to options and settings.
+
+
+      🚣 Be aware that deleting an option using the config_options() method has a different result from using the configure() method.
+      configure():
+        🚣 For example, in this case, we delete the fPIC option, because it should only be True if we are building the library as shared
+          (📍 in fact, some build systems will add this flag automatically when building a shared library).
+      config_options():
+        This method is used to 🚣 constrain the available options in a package before they take a value.
+        🚣 Note that this method is executed before the configure() method.
+
+
+      # Conan packages binary compatibility: the package ID
+        🔑 Let’s explain why we are doing this and the implications of removing that option.
+          It is related to how Conan identifies packages that are binary compatible with the configuration set in the profile. 
+        ... Each of them is related to a 🪱 generated hash called 🪱 the package ID. 
+          The package ID is just a way to convert a set of settings, options and information about the requirements of the package to a unique identifier.
+        
+        📍 Conan will: ...
+
+        so even if you define them, the resulting package ID will be the same. ...
+        🛍️ e.g. 📰📍
+          1.
+            $ conan create . --build=missing -o shared=True -o fPIC=True -tf=""
+            $ conan create . --build=missing -o shared=True -o fPIC=False -tf=""
+          2. # C libraries 
+            Imagine that you are packaging a C library. When you build this library, there are settings like the compiler C++ standard (settings.compiler.cppstd) or the standard library used (self.settings.compiler.libcxx) that won’t affect the resulting binary at all. 
+            💡 typical pattern is to delete them in the configure() method:
+            def configure(self):
+                self.settings.rm_safe("compiler.cppstd")
+                self.settings.rm_safe("compiler.libcxx")
+          3. # Header-only libraries
+            def package_id(self):
+                self.info.clear()
+
+
+
+    ⚓🖇️ Build packages: the build() method ; https://docs.conan.io/2/tutorial/creating_packages/build_packages.html 📅 2024-08-19 02:31:21
+      // dir name: build_method
+      https://github.com/conan-io/libhello/blob/with_tests/CMakeLists.txt
+      https://github.com/conan-io/libhello/tree/with_tests/tests
+      🔑 In this tutorial, we will modify that method and explain how you can use it to do things like:
+        - Building and running tests
+        - Conditional patching of the source code
+        - Select the build system you want to use conditionally
+
+      # Build and run tests for your project
+        # Changes introduced in the recipe
+          We use the tools.build:skip_test configuration (False by default), to tell CMake whether to build and run the tests or not. A couple of things to bear in mind:
+          If we set the tools.build:skip_test configuration to True 📍 Conan will automatically inject the 🪱 BUILD_TESTING variable to CMake set to OFF.
+            ...
+      
+      # Conditionally patching the source code // 📰 When? example...?
+        ⭕ If you need to patch the source code the recommended approach is to do that in the source() method.
+          ...
+          Please, note that patching in build() should be avoided if possible and only be done for very particular cases as it will make more difficult to develop your packages locally
+          ➡️ (we will explain more about this in the local development flow section later)
+
+      # Conditionally select your build system
+
+
+
+    ⚓🖇️ Package files: the package() method ; https://docs.conan.io/2/tutorial/creating_packages/package_method.html 📅 2024-08-19 02:31:21
+      // dir name: package_method
+      https://github.com/conan-io/libhello/tree/package_info
+      🔑 we will explain the use of the CMake.install() in more detail and also how to modify this method to do things like:
+        - Using conan.tools.files utilities to copy the generated artifacts from the build folder to the package folder
+        - Copying package licenses
+        - Manage how to package symlinks
+
+      # Using CMake install step in the package() method
+        This is the simplest choice ... 🪱 artifacts (headers, libraries, binaries) ...
+        ... This will work without changes in your CMakeLists.txt because Conan will set the 🪱 CMAKE_INSTALL_PREFIX CMake variable to point to the recipe’s package_folder attribute.
+        Then, just calling install() in the CMakeLists.txt over the created target is enough for Conan to move the built artifacts to the correct 🚣 location in the Conan local cache.
+
+
+      # Use conan.tools.files.copy() in the package() method and packaging licenses
+        ... We can replace the previous cmake.install() step with a custom copy of the files and the result would be the same.
+
+      ⭕ Note that we are also packaging the LICENSE file from the library sources in the licenses folder. This is a common pattern in Conan packages and could also be added to the previous example using cmake.install() as the CMakeLists.txt will not copy this file to the package folder.
+        ➡️ use hybrid way
+          def package(self):
+              cmake = CMake(self)
+              cmake.install()
+          copy(self, "LICENSE", src=self.source_folder, dst=os.path.join(self.package_folder, "licenses"))
+
+      #📰 Managing symlinks in the package() method
+
+
+
+    ⚓ Define information for consumers: the package_info() method ; https://docs.conan.io/2/tutorial/creating_packages/define_package_information.html📅 2024-08-19 02:31:21
+      // dir name: package_information
+      The Conan package ends up with the following structure in the Conan local cache:
+        .
+        ├── include
+        │   └── hello.h
+        └── lib
+            └── libhello.a
+      🔑📍 Then, consumers that want to link against this library will need some information:
+        - The location of the include folder in the Conan local cache to search for the hello.h file.   // self.cpp_info.includedirs
+        - The name of the library file to link against it (libhello.a or hello.lib)                     // self.cpp_info.libs
+        - The location of the lib folder in the Conan local cache to search for the library file.   // self.cpp_info.libdirs
+      We are not adding information about the lib or include folders where the library and headers files are packaged.
+        📍 The cpp_info object provides the .includedirs and .libdirs properties to define those locations but Conan sets their value as lib and include by default so it’s not needed to add those in this case.
+      
+      # Setting information in the package_info() method
+        📍 there are some typical use cases: ... 🛍️ e.g.
+
+      #⭕ Define information for consumers depending on settings or options
+        🔑 we are setting the output name for the library depending on whether we are building the library as static (hello-static) or as shared (hello-shared).
+        # Changes introduced in the library sources
+        # Changes introduced in the recipe
+
+      # Properties model: setting information for specific generators
+        CMakeDeps, by default, will set a target name for the library using the same name as the Conan package
+        🔑 You can see that we are linking with the target name hello::hello. Conan sets this target name by default, but we can change it using the properties model. 
+
+      # Propagating environment or configuration information to consumers
+        ➡️ https://docs.conan.io/2/examples/conanfile/package_info.html
+          🪱 runenv_info Environment ...
+          🪱 buildenv_info Environment ...
+        📍 Please note that it’s not necessary to add cpp_info.bindirs to PATH or cpp_info.libdirs to LD_LIBRARY_PATH, those are automatically added by the VirtualBuildEnv and VirtualRunEnv.
+      # Define components for Conan packages that provide multiple libraries
+        ➡️ https://docs.conan.io/2/examples/conanfile/package_info.html
+
+
+
+    ⚓🖇️ Testing Conan packages ; https://docs.conan.io/2/tutorial/creating_packages/test_conan_packages.html 📅 2024-08-19 02:31:21
+      // dir name: testing_packages
+      📍 we used the test_package. It was invoked automatically at the end of the conan create command after building our package verifying that the package is created correctly.
+      
+      Let’s go through the most relevant parts:
+        📍 We are using the conan.tools.build.cross_building tool to check if we can run the built executable in our platform.
+          This tool will return the value of the tools.build.cross_building:can_run in case it’s set.
+          Otherwise it will return if we are cross-building or not. It’s
+        ...
+
+
+    #📰 Other types of packages
+      ⚓ Header-only packages ; https://docs.conan.io/2/tutorial/creating_packages/other_types_of_packages/header_only_packages.html
+      ⚓ Package prebuilt binaries ; https://docs.conan.io/2/tutorial/creating_packages/other_types_of_packages/package_prebuilt_binaries.html
+      ⚓ Tool requires packages ; https://docs.conan.io/2/tutorial/creating_packages/other_types_of_packages/tool_requires_packages.html
+
+
+  ⚓🖇️⭕ Developing packages locally ; https://docs.conan.io/2/tutorial/developing_packages.html 📅 2024-08-19 07:38:19
+    🗺️ mind map
+      Package Development Flow: local_package_development_flow
+        Packages in editable mode: editable_packages
+      Understanding the Conan Package layout: package_layout
+
+    ...This means that every time it is run, Conan performs a series of costly operations in the Conan cache, such as downloading, decompressing, copying sources, and building the entire library from scratch
+      🔑 Sometimes, especially with large libraries, while we are developing the recipe, these operations cannot be performed every time.
+
+    ⚓ Package Development Flow ; https://docs.conan.io/2/tutorial/developing_packages/local_package_development_flow.html
+      // dir name: local_package_development_flow
+      ⭕ This local workflow encourages users to perform trial-and-error in a local sub-directory relative to their recipe, much like how developers typically test building their projects with other build tools.
+      
+      # conan source
+      # conan install
+      # conan build
+        If you check the contents of the src folder, you’ll find a 🪱 CMakeUserPresets.json file that you can use to configure and build the conan-release preset. Let’s try it: ...
+        📝 Note
+          📍 We use CMake presets in this example. This requires CMake >= 3.23 because the “include” from CMakeUserPresets.json to CMakePresets.json is only supported since that version.
+          ... // my case, I upgraded cmake version.
+
+      # conan export-pkg
+        💡 Please note that this command will create the package in the Conan cache and test it running the test_package after that.
+
+
+
+    ⚓ Packages in editable mode ; https://docs.conan.io/2/tutorial/developing_packages/editable_packages.html
+      // dir name: editable_packages
+      🔑 In some cases, when you want to consume these packages while developing them, it can be tedious to run conan create each time you make changes to the package.
+        For those cases, you can put your package in editable mode, and consumers will be able to find the headers and artifacts in your local working directory, eliminating the need for packaging.
+
+      # Put say/1.0 package in editable mode
+        $ conan editable add say
+        $ conan editable list
+        💡 Note that the key of editable packages is a correct definition of the layout() of the package. Read the package layout() section to learn more about this method.
+      # Using say/1.0 package in editable mode
+
+
+      # Working with 🚣 editable packages
+      # Building 🚣 editable dependencies
+        📝 Note that if we don’t pass the --build=editable to conan build hello, the binaries for say/0.1 that is in editable mode won’t be available and it will fail.
+        ⭕ With the --build=editable, first a build of the say binaries is done locally and incrementally, and then another incremental build of hello will be done.
+          ...
+        ⭕💡 Note that it is possible to build and test a package in editable with with its own test_package folder.
+          If a package is put in editable mode, and if it contains a test_package folder, the conan create command will still do a local build of the current package.
+        
+        ❌ If editable packages have dependants in the Conan cache, ... --build=editable --build=cascade. In general this should be avoided, ...
+
+      # Revert the editable mode
+        ⚠️ Packages that are built while consuming an editable package in their upstreams can generate binaries and packages that are incompatible with the released version of the editable package.
+
+
+
+    ⚓📍 Understanding the Conan Package layout ; https://docs.conan.io/2/tutorial/developing_packages/package_layout.html
+      // dir name: package_layout
+      🔑 we introduced the concept of editable packages and mentioned that the reason they work out of the box when put in editable mode is due to the current definition of the information in the layout() method.
+        Let’s examine this feature in more detail.
+
+      # self.folders
+        📝📰 Note
+          Please note that the values above are for a single-configuration CMake generator.
+          To support multi-configuration generators, such as Visual Studio, you should make some changes to this layout.
+          For a complete layout that supports both single-config and multi-config, please check the cmake_layout() in the Conan documentation.
+      # self.cpp
+        This attribute is used to define where consumers will find the package contents (headers files, libraries, etc.) 🚣 depending on whether the package is in editable mode or not.
+        # cpp.package
+          🚣 Please note that defining this information is equivalent to defining self.cpp_info in the package_info() method.
+          💡 When we call conan create, Conan moves the recipe and sources declared in the recipe to be exported to the local Cache to a recipe folder and after that
+            , it will create a separate package folder to build the binaries and store the actual package contents.
+        # cpp.source and cpp.build
+          🚣 We also defined cpp.source and cpp.build attributes in our recipe.
+            These are only used when the package is in editable mode and point to the locations that consumers will use to find headers and binaries. We defined: ...
+          🚣 Note that other cpp.source and cpp.build definitions are also possible
+            , with different meanings and purposes, for example: ...
+
+          in Not editable mode
+            $ cd ../hello
+            $ conan install . -s build_type=Release
+            # Linux, MacOS
+            $ cmake --preset conan-release --log-level=VERBOSE
+          
+          in editable mode
+            $ cd ../say
+            $ conan editable add . --name=say --version=1.0
+            $ conan install . -s build_type=Release
+            $ cmake --preset conan-release
+            $ cmake --build --preset conan-release
+
+            $ cd ../hello
+            $ conan install . -s build_type=Release
+            $ cmake --preset conan-release --log-level=VERBOSE
+            $ cmake --build --preset conan-release
+
+            $ conan editable remove --refs=say/1.0
+          📍 Note
+            Please, note that we did not define self.cpp.build.libs = ["say"].
+            This is because the information set in self.cpp.source and self.cpp.build will be merged with the information set in self.cpp.package so that you only have to define things that change for the editable package.
+            ...
+            conanfile.py
+              ## cpp.package information is for consumers to find the package contents in the Conan cache
+
+              self.cpp.package.libs = ["say"]
+              self.cpp.package.includedirs = ["include"] # includedirs is already set to 'include' by
+                                                          # default, but declared for completion
+              self.cpp.package.libdirs = ["lib"]         # libdirs is already set to 'lib' by
+                                                          # default, but declared for completion
+
+              ## 📍 cpp.source and cpp.build information is specifically designed for editable packages:
+
+              # this information is relative to the source folder that is '.'
+              self.cpp.source.includedirs = ["include"] # maps to ./include
+
+              # this information is relative to the build folder that is './build/<build_type>', so it will 
+              self.cpp.build.libdirs = ["."]  # map to ./build/<build_type> for libdirs
+
+----------------------------------------------
+Conan 🔪⚓ Versioning ; https://docs.conan.io/2/tutorial/versioning.html
+----------------------------------------------
+Conan 🔪⚓ Devops guide ; https://docs.conan.io/2/devops.html
+----------------------------------------------
+Conan 🔪⚓ Integrations ; https://docs.conan.io/2/integrations.html#
+
+----------------------------------------------
+Conan 🔪⚓📍 Exmaples ; https://docs.conan.io/2/examples.html
+  ⚓ ConanFile methods examples ; https://docs.conan.io/2/examples/conanfile.html
+    ⚓ ConanFile package_info() examples ; https://docs.conan.io/2/examples/conanfile/package_info.html
+    ⚓ ConanFile layout() examples ; https://docs.conan.io/2/examples/conanfile/layout.html
+
+----------------------------------------------
+Conan 🔪⚓ Reference ; https://docs.conan.io/2/reference.html
+  ⚓ Commands ; https://docs.conan.io/2/reference/commands.html
+    # Consumer commands:
+      ⚓ conan config ; https://docs.conan.io/2/reference/commands/config.html
+        🛍️ e.g. %shell> conan config home
+      ⚓ conan profile ; https://docs.conan.io/2/reference/commands/profile.html
+        🛍️ e.g. conan profile detect --force
+
+      ⚓ conan lock ; https://docs.conan.io/2/reference/commands/lock.html
+        # conan lock create ; Evaluates a 🪱 dependency graph and save a lockfile
+
+      ⚓ conan install ; https://docs.conan.io/2/reference/commands/install.html
+        The conan install command is one of the main Conan commands, and it is used to resolve and install dependencies.
+        📍 This command does the following: ...
+
+      ⚓ conan list ; https://docs.conan.io/2.0/reference/commands/list.html
+        List existing recipes, revisions, or packages in 🚣 the cache (by default) or the remotes.
+      ⚓ conan cache ; https://docs.conan.io/2/reference/commands/cache.html
+        💡 path: ~/.conan2/p
+        # conan cache clean
+          🛍️ e.g. conan cache clean -s -b -d -t
+
+      ⚓ conan lock ; https://docs.conan.io/2/reference/commands/lock.html
+
+
+    # Creator commands:
+      ⚓ conan new ; https://docs.conan.io/2/reference/commands/new.html
+        Create a new recipe (with a conanfile.py and other associated files) from 🚣 either a predefined or a user-defined template.
+      ⚓ conan build ; https://docs.conan.io/2/reference/commands/build.html
+        The conan build command installs the recipe 🚣 specified in path and calls its build() method.
+      
+      ⚓ conan create ; https://docs.conan.io/2/reference/commands/create.html
+        ➡️ This is what has happened: ...
+        The conan create command creates a package from the recipe specified in path.
+        💡 Sometimes you want to skip/disable the test stage. In that case you can skip/disable the test package stage by passing an empty value as the -tf argument:
+          $ conan create . --test-folder=""
+      ⚓ conan test ; https://docs.conan.io/2/reference/commands/test.html
+
+      ⚓ conan editable ; https://docs.conan.io/2/reference/commands/editable.html
+        Allows working with a package in user folder
+
+      ⚓ conan source ; https://docs.conan.io/2/reference/commands/source.html
+        Calls the source() method
+      ⚓ conan export-pkg ; https://docs.conan.io/2/reference/commands/export-pkg.html
+        Create a package directly from pre-compiled binaries
+
+  ⚓ conanfile.py ; https://docs.conan.io/2/reference/conanfile.html
+    ⚓ Attributes ; https://docs.conan.io/2/reference/conanfile/attributes.html
+      #️⃣ Requirements ; https://docs.conan.io/2/reference/conanfile/attributes.html#requirements
+        Attribute form of the dependencies simple declarations, like requires, tool_requires. For more advanced way to define requirements, use the requirements(), build_requirements() methods instead.
+        # requires
+          List or tuple of strings for regular dependencies 🚣 in the host context, like a library.
+        
+        # tool_requires
+          List or tuple of strings for dependencies.
+          🚣 Represents a build tool like “cmake”. If there is an existing pre-compiled binary for the current package, the binaries for the tool_require won’t be retrieved. They cannot conflict.
+      #️⃣ Build ; https://docs.conan.io/2/reference/conanfile/attributes.html#build
+        #🚣 generators ; https://docs.conan.io/2/reference/conanfile/attributes.html#generators
+
+      #️⃣ Binary model ; https://docs.conan.io/2/reference/conanfile/attributes.html#binary-model
+        # settings
+          List of strings with the first level settings (from ➡️ settings.yml) that the recipe needs, ...
+          The most common is to declare:
+            settings = "os", "compiler", "build_type", "arch"
+      #️⃣ Folders and layout ;  https://docs.conan.io/2/reference/conanfile/attributes.html#folders-and-layout
+        # 🚣 package_folder
+        #📍 test_package_folder
+
+      
+    ⚓ Methods ; https://docs.conan.io/2/reference/conanfile/methods.html#reference-conanfile-methods
+      ⚓ build() ; https://docs.conan.io/2/reference/conanfile/methods/build.html
+      ⚓📍 generate() ; https://docs.conan.io/2/reference/conanfile/methods/generate.html
+        Generates the files that are necessary for building the package
+        ➡️ you could do in the 🪱 generate() method like: ...
+
+      ⚓ validate() ; https://docs.conan.io/2/reference/conanfile/methods/validate.html
+
+
+      ⚓ requirements() ; https://docs.conan.io/2/reference/conanfile/methods/requirements.html
+        # requires()
+      ⚓ build_requirements() ; https://docs.conan.io/2/reference/conanfile/methods/build_requirements.html
+
+      ⚓ package_info() ; https://docs.conan.io/2/reference/conanfile/methods/package_info.html
+        #📍 cpp_info: Library and build information
+          - libs
+          - includedirs
+          - libdirs
+          - bindirs
+          - set_property()
+
+        #️⃣ Components ; https://docs.conan.io/2/reference/conanfile/methods/package_info.html#components
+          #🚣 conf_info
+
+
+  ⚓ Recipe tools ; https://docs.conan.io/2/reference/tools.html
+    ⚓ conan.tools.scm ;  // Software Configuration Management
+      ⚓ conan.tools.scm.Git(); https://docs.conan.io/2/reference/tools/scm/git.html
+        checkout 🛍️ e.g. https://docs.conan.io/2/tutorial/creating_packages/add_dependencies_to_packages.html#add-dependencies-to-packages
+          branch name as argument
+
+    ⚓ conan.tools.build ; https://docs.conan.io/2/reference/tools/build.html
+      #️⃣ Building ; https://docs.conan.io/2/reference/tools/build.html#building
+        - conan.tools.build.can_run()
+        - conan.tools.build.cross_building()
+      #️⃣ Cppstd ; https://docs.conan.io/2/reference/tools/build.html#cppstd
+        - conan.tools.build.check_min_cppstd()
+        - conan.tools.build.check_max_cppstd()
+
+    ⚓ conan.tools.files ; https://docs.conan.io/2/reference/tools/files/basic.html
+      ⚓ conan.tools.files basic operations ; https://docs.conan.io/2/reference/tools/files/basic.html
+        # conan.tools.files.copy()
+        # conan.tools.files.unzip()
+
+      ⚓ conan.tools.files.symlinks ; https://docs.conan.io/2/reference/tools/files/symlinks.html#id1
+      ⚓ conan.tools.files.downloads ; https://docs.conan.io/2/reference/tools/files/downloads.html#
+        # conan.tools.files.get()
+          - 🪱 Strip_root=True
+    
+    ⚓ conan.tools.cmake ; https://docs.conan.io/2/reference/tools/cmake.html
+      ⚓💡 CMakeDeps ; https://docs.conan.io/2/reference/tools/cmake/cmakedeps.html
+      ⚓💡 CMakeToolchain ; https://docs.conan.io/2/reference/tools/cmake/cmaketoolchain.html 
+      ⚓ cmake_layout ; https://docs.conan.io/2/reference/tools/cmake/cmake_layout.html#cmake-layout
+        #🚣 cmake_layout()
+
+    ⚓ conan.tools.env ; https://docs.conan.io/2/reference/tools/env.html
+      ⚓ Environment ; https://docs.conan.io/2/reference/tools/env/environment.html
+        # Environment definition
+
+          buildenv_info, runenv_info
+            https://docs.conan.io/2/tutorial/creating_packages/define_package_information.html#propagating-environment-or-configuration-information-to-consumers
+          
+
+  ⚓ Configuration files ; https://docs.conan.io/2/reference/config_files.html
+    ⚓💡 profiles ; https://docs.conan.io/2/reference/config_files/profiles.html
+      #️⃣ Profile sections ; https://docs.conan.io/2/reference/config_files/profiles.html#profile-sections
+      # [buildenv]
+        List of environment variables that will be injected to the environment every time the ConanFile run(cmd, env="conanbuild") method is invoked
+          (build time context is automatically run by 🪱 VirtualBuildEnv).
+    ⚓📍 settings.yml ; https://docs.conan.io/2/reference/config_files/settings.html
+      ... build_type: [null, Debug, Release, RelWithDebInfo, MinSizeRel]
+        🛍️ e.g. https://github.com/conan-io/conan-center-index/blob/master/recipes/opencv/4.x/conanfile.py
+          📝 To be installed package is different according to debug settings
+            >>> debug = "d" if self.settings.build_type == "Debug" and self.settings.os == "Windows" else ""
+
+
+----------------------------------------------
+Temp
+  📰 where is docs for (tools.build:skip_test, buildenv_info, runenv_info )? not in tutorial
+  📰 how to test my pacakge in edtiable mode? 
+    conan test test_package cpp_study/1.0 -pr ./profiles/linux_debug
+      > ERROR: Package 'cpp_study/1.0' not resolved: Unable to find 'cpp_study/1.0' in remotes.
+  📰 TODO: use it in cpp_study project When deploy package: https://docs.conan.io/2/tutorial/creating_packages/test_conan_packages.html
+  📰 TODO: export-pkg When deploy package : https://docs.conan.io/2/tutorial/developing_packages/local_package_development_flow.html#
+  %Vscode> Select IntelliSense Configuration
+  %shell> git clean -xdf
+  https://docs.conan.io/2/tutorial/creating_packages/configure_options_settings.html
+    📰??? shared = False일 때 fPIC = True 를 동일한 정적 라이브러리를 공유 라이브러리 생성에 사용하고자 할 때 사용할 수도 있다고 한다.

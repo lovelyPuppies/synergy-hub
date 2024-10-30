@@ -1,0 +1,43 @@
+list of level 1 subjects
+  - development containers (dev container)
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓⭕ dev container ; https://containers.dev/
+  https://github.com/devcontainers/spec
+  An open specification for enriching containers with development specific content and settings.
+----------------------------------------------
+dev container 🔪⚓ Overview ; https://containers.dev/overview
+
+
+----------------------------------------------
+dev container 🔪⚓ Reference ; https://containers.dev/implementors/json_reference
+
+
+----------------------------------------------
+dev container 🔪⚓ Specification ; https://containers.dev/implementors/spec/
+
+
+----------------------------------------------
+dev container 🔪⚓ Supporting Tools ; https://containers.dev/supporting
+  #️⃣ Editors ; https://containers.dev/supporting#editors
+    #🚣 VS Code
+      ... "customizations": ...
+  #️⃣ Tools ; https://containers.dev/supporting#tools
+    #🚣 VS Code extension CLI
+      %vscode>Dev Containers: Install devcontainer CLI
+
+----------------------------------------------
+dev container 🔪⚓ Guides ; https://containers.dev/guides
+
+
+----------------------------------------------
+dev container 🔪⚓ Available Features ; https://containers.dev/features
+
+
+----------------------------------------------
+dev container 🔪⚓ Available Templates ; https://containers.dev/templates
+
+
+----------------------------------------------
+dev container 🔪⚓ Collections ; https://containers.dev/collections
+

@@ -143,3 +143,25 @@ Here are some useful references and resources for working with Yocto and NVIDIA 
 ## References
 
 https://github.com/kennymckormick/pyskl/blob/main/tools/data/README.md
+
+
+
+
+## Summary: Testing Yocto ARM64 Image in QEMU
+
+1. **Yocto ARM64 Image as a Standalone OS**
+   - Yocto-built ARM64 images include a complete OS with a kernel, filesystem, drivers, and libraries for ARM64 devices (e.g., Jetson Nano).
+   - This image can run directly on QEMU without needing an additional OS, as it’s already designed for ARM64.
+
+2. **Booting Yocto Image in QEMU**
+   - Use `qemu-system-aarch64` to set up an ARM64 virtual environment and boot the Yocto image directly.
+   - This allows you to test the image’s functionality in an ARM64 environment before deploying to Jetson Nano.
+
+3. **No Need for an Additional OS**
+   - Since the Yocto image is a complete ARM64 OS, there’s no need to add another ARM64 OS (e.g., Ubuntu ARM64).
+   - You can use QEMU to boot the Yocto image directly for testing.
+
+4. **Conclusion**
+   - Yocto-built ARM64 images are fully compatible with ARM64 devices, so no extra OS is required in QEMU.
+   - Configure QEMU for ARM64, and boot the Yocto image directly for testing.
+

@@ -1,0 +1,7 @@
+{
+  "files.associations": {
+    "*.S": "arm",
+    "vsprintf.h": "c",
+    "command.h": "c"
+  }
+}

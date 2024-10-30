@@ -1,5 +1,6 @@
 {
   "tasks": [
+    // 🌀 Title: git
     {
       "label": "Git Add, Commit, Push",
       "type": "shell",
@@ -16,16 +17,87 @@
       },
       "problemMatcher": []
     },
+    // 🌀 Title: C/C++ with LLVM
+    {
+      "label": "Prepare Build Directory", // Task to create the build directory
+      "type": "shell",
+      "command": "mkdir",
+      "args": [
+        "-p", // Create directories as needed
+        "${workspaceFolder}/build/${relativeFileDirname}"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Build Current C File", // Main build task
+      "type": "shell",
+      "dependsOn": "Prepare Build Directory", // Run the directory creation task first
+      "command": "clang",
+      "args": [
+        "-g", // Include debugging information
+        "${file}", // Current open file to compile
+        "-o",
+        "${workspaceFolder}/build/${relativeFileDirname}/${fileBasenameNoExtension}"
+      ],
+      "problemMatcher": ["$gcc"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
     {
       "label": "Build All LaTeX Files; note/sorted_note/*.tex",
       "type": "shell",
-      "command": "latexmk -pdf -lualatex -synctex=1 -interaction=nonstopmode -auxdir=/tmp -outdir=(pwd)/build/note -silent note/sorted_note/*.tex",
+      "command": "mkdir -p (pwd)/build/note; latexmk -pdf -lualatex -synctex=1 -interaction=nonstopmode -file-line-error -auxdir=/tmp -outdir=(pwd)/build/note -silent note/sorted_note/*.tex",
       "group": {
         "kind": "build",
         "isDefault": true
       },
       "problemMatcher": [],
       "detail": "Compiles all LaTeX files in the folder."
+    },
+    // testing...
+    {
+      "label": "Build All LaTeX Files; note/sorted_note/*.tex",
+      "type": "shell",
+      "command": "latexmk -pdf -lualatex -synctex=1 -interaction=nonstopmode -auxdir=/tmp -outdir=(pwd)/build/note -silent note/sorted_note/*.tex",
+      "group": "build",
+      "problemMatcher": [],
+      "detail": "Compiles all LaTeX files in the folder."
+    },
+    {
+      "type": "shell",
+      "label": "C/C++ Build lib for current file",
+      "command": "clang",
+      "args": [
+        "-Wall",
+        "-Wextra",
+        "-c",
+        "${file}", // Compile the current file
+        "-o",
+        "${fileDirname}/lib/${fileBasenameNoExtension}.a" // Output .a file to lib/ folder
+      ],
+      "group": "build",
+      "problemMatcher": ["$gcc"],
+      "detail": "Compiles the current file to an object file in the lib folder"
+    },
+    {
+      "type": "shell",
+      "label": "C/C++ Build executable for current file",
+      "command": "clang",
+      "args": [
+        "-Wall",
+        "-Wextra",
+        "-g",
+        "${file}", // Object file in lib folder
+        "${fileDirname}/lib/*.a", // Link all .a files in lib folder
+        "-o",
+        "${fileDirname}/${fileBasenameNoExtension}.out" // Output executable
+      ],
+      "group": "build",
+      "dependsOn": "Build lib for current file",
+      "problemMatcher": ["$gcc"],
+      "detail": "Links the .o files and builds the executable in the parent folder"
     }
   ],
   "version": "2.0.0"

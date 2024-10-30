@@ -1,10 +1,12 @@
+###### In Client Computer
+
 # from tailscale
 Host tailscale-machine
-  HostName 100.123.16.128
+  HostName 100.89.132.110
   User wbfw109v2
   ForwardX11Trusted yes
   ForwardX11 yes
-  # start comamnd with %shell> code ~/repo/intel-edge-academy-6/.vscode/intel-edge-academy-6.code-workspace
+  # start comamnd with %shell> code ~/repos/synergy-hub/.vscode/synergy-hub.code-workspace
 
 # from tailscale to Jetson Nano
 Host tailscale-machine-to-jetson-nano
@@ -40,3 +42,27 @@ Host tailscale-machine-to-intel-server
 # -clipboard: Enables clipboard sharing so that text can be copied and pasted between Windows and X11 applications.
 # -wgl: Stands for "Windows Graphics Library." Activates native OpenGL support, allowing X11 applications to render graphics using Windows' OpenGL capabilities.
 # -nounixkill: Prevents the Unix-style 'Ctrl + Alt + Backspace' combination from terminating the X server. This helps prevent accidental shutdowns in a Windows environment.
+
+
+###### In Remote Computer
+# Host jetson-nano
+#   HostName 10.10.14.90
+#   User jsnano
+#   ForwardX11 yes
+#   ForwardX11Trusted yes
+# 
+# 
+# # %shell> ssh pi@pi19.local
+# Host r-pi.local
+#   HostName pi19.local
+#   User pi
+#   ForwardX11 yes
+#   ForwardX11Trusted yes
+# # %shell> ssh jetson@nano19.local
+# Host nano19.local
+#   HostName nano19.local
+#   User jetson
+#   ForwardX11 yes
+#   ForwardX11Trusted yes
+
+

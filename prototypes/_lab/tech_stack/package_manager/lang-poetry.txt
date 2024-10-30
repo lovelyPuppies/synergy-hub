@@ -1,0 +1,247 @@
+list of level 1 subjects
+  - Poetry
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓⭕ Poetry ; https://python-poetry.org/docs/
+  https://pypi.org/project/poetry/
+  https://github.com/python-poetry/poetry
+  https://github.com/python-poetry/poetry-core
+(✍️ Poetry: poetry study)
+  - ✅ (how-to); upgrade python version 📅 2022-12-02 13:53:43
+    1. remove poetry.lock file
+
+    2. e.g. %shell>
+      poetry env remove python<previous version>
+      # if not use next command, python version of system is specified. not pyenv version.
+      poetry env use python<version to use>
+      poetry env info 
+      poetry install --with=vision,ml
+  - 🚨 (issue): bug ; cannot resolve rc version 📅 2022-12-02 15:15:00
+    output
+      The current project's Python requirement (3.11.0rc1) is not compatible with some of the required packages Python requirement:
+        - study-core requires Python >=3.11.0, <3.12, so it will not be satisfied for Python 3.11.0rc1
+      Because cartoon-worker depends on study-core (0.1.0) @ file:///home/wbfw109/repository/study-python/study-core which requires Python >=3.11.0, <3.12, version solving failed.
+        • Check your dependencies Python requirement: The Python requirement can be specified via the `python` or `markers` properties
+      For study-core, a possible solution would be to set the `python` property to "<empty>"
+    deduction
+      if set python = ">=3.11.0, <3.12 | 3.11.0rc1" in pyproject.toml,
+        IndexError (list index out of range. format_python_constraint) occurs when resolving project dependency using f
+    ➡️ not use rc version. update and upgrade brew packages. if so available versions also will be updated.
+  - ✅ (how-to); distributes package for development and use in other my project 📅 2022-12-02 19:08:23
+    pyproject.toml of project to be distributed
+      # "wbfw109" is root packages so "wbfw109" directory includes "__init__.py"
+      # if so, you can access these in the root packages such as "import wbfw109.utilities.iterable"
+      packages = [
+        { include = "wbfw109/utilities"}
+      ]
+      exclude = ["wbfw109/algorithms", "wbfw109/tutorials", "wbfw109/tests"]
+    pyproject.toml of project that use distributed packages
+      # "comic" is root packages so "comic" directory includes "__init__.py"
+      # if so, you can access these and "wbfw109" packages such as "import wbfw109.utilities.iterable", "from comic.type_hints.custom_typing import Preference"
+      packages = [
+        { include = "comic"},
+      ]
+    💡note that whenever you changes project.toml in "[tool.poetry]" you have to use following command to apply revision
+      %shell> poetry install --only-root
+      you can omit "--only-root" but it also resolves all depedencies so useless.
+
+  - 🚨 (issue); Permission denied
+    When
+      %shell> poetry self update
+    Solution
+      reinstall poetry.
+      %shell:bash> curl -sSL https://install.python-poetry.org | python -
+  - 🚨 (issue); RuntimeError Invalid hashes
+    When
+      %shell> poetry install
+    Solution
+      The cause of this error is in that package, not poetry.
+      install the package as other version.
+  - 🚨 (issue); RuntimeError Retrieved digest for link libclang-12.0.0-2-py2.py3-none-win_amd64.wh
+    When
+      %shell> poetry install
+    Solution
+      https://pythonissues.com/issues/2674747
+      %shell> poetry add "libclang=<12.0.0"
+  - 🚨 (issue); Unable to find installation candidates for ...
+    Solution
+      use pre-release version
+      for example, https://www.tensorflow.org/install/source#cpu
+        %shell> poetry add tensorflow --allow-prereleases --optional
+      it adds in pyproject.toml:
+        tensorflow = {version = "*", optional = true, allow-prereleases = true}
+  - 🚨 (issue); PackageInfo: Invalid constraint (importlib-metadata (>='4.4') ; python_version < "3.10") found in markdown-3.3.5 dependencies, skipping
+    Solution
+      https://github.com/python-poetry/poetry/issues/2102
+      https://github.com/Python-Markdown/markdown/issues/1195
+      %shell> poetry add --optional importlib-metadata
+
+  - 🚨 (issue); AssertionError: assert len(self._terms) == 2 in __str__ fails.
+    when
+      poetry add packages
+    Solution
+      https://github.com/python-poetry/poetry/issues/3491
+      Possibly the same assertionerror appears when your poetry project name is equal to a dependency you are adding: assert len(self._terms) == 2 in __str__ fails.
+
+
+----------------------------------------------
+Poetry 🔪⚓ Introduction ; https://python-poetry.org/docs/
+  #️⃣ Installation ; https://python-poetry.org/docs/#installation
+    📝 install poetry by using pipx from Homebrew.
+
+
+    #️⃣🚣 Installing with pipx ; https://python-poetry.org/docs/#installing-with-pipx
+      %shell> pipx install poetry
+      %shell> pipx upgrade poetry
+
+      %shell> pipx uninstall poetry
+  #️⃣ Updating poetry ; https://python-poetry.org/docs/#updating-poetry
+    %shell> poetry self update
+----------------------------------------------
+Poetry 🔪⚓ Basic usage ; https://python-poetry.org/docs/basic-usage/
+  #️⃣ Project setup ; https://python-poetry.org/docs/basic-usage/#project-setup
+    %shell> poetry new ${PWD}
+    
+    #️⃣ Initialising a pre-existing project ; https://python-poetry.org/docs/basic-usage/#initialising-a-pre-existing-project
+      %shell> poetry init
+    #️⃣ Specifying dependencies ; https://python-poetry.org/docs/basic-usage/#specifying-dependencies
+      &e.g.
+        %shell> poetry add -v flask
+  #️⃣ Using your virtual environment ; https://python-poetry.org/docs/basic-usage/#using-your-virtual-environment
+    https://python-poetry.org/docs/configuration/#cache-dir
+    #️⃣ Using poetry run ; https://python-poetry.org/docs/basic-usage/#using-poetry-run
+    #️⃣ Activating the virtual environment ; https://python-poetry.org/docs/basic-usage/#activating-the-virtual-environment
+    #️⃣ Version constraints ; https://python-poetry.org/docs/basic-usage/#version-constraints
+  #️⃣ Installing dependencies ; https://python-poetry.org/docs/basic-usage/#installing-dependencies
+    ... to install the defined dependencies for your project, just run the install command.
+    %shell> poetry install
+    #️⃣ Installing without poetry.lock ; https://python-poetry.org/docs/basic-usage/#installing-without-poetrylock
+    #️⃣ Installing with poetry.lock ; https://python-poetry.org/docs/basic-usage/#installing-with-poetrylock 
+    #️⃣ Commit your poetry.lock file to version control ; https://python-poetry.org/docs/basic-usage/#commit-your-poetrylock-file-to-version-control
+    #️⃣ Installing dependencies only ; https://python-poetry.org/docs/basic-usage/#installing-dependencies-only
+  #️⃣ Updating dependencies to their latest versions ; https://python-poetry.org/docs/basic-usage/#updating-dependencies-to-their-latest-versions
+    %shell> poetry update -v
+
+----------------------------------------------
+Poetry 🔪⚓📍🖇️ Managing dependencies ; https://python-poetry.org/docs/managing-dependencies/ 📅 2022-12-02 11:53:27
+  #️⃣ Dependency groups ; https://python-poetry.org/docs/managing-dependencies/#dependency-groups
+    ⚠️ Dependency groups, other than the implicit main group, must only contain dependencies you need in your development process. Installing them is only possible by using Poetry.
+    #️⃣ Optional groups ; https://python-poetry.org/docs/managing-dependencies/#optional-groups
+    #️⃣ Adding a dependency to a group ; https://python-poetry.org/docs/managing-dependencies/#adding-a-dependency-to-a-group
+    #️⃣💡 Installing group dependencies ; https://python-poetry.org/docs/managing-dependencies/#installing-group-dependencies
+      When used together, --without takes precedence over --with.
+    #️⃣ Removing dependencies from a group ; https://python-poetry.org/docs/managing-dependencies/#removing-dependencies-from-a-group
+    
+  #️⃣💡 Synchronizing dependencies ; https://python-poetry.org/docs/managing-dependencies/#synchronizing-dependencies
+    Note that extras are separate. Any extras not selected for install are always removed, regardless of --sync
+  #️⃣📍 Layering optional groups ; https://python-poetry.org/docs/managing-dependencies/#layering-optional-groups
+    When you omit the --sync option, you can install any subset of optional groups without removing those that are already installed.
+    This is very useful, for example, in multi-stage Docker builds, where you run poetry install multiple times in different build stages.
+
+
+----------------------------------------------
+Poetry 🔪⚓ Commands ; https://python-poetry.org/docs/cli/
+  #️⃣ Global options ; https://python-poetry.org/docs/cli/#global-options
+    --verbose (-v|vv|vvv): Increase the verbosity of messages: “-v” for normal output, “-vv” for more verbose output and “-vvv” for debug.
+    --version (-V): Display this application version.
+
+  #️⃣💡~ install ; https://python-poetry.org/docs/cli/#install 📅 2022-12-02 11:44:23
+    if there is a poetry.lock file in the current directory, it will use the exact versions from there instead of resolving them. This ensures that everyone using the library will get the same versions of the dependencies.
+      If there is no poetry.lock file, Poetry will create one after dependency resolution.
+    If you want to exclude one or more dependency groups for the installation, you can use the --without option.
+    
+    #️⃣ Options ; https://python-poetry.org/docs/cli/#options-1
+      --without: The dependency groups to ignore.
+      --with: The optional dependency groups to include.
+      --only: The only dependency groups to include.
+      --only-root: Install only the root project, exclude all dependencies.
+      --extras (-E): Features to install (multiple values allowed).
+        &e.g.
+          poetry install --extras "mysql pgsql"
+          poetry install -E mysql -E pgsql
+      --sync
+
+  #️⃣ add ; https://python-poetry.org/docs/cli/#add
+    If you want the dependency to be installed in editable mode you can specify it in the pyproject.toml file. It means that changes in the local directory will be reflected directly in environment.
+      [tool.poetry.dependencies]
+        my-package = {path = "../my/path", develop = true}
+    📍 Before poetry 1.1 path dependencies were installed in editable mode by default. You should always set the develop attribute explicit, to make sure the behavior is the same for all poetry versions.
+
+    #️⃣ Options ; https://python-poetry.org/docs/cli/#options-3
+      --dev (-D): Add package as development dependency.
+      --optional : Add as an optional dependency.
+  #️⃣ update ; https://python-poetry.org/docs/cli/#update
+
+  #️⃣💡~ env ; https://python-poetry.org/docs/cli/#env
+    🔗 https://python-poetry.org/docs/managing-environments/
+    
+    #️⃣ 🖇️ Switching between environments ; https://python-poetry.org/docs/managing-environments/#switching-between-environments
+      📝 &comment
+        - it creates virtualenv. 
+        - If you run install and update without this command being omitted when there is no virtual environment created,
+          , before processing the install and update command it automatically adjust compatible minimal version of python in pyproject.toml and create virtualenv.
+      USAGE: %shell> poetry env use <python>
+    #️⃣ 🖇️ Displaying the environment information ; https://python-poetry.org/docs/managing-environments/#displaying-the-environment-informationpoetry
+      USAGE: &shell> poetry env info
+    #️⃣ 🖇️ Deleting the environments ; https://python-poetry.org/docs/managing-environments/#deleting-the-environments
+      USAGE: &shell> poetry env remove <python>
+
+  #️⃣ show ; https://python-poetry.org/docs/cli/#show
+
+  #️⃣ export ; https://python-poetry.org/docs/cli/#export
+    ... This command exports the lock file to other formats.
+    &e.g.
+      %shell> poetry export -f requirements.txt --output requirements.tx
+      poetry export --without-hashes -f requirements.txt --output requirements.txt
+  #️⃣ build ; https://python-poetry.org/docs/cli/#build
+  #️⃣ publish ; https://python-poetry.org/docs/cli/#publish
+----------------------------------------------
+Poetry 🔪⚓ Libraries ; https://python-poetry.org/docs/libraries/
+----------------------------------------------
+Poetry 🔪⚓ Managing environments ; https://python-poetry.org/docs/managing-environments/
+  📝 &comment;  This is explaiend elsewhere instead of here. 🔗 https://python-poetry.org/docs/cli/#env
+----------------------------------------------
+Poetry 🔪⚓ Dependency specification ; https://python-poetry.org/docs/dependency-specification/
+  #️⃣ Version constraints ; https://python-poetry.org/docs/dependency-specification/#version-constraints
+    #️⃣ Caret requirements ; https://python-poetry.org/docs/dependency-specification/#caret-requirements
+    #️⃣ Tilde requirements ; https://python-poetry.org/docs/dependency-specification/#tilde-requirements
+    #️⃣ Wildcard requirements ; https://python-poetry.org/docs/dependency-specification/#wildcard-requirements
+    #️⃣ Inequality requirements ; https://python-poetry.org/docs/dependency-specification/#inequality-requirements
+    #️⃣ Exact requirements ; https://python-poetry.org/docs/dependency-specification/#exact-requirements
+  #️⃣ Expanded dependency specification syntax ; https://python-poetry.org/docs/dependency-specification/#expanded-dependency-specification-syntax
+    ... allow-prereleases
+----------------------------------------------
+Poetry 🔪⚓ The pyproject.toml file ; https://python-poetry.org/docs/pyproject/
+  #️⃣💡 packages ; https://python-poetry.org/docs/pyproject/#packages
+    If your project structure differs from the standard one supported by poetry, you can specify the packages you want to include in the final distribution.
+    📝 &comment; if you not specify path, you may not have access your personal packages. refer to 🔗 use poetry as python package manager from this pipx
+  #️⃣ include and exclude ; https://python-poetry.org/docs/pyproject/#include-and-exclude
+    📝 &comment
+      - it not applies on {develop = True} packages.
+      - in this context, only "*", "**" can be used in the glob pattern. unavailable to use "!" (not).
+      - you can test by typing "poetry build"
+    A list of patterns that will be included in the final package.
+
+  #️⃣ dependencies and dev-dependencies ; https://python-poetry.org/docs/pyproject/#dependencies-and-dev-dependencies
+    📝 &comment; 
+      it shows like in pyproject.toml:
+        https://github.com/python-poetry/poetry/issues/79
+        study-core = {path = "../../study-core", develop = true}
+  #️⃣💡 extras ; https://python-poetry.org/docs/pyproject/#extras
+    optional dependencies, which enhance a package, but are not required; and
+----------------------------------------------
+Poetry 🔪⚓ Configuration ; https://python-poetry.org/docs/configuration/
+
+
+
+
+
+
+
+----------------------------------------------
+Temp
+  📝⚠️ &comment
+    - the installation/removal commands are different between Github and other. use Github docs (recently version)
+    - 📰 is essential?
+      libclang = "<12.0.0"
+      tensorflow = {version = "*", allow-prereleases = true}      

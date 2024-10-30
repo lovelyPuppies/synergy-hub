@@ -1,0 +1,104 @@
+➡️❌
+
+list of level 1 subjects
+  - pacman
+
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ packman ; https://pacman.readthedocs.io/en/latest/modules/
+  🪠 pacman -S --needed --noconfirm <package1> [<package2> ...]
+
+----------------------------------------------
+⚓ packman packages ; https://packages.msys2.org/queue
+  fish: fish ; https://packages.msys2.org/package/fish
+  git: git ; https://packages.msys2.org/base/git
+  python: python ; https://packages.msys2.org/base/python
+  python-pip: python-pip ; https://packages.msys2.org/base/python-pip
+  winpty: winpty ; https://packages.msys2.org/package/winpty
+    Windows pseudo-terminal. A Windows software package providing an interface similar to a Unix pty-master for communicating with Windows console programs
+    // .bat 파일을 실행할 수 있도록 해준다.
+  ❌ mingw-w64-x86_64-python-poetry, mingw-w64-x86_64-python-conan
+    /mingw64/bin 안에 설치되는데, pacman 에서 설치한 python (/usr/bin/python) 을 찾지 못한다.
+
+
+----------------------------------------------
+
+(✍️ packman  🔪 study)
+  ✅ (how-to); setting in VSCode for fish shell
+    🗄️ .vscode/settings.json 
+      // https://code.visualstudio.com/docs/terminal/profiles
+      // https://code.visualstudio.com/docs/terminal/profiles#_msys2
+      // https://www.msys2.org/wiki/Launchers/#the-idea
+      //   You might need to set 🪱 CHERE_INVOKING=1 for the shell to stay in the current working directory.
+      "terminal.integrated.profiles.windows": {
+        "bash (MSYS2)": {
+          "path": "C:/tools/msys64/usr/bin/bash.exe",
+          "args": [
+            "--login",
+            "-i"
+          ],
+          "env": {
+            "CHERE_INVOKING": "1",
+            "MSYS2_PATH_TYPE": "strip" // default is strip (isolated environment with Windows)
+            // ⚠️ "inherit" not load some environment variables in Windows like c:/tools/Anaconda/Scriptsdefault. ❔ is reason problem of security or Compatibility? 📅 2024-08-25 14:15:00
+          }
+        },
+        "fish (MSYS2)": {
+          "path": "${config:FISH_BIN_PATH}",
+          "args": [
+            "--login",
+            "-i"
+          ],
+          "env": {
+            "CHERE_INVOKING": "1",
+            "MSYS2_PATH_TYPE": "strip" // default is strip (isolated environment with Windows)
+            // ⚠️ "inherit" not load some environment variables in Windows like c:/tools/Anaconda/Scriptsdefault. ❔ is reason problem of security or Compatibility? 📅 2024-08-25 14:15:00
+          }
+        },
+      },
+      "terminal.integrated.defaultProfile.windows": "fish (MSYS2)",
+      "fish.path.fish": "${config:FISH_BIN_PATH}",
+      //Title: Config (Settiongs.json) variables in VSCode
+      "FISH_BIN_PATH": "C:/tools/msys64/usr/bin/fish.exe"
+
+    🗄️ .vscode/tasks.json 
+      // add these into each tasks.
+        "options": {
+          "shell": {
+            "executable": "${config:FISH_BIN_PATH}",
+            "args": [
+              "-c"
+            ]
+          }
+			},
+
+    🗄️ ~/.config/fish/config.fish
+      set -x PATH $PATH /c/users/wbfw1/.pixi/bin
+      set -x PATH "/C/Program Files/Microsoft VS Code/bin" $PATH
+
+
+📝 📅 2024-08-26 01:49:23
+  mingw-w64-python-conan, mingw-w64-python-poetry 와 같은 패키지를 설치하면, 경로가 /mingw64/bin (?) 로 가서, 새로 path 를 등록해줘야 한다.
+    등록한다고 해도, poetry 에서 python 경로를 잡을 때 /usr/bin/python 경로를 제외한 다른 파이썬 경로를 잡지 못하는 문제가 발생한다.
+      🚨 [Errno 2] No such file or directory: PosixPath('C:\\Users\\wbfw1\\.conda\\envs\\python311\\python.exe')
+    그렇다고 pyenv 는 linux-like OS 전용이고, pyenv-win 은 버전이 1년이상이나 뒤쳐져 있다. ; https://github.com/pyenv-win/pyenv-win
+      그렇다고 anaconda3/miniconda3 를 choco 에서 설치하여 사용하려고 해도 경로문제로 fish shell init 파일을 따로 구분하는 문제 등이 발생한다.
+        이는 windows 의 home에 <user>/.config/fish ? 에서 스크립트를 복사하여 ~/.config/fish/config.fish 에 붙여넣어 해결하였다.
+        🚨 CondaError: Run 'conda init' before 'conda activate' 
+      🚨 Collecting package metadata (current_repodata.json): failed ; https://medium.com/@shravyagogula/condahttperror-http-000-connection-failed-decc887c3765
+      cp c:/tools/miniconda3/Library/bin/libcrypto-1_1-x64.pdb \
+        c:/tools/miniconda3/Library/bin/libssl-1_1-x64.dll \
+        c:/tools/miniconda3/Library/bin/libssl-1_1-x64.pdb \
+        c:/tools/miniconda3/Library/bin/libcrypto-1_1-x64.dll \
+        c:/tools/miniconda3/DLLs/
+
+    그 외 msys64 에 세팅에 기술한 것처럼 inherit 옵션 사용 시, 윈도우의 환경변수의 일부는 받아오지 못하는 문제도 있다.
+      이는 strict 로 설정 후, 사용하고 필요한 bin path 를 Fish config 에 등록하는 것으로 임시 해결하였다.
+    그리고 msys64 경로를 fish.exe 로 설정 시, bash 를 들어가면 아무것도 prefix 가 없어서 .bashrc 에 다음을 설정해주어야 한다.
+      export PS1='\u@\h \w> '
+
+  
+
+
+
+# 시스템 PATH에 Anaconda 추가

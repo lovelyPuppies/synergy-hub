@@ -1,0 +1,27 @@
+Menu
+  Setup
+    - ✔️ Firmware upgrade
+
+  Wizard (Quick Setup)
+    Internet connection type
+      - ✔️ Static  of (DHCP, PPPoE)
+        🚨 (Issue: Bug) 📅 2024-12-07 16:20:21
+          After updating the home router firmware, maintaining this mode causes internet connections to fail at an unknown time.
+          Therefore, I use DHCP instead of Static mode and fix the IP address in DHCP by using "Reserved Addresses."
+    Wirless setup
+      - DogTime
+    Admin setup
+      Admin ID
+        - ✔️ wbfw109
+      Admin Password
+        - ✔️ (same as MEGA login)
+
+  Setup
+    Advanced Setup
+      Network
+        DHCP Server Setup
+          # ✔️ 👁️ See your IPs (Host, WSL2) of "Searched Addresses" and Allocate to "Reserved Addresses"
+          # If Connected Device is not static, find other solutions 📅 2024-12-06 23:07:45
+          # 🛍️ e.g. 
+          #   192.168.0.2     home
+          #   192.168.0.4

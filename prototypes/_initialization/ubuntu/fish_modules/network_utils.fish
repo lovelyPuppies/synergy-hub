@@ -1,18 +1,18 @@
 #!/usr/bin/env fish
 # Written at 📅 2024-10-28 13:48:11
-: '
-🛍️ Usage e.g.
-# Load my modules
-set -x FISH_MODULES_PATH prototypes/_initialization/ubuntu/fish_modules
-
-source $FISH_MODULES_PATH/network_utils.fish
-set physical_interfaces (list_physical_interfaces)
-
-echo "Your default ethernet physic interface is '$physical_interfaces'!"
-'
-
-function list_physical_interfaces
+function list_eth_interfaces
     : '    
+    🔧 Usage
+        list_eth_interfaces
+    🛍️ e.g.
+        # Load modules
+        set -x FISH_MODULES_DIR prototypes/_initialization/ubuntu/fish_modules
+        source $FISH_MODULES_DIR/network_utils.fish
+
+        set physical_interfaces (list_eth_interfaces)
+
+        echo "Your default ethernet physic interface is '$physical_interfaces'!"
+
     This function lists all physical network interfaces by excluding virtual ones.
     It uses `find` to traverse the /sys/class/net directory with specific conditions.
 
@@ -33,10 +33,21 @@ function list_physical_interfaces
 
     References
     - https://unix.stackexchange.com/a/677988
+
+    # 📰 TODO:.. in raspberry pi, ... not one..
+        pi@pi19:~ $ find /sys/class/net -mindepth 1 -maxdepth 1 \
+            -lname \'*virtual*\' -prune -o -printf \'%f\n\'
+            wlan0
+            eth0
     '
 
     # Find and print all non-virtual network interfaces
     find /sys/class/net -mindepth 1 -maxdepth 1 \
-        -lname '*virtual*' -prune -o -printf '%f\n'
+        -lname '*virtual*' -prune -o -printf '%f\n' | grep '^e'
+end
+
+function list_wlan_interfaces
+    find /sys/class/net -mindepth 1 -maxdepth 1 \
+        -lname '*virtual*' -prune -o -printf '%f\n' | grep '^w'
 end
 

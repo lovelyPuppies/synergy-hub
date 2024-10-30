@@ -35,7 +35,7 @@
 
    ```bash
    # shell command
-   sudo apt update -y
+   sudo apt update
    sudo apt upgrade -y
    ```
 
@@ -110,7 +110,7 @@
    # shell command
    sudo apt remove -y gcc g++
    sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-   sudo apt update -y
+   sudo apt update
    apt-cache policy gcc-13 g++-13      # check available version
    sudo apt install -y gcc-13 g++-13
    sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-13 60

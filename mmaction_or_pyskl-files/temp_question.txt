@@ -503,7 +503,7 @@ work_dir = "./work_dirs/posec3d/x3d_shallow_ntu60_xsub/joint"
 
 ---------------------------------------------------------------------------
 RuntimeError                              Traceback (most recent call last)
-File /home/wbfw109v2/repo/intel-edge-academy-6/mmaction_or_pyskl-files/ipython_test.py:156
+File /home/wbfw109v2/repo/synergy-hub/mmaction_or_pyskl-files/ipython_test.py:156
     154 # Perform inference using PoseC3D model
     155 with torch.no_grad():
 --> 156     output = posec3d_model(return_loss=False, imgs=input_tensor)
@@ -525,7 +525,7 @@ File ~/.cache/pypoetry/virtualenvs/python-study-JojGeswE-py3.12/lib/python3.12/s
    1564 try:
    1565     result = None
 
-File ~/repo/intel-edge-academy-6/external/pyskl/pyskl/models/recognizers/base.py:158, in BaseRecognizer.forward(self, imgs, label, return_loss, **kwargs)
+File ~/repos/synergy-hub/external/pyskl/pyskl/models/recognizers/base.py:158, in BaseRecognizer.forward(self, imgs, label, return_loss, **kwargs)
 ...
 --> 603 return F.conv3d(
     604     input, weight, bias, self.stride, self.padding, self.dilation, self.groups
@@ -537,7 +537,7 @@ RuntimeError: Expected 4D (unbatched) or 5D (batched) input to conv3d, but got i
 
 ---------------------------------------------------------------------------
 RuntimeError                              Traceback (most recent call last)
-File /home/wbfw109v2/repo/intel-edge-academy-6/mmaction_or_pyskl-files/ipython_test.py:113
+File /home/wbfw109v2/repo/synergy-hub/mmaction_or_pyskl-files/ipython_test.py:113
     111 # Perform inference using PoseC3D model
     112 with torch.no_grad():
 --> 113     output = posec3d_model(return_loss=False, imgs=input_tensor)
@@ -559,7 +559,7 @@ File ~/.cache/pypoetry/virtualenvs/python-study-JojGeswE-py3.12/lib/python3.12/s
    1564 try:
    1565     result = None
 
-File ~/repo/intel-edge-academy-6/external/pyskl/pyskl/models/recognizers/base.py:158, in BaseRecognizer.forward(self, imgs, label, return_loss, **kwargs)
+File ~/repos/synergy-hub/external/pyskl/pyskl/models/recognizers/base.py:158, in BaseRecognizer.forward(self, imgs, label, return_loss, **kwargs)
 ...
 --> 603 return F.conv3d(
     604     input, weight, bias, self.stride, self.padding, self.dilation, self.groups
@@ -570,7 +570,7 @@ RuntimeError: Given groups=1, weight of size [24, 17, 1, 3, 3], expected input[1
 
 ---------------------------------------------------------------------------
 ValueError                                Traceback (most recent call last)
-File /home/wbfw109v2/repo/intel-edge-academy-6/mmaction_or_pyskl-files/ipython_test.py:118
+File /home/wbfw109v2/repo/synergy-hub/mmaction_or_pyskl-files/ipython_test.py:118
     116 # Perform inference using PoseC3D model
     117 with torch.no_grad():
 --> 118     output = posec3d_model(return_loss=False, imgs=input_tensor)
@@ -592,7 +592,7 @@ File ~/.cache/pypoetry/virtualenvs/python-study-JojGeswE-py3.12/lib/python3.12/s
    1564 try:
    1565     result = None
 
-File ~/repo/intel-edge-academy-6/external/pyskl/pyskl/models/recognizers/base.py:158, in BaseRecognizer.forward(self, imgs, label, return_loss, **kwargs)
+File ~/repos/synergy-hub/external/pyskl/pyskl/models/recognizers/base.py:158, in BaseRecognizer.forward(self, imgs, label, return_loss, **kwargs)
 ...
     535 def _check_input_dim(self, input):
     536     if input.dim() != 5:
@@ -605,7 +605,7 @@ ValueError: expected 5D input (got 4D input)
 
 ---------------------------------------------------------------------------
 RuntimeError                              Traceback (most recent call last)
-File /home/wbfw109v2/repo/intel-edge-academy-6/mmaction_or_pyskl-files/ipython_test.py:121
+File /home/wbfw109v2/repo/synergy-hub/mmaction_or_pyskl-files/ipython_test.py:121
     119 # Perform inference using PoseC3D model
     120 with torch.no_grad():
 --> 121     output = posec3d_model(return_loss=False, imgs=input_tensor)
@@ -627,7 +627,7 @@ File ~/.cache/pypoetry/virtualenvs/python-study-JojGeswE-py3.12/lib/python3.12/s
    1564 try:
    1565     result = None
 
-File ~/repo/intel-edge-academy-6/external/pyskl/pyskl/models/recognizers/base.py:158, in BaseRecognizer.forward(self, imgs, label, return_loss, **kwargs)
+File ~/repos/synergy-hub/external/pyskl/pyskl/models/recognizers/base.py:158, in BaseRecognizer.forward(self, imgs, label, return_loss, **kwargs)
 ...
 --> 603 return F.conv3d(
     604     input, weight, bias, self.stride, self.padding, self.dilation, self.groups
@@ -637,7 +637,7 @@ RuntimeError: Given groups=1, weight of size [24, 17, 1, 3, 3], expected input[1
 
 ---------------------------------------------------------------------------
 RuntimeError                              Traceback (most recent call last)
-File /home/wbfw109v2/repo/intel-edge-academy-6/mmaction_or_pyskl-files/ipython_test.py:116
+File /home/wbfw109v2/repo/synergy-hub/mmaction_or_pyskl-files/ipython_test.py:116
     113 input_tensor = input_tensor.permute(0, 3, 2, 1)  # (1, 17, 48, 2)
     115 # Ensure input tensor is 5D (N, C, T, H, W)
 --> 116 input_tensor = input_tensor.view(1, 17, 48, 1, 2)  # (N, C, T, H, W)
@@ -664,7 +664,7 @@ model = YOLO("yolo11m-pose.pt")
 # Load PoseC3D model
 checkpoint_path = (
     Path.home()
-    / "repo/intel-edge-academy-6/external/pyskl/work_dirs/posec3d/x3d_shallow_ntu60_xsub/joint/best_top1_acc_epoch_21.pth"
+    / "repo/synergy-hub/external/pyskl/work_dirs/posec3d/x3d_shallow_ntu60_xsub/joint/best_top1_acc_epoch_21.pth"
 )
 posec3d_model: Recognizer3D = build_model(
     {

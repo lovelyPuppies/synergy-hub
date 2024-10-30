@@ -1,0 +1,1358 @@
+emoji
+  ♥️:hearts: like!
+  🌵:cactus: key word
+account
+  wbfw109@gamil.com
+  ...a1..
+Tip
+  - 🏁: Opacity
+  - panel 에 안보이는 옵션은 Gear 모양의 아이콘을 클릭하여 모든 항목을 볼 수 있고, 설정에 대한 상세 설명을 볼 수 있다.
+
+
+⚓🔰 Features ; https://www.clipstudio.net/en/functions/ | https://www.clipstudio.net/ko/functions/
+  * Table of Features
+  * Lineup
+  * System requirements
+  * Artist Testimonials
+  * Gallery
+
+  - 🖇️ Ver. 3.0 Feature Highlights 📅 2024-05-26 19:06:11
+    - Improved interface
+    - Enhanced import/export features
+
+    - Features to improve your workflow
+
+    - Improved finishing/processing features
+    - └ Enhanced 3D features
+    - └ Improved text features
+    - └ Improved animation features
+
+    - Release of Clip Studio Tabmate 2
+
+  
+  ----------------------------------------------
+  * Concept Art & Painting ; https://www.clipstudio.net/en/conceptart | https://www.clipstudio.net/kr/conceptart
+    📰 Get Started: Why Clip Studio Paint?
+      Custom brushes, unrivaled painting experience
+        ... preset brushes ... 8192 levels of pressure 
+      A full-featured cross-platform experience
+      Customizable 3D references
+      A universe of materials and assets
+    📰 Brushes & Materials: Worldbuilding Essentials
+      1. Easy thumbnailing & layout
+        ... individually masked panels
+      2. Color variations with gradient maps
+      Brushes for every style and mood
+      4. Color palettes for consistent design
+      5. Flexible designs with vector lines
+      Draw vector lines with the exact same brushes used in raster painting and adjust them easily, using features such as the vector eraser, line thickness and shape sliders, or switch the brush shape altogether.
+      6. Non-destructive adjustment layers
+      7. Manage and create layer comps
+    
+    📰 Advanced Tools: From Concept to Completion
+    📰 Creative Community: A Better Drawing Experience
+    💡~ Feature list
+      1.📎 Painting (채색) 📅 2024-05-26 19:28:27
+        - Packed with presets
+        - Unlimited painting styles
+          Go one step further and import Photoshop brush files (ABR) and create dynamic dual brushes that combine two types of brush strokes.
+
+        - Easy color selection
+          Select, test, and manage colors with six color palettes, including ...
+        - Eyedrop colors from your desktop
+
+        - Realistic color mixing
+          Ver. 2.0 allows for more natural color mixing while maintaining color brightness.
+          🪱 Perceptual mixing mode
+
+        - Smart fill tools
+          Clip Studio Paint’s fill tools are smart enough to fill spaces without spillover
+        - AI colorization
+          Set color hints and let the AI color your art! Compare color schemes and test out new ideas in a fraction of the time.
+      2. Details Decorations
+        - Set your ideal pen pressure
+          Simply draw a few times to let the software automatically detect the level of pen pressure sensitivity that enables you to draw natural and smooth lines every time.
+        - Drawing the perfect line
+          Use the inbuilt stabilization functions to draw clean, accurate lines without shakiness or wavering, exactly how you’re picturing your creation.
+        - Go wild with patterns! - Hundreds of decoration brushes
+          Draw repeating textures such as chains, accessories, textile patterns, and flowers with a single stroke.
+          Multiple images can be applied to a single brush and randomized for a natural result.
+        - Thousands of materials at your fingertips
+          Clip Studio Assets offers tens of thousands of ready-to-use materials such as brushes, patterns, and 3D models.
+          Search from free commercial-license materials and download what you need at any time.
+        - Fix vectors when and how you want
+          Experience new freedom with vector layers; layers that allow you to move, thicken, thin, and selectively erase individual brushstrokes up to an intersection.
+        - Perspective rulers to help draft backgrounds
+          Set up ruler guides to draw buildings and interiors with perfect perspective using your favorite pen and brush tools.
+          What’s more, access inbuilt and customizable symmetry rulers, ellipse rulers, and more to help you create geometric shapes with ease.
+        - Simple and flexible masking
+          Create masks from selections to keep your painting layers organized.
+          It’s easy to shrink or add to a mask with drawing tools for precise masking or to create interesting layered effects.
+        - Test compositions with 3D models
+          Import your own files or download pre-made buildings, furniture, crowds, vehicles, and many other materials that are ideal for trying out compositions before you start drawing.
+        - Arrange 3D primitives for reference
+          Set up simple 3D primitive shapes as frameworks for drawing objects and scenes, or even use them as building blocks for more complex materials.
+        - View 3D materials from all angles at once
+          When placing a 3D material, you can view from four angles simultaneously.
+          You can also change the position of the camera and the focal point on the 3D layer.
+          When you change the camera position from the All sides view palette, the model also adjusts on the canvas.
+        - Sketch human figures with ease
+          Clip Studio Paint comes with adjustable 3D models, great for sketching people.
+          Freely customize pose, proportions, and body type.
+          You can also attach props like hats, shoes, and more to the model to create a more concrete concept for your character design.
+        - 3D support for drawing faces
+          Create your very own facial reference with our adjustable head model.
+          Fine-tune overall shape, eyes, nose, eyebrows, ears, mouth, and other parts.
+          The base head can also be transformed into various styles, such as realistic, chibi, and anime.
+        - AI posing from photographs
+          AI features enabled by deep learning algorithms allow you to scan a photo and have Clip Studio Paint automatically match its pose and apply it to a 3D drawing figure.
+          Similarly, the hand scanner allows you to pose your hand via a camera and apply the pose to the hand of the 3D figure.
+        - Extract line art from photos and 3D objects
+          Extract lines from photos and 3D models to create frameworks for your artwork that you can build from, boosting your efficiency.
+        - Simple layer effects
+          Apply effects to entire layers with a single click, whether adding outlines to text or images, adding a watercolor edge, changing the line color, or creating a screentone effect.
+        - Gradients how you want them
+          As well as basic two-color gradients, you can add and edit interval colors or create gradients into transparency. You can also apply gradient maps to instantly apply colors based on an image’s values, or use the Contour Line Fill tool to create gradients following a shape.
+        - Clean up scanned artwork
+          Use dedicated features for removing scanner dust or extracting drawn art from a white paper background, helping you to smoothly convert your traditional art for digital editing.
+      3. Final Touches;  Handy features for effects, adjustments, and finishing touches to bring out the best in your art.
+        - Transformation tools for quick adjustments
+          Go beyond rotating and flipping the image, with mesh transformation and free transformation you can adjust your selection area with amazing precision.
+          Mesh transformation now comes with the ability to select multiple grid points and move them at once.
+          If you want even more precision, then use the Liquify tool so that your brushstrokes won’t be affected.
+
+        - Experiment endlessly with tonal correction layers
+          Use Tonal Correction Layers to add finishing touches while leaving the original layer as it is.
+          Adjust image brightness, contrast, tone, and more until you’re satisfied.
+
+        - Boost quality with filters
+          Use a filter to blur, sharpen, add noise, mosaic and more to add effects to your piece.
+          Make your images look like photos with a retro film filter combining chromatic aberration with noise.
+          Or go with the hand-drawn pencil look with a pencil filter.
+          More filters mean more ways to express yourself easily!
+
+        - Convert photos to illustrations
+          Photos can also be converted into painterly styles with the Artistic filter.
+          Here, you can also fine-tune line thickness and the strength of the effect.
+
+        - Smart Smoothing to improve image resolution
+          Resample images and erase jpeg noise to reuse your past work as a larger image.
+
+        - Get expressive with blending modes
+          Use blending modes on your layers to add a variety of interesting effects to your image.
+          Select from 29 blending modes to create specific effects or compositions.
+
+        - Text
+          You can input text, line spacing, letter spacing, rotate text, tilt it, flip it, align it, adjust it within the text box, control kerning, and even give it a circular layout.
+      4. Managing files
+        - Keep sketches and storyboards together
+          Create separate panels for thumbnails or storyboarding simply by dragging the frame tool.
+          Save your canvas layouts as templates to recall them later on your next project.
+
+        - Manage multi-page works
+          Keep multiple project pages together in a single file, add or reorder pages, and export as print-ready data.
+
+        - See your work before you print with 3D preview
+          Before printing multi-page projects, check the final product's binding and finish with the 3D preview feature.
+
+        - Supports CMYK color for printing
+          Clip Studio Paint supports the import/export of both RGB and CMYK data used for printing.
+          With the CMYK preview, colors displayed in your workspace are even closer to their real printed hues!
+
+        - Export anywhere
+          Supports Kindle and EPUB e-book formats, including commercial e-books and self-publishing.
+
+        - Inbuilt animation features
+          With Clip Studio Paint’s 2D animation tools, arrange your storyboard scenes with audio, or even work on full-length animations.In PRO and DEBUT, you can make animations up to 24 frames (3 seconds long at 8 frames per second).
+          EX offers unlimited frames.
+      5. Efficiency support
+        - Fully customizable workspace
+          Save and share your customized palette layout, shortcuts, command bar, and colors whenever you need them!
+
+        - Reference images at a glance
+          Use a secondary window to have your canvas fullscreen while using a zoomed-in preview on the other! You now can also see the reference images registered in the Sub View palette in a preview menu and sample colors from it.
+          In the Navigator palette, you can flip, zoom in, zoom out, and rotate your canvas easily and intuitively.
+
+        - Streamline repetitive operations
+          Perform frequent or repeated operations with one click using Auto Actions.
+          Customize shortcuts and recreate your favorite shortcuts from other programs.
+
+        - Easy access to your most frequently used functions
+          The Quick Access Palette gives you access to menus, Auto Actions, tools, and colors from a single palette to customize your ideal virtual workspace.
+
+        - Input and output in Photoshop formats
+          Clip Studio Paint supports input and output in Photoshop file formats, so you can deliver files to clients and printing companies without changing your existing workflows.
+          Load, edit, and save PSD and PSB data while preserving raster layers, and export files with text layers created in Clip Studio Paint for easy editing and in Photoshop.
+
+        - Peace of mind with automatic backups
+          Unexpected crashes are every digital artist's nightmare.
+          That's why Clip Studio Paint provides an optional autosave feature that you can set to autosave at precise intervals.
+          Background saving allows you to continue working without waiting for the save to complete.
+
+        - Back up your workspace to the cloud
+          Check and manage your saved works, and sync to the cloud.
+          You can restore the software settings manually if needed, and synchronize your computer, tablet and smartphone data to take your virtual workspace wherever you go.
+
+        - Drawing freedom with mobile tablets
+          Create on the go or at your favorite cafe with Clip Studio Paint for tablets and smartphones.
+          With the same functionality as the desktop version, enjoy smooth drawing thanks to complete compatibility with the Galaxy S Pen, Apple Pencil and other styluses.
+
+        - Optimize your creative flow with your smartphone
+          Connect your iPhone or Android smartphone to your main computer or tablet device over Wi-Fi in Companion mode and transform your smartphone into a handheld shortcut remote, for a better creative experience.
+          Companion mode makes use of your smartphone to get the most out of your creative process! It comes packed with multiple modes to shortcut frequently used functions, pick and mix colors, manage tools, preview projects in real-time, and even control the canvas with touch gestures, making it the perfect studio assistant for whatever you create.
+
+        - Optimized for touchscreens
+          Touchscreen mode allows you to use and customize touch gestures to speed up your workflow or reorganize your workspace.
+
+        - Supports HD resolution displays
+          The interface and canvas displays clearly at the native resolution of Mac devices with a Retina display.
+
+        - Compatible with Sidecar and Universal Control for Apple devices
+          Clip Studio Paint comes with support for macOS & iPadOS features like Sidecar to mirror or extend screens, and Universal Control, which enables the easy transfer of Clip Studio Paint files simply by dragging and dropping between your Mac and iPad devices.
+
+        - Free user support
+          Our support desk is open year-round, offering technical help and advice free of charge.
+
+
+  ----------------------------------------------
+  * Character Art ; https://www.clipstudio.net/en/characterart | https://www.clipstudio.net/kr/characterart
+    Sketch & Ink;  Give Shape to What You Imagine with Countless Drawing and Inking Features
+      Designed for drawing
+      Perfect lines every time
+      3D models and AI posing
+    Color & Finish
+      : Colorization and Finishing Touches to Bring Your Art to Life
+
+      The materials you need
+      Color your world with ease
+      Fill without fear
+      Auto-shading technology
+      Details made easy
+      Instant backgrounds
+      Manage and create layer comps
+      Work more comfortably with a pen tablet
+
+      : Support and Services. By artists, for artists
+      A devoted community
+      We're here to help!
+      Fun no matter which platform you use!
+    Artist Testimonials
+      What Artists Are Saying About Clip Studio
+      Learn from the Best
+
+    💡~ Explore Features;  Get to Know Clip Studio Paint
+      1. Drawing Basics;  Draw the lines you imagine by optimizing the pressure of your favorite pens and brushes! Clip Studio Paint offers tons of handy features to support your creativity.
+        - Set the pen pressure with the wizard
+          Set up your pen pressure settings with a few test strokes, and recreate the natural, high quality lines of pen and paper.
+          Even if it feels off, you can always change and tweak the settings to your liking.
+
+        - Discover your new favorite tools
+          Clip Studio Assets offers pens, markers, brushes and more to cover all you need for your creations.
+          Each brush can be further adjusted to match your style and techniques.
+
+        - Draw exactly as you imagine
+          Drawing clean lines is hard, but you can make it easier with stabilization and correction features.
+          Suppressing shaky and wavering lines, or even tapering the beginning and end of brushstrokes, Clip Studio Paint’s lines eliminate the inorganic look of digital drawing.
+
+        - Fix vector lines when and how you want
+          Draw vector lines easily and change their thickness and shape at any time.
+          Erase individual lines, delete parts up to where lines intersect, and make adjustments, without deteriorating the quality.
+
+        - Compare ideas with thumbnail sketches
+          Create thumbnail sketches by simply dragging a panel onto the canvas and dividing it into smaller panels evenly to conveniently sketch design variations.
+
+        - Improve your composition with 3D references
+          Make a completely unique reference to stage difficultly angled poses for characters with custom proportions.
+          Add accessories as well like hats or shoes to get as elements as close to your vision as possible.
+
+        - 3D support for drawing faces
+          Create your very own facial reference with our adjustable head model.
+          Fine-tune overall shape, eyes, nose, eyebrows, ears, mouth, and other parts.
+          The base head can also be transformed into various styles, such as realistic, chibi, and anime.
+
+        - Draw intricate hands with ease
+          The hand scanner makes drawing challenging hand poses a breeze.
+          It reads a hand’s pose live from your device’s camera and applies it to the hand of a 3D drawing figure.
+
+        - AI posing from photographs
+          Simply scan photographs and let Clip Studio Paint automatically pose your 3D drawing figures to match them by using our AI-based deep learning algorithms.
+
+        - Arrange 3D primitives for reference
+          Simple 3D primitive shapes can be set up as a reference base for drawing objects and scenes, or used as building blocks for more complex compositions.
+          You can also import normal maps to express realistic textures such as mesh and cloth.
+
+        - View 3D materials from all angles at once
+          When placing a 3D material, you can view from four angles simultaneously.
+          You can also change the position of the camera and the focal point on the 3D layer.
+          When you change the camera position from the All sides view palette, the model also adjusts on the canvas.
+
+        - Rule your path to new perspectives
+          Draw freehand along perspective rulers to create believable depth for buildings, rooms and other environments.
+          Create intricate patterns with the symmetric ruler or draw cylindrical objects with the concentric circle ruler.
+
+        - Extract lines and fills from photos and 3D data
+          Save time for your creation by extracting line art from photos and 3D data to smoothly integrate background into your illustration.
+
+        - Convert photos into paintings
+          Apply artistic filters to photos of buildings and landscapes to convert them into images that mimic traditional paintings.
+          With EX, you can extract 3D assets and images into separate line and tone layers.
+
+
+      2. Painting;  Clip Studio Paint offers tools for all imaginable painting styles and tastes, giving you the freedom to explore your potential.
+        - Brushes for every taste
+          The choice of brush is yours! Delve into the nearly endless selection of brushes and pens for oil paint, watercolors, pastels, ink, and more on Clip Studio Assets.
+          Get inventive and import Photoshop dual brushes (ABR), as well as two types of brush strokes in dual brushes.
+
+        - Creative color combinations
+          Color palettes for approximate colors, intermediate colors, and your color history allow for a quick selection and application.
+          Compose exciting color variations and add new swatches with the eyedropper tool by picking up new colors from inside and outside of the workspace.
+
+        - Traditional color mixing for the digital age
+          Connect your main computer or tablet device to your smartphone in Companion mode to turn your smartphone into your own digital paint palette.
+          Mix, blend, and add subtle changes to the colors on your palette, just as you would with a traditional paint palette.
+
+        - Complex tile-able patterns and instant decorations
+          Draw repeating textures such as chains, accessories, textile patterns, and flowers with a single stroke.
+          Multiple images can be applied to a single brush and reflected randomly for a natural result.
+
+        - Quicker coloring with smart fill tools
+          Clip Studio Paint’s fill tools are smart enough to fill spaces without spillover, even if there are gaps in the lines.
+          Drag to fill multiple spaces consecutively or fill missed spots with ease.
+
+        - Quick and efficient selection
+          Use quick masks to easily and precisely create selection areas and masks with the pen and eraser tools.
+
+        - Coloring with AI support
+          Find inspiration through AI-created coloring to test base colors and experiment with color variation by using color hints.
+
+        - Complex gradients made simple
+          Efficiently create gradients with multiple dedicated tools.
+          Create your basic gradient with the Gradient tool, control the shape of your gradients with the Contour line paint tool, or apply colors based on values with gradient maps.
+
+        - Realistic color mixing
+          From precise color mixing to running paint and wet watercolor style brushes, experience realistic color mixing rarely seen in digital software.
+          Ver 2.0 allows for more natural color mixing while maintaining color brightness.
+
+
+
+      3. Finishing & Editing;  Add different textures and effects to test variations with Clip Studio Paint’s non-destructive adjustment layers, filters, and image textures.
+        - Impressive layer effects
+          Apply textures, outlines, and watercolor effects to layers, or convert colors into screentones without losing the content of the original layer.
+
+        - Precise adjustments with Liquify
+          Make precise adjustments with the Liquify tool
+          Intuitively push and pull parts of the drawing without affecting its texture or brushwork.
+          Select multiple layers to liquify them all at once.
+
+        - Experiment endlessly with tonal correction layers
+          Use tonal correction layers to add finishing touches.
+          Leaving the original layer untouched, you can adjust brightness, contrast, hue, saturation and luminosity, or apply posterization, level correction, tone curve, color balance, and more.
+
+        - Boost image quality with filters
+          Use a filter to blur, sharpen, add noise, mosaic and more to add effects to your piece.
+          Make your illustrations stand out more online with a retro film filter or with a pencil filter.
+          More filters mean more ways to easily express yourself!
+
+        - Get expressive with blending modes
+          Use blending modes on your layers to add a variety of interesting effects to your image.
+          Select from 29 blending modes to create a variety of effects, like colorful shadows and stunning highlights.
+
+        - Smart Smoothing to improve image resolution
+          Resample images and erase jpeg noise to reuse your past work in a larger format for prints and high resolutions screens.
+
+
+
+      4. Publish your work;  Share your finished art piece and reach a new audience via print, social media or other online services.
+        - Supports CMYK color for printing
+          Clip Studio Paint supports import/export of both RGB screen colors and CMYK data used for printing.
+          Colors displayed in your workspace are even closer to the real printed hues!
+        - For your art books and fanzines
+          Manage multi-page works as one file and add pages where needed.
+          Check your layout and page arrangements with the 3D preview, then output to data that can be submitted to print.
+
+        - Export to your desired format
+          Clip Studio Paint supports Kindle and EPUB e-book formats for commercial e-books production, including self-publishing.
+
+        - Share your work
+          Portfolios, art books and print collections can be easily published on websites and social media, making your work more accessible to your audience.
+
+
+
+      5. Elevate your comfort and efficiency;  Speed up your workflow and create the best art you can with the help of Clip Studio Paint.
+
+        - Freely customizable interface
+          Adjust any UI element and settings option to optimize your workflow, be it shortcuts, units, UI color, palettes, or tool layouts.
+
+        - Manage and save your favorite workspace
+          Create and share your favorite workspaces through Clip Studio Assets and download workspaces used by professional creators.
+
+        - Quickly access frequently used tools
+          Register often used items such as menus, auto actions, tools, and drawing colors in a personalized palette, and access your favorite tools with a single click to optimize your workflow.
+
+        - Seamless integration with other software
+          Load, edit, and save PSD and PSB data while maintaining the original layer structure, as well as import your favorite Photoshop brushes (ABR) and gradient files (GRD).
+          Make the most of the natural drawing feel of Clip Studio Paint, then switch between other software whenever you want.
+
+        - Your complete portable workstation
+          The iPad, iPhone, Galaxy, Android, and Chromebook versions of Clip Studio Paint offer a choice between the beginner-friendly Simple Mode and Studio Mode, with all the features available on the desktop version, which pair smoothly with the Galaxy S Pen and Apple Pencil.
+          Take your digital workstation outside and find new inspiration.
+
+        - Your complete iPad workstation
+          Optimize your creative flow with your smartphone
+          Connect your iPhone or Android smartphone to your main computer or tablet device over Wi-Fi in Companion mode and transform your smartphone into a handheld shortcut remote, for a better creative experience.
+          Companion mode makes use of your smartphone to get the most out of your creative process! It comes packed with multiple modes to shortcut frequently used functions, pick and mix colors, manage tools, preview projects in real-time, and even control the canvas with touch gestures, making it the perfect studio assistant for whatever you create.
+
+          ⚓ Find out more here ; https://tips.clip-studio.com/en-us/articles/5995
+        - Optimized for high resolution displays and touch-gestures
+        - Convenient touch features make working on the iPad and on Windows devices easy.
+          Adjust the UI settings and use the native resolution of Apple's Retina displays.
+
+        - Improve group work with shared files
+          With the multi-page management function, multiple creators can share and work on a single file simultaneously, to oversee progress without the worry of conflicting files.
+
+        - Save and access your data anywhere
+          Save your work and settings directly into the cloud.
+          Software settings can be restored manually if needed, and synchronizing your desktop, tablet and smartphone data is as easy as ever, so you can take your virtual workspace wherever you go.
+  ----------------------------------------------
+  * Illustration for Design ; https://www.clipstudio.net/en/design | https://www.clipstudio.net/ko/design
+    Better Design;  Better Drawing, Better Design
+      The ideal drawing experience
+      Fix vectors when and how you want
+      Endless selection of brushes
+      Instant ornaments and decoration
+      Smarter tools for speedy coloring
+      Join a worldwide community
+      Support you can trust
+      Trusted by the World’s Leading Brands
+      
+      * Essential features for graphic design ...
+
+    Boost your Workflow;  For a Smoother Workflow Compatible with Photoshop and Illustrator. Compatible with Photoshop and Illustrator
+      Make the most of your device capabilities
+      Use with Photoshop and Illustrator for a seamless workflow
+      Work more comfortably with a pen tablet
+      Your story at a glance
+      CMYK for printing
+
+    Artist Testimonials;  Learn from the Professionals
+      ...
+    💡~ Explore Features; Get to Know Clip Studio Paint
+      Tools Designed for Your Best Work
+        Express your original style
+        Special rulers for shapes and perspective
+        Convert anything to line art
+        Smarter tools for speedy coloring
+        Innovation through AI technology
+        Customizable 3D figures with new AI posing
+        All the color palettes you need
+
+      1. Drawing Basics;  Clip Studio Paint was designed specifically with hand-drawing in mind.
+        Easily integrate hand-drawing into your designs with dedicated drawing tools and functions.
+        Let's get started.
+
+        - First, set the pen pressure with the wizard
+          Set your pen pressure curve automatically with a few strokes.
+          Access the full range of your pen tablet's hardness and softness with this simple procedure.
+          You can fine-tune these settings at any time if you're not satisfied.
+
+        - Expressive pens for all your creation needs
+          Customize your pen’s line weight, analog feel, texture, and more to suit your style.
+          Use preset brushes for an expedient solution, import Photoshop dual brushes (ABR), and create combined brushstrokes, or head to Clip Studio Assets to choose from a wide range of unique custom brushes from the Clip Studio Paint user community and grab whatever you need!
+
+          ⚓  Clip Studio ASSETS ; https://assets.clip-studio.com/en-us/
+
+        - Draw exactly as you imagine
+          Use the inbuilt stabilization functions to draw clean, accurate lines without shakiness or wavering, exactly how you’re picturing your creation.
+
+        - Fix vectors when and how you want
+          Experience new freedom with vector layers - layers that allow you to edit lines after you’ve drawn them without affecting the line quality.
+          You can move lines, make them thicker, thinner, erase only one line, or erase to intersections.
+
+        - Ideal resolution for printing and publishing
+          With vectors, drawings stay high-quality and free of distortion, even when resized.
+          With Clip Studio Paint, post your creations to the web, print posters and other large-scale formats and more with no loss in image quality.
+
+
+      2. Drawing: Advanced
+        Designers are called on to give shape to ideas on tight deadlines.
+        Clip Studio Paint is packed with features to get your designs on the page quickly and easily.
+
+        - Clip Studio Paint makes human figures a breeze
+          To show the relationship between the design and users, sketches often include hands and people in specific poses.
+          Clip Studio Paint's adjustable 3D figures allow you to freely change pose, proportions, and body type as needed.
+          You can also attach props to your 3D model like hats and shoes, to instantly create a reference close to your character design.
+
+        - 3D support for drawing faces
+          Create your very own facial reference with our adjustable head model.
+          Fine-tune overall shape, eyes, nose, eyebrows, ears, mouth, and other parts.
+          The base head can also be transformed into various styles, such as realistic, chibi, and anime.
+
+        - AI posing from photographs
+          AI features enabled by deep learning algorithms enables you to simply scan a photograph and let Clip Studio Paint automatically pose your 3D drawing figure to match.
+
+        - Perfect prototyping with 3D models
+          Import your own files or download pre-made buildings, furniture, crowds, vehicles, and many other materials that are ideal for use in prototyping work.
+
+        - View 3D materials from all angles at once
+          When placing a 3D material, you can view from four angles simultaneously.
+          You can also change the position of the camera and the focal point on the 3D layer.
+          When you change the camera position from the All sides view palette, the model also adjusts on the canvas.
+
+        - Incorporate photos and 3D assets into projects
+          Extract edges and colors from photos and 3D models and create a base for drawing and painting to boost efficiency and put a personal touch on works.
+
+        - Convert photos to illustrations
+          Photos can also be converted into painterly styles with the Artistic filter.
+          With EX, you can extract 3D assets and images into separate line and tone layers.
+
+        - A ruler for every occasion
+          Draw accurate lines using high-quality rulers.
+          Use perspective rulers that snap lines to vanishing points, symmetry rulers that are perfect for pattern making, and circle rulers for clean ovals, and much more.
+
+
+      3. Painting & Decorating;  Clients often have their own tastes in what they’re expecting from artists.
+        Clip Studio Paint offers better flexibility to keep clients happy, with deeply customizable drawing and editing tools.
+
+        - Brushes for every taste
+          Clip Studio Paint's brushes are highly customizable, letting users tailor strength, randomness, texture and more.
+          If you're in a hurry, Clip Studio Assets puts unique, quality brushes at your fingertips anytime.
+
+          ⚓ Clip Studio ASSETS ; https://assets.clip-studio.com/en-us/
+
+        - Color quick with smart fill tools
+          Clip Studio Paint’s fill tools are smart enough to fill spaces without spillover, even if there are gaps in lines.
+          Drag to fill multiple spaces consecutively or fill missed spots all at once, all with our smart fill tools.
+
+        - Gradients how you want them
+          Efficiently create gradients with multiple dedicated tools.
+          Create your basic gradient with the Gradient tool, control the shape of your gradients with the Contour line paint tool, or apply colors based on a gradient and values.
+
+        - Realistic color mixing
+          From precise color mixing to running paint and wet watercolor style brushes, experience realistic color mixing rarely seen in digital software.
+          Ver 2.0 allows for more natural color mixing while maintaining color brightness.
+
+        - Go wild with patterns! - Hundreds of decoration brushes
+          Draw repeating textures such as chains, accessories, textile patterns, and flowers with a single stroke.
+          Multiple images can be applied to a single brush and randomized for a natural result.
+
+        - AI Colorization
+          Compare color schemes with AI-based automatic colorization.
+
+        - Smooth color selection
+          In addition to the usual circles and sliders, Clip Studio Paint comes with four other color palettes: Color Sets, Approximate Color, Intermediate Colors, and Color History.
+          Create original color sets, or import swatches as color sets...
+          All these features combine to make color selection smooth, efficient, and enjoyable!
+
+        - Make colors your way
+          Fine-tune hue, saturation, brightness, and luminance to create a specific color, map out the intermediate colors of four colors, and track the variation of a single color without all the guesswork.
+
+        - Selection can be made efficiently
+          Selection tools abound in Clip Studio Paint.
+          Choose from the basic rectangle, circle, lasso, polyline, advanced selection pen, erase selection and more, or try the unique Shrink Selection that selects enclosed areas inside of the selection.
+
+
+
+      4. Finishing & Editing ;  With Clip Studio Paint’s non-destructive effects and filters, apply textures and effects, or compare patterns to test and refine your finishing touches.
+
+        - Text
+          Add, rotate, tilt text, edit line and word spacing, flip vertically and horizontally, justify, arrange it in relation to the text box, adjust kerning, arrange text in a circle, and combine multiple fonts.
+          Font ligatures can be used to create designs with text seamlessly.
+        - Arrange and Align
+          Handy alignment and distribution features are a must for web and graphic design! Multiple objects such as drawings, text, balloons, and frame borders can be aligned together or neatly arranged with equal spacing.
+
+        - Simple layer effects
+          Non-destructively apply textures, outlines, watercolor border effects and more to layers, or convert them into screentone dots.
+          Transform any image into a halftone format for black-and-white printing, or to simulate classic comic and pop art.
+
+        - Get expressive with blending modes
+          Use blending modes on your layers to add a variety of interesting effects to your image.
+          Select from 29 blending modes to create specific effects or compositions.
+
+        - Precise adjustments with Liquify
+          Make precise adjustments with the Liquify tool
+          Intuitively push and pull parts of the drawing without affecting its texture or brushwork.
+          Select multiple layers to liquify them all at once.
+
+        - Experiment endlessly with Tonal Correction Layers
+          Use Tonal Correction Layers to add finishing touches.
+          Leaving the original layer untouched, you can adjust brightness, contrast, hue, saturation and luminosity, or apply posterization, level correction, tone curve, color balance, gradation map, and more.
+
+        - Boost quality with filters
+          Use a filter to blur, sharpen, add noise, mosaic and more to add effects to your piece.
+          Make your images look like photos with a retro film filter combining chromatic aberration with noise.
+          Or go with the hand-drawn pencil look with a pencil filter.
+          More filters mean more ways to express yourself easily!
+
+        - Image resolution up-conversion
+          Resample images and erase jpeg noise to reuse your past work as a larger image.
+
+        - Many materials useful for decoration and depiction
+          Clip Studio Assets is a one-stop shop to help you quickly create artwork and designs.
+          Access tens of thousands of materials that can be used immediately for commercial use.
+          There are plenty of free assets available, too!
+
+
+      5. Elevate Your Efficiency; Speed up your workflow, and create in comfort.
+        Clip Studio Paint helps you make the best art you can while increasing output.
+
+        - Input and output in Photoshop formats
+          Clip Studio Paint supports input and output in Photoshop file formats, so you can deliver files to clients and printing companies without changing your existing workflows.
+          Load, edit, and save PSD and PSB data while preserving raster layers, and export files with text layers created in Clip Studio Paint for easy editing and in Photoshop.
+
+        - Enjoy Clip Studio Paint on tablets and smartphones
+          Create on the go or at your favorite cafe with Clip Studio Paint for tablets and smartphones.
+          Choose between the beginner-friendly Simple Mode or Studio Mode with the same functionality as the desktop version.
+          Enjoy smooth drawing with complete compatibility with the Galaxy S Pen, Apple Pencil, and more.
+
+        - Optimize your creative flow with your smartphone
+          Connect your iPhone or Android smartphone to your main computer or tablet device over Wi-Fi in Companion mode and transform your smartphone into a handheld shortcut remote, for a better creative experience.
+          Companion mode makes use of your smartphone to get the most out of your creative process! It comes packed with multiple modes to shortcut frequently used functions, pick and mix colors, manage tools, preview projects in real-time, and even control the canvas with touch gestures, making it the perfect studio assistant for whatever you create.
+
+          ⚓ Find out more here ; https://tips.clip-studio.com/en-us/articles/5995
+
+
+        - Peace of mind with cloud backup
+          Save your work and settings directly to the cloud.
+          Software settings can be restored manually if needed, and synchronize your computer, tablet and smartphone data to take the virtual workspace you enjoy at home wherever you go.
+
+        - Streamline repetitive operations
+          Perform frequent or repeated operations with one click using Auto Actions.
+          Customize shortcuts and recreate your favorite shortcuts from other programs.
+          Customizable pen sensitivity for controlled strokes
+
+        - Easy access to your most frequently used functions
+          The Quick Access Palette gives you access to menus, Auto Actions, tools, and colors from a single palette to customize your ideal virtual workspace.
+
+        - Optimize your workspace
+          Save and recall your customized palette layout, shortcuts, command bar and colors whenever you need them!
+
+        - Perfect for Mac Retina and touch control
+          Clip Studio Paint is optimized for the touch control interfaces of iPad and tablet devices running Windows 8 and later.
+          UI elements are also easy to see and use on native resolutions of Retina display devices.
+
+        - Manage multi-page works
+          Manage multi-page print documents with ease using the management window to check page layouts and order.
+
+        - See your work before you print with 3D preview
+          See the binding and finish of the final product with the 3D preview feature.
+
+        - Supports CMYK color for printing
+          Clip Studio Paint supports import/export of both RGB and CMYK data used for printing.
+          Colors displayed in your workspace are as close as you can get to real printed hues!
+
+        - Export anywhere
+          Supports Kindle and EPUB e-book formats, including commercial e-books and self-publishing.
+  ----------------------------------------------
+  * Comics, Manga & Webtoons ; https://www.clipstudio.net/en/comics-manga | https://www.clipstudio.net/ko/comics-manga
+    Sketch & Ink;  Comic Creation Starts Here
+      The standard for comics, manga & webtoons
+      Capture every detail
+      Packed with features for comic creation
+      Perspective rulers for perfect backgrounds
+        ... https://tips.clip-studio.com/en-us/articles/807
+      Customizable 3D figures with new AI posing
+      Support you can trust
+      Trusted by the world’s leading brands
+    Artist Testimonials
+      ...
+    Comic Tools
+      ;  Create Comics, Manga & Webtoons with Ease
+      The ideal drawing experience
+      Thousands of customizable brushes
+      Vector lines with a hand-drawn feel
+      Add detail with decoration brushes
+      3D models for small objects and backgrounds
+      Photograph your next scene
+
+
+      ;  Enhanced Storytelling Tools
+      Your story at a glance
+      Ideal for webtoon artists
+      Lettering in style
+      Create panels in seconds
+      Effect lines with a bang
+      Infinite screen tones
+      Preview your finished book in 3D
+
+
+      ;  Coloring Made Simpler
+      A smarter fill tool for speedy coloring
+      Auto-shading technology
+      Your art, your style
+      All the color palettes you need
+
+      ;  Publish with Clip Studio Paint
+      Webtoon exporting that meets your needs
+      Complete and publish your eBook
+      CMYK for printing
+      A better viewing experience
+
+
+      ;  The Professional’s Sidekick for Stress-free Creation
+      Make the most of your device capabilities
+      Complete PSD compatibility
+      Manage and create layer comps
+      Work more comfortably with a pen tablet
+      Blend traditional and digital art
+      Join a worldwide community
+
+
+      ; Learn from the Professionals
+      ...
+
+    💡~ Explore Features;  Get to Know Clip Studio Paint
+      1. Drawing;  With Clip Studio Paint, you can animate just as you would with a pen and paper, using the same tools you use for drawing and painting.
+
+      - Adjustable pen pressure
+        Set up your pen pressure with a few test strokes, and recreate the natural, high-quality lines of pen and paper.
+        If the results feel off, you can always edit and tweak the settings to perfection.
+
+      - The perfect line
+        Drawing clean lines can be challenging, but you can make it easier with stabilization and correction features.
+        Reducing shaky and wavering lines and tapering the beginning and end of brushstrokes automatically, Clip Studio Paint’s lines feel almost organic.
+
+      - Fix vectors when and how you want
+        Draw vector lines the same as you would on paper.
+        Move, thicken, thin, selectively erase individual brushstrokes up to an intersection, or watch them in 4K without deteriorating their quality.
+
+      - Accurate lines with rulers
+        Draw precise perspective lines, buildings, and interiors by hand using the perspective, symmetrical, concentric circle, and other useful rulers, or directly import your own 3D materials onto existing rulers.
+
+      - Create spaces with 3D references
+        Use 3D references for accurate compositions.
+        Import your own 3D models, or download architecture, furniture, humans, vehicles, and more to create a wide variety of scenes.
+
+      - Arrange 3D primitives for reference
+        Simple 3D primitive shapes can be set up as a reference base for drawing objects and scenes, or used as building blocks for more complex compositions.
+        You can also import normal maps to express realistic textures such as mesh and cloth.
+
+      - View 3D materials from all angles at once
+        When placing a 3D material, you can view from four angles simultaneously.
+        You can also change the position of the camera and the focal point on the 3D layer.
+        When you change the camera position from the All sides view palette, the model also adjusts on the canvas.
+
+      - Sketch human figures with ease
+        Pose 3D drawing figures in detail, from the head and face to the fingertips and toes and use it as a reference for your artwork.
+        From our head model that allows for fine-tuning facial parts to our hand scanner that mimics intricate hand poses, drawing hands and faces has never been easier.
+
+      - Easily create dynamic compositions
+        Is accurate perspective too mundane for the shot you have in mind? Use the manga perspective function to add dynamic exaggerations to your character.
+
+      - AI posing from photographs
+        Select a photo, and let Clip Studio Paint’s AI-based deep learning algorithms automatically duplicate the pose with a 3D drawing figure.
+
+      - Use thousands of ready-to-use materials
+        Clip Studio Assets offers tens of thousands of materials such as brushes, patterns, and 3D models, all ready for download and commercial use.
+
+      - Choose the perfect color
+        Quickly select, test, compare and apply the perfect color with approximate and intermediate color palettes and color history.
+        With the eyedropper tool, you can pick colors from inside and outside of the workspace to create unexpected color variations and new swatches.
+
+      - Spot on painting
+        Speed up your painting process with smarter tools.
+        With Clip Studio Paint’s fill tools, you can detect and ignore gaps in lines and fill tiny spots you missed in one go.
+
+      - Powerful selection tools
+        In addition to standard selection tools, Clip Studio Paint comes with a selection pen, shrink selection tool, and more, all designed to enhance your selection and painting speed.
+
+      - Quickly draw patterns and decorations
+        Draw repeating textures such as chains, accessories, textile patterns, and flowers with a single stroke.
+        Multiple images can be applied to a single brush and randomized for a natural result.
+        Multiple images can be set for a repeated pattern, so you can create a natural description that is not monotonous.
+
+      - Complex gradients made simple
+        Use the gradient tool to set multiple colors and transparency in a single, detailed, and natural gradient or use the contour line fill tool to create gradients that follow a specific shape.
+
+
+
+      2. Animating ; No animation can be made without the frames between keyframes.
+        Clip Studio Paint comes with functions that allow you to reference multiple frames and more, all to create a better animation.
+
+      - Drawing frames between keyframes
+        Use the light table function to freely reference specific keyframes while inbetweening.
+
+      - Display previous and following frames
+        Want to add more frames? Use the onion skin function to overlay the previous and following frames for reference with full control over the color and number of layers.
+
+      - Checking movement
+        Just like flipping paper, use the keyboard to cycle through your completed frames.
+
+
+
+
+      3. Directing;  With Clip Studio Paint, you can edit, adjust the timing of each frame, add camera work, and audio to your animation without switching programs.
+
+      - Adjustable playback
+        Set the timing and order of each frame in multiple tracks, and adjust playback speed as needed.
+
+      - Customizable camerawork
+        Clip Studio Paint offers keyframe options for objects and camera movement.
+        With multiple interpolation options, you can set sharp movements or smooth curved motions, and check the movement with the camera path display.
+
+      - Audio file compatibility
+        Add, adjust, and mix multiple music tracks, sound effects, and voices.
+        Playback audio tracks on the timeline to match animation and sound.
+
+
+      4. Exporting;  Choose the best format for your project from multiple export options.
+
+      - Export as an image sequence
+        Export frames of the entire animation as a flattened image sequence, for complete control over scale and framerate.
+        *Available formats: PNG, BMP, JPEG, Targa, TIFF
+
+      - Export individual tracks
+        Each track can be exported as an individual image sequence.
+        The export range can be set to specific borders as well.
+        *Available formats: PNG, BMP, JPEG, Targa, TIFF
+
+      - GIF export
+        Quickly share animation snippets and test animations online as lightweight, accessible GIF files, even with transparency.
+
+      - Video export
+        Export finished animations as video files such as MP4.
+
+
+
+      5. Improve efficiency & save time
+        Speed up your workflow, create backups of your workspace of choice, and create the best art you can with the help of Clip Studio Paint.
+
+      - Optimize your workspace
+        Save and share your customized palette layout, shortcuts, command bar, and colors as workspaces, and use them whenever you need them.
+
+      - Template and workspace sharing
+        Save and share file settings and layer structures as templates, or share your workspace with your team and unify your environments.
+
+      - Streamline repetitive operations
+        Perform frequent or repeated operations with one click using Auto Actions.
+        Customize shortcuts and recreate your favorite shortcuts from other programs.
+        Shortcuts can be customized, and you can change them to other familiar shortcuts with other software.
+
+      - Easy access to your most frequently used functions
+        Register often used items such as menus, auto actions, tools, and drawing colors in a personalized palette, and access your favorite tools with a single click to optimize your workflow.
+
+      - Back up your workspace to the cloud
+        Save your work and settings directly to the cloud.
+        Software settings can be restored manually if needed, and synchronizing your desktop, tablet and smartphone data is as easy as ever, so you can take your virtual workspace wherever you go.
+
+
+  ----------------------------------------------
+  * Animation ; https://www.clipstudio.net/en/animation | https://www.clipstudio.net/ko/animation
+    Introduction;  Tools to Move Your Ideas
+      A totally different drawing experience
+      Capture every detail
+      All your animation needs in one program
+      Smart features for smooth animation
+      Customizable 3D figures with new AI posing
+      Support you can trust
+      Trusted by the World’s Leading Brands
+    Artist Testimonials
+      ...
+    Animation Tools
+      ;  Helpful Tools for Animation
+      Vector lines with a hand-drawn feel
+      A smarter fill tool for speedy coloring
+      Auto-shading technology
+      Simple timeline interface
+      Camerawork for dynamic animations
+      From gifs to full-length animations
+      Import and export audio
+
+      ;  Your Ideal Workflow
+      A workspace for every process
+      Create and share templates
+      Save time on repetitive actions
+      Work more comfortably with a pen tablet
+      Make the most of your device capabilities
+      Join a worldwide community
+      
+      
+      ; Step Into a World of Movement
+      Okamoto
+      How to create moving illustrations
+      Expression to match your imagination
+      
+    💡~ Explore Features
+      1. Drawing ;  With Clip Studio Paint, you can animate just as you would with a pen and paper, using the same tools you use for drawing and painting.
+
+      - Adjustable pen pressure
+        Set up your pen pressure with a few test strokes, and recreate the natural, high-quality lines of pen and paper.
+        If the results feel off, you can always edit and tweak the settings to perfection.
+
+      - The perfect line
+        Drawing clean lines can be challenging, but you can make it easier with stabilization and correction features.
+        Reducing shaky and wavering lines and tapering the beginning and end of brushstrokes automatically, Clip Studio Paint’s lines feel almost organic.
+
+      - Fix vectors when and how you want
+        Draw vector lines the same as you would on paper.
+        Move, thicken, thin, selectively erase individual brushstrokes up to an intersection, or watch them in 4K without deteriorating their quality.
+
+      - Accurate lines with rulers
+        Draw precise perspective lines, buildings, and interiors by hand using the perspective, symmetrical, concentric circle, and other useful rulers, or directly import your own 3D materials onto existing rulers.
+
+      - Create spaces with 3D references
+        Use 3D references for accurate compositions.
+        Import your own 3D models, or download architecture, furniture, humans, vehicles, and more to create a wide variety of scenes.
+
+      - Arrange 3D primitives for reference
+        Simple 3D primitive shapes can be set up as a reference base for drawing objects and scenes, or used as building blocks for more complex compositions.
+        You can also import normal maps to express realistic textures such as mesh and cloth.
+
+      - View 3D materials from all angles at once
+        When placing a 3D material, you can view from four angles simultaneously.
+        You can also change the position of the camera and the focal point on the 3D layer.
+        When you change the camera position from the All sides view palette, the model also adjusts on the canvas.
+
+      - Sketch human figures with ease
+        Pose 3D drawing figures in detail, from the head and face to the fingertips and toes and use it as a reference for your artwork.
+        From our head model that allows for fine-tuning facial parts to our hand scanner that mimics intricate hand poses, drawing hands and faces has never been easier.
+
+      - Easily create dynamic compositions
+        Is accurate perspective too mundane for the shot you have in mind? Use the manga perspective function to add dynamic exaggerations to your character.
+
+      - AI posing from photographs
+        Select a photo, and let Clip Studio Paint’s AI-based deep learning algorithms automatically duplicate the pose with a 3D drawing figure.
+
+      - Use thousands of ready-to-use materials
+        Clip Studio Assets offers tens of thousands of materials such as brushes, patterns, and 3D models, all ready for download and commercial use.
+
+      - Choose the perfect color
+        Quickly select, test, compare and apply the perfect color with approximate and intermediate color palettes and color history.
+        With the eyedropper tool, you can pick colors from inside and outside of the workspace to create unexpected color variations and new swatches.
+
+      - Spot on painting
+        Speed up your painting process with smarter tools.
+        With Clip Studio Paint’s fill tools, you can detect and ignore gaps in lines and fill tiny spots you missed in one go.
+
+      - Powerful selection tools
+        In addition to standard selection tools, Clip Studio Paint comes with a selection pen, shrink selection tool, and more, all designed to enhance your selection and painting speed.
+
+      - Quickly draw patterns and decorations
+        Draw repeating textures such as chains, accessories, textile patterns, and flowers with a single stroke.
+        Multiple images can be applied to a single brush and randomized for a natural result.
+        Multiple images can be set for a repeated pattern, so you can create a natural description that is not monotonous.
+
+      - Complex gradients made simple
+        Use the gradient tool to set multiple colors and transparency in a single, detailed, and natural gradient or use the contour line fill tool to create gradients that follow a specific shape.
+
+
+
+
+
+    2. Animating;  No animation can be made without the frames between keyframes.
+      Clip Studio Paint comes with functions that allow you to reference multiple frames and more, all to create a better animation.
+
+      - Drawing frames between keyframes
+        Use the light table function to freely reference specific keyframes while inbetweening.
+
+      - Display previous and following frames
+        Want to add more frames? Use the onion skin function to overlay the previous and following frames for reference with full control over the color and number of layers.
+      - Checking movement
+        Just like flipping paper, use the keyboard to cycle through your completed frames.
+
+
+
+    3. Directing;  With Clip Studio Paint, you can edit, adjust the timing of each frame, add camera work, and audio to your animation without switching programs.
+
+      - Adjustable playback
+        Set the timing and order of each frame in multiple tracks, and adjust playback speed as needed.
+
+      - Customizable camerawork
+        Clip Studio Paint offers keyframe options for objects and camera movement.
+        With multiple interpolation options, you can set sharp movements or smooth curved motions, and check the movement with the camera path display.
+
+      - Audio file compatibility
+        Add, adjust, and mix multiple music tracks, sound effects, and voices.
+        Playback audio tracks on the timeline to match animation and sound.
+
+
+    4. Exporting;  Choose the best format for your project from multiple export options.
+      - Export as an image sequence
+        Export frames of the entire animation as a flattened image sequence, for complete control over scale and framerate.
+        *Available formats: PNG, BMP, JPEG, Targa, TIFF
+
+      - Export individual tracks
+        Each track can be exported as an individual image sequence.
+        The export range can be set to specific borders as well.
+        *Available formats: PNG, BMP, JPEG, Targa, TIFF
+
+      - GIF export
+        Quickly share animation snippets and test animations online as lightweight, accessible GIF files, even with transparency.
+
+      - Video export
+        Export finished animations as video files such as MP4.
+
+
+
+    5. Improve efficiency & save time
+        Speed up your workflow, create backups of your workspace of choice, and create the best art you can with the help of Clip Studio Paint.
+
+      - Optimize your workspace
+        Save and share your customized palette layout, shortcuts, command bar, and colors as workspaces, and use them whenever you need them.
+
+      - Template and workspace sharing
+        Save and share file settings and layer structures as templates, or share your workspace with your team and unify your environments.
+
+      - Streamline repetitive operations
+        Perform frequent or repeated operations with one click using Auto Actions.
+        Customize shortcuts and recreate your favorite shortcuts from other programs.
+        Shortcuts can be customized, and you can change them to other familiar shortcuts with other software.
+
+      - Easy access to your most frequently used functions
+        Register often used items such as menus, auto actions, tools, and drawing colors in a personalized palette, and access your favorite tools with a single click to optimize your workflow.
+
+      - Back up your workspace to the cloud
+        Save your work and settings directly to the cloud.
+        Software settings can be restored manually if needed, and synchronizing your desktop, tablet and smartphone data is as easy as ever, so you can take your virtual workspace wherever you go.
+
+
+
+  📰
+    [Mixing Mode]를 [Perceptual]로 설정합니다. 이제 색상이 번져도 선명하고 채도가 높아 보입니다.
+
+
+    model sheets and turnarounds 단어 뜻
+    클립 스튜디오.. Celsys 회사가 만듦.
+
+    운전면허  재발급.. 평일밖에 안됨...
+
+    vector eraser, line thickness and shape slider???
+    Adjustment 보정.
+    레이어 콤프??
+    ... 큰 것, 즉 틀부터 생각하고 이 틀로 할 수 있는 것을 차레ㅐ로 생각하는 것이 암기력과 이해를 높이는 데 도움이 될듯. 작은거보다 ㅇㅇ
+
+⚓ Asset ; https://assets.clip-studio.com/en-us/?_stp=a.3659378107+b_64a7beee5722b.4132635550+d_65463.0+d_67649.0
+  * Brush
+    🪱 "Brush", "Pen" ; https://assets.clip-studio.com/en-us/search?type=brush&word=pen&order=dl
+    Line drawing pen
+      ⚓📰 Fist pen (주먹펜) ; https://assets.clip-studio.com/en-us/detail?id=1737930 ♥️ 658
+        텍스쳐 없이 매끈하고 필압에 따라 투명도가 겹쳐서 꾸덕한 느낌을 준다.
+    all in one
+      ⚓ ARTIST21 BRUSH PACK (ARTIST21 BRUSH PACK) ; https://assets.clip-studio.com/en-us/detail?id=1773995    // 372,507 downloaded
+        - Pencil 1; Kamomi Cream Pencil
+          feeling: Faint without post-processing the lines.
+        - Pencil 2; Kamomi Multiplication がしがし Pencil / 카모미 .. 연필
+          feeling: Smoothly and slimy
+          texture: less blurry texture
+          🚣 multiplication mode; color becomes darker when you overlap it.
+        - Pencil 3; Kamomi Old pencil
+          feeling: Faded
+          texture: Antique
+
+        - Pastel; Kamomi concept
+          feeling: chalk containg oil
+          texture: -
+          🚣 can be used in watercolor border and paper texture
+
+        - Paint; Kamomi painting brush
+          feeling: honest personality
+            can be used to increase the brush size and paoint a large area at once.
+          texture: "None"
+
+        - Eraser; Kamomi canvas texture kneaded eraser
+          feeling: soft eraser that shows the mesh of the canvas when you increase the brtush size.
+          texture: -
+
+        - Blender; Kamomi color
+          feeling: smudge brush
+            The way it bleeds changes depending on how you pull it and brush size.
+          texture: organic
+
+        - Texture; Kamomi pencil texture brush
+          feeling: -
+            the drawing direction of the stroke changes dependings on the angle of the pen body.
+          texture: -
+          🚣 You can use it as a background or add texture on top of the color illustration layer.
+
+        - Hatching 1; Kamomi hatchling
+          feeling: -
+            the drawing direction of the stroke changes dependings on the direction in which the line is drawn.
+            brushes that allow you to experiment in varous ways be cmobining blur, ..번짐, layer effects.
+          texture: -
+        - Hatching 2; Kamomi hatching watercolor
+          ; This is a version with a different texture of hatching.
+          feeling: -
+          texture: -
+
+        - Watercolor 1; Kamomi amber sugar watercolor
+          ⚙️ please change the watercolor border value as you like.
+          ; Watercolor brush that can be applied with long strokes or with tapping motions.
+          feeling: -
+          texture: -
+        - Watercolor 2; Kamomi hydrangea watercolor
+          ; Watercolor that starts with a light color and gradually becomes darker each time it is layered.
+          feeling: -
+          texture: -
+        - Watercolor 3; Kamomi color mixed transparent watercolor
+          ; Watercolor brush that blends in with the surrounding colors.
+          feeling: -
+          texture: -
+        - Watercolor 4; Kamomi accent watercikir
+          ; Brush that can be placed as an accent with watercolor texture.
+          feeling: -
+          texture: -
+        - Watercolor 5; Kamomi face brush blur watercolor
+          ⚙️ if you reduce the brush size, you can use it like a thin watercolor brush.
+          feeling: -
+          texture: -
+
+        - Water Eraser; Kamomi watercolor brush
+          ; Watercolor Eraser. A water brush that can express a texture that feels like it is gently absorinb water.
+          feeling: -
+          texture: - 
+
+        - Water Salt; Kamomi watercolor salt
+          ; Watercolor eraser crush. A salt brush that creates a fantastical atmosphere when combined with a water brush.
+          feeling: -
+          texture: - 
+
+        - Water Blender; Kamomi watercolor color mixing.
+          feeling: -
+          texture: - 
+          🚣 You can mix adjacent colros or pull colors like the fingertip tool.
+
+        - Pen; Gel ink pen behind Kamomi's desk
+          ; Pens that create ink puddles, fade, or create an antique texture.
+          feeling: -
+          texture: - 
+          🚣 Can also be usd to write letters
+          🚣 The line thickness changes dynamically depending on the pen pressure.
+
+        - Marker 1; Kamomi Comic Marker Maru
+          ; Color marker brush with a somewhat tasteful uneven coating.
+          feeling: -
+          texture: -
+          🚣 The round version is affected by the strength of the pen pressure. 
+        - Marker 2; Kammoi Comic Marker Sqaure
+          ; An angular marker that feels fun to apply.
+          feeling: -
+          texture: - 
+          🚣 The sqaure versino is slightly affetec by pen pressure.
+
+
+
+
+    (Filling)
+      ⚓ Penpen (벰펜) ; https://assets.clip-studio.com/en-us/detail?id=1745112 // ♥️ 6,805
+    (Line)
+      ⚓ SU-Cream Pencil (SU-Cream Pencil) ; https://assets.clip-studio.com/en-us/detail?id=1761353  // ♥️ 25,118
+      ⚓ Outline Brush (境界線ブラシ) ; https://assets.clip-studio.com/en-us/detail?id=1753863 // ♥️ 550
+      ⚓ Neon Pens (ネオンペン) ; https://assets.clip-studio.com/en-us/detail?id=1722368   // ♥️ 17,579
+      ⚓ Texture Ink Pen Kai (質感スミペン改) ; https://assets.clip-studio.com/en-us/detail?id=1949936   // ♥️ 10,402
+      📰 hairset
+      📰 Graffiti milli pen (らくがきミリペン) ; https://assets.clip-studio.com/en-us/detail?id=1688293 // ♥️ 6,987
+        브러쉬에 텍스쳐가 있고 우둘투둘한 질감을 준다.
+
+  * Material
+    (Rough, Filling)
+      ⚓ Fill Set (塗りセット) ; https://assets.clip-studio.com/en-us/detail?id=1695210  // ♥️ 26,779
+        - Rough pen; for rough drafts and drafts.
+        - Rough round brush; the color becomes darker when layered.
+        - Sketch ; you cas add dark colors
+        - Layering/Blending when blending colors and handwriting.
+        - ... for when you want to add handwriting
+        - Hatching when creating a rough texture.
+        - Effect such as smoke or details of hair.
+    (Hair)
+      ⚓ Curly Hair Pen ; https://assets.clip-studio.com/en-us/detail?id=1791872 // ♥️ 10,012
+        ⭕ To use this pen, you have to draw the hair in a wiggly, twisting manner yourself. It may take a little practice but it means you can choose to draw the curls looser or tighter as you please.
+        Process example:
+          ① Use the hair pens to draw curly hair
+          ② Add some single strands with a normal pen to look more natural
+          ③ Create the outline with Layer Property → Border effect
+          ④ Add details like inner lines, highlights, etc.
+    (Letter)
+      ⚓ Various sets of character pens (文字ペンいろいろセット) ; https://assets.clip-studio.com/en-us/detail?id=1686820  // ♥️ 18,217
+    ⚓ Prism Pens (プリズムペン) ; https://assets.clip-studio.com/en-us/detail?id=1817317 // ♥️ 10,290
+    ⚓ Tights Pen (タイツペン) ; https://assets.clip-studio.com/en-us/detail?id=1808982 // ♥️ 9,067
+    ⚓ Blood Spray Brush (血飛沫ブラシ) ; https://assets.clip-studio.com/en-us/detail?id=1490467 // ♥️ 4,988
+    ⚓ Starry Brush (星空ブラシ) ; https://assets.clip-studio.com/en-us/detail?id=1444488 // ♥️ 19,107
+    ⚓ Dust brushes (Dustブラシ) ; https://assets.clip-studio.com/en-us/detail?id=1583768 // 12,407
+⚓ User Guide ; https://help.clip-studio.com/en-us/First_Topic.htm
+  ⚓📍 Shortcut list ; https://help.clip-studio.com/en-us/manual_en/780_shortcuts/780_shortcuts.htm
+  Filters 
+    ⚓ Convert to lines and tones (EX only) ; https://help.clip-studio.com/en-us/manual_en/390_filters/Convert_to_lines_and_tones_(EX_only).htm
+⚓📍 Learn ; https://tips.clip-studio.com/en-us/official | https://tips.clip-studio.com/ko-kr/official
+  * Layer types and how to use them ; https://tips.clip-studio.com/en-us/series/5
+    ⚓ Layer types: 1 Raster and Vector
+      ; https://tips.clip-studio.com/en-us/articles/532 | https://tips.clip-studio.com/ko-kr/articles/532
+    ⚓ Layer types: 2 Other layers 
+      ; https://tips.clip-studio.com/en-us/articles/571 | https://tips.clip-studio.com/ko-kr/articles/571
+
+    ...
+  * Selecting and masking ; https://tips.clip-studio.com/en-us/series/39
+    ⚓🖇️ How to master layer masks: Part 1 📅 2024-05-13 19:36:53
+      ; https://tips.clip-studio.com/en-us/articles/716 | https://tips.clip-studio.com/ko-kr/articles/716
+      🌵 Layer mask (레이어 마스크)
+      * How to create a layer mask
+        1. From the layer palette, select the layer to create a layer mask on.
+        2. to create a selection area
+          ["Rectangle" tool, "Selection" menu - "Select Color Gamut"] 
+        3. "Layer" menu - "Layer Mask" - ["Mask Oustide Selection", "Mask Selection"]
+        📝 Creating a layer mask without making a selection area ...
+      * Drawing on the layer mask
+        - Add to the displayed area
+          1. Click to select the "Layer Mask" thumbnail of the "Layer" palette.
+          2. Select Pen and Select a drawing color other than the transparent color.
+          3. Drawing on the canvas will add to the displayed area.
+        - Add hidden area
+          1. Select "Layer Mask" from the "Layer" palette.
+          2. Select "Eraser" tool from the "Tool" palette.
+          3. When using drawing tools such as the "Pen" Tool, select transparent color as the drawing color.
+          4. Drawing on the canvas will add to the hidden area.
+        - Advanced editing with drawing tools ...: ["Decoration" tool, "Brush" tool]
+        - Show/Hide in selected area
+          By filling in or deleting the selection area, the mask can be changed to fit the shape of the selection area
+        // "Layer" palette - "Enable Mask" checkable
+    ⚓ How to master layer masks: Part 2
+      ; https://tips.clip-studio.com/en-us/articles/717 | https://tips.clip-studio.com/ko-kr/articles/717
+      * Using layer masks on various layers
+        - Layer masking layer folders
+        - Applying layer masks on tonal correction layers [PRO/EX]
+        - Using layer masks on tone layers[PRO/EX]
+
+      * Operating layer masks
+        - Delete Mask
+        - Apply Mask to Layer
+        - Enable Mask
+        - Show Mask Area
+        - Link Mask to Layer
+    ...
+  * New features of Clip Studio Paint ; https://tips.clip-studio.com/en-us/series/641
+    ⚓🖇️ Easily correct your illustrations with the Liquify sub tool -Clip Studio Ver. 1.11.6- 📅 2024-05-13 19:36:45
+      ; https://tips.clip-studio.com/en-us/articles/5811 | https://tips.clip-studio.com/ko-kr/articles/5811
+      🌵 Liquify tool (픽셀 유동화 도구) (⌨️ J)
+
+      * Liquify modes: Tool property - Liquify
+        - Push (진행 방향)
+        - Push Left (진행 방향의 왼쪽)
+        - Push Right (진행 방향의 오른쪽)
+        - Expand (팽창)
+        - Pinch (수축)
+        - Twirl Clockwise (시계 방향으로 회전)
+        - Twirl Anti-Clockwise (반시계 방향으로 회전)
+        ⌨️ Note: Hold Alt while dragging to invert the effect. For example, if Liquify is set to Expand, it will Pinch. When Liquify is set to Push, the image will be distorted in the opposite direction of the stroke.
+
+      * Use Liquify on multiple layers
+        Select the layers you want affected in the [Layer] palette and then use the [Liquify] tool.
+
+        - If you have a Layer Mask selected
+          If a "Layer Mask" is applied, you have the option to turn "Link Mask to Layer" [on or off] to control the area to distort.
+        - If you use a Layer Folder
+          You can also Liquify within a mask set on a Layer Folder.
+        - 🚣 If you use a Selection layer
+          Use "Select" menu - "Convert to Selection Layer" to use Liquify on the selected area.
+      * Adjust the effects of the Liquify sub tool.: Tool property - Liquify
+        - Sterngth (강도): The higher the Strength value, the stronger the liquify effect.
+        - Hardness (경도): The higher the Hardness value, the more sharply the area around the mouse cursor will distort.
+        - Only refer to editing area
+          If turned off, the effect will also be applied to images outside the selection.
+          If enabled, only areas of the image traced by the Liquify sub tool will be referenced.
+        - Anti-aliasing
+    ...
+  ----------------------------------------------
+  (User Guide)
+
+
+
+https://tips.clip-studio.com/en-us/articles/5811
+(✍️ essential 🔪 study)
+  ✅ Border effect
+    (window) Layer Property - (checkable) Border effect - (property) Edge color
+  📰 구상 -> 러프 -> 선화 -> 채색 -> 보정
+    📹 러프를 그리는 좋은 방법들/클립스튜디오/신타선생님 ; https://youtu.be/KbiaRLmg_78 📅 2024-05-12 22:25:42
+      키워드 1. 줄여라
+        러프의 크기를 줄여라.
+          구체적/세세하게 퀄리티높게 그리기 위해서 확대하는 경우가 많은데, 그림 전체보다 그림의 일부분만 보게 되어
+            - 그리는 시간이 많아지고
+            - 인체의 밸런스가 깨지고
+            - 같은 그림 내에서 퀄리티 차이가 날 가능성이 커진다.
+          러프 자체 크기를 줄이고, 캔버스를 축소해서 일단은 형태를 알아볼 수 있을 정도만 그린다. 대충 그린 것처럼 보여도 상관없다.
+        러프의 규모를 줄여라.
+          그림 실력이 상대적으로 떨어지면, 간단한것만 그리는 것이 더 낫다.
+          캐릭터+배경+그 이외 다른 것들을 그니느 것보다 캐릭터 하나에 집중하는 것이 낫다.
+          🚣 러프를 그리면서 천천히 늘려가는 형태로 그리도록 한다.
+            본인의 페이스를 유지하며, 점점 이 한계를 늘려나가야 한다.
+        캐릭터의 퀄리티를 줄여라.
+          러프를 SD 캐릭터, 막대인간 등 표현하고 싶은 것을 자잘하게 간소화해서 그리도록 한다.
+          미리보기이기 때문에 굳이 LD 로 진행하지 않아도 좋다.
+            이렇게 하면 추가적인 작업이 필요하긴 하지만, 빠르고 간단하게 추가/수정을 할 수 있어서 이런 방식으로 여러 번을 시도해보는 것이 좋다.
+          러프에서 시간을 많이 쓰면 안된다.
+      키워드 2. 늘려라
+        러프의 숫자를 늘려라.
+          러프를 여러번 그려서 잘못된 점이나 섬세함을 많이 필요한 곳을 생각하면서 바로잡도록 해본다.
+          특히 캐주얼 일러스트를 그릴 때 특정 부분들을 섬세하게 그려야 하는 중요하다.
+          🚣 러프를 반투명한 상태로 만든 후, 이 위에 새로운 레이어를 만들고 그 위에서 작업하는 것.
+            그래서 1차, 2차 3차.. n차 러프까지 그린다.
+        러프의 양을 늘려라.
+          같은 주제라 할 지라도 비슷한 여러 자세를 그려보도록 한다.
+          🚣 어떤 상황에 놓여있는지, 어떤 포즈를 취하는 지, 어떤 이유로 그 행동을 하고 있는지에 따라 그림의 분위기가 확연하게 달라진다.
+        리프를 그리는 여유를 가져라. 조급한 마음으로 그리지는 말자.
+      키워드 2. 넓혀라
+        러프를 그릴 때 시야를 넓혀라
+        사용하는 툴에서 러프를 그릴 떄 유용한 것을 최대한 사용하자.
+        🛍️ e.g. 클립스튜디오
+          내장되어있는 3D - Pose (인형) 을 사용하면 인체를 그릴 때 도움이 된다.
+          픽셀유동화 기능을 사용하여 러프의 잘못된 부분을 바로잡을 수 있다.
+
+
+
+Pricing
+  Paint
+    ⚠️ 현재 일본 재화로 구매하는 것이 가장 싸다.
+
+    Plan ; https://ec.clip-studio.com/ko-kr/application/plans
+    PRO vs EX ; https://www.clipstudio.net/kr/promotion/upgrade/
+      ➡️ 30일 무료 -> 3개월 무료 -> 1년 구독 플랜
+        30일 무료 ; https://www.clipstudio.net/kr/news/202211/22_01/
+        월정액 플랜 결제
+          월정액 플랜은 필요한 때에만 선택한 기기를 부담없이 사용할 수 있는 이용 방법입니다.
+          월정액 플랜을 처음 신청하면 최대 3개월간 무료로 이용하실 수 있습니다.
+          계약 중에는 최신 기능을 이용하실 수 있습니다.
+      📝
+        PRO 등급 기능만 이용해도 되는 경우
+          - 일러스트, 이모티콘을 "그리는" 경우
+        EX 등급 기능을 사용해야 하는 경우
+          - (웹툰 | 만화)를 그리거나 협업하는 경우
+          - Kindle 형식과 같은 전자만화를 출판하는 경우
+          - LT conversion (라인 추출) 기능 사용
+            3D 모델이나 사진 등의 이미지를 선(Line) 및 톤(Tone)으로 변환하는 기능
+            만화 제작에 시간이 걸리는 배경 작화 등에서 유용한 기능
+    ✅ How many times can I deactivate for a new device?
+      ⚠️ 라이센스 인증횟수 자체에는 제한이 없다. 단, 라이센스가 정지되는것은 "단시간에" 인증을 반복하는 경우에는 제한이 있다. 라이센스를 돌려쓰는 것을 방지하기 위함.
+      References
+        https://www.reddit.com/r/ClipStudio/comments/nt7bdf/how_many_times_can_i_deactivate_for_a_new_device/
+        https://ask.clip-studio.com/ko-kr/detail?id=42312
+  Gold Membership; 100골드 = 100엔, 최소 골드 충전 금액 500골드
+    - GOLD memberships are available for 200 GOLD per month.
+    - Get 1,500 Clippy or more every month!
+    - The longer you keep your membership, the more Clippy you'll receive each month. (Up to 1,980 Clippy)
+
+📝 Opinions
+  - 언어 설정
+    언어를 바꾸려면 새로 재설치해야하는 불편함.
+    전문 용어를 숙지하기 위해 영어로 설치하도록 한다.
+
+
+
+사면도
+📰 필압 들어가는 브러시가 많아서 펜 태블릿이 필요하긴 할수도?
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+Dictionary
+  SD: Super Deformation
+  LD: Large Deformation
+  
+  RGB color model ; https://en.wikipedia.org/wiki/RGB_color_model
+  CMYK color model ; https://en.wikipedia.org/wiki/CMYK_color_model
+
+
+선택 범위 스톡
+
+
+https://tips.clip-studio.com/ko-kr/articles/9340
+https://www.youtube.com/watch?v=LfcVwrLE78I
+  크로키는 그림 실력보다는 정보수집+배경 지식을 늘리기 위한 것이다.
+
+
+
+

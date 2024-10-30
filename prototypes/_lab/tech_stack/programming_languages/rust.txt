@@ -1,0 +1,34 @@
+list of level 1 subjects with 📘 favorite lookup
+  - Rust
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓⭕ Rust ; https://pipx.pypa.io/stable/
+
+
+----------------------------------------------
+Rust Docs ; https://www.rust-lang.org/learn
+
+  ⚓ The Rust Programming Language ; https://doc.rust-lang.org/book/
+
+  # Read the core documentation
+    ⚓ The Standard Library ; https://doc.rust-lang.org/std/index.html
+    ⚓ Edition Guide ; https://doc.rust-lang.org/edition-guide/index.html
+    ⚓ Cargo Book ; https://doc.rust-lang.org/rustdoc/index.html
+    ⚓ Rustdoc Book ; https://doc.rust-lang.org/rustdoc/index.html
+    ⚓ Rustc Book ; https://doc.rust-lang.org/rustc/index.html
+    ⚓ Compiler Error Index ; https://doc.rust-lang.org/error-index.html
+
+  # Build your skills in an application domain
+    ⚓ Command Line Book ;https://rust-cli.github.io/book/index.html
+    ⚓ Webassembly Book ; https://rustwasm.github.io/docs/book/
+    ⚓ Embedded Book ; https://doc.rust-lang.org/embedded-book
+
+
+  # Lexcial structure
+    ⚓ Comments ; https://doc.rust-lang.org/reference/comments.html
+
+  https://doc.rust-lang.org/reference/items/modules.html
+
+
+
+(✍️ Rust 🔪 study)

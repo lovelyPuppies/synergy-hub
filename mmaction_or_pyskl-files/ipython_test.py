@@ -25,7 +25,7 @@ remote_video_save_directory: Path = Path.home() / "remote_videos"
 remote_video_save_directory.mkdir(parents=True, exist_ok=True)
 captured_video_save_directory: Path = Path.home() / "remote_videos" / "captured"
 captured_video_save_directory.mkdir(parents=True, exist_ok=True)
-pyskl_path: Path = Path.home() / "repo/intel-edge-academy-6/external/pyskl"
+pyskl_path: Path = Path.home() / "repo/synergy-hub/external/pyskl"
 pyskl_data_path: Path = pyskl_path / "data"
 # %%
 from mmcv.runner import load_checkpoint
@@ -203,7 +203,7 @@ model = YOLO("yolo11n-pose.torchscript")
 # 체크포인트 경로
 checkpoint_path = (
     Path.home()
-    / "repo/intel-edge-academy-6/external/pyskl/work_dirs/posec3d/x3d_shallow_ntu60_xsub/joint/best_top1_acc_epoch_24.pth"
+    / "repo/synergy-hub/external/pyskl/work_dirs/posec3d/x3d_shallow_ntu60_xsub/joint/best_top1_acc_epoch_24.pth"
 )
 
 # 체크포인트 로드
@@ -623,7 +623,7 @@ unzip kinetics400_tiny.zip -d data/
 
 ---------------------------------------------------------------------------
 RuntimeError                              Traceback (most recent call last)
-File /home/wbfw109v2/repo/intel-edge-academy-6/mmaction_or_pyskl-files/ipython_test.py:156
+File /home/wbfw109v2/repo/synergy-hub/mmaction_or_pyskl-files/ipython_test.py:156
     154 # Perform inference using PoseC3D model
     155 with torch.no_grad():
 --> 156     output = posec3d_model(return_loss=False, imgs=input_tensor)
@@ -645,7 +645,7 @@ File ~/.cache/pypoetry/virtualenvs/python-study-JojGeswE-py3.12/lib/python3.12/s
    1564 try:
    1565     result = None
 
-File ~/repo/intel-edge-academy-6/external/pyskl/pyskl/models/recognizers/base.py:158, in BaseRecognizer.forward(self, imgs, label, return_loss, **kwargs)
+File ~/repos/synergy-hub/external/pyskl/pyskl/models/recognizers/base.py:158, in BaseRecognizer.forward(self, imgs, label, return_loss, **kwargs)
 ...
 --> 603 return F.conv3d(
     604     input, weight, bias, self.stride, self.padding, self.dilation, self.groups
@@ -657,7 +657,7 @@ RuntimeError: Expected 4D (unbatched) or 5D (batched) input to conv3d, but got i
 
 ---------------------------------------------------------------------------
 RuntimeError                              Traceback (most recent call last)
-File /home/wbfw109v2/repo/intel-edge-academy-6/mmaction_or_pyskl-files/ipython_test.py:113
+File /home/wbfw109v2/repo/synergy-hub/mmaction_or_pyskl-files/ipython_test.py:113
     111 # Perform inference using PoseC3D model
     112 with torch.no_grad():
 --> 113     output = posec3d_model(return_loss=False, imgs=input_tensor)
@@ -679,7 +679,7 @@ File ~/.cache/pypoetry/virtualenvs/python-study-JojGeswE-py3.12/lib/python3.12/s
    1564 try:
    1565     result = None
 
-File ~/repo/intel-edge-academy-6/external/pyskl/pyskl/models/recognizers/base.py:158, in BaseRecognizer.forward(self, imgs, label, return_loss, **kwargs)
+File ~/repos/synergy-hub/external/pyskl/pyskl/models/recognizers/base.py:158, in BaseRecognizer.forward(self, imgs, label, return_loss, **kwargs)
 ...
 --> 603 return F.conv3d(
     604     input, weight, bias, self.stride, self.padding, self.dilation, self.groups
@@ -690,7 +690,7 @@ File ~/repo/intel-edge-academy-6/external/pyskl/pyskl/models/recognizers/base.py
 
 ---------------------------------------------------------------------------
 ValueError                                Traceback (most recent call last)
-File /home/wbfw109v2/repo/intel-edge-academy-6/mmaction_or_pyskl-files/ipython_test.py:118
+File /home/wbfw109v2/repo/synergy-hub/mmaction_or_pyskl-files/ipython_test.py:118
     116 # Perform inference using PoseC3D model
     117 with torch.no_grad():
 --> 118     output = posec3d_model(return_loss=False, imgs=input_tensor)
@@ -712,7 +712,7 @@ File ~/.cache/pypoetry/virtualenvs/python-study-JojGeswE-py3.12/lib/python3.12/s
    1564 try:
    1565     result = None
 
-File ~/repo/intel-edge-academy-6/external/pyskl/pyskl/models/recognizers/base.py:158, in BaseRecognizer.forward(self, imgs, label, return_loss, **kwargs)
+File ~/repos/synergy-hub/external/pyskl/pyskl/models/recognizers/base.py:158, in BaseRecognizer.forward(self, imgs, label, return_loss, **kwargs)
 ...
     535 def _check_input_dim(self, input):
     536     if input.dim() != 5:
@@ -725,7 +725,7 @@ ValueError: expected 5D input (got 4D input)
 
 ---------------------------------------------------------------------------
 RuntimeError                              Traceback (most recent call last)
-File /home/wbfw109v2/repo/intel-edge-academy-6/mmaction_or_pyskl-files/ipython_test.py:121
+File /home/wbfw109v2/repo/synergy-hub/mmaction_or_pyskl-files/ipython_test.py:121
     119 # Perform inference using PoseC3D model
     120 with torch.no_grad():
 --> 121     output = posec3d_model(return_loss=False, imgs=input_tensor)
@@ -747,7 +747,7 @@ File ~/.cache/pypoetry/virtualenvs/python-study-JojGeswE-py3.12/lib/python3.12/s
    1564 try:
    1565     result = None
 
-File ~/repo/intel-edge-academy-6/external/pyskl/pyskl/models/recognizers/base.py:158, in BaseRecognizer.forward(self, imgs, label, return_loss, **kwargs)
+File ~/repos/synergy-hub/external/pyskl/pyskl/models/recognizers/base.py:158, in BaseRecognizer.forward(self, imgs, label, return_loss, **kwargs)
 ...
 --> 603 return F.conv3d(
     604     input, weight, bias, self.stride, self.padding, self.dilation, self.groups
@@ -757,7 +757,7 @@ RuntimeError: Given groups=1, weight of size [24, 17, 1, 3, 3], expected input[1
 
 ---------------------------------------------------------------------------
 RuntimeError                              Traceback (most recent call last)
-File /home/wbfw109v2/repo/intel-edge-academy-6/mmaction_or_pyskl-files/ipython_test.py:116
+File /home/wbfw109v2/repo/synergy-hub/mmaction_or_pyskl-files/ipython_test.py:116
     113 input_tensor = input_tensor.permute(0, 3, 2, 1)  # (1, 17, 48, 2)
     115 # Ensure input tensor is 5D (N, C, T, H, W)
 --> 116 input_tensor = input_tensor.view(1, 17, 48, 1, 2)  # (N, C, T, H, W)
@@ -772,7 +772,7 @@ RuntimeError: view size is not compatible with input tensor's size and stride (a
 
 
 str -> dictd 로 내가 변환해서 하면.. load_checkpoint ㅏ하면 이렇게 됨..
-load checkpoint from local path: /home/wbfw109v2/repo/intel-edge-academy-6/external/pyskl/work_dirs/posec3d/x3d_shallow_ntu60_xsub/joint/best_top1_acc_epoch_24.pth
+load checkpoint from local path: /home/wbfw109v2/repo/synergy-hub/external/pyskl/work_dirs/posec3d/x3d_shallow_ntu60_xsub/joint/best_top1_acc_epoch_24.pth
 The model and loaded state dict do not match exactly
 
 unexpected key in source state_dict: backbone.conv1_s.conv.weight, backbone.conv1_t.conv.weight, backbone.conv1_t.bn.weight, backbone.conv1_t.bn.bias, backbone.conv1_t.bn.running_mean, backbone.conv1_t.bn.running_var, backbone.conv1_t.bn.num_batches_tracked, backbone.layer1.0.downsample.conv.weight, backbone.layer1.0.downsample.bn.weight, backbone.layer1.0.downsample.bn.bias, backbone.layer1.0.downsample.bn.running_mean, backbone.layer1.0.downsample.bn.running_var, backbone.layer1.0.downsample.bn.num_batches_tracked, backbone.layer1.0.conv1.conv.weight, backbone.layer1.0.conv1.bn.weight, backbone.layer1.0.conv1.bn.bias, backbone.layer1.0.conv1.bn.running_mean, backbone.layer1.0.conv1.bn.running_var, backbone.layer1.0.conv1.bn.num_batches_tracked, backbone.layer1.0.conv2.conv.weight, backbone.layer1.0.conv2.bn.weight, backbone.layer1.0.conv2.bn.bias, backbone.layer1.0.conv2.bn.running_mean, backbone.layer1.0.conv2.bn.running_var, backbone.layer1.0.conv2.bn.num_batches_tracked, backbone.layer1.0.conv3.conv.weight, backbone.layer1.0.conv3.bn.weight, backbone.layer1.0.conv3.bn.bias, backbone.layer1.0.conv3.bn.running_mean, backbone.layer1.0.conv3.bn.running_var, backbone.layer1.0.conv3.bn.num_batches_tracked, backbone.layer1.1.conv1.conv.weight, backbone.layer1.1.conv1.bn.weight, backbone.layer1.1.conv1.bn.bias, backbone.layer1.1.conv1.bn.running_mean, backbone.layer1.1.conv1.bn.running_var, backbone.layer1.1.conv1.bn.num_batches_tracked, backbone.layer1.1.conv2.conv.weight, backbone.layer1.1.conv2.bn.weight, backbone.layer1.1.conv2.bn.bias, backbone.layer1.1.conv2.bn.running_mean, backbone.layer1.1.conv2.bn.running_var, backbone.layer1.1.conv2.bn.num_batches_tracked, backbone.layer1.1.conv3.conv.weight, backbone.layer1.1.conv3.bn.weight, backbone.layer1.1.conv3.bn.bias, backbone.layer1.1.conv3.bn.running_mean, backbone.layer1.1.conv3.bn.running_var, backbone.layer1.1.conv3.bn.num_batches_tracked, backbone.layer2.0.downsample.conv.weight, backbone.layer2.0.downsample.bn.weight, backbone.layer2.0.downsample.bn.bias, backbone.layer2.0.downsample.bn.running_mean, backbone.layer2.0.downsample.bn.running_var, backbone.layer2.0.downsample.bn.num_batches_tracked, backbone.layer2.0.conv1.conv.weight, backbone.layer2.0.conv1.bn.weight, backbone.layer2.0.conv1.bn.bias, backbone.layer2.0.conv1.bn.running_mean, backbone.layer2.0.conv1.bn.running_var, backbone.layer2.0.conv1.bn.num_batches_tracked, backbone.layer2.0.conv2.conv.weight, backbone.layer2.0.conv2.bn.weight, backbone.layer2.0.conv2.bn.bias, backbone.layer2.0.conv2.bn.running_mean, backbone.layer2.0.conv2.bn.running_var, backbone.layer2.0.conv2.bn.num_batches_tracked, backbone.layer2.0.conv3.conv.weight, backbone.layer2.0.conv3.bn.weight, backbone.layer2.0.conv3.bn.bias, backbone.layer2.0.conv3.bn.running_mean, backbone.layer2.0.conv3.bn.running_var, backbone.layer2.0.conv3.bn.num_batches_tracked, backbone.layer2.1.conv1.conv.weight, backbone.layer2.1.conv1.bn.weight, backbone.layer2.1.conv1.bn.bias, backbone.layer2.1.conv1.bn.running_mean, backbone.layer2.1.conv1.bn.running_var, backbone.layer2.1.conv1.bn.num_batches_tracked, backbone.layer2.1.conv2.conv.weight, backbone.layer2.1.conv2.bn.weight, backbone.layer2.1.conv2.bn.bias, backbone.layer2.1.conv2.bn.running_mean, backbone.layer2.1.conv2.bn.running_var, backbone.layer2.1.conv2.bn.num_batches_tracked, backbone.layer2.1.conv3.conv.weight, backbone.layer2.1.conv3.bn.weight, backbone.layer2.1.conv3.bn.bias, backbone.layer2.1.conv3.bn.running_mean, backbone.layer2.1.conv3.bn.running_var, backbone.layer2.1.conv3.bn.num_batches_tracked, backbone.layer2.2.conv1.conv.weight, backbone.layer2.2.conv1.bn.weight, backbone.layer2.2.conv1.bn.bias, backbone.layer2.2.conv1.bn.running_mean, backbone.layer2.2.conv1.bn.running_var, backbone.layer2.2.conv1.bn.num_batches_tracked, backbone.layer2.2.conv2.conv.weight, backbone.layer2.2.conv2.bn.weight, backbone.layer2.2.conv2.bn.bias, backbone.layer2.2.conv2.bn.running_mean, backbone.layer2.2.conv2.bn.running_var, backbone.layer2.2.conv2.bn.num_batches_tracked, backbone.layer2.2.conv3.conv.weight, backbone.layer2.2.conv3.bn.weight, backbone.layer2.2.conv3.bn.bias, backbone.layer2.2.conv3.bn.running_mean, backbone.layer2.2.conv3.bn.running_var, backbone.layer2.2.conv3.bn.num_batches_tracked, backbone.layer2.3.conv1.conv.weight, backbone.layer2.3.conv1.bn.weight, backbone.layer2.3.conv1.bn.bias, backbone.layer2.3.conv1.bn.running_mean, backbone.layer2.3.conv1.bn.running_var, backbone.layer2.3.conv1.bn.num_batches_tracked, backbone.layer2.3.conv2.conv.weight, backbone.layer2.3.conv2.bn.weight, backbone.layer2.3.conv2.bn.bias, backbone.layer2.3.conv2.bn.running_mean, backbone.layer2.3.conv2.bn.running_var, backbone.layer2.3.conv2.bn.num_batches_tracked, backbone.layer2.3.conv3.conv.weight, backbone.layer2.3.conv3.bn.weight, backbone.layer2.3.conv3.bn.bias, backbone.layer2.3.conv3.bn.running_mean, backbone.layer2.3.conv3.bn.running_var, backbone.layer2.3.conv3.bn.num_batches_tracked, backbone.layer2.4.conv1.conv.weight, backbone.layer2.4.conv1.bn.weight, backbone.layer2.4.conv1.bn.bias, backbone.layer2.4.conv1.bn.running_mean, backbone.layer2.4.conv1.bn.running_var, backbone.layer2.4.conv1.bn.num_batches_tracked, backbone.layer2.4.conv2.conv.weight, backbone.layer2.4.conv2.bn.weight, backbone.layer2.4.conv2.bn.bias, backbone.layer2.4.conv2.bn.running_mean, backbone.layer2.4.conv2.bn.running_var, backbone.layer2.4.conv2.bn.num_batches_tracked, backbone.layer2.4.conv3.conv.weight, backbone.layer2.4.conv3.bn.weight, backbone.layer2.4.conv3.bn.bias, backbone.layer2.4.conv3.bn.running_mean, backbone.layer2.4.conv3.bn.running_var, backbone.layer2.4.conv3.bn.num_batches_tracked, backbone.layer3.0.downsample.conv.weight, backbone.layer3.0.downsample.bn.weight, backbone.layer3.0.downsample.bn.bias, backbone.layer3.0.downsample.bn.running_mean, backbone.layer3.0.downsample.bn.running_var, backbone.layer3.0.downsample.bn.num_batches_tracked, backbone.layer3.0.conv1.conv.weight, backbone.layer3.0.conv1.bn.weight, backbone.layer3.0.conv1.bn.bias, backbone.layer3.0.conv1.bn.running_mean, backbone.layer3.0.conv1.bn.running_var, backbone.layer3.0.conv1.bn.num_batches_tracked, backbone.layer3.0.conv2.conv.weight, backbone.layer3.0.conv2.bn.weight, backbone.layer3.0.conv2.bn.bias, backbone.layer3.0.conv2.bn.running_mean, backbone.layer3.0.conv2.bn.running_var, backbone.layer3.0.conv2.bn.num_batches_tracked, backbone.layer3.0.conv3.conv.weight, backbone.layer3.0.conv3.bn.weight, backbone.layer3.0.conv3.bn.bias, backbone.layer3.0.conv3.bn.running_mean, backbone.layer3.0.conv3.bn.running_var, backbone.layer3.0.conv3.bn.num_batches_tracked, backbone.layer3.1.conv1.conv.weight, backbone.layer3.1.conv1.bn.weight, backbone.layer3.1.conv1.bn.bias, backbone.layer3.1.conv1.bn.running_mean, backbone.layer3.1.conv1.bn.running_var, backbone.layer3.1.conv1.bn.num_batches_tracked, backbone.layer3.1.conv2.conv.weight, backbone.layer3.1.conv2.bn.weight, backbone.layer3.1.conv2.bn.bias, backbone.layer3.1.conv2.bn.running_mean, backbone.layer3.1.conv2.bn.running_var, backbone.layer3.1.conv2.bn.num_batches_tracked, backbone.layer3.1.conv3.conv.weight, backbone.layer3.1.conv3.bn.weight, backbone.layer3.1.conv3.bn.bias, backbone.layer3.1.conv3.bn.running_mean, backbone.layer3.1.conv3.bn.running_var, backbone.layer3.1.conv3.bn.num_batches_tracked, backbone.layer3.2.conv1.conv.weight, backbone.layer3.2.conv1.bn.weight, backbone.layer3.2.conv1.bn.bias, backbone.layer3.2.conv1.bn.running_mean, backbone.layer3.2.conv1.bn.running_var, backbone.layer3.2.conv1.bn.num_batches_tracked, backbone.layer3.2.conv2.conv.weight, backbone.layer3.2.conv2.bn.weight, backbone.layer3.2.conv2.bn.bias, backbone.layer3.2.conv2.bn.running_mean, backbone.layer3.2.conv2.bn.running_var, backbone.layer3.2.conv2.bn.num_batches_tracked, backbone.layer3.2.conv3.conv.weight, backbone.layer3.2.conv3.bn.weight, backbone.layer3.2.conv3.bn.bias, backbone.layer3.2.conv3.bn.running_mean, backbone.layer3.2.conv3.bn.running_var, backbone.layer3.2.conv3.bn.num_batches_tracked, backbone.conv5.conv.weight, backbone.conv5.bn.weight, backbone.conv5.bn.bias, backbone.conv5.bn.running_mean, backbone.conv5.bn.running_var, backbone.conv5.bn.num_batches_tracked, cls_head.fc_cls.weight, cls_head.fc_cls.bias

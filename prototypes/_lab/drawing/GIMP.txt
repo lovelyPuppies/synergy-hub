@@ -1,0 +1,19 @@
+list of level 1 subjects
+  - GIMP (GNU Image Manipulation Program)
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓⭕ gimp ; https://github.com/GNOME/gimp
+  https://github.com/GNOME/gimp
+  https://www.gimp.org/docs/
+  
+----------------------------------------------
+gimp 🔪⚓ Docs ; https://docs.gimp.org/2.10/en/
+  III. Function Reference
+    14. Tools
+      1. The Toolbox
+        3. Paint Tools
+          3.10. 🚣 Airbrush ; https://docs.gimp.org/2.10/en/gimp-tool-airbrush.html
+    16. Menus
+      6.17. 🚣 Canvas Size ; https://docs.gimp.org/2.10/en/gimp-image-resize.html
+
+

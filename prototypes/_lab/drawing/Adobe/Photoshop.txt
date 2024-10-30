@@ -1,0 +1,470 @@
+emoji
+  🔤:abc: glossaries
+
+
+Adobe Photoshop User Guide ; https://helpx.adobe.com/photoshop/user-guide.html
+  Introduction to Photoshop ; https://creativecloud.adobe.com/cc/learn/photoshop/web/ps-basics-fundamentals?locale=en
+    (Dream it. Make it. = Get to know Photoshop) ➡️ Get to know Photoshop
+    What's new in Photoshop ; https://helpx.adobe.com/photoshop/using/whats-new.html
+    Edit your first photo ➡️
+    Create documents ➡️
+    Photoshop | Common Questions
+    Photoshop system requirements
+  Photoshop and other Adobe products and services
+    Work with Illustrator artwork in Photoshop
+    Work with Photoshop files in InDesign
+    Substance 3D Materials for Photoshop
+    Use the Capture in-app extension in Photoshop
+  Photoshop on the iPad (not available in mainland China)
+    Photoshop on the iPad | Common questions
+    Get to know the workspace
+    System requirements | Photoshop on the iPad
+    Create, open, and export documents
+    Add photos
+    Work with layers
+    Draw and paint with brushes
+    Make selections and add masks
+    Retouch your composites
+    Work with adjustment layers
+    Adjust the tonality of your composite with Curves
+    Apply transform operations
+    Crop and rotate your composites
+    Rotate, pan, zoom, and reset the canvas
+    Work with Type layers
+    Work with Photoshop and Lightroom
+    Get missing fonts in Photoshop on the iPad
+    Japanese Text in Photoshop on the iPad
+    Manage app settings
+    Touch shortcuts and gestures
+    Keyboard shortcuts
+    Edit your image size
+    Livestream as you create in Photoshop on the iPad
+    Correct imperfections with the Healing Brush
+    Create brushes in Capture and use them in Photoshop on the iPad
+    Work with Camera Raw files
+    Create and work with Smart Objects
+    Adjust exposure in your images with Dodge and Burn
+    Auto adjustment commands in Photoshop on the iPad
+    Smudge areas in your images with Photoshop on the iPad
+    Saturate or desaturate your images using Sponge tool
+    Content aware fill for iPad
+  Photoshop on the web (not available in mainland China)
+    Common questions
+    System requirements
+    Keyboard shortcuts
+    Supported file types
+    Introduction to the workspace
+    Open and work with cloud documents
+    Generative AI features
+    Basic concepts of editing
+    Quick Actions
+    Work with layers
+    Retouch images and remove imperfections
+    Make quick selections
+    Image improvements with Adjustment Layers
+    Move, transform, and crop images
+    Draw and paint
+    Work with Type layers
+    Work with anyone on the web
+    Manage app settings
+    Generate Image
+    Generate Background
+    Reference Image
+  Photoshop (beta) (not available in mainland China)
+    Get started with Creative Cloud Beta apps
+    Photoshop (beta) on the desktop
+    Generate image with descriptive text prompts
+    Generate background with descriptive text prompts
+  Generative AI (not available in mainland China) 
+    Common questions on generative AI in Photoshop
+    Generative Fill in Photoshop on the desktop
+    Generative Expand in Photoshop on the desktop
+    Generative Fill in Photoshop on the iPad
+    Generative Expand in Photoshop on the iPad
+    Generative AI features in Photoshop on the web
+  Content authenticity (not available in mainland China)
+    Content credentials in Photoshop
+    Identity and provenance for NFTs
+    Connect accounts for creative attribution
+    Cloud documents (not available in mainland China)
+    Photoshop cloud documents | Common questions
+    Photoshop cloud documents | Workflow questions
+    Manage and work with cloud documents in Photoshop
+    Upgrade cloud storage for Photoshop
+    Unable to create or save a cloud document
+    Solve Photoshop cloud document errors
+    Collect cloud document sync logs
+    Invite others to edit your cloud documents
+    Share files and comment in-app
+  Workspace
+    Workspace basics
+    Preferences
+    Learn faster with the Photoshop Discover Panel
+    Create documents
+    Place files
+    Default keyboard shortcuts
+    Customize keyboard shortcuts
+    Tool galleries
+    Performance preferences
+    Use tools
+    Presets
+    Grid and guides
+    Touch gestures
+    Use the Touch Bar with Photoshop
+    Touch capabilities and customizable workspaces
+    Technology previews
+    Metadata and notes
+    Touch capabilities and customizable workspaces
+    Place Photoshop images in other applications
+    Rulers
+    Show or hide non-printing Extras
+    Specify columns for an image
+    Undo and history
+    Panels and menus
+    Position elements with snapping
+    Position with the Ruler tool
+  Web, screen, and app design
+    Photoshop for design
+    Artboards
+    Device Preview
+    Copy CSS from layers
+    Slice web pages
+    HTML options for slices
+    Modify slice layout
+    Work with web graphics
+    Create web photo galleries
+  Image and color basics
+    How to resize images
+    Work with raster and vector images
+    Image size and resolution
+    Acquire images from cameras and scanners
+    Create, open, and import images
+    View images
+    Invalid JPEG Marker error | Opening images
+    Viewing multiple images
+    Customize color pickers and swatches
+    High dynamic range images
+    Match colors in your image
+    Convert between color modes
+    Color modes
+    Erase parts of an image
+    Blending modes
+    Choose colors
+    Customize indexed color tables
+    Image information
+    Distort filters are unavailable
+    About color
+    Color and monochrome adjustments using channels
+    Choose colors in the Color and Swatches panels
+    Sample
+    Color mode or Image mode
+    Color cast
+    Add a conditional mode change to an action
+    Add swatches from HTML CSS and SVG
+    Bit depth and preferences
+  Layers
+    Layer basics
+    Nondestructive editing
+    Create and manage layers and groups
+    Select, group, and link layers
+    Place images into frames
+    Layer opacity and blending
+    Mask layers
+    Apply Smart Filters
+    Layer comps
+    Move, stack, and lock layers
+    Mask layers with vector masks
+    Manage layers and groups
+    Layer effects and styles
+    Edit layer masks
+    Extract assets
+    Reveal layers with clipping masks
+    Generate image assets from layers
+    Work with Smart Objects
+    Blending modes
+    Combine multiple images into a group portrait
+    Combine images with Auto-Blend Layers
+    Align and distribute layers
+    Copy CSS from layers
+    Load selections from a layer or layer mask's boundaries
+    Knockout to reveal content from other layers
+  Selections
+    Get started with selections
+    Make selections in your composite
+    Select and Mask workspace
+    Select with the marquee tools
+      ⚓📎 Make selections with the Rectangular Marquee tool ; << https://helpx.adobe.com/photoshop/using/tool-techniques/rectangular-marquee-tool.html
+        Draw the selection area.
+          - Rectangular: Drag over the area you want to select. 
+          - Square: Hold down the Shift key and drag diagonally in any direction.
+          - Draw from the center out: Hold down Alt (Windows) or Option (macOS) as you drag.
+
+    Select with the lasso tools
+    Adjust pixel selections
+    Move, copy, and delete selected pixels
+    Create a temporary quick mask
+    Select a color range in an image
+    Convert between paths and selection borders
+    Channel basics
+    Save selections and alpha channel masks
+    Select the image areas in focus
+    Duplicate, split, and merge channels
+    Channel calculations
+  Image adjustments
+    Replace object colors
+    Perspective warp
+    Reduce camera shake blurring
+    Healing brush examples
+    Export color lookup tables
+    Adjust image sharpness and blur
+    Understand color adjustments
+    Apply a Brightness/Contrast adjustment
+    Adjust shadow and highlight detail
+    Levels adjustment
+    Adjust hue and saturation
+    Adjust vibrance
+    Adjust color saturation in image areas
+    Make quick tonal adjustments
+    Apply special color effects to images
+    Enhance your image with color balance adjustments
+    High dynamic range images
+    View histograms and pixel values
+    Match colors in your image
+    Crop and straighten photos
+    Convert a color image to black and white
+    Adjustment and fill layers
+    Curves adjustment
+    Blending modes
+    Target images for press
+    Adjust color and tone with Levels and Curves eyedroppers
+    Adjust HDR exposure and toning
+    Dodge or burn image areas
+  Make selective color adjustments
+    Adobe Camera Raw
+    Camera Raw system requirements
+    What's new in Camera Raw
+    Introduction to Camera Raw
+    Create panoramas
+    Supported lenses
+    Vignette, grain, and dehaze effects in Camera Raw
+    Default keyboard shortcuts
+    Automatic perspective correction in Camera Raw
+    Radial Filter in Camera Raw
+    Manage Camera Raw settings
+    Open, process, and save images in Camera Raw
+    Repair images with the Enhanced Spot Removal tool in Camera Raw
+    Rotate, crop, and adjust images
+    Adjust color rendering in Camera Raw
+    Process versions in Camera Raw
+    Make local adjustments in Camera Raw
+  Image repair and restoration
+    Remove objects from your photos with Content-Aware Fill
+    Content-Aware Patch and Move
+    Retouch and repair photos
+    Correct image distortion and noise
+    Basic troubleshooting steps to fix most issues
+  Image enhancement and transformation
+    Replace sky in your images
+    Transform objects
+    Adjust crop, rotation, and canvas size
+    How to crop and straighten photos
+    Create and edit panoramic images
+    Warp images, shapes, and paths
+    Vanishing Point
+    Content-aware scaling
+    Transform images, shapes, and paths
+  Drawing and painting
+    Paint symmetrical patterns
+    Draw rectangles and modify stroke options
+    About drawing
+    Draw and edit shapes
+    Painting tools
+    Create and modify brushes
+    Blending modes
+    Add color to paths
+    Edit paths
+    Paint with the Mixer Brush
+    Brush presets
+    Gradients
+    Gradient interpolation
+    Fill and stroke selections, layers, and paths
+    Draw with the Pen tools
+    Create patterns
+    Generate a pattern using the Pattern Maker
+    Manage paths
+    Manage pattern libraries and presets
+    Draw or paint with a graphics tablet
+    Create textured brushes
+    Add dynamic elements to brushes
+    Gradient
+    Paint stylized strokes with the Art History Brush
+    Paint with a pattern
+    Sync presets on multiple devices
+    Migrate presets, actions, and settings
+  Text
+    Add and edit the text
+    Unified Text Engine
+    Work with OpenType SVG fonts
+    Format characters
+    Format paragraphs
+    How to create type effects
+    Edit text
+    Line and character spacing
+    Arabic and Hebrew type
+    Fonts
+    Troubleshoot fonts
+    Asian type
+    Create type
+  Filters and effects
+    Use the Blur Gallery
+    Filter basics
+    Filter effects reference
+    Add Lighting Effects
+    Use the Adaptive Wide Angle filter
+    Use the Oil Paint filter
+    Use the Liquify filter
+    Layer effects and styles
+    Apply specific filters
+    Smudge image areas
+  Saving and exporting
+  Save your files in Photoshop
+    Export your files in Photoshop
+    Supported file formats
+    Save files in graphics formats
+    Move designs between Photoshop and Illustrator
+    Save and export video and animations
+    Save PDF files
+    Digimarc copyright protection
+  Color Management
+    Understanding color management
+    Keeping colors consistent
+    Color settings
+    Duotones
+    Work with color profiles
+    Color-managing documents for online viewing
+    Color-managing documents when printing
+    Color-managing imported images
+    Proofing colors
+  Web, screen, and app design
+    Photoshop for design
+    Artboards
+    Device Preview
+    Copy CSS from layers
+    Slice web pages
+    HTML options for slices
+    Modify slice layout
+    Work with web graphics
+    Create web photo galleries
+  Video and animation
+    Video editing in Photoshop
+    Edit video and animation layers
+    Video and animation overview
+    Preview video and animations
+    Paint frames in video layers
+    Import video files and image sequences
+    Create frame animations
+    Creative Cloud 3D Animation (Preview)
+    Create timeline animations
+    Create images for video
+  Printing
+    Print 3D objects
+    Print from Photoshop
+    Print with color management
+    Contact Sheets and PDF Presentations
+    Print photos in a picture package layout
+    Print spot colors
+    Print images to a commercial printing press
+    Improve color prints from Photoshop
+    Troubleshoot printing problems | Photoshop
+  Automation
+    Creating actions
+    Create data-driven graphics
+    Scripting
+    Process a batch of files
+    Play and manage actions
+    Add conditional actions
+    About actions and the Actions panel
+    Record tools in actions
+    Add a conditional mode change to an action
+    Photoshop UI toolkit for plug-ins and scripts
+  Troubleshooting
+    Fixed issues 
+    Known issues
+    Optimize Photoshop performance
+    Basic troubleshooting
+    Troubleshoot crash or freeze
+    Troubleshoot program errors
+    Troubleshoot scratch disk full errors
+    Troubleshoot GPU and graphics driver issues
+    Find missing tools
+    Photoshop 3D | Common questions around discontinued features
+Learn Photoshop ; https://creativecloud.adobe.com/cc/learn/app/photoshop
+  Get to know Photoshop ; https://creativecloud.adobe.com/cc/learn/photoshop/web/ps-basics-fundamentals?locale=en
+    🔤 "Weclome" window; Home icon at the top left
+    🔤 Editing Workspace  ==  Document Window
+      ✅ How to load this into
+        - File - New.. (⌨️ Ctrl + N)
+          - 🔤 Blank Document Presets; from category from the top of the window
+        - File - Open.. (⌨️ Ctrl + O)
+      
+      - 🚣 ... but sticking with the presets, takes the worry out of having to figure out techinical details at the beginning.
+    🔤 Panels; over to the right of the Document window
+      Panel Group
+
+  Edit your first photo ; https://creativecloud.adobe.com/cc/learn/photoshop/web/photo-editor?locale=en
+
+
+Adobe Generative AI; Adobe Firefly Image 3 Model
+  Gen
+
+📰
+  Document Window = Photoshop CC Editing Workspace
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+Functions
+  Brush Tools
+    📹📋 tutorial
+      ⌨️ B: select Brush Tool
+      ⌨️ square brackets: make your brush larger or smaller
+
+    Brush Settings
+      menu
+        - 💡 New Brush Preset..
+      Brush Tip Shape
+        - Dual Brush
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+📰 3rd party
+  ❔ Can these be used for commercial purposes? Yes, they can.
+
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+Basis
+  ⚓ Dip Pen ; https://en.wikipedia.org/wiki/Dip_pen
+    structure << 
+      만화용
+        - ⭕ G pen
+          연성이 높아서 필력이 받쳐준다면 획의 강약을 다채롭게 구현할 수 있는 펜촉. 대신 필압 조절을 잘 해야 한다
+        - Spoon pen
+        - ...
+  
+  💡 Tablets Type
+    https://namu.wiki/w/%EA%B7%B8%EB%9E%98%ED%94%BD%20%ED%83%9C%EB%B8%94%EB%A6%BF#toc
+      ... 
+      - 액정 태블릿은 직관적이고 특히 선화 중심의 그림을 그릴때 시행착오가 적어지므로 만화 원고 등에는 확실한 우위를 가지지만 생각보다 채색 작업의 능률은 별 차이가 없다.
+    * Pen Tablet
+    * Pen Displays | Graphics Drawing Tablet with Screen
+    
+    https://www.clipstudio.net/kr/
+
+
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+Dictionary
+  #️⃣ marquee: Noun, Verb ; https://en.wiktionary.org/wiki/marquee#Noun
+    (computing) In graphical editing software, a special selection tool, used to highlight a portion of an image. 
+
+Swatch
+포토샵 타임랩스 ; https://creativecloud.adobe.com/cc/discover/article/bring-your-illustration-to-life-with-time-lapse?locale=ko
+포토샵 픽셀 유동화 필터 ; https://helpx.adobe.com/kr/photoshop/using/liquify-filter.html
+색감 보정 기능

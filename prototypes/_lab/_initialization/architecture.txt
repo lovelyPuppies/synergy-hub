@@ -1,0 +1,128 @@
+list of level 1 subjects
+  - Architecture
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+📐 Architecture
+
+----------------------------------------------
+Embedded
+  Hadrware
+    ...
+  Software
+    RTOS
+      Tools
+        platformIO
+      Application layer
+        - Python
+        - C++
+    Embedded Linux
+      System layer
+        Yocto Project; 🏷️ 5.0 Scarthgap; LTS: (2024-04 ~ 2028-04)
+          🔏 License: MIT License, GPL
+
+          * Build automation framework and cross-compile environment used to create Linux distributions for embedded devices.
+            - OpenEmbedded
+              - 🔏 License: MIT License
+          * Build system based on recipe
+            - BitBake
+              - 🔏 License: GPLv2 (GNU General Public License version 2)
+          * Version upgrade Method
+            - Automated Upgrade Helper (AUH)
+              - 🔏 License: MIT License or GPL
+            - devtool
+              - 🔏 License: MIT License
+          * Refernce
+            - Poky
+      Application layer
+        - Python
+        - C++
+  Network
+    Communication Protocol
+
+
+----------------------------------------------
+Service
+  Software
+    Application layer
+      - Python
+      - C++
+    Web Server
+      - ...
+  Network
+    Communication Protocol
+  
+  
+  (Container-Based, Cloud Native) Architecture
+    Container Image Build tool:       Kaniko
+    Container Image Management Tool:  Skeope
+
+    Container Runtime:                CRI-O
+    Container Mangement Tool:         Podman
+
+    Container Orchestration:          Kubernetes
+
+----------------------------------------------
+Temp
+  Container
+    Container Image Build tool: ➡️ Kaniko
+      https://github.com/GoogleContainerTools/kaniko
+
+      Docker
+      Buildpack
+
+      Kaniko, Buildah, Buildkit
+        OCI Compliant
+          세 도구 모두 OCI(Open Container Initiative) 규격을 따르는 컨테이너 이미지를 빌드할 수 있습니다. 
+        Daemonless
+          세 도구들 모두 Docker Daemon이나 유사한 Daemon을 필요로 하지 않아 이에 따른 자원의 소모량, 보안 문제를 해결할 수 있습니다.
+        Multi-stage Build
+          세 도구들은 모두 이전 스테이지에서 빌드한 결과물을 다음 스테이지에서 사용할 수 있게 해주는 Multi-stage build 기능을 이용할 수 있습니다.
+          이를 통해 Dockerfile을 간결하게 유지할 수 있으며 빌드의 효율성을 높일 수 있습니다.
+    Container Image Management Tool: ➡️ Skeope
+
+    Container Runtime: ➡️ CRI-O
+      https://kubernetes.io/docs/setup/production-environment/container-runtimes/
+      https://github.com/cri-o/cri-o
+        CRI-O is an implementation of the Kubernetes Container Runtime Interface (CRI) that will allow Kubernetes to directly launch and manage Open Container Initiative (OCI) containers.
+        실제로 Red Hat과 같은 대규모 기업들이 Kubernetes 클러스터에서 CRI-O를 기본 컨테이너 런타임으로 사용하고 있으며, 이러한 추세는 계속 확산되고 있습니다. 특히, OpenShift와 같은 Red Hat의 Kubernetes 기반 플랫폼에서는 기본적으로 CRI-O가 사용됩니다.
+
+        it uses RunC as Low-Level Container Runtimes
+    Container Mangement Tool: ➡️ Podman
+      Podman Features
+        Daemonless:
+          - Podman operates without a central daemon, directly managing containers.
+          - Enhances security by removing the single point of failure associated with daemons.
+        
+        Rootless Mode:
+          - Allows containers to run without root privileges.
+          - Increases security by preventing containers from gaining unnecessary access to the host system.
+        Pod Support
+
+    Container Orchestration: ➡️ Kubernetes
+
+  add nixOS into Service
+  add Kubernetes into Service
+  add Cloud into Service
+  add Python - Poetry into Service
+  add C++ - Conan into Service
+  
+
+  ## PyQt는 GPL(GNU General Public License) 또는 상용 라이선스를 선택할 수 있습니다.
+  ## PySide6 is LGPL(Lesser General Public License). LGPL 라이선스는 상업적인 애플리케이션에서도 사용할 수 있으며, 소프트웨어의 일부 모듈만 공개하면 됩니다. 즉, PySide6를 사용해 개발한 애플리케이션은 반드시 소스 코드를 공개할 필요가 없습니다.
+
+
+  Design Purpose:
+    NixOS: Focuses on managing complex system environments consistently and ensuring reproducibility of development environments.
+    RTOS: Ensures real-time response and is used in systems that must meet strict time constraints.
+
+  Application Areas:
+    NixOS: Primarily used in server management, development environments, and cloud infrastructure.
+    RTOS: Used in embedded systems and real-time control systems.
+
+  Real-Time Performance:
+    NixOS: Does not inherently support real-time systems. It may provide soft real-time performance, but it does not guarantee hard real-time performance.
+    RTOS: Guarantees hard real-time performance and is essential in applications where real-time control is critical.
+
+
+  개발환경
+    https://www.reddit.com/r/NixOS/comments/16qa1uj/arch_vs_nixos_vs_void/

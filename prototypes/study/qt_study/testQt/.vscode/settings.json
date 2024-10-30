@@ -1,0 +1,6 @@
+{
+  "cmake.options.statusBarVisibility": "visible",
+  // "clangd.enable": false,
+  // "C_Cpp.intelliSenseEngine": "default",
+  // "C_Cpp.inlayHints.parameterNames.enabled": true, // not works if "C_Cpp.intelliSenseEngine": "disabled",
+}

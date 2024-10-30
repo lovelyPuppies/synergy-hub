@@ -41,14 +41,14 @@ flowchart TD
 # 🗂️ Define variables for container names, paths, and filenames
 CONTAINER_NAME="cranky_elgamal"  # Docker container name
 DOCKER_CONTAINER_PATH="/ultralytics"  # Path inside the Docker container
-LOCAL_REPO_PATH="$HOME/repo/signal-masters/ml/models/from_ultralytics_container"  # Local path to store copied files
+LOCAL_REPO_PATH="$HOME/repos/signal-masters/ml/models/from_ultralytics_container"  # Local path to store copied files
 ENGINE_FILENAME="yolo11n-pose.engine"  # Engine model filename (example)
 ONNX_FILENAME="yolo11n-pose.onnx"  # ONNX model filename (example)
 
 # 🌐 Define variables for remote server connection
 DESTINATION_USER="wbfw109v2"  # Remote server's username
 DESTINATION_HOST="10.10.16.154"  # Remote server's IP address or hostname
-DESTINATION_PATH="/home/$DESTINATION_USER/repo/intel-edge-academy-6/prototypes/_initialization/devcontainers/jetson_nano-mount/signal-masters/ml/models/from_ultralytics_container"  # Remote path on the server
+DESTINATION_PATH="/home/$DESTINATION_USER/repo/synergy-hub/prototypes/_initialization/devcontainers/jetson_nano-mount/signal-masters/ml/models/from_ultralytics_container"  # Remote path on the server
 
 # 🐋 Step 1: Copy ONNX model from Docker container to the local directory with '_half' suffix
 docker cp "$CONTAINER_NAME:$DOCKER_CONTAINER_PATH/$ONNX_FILENAME" \

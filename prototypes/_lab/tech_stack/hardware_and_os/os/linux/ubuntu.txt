@@ -1,0 +1,47 @@
+list of level 1 subjects
+  - Ubuntu
+
+⭕ Use Ubuntu 24 Desktop 📅 2024-11-24 16:31:39
+  This is chosen because ROS2 and Yocto can be developed within containers, providing flexibility and scalability.
+  - Yocto 🔪 https://docs.yoctoproject.org/ref-manual/system-requirements.html#supported-linux-distributions
+  - ROS 🔪 Supported Platforms ; https://docs.ros.org/en/jazzy/Releases/Release-Jazzy-Jalisco.html
+    https://www.reddit.com/r/ROS/comments/1dgllxd/ubuntu_2404_and_ros2/
+      ROS releases are tied to a certain Ubuntu version. For Ubuntu 24.04 there is only ROS2 Jazzy right now. If want to use Humble, you have to install Ubuntu 22.04 or use Docker.
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ Ubuntu ; https://fishshell.com/
+  https://github.com/ubuntu
+  https://en.wikipedia.org/wiki/Ubuntu
+----------------------------------------------
+Ubuntu 🔪⚓ Ubuntu Desktop Guide ; https://fishshell.com/docs/current/index.html
+  ⚓⌨️ Useful keyboard shortcuts ; https://help.ubuntu.com/stable/ubuntu-help/shell-keyboard-shortcuts.html.en
+    # Getting around the desktop
+      - ⌨️🚣 Alt+F2
+        Pop up command window (for quickly running commands).
+        Use the arrow keys to quickly access previously run commands.
+      - ⌨️ Super+Tab
+        Quickly switch between windows. Hold down Shift for reverse order.
+      - ⌨️🚣 Super+`
+        Switch between windows from the same application, or from the selected application after Super+Tab.
+        This shortcut uses ` on US keyboards, where the ` key is above Tab. On all other keyboards, the shortcut is Super plus the key above Tab.
+      - ⌨️ Alt+Esc
+        Switch between windows in the current workspace. Hold down Shift for reverse order.
+    # Common editing shortcuts
+      - ⌨️ Ctrl+Shift+C
+        Copy the highlighted text or commands to the clipboard in the Terminal.
+      - ⌨️ Ctrl+Shift+V
+        Paste the contents of the clipboard in the Terminal.
+
+
+  ⚓ Screenshots and screencasts ; https://help.ubuntu.com/stable/ubuntu-help/screen-shot-record.html
+    - ⌨️ Print
+
+  ⚓ Hide a file ; https://help.ubuntu.com/stable/ubuntu-help/files-hidden.html.en
+    - Show all hidden files
+      ⌨️ Ctrl+H
+
+----------------------------------------------
+Ubuntu 🔪⚓ Man pages ; https://manpages.ubuntu.com/manpages
+  ⚓ apt ; https://manpages.ubuntu.com/manpages/focal/man8/apt.8.html
+  ⚓ apt-cache ; https://manpages.ubuntu.com/manpages/focal/man8/apt-cache.8.html
+    - apt-cache policy

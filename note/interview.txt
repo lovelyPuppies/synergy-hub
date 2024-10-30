@@ -1,0 +1,17 @@
+<면접 준비>
+  문제
+    윈도우 환경에서 우분투 환경으로 전환한 후, 스위치에 연결된 라즈베리파이에 SSH로 접속할 때 hostname으로 접속이 불가능한 문제가 있었습니다.
+
+    // 해결 과정
+    이 문제는 Windows와 Linux의 로컬 네트워크 호스트 이름 해석 방식 차이에서 비롯된 것이었습니다.
+    Windows는 NetBIOS와 **LLMNR(Link-Local Multicast Name Resolution)**을 기본적으로 사용하여 네트워크 내 장치 이름을 해석하기 때문에
+    , .local 도메인을 붙이지 않아도 순수한 호스트 이름만으로 접속이 가능했습니다.
+    반면, Linux는 기본적으로 Avahi를 통해 mDNS (Multicast DNS) 기반으로 작동하며, .local 도메인을 필수로 요구하기 때문에
+    , 동일한 네트워크 환경에서도 동작 방식의 차이로 인해 문제가 발생했습니다.
+    
+    // 결과
+    Linux 환경에서는 mDNS를 통해 .local 도메인을 사용하여 스위치에 연결된 장치에 접속해야 한다는 점을 확인하고 문제를 해결하였으며, 이 과정에서 Windows와 Linux의 네트워크 해석 방식의 차이를 명확히 이해하게 되었습니다.
+
+    %shell:pwsh> tasklist /svc | Select-String "3048"
+      >> svchost.exe                   3048 Dnscache
+

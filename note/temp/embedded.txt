@@ -1,0 +1,47 @@
+※※※※※※※※※※※※※※
+AVR ATmega128/A ; file:///F:/OneDrive/Computer/Documentation/embedded/ATMEGA128A.PDF
+  Datasheet ; https://www.alldatasheet.com/view.jsp?Searchword=Atmega128a%20datasheet&gad_source=1&gclid=CjwKCAjwk8e1BhALEiwAc8MHiI7ZzIMnwK8vSERJr3Va6ZRjcNDrtmn5futH87XS6PEwEZTzUiHyIRoCl3kQAvD_BwE
+
+
+  * PWM Mode
+    ▷ PWM frequency (f_PWM):
+      f_PWM = 1 / T_PWM               // Frequency_PWM
+    ▷ PWM period (T_PWM):
+      T_PWM = (ICR3 + 1) * T_timer    // Time_timer
+      // where T_PWM is the period of the Pulse Width Modulation (PWM) signal.
+
+    ▷ Timer clock period (T_timer):
+      T_timer = 1 / f_timer
+    ▷ Timer clock frequency (f_timer):
+      f_timer = f_CPU / N
+      // where N is the prescaler value
+
+    = Final PWM frequency formula:
+      f_PWM = f_timer / (ICR3 + 1)
+      f_PWM = (f_CPU / N) / (ICR3 + 1)
+      f_PWM = f_CPU / (N * (ICR3 + 1))
+
+    Example:
+      ATmega128 clock frequency f_CPU = 16MHz
+      Prescaler N = 64
+      Target frequency f_PWM = 1kHz
+
+      f_PWM = 1kHz = 1000Hz
+
+      1000 = 16,000,000 / (64 * (ICR3 + 1))
+      1000 * 64 * (ICR3 + 1) = 16,000,000
+      64 * (ICR3 + 1) = 16,000
+      ICR3 + 1 = 250
+      ICR3 = 249
+
+      Therefore, setting ICR3 to 249 will yield a frequency of 1kHz.
+
+    * Description
+      1. Role of ICR value
+        ICR (Input Capture Register) value sets the period of the PWM signal.
+        The larger the ICR value, the longer the PWM period; the smaller the ICR value, the shorter the PWM period.
+        For example, if the ICR value is 249, the PWM signal repeats every 250 clock cycles.
+      2. Role of Duty Cycle
+        OCR (Output Compare Register) value sets the duty cycle.
+        The duty cycle represents the proportion of time the signal is "ON" during the PWM period.
+        For example, if the duty cycle is 50%, the fan is active for 50% of the time.

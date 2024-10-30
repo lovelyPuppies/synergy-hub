@@ -1,0 +1,10 @@
+list of level 1 subjects
+  - tio
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓⭕ tio ; https://github.com/tio/tio
+  A serial device I/O tool
+  
+----------------------------------------------
+tio 🔪 Installation
+  📝 use with homebrew

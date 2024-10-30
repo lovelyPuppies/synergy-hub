@@ -1,0 +1,99 @@
+list of level 1 subjects
+  - Visual Studio Code (VS Code)
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓⭕ VS code ; https://code.visualstudio.com/
+  Free. Built on open source. Runs everywhere.
+  https://github.com/microsoft/vscode
+  https://en.wikipedia.org/wiki/Visual_Studio_Code
+----------------------------------------------
+VS code 🔪⚓ Download ; https://code.visualstudio.com/Download
+----------------------------------------------
+VS code 🔪📦 Extensions ; https://marketplace.visualstudio.com/vscode
+
+  ----------------------------------------------
+  ⚓ Explicit Folding ; https://marketplace.visualstudio.com/items?itemName=zokugun.explicit-folding
+    📝 &comment;  it solves problem of "[folding] No setting for ignoring all empty lines" from https://github.com/microsoft/vscode/issues/88151
+    ⚙️ settings for "User" Scope ❌ deprecated 📅 2024-11-30 18:32:23
+      {
+        // Title: Explicit Folding settings from https://marketplace.visualstudio.com/items?itemName=zokugun.explicit-folding
+        "[latex]": {
+          "editor.autoIndent": "keep",
+          "explicitFolding.rules": [
+            {
+              "beginRegex": "\"\"\"",
+              "endRegex": "\"\"\""
+            },
+            {
+              "indentation": true,
+              "offSide": true
+            }
+          ]
+        }
+      }
+      
+    #️⃣ Rules ; https://github.com/zokugun/vscode-explicit-folding#rules
+      ...
+      ⚓ indentation ; https://github.com/zokugun/vscode-explicit-folding/blob/master/docs/rules/indentation.md
+        example for python: ...
+
+================================================
+VS code 🔪 Docs ; https://code.visualstudio.com/docs
+
+  # LANGUAGES
+    ⚓🖇️ Rust ; https://code.visualstudio.com/docs/languages/rust 📅 2024-11-30 21:31:58
+      # Installation
+        ⭕📖
+          📖 The Rust Programming Language online book ; https://doc.rust-lang.org/stable/book/
+          📖 The Cargo Book ; https://doc.rust-lang.org/stable/cargo/
+        #🔰📍 Local Rust documentation
+          When you install Rust, you also get the full Rust documentation set locally installed on your machine, which you can review by typing rustup doc.
+          The Rust documentation, including The Rust Programming Language and The Cargo Book
+          , will open in your local browser so you can continue your Rust journey while offline.
+        # Hello World
+          cargo new hello_world
+        # IntelliSense
+          # Inlay hints
+          # Hover information
+            ⌨️ Tip: Use Ctrl+K Ctrl+I to trigger the suggestions manually
+          # Auto completions
+            ⌨️ Tip: Use Ctrl+Space to trigger the suggestions manually
+
+        # Semantic syntax highlighting
+        # Code navigation
+        # Linting
+          ⭕ The rustc linter, enabled by default, detects basic Rust errors
+          , but you can use clippy to get more lints. To enable clippy integration in rust-analyzer, change the Rust-analyzer > Check: Command (rust-analyzer.check.command) setting to clippy instead of the default check.
+        # Quick Fixes
+          When the linter finds errors and warnings in your source code
+          , rust-analyzer can often provide suggested 🪱 Quick Fixes (also called 🪱 Code Actions), which are available via a light bulb hover in the editor.
+
+        # Refactoring
+          The rust-analyzer extension also supports other code refactorings and code generation, which the extension calls Assists.
+            Here are just a few of the refactorings available:
+              - Convert if statement to ⭕ guarded return
+              - Inline variable
+              - Extract function
+              - Add return type
+              - Add import
+        # Formatting
+        # Debugging
+        # Next steps
+        # Common questions
+  ⚓📍 Variable Reference ; https://code.visualstudio.com/docs/editor/variables-reference
+    #️⃣ Predefined variables ; https://code.visualstudio.com/docs/editor/variables-reference#_predefined-variables
+
+----------------------------------------------
+VS code 🔪 Python
+  ⚓ Environments ; https://code.visualstudio.com/docs/python/environments
+    #️⃣ Working with Python interpreters ; https://code.visualstudio.com/docs/python/environments#_manually-specify-an-interpreter
+      # Manually specify an interpreter
+        🪱 python.defaultInterpreterPath
+
+
+
+
+================================================
+Main changelog
+  ⚓ Announcing a free GitHub Copilot for VS Code ; https://code.visualstudio.com/blogs/2024/12/18/free-github-copilot
+

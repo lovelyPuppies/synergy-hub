@@ -1,0 +1,10 @@
+Media Encoder ; https://helpx.adobe.com/kr/media-encoder/get-started.html
+
+----------------------------------------------
+⚓ Adobe Digital Editions ; https://www.adobe.com/kr/creativecloud.html
+(✍️ Adobe Digital Editions 🔪 study)
+  - 🚨 (issue); error: E_GOOGLE_DEVICE_LIMIT_REACHED 📅 
+    when
+      when open file with extension ACSM (Adobe Content Server Manager) as Adobe Digital Editions software.
+    solution
+      무선 연결 문제가 아니며, 직접 Adobe 에 문의해서 풀어달라고 요청해야 한다.

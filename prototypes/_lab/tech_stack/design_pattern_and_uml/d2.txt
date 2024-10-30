@@ -1,0 +1,203 @@
+list of level 1 subjects
+  - D2
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ D2 ; https://d2lang.com/
+  # Introduction
+    What is D2
+    Dev tool vs design tool
+    Design decisions
+    Getting help & community
+    Roadmap
+
+  #🖇️ Getting Started 📅 2024-08-11 21:04:42
+    ⚓ Install ; https://d2lang.com/tour/install    
+    ⚓ Hello World ; https://d2lang.com/tour/hello-world
+    ⚓ Shapes ; https://d2lang.com/tour/shapes/
+      Label, Shape's key
+      🚣 "Keys are case-insensitive, so postgresql and postgreSQL will reference the same shape."
+    ⚓ Connections
+      # Basics
+        # Connection labels
+        # 🚣 Connections must reference a shape's key, not its label.
+
+      # Example
+      # Repeated connections
+        'Repeated connections do not override existing connections. They declare new ones.'
+
+      # 🚣 Connection chaining
+      # Cycles are okay
+      # Arrowheads
+        ⚠️
+          'It's recommended the arrowhead labels be kept short. They do not go through autolayout for optimal positioning like regular labels do, so long arrowhead labels are more likely to collide with surrounding objects.'
+          'If the connection does not have an endpoint, arrowheads won't do anything.' ... "source-arrowhead", "target-arrowhead"
+      # 🚣 Referencing connections
+    ⚓ Containers
+      # Nested syntax
+      # Container labels
+        1. Shorthand container labels
+        2. Reserved keyword label
+      # Example
+      # Reference parent
+          
+
+  #📎 Special Objects
+    Text & Code
+      # Standalone text is Markdown
+      # Most languages are supported
+      # LaTeX
+      # Code
+      # Advanced: Non-Markdown text
+      # Advanced: Block strings
+      # Advanced: LaTeX plugins
+
+    Icons & Images
+    SQL Tables
+    UML Classes
+    Sequence Diagrams
+      🚣 'A group in D2 is also known elsewhere as a "fragment", "edge group", and "frame".'
+      ⚠️ Due to the unique scoping rules in sequence diagrams, when you are within a group, the objects you reference in connections must exist at the top-level. Notice in the above example that alice and bob are explicitly declared before group declarations.
+    Grid Diagrams
+
+
+  # Customization
+    Themes
+    Styles
+    Classes
+    Dimensions
+    Positions
+    Sketch (Hand-drawn)
+    Interactive
+    Fonts
+
+
+  #📎 Layouts
+    Overview
+    Layout engines
+      Dagre
+      ELK
+      TALA
+
+
+  #📎 In Depth
+    Strings
+    Variables & Substitutions
+      # Variables can be nested
+      # Variables are scoped
+      #🚣 Single quotes bypass substitutions
+      #🚣 Spread substitutions
+      #🚣 Configuration variables
+    🚣 Globs
+      # Globs apply backwards and forwards
+      # Globs are case insensitive
+      # Globs can appear multiple times
+      # Glob connections
+      # Scoped globs
+      #🚣 Recursive globs
+      #💡 Filters
+        'We are working on adding more filters, as well as the "not-filter", !&.'
+      # Nested globs
+        '🛍️ e.g. 💡 ...'
+      # Global globs
+        Triple globs ... ➡️ Composition
+
+
+    Comments
+    ⚓🖇️ Overrides ; https://d2lang.com/tour/overrides 📅 2024-08-11 23:32:27
+      # Null
+        You may override with the value null to delete the shape/connection/attribute.
+        💡 When is this useful?
+          Import a diagram from a colleague and remove the things you don't want.
+          Multi-board compositions where you inherit all the objects from a board with some exceptions.
+          Use globs to define connections between a batch of objects except one in particular you want to leave ou
+
+        # Nulling a connection
+        # Nulling an attribute
+        # Implicit nulls
+    Autoformat
+
+    
+  # Composition
+    Intro to Composition
+    Board types
+      Layers
+      Scenarios
+      Steps
+      Linking between boards
+      Export formats
+  # Imports
+    Syntax
+    Use cases
+      Overview
+      Patterns
+      More examples
+  # Extensions
+    Overview
+    Official
+      VSCode extension
+      Vim plugin
+      Obsidian plugin
+      D2 app for Slack
+      Discord plugin
+      Atlassian Confluence app
+  # API
+    CLI manual
+    D2 Studio
+    Exports
+    Cheat Sheet
+    Frequently asked questions (FAQ)
+    Troubleshooting
+(✍️ D2 🔪 study)
+  📍 Expressions (EBNF)
+    📝
+      - 🚣 Scope symbol not includes not space!!
+        embrace with quotes if name includes dot character.
+      - insensitive grammar
+      - it have indexing operation for repeated connection:  [] and glob can be in that.
+
+    Expressions = Reference
+      [": ", Label,
+        ["{" PropertyDefinition  "}"]
+      ];
+
+    - Reference: (Container | Realtionship)
+    
+    - Container = Entity, {".", Entity};
+    - Entity = "_" | CustomEntity
+      // "_" means the Parent
+
+    - Realtionship = Container, Connection, Container
+    - Connection = "--" | "->" | "<-" | "<->"
+
+    - PropertyDefinition =
+      ({Container, "."}, Property, ": ", Value)
+      | Expressions;
+      🛍️ Property e.g. "label", "shape", "style", "class", "grid-rows", "grid-column"
+        style
+          "fill", "stroek", "text-transform", "stroke", "stroke-width", "multiple", ...
+          🛍️ e.g. label.near: bottom-center          
+        class: CustomClassName
+        classes: {CustomClassName "{", {Property, ": ", Value} "}" }    // global ???
+
+  💹 (how-to); install D2 including essential tools
+    https://d2lang.com/tour/install#install-script
+      %shell> curl -fsSL https://d2lang.com/install.sh | sh -s --
+    VS Code extensions
+      - D2; https://marketplace.visualstudio.com/items?itemName=terrastruct.d2
+      - SVG: https://marketplace.visualstudio.com/items?itemName=SimonSiefke.svg-preview
+        ⌨️ Keyboard Shortcut
+          {
+            "key": "ctrl+shift+d ctrl+shift+d",
+            "command": "svgPreview.showPreviewToSide",
+            "when": "resourceLangId == 'svg' || resourceLangId == 'xml'"
+          },
+      - RunOnSave ; https://marketplace.visualstudio.com/items?itemName=emeraldwalk.RunOnSave
+        add in ".settings.json"
+          "emeraldwalk.runonsave": {
+            "commands": [
+              {
+                "match": "\\.d2$",
+                "cmd": "d2 fmt ${file}"
+              }
+            ]
+          },

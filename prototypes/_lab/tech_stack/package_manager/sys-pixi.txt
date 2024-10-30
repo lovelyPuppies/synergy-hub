@@ -1,0 +1,234 @@
+➡️📰❌📅 2024-08-29 02:15:39
+  Unless you need a conda-like environment but faster with Python version management, it seems better to use another tool for now.
+  There are bugs, and the documentation is incomplete, making it difficult to implement more deeply in practice."
+list of level 1 subjects
+  - pixi
+
+
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+🐞 Issue Tracking
+  https://github.com/prefix-dev/pixi/issues/1907
+    in VS Code, manifest PIXI_PROJECT_MANIFEST is not changed when open by command "code <path>"
+  
+⚓ pixi ; https://pixi.sh/latest/
+  https://github.com/prefix-dev/pixi?tab=readme-ov-file
+  📝 ❔ I guess it stands for Package Installation & Xross-platform Interface
+  pixi is a cross-platform, multi-language package manager and workflow tool built on the foundation of the conda ecosystem.
+  It provides developers with an exceptional experience similar to popular package managers like cargo or yarn, but for any language.
+
+  ⚓ Prefix ; https://prefix.dev/
+    Our Software
+      - pixi • the package manager
+      - rattler-build • a conda package builder in Rust
+      - rattler • Rust crates to work with conda
+      - mamba • a cross-platform package manager
+      - boa • build packages in a breeze
+      - quetz • host packages easily  
+----------------------------------------------
+pixi 🔪 Pixi by prefix.dev
+  ⚓ Installation ; https://pixi.sh/latest/
+  ⚓ Basic Usage ; https://pixi.sh/latest/
+
+----------------------------------------------
+pixi 🔪🖇️ Switching from 📅 2024-08-25 20:53:39
+  ⚓ Poetry ; https://pixi.sh/latest/switching_from/poetry/
+    # Quick look at the differences
+      💡 Pixi supports PyPI dependencies in a different way than poetry does ...
+      🪱 --pypi
+      ... We've yet to implement package building and publishing 📅 2024-08-25 20:42:04
+  ⚓ Conda/Mamba ; https://pixi.sh/latest/switching_from/conda/
+    # Key Differences at a Glance
+      🪱 pixi add python=3.8
+
+      💡 Pixi does not have a base environment.
+        And requires you to install the tools you need in the project or globally.
+        Using pixi global install bat will install bat in a global environment, which is not the same as the base environment in conda.
+    
+    #📍 Environment vs Project
+      Conda and mamba focus on managing environments, while pixi emphasizes projects.
+      ... This project-centric approach allows ... It manages more than one environment for more than one platform in a single project, and allows for easy switching between them.
+      
+    # Global environments
+      ... 📰 This doesn't allow you to activate the environments using pixi shell -
+      (See global) This is not a replacement for conda but works the same as pipx and condax.
+      
+      📍⚠️ Never install pip with pixi global
+    
+    #🚨✅ Troubleshooting
+      - pixi uses a strict channel priority. See 🪱 channel priority for more information.
+      - pixi global install pip, pip doesn't work. 
+      - ...
+    # Changelog
+
+----------------------------------------------
+pixi 🔪 IDE Integration
+  IDE Integration
+  JupyterLab
+  PyCharm
+  RStudio
+
+----------------------------------------------
+pixi 🔪⚓ Tutorials ; https://docs.conan.io/2/tutorial.html
+  ⚓🖇️ Python ; https://pixi.sh/v0.28.0/tutorials/python/ 📅 2024-08-25 22:10:45
+    #️⃣ Why is this useful? ; https://pixi.sh/v0.28.0/tutorials/python/#why-is-this-useful
+      📍🛍️ For example, GDAL from PyPI does not have binary C dependencies, but the conda package does. On the other hand, some packages are only available through PyPI, which pixi can also install for you. Best of both world, let's give it a go!
+    #️⃣ pixi.toml and pyproject.toml ; https://pixi.sh/v0.28.0/tutorials/python/#pixitoml-and-pyprojecttoml
+    #️⃣ Let's get started ; https://pixi.sh/v0.28.0/tutorials/python/#lets-get-started
+      🪱 pixi init pixi-py --format pyproject
+
+      # What's in the pyproject.toml?
+        🚣 The pixi_py package itself is added as an editable dependency.
+          This means that the package is installed in editable mode, so you can make changes to the package and see the changes reflected in the environment, without having to re-install the environment.
+
+        In pixi, unlike other package managers, this is explicitly stated in the pyproject.toml file.
+        💡 The main reason being so that you can 🚣 choose which environment this package should be included in.
+          # Editable installs
+          [tool.pixi.pypi-dependencies]
+          pixi-py = { path = ".", editable = true }
+
+
+      # Managing both conda and PyPI dependencies in pixi
+        🆚 (pixi add black,  pixi add black=24)
+        📰%shell> pixi add --pypi --feature test pytest
+          Which results in the following fields added to the pyproject.toml:
+          [project.optional-dependencies]
+          test = ["pytest"]
+
+        %shell> pixi add black --pypi
+          📍⚖️ which results in the addition to the dependencies key in the pyproject.toml
+            dependencies = ["black"]
+        📰📝🧪 다시 pix add black  으로 소스를 변경하여도 추가된 dependencies = ["black"] 는 그대로 남아있다. 버그로 추정됨. 📅 2024-08-25 23:29:07
+
+        💡 When using the pypi-dependencies you can make use of the optional-dependencies that other packages make available.
+          %shell> pixi add black[cli] --pypi
+        
+        📍 This tutorial focuses on the use of the pyproject.toml, but in case you're curious
+          , the pixi.toml would contain the following entry after the installation of a PyPI package including an optional dependency:
+
+
+      # Installation: pixi install
+        We now have a new directory called 🪱 .pixi in the project root. This directory contains the environment that was created when we ran pixi install.
+        
+        📰 We can also install the test environment with pixi install -e test. We can use these environments for executing code.
+      
+        We also have a new file called 🪱 pixi.lock in the project root.
+          This file contains the exact versions of the dependencies that were installed in the environment 💡 across platforms.
+
+
+# What's in the environment? ; https://pixi.sh/v0.28.0/tutorials/python/#whats-in-the-environment
+  %shell> pixi list
+    Using pixi list, you can see what's in the environment, this is essentially a nicer view on the 🚣 lock file:
+    
+  👍📍 The Python interpreter is also installed in the environment.
+    This is because the Python interpreter version is read from the requires-python field in the pyproject.toml file.
+    This is used to determine the Python version to install in the environment.
+    This way, pixi automatically manages/bootstraps the Python interpreter for you, so no more brew, apt or other system install steps.
+
+  As you can see, the pixi-py package that we are working on is installed in 🪱 editable mode
+  
+  🚣 Every environment in pixi is isolated but reuses files that are hard-linked from a central cache directory.
+    This means that you can have multiple environments with the same packages but only have the individual files stored once on disk.
+
+  📰
+    pixi project environment add default --solve-group default
+    pixi project environment add test --feature test --solve-group default
+  Which results in:
+    # Environments
+    [tool.pixi.environments]
+    default = { solve-group = "default" }
+    test = { features = ["test"], solve-group = "default" }
+  You can execute commands in this environment with e.g. pixi run -e test python
+
+
+#️⃣ Getting code to run ; https://pixi.sh/v0.28.0/tutorials/python/#getting-code-to-run
+  💡🪱 %shell> pixi r python -c "import pixi_py; pixi_py.say_hello()"
+
+
+#️⃣ Testing this code ; https://pixi.sh/v0.28.0/tutorials/python/#testing-this-code
+
+  ➡️📍 Tasks are actually a pretty cool pixi feature that is powerful and runs in a cross-platform shell.
+    You can do caching, dependencies and more. Read more about tasks in the tasks section.
+
+  # Test vs Default environment
+    ... This way, you can 🪱 finetune your environments to only have the packages that are needed for that environment.
+
+#️⃣ Replacing PyPI packages with conda packages ; https://pixi.sh/v0.28.0/tutorials/python/#replacing-pypi-packages-with-conda-packages
+#️⃣ Conclusion ; https://pixi.sh/v0.28.0/tutorials/python/#conclusion
+
+
+  ⚓📍📰 ROS 2 ; https://pixi.sh/v0.28.0/tutorials/ros2/
+  ⚓📍📰 Rust ; https://pixi.sh/v0.28.0/tutorials/rust/
+----------------------------------------------
+pixi 🔪# Examples
+  ⚓💡📰 C++/Cmake ; https://pixi.sh/v0.28.0/examples/cpp-sdl/
+  ⚓📍📰 OpenCV ; https://pixi.sh/v0.28.0/examples/opencv/
+  ⚓📍📰 ROS 2 ; https://pixi.sh/v0.28.0/examples/ros2-nav2/
+
+
+
+
+
+
+
+
+
+----------------------------------------------
+pixi 🔪# Features
+  Environments
+  ⚓💡 Tasks ; https://pixi.sh/v0.28.0/features/advanced_tasks/
+  Multi Platform
+  ⚓💡 Multi Environment Support ; https://pixi.sh/v0.28.0/features/multi_environment/
+    📝 Depending on your environment, which varies depending on how you configure and select features
+      , you can have different packages installed. ➡️ Test vs Default environment
+  Lockfile
+
+----------------------------------------------
+pixi 🔪# Reference
+  ⚓ Proejct Configuration ; https://pixi.sh/v0.28.0/reference/project_configuration/
+    #️⃣ The feature and environments tables ; https://pixi.sh/v0.28.0/reference/project_configuration/#the-feature-and-environments-tables
+  ⚓ CLI ; https://pixi.sh/v0.28.0/reference/cli/
+    #️⃣ Run ; https://pixi.sh/v0.28.0/reference/cli/#run
+      # Arguments
+        1. [TASK]... 
+          The task you want to run in the projects environment, 💡 this can also be a normal command.
+          And all arguments after the task will be passed to the task.
+
+      🛍️e.g. pixi run python
+    #️⃣ list ; https://pixi.sh/v0.28.0/reference/cli/#list
+      # Options
+        --environment (-e): The environment's packages to list, if non is provided ⚖️ the default environment's packages will be listed.
+  
+
+    #️⃣ project ; https://pixi.sh/v0.28.0/reference/cli/#project
+      #️⃣ project environment add ; https://pixi.sh/v0.28.0/reference/cli/#project-environment-add
+      
+
+
+================================================
+📍📖⚓ Python Packaging User Guide ; https://packaging.python.org/en/latest/
+  ⚓ Discussions ; https://packaging.python.org/en/latest/discussions/
+    ⚓🖇️ src layout vs flat layout ; https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/#src-layout-vs-flat-layout 📅 2024-08-25 21:29:25
+      #💡 Running a command-line interface from source with src-layout
+
+
+----------------------------------------------
+Temp
+  .. 특징 component 를 구성해서 environments 가 됨.
+
+  PS C:\Users\iot04\repo\cTest\python-study> pixi install
+    ⠁ default:win-64       [00:00:00] resolving pypi dependencies                                                                                               × failed to solve the pypi requirements of 'default' 'win-64'
+    ├─▶ failed to resolve pypi dependencies
+    ├─▶ Failed to build `python-study @ file:///C:/Users/iot04/repo/cTest/python-study/python_study`
+    ╰─▶ Source distribution directory contains neither readable `pyproject.toml` nor `setup.py`: `python_study`
+  
+  python_study = { path = ".", editable = true }  그냥 --format pyproject 로 생성하지 않으면 저 값이 없어서 pytest 시 경로를 찾지 못하는 문제가 발생한다.
+  ... pyproject.toml 쓰자. install 시 pyproject.toml 만 지원 가능한듯.
+🧪
+  Bug report
+    📅 2024-08-26 00:06:25
+      https://github.com/prefix-dev/pixi/issues/1907
+      WARN Using manifest C:\Users\iot04\repo\cTest\python-study\pixi.toml from `PIXI_PROJECT_MANIFEST` rather than local C:\Users\iot04\repo\opencvtest\pixi-py\pyproject.toml
+      해결한듯? python defaultInterpreter 가 전역으로 설정되어있지 않으면, 이전 pypi 가 있는 프로젝트에서 설정한 python interpreter 를 그대로 계승하여, 새 프로젝트를 열어도 항상 이전 프로젝트의 파이썬 인터프리터를 참조하여, pypi 명령어가 이전 환경을 참조한다. 
+        전역 settings.json 에 추가.   "python.defaultInterpreterPath": "C:/Python312/python.exe",  + 물론 Ctrl+Shift+N 으로 새로 창을 만들어줘야 한다. 단순히 터미널을 다시 켜는것만으로는 안됨.
+

@@ -1,0 +1,13 @@
+list of level 1 subjects
+  - Cargo
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ Cargo ; https://cargo.site/
+  https://github.com/rust-lang/cargo
+  https://doc.rust-lang.org/cargo/index.html
+----------------------------------------------
+Cargo 🔪⚓ Install ; https://doc.rust-lang.org/cargo/getting-started/index.html
+  ⚓ Installation ; https://doc.rust-lang.org/cargo/getting-started/installation.html
+
+
+

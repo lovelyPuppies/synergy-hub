@@ -1,0 +1,9 @@
+list of level 1 subjects
+  - Ninja
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ Ninja ; https://ninja-build.org/manual.html
+  Ninja is a small build system with a focus on speed.
+  https://en.wikipedia.org/wiki/Ninja_(build_system)
+  https://github.com/ninja-build/ninja
+

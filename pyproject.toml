@@ -10,14 +10,14 @@ name = "python-study"
 version = "0.1.0"
 description = ""
 authors = ["wbfw109v2 <wbfw109v2@gmail.com>"]
-packages = [{ from = "prototypes/python-study", include = "python_study" }]
+packages = [{ from = "prototypes/study", include = "python_study" }]
 
 
 [tool.poetry.dependencies]
 python = "~3.12.0"
 tensorflow = {extras = [], version = "^2.17.0", allow-prereleases = true}
 pandas = "^2.2.2"
-pyside6 = "^6.7.2"
+pyside6 = "^6.8.0.2"
 matplotlib = "^3.9.2"
 jupyter = "^1.1.1"
 tensorflow-datasets = "^4.9.6"
@@ -38,13 +38,14 @@ yt-dlp = "^2024.10.7"
 ipykernel = "^6.29.5"
 onnxslim = "^0.1.35"
 onnxruntime-gpu = "^1.19.2"
-tensorrt = ">=7.0.0,<10.1.0"
+tensorrt = "10.6.0.post1"
+# tensorrt = ">=7.0.0,<10.1.0"
 
 
 [tool.poetry.group.dev.dependencies]
 bandit = "*"
 pydocstringformatter = "^0.7.2"
-ruff = "^0.6.9"
+ruff = "^0.8.1"
 
 [tool.poetry.group.test.dependencies]
 pytest-cov = "*"
@@ -57,17 +58,17 @@ addopts = ["--import-mode=importlib"]
 pythonpath = "src/python"
 
 [tool.poetry.group.ml-base.dependencies]
-pycuda = "^2024.1.2"
+# pycuda = "^2024.1.2"
 torch = "^2.4.1"
 onnx = "^1.16.2"
 
 
-[tool.poetry.group.ml-pyskl]
-optional = true
+# [tool.poetry.group.ml-pyskl]
+# optional = true
 
-[tool.poetry.group.ml-pyskl.dependencies]
-#[⚠️ [📅 2024-10-14 06:38:07] You require to run %shell> poetry run pip install --no-build-isolation xtcocotools==1.14.3 chumpy
-pyskl = {path = "external/pyskl", develop = true}
+# [tool.poetry.group.ml-pyskl.dependencies]
+# #[⚠️ [📅 2024-10-14 06:38:07] You require to run %shell> poetry run pip install --no-build-isolation xtcocotools==1.14.3 chumpy
+# pyskl = {path = "external/pyskl", develop = true}
 # [tool.poetry.group.ml-mmaction]
 # optional = true
 

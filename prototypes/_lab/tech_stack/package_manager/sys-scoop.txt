@@ -1,0 +1,8 @@
+list of level 1 subjects
+  - Scoop
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓⭕ Scoop ; https://github.com/ScoopInstaller/Scoop
+  📝 The installation method provided by GitHub or the official website is not always the best. Tools like Scoop, which allow you to maintain the latest package versions and install specific versions, are often more advantageous.
+  Scoop is a command-line installer for Windows.
+  https://scoop.sh/

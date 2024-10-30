@@ -1,0 +1,8 @@
+{
+  "files.associations": {
+    "main.h": "c",
+    "compare": "c",
+    "string.h": "c",
+    "stm32f4xx_hal.h": "c"
+  }
+}

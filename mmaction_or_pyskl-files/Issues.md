@@ -18,12 +18,12 @@
     from pyskl.models import Recognizer3D, build_model
     from mmcv.runner import load_checkpoint
 
-    pyskl_path: Path = Path.home() / "repo/intel-edge-academy-6/external/pyskl"
+    pyskl_path: Path = Path.home() / "repo/synergy-hub/external/pyskl"
     pyskl_data_path: Path = pyskl_path / "data"
 
     checkpoint_path = (
         Path.home()
-        / "repo/intel-edge-academy-6/external/pyskl/work_dirs/posec3d/x3d_shallow_ntu60_xsub/joint/best_top1_acc_epoch_24.pth"
+        / "repo/synergy-hub/external/pyskl/work_dirs/posec3d/x3d_shallow_ntu60_xsub/joint/best_top1_acc_epoch_24.pth"
     )
 
     checkpoint = torch.load(str(checkpoint_path), map_location="cuda")

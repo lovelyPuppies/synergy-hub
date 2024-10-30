@@ -14,7 +14,7 @@ remote_video_save_directory: Path = Path.home() / "remote_videos"
 remote_video_save_directory.mkdir(parents=True, exist_ok=True)
 captured_video_save_directory: Path = Path.home() / "remote_videos" / "captured"
 captured_video_save_directory.mkdir(parents=True, exist_ok=True)
-pyskl_path: Path = Path.home() / "repo/intel-edge-academy-6/external/pyskl"
+pyskl_path: Path = Path.home() / "repo/synergy-hub/external/pyskl"
 pyskl_data_path: Path = pyskl_path / "data"
 # %%
 # python -c 'import tensorrt as trt;  print(trt.__version__)'

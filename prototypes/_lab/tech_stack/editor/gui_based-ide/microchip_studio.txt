@@ -1,0 +1,13 @@
+list of level 1 subjects
+  - Microchip Stuido
+  
+⚠️ The functionality of Microchip Stuido is very poor. 
+  Use Microchip Stuido only when the legacy embedded model to be used is incompatible with other tools.
+  🛍️ e.g. JMOD-128-1 board that equips ATMega128.
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+Microchip Stuido
+(✍️ Microchip Stuido 🔪 study)
+  * 🚨 (issue): Error; Unable to Connect; Could not establigh communicaiton with the tool
+    - when: click "Start without debugging" button or "Start Debugging and Break"
+    - solution: change installed Board Driver (e.g. CP210x_Universal_Windows_Driver)'s PORT as COM1 in Device Manger (Windows 11)
+    - why: The tool recognize connected port as COM1 default. 

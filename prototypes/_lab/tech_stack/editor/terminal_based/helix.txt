@@ -1,0 +1,15 @@
+list of level 1 subjects
+  - Helix
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓⭕ Helix ; https://docs.helix-editor.com/title-page.html
+  A post-modern text editor. It seems as Vim's successor.
+  Rust-based. Language service. cross-platform
+  https://github.com/helix-editor/helix
+  https://docs.helix-editor.com/title-page.html
+----------------------------------------------
+Helix 🔪⚓ Download ; https://docs.helix-editor.com/install.html
+  https://docs.helix-editor.com/package-managers.html
+
+
+

@@ -1,0 +1,47 @@
+list of level 1 subjects
+  - Ruff
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓⭕ Ruff ; https://docs.astral.sh/ruff/
+  An extremely fast Python linter and code formatter, written in Rust.
+    📝 black + isort + pylint + flake...
+  🔐 MIT License ; https://github.com/astral-sh/ruff/blob/main/LICENSE
+  https://github.com/astral-sh/ruff
+  https://pypi.org/project/ruff/
+  📡 Integratation
+    ⚓ VS Code's Ruff ; https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff    
+      ⭕ In general, we recommend configuring Ruff via pyproject.toml or ruff.toml so that your configuration is shared between the VS Code extension and the command-line tool, and between all contributors to the project.
+      ⚙️ settings for "User" Scope
+        {
+          // Title: Ruff setting from https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff
+          "[python]": {
+            "editor.formatOnSave": true,
+            "editor.codeActionsOnSave": {
+              "source.fixAll": "explicit",
+              "source.organizeImports": "explicit"
+            },
+            "editor.defaultFormatter": "charliermarsh.ruff"
+          }
+          // for Jupyter Notebooks:
+          "notebook.formatOnSave.enabled": true,
+          "notebook.codeActionsOnSave": {
+            "notebook.source.fixAll": "explicit",
+            "notebook.source.organizeImports": "explicit"
+          },
+          // remove duplicated functions
+          "python.analysis.diagnosticSeverityOverrides": {
+            "reportUnusedImport": "none",
+            "reportUnusedVariable": "none",
+            "reportMissingImports": "none"
+          },
+        }
+----------------------------------------------
+# Ruff 🔪 Commands
+  📰 ruff check . --fix
+
+----------------------------------------------
+Ruff 🔪⚓ Docs ; https://docs.astral.sh/ruff/
+  📍 benchmark with flake8, pylint, ...
+
+  Integrations ; https://docs.astral.sh/ruff/integrations/
+    #️⃣📰💡 GitHub Actions ; https://docs.astral.sh/ruff/integrations/#github-actions

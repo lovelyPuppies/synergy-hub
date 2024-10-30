@@ -1,0 +1,32 @@
+list of level 1 subjects
+  - Visual Studio
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓⭕ Visual Studio ; https://visualstudio.microsoft.com/
+  Visual Studio: IDE and Code Editor for Software Developers
+  https://en.wikipedia.org/wiki/Visual_Studio
+
+(✍️ Visual Studio 🔪 study)
+  F10; it shows elasped time for run code snippet
+  settting for c++ dependencies
+    🛍️ e.g. opencv
+      Project - Property Page - Configuration Properties
+        // Active(Debug), Paltform: All Platforms
+        - General
+          - C++ Language Standard:    ISO C++ 20 Standard (/std:c++20)
+          - Output directory:         $(SolutionDir)$(Platform)\$(Configuration)\     -> $(SolutionDir)Build\$(PlatformTarget)
+          - Intermediate Directory:   $(Platform)\$(Configuration)\                   -> $(SolutionDir)Build.tmp\$(PlatformTarget)\$(ProjectName)
+          - Target Name:              $(ProjectName)                                  -> $(ProjectName)d              // ??
+            // Debug 용 라이브러리와 release 용 라이브러리의 차이가 있는 경우가 있기 떄문.
+            // OpenCV 를 보면 파일에 d 가 붙여져 있다.
+        - Advanced - Character Set - Use Mluti-Byte Character Set
+        - C/C++
+          - General - Additional include Directories:     ..\..\thirdparty\opencv_4.10.0\build\include
+        - Linker
+          - General - Additional Library  Directories:      ..\..\thirdparty\opencv_4.10.0\build\x64\vc16\lib
+          - Input - Additional Dependencies:                opencv_world4100.lib ...        // or  #pragma comment(lib, "opencv_world4100.lib") by ifdef _DEBUG
+      // and: Copy to files: (opencv_world4100.dll, opencv_world4100d.dll, opencv_world4100.pdb, opencv_world4100d.pdb) to Build/ directory
+----------------------------------------------
+Visual Studio 🔪📦 Marketplace ; https://marketplace.visualstudio.com/
+  ⚓ Image Watch for Visual Studio 2022 ; https://marketplace.visualstudio.com/items?itemName=VisualCPPTeam.ImageWatchForVisualStudio2022
+    Quick Start ...

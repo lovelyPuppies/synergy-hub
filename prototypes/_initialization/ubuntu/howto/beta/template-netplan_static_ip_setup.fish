@@ -1,0 +1,126 @@
+# 🧪 This code must be tested by a device.
+# Written at 📅 2024-11-24 14:57:47
+
+: ' ✏️ Define the default renderer. Users can change it as needed.
+    🧮 set renderer_choice networkd
+    or
+    🧮 set renderer_choice NetworkManager
+'
+set renderer_choice networkd
+
+
+
+# Detect Ethernet and Wireless interface names
+set ethernet_name (find /sys/class/net -mindepth 1 -maxdepth 1 -lname '*virtual*' -prune -o -printf '%f\n' | grep '^e')
+set wireless_name (find /sys/class/net -mindepth 1 -maxdepth 1 -lname '*virtual*' -prune -o -printf '%f\n' | grep '^w')
+
+# Check if interface names were found
+if test -z "$ethernet_name" -o -z "$wireless_name"
+    echo "Error: Unable to detect network interfaces. Check your hardware or configuration."
+    exit 1
+end
+
+# Ensure Netplan is installed
+if not type -q netplan
+    echo "Netplan is not installed. Installing..."
+    sudo apt update && sudo apt install -y netplan.io
+end
+
+# Ensure the /etc/netplan directory exists
+if not test -d /etc/netplan
+    echo "Creating /etc/netplan directory..."
+    sudo mkdir -p /etc/netplan
+end
+
+# Define services for each renderer
+set networkd_service systemd-networkd
+set networkmanager_service NetworkManager
+
+
+# Determine which service to start/stop based on renderer_choice
+
+if test "$renderer_choice" = networkd
+    set service_to_start $networkd_service
+    set service_to_stop $networkmanager_service
+else if test "$renderer_choice" = NetworkManager
+    set service_to_start $networkmanager_service
+    set service_to_stop $networkd_service
+else
+    echo "Error: Unknown renderer choice. Exiting."
+    exit 1
+end
+
+: ' ❔ Netplan applies network settings by reading all YAML files in /etc/netplan
+    Files are processed in ascending order based on their numeric prefix (e.g., 00- is applied before 01-).
+    Use numeric prefixes like "00-" or "01-" for higher priority settings.
+    Example: /etc/netplan/00-network-config.yaml
+'
+# ✏️ Define the output file path for the Netplan configuration
+set netplan_config_file /etc/netplan/01-network-manager-all.yaml
+
+# Users can modify the file path if necessary. For example:
+# set netplan_config_file /custom/path/to/netplan-config.yaml
+
+# Generate Netplan YAML configuration with corrected syntax
+echo "Generating Netplan configuration..."
+# ✏️ Customize your Netplan file configuration
+echo "network:
+  version: 2
+  renderer: $renderer_choice
+  ethernets:
+    $ethernet_name:
+      dhcp4: no
+      dhcp6: no
+      addresses:
+        - 10.10.14.59/24
+      routes:
+        - to: default
+          via: 10.10.14.254
+      nameservers:
+        addresses:
+          - 203.248.252.2
+          - 1.1.1.1
+          - 8.8.8.8
+  wifis:
+    $wireless_name:
+      dhcp4: no
+      dhcp6: no
+      addresses:
+        - 10.10.14.79/24
+      routes: []
+      nameservers:
+        addresses:  
+          - 203.248.252.2
+          - 1.1.1.1
+          - 8.8.8.8
+      access-points:
+        \"embA\":
+          password: \"embA1234\"
+" | sudo tee $netplan_config_file >/dev/null
+
+# Correct file permissions for the Netplan configuration file
+sudo chmod 600 $netplan_config_file
+
+# Apply the Netplan configuration
+echo "Applying Netplan configuration..."
+sudo netplan apply
+# You can test the configuration by running: 🧮 sudo netplan try
+
+# Verify the changes
+echo "Verifying network configuration..."
+ip addr show $ethernet_name
+ip addr show $wireless_name
+
+: ' ⚠️ If both systemd-networkd and NetworkManager are enabled, they are likely to conflict with each other.
+    By default, only one network management tool should be active, and it must match the renderer specified in Netplan to ensure stable network functionality.
+'
+# After applying Netplan, handle service management
+echo "Stopping $service_to_stop..."
+sudo systemctl stop $service_to_stop
+sudo systemctl disable $service_to_stop
+
+echo "Starting $service_to_start..."
+sudo systemctl start $service_to_start
+sudo systemctl enable $service_to_start
+
+echo "Netplan configuration applied successfully, and services have been updated."

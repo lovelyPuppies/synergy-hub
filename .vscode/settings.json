@@ -5,17 +5,6 @@
   "python.analysis.inlayHints.functionReturnTypes": true,
   "workbench.colorTheme": "Default High Contrast",
   "editor.formatOnSave": true,
-  "files.exclude": {
-    "**/.git": false,
-    "**/__pycache__": true,
-    "**/.pixi": true,
-    "**/.pytest_cache": true
-  },
-  "search.exclude": {
-    "**/.git": true,
-    "**/.pixi": true,
-    "**/.pytest_cache": true
-  },
   "[jsonc]": {
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -23,6 +12,9 @@
   // "python.defaultInterpreterPath": "C:/Python312/python.exe",
   "terminal.integrated.defaultProfile.windows": "PowerShell",
   "files.associations": {
+    "*.S": "arm",
+    ".clangd": "ini",
+    "*.txt": "plaintext",
     "iostream": "cpp",
     "vector": "cpp",
     "string": "cpp",
@@ -110,7 +102,77 @@
     "__verbose_abort": "cpp",
     "ios": "cpp",
     "locale": "cpp",
-    "print": "cpp"
+    "print": "cpp",
+    "types.h": "c",
+    "fcntl.h": "c",
+    "stdio.h": "c",
+    "stat.h": "c",
+    "unistd.h": "c",
+    "stdlib.h": "c",
+    "inet.h": "c",
+    "socket.h": "c",
+    "string.h": "c",
+    "error_handling.h": "c",
+    "errno.h": "c",
+    "kernel.h": "c",
+    "module.h": "c",
+    "init.h": "c",
+    "fs.h": "c",
+    "ioctl.h": "c",
+    "moduleparam.h": "c",
+    "gpio.h": "c",
+    "kern_levels.h": "c",
+    "*.conf": "bitbake",
+    "*.inc": "bitbake",
+    "minmax.h": "c",
+    "typecheck.h": "c",
+    "panic.h": "c",
+    "math.h": "c",
+    "kstrtox.h": "c",
+    "container_of.h": "c",
+    "log2.h": "c",
+    "hex.h": "c",
+    "printk.h": "c",
+    "build_bug.h": "c",
+    "static_call_types.h": "c",
+    "byteorder.h": "c",
+    "sprintf.h": "c",
+    "stringify.h": "c",
+    "compiler.h": "c",
+    "features.h": "c",
+    "kmod.h": "c",
+    "list.h": "c",
+    "buildid.h": "c",
+    "cache.h": "c",
+    "kobject.h": "c",
+    "elf.h": "c"
   },
-  "cmake.ignoreCMakeListsMissing": true
+  "cmake.ignoreCMakeListsMissing": true,
+  "C_Cpp.default.compilerPath": "/home/linuxbrew/.linuxbrew/bin/clang",
+  "C_Cpp.errorSquiggles": "enabled",
+  "sqltools.connections": [
+    {
+      "mysqlOptions": {
+        "authProtocol": "default",
+        "enableSsl": "Disabled"
+      },
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 3306,
+      "driver": "MariaDB",
+      "name": "home",
+      "group": "home",
+      "database": "mysql",
+      "username": "wbfw109_dev"
+    }
+  ],
+  "python.autoComplete.extraPaths": [
+    "${workspaceFolder}/sources/poky/bitbake/lib",
+    "${workspaceFolder}/sources/poky/meta/lib"
+  ],
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}/sources/poky/bitbake/lib",
+    "${workspaceFolder}/sources/poky/meta/lib"
+  ],
+  "todo-tree.tree.scanMode": "workspace only"
 }

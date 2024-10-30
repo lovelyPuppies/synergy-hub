@@ -1,0 +1,20 @@
+⚓ Arm Compiler for Embedded documentation index ; https://developer.arm.com/documentation/ka005061/latest/
+  ⚓ Arm Compiler for Embedded Reference Guide ; https://developer.arm.com/documentation/101754/0623/
+    ⚓⭕ armclang Reference ; https://developer.arm.com/documentation/101754/0623/armclang-Reference
+      ⚓ armclang Integrated Assembler ; https://developer.arm.com/documentation/101754/0623/armclang-Reference/armclang-Integrated-Assembler?lang=en
+        ⚓ Syntax of assembly files for integrated assembler ; https://developer.arm.com/documentation/101754/0623/armclang-Reference/armclang-Integrated-Assembler/Syntax-of-assembly-files-for-integrated-assembler?lang=en
+        ⚓🚣 Conditional assembly directives ; https://developer.arm.com/documentation/101754/0623/armclang-Reference/armclang-Integrated-Assembler/Conditional-assembly-directives
+  ⚓📰 Arm Compiler for Embedded Arm C and C++ Libraries and Floating-Point Support User Guide ; https://developer.arm.com/documentation/100073/0623/
+  ⚓⭕ Arm Compiler for Embedded Migration and Compatibility Guide ; https://developer.arm.com/documentation/100068/0623/
+    # Migrating from armcc to armclang
+    # Migrating from armasm to the armclang Integrated Assembler
+#📍 Knowledge Article (KA)
+  ⚓🚣 [KA004036] ARMCLANG: Producing dependency file from an assembly file ; https://developer.arm.com/documentation/ka004036/latest
+    # Cause
+      💡 The file extensions *.s and *.S are treated differently by ARMCLANG. A file with *.s (lower case) is an assembly language file and a file with *.S (upper case) is an assembly language file which should be run through the C preprocessor first.
+
+❌ deprecated
+  # Arm A-profile A32/T32 Instruction Set Architecture 
+    ⚓ A32 Instructions by Encoding ; https://developer.arm.com/documentation/ddi0597/2024-09/A32-Instructions-by-Encoding?lang=en
+    ⚓ T32 Instructions by Encoding ; https://developer.arm.com/documentation/ddi0597/2024-09/T32-Instructions-by-Encoding/32-bit?lang=en
+

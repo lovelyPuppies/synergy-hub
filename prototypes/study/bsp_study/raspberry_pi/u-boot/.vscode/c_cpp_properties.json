@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "defines": [],
+            "configurationProvider": "ms-vscode.makefile-tools",
+            "macFrameworkPath": [],
+            "intelliSenseMode": "linux-gcc-arm",
+            "mergeConfigurations": false,
+            "compilerPath": "/home/linuxbrew/.linuxbrew/bin/gcc-14"
+        }
+    ],
+    "version": 4
+}

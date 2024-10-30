@@ -1,0 +1,63 @@
+list of level 1 subjects
+  - homebrew
+
+
+⚠️ Caution in Linux 📅 2024-11-23 21:48:15
+  ❌ Avoid installing packages like Tailscale, openssh via Homebrew on Linux if they require `sudo` permissions or need to operate as a system service.
+
+  On macOS, Homebrew effectively manages such services using `brew services`, which relies on macOS's built-in service management (likely `launchd`). However, on Linux, services are typically managed using `systemctl`, and Homebrew does not integrate seamlessly with it. This difference can lead to errors. For example:
+
+  - When running "systemctl daemon-reload":
+    Failed to execute /home/linuxbrew/.linuxbrew/Cellar/systemd/256.8/bin/pkttyagent: No such file or directory
+
+  - When running "tailscaled":
+    Reload daemon failed: Access denied
+
+  These issues occur because Homebrew on Linux installs packages in user directories (e.g., `/home/linuxbrew/`) without the necessary system-level permissions to manipulate services.  
+
+  For Linux, it’s recommended to install such packages using the system's package manager (e.g., `apt`, `yum`, or `dnf`) to ensure proper integration with `systemctl`.
+
+❗ Firstly check version of package in https://repology.org/projects/ 📅 2024-11-24 15:21:08
+  🛍️ e.g. https://repology.org/project/watchman/versions
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+
+  
+
+⚓⭕ homebrew ; https://brew.sh/
+  https://en.wikipedia.org/wiki/Homebrew_(package_manager)
+  https://github.com/homebrew
+
+(✍️ homebrew 🔪 study)
+  * Homebrew Advantages 📅 2024-11-23 21:50:18
+    💡 Allows users to maintain the latest versions of software packages.
+      🚣 Unlike Ubuntu distributions, which often lag behind with outdated versions.
+      Ensures cutting-edge features and security updates are available promptly.
+      Provides a more flexible and current package management system for macOS and Linux environments.
+
+* 🚨 (Issue: Bug); brew breaks sudo password cache 📅 2024-12-09 02:48:31
+  Description
+    Homebrew forces re-authentication for sudo commands, ignoring the sudo password cache and requiring repeated password inputs.
+
+  When
+    The issue occurs during Homebrew commands executed in the Fish shell:
+      Example steps to reproduce:
+        sudo -v
+        echo First
+        brew install tree
+        sudo -v
+        echo Two
+    The problem persists regardless of the following /etc/sudoers configurations:
+      Defaults !tty_tickets
+      Defaults timestamp_timeout=30
+
+  Explanation
+    ➡️ > This is likely a WONTFIX, sorry. We clear the sudo password cache intentionally as a precaution against privilege escalation attacks.
+      See https://brew.sh/2024/07/30/homebrew-security-audit/.
+
+  Reference 
+    https://github.com/Homebrew/brew/issues/17905
+    https://brew.sh/2024/07/30/homebrew-security-audit/
+      
+      
+      

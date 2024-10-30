@@ -1,0 +1,14 @@
+list of level 1 subjects
+  - bitbake
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ bitbake ; https://docs.yoctoproject.org/bitbake/index.html
+  The task executor and scheduler used by the OpenEmbedded build system to build image. 🔗 from "Yocto Project Terms"
+
+⚓ Bitbake 🔪 Overview ; https://docs.yoctoproject.org/bitbake/bitbake-user-manual/bitbake-user-manual-intro.html#
+  #️⃣ 1.5 The BitBake Command ; https://docs.yoctoproject.org/bitbake/bitbake-user-manual/bitbake-user-manual-intro.html#the-bitbake-command
+    -s, --show-versions   Show current and preferred versions of all recipes.
+
+    -c CMD, --cmd=CMD     Specify the task to execute.
+                          The exact options available depend on the metadata.
+                          Some examples might be 'compile' or 'populate_sysroot' or 'listtasks' may give a list of the tasks available.

@@ -1,0 +1,81 @@
+list of level 1 subjects
+  - Powershell
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓⭕ Powershell ; https://fishshell.com/
+  PowerShell is a cross-platform (Windows, Linux, and macOS) automation and configuration tool/framework that works well with your existing tools and is optimized for dealing with structured data (e.g. JSON, CSV, XML, etc.), REST APIs, and object models
+  https://en.wikipedia.org/wiki/PowerShell
+  https://github.com/PowerShell/PowerShell
+
+----------------------------------------------
+PowerShell 🔪⚓ Install ; https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell
+
+----------------------------------------------
+PowerShell 🔪⚓ Overview ; https://learn.microsoft.com/en-us/powershell/scripting/overview
+
+----------------------------------------------
+PowerShell 🔪# Learn
+  ⚓ Sample scripts for system administration ; https://learn.microsoft.com/en-us/powershell/scripting/samples/sample-scripts-for-administration
+    # Working with output
+      ⚓💡 Using Format Commands to Change Output View ; https://docs.microsoft.com/en-us/powershell/scripting/samples/using-format-commands-to-change-output-view
+        # Using Format-Wide for Single-Item Output
+        # Using Format-List for a List View
+        # Using Format-Table for Tabular Output
+          Get-ExecutionPolicy -List
+
+
+
+----------------------------------------------
+PowerShell 🔪⚓📍 About ; https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_booleans
+  ⚓🚣 about_Execution_Policies ; https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies
+----------------------------------------------
+PowerShell 🔪 Reference
+  ⚓ Microsoft.PowerShell.Security ; https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.security
+    ⚓ Get-ExecutionPolicy	; https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.security/get-executionpolicy
+    ⚓💡 Set-ExecutionPolicy	; https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.security/set-executionpolicy
+
+  ⚓ Microsoft.PowerShell.Core ; https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core
+    ⚓ Import-Module ; https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/import-module
+    ⚓ Get-Help ; https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/get-help
+  ⚓ Microsoft.PowerShell.Management ; https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management
+    ⚓ Remove-Item ; https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/remove-item
+  ⚓ Microsoft.PowerShell.Utility ; https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility
+    ⚓ Format-List ; https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/format-list
+
+
+----------------------------------------------
+PowerShell 🔪📦 modules
+  ⚓ Powershell Gallery ; https://www.powershellgallery.com/
+  🪠%shell>
+    Install-PSResource -Name PSReadLine
+    Add-Content -Path $PROFILE -Value "Import-Module PSReadLine"
+
+  ----------------------------------------------
+  ⚓⚖️ PSResourceGet ; https://learn.microsoft.com/en-us/powershell/gallery/powershellget/install-powershellget
+    Microsoft.PowerShell.PSResourceGet is preinstalled with PowerShell 7.4 and later.
+    
+    # Intall a package manager
+      ⚓ How to Install PowerShellGet and PSResourceGet ; https://learn.microsoft.com/en-us/powershell/gallery/powershellget/install-powershellget
+        📍 you no longer need to use PowerShellGet and PackageManagement.
+    
+    # PSResourceGet 🔪 Reference
+      ⚓ Microsoft.PowerShell.PSResourceGet Commands ; https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.psresourceget/
+        ⚓ Install-PSResource ; https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.psresourceget/install-psresource
+        ⚓ Uninstall-PSResource ; https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.psresourceget/uninstall-psresource
+        
+        ⚓ Get-InstalledPSResource	 ; https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.psresourceget/get-installedpsresource
+
+      ⚓ PowerShellGet Comamnds ; https://learn.microsoft.com/en-us/powershell/module/powershellget
+        ⚓ Get-InstalledModule	; https://learn.microsoft.com/en-us/powershell/module/powershellget/get-installedmodule
+        ⚓ Install-Module ; https://learn.microsoft.com/en-us/powershell/module/powershellget/install-module
+        ⚓ Uninstall-Module ; https://learn.microsoft.com/en-us/powershell/module/powershellget/uninstall-module
+    
+  ----------------------------------------------
+  ⚓ PSReadLine ; https://www.powershellgallery.com/packages/PSReadLine
+    https://github.com/PowerShell/PSReadLine
+    🪠%shell> Install-PSResource -Name PSReadLine
+  ⚓ Terminal-Icons ; https://www.powershellgallery.com/packages/Terminal-Icons
+    📝🐞 Breaking icon... and not default imported
+    https://github.com/devblackops/Terminal-Icons
+
+

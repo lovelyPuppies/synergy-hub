@@ -1,0 +1,280 @@
+list of level 1 subjects
+  - Git
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓⭕ Git ; https://git-scm.com/
+  Git is a distributed version control system that tracks versions of files.
+  https://github.com/git/git
+  https://en.wikipedia.org/wiki/Git
+----------------------------------------------
+Git 🔪 Docs ; https://git-scm.com/docs
+  #🔰 Guides
+    ⚓ Git Glossary ; https://git-scm.com/docs/gitglossary
+      #️⃣📎🚣 branch ; https://git-scm.com/docs/gitglossary
+        A "branch" is a line of development. 🚣 The most recent commit on a branch is referred to as the tip of that branch.
+      # index
+      # working tree
+      # HEAD
+      # checkout
+      # pathspec
+        ... A pathspec that begins with a colon : has special meaning. In the short form, the leading colon : is followed by zero or more "magic signature" letters (which optionally is terminated by another colon :), and the remainder is the pattern to match against the path. ...
+
+        # exclude
+          After a path matches any non-exclude pathspec, it will be run through all exclude pathspecs (magic signature: ! or its synonym ^). If it matches, the path is ignored. When there is no non-exclude pathspec, the exclusion is applied to the result set as if invoked without any pathspec.
+    ⚓ gitignore ; https://git-scm.com/docs/gitignore
+      - Two consecutive asterisks ("**")
+    ⚓💡 Revision ; https://git-scm.com/docs/gitrevisions
+      #️⃣ SPECIFYING RANGES ; https://git-scm.com/docs/gitrevisions#_specifying_ranges
+        #️⃣ Commit Exclusions ; https://git-scm.com/docs/gitrevisions#_commit_exclusions
+        #️⃣ Dotted Range Notations ; https://git-scm.com/docs/gitrevisions#_dotted_range_notations
+        #️⃣ Other <rev>^ Parent Shorthand Notations ; https://git-scm.com/docs/gitrevisions#_other_rev_parent_shorthand_notations
+      #️⃣🚣 Revision Range Summary ; https://git-scm.com/docs/gitrevisions#_revision_range_summary
+  # Setup and Config
+    ⚓⚖️ git-config ; https://git-scm.com/docs/git-config
+      #️⃣ CONFIGURATION FILE ; https://git-scm.com/docs/git-config#_configuration_file
+        #️⃣ Variables ; https://git-scm.com/docs/git-config#_variables
+          #️⃣📎 core.fileMode ; https://git-scm.com/docs/git-config#Documentation/git-config.txt-corefileMode 📅 2024-11-24 23:30:01
+            Tells Git if the 🪱 executable bit of files in the working tree is to be honored.
+
+      
+    ⚓ git config credential.helper 'store [<options>]' ; https://git-scm.com/docs/git-credential-store
+      git-credential-store - Helper to store credentials on disk
+    ⚓ git config credential.helper 'cache [<options>]' ; https://git-scm.com/docs/git-credential-cache
+      git-credential-cache - Helper to temporarily store passwords in memory
+
+  # Getting and Creating Projects
+    ⚓ git init ; https://git-scm.com/docs/git-init
+    ⚓ git clone ; https://git-scm.com/docs/git-clone
+      # OPTIONS
+        🚣 -b, --branch <name> https://git-scm.com/docs/git-clone#Documentation/git-clone.txt-code-bcodeemltnamegtem
+
+  # Basic Snapshotting
+    ⚓ git add ... ; https://git-scm.com/docs/git-add
+      git-add - Add file contents to the index
+      #️⃣ SYNOPSIS
+        git add [--verbose | -v] [--dry-run | -n] [--force | -f] [--interactive | -i] [--patch | -p]
+          [--edit | -e] [--[no-]all | --[no-]ignore-removal | [--update | -u]]
+          [--intent-to-add | -N] [--refresh] [--ignore-errors] [--ignore-missing] [--renormalize]
+          [--chmod=(+|-)x] [--pathspec-from-file=<file> [--pathspec-file-nul]]
+          [--] [<pathspec>…​]
+
+
+
+    ⚓ git rm ... ; https://git-scm.com/docs/git-rm
+      git-rm - Remove files from the working tree and from the index
+      
+      #️⃣💡 DESCRIPTION ; https://git-scm.com/docs/git-rm#_description
+        When --cached is given, the staged content has to match either the tip of the branch or the file on disk, allowing the file to be removed from just the index.
+        https://stackoverflow.com/questions/1143796/remove-a-file-from-a-git-repository-without-deleting-it-from-the-local-filesyste
+
+
+
+
+    ⚓ git commit ... ; https://git-scm.com/docs/git-commit
+      git-commit - Record changes to the repository
+      #️⃣ OPTIONS ; https://git-scm.com/docs/git-commit#_options
+        #️⃣ -a, --all ; https://git-scm.com/docs/git-commit#Documentation/git-commit.txt--a
+          Tell the command to automatically stage files that have been modified and deleted
+          🚣 , but new files you have not told Git about are not affected.
+        #️⃣ --amend ; https://git-scm.com/docs/git-commit#Documentation/git-commit.txt---amend
+
+
+
+
+    ⚓ git diff ; https://git-scm.com/docs/git-diff
+      git-diff - Show changes between commits, commit and working tree, etc
+
+
+
+    ⚓ git reset (--patch | -p) [<tree-ish>] [--] [<pathspec>…​] ; https://git-scm.com/docs/git-reset
+      git-reset - Reset current HEAD to the specified state
+      #️⃣ DESCRIPTION ; https://git-scm.com/docs/git-reset#_description
+        This means that git reset <pathspec> is the opposite of git add <pathspec>. This command is equivalent to git restore [--source=<tree-ish>] --staged <pathspec>....
+        git checkout (-p|--patch) [<tree-ish>] [--] [<pathspec>…​]
+
+
+  # Branching and Merging
+    ⚓ git branch (-m | -M) [<oldbranch>] <newbranch> ; https://git-scm.com/docs/git-branch
+      git-branch - List, create, or delete branches
+      
+      #️⃣ OPTIONS ; https://git-scm.com/docs/git-branch#_options
+        #️⃣ -m, -move ; https://git-scm.com/docs/git-branch#Documentation/git-branch.txt--m
+          Move/rename a branch, together with its config and reflog.
+
+    ⚓ git sparse-checkout (init | list | set | add | reapply | disable) [<options>] ; https://www.git-scm.com/docs/git-sparse-checkout
+      git-sparse-checkout - Reduce your working tree to a subset of tracked files
+      #️⃣ COMMANDS ; https://git-scm.com/docs/git-sparse-checkout#_commands
+        When --no-cone is passed, ...
+      #️⃣ EXAMPLES ; https://www.git-scm.com/docs/git-sparse-checkout#_examples
+        #️⃣ git sparse-checkout set MY/DIR1 SUB/DIR2 ; https://www.git-scm.com/docs/git-sparse-checkout#Documentation/git-sparse-checkout.txt-codegitsparse-checkoutsetMYDIR1SUBDIR2code
+    
+    ⚓ git merge ... [<commit>…​] ; https://git-scm.com/docs/git-merge
+      git-merge - Join two or more development histories together
+      #️⃣ SYNOPSIS ; https://git-scm.com/docs/git-merge#_synopsis
+        git merge ... [<commit>…​]
+      #️⃣ OPTIONS ; 
+        #️⃣🚣 --squash, --no-squash ; https://git-scm.com/docs/git-merge#Documentation/git-merge.txt---squash
+          Produce the working tree and index state as if a real merge happened (except for the merge information)
+          ⚠️ , but do not actually make a commit, ...
+      #️⃣💡 HOW CONFLICTS ARE PRESENTED ; https://git-scm.com/docs/git-merge#_how_conflicts_are_presented
+        The area where a pair of conflicting changes happened is marked with markers <<<<<<<, =======, and >>>>>>>.
+        The part before the ======= is typically your side, and the part afterwards is typically their side.
+    
+    ⚓ git tag ; https://git-scm.com/docs/git-tag
+
+
+
+  # Sharing and Updating Projects
+    ⚓ git push ... ; https://git-scm.com/docs/git-push
+      #️⃣ SYNOPSIS
+        git push ... [<repository> [<refspec>…​]]
+      #️⃣💡 DESCRIPTION ; https://git-scm.com/docs/git-push#_description
+        When the command line does not specify where to push with the <repository> argument, branch.*.remote configuration for the current branch is consulted to determine where to push. If the configuration is missing, it defaults to origin.
+  
+  
+  
+  # Inspection and Comparison
+    ⚓💡 git log [<options>] [<revision range>] [[--] <path>…​] ; https://git-scm.com/docs/git-log
+      git-log - Show commit logs
+      #️⃣ DESCRIPTION ; https://git-scm.com/docs/git-log#_description
+        🚣 A special notation "<commit1>..<commit2>" ... (dobule dot)
+        🚣 Another special notation is "<commit1>…​<commit2> ... (triplet dot)
+        
+      #️⃣ OPTIONS ; https://git-scm.com/docs/git-log#_options
+        #️⃣ --ancestry-path[=<commit>] ; https://git-scm.com/docs/git-log#Documentation/git-log.txt---ancestry-pathltcommitgt-1
+
+
+
+  # Patching
+    ⚓ git rebase ... ; https://git-scm.com/docs/git-rebase
+      git-rebase - Reapply commits on top of another base tip
+      #️⃣ SYNOPSIS ; https://git-scm.com/docs/git-rebase#_synopsis
+        git rebase [-i | --interactive] [<options>] [--exec <cmd>] [--onto <newbase> | --keep-base] [<upstream> [<branch>]]
+        git rebase [-i | --interactive] [<options>] [--exec <cmd>] [--onto <newbase>] --root [<branch>]
+        git rebase (--continue | --skip | --abort | --quit | --edit-todo | --show-current-patch)
+      #️⃣ DESCRIPTION ; https://git-scm.com/docs/git-rebase#_description
+
+      #️⃣ OPTIONS ; https://git-scm.com/docs/git-rebase#_options
+        #️⃣💡 -r, --rebase-merges[=(rebase-cousins|no-rebase-cousins)] ; https://git-scm.com/docs/git-rebase#Documentation/git-rebase.txt--r
+          By default, a rebase will simply drop merge commits from the todo list, and put the rebased commits into a single, linear branch.
+        #️⃣ --onto <newbase> ; https://git-scm.com/docs/git-rebase#Documentation/git-rebase.txt---ontoltnewbasegt
+
+        #️⃣ -i, --interactive ; https://git-scm.com/docs/git-rebase#Documentation/git-rebase.txt--i
+        & https://git-scm.com/docs/git-rebase#Documentation/git-rebase.txt---interactive
+        #️⃣ --root ; https://git-scm.com/docs/git-rebase#Documentation/git-rebase.txt---root
+          📝 &comment
+            &e.g. squash all commit into one
+              https://stackoverflow.com/questions/1657017/how-to-squash-all-git-commits-into-one
+              %shell> git rebase --root -i
+                replace all "pick" with "squash" except for one "pick" in interactive windows
+
+              specifiy the number of rebase commit: %shell> git rebase -i origin/HEAD~<natural_number>
+    ⚓ git git cherry-pick ... ; https://git-scm.com/docs/git-cherry-pick
+      git-cherry-pick - Apply the changes introduced by some existing commits
+
+
+
+  # Debugging
+
+
+
+  # Email
+
+
+
+  # External Systems
+
+
+
+  #💡~ Administration
+    ⚓ git gc ... ; https://git-scm.com/docs/git-gc
+      📝 &comment
+        &e.g.; %shell> git gc --aggressive --prune=now
+      git-gc - Cleanup unnecessary files and optimize the local repository
+      #️⃣ SYNOPSIS ; https://git-scm.com/docs/git-gc#_synopsis
+      #️⃣📍 AGGRESSIVE ; https://git-scm.com/docs/git-gc#_aggressive
+    ⚓ git archive ... ; https://git-scm.com/docs/git-archive
+      git-archive - Create an archive of files from a named tree
+      #️⃣ SYNOPSIS ; https://git-scm.com/docs/git-archive#_synopsis
+        git archive [--format=<fmt>] [--list] [--prefix=<prefix>/] [<extra>]
+        [-o <file> | --output=<file>] [--worktree-attributes]
+        [--remote=<repo> [--exec=<git-upload-archive>]] <tree-ish>
+        [<path>…​]
+    ⚓ git reflog ; https://git-scm.com/docs/git-reflog
+
+
+
+  # Server Admin
+
+
+
+  # Plumbing Commands
+
+(✍️ Git study)
+  - [Trend] ❌ Do not use git checkout ; https://github.blog/open-source/git/highlights-from-git-2-23/ 📅 2024-12-10 18:57:04
+    instead, use "git switch" and "git restore"
+
+  - ✅ (how-to); ways of Git remote access 📅 2023-01-11 19:00:56
+    when git remote add origin <link> and on a state in which git credentials is not registered.
+      - <link> = git@github.com:{username}/{project}.git
+        This is treated as a remote address for SSH.
+      - <link> = https://{username}:{password}@github.com/{username}/{project}.git
+        This is treated as a remote address for HTTPS.
+
+  - ✅ (how-to); how to compress LZMA like .7z by filtering files list in .gitignore 📅 2022-12-15 00:58:00
+    #!/bin/bash
+    git archive main --format=tar | xz -vz --threads=2 > ../study-python.tar.xz
+
+    # https://stackoverflow.com/questions/12075528/how-to-make-git-archive-in-7zip-format
+    # Note that xz and 7z use the same compression algorithm (LZMA). You can then unpack it with xz -d.
+    # .tar (tape archive) does not compress size, only archive.
+    # When I testing, .tar with xz will have most small size.
+  - ✅ (how-to); use SSH in git
+    Solution
+      (create SSH key)
+        a. create ssh key in a host and save the key into arbitrary path.
+          %shell> ssh-keygen -t rsa -C <comment>
+
+          then, public key and private key file (.pub) will be created.
+
+          aa. (optional) register passphrase
+          ab. (optional) save key's randomart into arbitrary path.
+        c. %shell> cat <private key file>
+        d. register SSH key in setting of git site.
+      (activate ssh agent in a terminal)
+        if you are not Windows OS, you should add public key in ssh agent in order to do any git operation
+          %shell>
+            eval $(ssh-agent);
+            ssh-add <public key file>;
+          &e.g
+            eval $(ssh-agent) && ssh-add ../../gs_store_ssh_key;
+      (clone) 
+        %shell> git clone <ssh git URL> --config core.sshCommand="ssh -i <public key file>"
+        git clone git@bitbucket.org:triiiplet/gs_store.git --config core.sshCommand="ssh -i gs_store_ssh_key"
+  - ✅ (how-to); create pull request
+    Solution
+      1 folk <original_repository> using source-code-hosting facilities.
+      2 %shell> git clone <folked_repository>
+      3 %shell> git remote add <name> <original_repository_git_url>
+        💡 📝 &comment;  privately I named as "root"
+      4 in cloned root directory, %shell> git checkout -b <new_branch_name>
+      5 git add, commit
+      6 %shell> git push origin <my_branch_name>
+      7 create pull request
+        ⚠️ 📝 &comment; 
+          it can not create pull request to other repository by using https://marketplace.visualstudio.com/items?itemName=Atlassian.atlascode.
+          so, create in bitbucket homepage
+      8 when author's original repostiroy merges pull request, remove used branch
+
+
+
+
+----------------------------------------------
+Git 🔪 Utility
+  ⚓⭕ gitignore generator ; https://www.toptal.com/developers/gitignore
+
+----------------------------------------------
+Temp
+  git rebase 기초 ; https://readystory.tistory.com/151, https://hajoung56.tistory.com/5
+  ⚓💡 Git branching strategies
+    - in Azure ; https://learn.microsoft.com/en-us/azure/devops/repos/git/git-branching-guidance

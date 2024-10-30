@@ -1,0 +1,16 @@
+list of level 1 subjects
+  - GoogleTest
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ googletest
+  https://github.com/google/googletest
+  https://google.github.io/googletest/
+----------------------------------------------
+# Get Started
+----------------------------------------------
+# Guides
+----------------------------------------------
+# Reference
+  # References
+    ⚓ Assertions ; https://google.github.io/googletest/reference/assertions.html
+      # EXPECT_EQ ; https://google.github.io/googletest/reference/assertions.html#EXPECT_EQ

@@ -1,0 +1,19 @@
+list of level 1 subjects
+  - pipx
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓⭕ pipx ; https://pipx.pypa.io/stable/
+  pipx — Install and Run Python Applications in 👍 Isolated Environments
+  pipa/pipx ; https://github.com/pypa/pipx/tree/main
+----------------------------------------------
+pipx 🔪⚓ Installation ; https://pipx.pypa.io/stable/installation/
+  #️⃣ On Linux ; https://pipx.pypa.io/stable/installation/#on-linux
+
+
+----------------------------------------------
+pipx 🔪⚓ Docs ; https://pipx.pypa.io/stable/docs/
+  #️⃣ pipx install ; https://pipx.pypa.io/stable/docs/#pipx-install
+
+  #️⃣ pipx ensurepath ; https://pipx.pypa.io/stable/docs/#pipx-ensurepath
+  #️⃣ pipx completions ; https://pipx.pypa.io/stable/docs/#pipx-completions
+

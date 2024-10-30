@@ -1,0 +1,37 @@
+list of level 1 subjects
+  - watchman
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓⭕ watchman ; https://facebook.github.io/watchman/
+  A file watching service
+  https://github.com/facebook/watchman
+  
+----------------------------------------------
+watchman 🔪⚓ Installation ; https://facebook.github.io/watchman/docs/install
+  #️⃣ Linux ; https://facebook.github.io/watchman/docs/install#linux
+    #️⃣ Ubuntu (Prebuilt Debs) ; https://facebook.github.io/watchman/docs/install#ubuntu-prebuilt-debs
+      ⚠️ Warning: Do not install the Ubuntu-supplied Watchman package. It is old and missing security, bug, and performance fixes.
+----------------------------------------------
+watchman 🔪⚓ Docs ; https://facebook.github.io/watchman/docs/
+  # Command
+    ⚓🔰 trigger ; https://facebook.github.io/watchman/docs/cmd/trigger
+      # Extended syntax
+        You may use the extended JSON trigger definition syntax detailed below. 
+        🧮 %shell> watchman -j ...
+
+        The possible trigger object properties are:
+          🪱 command specifies the command to invoke. ... 
+          🪱 append_files is an optional boolean parameter; if enabled, the command array will have the set of matching file names appended when the trigger is invoked. ...
+
+  # Expression Terms
+    ⚓ name & iname ; https://facebook.github.io/watchman/docs/expr/name
+    
+    ⚓ allof ; https://facebook.github.io/watchman/docs/expr/allof
+    ⚓ match & imatch ; https://facebook.github.io/watchman/docs/expr/match
+    ⚓ type ; https://facebook.github.io/watchman/docs/expr/type
+    ⚓ exists ; https://facebook.github.io/watchman/docs/expr/exists
+
+
+  #️⃣ pipx ensurepath ; https://pipx.pypa.io/stable/docs/#pipx-ensurepath
+  #️⃣ pipx completions ; https://pipx.pypa.io/stable/docs/#pipx-completions
+

@@ -1,0 +1,51 @@
+❌ It is community-based packages. 📅 2024-11-21 23:03:32
+  It is pirvately not recommended as well as the opinion is also written in the official choco url.
+list of level 1 subjects
+  - choco
+
+
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ choco ; https://pixi.sh/latest/
+  https://github.com/prefix-dev/pixi?tab=readme-ov-file
+  
+
+
+----------------------------------------------
+choco 🔪⚓ Install ; https://chocolatey.org/install
+----------------------------------------------
+choco 🔪⚓ Commands ; https://docs.chocolatey.org/en-us/choco/commands/
+  ⚓ choco install ; https://docs.chocolatey.org/en-us/choco/commands/install/
+  ⚓ choco find  |  choco search ; https://docs.chocolatey.org/en-us/choco/commands/find/ == https://docs.chocolatey.org/en-us/choco/commands/search/
+
+
+----------------------------------------------
+choco 🔪⚓📦 Packages ; https://community.chocolatey.org/packages
+  🪠 %shell> choco install --yes vscode git python
+
+  ⚓ vscode ; https://community.chocolatey.org/packages/vscode
+  ⚓ git ; https://community.chocolatey.org/packages/git
+  ⚓ python ; https://community.chocolatey.org/packages/python
+
+
+
+----------------------------------------------
+Temp
+  .. 특징 component 를 구성해서 environments 가 됨.
+
+  PS C:\Users\iot04\repo\cTest\python-study> pixi install
+    ⠁ default:win-64       [00:00:00] resolving pypi dependencies                                                                                               × failed to solve the pypi requirements of 'default' 'win-64'
+    ├─▶ failed to resolve pypi dependencies
+    ├─▶ Failed to build `python-study @ file:///C:/Users/iot04/repo/cTest/python-study/python_study`
+    ╰─▶ Source distribution directory contains neither readable `pyproject.toml` nor `setup.py`: `python_study`
+  
+  python_study = { path = ".", editable = true }  그냥 --format pyproject 로 생성하지 않으면 저 값이 없어서 pytest 시 경로를 찾지 못하는 문제가 발생한다.
+  ... pyproject.toml 쓰자. install 시 pyproject.toml 만 지원 가능한듯.
+🧪
+  Bug report
+    📅 2024-08-26 00:06:25
+      https://github.com/prefix-dev/pixi/issues/1907
+      WARN Using manifest C:\Users\iot04\repo\cTest\python-study\pixi.toml from `PIXI_PROJECT_MANIFEST` rather than local C:\Users\iot04\repo\opencvtest\pixi-py\pyproject.toml
+      해결한듯? python defaultInterpreter 가 전역으로 설정되어있지 않으면, 이전 pypi 가 있는 프로젝트에서 설정한 python interpreter 를 그대로 계승하여, 새 프로젝트를 열어도 항상 이전 프로젝트의 파이썬 인터프리터를 참조하여, pypi 명령어가 이전 환경을 참조한다. 
+        전역 settings.json 에 추가.   "python.defaultInterpreterPath": "C:/Python312/python.exe",  + 물론 Ctrl+Shift+N 으로 새로 창을 만들어줘야 한다. 단순히 터미널을 다시 켜는것만으로는 안됨.
+

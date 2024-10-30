@@ -1,0 +1,237 @@
+// 📝 Note that the original file of "settigns.json "must be .json file. not jsonc.
+{
+  "editor.inlayHints.enabled": "on",
+  // 🌀 Title: Theme
+  "workbench.colorTheme": "Default High Contrast",
+  // Material Icon Theme from https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme
+  "workbench.iconTheme": "material-icon-theme",
+  // 🌀 Title: Debug settings
+  // https://code.visualstudio.com/docs/languages/rust#_using-rust-analyzer-debug
+  "debug.allowBreakpointsEverywhere": true,
+  "files.associations": {
+    // "*.S": "arm",
+    ".clangd": "yaml"
+  },
+  // 🌀 Title: Indexing
+  "files.exclude": {
+    "**/.git": false,
+    "**/__pycache__": true,
+    "**/.pixi": true,
+    "**/.pytest_cache": true,
+    //
+    "build/note/**": true
+  },
+  "search.exclude": {
+    "**/.git": true,
+    "**/.pixi": true,
+    "**/.pytest_cache": true,
+    //
+    "**/build": true
+  },
+  // 🌀 Title: Terminal
+  // change VScode's tile bar color
+  "window.titleBarStyle": "custom",
+  "terminal.integrated.env.linux": {
+    //  in order to prevent from 'The "no new privileges" flag is set, which prevents sudo from running as root.' message when run sudo command in Ubuntu 📅 2024-08-31 01:29:37
+    "SUDO_ASKPASS": null
+  },
+  "terminal.integrated.defaultProfile.linux": "fish",
+  "python.defaultInterpreterPath": "${env:PYTHON_POETRY_BASE_EXECUTABLE}",
+  // 🌀 Title: Font
+  "editor.fontLigatures": true,
+  // 🌀 Title: Remote developemnt from https://code.visualstudio.com/docs/devcontainers/containers#_temporarily-forwarding-a-port
+  "remote.restoreForwardedPorts": true,
+  // 🌀 Title: Bookmarks from https://marketplace.visualstudio.com/items?itemName=alefragnani.Bookmarks
+  "bookmarks.saveBookmarksInProject": true,
+  // 🌀 Title: Emojisense from https://marketplace.visualstudio.com/items?itemName=bierner.emojisense
+  "emojisense.languages": {
+    "*": true
+  },
+  // 🌀 Title: Indentation, Bracket
+  "editcor.detectIndentation": false,
+  "editor.language.colorizedBracketPairs": [
+    ["[", "]"],
+    ["(", ")"],
+    ["{", "}"]
+  ],
+  "editor.guides.bracketPairs": "active",
+  "editor.tabSize": 2,
+  // Enable format on save globally. To disable for specific languages, use "editor.formatOnSave": false in their settings. 📅 2024-11-30 21:44:32
+  "editor.formatOnSave": true,
+  "[latex]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
+  },
+  // 🌀 Code Visualization and Comment Management
+  // Code Spell Checker ; https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker
+  "cSpell.userWords": ["Blockman", "Hancom", "linuxbrew", "wbfw"],
+  // indent-rainbow ; https://marketplace.visualstudio.com/items?itemName=oderwat.indent-rainbow
+  "indentRainbow.updateDelay": 1000,
+  "indentRainbow.colors": [
+    "rgba(255,255,64,0.15)",
+    "rgba(127,255,127,0.15)",
+    "rgba(255,127,255,0.15)",
+    "rgba(79,236,236,0.15)"
+  ],
+  "indentRainbow.errorColor": "rgba(128,32,32,0.25)",
+  // 🌀 Title: Markdown
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  // 🌀 Title: JSON
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  // 🌀 Title: Fish shell
+  "[fish]": {
+    "editor.tabSize": 4,
+    "editor.defaultFormatter": "bmalehorn.vscode-fish"
+  },
+  // 🌀 Title: Rust
+  // rust-analyzer ; https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer
+  // ☑️ To ensure Rust Analyzer's debug functionality works without errors, both "build-essential" and "cmake" must be installed.
+  // ☑️ rust-analyzer cannot recognize the path for tools installed via Linux Homebrew. So manually add the path to rustup tools like cargo. 📅 2024-11-30 20:54:20
+  "rust-analyzer.server.extraEnv": {
+    "PATH": "/home/linuxbrew/.linuxbrew/opt/rustup/bin:${env:PATH}"
+  },
+  // ☑️ rust-analyzer cannot recognize the runnerable path for tools installed via Linux Homebrew. So manually add the path to rustup tools like cargo. 📅 2024-11-30 22:43:48
+  "rust-analyzer.runnables.extraEnv": {
+    "PATH": "/home/linuxbrew/.linuxbrew/opt/rustup/bin:${env:PATH}"
+  },
+  // Use "clippy" for advanced linting instead of the default "rustc" from 🔗 https://code.visualstudio.com/docs/languages/rust#_linting
+  "rust-analyzer.check.command": "clippy",
+  "[rust]": {
+    "editor.defaultFormatter": "rust-lang.rust-analyzer",
+    "editor.tabSize": 4
+  },
+  // 🌀 Title: C/Cpp
+  "cmake.showOptionsMovedNotification": false,
+  "cmake.options.statusBarVisibility": "hidden",
+  // clcangd ; https://marketplace.visualstudio.com/items?itemName=llvm-vs-code-extensions.vscode-clangd
+  // ☑️ clcangd cannot recognize the path for tools installed via Linux Homebrew. So manually add the path to clcangd. 📅 2024-12-04 16:14:52
+  "clangd.path": "/home/linuxbrew/.linuxbrew/bin/clangd",
+  // LLDB Dap ; https://marketplace.visualstudio.com/items?itemName=llvm-vs-code-extensions.lldb-dap
+  // ☑️ LLDB Dap cannot recognize the path for tools installed via Linux Homebrew. So manually add the path to lldb-dap. 📅 2024-12-04 16:14:52
+  "lldb-dap.executable-path": "/home/linuxbrew/.linuxbrew/bin/lldb-dap",
+  // This option is duplicated if use clangd. "C_Cpp.inlayHints.parameterNames.enabled": true,
+
+  // TODO:.. 📰 It seems that STM32 extension not support or recognize clang..
+  "C_Cpp.intelliSenseEngine": "disabled",
+  // "C_Cpp.inlayHints.parameterNames.enabled": true, // not works if "C_Cpp.intelliSenseEngine": "disabled",
+  "[cpp]": {
+    // "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+  },
+  "[c]": {
+    // "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+  },
+  "C_Cpp.clang_format_fallbackStyle": "LLVM",
+  // 🌀 Title: Python Ruff setting from https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff
+  "[pytchon]": {
+    "editor.tabSize": 4,
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit",
+      "source.organizeImports": "explicit"
+    },
+    "editor.defaultFormatter": "charliermarsh.ruff"
+  },
+  // for Jupyter Notebooks:
+  "notebook.formatOnSave.enabled": true,
+  "notebook.codeActionsOnSave": {
+    "notebook.source.fixAll": "explicit",
+    "notebook.source.organizeImports": "explicit"
+  },
+  // STM32 VS Code Extension path
+  "STM32VSCodeExtension.cubeCLT.path": "/home/wbfw109v2/st/stm32cubeclt",
+  "STM32VSCodeExtension.projectCreator.executablePath": "/home/wbfw109v2/STM32CubeMX/STM32CubeMX",
+  "STM32VSCodeExtension.productFinder.executablePath": "/home/wbfw109v2/STMCUFinder/STMCUFinder",
+  // 🌀 Title: Latex setting from https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop
+  "latex-workshop.latex.recipe.default": "lualatex",
+  "latex-workshop.latex.outDir": "%WORKSPACE_FOLDER%/build/note",
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "lualatex",
+      "tools": ["lualatex"]
+    },
+    {
+      "name": "xelatex",
+      "tools": ["xelatex"]
+    },
+    {
+      "name": "latexmk",
+      "tools": ["latexmk"]
+    },
+    {
+      "name": "pdflatex -> bibtex -> pdflatex*2",
+      "tools": ["pdflatex", "bibtex", "pdflatex", "pdflatex"]
+    }
+  ],
+  "latex-workshop.latex.tools": [
+    {
+      "name": "lualatex",
+      "command": "lualatex",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-output-directory=%WORKSPACE_FOLDER%/build/note",
+        "%DOC%"
+      ],
+      "env": {}
+    },
+    {
+      "name": "latexmk",
+      "command": "latexmk",
+      "args": [
+        "-pdf",
+        "-lualatex",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-auxdir=/tmp",
+        "-outdir=%WORKSPACE_FOLDER%/build/note",
+        "%DOC%"
+      ],
+      "env": {}
+    }
+  ],
+  "cmake.pinnedCommands": [
+    "workbench.action.tasks.configureTaskRunner",
+    "workbench.action.tasks.runTask"
+  ],
+  "[arm]": {},
+  "fish-completion.assistant.v1.enabled": true,
+
+  "makefile.configureOnOpen": true,
+  "git.openRepositoryInParentFolders": "never",
+
+  // Blockman recommend ; https://marketplace.visualstudio.com/items?itemName=leodevbro.blockman
+  // except   "editor.inlayHints.enabled": "off",
+
+  "workbench.colorCustomizations": {
+    "editor.lineHighlightBackground": "#1073cf2d",
+    "editor.lineHighlightBorder": "#9fced11f"
+  },
+  "editor.wordWrap": "off",
+  "diffEditor.wordWrap": "off",
+  "editor.guides.indentation": false,
+  "security.workspace.trust.untrustedFiles": "open",
+
+  // // 🌴 Windows dedicated and User-specific settings
+  "editor.fontFamily": "Consolas, 'Segoe UI Emoji', 'JetBrainsMono Nerd Font Mono'",
+  "powershell.powerShellDefaultVersion": "PowerShell 7",
+  "powershell.powerShellAdditionalExePaths": {
+    "PowerShell 7": "C:\\Users\\wbfw1\\scoop\\apps\\pwsh\\current\\pwsh.exe"
+  },
+  "remote.SSH.remotePlatform": {
+    "tailscale-machine": "linux",
+    "tailscale-via-proxy": "linux",
+    "tailscale-machine-to-jetson-nano": "linux"
+  },
+  "markdown-mermaid.darkModeTheme": "default",
+  "dev.containers.executeInWSL": true,
+  "terminal.integrated.fontSize": 16,
+  "qt-core.qtInstallationRoot": "/home/wbfw109v2/Qt"
+}

@@ -1,0 +1,12 @@
+{
+  "clangd.enable": false,
+  "C_Cpp.intelliSenseEngine": "default",
+  "[cpp]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "ms-vscode.cpptools"
+  },
+  "[c]": {
+    "editor.formatOnSave": true
+  },
+  "editor.defaultFormatter": "ms-vscode.cpptools",
+}

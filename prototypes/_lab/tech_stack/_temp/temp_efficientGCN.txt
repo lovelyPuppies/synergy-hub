@@ -1,0 +1,205 @@
+EfficientGCN is a model designed for Skeleton-based Action Recognition.
+  This means it analyzes the movements of a person's skeleton (joint position changes) to determine what action they are performing.
+  
+  What is skeleton data?
+  Skeleton data is a set of coordinates that represents how a person’s joints move over time in 3D space.
+  These coordinates are captured using 3D cameras or pose estimation algorithms.
+  For example, when a person raises their hand or walks, their wrists, elbows, shoulders, and other joints move over time.
+  
+  EfficientGCN processes this skeleton data to recognize actions, and it uses a structure called Graph Convolutional Network (GCN).
+  GCN is suitable for learning relationships between joints in the network (for example, how arms and legs interact).
+
+  1. The overall structure of EfficientGCN.
+    EfficientGCN contains several important modules.
+    These modules analyze and process skeleton data.
+
+    a) Multiple Input Branches (MIB) Architecture.
+      Skeleton data can include several features.
+      For example, the position of joints, velocity (how position changes over time), bone lengths, and angles are all crucial.
+      MIB is designed to handle these various pieces of information simultaneously.
+      Specifically, it takes joint positions, velocities, bone lengths, and angles through different paths (branches), and fuses them at an early stage.
+      This reduces complexity while ensuring that important information is not lost.
+
+    b) Spatial Temporal Joint Attention (ST-JointAtt) Module.
+      When processing skeleton data, not all joints are equally important.
+      For example, in a waving motion, the wrist or elbow might be more important than the leg joints.
+      Also, the specific moment in time when the action happens is important.
+      The ST-JointAtt module is designed to find the important spatial (which joint is important) and temporal (which moment in time is important) information.
+      It selects the key joints and moments for better recognition.
+
+    c) Compound Scaling Strategy.
+      EfficientGCN is available in several model sizes.
+      For example, EfficientGCN-B0, EfficientGCN-B2, and EfficientGCN-B4 are different versions.
+      These models are designed to balance performance and size (number of parameters, computation).
+      The compound scaling strategy expands both the width (number of channels) and depth (number of layers) of the model simultaneously to improve performance while keeping complexity manageable.
+      This strategy helps EfficientGCN maintain efficient and powerful performance across different situations.
+
+  2. EfficientGCN’s Layers.
+    EfficientGCN uses various types of convolution layers.
+    These layers analyze skeleton data and extract important features.
+
+    a) Graph Convolution (GCN) Layer.
+      The GCN layer is specialized for processing graph-shaped data.
+      Skeleton data is represented as a graph where joints are nodes and the connections between joints are edges.
+      GCN is highly suitable for learning the relationships between joints.
+      It combines the information from each joint (node) and its neighboring joints to extract features of each joint.
+      This helps in understanding the spatial structure of the skeleton.
+
+    b) Temporal Convolution (TC) Layer.
+      The TC layer is used to analyze how skeleton data changes over time.
+      That is, it analyzes how the joints move as time progresses.
+      This layer processes data along the time axis, helping understand the temporal patterns of actions.
+
+    c) Separable Convolution (SepLayer).
+      General convolution layers require many computations.
+      Separable convolution reduces the amount of computation by dividing convolution into two steps:
+        depth-wise Convolution: It applies convolution to each channel individually.
+        Point-wise Convolution: It combines the results to form the output channels.
+      By separating the operations, it reduces the computational cost and makes the model faster and more efficient.
+
+    d) Bottleneck Layer (BottleLayer).
+      This layer uses a bottleneck structure to reduce the computational cost of the model.
+      It temporarily reduces the dimensionality of the input data and then expands it again.
+      This reduces the computation cost while preserving the important information.
+
+    e) Sandglass Layer (SGLayer).
+      The Sandglass structure combines Depth-wise and Point-wise convolution.
+      This structure is designed to reduce the computational load while maintaining performance.
+
+  3. Efficiency and Performance.
+    EfficientGCN is highly efficient compared to previous models.
+    EfficientGCN-B4, for example, is three times smaller and three times faster than state-of-the-art models while delivering similar or even better accuracy.
+    As a result, EfficientGCN achieves high performance with fewer resources.
+
+  4. Conclusion and Summary for Presentation.
+    EfficientGCN is an efficient model designed to solve complex action recognition problems.
+    It processes skeleton data efficiently while maximizing performance by using various modules and layers.
+    Specifically, the MIB architecture, ST-JointAtt module, and diverse convolution layers come together to deliver high performance with fewer parameters compared to more complex models.
+
+    For a presentation, you can explain EfficientGCN using the following structure:
+      Why EfficientGCN is necessary (background).
+      How the MIB architecture processes data.
+      The role and importance of the ST-JointAtt module.
+      How each layer processes skeleton data and improves efficiency.
+      A comparison of EfficientGCN’s performance with existing models.
+
+⚓ Softmax function ; https://en.wikipedia.org/wiki/Softmax_function
+(Subscript | 밑수) 와 (Superscript | 윗수)
+⚓ Attention (machine learning) ; https://en.wikipedia.org/wiki/Attention_(machine_learning)#Scaled_dot-product_attention
+  #️⃣ Self-attention ; https://en.wikipedia.org/wiki/Attention_(machine_learning)#Self-attention
+⚓ Word embedding ; https://en.wikipedia.org/wiki/Word_embedding
+
+디코더는 기본적으로 RNNLM(RNN Language Model)입니다. RNNLM의 개념을 기억하고 있다면 좀 더 이해하기 쉽습니다. 디코더는 초기 입력으로 문장의 시작을 의미하는 심볼 <sos>가 들어갑니다. 디코더는 <sos>가 입력되면, 다음에 등장할 확률이 높은 단어를 예측합니다. 
+https://blog.keras.io/a-ten-minute-introduction-to-sequence-to-sequence-learning-in-keras.html
+
+👍
+[트렌스포머 모델 이해하기] Self-Attention에서 Q, K, V(Query, Key, Value)의 의미 ; https://cn-c.tistory.com/68#%EB%AA%A8%EB%93%A0%20%EB%8B%A8%EC%96%B4%EB%8A%94%20%EC%A7%88%EB%AC%B8(Query)%EC%9D%B4%EC%9E%90%20%EB%8B%B5%EB%B3%80(Key)%EC%9D%B4%EB%8B%A4-1
+https://velog.io/@sjinu/%EA%B0%9C%EB%85%90%EC%A0%95%EB%A6%AC-Attention-Mechanism
+
+
+c) Separable Convolution (SepLayer)
+일반적인 컨볼루션 레이어는 많은 계산을 요구합니다. Separable Convolution은 이러한 계산량을 줄이기 위해 컨볼루션을 두 단계로 나눕니다:
+Depth-wise Convolution: 각 채널에 대해 개별적으로 컨볼루션을 수행합니다.
+Point-wise Convolution: 결과를 결합하여 출력 채널을 만듭니다.
+이렇게 나누어서 처리하면 계산량이 줄어들고, 모델이 더 빠르고 효율적으로 동작할 수 있습니다.
+d) Bottleneck Layer (BottleLayer)
+  일반적인 CNN 에서 torch 로 layer 를 구성할 때 코드는 보통 어떻게 짜나?
+
+  - Multiple Input Branches (MIB) 아키텍처
+  - 다양한 종류의 컨볼루션 레이어:
+    Graph Convolution (GCN) 레이어
+    Temporal Convolution (TC) 레이어
+    Separable Convolution (SepLayer)
+    Expanded Separable Layer (EpSepLayer)
+    Bottleneck Layer (BottleLayer)
+    Sandglass Layer (SGLayer)
+    등의 구조를 GCN에 적용해 모델의 효율성을 높입니다.
+  - Compound Scaling 전략:
+    EfficientGCN-B0, EfficientGCN-B2, EfficientGCN-B4 같은 다양한 크기의 모델
+
+
+EfficientGCNv1
+  https://github.com/zyxjtu/EfficientGCNv1
+  ACMMM 2020 ; https://dl.acm.org/doi/abs/10.1145/3394171.3413802
+  Arxiv Preprint ; https://arxiv.org/pdf/2010.09978.pdf
+
+EfficientGCN 2
+  https://github.com/attention-eq-everything/effgcn_cam
+  IEEE T-PAMI; https://ieeexplore.ieee.org/abstract/document/9729609
+  Arxiv Preprint ; https://arxiv.org/pdf/2106.15125
+
+MLP (Multi-layer Perceptron): 여러 개의 층으로 이루어진 기본적인 신경망 구조입니다. 채널 단위나 공간적 차원에서 각각 독립적으로 연산을 수행하는 방식으로 사용됩니다.
+SENet (Squeeze-and-Excitation Networks): 각 채널의 중요도를 학습하여 적응적으로 조절하는 네트워크입니다. AGC-LSTM과 MS-AAGCN도 이런 방식으로 채널별 중요도를 독립적으로 학습합니다.
+  - AGC-LSTM: Attention-Guided Convolution Long Short-Term Memory
+    LSTM 기반의 골격 행동 인식 모델로, 관절 간의 관계를 학습하는 데 MLP와 SENet 구조를 결합하여 채널마다 독립적으로 학습합니다.
+  - MS-AAGCN: Multi-Scale Adaptive Graph Convolutional Network
+    Spatial Graph Convolution을 사용한 모델로, 주로 공간적 차원에서 학습하고 다른 차원을 평균 처리하는 구조입니다.
+LSTM (Long Short-Term Memory):
+  순환 신경망(RNN)의 한 종류로, 시퀀스 데이터를 처리할 때 과거의 정보를 기억하면서 학습할 수 있도록 설계된 모델입니다.
+  특히 긴 시퀀스 데이터를 처리할 때 뛰어난 성능을 보이며, 주로 시간에 따른 데이터 처리에 사용됩니다.
+. EfficientGCN-B0, B2, B4
+  ; Base 의 약자. 
+
+
+Data input
+  애초에 여러 프레임을 입력으로 받는다.
+  시간적 정보가 복잡해지면, 더 많은 프레임을 통해 모델이 정확하게 행동을 인식할 수 있습니다. 여기서 성능은 **정확도(Accuracy)**를 의미하며, 더 많은 시간적 데이터를 사용할수록 행동의 세부적인 변화까지도 학습할 수 있어 정확도가 향상됩니다.
+  그러나 프레임 수가 늘어날수록 추론 시간과 메모리 사용량이 증가합니다. 각 프레임에 대해 추가적인 연산을 수행해야 하기 때문에 TC 레이어가 더 많이 필요해지고, 이는 계산 비용을 증가시킵니다.
+  Jetson Nano와 같은 임베디드 하드웨어에서는 처리 속도와 메모리가 제한적이기 때문에, 적절한 프레임 수를 선택하는 것이 중요합니다. YOLO, MediaPipe, EfficientGCN 등의 모델을 동시에 사용해야 한다면, 시간적 프레임 수는 적절히 줄이면서도 중요한 행동을 충분히 인식할 수 있도록 조정하는 것이 좋습니다. Jetson Nano의 성능을 고려하면, 초당 15~30 프레임으로 학습 및 추론을 진행하는 것이 적합할 수 있습니다.
+  2. EfficientGCN의 N 개 프레임 설정 가능 여부
+    EfficientGCN에서 N개의 프레임을 입력으로 설정할 수 있습니다. N은 모델이 행동을 인식할 때 사용하는 시간적 정보의 범위를 결정합니다. 즉, 한 번의 학습 또는 추론에서 몇 개의 연속된 프레임을 처리할지를 N으로 설정할 수 있습니다.
+
+    프레임 수를 조정하는 이유:
+    더 많은 프레임(N)이 사용되면 모델은 더 긴 시간 동안의 행동을 인식할 수 있어 정확도가 높아질 수 있습니다. 그러나 계산 비용이 증가하게 됩니다.
+    4개의 모델 사용 시 프레임 수 조정:
+    Jetson Nano에서 4개의 모델(YOLO, MediaPipe Hand Landmarks, Pose, EfficientGCN)을 사용할 때는 하드웨어 성능에 따라 프레임 수를 조절해야 합니다.
+    권장 프레임 수는 8~16 프레임 사이가 적합할 수 있습니다. 이는 충분한 시간적 정보를 제공하면서도 Jetson Nano의 성능 한계를 넘지 않도록 설정하는 것입니다.
+  EfficientGCN-B0
+    x-sub120 데이터셋에 대해 정확도 86.6, x-set120 데이터셋에 대해 정확도 85.0
+
+  90.2 2.73 1× 0.29 1×
+
+
+Cross-subject와 Cross-setup은 행동 인식에서 사용하는 두 가지 평가 설정입니다.
+  Cross-subject: 훈련 데이터와 테스트 데이터가 다른 주체들로부터 나온 데이터를 사용하는 방식입니다. 훈련 시 사용된 사람과 테스트 시 사용된 사람이 다르기 때문에 모델이 얼마나 일반화되었는지 평가하는 데 사용됩니다.
+  Cross-setup: 다른 환경 설정이나 다양한 상황에서 모델을 테스트하는 방식입니다. 이는 다양한 배경이나 환경에서의 행동 인식 성능을 평가합니다.
+
+, Table 7은 X-sub 벤치마크에서의 성능을 더 구체적으로 평가한 것입니다.
+FLOPs는 특정 데이터셋에서 측정된 연산량을 나타내며, 다른 데이터셋에서도 큰 차이 없이 적용될 수 있습니다. 즉, FLOPs는 주어진 모델의 구조에 따라 거의 고정적입니다.
+
+❓ 5. 커널의 길이와 골격 모델에서의 의미
+  커널은 일반적으로 합성곱 연산에서 사용하는 필터를 의미합니다. 커널의 크기와 가중치는 네트워크가 학습하는 중요한 파라미터 중 하나입니다.
+
+  L x 1 Conv에서 L은 커널의 길이를 의미합니다. 예를 들어, L=3이면 3개의 값을 합성곱으로 처리한다는 뜻입니다.
+
+  골격 기반 행동 인식에서의 커널은 관절 간의 공간적 관계를 학습하는 필터로 작동합니다. 커널은 각 관절이 다른 관절과 어떤 관계를 가지는지 학습하며, 그 크기와 길이는 학습하는 행동 패턴의 복잡도에 따라 다릅니다.
+  L×1 Conv는 1D 합성곱을 의미하며, 시간적 차원에서 연산을 수행합니다.
+
+  C_in, Cout는 각각 입력 채널 수와 출력 채널 수를 나타냅니다.
+
+  /2는 합성곱 연산 후 출력 크기를 절반으로 줄이는 연산을 의미합니다.
+
+EfficientGCN에서는 SGLayer를 비롯한 다양한 레이어가 사용됩니다.
+  모델의 구조에 따라 BasicLayer, BottleLayer, SepLayer, EpSepLayer, SGLayer 중에서 선택적으로 사용됩니다.
+  SGLayer는 효율적인 공간적, 시간적 정보를 학습하는 레이어로, depth-wise convolution과 point-wise convolution이 결합된 구조를 가집니다.
+
+1. 골격 기반 행동 인식 모델에서 Depth-wise Convolution 사용 이유
+  골격 기반 행동 인식 모델에서는 관절 위치 데이터(Joint), 속도 데이터(Velocity), 뼈 정보(Bone) 등이 채널로 들어갑니다. 이 각 채널은 행동 인식을 위한 서로 다른 특징을 나타냅니다.
+
+  각 채널 간 상호작용이 상대적으로 적은 이유:
+    관절 위치(Joint)는 각 관절의 3D 좌표입니다.
+    속도(Velocity)는 시간에 따른 관절의 이동을 나타냅니다.
+    뼈 정보(Bone)는 관절 간의 거리 및 각도를 나타냅니다.
+    이러한 채널들은 서로 독립적인 정보를 제공하며, 관절의 물리적인 위치나 이동 속도, 관절 간의 관계를 개별적으로 학습하는 것이 더 중요합니다. 그래서 각 채널을 독립적으로 처리하는 Depth-wise Convolution이 유리할 수 있습니다. 채널 간의 상호작용이 필수적이지 않기 때문에, 연산량을 줄이면서도 각 채널의 중요한 정보를 학습할 수 있습니다.
+
+
+깊이(Depth) 해석
+  **Depth(깊이)**는 일반적으로 네트워크의 레이어 수를 의미하지만, 구체적인 의미는 모델에 따라 다를 수 있습니다.
+  골격 기반 행동 인식에서는 네트워크가 얼마나 깊이 있는 특징을 학습하는지를 나타냅니다. 더 많은 레이어를 쌓으면 모델이 더 복잡한 패턴을 학습할 수 있습니다.
+  Depth는 보통 하이퍼파라미터로 설정되며, 학습 과정에서 최적의 레이어 수를 찾기 위해 조정됩니다. 보통 많은 Depth는 더 나은 성능을 제공하지만, 계산량이 증가하여 연산 시간이 길어집니다.
+
+내가 이해한 것을 검토해줘.
+(a) 에서는 Df*Df*Cin  (초기(?) 피쳐 맵이 각 채널 (R, G, B) 마다 있으므로) 입력 1과  Dk*Dk*Cout(필터 개수) 를  컨볼루션 해서 Df*Df*Cout (피쳐 맵이 필터 수마다 있으므로) 이 되는거야.
+(b) 는 애초에 정의가 필터 수를 고려하지 않고, 각 깊이 (채널) 별로 독립적으로 Df*Df 들에 대해 컨볼루션을 하므로 Dk*Dk*C_in (그래서 커널 입력에서 Cin 이 동일하다!)
+
+(c) 는 애초에 정의가 필터 수를 고려하여 합치는 연산이므로, 각 채널의 동일한 포인트 (1*1)에 대해 convolution 을 수행하고 Cout 필터 수만큼 또 반복한다. (추가 차원) 그래서 결과가 Df*Df*Cout 이 된다.

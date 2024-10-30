@@ -1,0 +1,27 @@
+⚓📍 Help:IPA/English ; https://en.wikipedia.org/wiki/Help:IPA/English
+
+- Relative Pronoun
+  forms
+    [preposition] + <Relative Pronoun> + [<phrase> | <clause>]
+  Means
+    (on | in) + <Relative Pronoun>   ;   그리고 그것은
+    with + <Relative Pronoun>   ;   그리고 그것을 가지고
+    through + <Relative Pronoun>   ;   그리고 그것을 통해서
+  References
+    https://youtu.be/zmaDL0pKGfo?t=649
+
+
+
+- Abbreviations
+  #️⃣ pron : Noun ; 📰 https://en.wiktionary.org/wiki/pron#English
+    Abbreviation of pronoun.
+    Abbreviation of pronunciation.
+  #️⃣ w/ : Preposition ; 📰 https://en.wiktionary.org/wiki/w/#English
+    Abbreviation of with.
+
+  Units
+    #️⃣ t : Symbol ; https://en.wiktionary.org/wiki/t#Translingual
+      (mathematics, physics) time
+      (manufacturing) thickness
+      
+

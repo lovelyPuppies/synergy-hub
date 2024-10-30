@@ -1,0 +1,24 @@
+list of level 1 subjects
+  - Nginx
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ Nginx ; https://nginx.org/en/docs/
+  Nginx is a web server that can also be used as a reverse proxy, load balancer, mail proxy and HTTP cache.
+  https://github.com/nginx
+  https://en.wikipedia.org/wiki/Nginx
+
+----------------------------------------------
+# Nginx 🔪 Modules reference
+  ⚓ Module ngx_http_proxy_module ; https://nginx.org/en/docs/http/ngx_http_proxy_module.html
+    #️⃣ Embedded Variables ; https://nginx.org/en/docs/http/ngx_http_proxy_module.html#variables
+      $proxy_host
+      $proxy_port
+      $proxy_add_x_forwarded_for
+
+  ⚓ Module ngx_http_core_module ; https://nginx.org/en/docs/http/ngx_http_core_module.html
+    #️⃣ Embedded Variables ; https://nginx.org/en/docs/http/ngx_http_core_module.html#variables
+      $host
+      $hostname
+      $scheme;        request scheme, “http” or “https”
+      $remote_addr;   client address
+

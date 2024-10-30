@@ -1,0 +1,162 @@
+list of level 1 subjects
+  - Design pattern
+
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+🌟 Software Design Pattern ; https://en.wikipedia.org/wiki/Software_design_pattern
+  ⚓ Gang of Four patterns, GoF, Design Patterns: Elements of Reusable Object-Oriented Software ; << https://en.wikipedia.org/wiki/Design_Patterns
+
+  
+  ⚓ Dispose pattern ; << https://en.wikipedia.org/wiki/Dispose_pattern
+
+----------------------------------------------
+⚓ Creational pattern ; https://en.wikipedia.org/wiki/Creational_pattern
+  ⚓ Builder pattern ; https://en.wikipedia.org/wiki/Builder_pattern
+    ... The intent of the Builder design pattern is to separate the construction of a complex object from its representation.
+  ⚓📎⭕ Interning ; << https://en.wikipedia.org/wiki/Interning_(computer_science)
+    #️⃣📎 Motivation ; https://en.wikipedia.org/wiki/Interning_(computer_science)#Motivation
+
+⚓ Concurrency pattern ; https://en.wikipedia.org/wiki/Concurrency_pattern
+  ⚓ thread pool ; https://en.wikipedia.org/wiki/Thread_pool
+
+⚓ Structural patterns ; https://en.wikipedia.org/wiki/Structural_pattern
+
+# Behavioral patterns
+
+⚓ Architectural pattern ; https://en.wikipedia.org/wiki/Architectural_pattern
+  The architectural patterns address various issues in software engineering, such as computer hardware performance limitations, high availability and minimization of a business risk. Some architectural patterns have been implemented within software frameworks.
+  🔗 Publish-subscribe pattern
+  ⚓⭕ Microservices ; https://en.wikipedia.org/wiki/Microservices
+  ⚓⭕ Action-Domain-Responder (ADR) ; https://en.wikipedia.org/wiki/Action%E2%80%93domain%E2%80%93responder
+    1 Components
+      r...r
+    2 📍 Comparison to MVC
+      📝 &comment
+        기존 MVC 패턴의 controller 의 역할은 다음과 같다.
+          ... Accepts input and converts it to commands for the model or view. ... (from MVC pattern in Wikipedia)
+        실제로 저 역할 뿐이므로 modern web server 에서는 저렇게 분류하기보다는 하나의 요청마다 closures 를 형성하여 SOLID 원칙도 지키기 때문에 ADR 로 구성하는 것이 더 좋은 정제된 패턴이다.
+        예를 들어 내가 한 gs_store 을 보면
+          - (frontend 에서의 요청, 단순 API) 마다 받은 json data 를 class instance 의 attribute 처럼 접근이 가능하도록 json.loads(json.dumps(request.get_json()), object_hook=lambda d: SimpleNamespace(**d)) 를 사용하고, 
+          - SOLID 의 단일 책임 원칙을 지킬 수 있도록 Data Tranfer Object 를 반환하는 클래스를 각 요청마다 정의하고, instnace attributes 를 json 형태로 반환할 수 있도록 return vars( <instantiating> ) 한다.
+          - Then, until the request for instantiation of each class that creates DTO, it becomes "Action"
+            , the internal logic for generating a response in each request becomes "Domain"
+            , and the defined class that works to make the result into an HTTP response including to draw into frontend is "Responder". (to allocate value into self.attribute variable)
+        다른 MVP, MVVM 패턴은 똑같이 웹의 기능은 같지만 part 를 다르게 나눈 것으로 생각하면 된다. 나눠진 부분으로 개별적으로 개발이 가능하도록 구현한 implementation 예시를 참조하자.
+        ⚓ No more MVC ; https://dev.to/mustardsauce/no-more-mvc-4l97
+          ⚓ Paul M. Jones ; https://github.com/pmjones
+          + So what's wrong with Model-View-Controller?
+            MVC was originally a design pattern for desktop graphical user interfaces. It has many different interpretations (try Google for definition), many similar/different successors like MVP or MVVM. However it does not describe well how (server-side!) web-app architecture looks like. That's why pmjones comes with refinement of the term MVC for web purposes.
+      - MVC controllers usually contain several methods that, when combined in a single class, require additional logic to handle properly, like pre- and post-action hooks. Each ADR action, however, is represented by separate classes or closures.
+    
+    ⚓ Model-View-Controller, MVC ; https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller
+      2 Components
+        - Model
+          The central component of the pattern. It is the application's dynamic data structure, 💡 independent of the user interface.[10] It directly manages the data, logic and rules of the application.
+        - View
+          Any representation of information such as a chart, diagram or table. Multiple views of the same information are possible, such as a bar chart for management and a tabular view for accountants.
+        - Controller
+          Accepts input and converts it to commands for the model or view.
+    ⚓ Model-view-presenter, MVP ; https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter
+      2 Overview
+        MVP is a user interface architectural pattern engineered to facilitate automated unit testing and improve the separation of concerns in presentation logic:
+          - The model is an interface defining the data to be displayed or otherwise acted upon in the user interface.
+          - The view is a note passive interface that displays data (the model) and routes user commands (events) to the presenter to act upon that data.
+          - The presenter acts upon the model and the view. It retrieves data from repositories (the model), and formats it for display in the view.
+
+      3 Implementations
+        ...
+        3.2 Java
+          r... 💡 In a Java (AWT/Swing/SWT) application, the MVP pattern can be used by letting the user interface class implement a view interface.
+          The same approach can be used for Java web-based applications, since modern Java component-based Web frameworks allow development of client-side logic using the same component approach as thick clients.
+          Implementing MVP in Google Web Toolkit requires only that some component implement the view interface. The same approach is possible using Vaadin or the Echo2 Web framework. ...r
+          ... Java frameworks include the following:
+            - Vaadin
+            ...
+        3.3 PHP
+          ... CodeIgniter
+    ⚓ Model-View-Viewmodel, MVVM, Model-View-Binder ; https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel
+      1 Components of MVVM pattern
+        ...
+        - Binder
+          ... 💡 Declarative data and command-binding are implicit in the MVVM pattern. ...
+      2 Rationale
+        ... 💡
+      3 Criticism
+        ...
+      4 Implementations
+        4.1 .NET frameworks
+          - Jellyfish
+            ...
+        4.2 JavaScript frameworks
+          - Angular
+          - Reactjs
+          - Svelte
+          - Vue.js
+        4.3 Frameworks for C++ and XAML (Windows)
+          ...
+
+    ⚓ Presentation-Abstraction-Control, PAC ; https://en.wikipedia.org/wiki/Presentation%E2%80%93abstraction%E2%80%93control
+    ⚓ Model-View-Intent, MVI ; << https://github.com/MostafaBorjali/MVI-Architecture/wiki/MVI-Architecture-Wiki
+  ⚓ Data access object (DAO) ; https://en.wikipedia.org/wiki/Data_access_object
+    ⚓ Data access layer (DAL) ; << https://en.wikipedia.org/wiki/Data_access_layer
+    ⚓📎 Frontend and backend ; << https://en.wikipedia.org/wiki/Frontend_and_backend
+      In the client–server model, the client is usually considered the frontend and the server is usually considered the backend, even when some presentation work is actually done on the server itself.
+      #️⃣ 2 Software definitions ; https://en.wikipedia.org/wiki/Frontend_and_backend#Software_definitions
+      #️⃣ 2.2 API ; https://en.wikipedia.org/wiki/Frontend_and_backend#API
+        - "Backend for Frontend" (BFF) pattern
+  ⚓ Data transfer object (DTO) ; https://en.wikipedia.org/wiki/Data_transfer_object
+  
+  ⚓ Service locator pattern ; https://en.wikipedia.org/wiki/Service_locator_pattern
+
+
+  ⚓📎 Multitenancy ; << https://en.wikipedia.org/wiki/Multitenancy
+    📝 &comment; example: https://www.techtarget.com/whatis/definition/multi-tenancy
+      - VM and container on Hardware, (Public | Private) cloud, SaaS, Serverless multi-tenancy
+    Systems designed in such manner are "shared" (rather than "dedicated" or "isolated").
+  
+  ⚓ Architecturally significant requirements ; << https://en.wikipedia.org/wiki/Architecturally_significant_requirements
+  
+# Other patterns (Specialized Patterns)
+  ⚓ lazy loading, asynchronous loading ; https://en.wikipedia.org/wiki/Lazy_loading
+    - eager loading
+    
+    #️⃣ 2 Implementations ; https://en.wikipedia.org/wiki/Lazy_loading#Implementations
+      #️⃣ 2.1 Lazy initialization ; https://en.wikipedia.org/wiki/Lazy_loading#Lazy_initialization
+        & https://en.wikipedia.org/wiki/Lazy_initialization
+  ⚓ fluent interface ; << https://en.wikipedia.org/wiki/Fluent_interface
+  ⚓📎 Resource acquisition is initialization (RAII) ; https://en.wikipedia.org/wiki/Resource_acquisition_is_initialization
+    🪱 Constructor Acquires, Destructor Releases (CADRe)
+    🪱 Scope-based Resource Management (SBRM).
+----------------------------------------------
+(Message-oriented)
+  ⚓📎⭕ Publish-subscribe pattern ; https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern
+    This pattern provides greater network scalability and a more dynamic network topology, with a resulting decreased flexibility to modify the publisher and the structure of the published data.
+  ⚓📎 Message-oriented middleware (MOM) ; https://en.wikipedia.org/wiki/Message-oriented_middleware
+    ⚓📎 Message queue, mailbox ; https://en.wikipedia.org/wiki/Message_queue
+      typically used for inter-process communication (IPC), or for inter-thread communication within the same process.
+      They use a queue for messaging – the passing of control or of content.
+    ⚓📎 Message queuing service ; https://en.wikipedia.org/wiki/Message_queuing_service
+      🚣 Service subscribers access queues and or topics to exchange data using point-to-point or publish and subscribe patterns.
+    📎⭕ Apache Kafka ; << https://en.wikipedia.org/wiki/Apache_Kafka
+      Kafka can connect to external systems (for data import/export) via Kafka Connect, and provides the Kafka Streams libraries for stream processing applications.
+      Kafka uses a binary TCP-based protocol that is optimized for efficiency and relies on a "message set" abstraction that naturally groups messages together to reduce the overhead of the network roundtrip.
+    & https://kafka.apache.org/
+    ⚓🖇️ Group Communication System (GCS) ; << https://en.wikipedia.org/wiki/Group_communication_system 📅 2022-12-29 05:59:38
+      This property is useful when constructing data replication systems.
+
+----------------------------------------------
+Resource management technique ; 
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+
+
+----------------------------------------------
+⚓Creational patterns
+Structural patterns
+Behavioral patterns
+Concurrency patterns
+Documentation
+Criticism
+See also
+References
+Further reading

@@ -1,0 +1,116 @@
+list of level 1 subjects
+  - Fish
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ Fish ; https://fishshell.com/
+  The user-friendly command line shell.
+  fish-shell/fish-shell ; https://github.com/fish-shell/fish-shell
+----------------------------------------------
+Fish 🔪⚓ Introduction ; https://fishshell.com/docs/current/index.html
+  #️⃣ Installation
+(✍️ Fish study)
+  Pratice 🛍️ e.g.
+    ❔ open .tex file 📅 2024-09-12 00:45:30
+      %shell> code **/*.tex
+    ❔ replace all .tex file with .txt file 📅 2024-09-12 00:45:30
+      %shell> for file in **/*.tex; mv $file (string replace .tex .txt $file); end
+
+----------------------------------------------
+Fish 🔪⚓ Tutorial ; https://fishshell.com/docs/current/tutorial.html
+  #️⃣ Autosuggestions ; https://fishshell.com/docs/current/tutorial.html#autosuggestions
+    ⌨️⚖️ To accept the autosuggestion, hit → (right arrow) or Control+F. To accept a single word of the autosuggestion, Alt+→ (right arrow). If the autosuggestion is not what you want, just ignore it.
+  #️⃣ Tab Completions ; https://fishshell.com/docs/current/tutorial.html#tab-completions
+    ⌨️⚖️ Press Tab and fish will attempt to complete the command, argument, or path:
+
+----------------------------------------------
+Fish 🔪⚓ Commands ; https://fishshell.com/docs/current/commands.html
+  ⚓ fish - fish - the friendly interactive shell ; https://fishshell.com/docs/current/cmds/fish.html
+    fish [OPTIONS] [FILE [ARG ...]]
+  ⚓ set - display and change shell variables ; https://fishshell.com/docs/current/cmds/set.html
+    ⌨️⚖️ To accept the autosuggestion, hit → (right arrow) or Control+F. To accept a single word of the autosuggestion, Alt+→ (right arrow). If the autosuggestion is not what you want, just ignore it.
+    # -U or --universal
+    # -export or -x
+      Causes the specified shell variable to be exported to child processes (making it an 💡 “environment variable”).
+  
+  ⚓ fish_add_path - add to the path ; https://fishshell.com/docs/current/cmds/fish_add_path.html5lib
+    💡 If a component already exists, it is not added again and stays in the same place unless the --move switch is given.
+
+
+  ⚓ string-match - match substrings ; https://fishshell.com/docs/current/cmds/string-match.html
+    If 🪱 --groups-only or -g is given, only the capturing groups will be reported - meaning the full match will be skipped. 
+    If 🪱 --regex or -r is given, PATTERN is interpreted as a Perl-compatible regular expression, which does not have to match the entire STRING.
+    
+----------------------------------------------
+Fish 🔪⚓ The fish language ; https://fishshell.com/docs/current/language.html
+
+  #️⃣🖇️📍 Variable Scope ; https://fishshell.com/docs/current/language.html#variables-scope 📅 2024-11-09 21:06:56
+    🪱 Local variables are specific to the current block of commands, and automatically erased when a specific block goes out of scope.
+      📍 for, while , if, function, begin or switch, and ends with the command end.
+
+    Variables can be explicitly set to be universal with the -U or --universal switch, global with -g or --global, function-scoped with -f or --function and 💡 local to the current block with -l or --local.
+    The scoping rules when creating or updating a variable are:
+      When a scope is explicitly given, it will be used. If a variable of the same name exists in a different scope, that variable will not be changed.
+      🚣 When no scope is given, but a variable of that name exists, the variable of the smallest scope will be modified. The scope will not be changed.
+      📍 When no scope is given and no variable of that name exists, the variable is created in function scope if inside a function, or global scope if no function is executing.
+
+
+    
+
+  💡 Typically inside functions you should use local scope: ...
+  ⭕ When in doubt, use function-scoped variables. When you need to make a variable accessible everywhere, make it global. When you need to persistently store configuration, make it universal. When you want to use a variable only in a short block, make it local.
+
+
+
+
+
+
+
+================================================
+⚓⭕ Fish shell modules ; https://code.visualstudio.com/docs
+  https://github.com/jorgebucaran/fisher
+
+  ⚓⭕ Replay.fish ; https://github.com/jorgebucaran/replay.fish 📅 2024-12-10 21:09:03
+    Why Replay.fish is Essential:
+      Replay.fish allows Fish shell to integrate changes from Bash commands dynamically. 
+      This is especially useful for developers using scripts like oe-init-build-env in Yocto,
+      which set up extensive dynamic environment variables.
+
+    Why Replay.fish is Recommended:
+      - Handles both static and dynamic environment variable needs:
+        - Supports exporting and unsetting variables.
+        - Captures and propagates changes to $PATH, aliases, and directories.
+
+      Use Cases:
+        - Yocto's oe-init-build-env:
+          replay "source /path/to/oe-init-build-env"
+          echo $CC
+        - Managing Bash aliases:
+          replay alias ll="ls -la"
+          ll
+        - Switching directories:
+          replay cd /new/path
+          pwd
+
+      Key Advantages:
+        - Avoids the need for intermediate Bash sessions.
+        - Keeps the Fish shell's session intact while applying Bash changes dynamically.
+
+      🆚 Compared Alternatives:
+        * Loadenv.fish: Limited to static .env files ; https://github.com/berk-karaal/loadenv.fish
+          - Designed for loading static environment variables from files like /etc/os-release or .env files.
+          - Supports parsing "KEY=VALUE" formatted files.
+
+          Limitation:
+            - Loadenv.fish cannot process dynamic Bash-based scripts like oe-init-build-env used in Yocto.
+            - It is suitable for static files but falls short for dynamic variable assignments.
+
+        * Fish-bax: Effective but less flexible than Replay.fish.
+        * Bass: Unreliable in some environments.
+        * Foreign-env: Partial support for environment variables but fails in complex setups.
+
+    Recommendation:
+      For Yocto-based development or any workflow requiring dynamic Bash script sourcing,
+      Replay.fish is the optimal choice to seamlessly integrate Bash capabilities into Fish.
+
+    Reference
+      https://stackoverflow.com/questions/63107468/source-env-variables-from-bitbake-made-sdk-using-fish

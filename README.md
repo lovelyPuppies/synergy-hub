@@ -12,14 +12,7 @@
 
 - [Project Setup Instructions](#project-setup-instructions)
   - [Table of contents](#table-of-contents)
-  - [Environment](#environment)
-    - [OS](#os)
-      - [In Windows](#in-windows)
-        - [Packages Managed by "choco" command](#packages-managed-by-choco-command)
-      - [In Ubuntu](#in-ubuntu)
-        - [Packages Managed by "apt" command in "fish" shell](#packages-managed-by-apt-command-in-fish-shell)
-        - [Packages Managed by "pipx" command in "fish" shell](#packages-managed-by-pipx-command-in-fish-shell)
-          - [Update commands](#update-commands)
+    - [Update commands](#update-commands)
     - [1. VSCode Extension Installation](#1-vscode-extension-installation)
     - [2. Other settings](#2-other-settings)
     - [4. \[Optional\] Device settings](#4-optional-device-settings)
@@ -28,100 +21,42 @@
   - [Changelog](#changelog)
   - [legacy](#legacy)
     - [Packages Managed by "pixi" command](#packages-managed-by-pixi-command)
+  - [Project Name Origin](#project-name-origin)
   - [📰 Doing](#-doing)
-    - [Installation in order to build with clang](#installation-in-order-to-build-with-clang)
     - [latex Workshop ; https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop](#latex-workshop--httpsmarketplacevisualstudiocomitemsitemnamejames-yulatex-workshop)
     - [VS code and github cli](#vs-code-and-github-cli)
 
-## Environment
 
-📝 if **\<Name\>** starts with Lower case, it is also used CLI command.
-
-### OS
-
-#### In Windows
-
-| Type                        | Name       | Version                                          | Reference                                                                                                             |
-| --------------------------- | ---------- | ------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- |
-| OS                          | Windows 11 | **Latest Stable;** >= 23H2 (OS Build 22631.4037) | [Download Windows 11](https://www.microsoft.com/software-download/windows11)                                          |
-| Shell                       | pwsh       | **Latest Stable;** >= 7.4.5                      | [Install Powershell](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows) |
-| Package Manager for Windows | choco      | **Latest Stable;** >= 2.3.0                      | [Install chocolatey](https://chocolatey.org/install)                                                                  |
-
-##### Packages Managed by "choco" command
-
-🗝️ This tool is used to install and manage packages that will be used globally across the Windows operating system.
-
-🪠 %shell> choco install --yes git python vscode
-
-🪠 ➡️ add [custom settings](settings-user.json) into **User-scope settings.json** in VSCode settings (⌨️ Ctrl+,)
-
-| Type                 | Name   | Version                      | Reference                                                                 |
-| -------------------- | ------ | ---------------------------- | ------------------------------------------------------------------------- |
-| SCM                  | git    | **Latest Stable;** >= 2.46.0 | [Install Git](https://community.chocolatey.org/packages/git)              |
-| Programming Language | python | **Latest Stable;** >= 3.12.5 | [Install Python](https://community.chocolatey.org/packages/python/3.12.5) |
-| IDE                  | code   | **Latest Stable;** >= 1.92.2 | [Install VS Code](https://community.chocolatey.org/packages/vscode)       |
-
----
-
-#### In Ubuntu
-🪠 To run "init_in_bash.sh" automatically calls "init_in_fish.fish" in "_initialization" directory
-
-- ➡️ [Initialization script in **Bash shell**](prototypes/_initialization/init_in_bash.sh)
-
-- ➡️ [Initialization script in **Fish shell**](prototypes/_initialization/init_in_fish.fish)
-
-| Type  | Name            | Version                         | Reference                                                      |
-| ----- | --------------- | ------------------------------- | -------------------------------------------------------------- |
-| OS    | \[WSL2\] Ubuntu | **Latest Stable;** >= 24.04 LTS | by .iso file or Microsoft Store                                |
-| Shell | fish            | **Latest Stable;** >= 3.7.1     | [Install Fish shell](https://github.com/fish-shell/fish-shell) |
-| SCM   | git             | **Latest Stable;** >= 2.43.0    | (default package)                                              |
-
-
-- 🧰 Troubleshooting
-  - If you need to shrink a drive's capacity for Ubuntu installation and the amount of space you can shrink is less than the free space, use the tool [MiniTools partition wizard](https://www.partitionwizard.com/) in order to do partitions.
-
-##### Packages Managed by "apt" command in "fish" shell
-
-| Type                        | Name  | Version                       | Reference                                             |
-| --------------------------- | ----- | ----------------------------- | ----------------------------------------------------- |
-| Python Isolated Environment | pipx  | **Latest Stable;** >= 1.4.3   | [Install pipx](https://pipx.pypa.io/stable/#on-linux) |
-| Python Version Manager      | pyenv | **Latest Stable;** >= 2.41.10 | [Install pyenv](https://github.com/pyenv/pyenv)       |
-
-##### Packages Managed by "pipx" command in "fish" shell
-
-| Type                   | Name   | Version                     | Reference                                       |
-| ---------------------- | ------ | --------------------------- | ----------------------------------------------- |
-| Python Package Manager | poetry | **Latest Stable;** >= 1.8.3 | [Install pyenv](https://github.com/pyenv/pyenv) |
-| C/C++ Package Manager  | conan  | **Latest Stable;** >= 2.7.0 | [Install conan](https://github.com/pyenv/pyenv) |
-- 📝 After to use command "poetry install", run the VSCode command in each project
-  ```bash
-    # VSCode command
-    > Python: Select Interpreter # set as python executable path in installed virtual environment
-  ```
-
-
-###### Update commands
+### Update commands
 🪠 (fish shell)
 ```bash
-# fish shell
-sudo apt update -y
-pyenv update
-sudo apt upgrade -y
+#!/usr/bin/env fish
+
+sudo apt update && sudo apt upgrade -y
+
+brew update && brew upgrade
 ```
 
 ### 1. VSCode Extension Installation
 
-- Install recommended extension of VScode (by .vscode/extensions.json)
+- %VSCode> Preferences: Open User Settings (JSON)
+  User settings
 
+- .vscode/settings.json
+  Project-specific settings
+
+- .vscode/extensions.json
+  Install recommended extension of VScode
+
+- .vscode/c_cpp_properties.json
+  Set C/C++ Intellisesne
+
+- .vscode/tasks.json
 ---
 
 ### 2. Other settings
 
 Other settings is already written to integrate with VSCode.: **Intellisense**, **Toolchain**, clang-format
-
-- .vscode/c_cpp_properties.json
-- .vscode/settings.json
-- .vscode/tasks.json
 - CMakeLists.txt
 - conanfile.py
 
@@ -134,6 +69,8 @@ If you want to use USB device specifically Camera, you must set following option
 
 #### USB camera
 
+If your OS is **Windows 11**
+
 1. First, check connected USB Camera Device is in Device Manager - Camera
 
 2. Windows Settings
@@ -143,9 +80,9 @@ If you want to use USB device specifically Camera, you must set following option
        - ☑️ Let apps access your camera
          - ☑️ Let desktop apps access your camera
 
-- FAQ
-  - ❓ When using multiple cameras, there were cases where opencv-python did not recognize two cameras on the same port hub.
-     > cv2.VideoCapture(index).isOpend() is True, but frame returned by read() is False.
+   - FAQ
+     - ❓ When using multiple cameras, there were cases where opencv-python did not recognize two cameras on the same port hub.
+        > cv2.VideoCapture(index).isOpend() is True, but frame returned by read() is False.
 
 ---
 
@@ -231,58 +168,34 @@ If you want to use USB device specifically Camera, you must set following option
 
    ---
 
+
+
+
+## Project Name Origin
+
+Written at 📅 2024-12-14 10:39:25
+
+**synergy-hub**  
+- **"Synergy"**: This project is not a single-purpose repository but a collection of diverse domains, such as notes, designs, and code. The term "synergy" represents the collaboration and integration between these elements to create greater value.  
+- **"Hub"**: It emphasizes the project's role as a central point where multiple projects and ideas converge, fostering growth and serving as a platform for further expansion.
+
+The name reflects the project's vision of being more than just a repository — a foundation for creative collaboration and innovation.
+
+
+
 ## 📰 Doing
-### Installation in order to build with clang
 
-```bash
-# shell command
-sudo apt install -y cmake build-essential llvm clang libc++-dev libc++abi-dev \
-  libva-dev libvdpau-dev libx11-xcb-dev libfontenc-dev libice-dev \
-  libsm-dev libxaw7-dev libxcomposite-dev libxcursor-dev libxdamage-dev \
-  libxext-dev libxfixes-dev libxi-dev libxinerama-dev libxkbfile-dev \
-  libxmu-dev libxmuu-dev libxpm-dev libxrandr-dev libxrender-dev \
-  libxres-dev libxss-dev libxt-dev libxtst-dev libxv-dev \
-  libxxf86vm-dev libxcb-glx0-dev libxcb-render0-dev libxcb-render-util0-dev libxcb-xkb-dev \
-  libxcb-icccm4-dev libxcb-image0-dev libxcb-keysyms1-dev libxcb-randr0-dev libxcb-shape0-dev \
-  libxcb-sync-dev libxcb-xfixes0-dev libxcb-xinerama0-dev libxcb-dri3-dev uuid-dev \
-  libxcb-cursor-dev libxcb-dri2-0-dev libxcb-dri3-dev libxcb-present-dev libxcb-composite0-dev \
-  libxcb-ewmh-dev libxcb-res0-dev libxcb-util-dev libxcb-util0-dev \
-  pkg-config ccache
 
-```
 ### latex Workshop ; https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop
 ```bash
 # shell command
 sudo apt install -y texlive-full 
 ```
+
 ### VS code and github cli
 
 ```bash
-# shell command
-# https://code.visualstudio.com/docs/setup/linux
-echo "code code/add-microsoft-repo boolean true" | sudo debconf-set-selections
-
-sudo apt-get install wget gpg
-wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
-sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
-echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" |sudo tee /etc/apt/sources.list.d/vscode.list > /dev/null
-rm -f packages.microsoft.gpg
-
-sudo apt install apt-transport-https
-sudo apt update
-sudo apt install code # or code-insiders
-
-# https://github.com/cli/cli/blob/trunk/docs/install_linux.md
-(type -p wget >/dev/null || (sudo apt update && sudo apt-get install wget -y)) \
-	&& sudo mkdir -p -m 755 /etc/apt/keyrings \
-	&& wget -qO- https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg > /dev/null \
-	&& sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg \
-	&& echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
-	&& sudo apt update \
-	&& sudo apt install gh -y
-sudo apt update
-sudo apt install gh
-
+#!/bin/bash
 gh auth login
 ```
 📰🚨 Issue tracking
@@ -290,25 +203,9 @@ gh auth login
   - https://github.com/conan-io/conan-center-index/issues/25075
 
 
-Missing Python Development Headers when install and build python libraries
+Missing Python Development Headers when install and build python libraries in pyenv ?
 ```bash
-# requirements.. e.g. when install geventhttpclient from otx[full] 
 sudo apt-get install python3-dev
 # https://rustup.rs/ when install datumaro from otx[full]
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-# Rust is installed now. Great!
-# 
-# To get started you may need to restart your current shell.
-# This would reload your PATH environment variable to include
-# Cargo's bin directory ($HOME/.cargo/bin).
-# 
-# To configure your current shell, you need to source
-# the corresponding env file under $HOME/.cargo.
-# 
-# This is usually done by running one of the following (note the leading DOT):
-# . "$HOME/.cargo/env"            # For sh/bash/zsh/ash/dash/pdksh
-# source "$HOME/.cargo/env.fish"  # For fish
-# >>> echo 'source $HOME/.cargo/env.fish' >> ~/.config/fish/config.fish
-
-
 ```

@@ -1,0 +1,20 @@
+list of level 1 subjects
+  - clang
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓⭕ clang ; https://clang.llvm.org/
+  https://en.wikipedia.org/wiki/Clang
+  Clang: a C language family frontend (C, C++, Objective C/C++, OpenCL, and CUDA) for LLVM 
+
+----------------------------------------------
+⚓ clang 🔪 clangd  ; https://clangd.llvm.org/
+  https://github.com/clangd/clangd
+  clangd is a language server, and provides C++ IDE features to editors.
+
+  ⚓ Configuration ; https://clangd.llvm.org/config#if
+    #️⃣ Files ; https://clangd.llvm.org/config#files
+      - project configuration: a file named 🪱 .clangd in the source tree.
+      - user configuration: a 🪱 config.yaml file in an OS-specific directory:
+        ...
+
+

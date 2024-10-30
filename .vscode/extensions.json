@@ -5,38 +5,96 @@
   "recommendations": [
     "ionutvmi.path-autocomplete",
     "spmeesseman.vscode-taskexplorer",
+    // IaC ~
+    "bbenoist.nix",
     // Visual ~
     "pkief.material-icon-theme",
-    // Language, Shell Script ~
-    "ms-python.python",
-    "ms-toolsai.jupyter",
+    // 🌀 Script ~
+    //  *.reg (Windows Registry Script)
+    "ionutvmi.reg",
+    //  *.ps1 (PowerShell Script)
+    "ms-vscode.powershell",
+    //  *.fish (Fish Shell Script)
+    "bmalehorn.vscode-fish",
+    "esdmr.fish-completion",
+    //  *.sh (Bash Shell Script)
+    //    The extension mads-hartmann.bash-ide-vscode is required for yocto-project.yocto-bitbake to work properly. Source: Yocto Project BitBake
+    "mads-hartmann.bash-ide-vscode",
+    // 🌀 Build system ~
+    "yocto-project.yocto-bitbake",
+    // 🌀 Langauge~
+    //   * (Intellisense)
+    "VisualStudioExptTeam.vscodeintellicode",
+    //      IntelliCode ; https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode
+    //        Tags: java, javascript, javascriptreact, python, sql, typescript, typescriptreact
+    "VisualStudioExptTeam.vscodeintellicode-completions",
+    //      IntelliCode Completions ; https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode-completions
+    //        Tags: javascript, javascriptreact, python, typescript, typescriptreact
+    "VisualStudioExptTeam.intellicode-api-usage-examples",
+    //      IntelliCode API Usage Examples ; https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.intellicode-api-usage-examples
+    //        javascript, javascriptreact, python, typescript, typescriptreact
+    //  *.cpp, .hpp, CMakeList.txt (C++)
     "ms-vscode.cmake-tools",
     "ms-vscode.cpptools-extension-pack",
+    "josetr.cmake-language-support-vscode",
+    "llvm-vs-code-extensions.vscode-clangd",
+    // 📰 .. stm32 extension.. conflict "llvm-vs-code-extensions.vscode-clangd",
+    //  *.py (Python)
+    "ms-python.python",
+    "ms-toolsai.jupyter",
+    //  *.rs (Rust)
+    "rust-lang.rust-analyzer", // https://code.visualstudio.com/docs/languages/rust#_2-install-the-rustanalyzer-extension
+    "vadimcn.vscode-lldb", // https://code.visualstudio.com/docs/languages/rust#_install-debugging-support
+    //  *.toml, zip (Configuration and minimal tooling)
     "tamasfe.even-better-toml",
     "arcanis.vscode-zipfs",
-    "bmalehorn.vscode-fish",
-    // Source Coude Mangement (SCM) ~
-    "eamodio.gitlens",
+    // 🌀 Database
+    "mtxr.sqltools", // https://marketplace.visualstudio.com/items?itemName=mtxr.sqltools
+    "mtxr.sqltools-driver-mysql", //https://marketplace.visualstudio.com/items?itemName=mtxr.sqltools-driver-mysql
+    // 🌀 Empowers developers to efficiently manage dependencies and address vulnerabilities in Rust, Go, JavaScript, TypeScript, Python and PHP projects ; https://www.dependi.io/
+    "fill-labs.dependi",
+    // 🌀 Source Coude Mangement (SCM) ~
     "mhutchie.git-graph",
-    // Embedded ~
+    // 🌀 Vision ~
+    // ⚓ Official qt extensions ; https://marketplace.visualstudio.com/publishers/TheQtCompany
+    //  "Qt Extension Pack" includes:
+    //    Qt Core ; https://marketplace.visualstudio.com/items?itemName=TheQtCompany.qt-core
+    //    Qt QML ; https://marketplace.visualstudio.com/items?itemName=TheQtCompany.qt-qml
+    //    Qt UI ; https://marketplace.visualstudio.com/items?itemName=TheQtCompany.qt-ui
+    //    Qt C++ ; https://marketplace.visualstudio.com/items?itemName=TheQtCompany.qt-cpp
+    "theqtcompany.qt", // ⚓ Qt Extension Pack ; https://marketplace.visualstudio.com/items?itemName=TheQtCompany.qt
+    // 🌀 Embedded ~
+    "ms-vscode.vscode-serial-monitor",
     "platformio.platformio-ide",
-    // Documentation ~
+    "stmicroelectronics.stm32-vscode-extension",
+    // 🌀 Documentation ~
     "james-yu.latex-workshop",
     "bierner.emojisense",
     "jsynowiec.vscode-insertdatestring",
+    //    ... deprecated: "zokugun.explicit-folding"
     "alefragnani.bookmarks",
     "1nvitr0.blocksort",
-    // Documentation 🔪 Artifacts ~
+    // Artifacts ~
     "bierner.markdown-mermaid",
-    // Formatter, Linter~
+    // 🌀 Formatter, Linter~
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
     "charliermarsh.ruff",
     "yzhang.markdown-all-in-one",
-    // Reommendations from offical VS Code ~
+    // 🌀 Code Visualization and Comment Management
+    "aaron-bond.better-comments", // Better Comments ; https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments
+    "streetsidesoftware.code-spell-checker", // Code Spell Checker ; https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker
+    "Gruntfuggly.todo-tree", // Todo Tree ; https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree
+    "oderwat.indent-rainbow", // indent-rainbow ; https://marketplace.visualstudio.com/items?itemName=oderwat.indent-rainbow
+    // Deprecated: Blockman - Highlight Nested Code Blocks ; https://marketplace.visualstudio.com/items?itemName=leodevbro.blockman 📅 2024-12-18 18:02:46
+    //    Using inline hints or monofont causes rendering to exceed the block size, making it visually inconvenient.
+    // 🌀 Reommendations from offical VS Code ~
     "ms-vscode-remote.vscode-remote-extensionpack", // from https://code.visualstudio.com/docs/remote/remote-overview
     "ms-azuretools.vscode-docker", // from https://code.visualstudio.com/docs/devcontainers/containers#_inspecting-volumes
-    "ms-python.mypy-type-checker" // from https://code.visualstudio.com/docs/python/linting
+    "ms-python.mypy-type-checker", // from https://code.visualstudio.com/docs/python/linting
+    // 🌀 ... Temp ~
+    // Only for Devicetree Source file (.dts) syntax highlight
+    "nordic-semiconductor.nrf-devicetree"
   ],
   // List of extensions recommended by VS Code that should not be recommended for users of this workspace.
   "unwantedRecommendations": []

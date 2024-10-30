@@ -1,0 +1,27 @@
+⭕⚓ Glossary of mathematical symbols ; https://en.wikipedia.org/wiki/Glossary_of_mathematical_symbols
+  #️⃣ Layout of this article ; https://en.wikipedia.org#Layout_of_this_article
+  #️⃣ Arithmetic operators ; https://en.wikipedia.org#Arithmetic_operators
+  #️⃣ Equality, equivalence and similarity ; https://en.wikipedia.org#Equality,_equivalence_and_similarity
+  #️⃣ Comparison ; https://en.wikipedia.org#Comparison
+  #️⃣ Set theory ; https://en.wikipedia.org#Set_theory
+  #️⃣ Basic logic ; https://en.wikipedia.org#Basic_logic
+  #️⃣ Blackboard bold ; https://en.wikipedia.org#Blackboard_bold
+  #️⃣ Calculus ; https://en.wikipedia.org#Calculus
+  #️⃣ Linear and multilinear algebra ; https://en.wikipedia.org#Linear_and_multilinear_algebra
+    - □⊤
+      Transpose
+  #️⃣ Advanced group theory ; https://en.wikipedia.org#Advanced_group_theory
+  #️⃣ Infinite numbers ; https://en.wikipedia.org#Infinite_numbers
+  #️⃣ Brackets ; https://en.wikipedia.org#Brackets
+    #️⃣ Parentheses ; https://en.wikipedia.org#Parentheses
+    #️⃣ Square brackets ; https://en.wikipedia.org#Square_brackets
+    #️⃣ Braces ; https://en.wikipedia.org#Braces
+    #️⃣ Other brackets ; https://en.wikipedia.org#Other_brackets
+  #️⃣ Symbols that do not belong to formulas ; https://en.wikipedia.org#Symbols_that_do_not_belong_to_formulas
+  #️⃣ Miscellaneous ; https://en.wikipedia.org#Miscellaneous
+  #️⃣ See also ; https://en.wikipedia.org#See_also
+    #️⃣ Related articles ; https://en.wikipedia.org#Related_articles
+    #️⃣ Related lists ; https://en.wikipedia.org#Related_lists
+    #️⃣ Unicode symbols ; https://en.wikipedia.org#Unicode_symbols
+  #️⃣ References ; https://en.wikipedia.org#References
+  #️⃣ External links ; https://en.wikipedia.org#External_links

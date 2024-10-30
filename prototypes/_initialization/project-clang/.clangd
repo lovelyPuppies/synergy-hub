@@ -1,0 +1,16 @@
+# Add ARM cross-compilation flags for files under "drivers/"
+If:
+  PathMatch: "prototypes/study/bsp_study/raspberry_pi/drivers/.*"
+CompileFlags:
+  Add:
+    - "--target=arm-linux-gnueabihf"
+    - "-I/usr/arm-linux-gnueabihf/include"
+    - "-L/usr/arm-linux-gnueabihf/lib"
+---
+# Add default llvm flags for files in cpp_study/"
+If:
+  PathMatch: "prototypes/study/cpp_study/.*"
+CompileFlags:
+  Add:
+    - "-I/home/linuxbrew/.linuxbrew/opt/llvm/include"
+    - "-I/home/linuxbrew/.linuxbrew/opt/llvm/include/c++/v1"

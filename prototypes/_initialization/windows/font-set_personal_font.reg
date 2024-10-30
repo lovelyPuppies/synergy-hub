@@ -1,0 +1,26 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts]
+"Segoe UI (TrueType)"=""
+"Segoe UI Italic (TrueType)"=""
+"Segoe UI Bold (TrueType)"=""
+"Segoe UI Bold Italic (TrueType)"=""
+"Segoe UI Light (TrueType)"=""
+"Segoe UI Light Italic (TrueType)"=""
+"Segoe UI Semibold (TrueType)"=""
+"Segoe UI Semibold Italic (TrueType)"=""
+"Segoe UI Thin (TrueType)"=""
+"Segoe UI Thin Italic (TrueType)"=""
+"Segoe UI ExtraLight (TrueType)"=""
+"Segoe UI ExtraLight Italic (TrueType)"=""
+"Segoe UI Medium (TrueType)"=""
+"Segoe UI Medium Italic (TrueType)"=""
+"Segoe UI ExtraBold (TrueType)"=""
+"Segoe UI ExtraBold Italic (TrueType)"=""
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\FontSubstitutes]
+"Segoe UI"="JetBrainsMono Nerd Font Mono"
+
+
+; 📝 Reboot required to apply the changes.
+; ⏫ https://www.tenforums.com/customization/170622-system-font-change-not-applying-properly.html

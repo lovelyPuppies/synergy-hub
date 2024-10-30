@@ -1,0 +1,147 @@
+Adobe Animate User Guide ; https://helpx.adobe.com/animate/user-guide.html
+  Introduction to Animate
+    What's New in Animate
+    Visual Glossary
+    Animate system requirements
+    Animate keyboard shortcuts
+    Work with Multiple File Types in Animate
+  Animation
+    Animation basics in Animate
+    How to use frames and keyframes in Animate
+    Frame-by-frame animation in Animate
+    How to work with classic tween animation in Animate
+    Brush Tool
+    Motion Guide
+    Motion tween and ActionScript 3.0
+    About Motion Tween Animation
+    Motion tween animations
+    Creating a Motion tween animation
+    Using property keyframes
+    Animate position with a tween
+    How to edit motion tweens using Motion Editor
+    Editing the motion path of a tween animation
+    Manipulating motion tweens
+    Adding custom eases
+    Creating and applying Motion presets
+    Setting up animation tween spans
+    Working with Motion tweens saved as XML files
+    Motion tweens vs Classic tweens
+    Shape tweening
+    Using Bone tool animation in Animate
+    Work with character rigging in Animate
+    How to use mask layers in Adobe Animate
+    How to work with scenes in Animate
+  Interactivity
+    How to create buttons with Animate
+    Convert Animate projects to other document type formats
+    Create and publish HTML5 Canvas documents in Animate
+    Add interactivity with code snippets in Animate
+    Creating custom HTML5 Components
+    Using Components in HTML5 Canvas
+    Creating custom Components: Examples
+    Code Snippets for custom Components
+    Best practices - Advertising with Animate
+    Virtual Reality authoring and publishing
+  Workspace and workflow
+    Creating and managing Paint brushes
+    Using Google fonts in HTML5 Canvas documents
+    Using Creative Cloud Libraries and Adobe Animate
+    Use the Stage and Tools panel for Animate
+    Animate workflow and workspace
+    Using web fonts in HTML5 Canvas documents
+    Timelines and ActionScript
+    Working with multiple timelines
+    Set preferences
+    Using Animate authoring panels
+    Create timeline layers with Animate
+    Export animations for mobile apps and game engines
+    Moving and copying objects
+    Templates
+    Find and Replace in Animate
+    Undo, redo, and the History panel
+    Keyboard shortcuts
+    How to use the timeline in Animate
+    Creating HTML extensions
+    Optimization options for Images and Animated GIFs
+    Export settings for Images and GIFs
+    Assets Panel in Animate
+  Multimedia and Video
+    Transforming and combining graphic objects in Animate
+    Creating and working with symbol instances in Animate
+    Image Trace
+    How to use sound in Adobe Animate
+    Exporting SVG files
+    Create video files for use in Animate
+    How to add a video in Animate
+    Draw and create objects with Animate
+    Reshape lines and shapes
+    Strokes, fills, and gradients with Animate CC
+    Working with Adobe Premiere Pro and After Effects
+    Color Panels in Animate CC
+    Opening Flash CS6 files with Animate
+    Work with classic text in Animate
+    Placing artwork into Animate
+    Imported bitmaps in Animate
+    3D graphics
+    Working with symbols in Animate
+    Draw lines & shapes with Adobe Animate
+    Work with the libraries in Animate
+    Exporting Sounds
+    Selecting objects in Animate CC
+    Working with Illustrator AI files in Animate
+    Applying blend modes
+    Arranging objects
+    Automating tasks with the Commands menu
+    Multilanguage text
+    Using camera in Animate
+    Graphic filters
+    Sound and ActionScript
+    Drawing preferences
+    Drawing with the Pen tool
+  Platforms
+    Convert Animate projects to other document type formats
+    Custom Platform Support
+    Create and publish HTML5 Canvas documents in Animate
+    Creating and publishing a WebGL document
+    How to package applications for AIR for iOS
+    Publishing AIR for Android applications
+    Publishing for Adobe AIR for desktop
+    ActionScript publish settings
+    Best practices - Organizing ActionScript in an application
+    How to use ActionScript with Animate
+    Accessibility in the Animate workspace
+    Writing and managing scripts
+    Enabling Support for Custom Platforms
+    Custom Platform Support Overview
+    Working with Custom Platform Support Plug-in
+    Debugging ActionScript 3.0
+    Enabling Support for Custom Platforms
+  Exporting and Publishing
+    How to export files from Animate CC
+    OAM publishing
+    Exporting SVG files
+    Export graphics and videos with Animate
+    Publishing AS3 documents
+    Export animations for mobile apps and game engines
+    Exporting Sounds
+    Best practices - Tips for creating content for mobile devices
+    Best practices - Video conventions
+    Best practices - SWF application authoring guidelines
+    Best practices - Structuring FLA files
+    Best Practices to optimize FLA files for Animate
+    ActionScript publish settings
+    Specify publish settings for Animate
+    Exporting projector files
+    Export Images and Animated GIFs
+    HTML publishing templates
+    Working with Adobe Premiere Pro and After Effects
+    Quick share and publish your animations
+  Troubleshooting
+    Fixed issues
+    Known issues
+Learn Animate ; https://creativecloud.adobe.com/cc/learn/app/animate
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+
+Dictionary
+

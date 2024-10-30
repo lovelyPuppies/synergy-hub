@@ -1,0 +1,100 @@
+# %shell> poetry install --with web,db,vision
+
+[tool.poetry]
+name = "study-core"
+version = "0.1.0"
+description = ""
+authors = ["wbfw109 <wbfw109@gmail.com>"]
+packages = [
+    { include= "wbfw109/libs", from = "src/python"},
+    { include= "wbfw109/open_source", from = "src/python"}
+]
+exclude = ["src/python/wbfw109/libs/utilities/self"]
+
+
+[tool.poetry.dependencies]
+python = "~3.12.0"
+tomlkit = "^0.11.6"
+# visualization ~
+ipykernel = "*"
+jupyter = "^1.0.0"
+pandas = "^2.2.0"
+matplotlib = "^3.6.2"
+svgling = "^0.3.1"
+networkx = "^3.0"
+openpyxl = "^3.1.2"
+selenium = "^4.18.1"
+pathvalidate = "^3.2.0"
+beautifulsoup4 = "^4.12.3"
+pymupdf = "^1.24.10"
+spacy = "^3.7.6"
+webdriver-manager = "^4.0.2"
+cairosvg = "^2.7.1"
+waifu2x-ncnn-py = "^2.0.0"
+pillow-avif-plugin = "^1.4.6"
+realesrgan = {git = "https://github.com/xinntao/Real-ESRGAN.git"}
+torch = "^2.4.1"
+torchvision = "^0.19.1"
+lxml = "^5.3.0"
+playwright = "^1.47.0"
+llvmlite = "^0.43.0"
+numba = "^0.60.0"
+
+[tool.poetry.group.dev.dependencies]
+bandit = "*"
+pyclean = "^2.2.0"
+autoflake = "^2.0.0"
+pydocstringformatter = "^0.7.2"
+pyupgrade = "^3.3.1"
+ruff = "^0.6.3"
+
+[tool.poetry.group.test.dependencies]
+pytest = "*"
+pytest-cov = "*"
+pytest-bdd = "*"
+# pytest-selenium = "^4.0.0"
+# pytest-factoryboy = "^2.5.1"
+
+
+
+[tool.poetry.group.db]
+optional = true
+[tool.poetry.group.db.dependencies]
+pymongo = "^4.3.3"
+sqlalchemy = {version = "^2.0.0rc2", allow-prereleases = true}
+
+[tool.poetry.group.vision]
+optional = true
+[tool.poetry.group.vision.dependencies]
+Pillow = "*"
+opencv-python = "*"
+PySide6 = "*"
+
+[tool.poetry.group.ml]
+optional = true
+[tool.poetry.group.ml.dependencies]
+pascal-voc-writer = "*"
+imgaug = "*"
+torch = "*"
+# scipy = "*"
+# imgaug = "*"
+
+[tool.poetry.group.web]
+optional = true
+[tool.poetry.group.web.dependencies]
+fastapi = "^0.88.0"
+uvicorn = {extras = ["standard"], version = "^0.20.0"}
+selenium = "^4.7.2"
+
+[tool.pytest.ini_options]
+bdd_features_base_dir = "features/"
+addopts = [
+    "--import-mode=importlib",
+]
+pythonpath = "src/python"
+
+
+[build-system]
+requires = ["poetry-core>=1.1.0"]
+build-backend = "poetry.core.masonry.api"
+

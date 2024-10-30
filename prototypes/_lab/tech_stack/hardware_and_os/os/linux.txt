@@ -1,0 +1,611 @@
+list of level 1 subjects
+  - Linux
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ Linux ; https://github.com/torvalds/linux
+  https://en.wikipedia.org/wiki/Linux
+(✍️ Linux study)
+  # ✅🚨 Ensure NVIDIA GPU is accessible by correctly setting user permissions in Container Environment 📅 2024-10-20 22:35:55
+
+    ## Issue
+
+    NVIDIA GPU devices are not accessible in the container environment.
+
+    ## When
+
+    - When connecting directly using the following command:
+
+      ```bash
+      docker run --runtime nvidia -it --rm --network=host jayfalls/l4t-20.04:full-cp311
+      ```
+
+      and executing:
+
+      ```bash
+      python3 -c 'import torch; print(f"PyTorch version: {torch.__version__}");   print(f"CUDA available:  {torch.cuda.is_available()}");   print(f"cuDNN version:   {torch.backends.cudnn.version()}"); print(torch.__config__.show());'
+      ```
+
+      - **CUDA** will be reported as **True**.
+      
+    - However, when using the **VSCode DevContainer** with a new user defined in the Dockerfile, the same command will return **CUDA: False**.
+
+    ## Deduction
+
+    - The device files are owned by the `root` user and the `video` group.
+    - Users not in the `video` group cannot access these devices, restricting GPU usage.
+
+    ## Root cause
+
+    - Non-root users need access to `/dev/nvhost-*` or `/dev/nvidia*` devices.
+    - If the user is not in the `video` group, CUDA-related frameworks like PyTorch or TensorFlow will report that the GPU is unavailable.
+
+    ## Solution
+
+    1. Add the user to the `video` group:
+
+      ```bash
+      sudo usermod -aG video <username>
+      ```
+
+    2. Verify the device files and group ownership with:
+
+      ```bash
+      ls -l /dev | grep nv
+      ```
+
+    3. Example output:
+
+      ```bash
+      crw-rw---- 1 root video 246, 0 Oct 20 14:35 /dev/nvhost-ctrl
+      crw-rw---- 1 root video 246, 1 Oct 20 14:35 /dev/nvhost-ctrl-gpu
+      ```
+
+    4. Log out and back in or restart the shell session to apply the group change:
+
+      ```bash
+      su - <username>
+      ```
+
+
+----------------------------------------------
+Linux 🔪 Man pages
+  ⚓ Man pages ; https://en.wikipedia.org/wiki/Man_page
+    #️⃣📍 Manual sections ; https://en.wikipedia.org/wiki/Man_page#Manual_sections
+      Common    Description
+      ---------------------------
+      1         General commands
+      2         System calls
+      3         Library functions, covering in particular the C standard library
+      4         Special files (usually devices, those found in /dev) and drivers
+      5         File formats and conventions
+      6         Games and screensavers
+      7         Miscellaneous
+      8         System administration commands and daemons
+
+  https://directory.fsf.org/wiki/GNU
+  https://www.gnu.org/software/#allgnupkgs
+
+⚓🧮 awk (gawk) ; https://www.gnu.org/software/gawk/manual/gawk.html
+  # 2 Running awk and gawk
+    #️⃣ 2.2 Command-Line Options ; https://www.gnu.org/software/gawk/manual/gawk.html#Command_002dLine-Options
+      -F fs
+        🪱 --field-separator fs
+
+⚓ GNU CoreUtils ; https://www.gnu.org/software/coreutils/manual/coreutils.html
+  #️⃣ 1 Introduction ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Introduction
+  #️⃣ 2 Common options ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Common-options
+    #️⃣ 2.1 Backup options ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Backup-options
+    #️⃣ 2.2 Block size ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Block-size
+    #️⃣ 2.3 Signal specifications ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Signal-specifications
+    #️⃣ 2.4 chown, chgrp, chroot, id: Disambiguating user names and IDs ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Disambiguating-names-and-IDs
+    #️⃣ 2.5 Sources of random data ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Random-sources
+    #️⃣ 2.6 Target directory ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Target-directory
+    #️⃣ 2.7 Trailing slashes ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Trailing-slashes
+    #️⃣ 2.8 Traversing symlinks ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Traversing-symlinks
+    #️⃣ 2.9 Treating / specially ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Treating-_002f-specially
+    #️⃣ 2.10 Special built-in utilities ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Special-built_002din-utilities
+    #️⃣ 2.11 Exit status ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Exit-status
+    #️⃣ 2.12 Floating point numbers ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Floating-point
+    #️⃣ 2.13 Standards conformance ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Standards-conformance
+    #️⃣ 2.14 coreutils: Multi-call program ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Multi_002dcall-invocation
+  #️⃣ 3 Output of entire files ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Output-of-entire-files
+    #️⃣ 3.1 🧮 cat: Concatenate and write files ; https://www.gnu.org/software/coreutils/manual/coreutils.html#cat-invocation
+    #️⃣ 3.2 🧮 tac: Concatenate and write files in reverse ; https://www.gnu.org/software/coreutils/manual/coreutils.html#tac-invocation
+    #️⃣ 3.3 🧮 nl: Number lines and write files ; https://www.gnu.org/software/coreutils/manual/coreutils.html#nl-invocation
+    #️⃣ 3.4 🧮 od: Write files in octal or other formats ; https://www.gnu.org/software/coreutils/manual/coreutils.html#od-invocation
+    #️⃣ 3.5 🧮 base32: Transform data into printable data ; https://www.gnu.org/software/coreutils/manual/coreutils.html#base32-invocation
+    #️⃣ 3.6 🧮 base64: Transform data into printable data ; https://www.gnu.org/software/coreutils/manual/coreutils.html#base64-invocation
+    #️⃣ 3.7 🧮 basenc: Transform data into printable data ; https://www.gnu.org/software/coreutils/manual/coreutils.html#basenc-invocation
+  #️⃣ 4 Formatting file contents ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Formatting-file-contents
+    #️⃣ 4.1 🧮 fmt: Reformat paragraph text ; https://www.gnu.org/software/coreutils/manual/coreutils.html#fmt-invocation
+    #️⃣ 4.2 🧮 pr: Paginate or columnate files for printing ; https://www.gnu.org/software/coreutils/manual/coreutils.html#pr-invocation
+    #️⃣ 4.3 🧮 fold: Wrap input lines to fit in specified width ; https://www.gnu.org/software/coreutils/manual/coreutils.html#fold-invocation
+  #️⃣ 5 Output of parts of files ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Output-of-parts-of-files
+    #️⃣ 5.1 🧮 head: Output the first part of files ; https://www.gnu.org/software/coreutils/manual/coreutils.html#head-invocation
+    #️⃣ 5.2 🧮 tail: Output the last part of files ; https://www.gnu.org/software/coreutils/manual/coreutils.html#tail-invocation
+    #️⃣ 5.3 🧮 split: Split a file into pieces. ; https://www.gnu.org/software/coreutils/manual/coreutils.html#split-invocation
+    #️⃣ 5.4 🧮 csplit: Split a file into context-determined pieces ; https://www.gnu.org/software/coreutils/manual/coreutils.html#csplit-invocation
+  #️⃣ 6 Summarizing files ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Summarizing-files
+    #️⃣ 6.1 🧮 wc: Print newline, word, and byte counts ; https://www.gnu.org/software/coreutils/manual/coreutils.html#wc-invocation
+    #️⃣ 6.2 🧮 sum: Print checksum and block counts ; https://www.gnu.org/software/coreutils/manual/coreutils.html#sum-invocation
+    #️⃣ 6.3 🧮 cksum: Print and verify file checksums ; https://www.gnu.org/software/coreutils/manual/coreutils.html#cksum-invocation
+      #️⃣ 6.3.1 cksum output modes ; https://www.gnu.org/software/coreutils/manual/coreutils.html#cksum-output-modes
+      #️⃣ 6.3.2 cksum general options ; https://www.gnu.org/software/coreutils/manual/coreutils.html#cksum-general-options
+      #️⃣ 6.3.3 cksum common options ; https://www.gnu.org/software/coreutils/manual/coreutils.html#cksum-common-options
+    #️⃣ 6.4 🧮 md5sum: Print or check MD5 digests ; https://www.gnu.org/software/coreutils/manual/coreutils.html#md5sum-invocation
+    #️⃣ 6.5 🧮 b2sum: Print or check BLAKE2 digests ; https://www.gnu.org/software/coreutils/manual/coreutils.html#b2sum-invocation
+    #️⃣ 6.6 🧮 sha1sum: Print or check SHA-1 digests ; https://www.gnu.org/software/coreutils/manual/coreutils.html#sha1sum-invocation
+    #️⃣ 6.7 🧮 sha2 utilities: Print or check SHA-2 digests ; https://www.gnu.org/software/coreutils/manual/coreutils.html#sha2-utilities
+  #️⃣ 7 Operating on sorted files ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Operating-on-sorted-files
+    #️⃣ 7.1 🧮 sort: Sort text files ; https://www.gnu.org/software/coreutils/manual/coreutils.html#sort-invocation
+    #️⃣ 7.2 🧮 shuf: Shuffling text ; https://www.gnu.org/software/coreutils/manual/coreutils.html#shuf-invocation
+    #️⃣ 7.3 🧮 uniq: Uniquify files ; https://www.gnu.org/software/coreutils/manual/coreutils.html#uniq-invocation
+    #️⃣ 7.4 🧮 comm: Compare two sorted files line by line ; https://www.gnu.org/software/coreutils/manual/coreutils.html#comm-invocation
+    #️⃣ 7.5 🧮 ptx: Produce permuted indexes ; https://www.gnu.org/software/coreutils/manual/coreutils.html#ptx-invocation
+      #️⃣ 7.5.1 General options ; https://www.gnu.org/software/coreutils/manual/coreutils.html#General-options-in-ptx
+      #️⃣ 7.5.2 Charset selection ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Charset-selection-in-ptx
+      #️⃣ 7.5.3 Word selection and input processing ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Input-processing-in-ptx
+      #️⃣ 7.5.4 Output formatting ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Output-formatting-in-ptx
+      #️⃣ 7.5.5 The GNU extensions to ptx ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Compatibility-in-ptx
+    #️⃣ 7.6 tsort: Topological sort ; https://www.gnu.org/software/coreutils/manual/coreutils.html#tsort-invocation
+      #️⃣ 7.6.1 🧮 tsort: Background ; https://www.gnu.org/software/coreutils/manual/coreutils.html#tsort-background
+  #️⃣ 8 Operating on fields ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Operating-on-fields
+    #️⃣ 8.1 🧮 cut: Print selected parts of lines ; https://www.gnu.org/software/coreutils/manual/coreutils.html#cut-invocation
+    #️⃣ 8.2 🧮 paste: Merge lines of files ; https://www.gnu.org/software/coreutils/manual/coreutils.html#paste-invocation
+    #️⃣ 8.3 🧮 join: Join lines on a common field ; https://www.gnu.org/software/coreutils/manual/coreutils.html#join-invocation
+      #️⃣ 8.3.1 General options ; https://www.gnu.org/software/coreutils/manual/coreutils.html#General-options-in-join
+      #️⃣ 8.3.2 Pre-sorting ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Sorting-files-for-join
+      #️⃣ 8.3.3 Working with fields ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Working-with-fields
+      #️⃣ 8.3.4 Controlling join’s field matching ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Paired-and-unpaired-lines
+      #️⃣ 8.3.5 Header lines ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Header-lines
+      #️⃣ 8.3.6 Union, Intersection and Difference of files ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Set-operations
+  #️⃣ 9 Operating on characters ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Operating-on-characters
+    #️⃣ 9.1 🧮 tr: Translate, squeeze, and/or delete characters ; https://www.gnu.org/software/coreutils/manual/coreutils.html#tr-invocation
+      #️⃣ 9.1.1 Specifying arrays of characters ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Character-arrays
+      #️⃣ 9.1.2 Translating ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Translating
+      #️⃣ 9.1.3 Squeezing repeats and deleting ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Squeezing-and-deleting
+    #️⃣ 9.2 🧮 expand: Convert tabs to spaces ; https://www.gnu.org/software/coreutils/manual/coreutils.html#expand-invocation
+    #️⃣ 9.3 🧮 unexpand: Convert spaces to tabs ; https://www.gnu.org/software/coreutils/manual/coreutils.html#unexpand-invocation
+  #️⃣ 10 Directory listing ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Directory-listing
+    #️⃣ 10.1 🧮 ls: List directory contents ; https://www.gnu.org/software/coreutils/manual/coreutils.html#ls-invocation
+      #️⃣ 10.1.1 Which files are listed ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Which-files-are-listed
+      #️⃣ 10.1.2 What information is listed ; https://www.gnu.org/software/coreutils/manual/coreutils.html#What-information-is-listed
+      #️⃣ 10.1.3 Sorting the output ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Sorting-the-output
+      #️⃣ 10.1.4 General output formatting ; https://www.gnu.org/software/coreutils/manual/coreutils.html#General-output-formatting
+      #️⃣ 10.1.5 Formatting file timestamps ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Formatting-file-timestamps
+      #️⃣ 10.1.6 Formatting the file names ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Formatting-the-file-names
+    #️⃣ 10.2 🧮 dir: Briefly list directory contents ; https://www.gnu.org/software/coreutils/manual/coreutils.html#dir-invocation
+    #️⃣ 10.3 🧮 vdir: Verbosely list directory contents ; https://www.gnu.org/software/coreutils/manual/coreutils.html#vdir-invocation
+    #️⃣ 10.4 🧮 dircolors: Color setup for ls ; https://www.gnu.org/software/coreutils/manual/coreutils.html#dircolors-invocation
+  #️⃣ 11 Basic operations ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Basic-operations
+    #️⃣ 11.1 🧮 cp: Copy files and directories ; https://www.gnu.org/software/coreutils/manual/coreutils.html#cp-invocation
+    #️⃣ 11.2 🧮 dd: Convert and copy a file ; https://www.gnu.org/software/coreutils/manual/coreutils.html#dd-invocation
+    #️⃣ 11.3 🧮 install: Copy files and set attributes ; https://www.gnu.org/software/coreutils/manual/coreutils.html#install-invocation
+    #️⃣ 11.4 🧮 mv: Move (rename) files ; https://www.gnu.org/software/coreutils/manual/coreutils.html#mv-invocation
+    #️⃣ 11.5 🧮 rm: Remove files or directories ; https://www.gnu.org/software/coreutils/manual/coreutils.html#rm-invocation
+    #️⃣ 11.6 🧮 shred: Remove files more securely ; https://www.gnu.org/software/coreutils/manual/coreutils.html#shred-invocation
+  #️⃣ 12 Special file types ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Special-file-types
+    #️⃣ 12.1 🧮 link: Make a hard link via the link syscall ; https://www.gnu.org/software/coreutils/manual/coreutils.html#link-invocation
+    #️⃣ 12.2 🧮 ln: Make links between files ; https://www.gnu.org/software/coreutils/manual/coreutils.html#ln-invocation
+    #️⃣ 12.3 🧮 mkdir: Make directories ; https://www.gnu.org/software/coreutils/manual/coreutils.html#mkdir-invocation
+    #️⃣ 12.4 🧮 mkfifo: Make FIFOs (named pipes) ; https://www.gnu.org/software/coreutils/manual/coreutils.html#mkfifo-invocation
+    #️⃣ 12.5 🧮 mknod: Make block or character special files ; https://www.gnu.org/software/coreutils/manual/coreutils.html#mknod-invocation
+    #️⃣ 12.6 🧮 readlink: Print value of a symlink or canonical file name ; https://www.gnu.org/software/coreutils/manual/coreutils.html#readlink-invocation
+    #️⃣ 12.7 🧮 rmdir: Remove empty directories ; https://www.gnu.org/software/coreutils/manual/coreutils.html#rmdir-invocation
+    #️⃣ 12.8 🧮 unlink: Remove files via the unlink syscall ; https://www.gnu.org/software/coreutils/manual/coreutils.html#unlink-invocation
+  #️⃣ 13 Changing file attributes ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Changing-file-attributes
+    #️⃣ 13.1 🧮 chown: Change file owner and group ; https://www.gnu.org/software/coreutils/manual/coreutils.html#chown-invocation
+    #️⃣ 13.2 🧮 chgrp: Change group ownership ; https://www.gnu.org/software/coreutils/manual/coreutils.html#chgrp-invocation
+    #️⃣ 13.3 🧮 chmod: Change access permissions ; https://www.gnu.org/software/coreutils/manual/coreutils.html#chmod-invocation
+    #️⃣ 13.4 🧮 touch: Change file timestamps ; https://www.gnu.org/software/coreutils/manual/coreutils.html#touch-invocation
+  #️⃣ 14 File space usage ; https://www.gnu.org/software/coreutils/manual/coreutils.html#File-space-usage
+    #️⃣ 14.1 📎🧮 df: Report file system space usage ; https://www.gnu.org/software/coreutils/manual/coreutils.html#df-invocation
+      ‘-h’, ‘--human-readable’
+    #️⃣ 14.2 📎🧮 du: Estimate file space usage ; https://www.gnu.org/software/coreutils/manual/coreutils.html#du-invocation
+      ‘-h’, ‘--human-readable’
+
+    #️⃣ 14.3 🧮 stat: Report file or file system status ; https://www.gnu.org/software/coreutils/manual/coreutils.html#stat-invocation
+    #️⃣ 14.4 🧮 sync: Synchronize cached writes to persistent storage ; https://www.gnu.org/software/coreutils/manual/coreutils.html#sync-invocation
+    #️⃣ 14.5 🧮 truncate: Shrink or extend the size of a file ; https://www.gnu.org/software/coreutils/manual/coreutils.html#truncate-invocation
+  #️⃣ 15 Printing text ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Printing-text
+    #️⃣ 15.1 🧮 echo: Print a line of text ; https://www.gnu.org/software/coreutils/manual/coreutils.html#echo-invocation
+    #️⃣ 15.2 🧮 printf: Format and print data ; https://www.gnu.org/software/coreutils/manual/coreutils.html#printf-invocation
+    #️⃣ 15.3 🧮 yes: Print a string until interrupted ; https://www.gnu.org/software/coreutils/manual/coreutils.html#yes-invocation
+  #️⃣ 16 Conditions ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Conditions
+    #️⃣ 16.1 🧮 false: Do nothing, unsuccessfully ; https://www.gnu.org/software/coreutils/manual/coreutils.html#false-invocation
+    #️⃣ 16.2 🧮 true: Do nothing, successfully ; https://www.gnu.org/software/coreutils/manual/coreutils.html#true-invocation
+    #️⃣ 16.3 🧮 test: Check file types and compare values ; https://www.gnu.org/software/coreutils/manual/coreutils.html#test-invocation
+      #️⃣ 16.3.1 File type tests ; https://www.gnu.org/software/coreutils/manual/coreutils.html#File-type-tests
+      #️⃣ 16.3.2 Access permission tests ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Access-permission-tests
+      #️⃣ 16.3.3 File characteristic tests ; https://www.gnu.org/software/coreutils/manual/coreutils.html#File-characteristic-tests
+      #️⃣ 16.3.4 String tests ; https://www.gnu.org/software/coreutils/manual/coreutils.html#String-tests
+      #️⃣ 16.3.5 Numeric tests ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Numeric-tests
+      #️⃣ 16.3.6 Connectives for test ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Connectives-for-test
+    #️⃣ 16.4 🧮 expr: Evaluate expressions ; https://www.gnu.org/software/coreutils/manual/coreutils.html#expr-invocation
+      #️⃣ 16.4.1 String expressions ; https://www.gnu.org/software/coreutils/manual/coreutils.html#String-expressions
+      #️⃣ 16.4.2 Numeric expressions ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Numeric-expressions
+      #️⃣ 16.4.3 Relations for expr ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Relations-for-expr
+      #️⃣ 16.4.4 Examples of using expr ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Examples-of-expr
+  
+
+  #️⃣ 17 Redirection ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Redirection
+    #️⃣ 17.1 📎🧮 tee: Redirect output to multiple files or processes ; https://www.gnu.org/software/coreutils/manual/coreutils.html#tee-invocation
+
+
+  #️⃣ 18 File name manipulation ; https://www.gnu.org/software/coreutils/manual/coreutils.html#File-name-manipulation
+    #️⃣ 18.1 📎🧮 basename: Strip directory and suffix from a file name ; https://www.gnu.org/software/coreutils/manual/coreutils.html#basename-invocation
+    #️⃣ 18.2 📎🧮 dirname: Strip last file name component ; https://www.gnu.org/software/coreutils/manual/coreutils.html#dirname-invocation
+    
+    #️⃣ 18.3 🧮 pathchk: Check file name validity and portability ; https://www.gnu.org/software/coreutils/manual/coreutils.html#pathchk-invocation
+    #️⃣ 18.4 🧮 mktemp: Create temporary file or directory ; https://www.gnu.org/software/coreutils/manual/coreutils.html#mktemp-invocation
+    #️⃣ 18.5 🧮 realpath: Print the resolved file name. ; https://www.gnu.org/software/coreutils/manual/coreutils.html#realpath-invocation
+      #️⃣ 18.5.1 Realpath usage examples ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Realpath-usage-examples
+  #️⃣ 19 Working context ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Working-context
+    #️⃣ 19.1 🧮 pwd: Print working directory ; https://www.gnu.org/software/coreutils/manual/coreutils.html#pwd-invocation
+    #️⃣ 19.2 🧮 stty: Print or change terminal characteristics ; https://www.gnu.org/software/coreutils/manual/coreutils.html#stty-invocation
+      #️⃣ 19.2.1 Control settings ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Control
+      #️⃣ 19.2.2 Input settings ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Input
+      #️⃣ 19.2.3 Output settings ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Output
+      #️⃣ 19.2.4 Local settings ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Local
+      #️⃣ 19.2.5 Combination settings ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Combination
+      #️⃣ 19.2.6 Special characters ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Characters
+      #️⃣ 19.2.7 Special settings ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Special
+    #️⃣ 19.3 🧮 printenv: Print all or some environment variables ; https://www.gnu.org/software/coreutils/manual/coreutils.html#printenv-invocation
+    #️⃣ 19.4 🧮 tty: Print file name of terminal on standard input ; https://www.gnu.org/software/coreutils/manual/coreutils.html#tty-invocation
+  #️⃣ 20 User information ; https://www.gnu.org/software/coreutils/manual/coreutils.html#User-information
+    #️⃣ 20.1 🧮🚣 id: Print user identity ; https://www.gnu.org/software/coreutils/manual/coreutils.html#id-invocation
+    #️⃣ 20.2 🧮 logname: Print current login name ; https://www.gnu.org/software/coreutils/manual/coreutils.html#logname-invocation
+    #️⃣ 20.3 🧮 whoami: Print effective user name ; https://www.gnu.org/software/coreutils/manual/coreutils.html#whoami-invocation
+    #️⃣ 20.4 🧮 groups: Print group names a user is in ; https://www.gnu.org/software/coreutils/manual/coreutils.html#groups-invocation
+    #️⃣ 20.5 🧮 users: Print login names of users currently logged in ; https://www.gnu.org/software/coreutils/manual/coreutils.html#users-invocation
+    #️⃣ 20.6 🧮 who: Print who is currently logged in ; https://www.gnu.org/software/coreutils/manual/coreutils.html#who-invocation
+    #️⃣ 20.7 🧮 pinky: Print information about users ; https://www.gnu.org/software/coreutils/manual/coreutils.html#pinky-invocation
+
+
+
+  #️⃣📎 21 System context ; https://www.gnu.org/software/coreutils/manual/coreutils.html#System-context
+    #️⃣ 21.1 🧮 date: Print or set system date and time ; https://www.gnu.org/software/coreutils/manual/coreutils.html#date-invocation
+      ✅ (how-to); print with ISO format 📅 2024-12-13 19:44:14
+        %shell> date --iso-8601=seconds
+
+      #️⃣ 21.1.1 Specifying the format of date output ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Date-format-specifiers
+        #️⃣ 21.1.1.1 Time conversion specifiers ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Time-conversion-specifiers
+        #️⃣ 21.1.1.2 Date conversion specifiers ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Date-conversion-specifiers
+        #️⃣ 21.1.1.3 Literal conversion specifiers ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Literal-conversion-specifiers
+        #️⃣ 21.1.1.4 Padding and other flags ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Padding-and-other-flags
+      #️⃣ 21.1.2 Setting the time ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Setting-the-time
+      #️⃣ 21.1.3 Options for date ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Options-for-date
+      #️⃣ 21.1.4 Examples of date ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Examples-of-date
+    
+
+    #️⃣ 21.2 🧮 arch: Print machine hardware name ; https://www.gnu.org/software/coreutils/manual/coreutils.html#arch-invocation
+    #️⃣ 21.3 🧮 nproc: Print the number of available processors ; https://www.gnu.org/software/coreutils/manual/coreutils.html#nproc-invocation
+    #️⃣ 21.4 🧮 uname: Print system information ; https://www.gnu.org/software/coreutils/manual/coreutils.html#uname-invocation
+      ‘-a’, ‘--all’
+        Print all of the below information, except omit the processor type and the hardware platform name if they are unknown.
+      ‘-r’, ‘--kernel-release’
+        Print the kernel release.
+      (✍️ uname 🔪 study)
+        Usage 🛍️ e.g. 📅 2024-12-13 20:11:55
+          /lib/modules/$(uname -r):
+            - The directory containing the module files (.ko) and build environment for the currently running kernel version.
+            - Used by kernel module management commands such as modprobe and insmod.
+            - Important files:
+              - modules.dep: Contains dependency information between modules.
+              - modules.alias: Provides alias information for modules.
+
+          /lib/modules/$(uname -r)/build:
+            - A symbolic link pointing to the source and build environment for the current kernel.
+            - Referenced when building external kernel modules (e.g., drivers).
+            - Example usage:
+              make -C /lib/modules/$(uname -r)/build M=$(pwd) modules
+
+
+
+
+    #️⃣ 21.5 🧮 hostname: Print or set system name ; https://www.gnu.org/software/coreutils/manual/coreutils.html#hostname-invocation
+    #️⃣ 21.6 🧮 hostid: Print numeric host identifier ; https://www.gnu.org/software/coreutils/manual/coreutils.html#hostid-invocation
+
+    #️⃣ 21.7 🧮 uptime: Print system uptime and load ; https://www.gnu.org/software/coreutils/manual/coreutils.html#uptime-invocation
+      ✅ (how-to); print with format 📅 2024-12-13 19:41:31
+        %shell> uptime | awk '{gsub(",", "", $3); print "Current Time: " $1, $2, "\nUptime: " $3, "\nUsers Logged In: " $4, "\nLoad Average (1min, 5min, 15min): " $8, $9, $10}'
+
+
+
+  #️⃣ 22 SELinux context ; https://www.gnu.org/software/coreutils/manual/coreutils.html#SELinux-context
+    #️⃣ 22.1 🧮 chcon: Change SELinux context of file ; https://www.gnu.org/software/coreutils/manual/coreutils.html#chcon-invocation
+    #️⃣ 22.2 🧮 runcon: Run a command in specified SELinux context ; https://www.gnu.org/software/coreutils/manual/coreutils.html#runcon-invocation
+  #️⃣ 23 Modified command invocation ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Modified-command-invocation
+    #️⃣ 23.1 🧮 chroot: Run a command with a different root directory ; https://www.gnu.org/software/coreutils/manual/coreutils.html#chroot-invocation
+    #️⃣ 23.2 🧮 env: Run a command in a modified environment ; https://www.gnu.org/software/coreutils/manual/coreutils.html#env-invocation
+      #️⃣ 23.2.1 General options ; https://www.gnu.org/software/coreutils/manual/coreutils.html#General-options-2
+      #️⃣ 23.2.2 -S/--split-string usage in scripts ; https://www.gnu.org/software/coreutils/manual/coreutils.html#g_t_002dS_002f_002d_002dsplit_002dstring-usage-in-scripts
+        #️⃣ Testing and troubleshooting ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Testing-and-troubleshooting
+      #️⃣ 23.2.3 -S/--split-string syntax ; https://www.gnu.org/software/coreutils/manual/coreutils.html#g_t_002dS_002f_002d_002dsplit_002dstring-syntax
+        #️⃣ Splitting arguments by whitespace ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Splitting-arguments-by-whitespace
+        #️⃣ Escape sequences ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Escape-sequences
+        #️⃣ Comments ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Comments
+        #️⃣ Environment variable expansion ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Environment-variable-expansion
+    #️⃣ 23.3 🧮 nice: Run a command with modified niceness ; https://www.gnu.org/software/coreutils/manual/coreutils.html#nice-invocation
+    #️⃣ 23.4 🧮 nohup: Run a command immune to hangups ; https://www.gnu.org/software/coreutils/manual/coreutils.html#nohup-invocation
+    #️⃣ 23.5 🧮 stdbuf: Run a command with modified I/O stream buffering ; https://www.gnu.org/software/coreutils/manual/coreutils.html#stdbuf-invocation
+    #️⃣ 23.6 🧮 timeout: Run a command with a time limit ; https://www.gnu.org/software/coreutils/manual/coreutils.html#timeout-invocation
+  #️⃣ 24 Process control ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Process-control
+    #️⃣ 24.1 🧮 kill: Send a signal to processes ; https://www.gnu.org/software/coreutils/manual/coreutils.html#kill-invocation
+  #️⃣ 25 Delaying ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Delaying
+    #️⃣ 25.1 🧮 sleep: Delay for a specified time ; https://www.gnu.org/software/coreutils/manual/coreutils.html#sleep-invocation
+  #️⃣ 26 Numeric operations ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Numeric-operations
+    #️⃣ 26.1 🧮 factor: Print prime factors ; https://www.gnu.org/software/coreutils/manual/coreutils.html#factor-invocation
+    #️⃣ 26.2 🧮 numfmt: Reformat numbers ; https://www.gnu.org/software/coreutils/manual/coreutils.html#numfmt-invocation
+      #️⃣ 26.2.1 General options ; https://www.gnu.org/software/coreutils/manual/coreutils.html#General-options-3
+      #️⃣ 26.2.2 Possible units: ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Possible-units_003a
+      #️⃣ 26.2.3 Examples of using numfmt ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Examples-of-using-numfmt
+    #️⃣ 26.3 🧮 seq: Print numeric sequences ; https://www.gnu.org/software/coreutils/manual/coreutils.html#seq-invocation
+  #️⃣ 27 File permissions ; https://www.gnu.org/software/coreutils/manual/coreutils.html#File-permissions
+    #️⃣ 27.1 Structure of File Mode Bits ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Mode-Structure
+    #️⃣ 27.2 Symbolic Modes ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Symbolic-Modes
+      #️⃣ 27.2.1 Setting Permissions ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Setting-Permissions
+      #️⃣ 27.2.2 Copying Existing Permissions ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Copying-Permissions
+      #️⃣ 27.2.3 Changing Special Mode Bits ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Changing-Special-Mode-Bits
+      #️⃣ 27.2.4 Conditional Executability ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Conditional-Executability
+      #️⃣ 27.2.5 Making Multiple Changes ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Multiple-Changes
+      #️⃣ 27.2.6 The Umask and Protection ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Umask-and-Protection
+    #️⃣ 27.3 Numeric Modes ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Numeric-Modes
+    #️⃣ 27.4 Operator Numeric Modes ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Operator-Numeric-Modes
+    #️⃣ 27.5 Directories and the Set-User-ID and Set-Group-ID Bits ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Directory-Setuid-and-Setgid
+  #️⃣ 28 File timestamps ; https://www.gnu.org/software/coreutils/manual/coreutils.html#File-timestamps
+  #️⃣ 29 Date input formats ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Date-input-formats
+    #️⃣ 29.1 General date syntax ; https://www.gnu.org/software/coreutils/manual/coreutils.html#General-date-syntax
+    #️⃣ 29.2 Calendar date items ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Calendar-date-items
+    #️⃣ 29.3 Time of day items ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Time-of-day-items
+    #️⃣ 29.4 Time zone items ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Time-zone-items
+    #️⃣ 29.5 Combined date and time of day items ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Combined-date-and-time-of-day-items
+    #️⃣ 29.6 Day of week items ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Day-of-week-items
+    #️⃣ 29.7 Relative items in date strings ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Relative-items-in-date-strings
+    #️⃣ 29.8 Pure numbers in date strings ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Pure-numbers-in-date-strings
+    #️⃣ 29.9 Seconds since the Epoch ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Seconds-since-the-Epoch
+    #️⃣ 29.10 Specifying time zone rules ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Specifying-time-zone-rules
+    #️⃣ 29.11 Authors of parse_datetime ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Authors-of-parse_005fdatetime
+  #️⃣ 30 Version sort ordering ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Version-sort-ordering
+    #️⃣ 30.1 Version sort overview ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Version-sort-overview
+      #️⃣ 30.1.1 Using version sort in GNU Coreutils ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Using-version-sort-in-GNU-Coreutils
+      #️⃣ 30.1.2 Version sort and natural sort ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Version-sort-and-natural-sort
+      #️⃣ 30.1.3 Variations in version sort order ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Variations-in-version-sort-order
+    #️⃣ 30.2 Version sort implementation ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Version-sort-implementation
+      #️⃣ 30.2.1 Version-sort ordering rules ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Version_002dsort-ordering-rules
+      #️⃣ 30.2.2 Version sort is not the same as numeric sort ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Version-sort-is-not-the-same-as-numeric-sort
+      #️⃣ 30.2.3 Version sort punctuation ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Version-sort-punctuation
+      #️⃣ 30.2.4 Punctuation vs letters ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Punctuation-vs-letters
+      #️⃣ 30.2.5 The tilde ‘~’ ; https://www.gnu.org/software/coreutils/manual/coreutils.html#The-tilde-_007e
+      #️⃣ 30.2.6 Version sort ignores locale ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Version-sort-ignores-locale
+    #️⃣ 30.3 Differences from Debian version sort ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Differences-from-Debian-version-sort
+      #️⃣ 30.3.1 Hyphen-minus ‘-’ and colon ‘:’ ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Hyphen_002dminus-and-colon
+      #️⃣ 30.3.2 Special priority in GNU Coreutils version sort ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Special-priority-in-GNU-Coreutils-version-sort
+      #️⃣ 30.3.3 Special handling of file extensions ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Special-handling-of-file-extensions
+      #️⃣ 30.3.4 Comparing two strings using Debian’s algorithm ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Comparing-two-strings-using-Debian_0027s-algorithm
+    #️⃣ 30.4 Advanced Topics ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Advanced-version-sort-topics
+      #️⃣ 30.4.1 Reporting version sort bugs ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Reporting-version-sort-bugs
+      #️⃣ 30.4.2 Other version/natural sort implementations ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Other-version_002fnatural-sort-implementations
+      #️⃣ 30.4.3 Related source code ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Related-source-code
+  #️⃣ 31 Opening the Software Toolbox ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Opening-the-software-toolbox
+    #️⃣ Toolbox Introduction ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Toolbox-introduction
+    #️⃣ I/O Redirection ; https://www.gnu.org/software/coreutils/manual/coreutils.html#I_002fO-redirection
+    #️⃣ The who Command ; https://www.gnu.org/software/coreutils/manual/coreutils.html#The-who-command
+    #️⃣ The cut Command ; https://www.gnu.org/software/coreutils/manual/coreutils.html#The-cut-command
+    #️⃣ The sort Command ; https://www.gnu.org/software/coreutils/manual/coreutils.html#The-sort-command
+    #️⃣ The uniq Command ; https://www.gnu.org/software/coreutils/manual/coreutils.html#The-uniq-command
+    #️⃣ Putting the Tools Together ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Putting-the-tools-together
+  #️⃣ Appendix A GNU Free Documentation License ; https://www.gnu.org/software/coreutils/manual/coreutils.html#GNU-Free-Documentation-License
+  #️⃣ Index ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Concept-index
+
+
+⚓ systemd ; https://systemd.io/
+  https://en.wikipedia.org/wiki/Systemd
+  https://github.com/systemd/systemd
+
+  ⚓ Directives ; https://www.freedesktop.org/software/systemd/man/latest/systemd.directives.html
+  ⚓ Index ; https://www.freedesktop.org/software/systemd/man/latest/
+
+
+  ⚓ systemd docs ; https://www.freedesktop.org/software/systemd/man/latest/
+    📝 It redirect freedesktop.org
+    
+    ⚓🧮 systemctl ; https://www.freedesktop.org/software/systemd/man/latest/systemctl.html#
+      #️⃣🚀 halt ; https://www.freedesktop.org/software/systemd/man/latest/systemctl.html#halt
+        alternative of "halt", "shutdown"
+      #️⃣🚀 poweroff ; https://www.freedesktop.org/software/systemd/man/latest/systemctl.html#poweroff
+        alternative of "poweroff", "shutdown"
+      #️⃣🚀 reboot ; https://www.freedesktop.org/software/systemd/man/latest/systemctl.html#reboot
+        alternative of "reboot", "shutdown"
+      
+
+    ⚓🧮 hostnamectl — Control the system hostname ; https://www.freedesktop.org/software/systemd/man/latest/hostnamectl.html
+      # hostname [NAME]
+        If no argument is given, print the system hostname. If an optional argument NAME is provided then the command changes the system hostname to NAME.
+
+
+⚓ OpenSSH ; https://www.openssh.com/manual.html
+  ⚓ 🧮 ssh(1) — The basic rlogin/rsh-like client program ; https://man.openbsd.org/ssh
+    ssh connects and logs into the specified destination, which may be specified as either [user@]hostname or a URI of the form ssh://[user@]hostname[:port]. 
+    📝❗ Hostname can be ip 🚣 host name, ip address, domain name, 
+    
+    # ENVIRONMENT
+      #🪱 SSH_CONNECTION
+        Identifies the client and server ends of the connection.
+        The variable contains four space-separated values: (client IP address, client port number, server IP address, and server port number.)
+        
+⚓🧮 sudo ; https://www.sudo.ws/docs/man/1.8.27/sudo.man/
+  #️⃣ ENVIRONMENT ; https://www.sudo.ws/docs/man/1.8.27/sudo.man/#DESCRIPTION
+    #📍 SUDO_ASKPASS
+      🛍️ e.g. in VSCode in Ubuntu 📅 2024-08-31 01:45:54
+        "terminal.integrated.env.linux": {
+          // in order to prevent from 'The "no new privileges" flag is set, which prevents sudo from running as root.' message when run sudo command in Ubuntu 📅 2024-08-31 01:29:37
+          "SUDO_ASKPASS": null
+        },
+
+
+⚓ syscalls ; https://man7.org/linux/man-pages/man2/syscalls.2.html
+  📝 It seems that syscalls may be maintained by https://www.kernel.org/ but, the site redirect to the man7.org for docs.
+  The list of system calls that are available as at Linux 5.14 (or in a few cases only on older kernels) is as follows: ...
+
+  ⚓ ioctl(2) ; https://man7.org/linux/man-pages/man2/ioctl.2.html
+
+
+
+⚓⭕🧮 netplan (📦 netplan.io) ; https://netplan.io/
+  📝⚠️ 
+  ⚓🔰 Netpaln Tutorial ; https://netplan.readthedocs.io/en/latest/tutorial/
+    # Checking Netplan configuration files
+      💡 /etc/netplan/
+  ⚓ netplan YAML ; https://netplan.readthedocs.io/en/latest/netplan-yaml/
+
+
+⚓ kmod ; https://github.com/kmod-project/kmod/tree/master/man
+  ⚓🧮🚣 lsmod ; https://github.com/kmod-project/kmod/blob/master/man/lsmod.8.scd
+    lsmod - Show the status of modules in the Linux Kernel
+    🛍️ e.g.  📅 2024-12-04 14:31:23
+      # 🚣 The PL2303 from Prolific Technology, Inc. is a USB-to-serial converter chip primarily used to emulate serial ports on modern computers that lack native support for serial communication.
+      lsusb
+        >> Bus 001 Device 007: ID 067b:2303 Prolific Technology, Inc. PL2303 Serial Port / Mobile Phone Data Cable
+      lsmod | grep pl2303
+        >> pl2303                 36864  1
+
+
+⚓ util-linux ; https://github.com/util-linux/util-linux
+  https://en.wikipedia.org/wiki/Util-linux
+  https://git.kernel.org/pub/scm/utils/util-linux/util-linux.git
+  https://www.kernel.org/pub/linux/utils/util-linux/
+
+  # schedutils
+  # sys-utils; system utilities
+    ⚓🧮 dmesg(1) ; https://github.com/util-linux/util-linux/blob/master/sys-utils/dmesg.1.adoc
+    ⚓🧮 mount(8) ; https://github.com/util-linux/util-linux/blob/master/sys-utils/mount.8.adoc
+      mount a filesystem
+  # term-utils; terminal utilities
+    ⚓🧮 script(1) ; https://github.com/util-linux/util-linux/blob/master/term-utils/script.1.adoc
+      make typescript of terminal session
+  # misc-utils; miscellaneous utilities
+    ⚓🧮 lsblk(8) ; https://github.com/util-linux/util-linux/blob/master/misc-utils/lsblk.8.adoc
+      lsblk - list block devices
+  ...
+
+
+⚓ e2fsprogs ; https://www.mankier.com/package/e2fsprogs
+  📝 Complete manuals are available only after building the source (no official prebuilt man page available)
+    , because e2fsprogs utilities (e.g., e2label.8.in) use templates for generating man pages.
+
+  https://github.com/tytso/e2fsprogs
+  https://en.wikipedia.org/wiki/E2fsprogs
+
+  ⚓🧮 lsattr(1) ; https://www.mankier.com/1/lsattr
+    list ext2/ext3/ext4 file attributes
+  ⚓🧮 chattr(1) ; https://www.mankier.com/1/chattr
+    change file attributes on a Linux file system
+    The letters 'aAcCdDeFijmPsStTux' select the new attributes for the files:
+      - append only (a)
+      - no atime updates (A)
+      - compressed (c)
+      - no copy on write (C)
+      - no dump (d)
+      - synchronous directory updates (D)
+      - extent format (e)
+      - case-insensitive directory lookups (F)
+      - immutable (i)
+      - data journaling (j)
+      - don't compress (m)
+      - project hierarchy (P)
+      - secure deletion (s)
+      - synchronous updates (S)
+      - no tail-merging (t)
+      - top of directory hierarchy (T)
+      - undeletable (u)
+      - and direct access for files (x).
+
+  ⚓🧮 mkfs.ext4(8) ; https://www.mankier.com/8/mke2fs
+    create an ext2/ext3/ext4 file system
+  ⚓🧮 e2label(8) ; https://www.mankier.com/8/e2label
+    Change the label on an ext2/ext3/ext4 file system
+
+⚓ avahi ; https://www.mankier.com/package/e2fsprogs
+  https://avahi.org/
+  📝 Complete manuals are available only after building the source (no official prebuilt man page available)
+  📝 %shell>
+    apt-cache show libnss-mdns | rg Priority
+      >> Priority: optional
+    apt-cache show avahi-daemon | rg Priority
+      >> Priority: optional
+    apt-cache show avahi-utils | rg Priority
+      >> Priority: optional
+  ⚓🧮 avahi-browse(1) ; https://www.mankier.com/1/avahi-browse
+  ⚓🧮 avahi-publish(1) ; https://www.mankier.com/1/avahi-publish
+  ⚓🧮 avahi-resolve(1) ; https://www.mankier.com/1/avahi-resolve
+  ⚓🧮 avahi-set-host-name(1) ; https://www.mankier.com/1/avahi-set-host-name
+
+
+----------------------------------------------
+Linux 🔪 Build Tools
+
+⚓ Make ; https://www.gnu.org/software/make/manual/make.html
+  #️⃣ 6 How to Use Variables ; https://www.gnu.org/software/make/manual/make.html#Using-Variables
+    #️⃣ 6.14 Other Special Variables ; https://www.gnu.org/software/make/manual/make.html#Special-Variables
+      #🪱 MAKEFILE_LIST
+        Contains the name of each makefile that is parsed by make, in the order in which it was parsed.
+        🚣 Thus, if the first thing a makefile does is examine the last word in this variable, it will be the name of the current makefile.
+
+  #️⃣ 8 Functions for Transforming Text ; https://www.gnu.org/software/make/manual/make.html#Functions
+    #️⃣ 8.2 Functions for String Substitution and Analysis 
+      #️⃣🪱 $(lastword names…) ; https://www.gnu.org/software/make/manual/make.html#index-lastword
+    #️⃣ 8.3 Functions for File Names ; https://www.gnu.org/software/make/manual/make.html#File-Name-Functions
+      #️⃣🪱 $(dir names…) ; https://www.gnu.org/software/make/manual/make.html#index-dir
+      #️⃣🪱 $(abspath names…) ; https://www.gnu.org/software/make/manual/make.html#index-abspath-1
+  
+  #️⃣ 10 Using Implicit Rules ; https://www.gnu.org/software/make/manual/make.html#Implicit-Rules
+    #️⃣ 10.3 Variables Used by Implicit Rules ; https://www.gnu.org/software/make/manual/make.html#Implicit-Variables
+      #🪱 CC
+        Program for compiling C programs; default ‘cc’.
+
+
+
+----------------------------------------------
+Linux library only
+⚓ GNU library (libc; glibc); https://sourceware.org/glibc/manual/latest/html_mono/libc.html
+  #️⃣ 13 Low-Level Input/Output ; https://sourceware.org/glibc/manual/latest/html_mono/libc.html#Low_002dLevel-I_002fO
+    #️⃣ 13.15 File Status Flags ; https://sourceware.org/glibc/manual/latest/html_mono/libc.html#File-Status-Flags
+      #️⃣ 13.15.1 File Access Modes ; https://sourceware.org/glibc/manual/latest/html_mono/libc.html#File-Access-Modes
+        The file access mode allows a file descriptor to be used for reading, writing, both, or neither. The access mode is determined when the file is opened, and never change.
+
+        - Macro: 🪱 int O_RDONLY
+          Open the file for read access.
+
+        - Macro: 🪱 int O_WRONLY
+          Open the file for write access.
+
+        - Macro: 🪱 int O_RDWR
+          Open the file for both reading and writing.
+
+        - Macro: 🪱 int O_PATH
+          Obtain a file descriptor for the file, ...
+
+        - Macro: 🪱 int O_ACCMODE
+          This macro is a mask that can be bitwise-ANDed with the file status flag value to recover the 🪱 file access mode
+          , assuming that a standard file access mode is in use.
+      #️⃣ 13.15.1 Open-time Flags ; https://sourceware.org/glibc/manual/latest/html_mono/libc.html#File-Access-Modes
+
+  #️⃣ 14 File System Interface ; https://sourceware.org/glibc/manual/latest/html_mono/libc.html#File-System-Interface-1
+    #️⃣ 14.9 File Attributes ; https://sourceware.org/glibc/manual/latest/html_mono/libc.html#File-Attributes
+      #️⃣ 14.9.3 Testing the Type of a File ; https://sourceware.org/glibc/manual/latest/html_mono/libc.html#Testing-the-Type-of-a-File
+        - 🪱 S_IFBLK
+          ; Special Inode File BLK (Block device)
+          This is the file type constant of a block-oriented device file.
+      #️⃣ 14.9.5 The Mode Bits for Access Permission ; https://sourceware.org/glibc/manual/latest/html_mono/libc.html#The-Mode-Bits-for-Access-Permission
+        - 🪱 S_IRWXU
+          ; Special Inode Read Write eXecute for User
+          This is equivalent to ‘(S_IRUSR | S_IWUSR | S_IXUSR)’.
+        - 🪱 S_IRWXG
+          ; Special Inode Read Write eXecute for Group
+          This is equivalent to ‘(S_IRGRP | S_IWGRP | S_IXGRP)’.
+        - 🪱 S_IRWXO
+          ; Special Inode Read Write eXecute for Others
+          This is equivalent to ‘(S_IROTH | S_IWOTH | S_IXOTH)’.
+
+

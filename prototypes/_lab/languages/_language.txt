@@ -1,0 +1,63 @@
+emoji
+  🛕:hindu_temple: template
+
+
+💡 (Ebook, Ebook reader) 를 사용하자.
+  ebook 으로는 PDF보다 ePUB 를 선호하지만 어쩔 수 없는 경우에는 PDF 를 사용하고, 따로 정리를 한다.
+  ebook 은 글자 클릭에 의한 오디오 재생도 지원하고, 글자 인식을 하는데 OCR 이 필요없고, 읽을 때 글자 크기도 조절이 가능하다.
+  
+  전용 플랫폼으로만 읽어야 하는 경우 다른 Ebook reader 로 읽을 수 없으므로 Google play books 와 같은 Ebook (.PDF, .EPub)판매 사이트를 사용한다.
+        
+
+
+
+📍 (말하기, 듣기, 읽기, 쓰기) 중에 (말하기, 듣기) 가 가장 중요하다.
+  이것이 습관이 우선적으로 되어서 (말하기, 듣기, 읽기, 쓰기) 시 머릿속에서 억양, 톤이 어떤 유형으로든 재생이 되어야 기억에 잘 남는다.
+  다음으로 (문법책, 단어책) 을 골라서 함께 천천히 공부해야 하는데, 아무거나 체계적이고 완벽하게 정리된 두꺼운 책을 고르면 된다.
+  이를 통해 최종적으로 어떤 자격증을 취득할 때 조금만 공부해도 쉽게 취득할 수 있도록 하는 루트가 제일 중요하다.
+
+
+  ➡️🛕 template: Language Study Plan
+    <language>
+      * (Speaking, Listening)
+      * (Reading, Writing)
+      * Certifications
+      
+  * English
+    * (Speaking, Listening)
+      ➡️
+        - ⚓ usespeak ; https://www.usespeak.com
+      
+        References
+          https://aiheroes.ai/community/126
+    
+
+    * (Reading, Writing)
+      📖 [EPUB] 김일곤 - The Complete English Grammar book.
+      📖 차승현 - 생활속 외래어로 영단어 정복하기 A-F: 친숙한 외래어와 어원, 연상암기 기법으로 23,000단어 정복
+      📖 차승현 - 생활속 외래어로 영단어 정복하기 Q-Z: 친숙한 외래어와 어원, 연상암기 기법으로 23,000단어 정복
+      📖 차승현 - 생활속 외래어로 영단어 정복하기 G-P: 친숙한 외래어와 어원, 연상암기 기법으로 23,000단어 정복
+    
+
+    * Certifications
+      - OPIC
+      - TOEIC speaing
+      - TOEIC
+
+
+
+  * Japanese
+    * (Speaking, Listening)
+      ➡️
+        - ⚓ Duolingo ; https://ko.duolingo.com/
+          영어의 usespeak 과 같은 전문 프로그램은 없다.
+        - 한본냥 - 노래로 배우기 시리즈
+
+
+    * (Reading, Writing)
+      📖 [PDF] 김성곤 및 백송종 - 일본어 문법 한권으로 끝내기
+      📖 [EPUB] 시나공 일본어 VOCA 15000 (최신개정판)
+    
+
+    * Certifications
+      - JLPT

@@ -1,0 +1,86 @@
+list of level 1 subjects
+  - bitbake
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓🔰 Yocto Project Quick Build ; https://docs.yoctoproject.org/brief-yoctoprojectqs/index.html
+  #️⃣📎 Use Git to Clone Poky ; https://docs.yoctoproject.org/brief-yoctoprojectqs/index.html#use-git-to-clone-poky
+    🧮
+      git clone git://git.yoctoproject.org/poky
+      cd poky
+      git branch -a
+      #   >> Styhead
+
+      git switch --create my-styhead --track origin/styhead
+      # Note that you can regularly type the following command in the same directory to keep your local files in sync with the release branch:
+      # $ git pull
+
+      # https://docs.yoctoproject.org/ref-manual/structure.html#oe-init-build-env
+  
+  #️⃣ Building Your Image ; https://docs.yoctoproject.org/brief-yoctoprojectqs/index.html#building-your-image
+    🧮
+      source oe-init-build-env
+      # You had no conf/local.conf file. This configuration file has therefore been created for you from $HOME/..../poky/meta-poky/conf/templates/default/local.conf.sample
+      #   You may wish to edit it to, for example, select a different MACHINE (target hardware).
+
+      # You had no conf/bblayers.conf file. This configuration file has therefore been created for you from $HOME/pi_bsp/kernel/rootfs/yocto/poky/meta-poky/conf/templates/default/bblayers.conf.sample
+
+  #️⃣ Creating Your Own General Layer ; https://docs.yoctoproject.org/brief-yoctoprojectqs/index.html#creating-your-own-general-layer
+    🧮 bitbake-layers create-layer
+
+⚓📍🔰 Yocto Layer Index ; https://layers.openembedded.org/layerindex/
+  ⚓ Layers ; https://layers.openembedded.org/layerindex/branch/master/layers/
+  ⚓ Recipes ; https://layers.openembedded.org/layerindex/branch/master/recipes/
+
+
+⚓ Yocto Project Overview and Concepts Manual ; https://docs.yoctoproject.org/overview-manual/concepts.html
+  # 4.1 Yocto Project Components
+    🪱 Recipes: Provides details about particular pieces of software.
+    🪱 Class Data: Abstracts common build information (e.g. how to build a Linux kernel).
+    🪱 Configuration Data: Defines machine-specific settings, policy decisions, and so forth. Configuration data acts as the glue to bind everything together.
+⚓ Yocto Reference ; https://docs.yoctoproject.org/ref-manual/index.html
+  ⚓ 2 Yocto Project Terms ; https://docs.yoctoproject.org/ref-manual/terms.html
+    #️⃣ Source Directory ; https://docs.yoctoproject.org/ref-manual/terms.html#term-Source-Directory
+
+    #️⃣📎 Build Directory ; https://docs.yoctoproject.org/ref-manual/terms.html#term-Build-Directory
+      The 🪱 TOPDIR variable points to the Build Directory.
+
+      ⚠️ Note
+        By default, the Build Directory contains TMPDIR, which is a temporary directory the build system uses for its work.
+        TMPDIR cannot be under NFS. Thus, by default, the Build Directory cannot be under NFS.
+        However, if you need the Build Directory to be under NFS, you can set this up by setting TMPDIR in your local.conf file to use a local drive.
+        ⭕📰 Doing so effectively separates TMPDIR from TOPDIR, which is the Build Directory.
+  ⚓ 12 Variables Glossary ; https://docs.yoctoproject.org/ref-manual/variables.html
+    #️⃣ TOPDIR ; https://docs.yoctoproject.org/ref-manual/variables.html#term-TOPDIR
+    
+    #️⃣ IMAGE_FSTYPES ; https://docs.yoctoproject.org/ref-manual/variables.html#term-IMAGE_FSTYPES
+
+    
+
+  ⚓ 4 Source Directory Structure ; https://docs.yoctoproject.org/ref-manual/structure.html
+    4.1 Top-Level Core Components
+      #️⃣📎 4.1.10 oe-init-build-env ; https://docs.yoctoproject.org/ref-manual/structure.html#oe-init-build-env
+        ; 🪱 oe: OpenEmbedded
+        When you run this script, your Yocto Project environment is set up, a 🪱 Build Directory is created
+        , your working directory becomes the Build Directory, and you are presented with some simple suggestions as to what to do next
+        , including a list of some possible targets to build. 
+        
+        The default output of the oe-init-build-env script is from the 🪱 conf-summary.txt and 🪱 conf-notes.txt files
+        , which are found in the meta-poky directory within the 🪱 Source Directory.
+        💡 If you design a custom distribution, you can include your own versions of these configuration files where you can provide a brief summary and detailed usage notes
+        , such as a list of the targets defined by your distribution.
+        https://docs.yoctoproject.org/dev-manual/custom-template-configuration-directory.html#creating-a-custom-template-configuration-directory
+
+        The OpenEmbedded build system uses the template configuration files, which are found by default in the meta-poky/conf/templates/default directory in the Source Directory. 
+          https://docs.yoctoproject.org/dev-manual/custom-template-configuration-directory.html#creating-a-custom-template-configuration-directory
+        
+        ⚠️ Note
+          The OpenEmbedded build system does not support file or directory names that contain spaces.
+
+
+-------------------------------------
+Temp
+  📍⚓ Yocto cheatsheet ; https://low-level.wiki/yocto/cheatsheet.html
+    - Adding a rootfs format
+      IMAGE_FSTYPES:append = " hddimg"    # syntax for "Honister" or newer releases
+
+  

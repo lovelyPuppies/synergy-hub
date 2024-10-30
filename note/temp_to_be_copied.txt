@@ -66,6 +66,35 @@ Papers
     ⚓ [2021-10-13] ByteTrack: Multi-Object Tracking by Associating Every Detection Box ; https://arxiv.org/pdf/2110.06864
       https://arxiv.org/abs/2110.06864
 
+📰🧪 Smaba Server.. when I need..?
+  ============== 👍 Complete.
+  echo "
+  [sambashare]
+    comment = Samba on Ubuntu
+    path = $SAMBA_SHARED_DIR
+    read only = no
+    create mask = 0664
+    directory mask = 0775
+    guest ok = no
+    force user = $USER
+    valid users = $USER
+    write list = $USER
+    # browsable: When set to yes, file managers such as Ubuntu’s default file manager will list this share under “Network” (it could also appear as browseable).
+    browsable = no
+  " | sudo tee $SAMBA_CONFIG_PATH > /dev/null
+
+  # Restart Samba for it to take effect:
+  sudo service smbd restart
+  # Update the firewall rules to allow Samba traffic:
+  sudo ufw allow samba
+  sudo smbpasswd -a $USER
+  ## If in Ubuntu desktop, run File Manager - +Other Location - Enter the server address ... - Connect
+  # smb://10.10.14.19/sambashare
+  ## If in Terminal-based
+  # smbclient //10.10.14.19/sambashare -U wbfw109v2
+  ==============
+
+
 
 ⚓ Yolo 🔪 Tasks ; https://docs.ultralytics.com/tasks/
   # Tasks
@@ -110,6 +139,7 @@ Papers
   # Jetson Linux 34.X/35.X
     # Jetson Nano
       32.7.5
+  
 ⚓ NVIDIA 🔪 NGC Catalog ; https://catalog.ngc.nvidia.com/
   ⚓ Container ; https://catalog.ngc.nvidia.com/containers
     https://catalog.ngc.nvidia.com/orgs/nvidia/containers/l4t-pytorch
@@ -315,40 +345,72 @@ VS Code 🔪 Docs 🔪 DEV CONTAINERS
       # snapshot
         https://www.qemu.org/docs/master/tools/qemu-img.html#cmdoption-qemu-img-arg-snapshot
 
-⚓
-  fstab ; https://man7.org/linux/man-pages/man5/fstab.5.html
-    file systems table.
-    # The fourth field (fs_mntops).
-      #🚣 user
-        allow a user to mount
+⚓⌨️ KeyMap ; https://docs.helix-editor.com/keymap.html
+  📝 There are no "Parameter Hints" like VS Code. but yo can view by <space>+k (hover)
 
+  #️⃣ Normal mode ; https://docs.helix-editor.com/keymap.html#normal-mode
+  #️⃣ Movement ; https://docs.helix-editor.com/keymap.html#movement
+    Ctrl-u  Move cursor and page half page up           page_cursor_half_up
+    Ctrl-d  Move cursor and page half page down         page_cursor_half_down
+    Ctrl-i  Jump forward on the jumplist                jump_forward
+    Ctrl-o  Jump backward on the jumplist               jump_backward
 
-
-fish - test ; https://fishshell.com/docs/current/cmds/test.html
-  -f FILE
-    Returns true if FILE is a regular file.
-  -e FILE
-    Returns true if FILE exists.
-
-  NUM1 -lt NUM2
-    Returns true if NUM1 is less than NUM2.
-
-
-⭕ Helix .. in snap.. ; https://snapcraft.io/install/helix/ubuntu
-  like in jetson nano
-  sudo snap install helix --classic
-
-⚓ GIMP ; 
-  Image - Canvas Size...
-
-  ⚓ Compositing ;https://en.wikipedia.org/wiki/Compositing  
+    Ctrl-s  Save the current selection to the jumplist  save_selection
+  #️⃣ Changes ; https://docs.helix-editor.com/keymap.html#changes
     # Contents
-    ⚓ Alpha compositing | Alpha blending ; https://en.wikipedia.org/wiki/Alpha_compositing
+      u   Undo change   undo
+      U   Redo change   redo
+    #️⃣ Shell ; https://docs.helix-editor.com/keymap.html#shell
+  #️⃣ Selection manipulation ; https://docs.helix-editor.com/keymap.html#selection-manipulation
+  #️⃣ Search ; https://docs.helix-editor.com/keymap.html#search
+  #️⃣ Minor modes ; https://docs.helix-editor.com/keymap.html#minor-modes
+    # Contents
+      🚣 These sub-modes are accessible from normal mode and typically switch back to normal mode after a command.
 
-⚓🖇️  Ubuntu 🔪 Install and Configure Samba ; https://ubuntu.com/tutorials/install-and-configure-samba 📅 2024-10-30 10:33:59
-  sudo apt update -y && sudo apt install -y samba
-  whereis samba
-  mkdir -p ~/sambashare/
+    #️⃣ View mode ; https://docs.helix-editor.com/keymap.html#view-mode
+    #️⃣ Goto mode ; https://docs.helix-editor.com/keymap.html#goto-mode
+      ⌨️ Accessed by typing g in normal mode.
+      d   Go to definition (LSP)        goto_definition
+      y   Go to type definition (LSP)   goto_type_definition
+      r   Go to references (LSP)        goto_reference
+      i   Go to implementation (LSP)    goto_implementation
+    #️⃣ Match mode ; https://docs.helix-editor.com/keymap.html#match-mode
+    #️⃣ Window mode ; https://docs.helix-editor.com/keymap.html#window-mode
+    #️⃣ Space mode ; https://docs.helix-editor.com/keymap.html#space-mode
+      ⌨️ Accessed by typing Space in normal mode.
+      # Contents
+        r   Rename symbol (LSP)                                         rename_symbol
+
+        s   Open document symbol picker (LSP)                           symbol_picker
+        S   Open workspace symbol picker (LSP)                          workspace_symbol_picker
+        h   Select symbol references (LSP)                              select_references_to_symbol_under_cursor
+
+        d   Open document diagnostics picker (LSP)                      diagnostics_picker
+        D   Open workspace diagnostics picker (LSP)                     workspace_diagnostics_picker
+
+        k   Show documentation for item under cursor in a popup (LSP)   hover
+      #️⃣ Popup ; https://docs.helix-editor.com/keymap.html#popup
+      #️⃣ Completion Menu ; https://docs.helix-editor.com/keymap.html#completion-menu
+      #️⃣ Signature-help Popup ; https://docs.helix-editor.com/keymap.html#signature-help-popup
+    #️⃣ Unimpaired ; https://docs.helix-editor.com/keymap.html#unimpaired
+  #️⃣ Insert mode ; https://docs.helix-editor.com/keymap.html#insert-mode
+    Ctrl-x    Autocomplete    completion
+  #️⃣ Select / extend mode ; https://docs.helix-editor.com/keymap.html#select--extend-mode
+  #️⃣ Picker ; https://docs.helix-editor.com/keymap.html#picker
+  #️⃣ Prompt ; https://docs.helix-editor.com/keymap.html#prompt
+
+
+⚓ Bourne Shell Builtins
+  : (a colon)
+    : [arguments]
+  Do nothing beyond expanding arguments and performing redirections. The return status is zero.
+  https://www.gnu.org/software/bash/manual/html_node/Bourne-Shell-Builtins.html
+
+
+
+❓ QEMU 에서 해당 stm32 칩에 대해 어디까지 시뮬레이션 가능한가?
+❓ 슬슬 영어 공부 + 코딩테스트 + 디자인 패턴 공부 함께 해야 함. 3개월 남음.
+
 
 ⚓ GSettings ; https://docs.gtk.org/gio/class.Settings.html
   https://gitlab.gnome.org/GNOME/gnome-settings-daemon
@@ -365,9 +427,122 @@ fish - test ; https://fishshell.com/docs/current/cmds/test.html
       gsettings set org.gnome.settings-daemon.plugins.media-keys home "['<Super>e']"
       gsettings get org.gnome.settings-daemon.plugins.media-keys home
 
+⚓ System Management BIOS (SMBIOS) ; https://en.wikipedia.org/wiki/System_Management_BIOS 
 
 ⚓ cloud-init ; https://cloudinit.readthedocs.io/en/latest/
   cloud-localds ; https://cloudinit.readthedocs.io/en/21.4/topics/faq.html#:~:text=The%20cloud%2Dlocalds%20command%20from,without%20running%20a%20network%20service.
+
+Fish shell
+  ⚠️ 이는 Fish의 test 명령이 빈 문자열이 아닌 값을 논리적으로 참(true)으로 간주하기 때문입니다.
+    test $is_wsl will be true even if is_wel value is non-zero.
+  ⚓ fish_add_path ; https://fishshell.com/docs/current/cmds/fish_add_path.html
+    fish_add_path is a simple way to add more components to fish’s PATH. It does this by adding the components either to $fish_user_paths or directly to PATH (if the --path switch is given).
+      📍 Components are normalized by realpath. Trailing slashes are ignored and relative paths are made absolute (but symlinks are not resolved). If a component already exists, it is not added again and stays in the same place unless the --move switch is giv
+
+      🪱 fish_user_paths
+
+
+  
+  ⚓ status - query fish runtime information ; https://fishshell.com/docs/current/cmds/status.html
+    💡 With no arguments, status displays a summary of the current login and 🪱 job control status of the shell.
+  ⚓ return ; https://fishshell.com/docs/current/cmds/return.html
+  ⚓ function ; https://fishshell.com/docs/current/cmds/function.html
+    -a NAMES or --argument-names NAMES
+      Assigns the value of successive command-line arguments to the names given in NAMES. These are the same arguments given in argv, and are still available there.
+      📝 This have local scope lifetime. tested at 📅 2024-11-08 19:57:27
+
+  ⚓💡 pushd ; https://fishshell.com/docs/current/cmds/pushd.html
+  ⚓💡 popd ; https://fishshell.com/docs/current/cmds/popd.html
+
+  ⚓ exit ; https://fishshell.com/docs/current/cmds/exit.html
+    📝⚖️ default [Code] value is 0 (success)
+  ⚓ not ; https://fishshell.com/docs/current/cmds/not.html
+  ⚓ string match ; https://fishshell.com/docs/current/cmds/string-match.html
+  ⚓ string replace ; https://fishshell.com/docs/current/cmds/string-replace.html
+  ⚓ begin ; https://fishshell.com/docs/current/cmds/begin.html
+  ⚓👍 argparse ; https://fishshell.com/docs/current/cmds/argparse.html
+    Each option that is seen in the ARG list will result in variables named 🪱 _flag_X, where X is the short flag letter and the long flag name (if they are defined). For example a --help option could cause argparse to define one variable called _flag_h and another called _flag_help.
+    The variables will be set with 🚣 local scope (i.e., as if the script had done set -l _flag_X).
+      📝 Not for $argv. only for captured value.
+    Options
+      -i, --ignore-unknown
+
+  ⚓ set ; https://fishshell.com/docs/current/cmds/set.html
+    📝📍 default variables set scope is local. tested at 📅 2024-11-09 00:25:20
+    📍 -e or --erase NAME*[*INDEX]
+      Causes the specified shell variables to be erased. Supports erasing from multiple scopes at once. Individual items in a variable at INDEX in brackets can be specified.
+      📝 like Shift; in bash
+    
+  ⚓ or ; https://fishshell.com/docs/current/cmds/or.html
+
+
+  ⚓ test ; https://fishshell.com/docs/current/cmds/test.html
+    -f FILE
+      Returns true if FILE is a regular file.
+    -e FILE
+      Returns true if FILE exists.
+
+    NUM1 -lt NUM2
+      Returns true if NUM1 is less than NUM2.
+  ⚓ type ; https://fishshell.com/docs/current/cmds/type.html
+    With no options, type indicates how each NAME would be interpreted if used as a command name.
+
+  ⚓ string split0 ; https://fishshell.com/docs/current/cmds/string-split0.html
+    📍 split0 has the important property that its output is not further split when used in a command substitution, allowing for the command substitution to produce elements containing newlines. This is most useful when used with Unix tools that produce zero bytes, such as find -print0 or sort -z. See split0 examples below.
+
+
+⚓ Linux man page
+  ⚓📍 awk ; https://man7.org/linux/man-pages/man1/awk.1p.html
+    # EXTENDED DESCRIPTION 
+      # Contents
+        * Overall Program Structure
+          💡 An awk program is composed of pairs of the form: pattern { action }
+      # Variables and Special Variables
+        🚣 Field variables shall be designated by a '$' followed by a number or numerical expression.
+        ... References to nonexistent fields (that is, fields after $NF),
+        
+        NF        The number of fields in the current record.
+        NR        The ordinal number of the current record from the start
+      # Actions
+        The 🪱 next statement shall cause all further processing of the current input record to be abandoned.
+          The behavior is undefined if a next statement appears or is invoked in a BEGIN or END action.
+
+      # String Functions
+        🚣 gsub(ere, repl[, in])
+          Behave like sub (see below), except that it shall replace all occurrences of the regular expression
+          (like the ed utility global substitute) in $0 or in the in argument, when specified.
+
+  fstab ; https://man7.org/linux/man-pages/man5/fstab.5.html
+    file systems table.
+    # The fourth field (fs_mntops).
+      #🚣 user
+        allow a user to mount
+  
+  ufw ; ...
+    Uncomplicated Firewall
+  
+
+⚓ yq ; https://mikefarah.gitbook.io/yq
+  https://github.com/mikefarah/yq/#install
+    # Snap notes
+      ⚠️ yq installs with strict confinement in snap, this means it doesn't have direct access to root files. To read root files you can:
+
+
+⚓ VS Code - Groups (split panes) ; https://code.visualstudio.com/docs/terminal/basics#_groups-split-panes
+  ⌨️ Navigate between terminals in a group by focusing the previous pane, Alt+Left, or the next pane, Alt+Right.
+
+
+https://www.fish-lsp.dev/
+  ???
+  hover cmd, hover arg, hover definitiona
+  show client tree
+  go to reference, rename,
+  telescope coc workspaceSymbols, telescope
+  completions escape chars, completions string regex
+  hover local-scope
+  completions
+  scoped definitions, renames, variables
+  format, formatSelection
 
 
 ❓ This container can be used to run an application or to separate tools, libraries, or runtimes needed for working with a codebase.
@@ -384,8 +559,6 @@ Other glibc based Linux containers ??
 
 
 
-
-
 https://code.visualstudio.com/remote/advancedcontainers/improve-performance
 
 https://code.visualstudio.com/remote/advancedcontainers/develop-remote-host
@@ -393,8 +566,6 @@ https://code.visualstudio.com/remote/advancedcontainers/develop-remote-host
 
 >> 지금 만들고 싶은 것. 이 파이프라인; https://containers.dev/img/dev-container-stages.png
 >> 봐야할 것 https://code.visualstudio.com/remote/advancedcontainers/develop-remote-host
-
->> pyenv 
 
 
 🪱 Dev Container Template
@@ -425,13 +596,96 @@ https://code.visualstudio.com/remote/advancedcontainers/develop-remote-host
       - [meanginful-ooo] fish
 
 
-DLSS
+# https://yarnpkg.com/cli/set/version
+
+https://en.wikipedia.org/wiki/Dunning%E2%80%93Kruger_effect
 
 
+# https://andrewpage.tistory.com/390
+============== GUI설정 방법 📅 2024-11-11 19:27:39
+sudo apt update
+sudo apt install ibus ibus-hangul ibus-hangul
+##
+Settings - System - Region & Language
+  - System - Manage Installed Languages
+    - Language - Insall/Remove Languages...
+      - ✔️ Korean
+sudo reboot
+5204b083-2d6b-4ffe-9601-8963a576c80c
+## 
+ibus-setup
+# IBus Preferences - Input Method - Add
+  - "Korean - Hangul" - Close
+Input Sources에서 + 버튼을 클릭하고, **Korean (Hangul)*
+
+## 
+Settings - Keyboard - Input Sources
+  - Add Input Sources...
+    - Korean - Korean (Hangul) - Add
+  # remove other Input Sources If exists.
 
 
+=================== 명령어로 설정 방법 📅 2024-11-11 19:27:39
+### in Ubuntu ..
+sudo apt update
+sudo apt install -y ibus ibus-hangul
+
+# In Raspberry Pi, It fails but ok.
+sudo apt install -y language-pack-ko
+
+dconf write /desktop/ibus/general/preload-engines "['hangul']"
+gsettings set org.gnome.desktop.input-sources sources "[('ibus', 'hangul')]"
+
+sudo sed -i 's/XKBLAYOUT=".*"/XKBLAYOUT="kr"/' /etc/default/keyboard
+
+im-config -n ibus
+### Required to do reboot
+# sudo reboot
 
 
+===================
+journalctl -u signal-masters.service -f
+
+==============================
+동일한 .ttf 파일을 윈도우/우분투에서 각각 설치햇는데 이름이 다를 수가 있나?
+윈도우에서는 FiraCode Nerd Font Mono 이고, 우분투에서 fc-list 에서 확인해보니까 FiraMono Nerd Font Mono 네?
+
+ChatGPT said:
+ChatGPT
+네, 동일한 .ttf 파일을 설치했더라도 Windows와 Ubuntu에서 폰트 이름이 다르게 보일 수 있습니다. 이는 운영 체제와 폰트 관리 도구(Fontconfig, Windows Font Manager 등)가 폰트의 이름 정보를 해석하고 표시하는 방식의 차이 때문입니다.
+
+이유 분석
+1. 폰트의 메타데이터 처리 방식 차이
+.ttf 파일에는 다양한 이름 관련 메타데이터가 포함됩니다.
+대표적으로:
+
+PostScript Name: 소프트웨어 내부에서 참조하는 폰트 이름.
+Font Family Name: 폰트 패밀리 이름.
+Full Font Name: 전체 폰트 이름(일반적으로 사용자에게 표시됨).
+Preferred Family Name: 우선 패밀리 이름.
+운영 체제와 폰트 관리 도구는 이 중 하나를 선택해서 표시합니다.
+
+Windows: 보통 Full Font Name을 표시.
+Fontconfig (Ubuntu): 주로 PostScript Name 또는 Preferred Family Name을 사용.
 
 
-mount | grep class
+⌨️ VS Code Keyboard hosrtcuts
+  # Code navigation
+    Go to Definition F12 - Go to the source code of the type definition.
+    Peek Definition Alt+F12 - Bring up a Peek window with the type definition.
+    Go to References Shift+F12 - Show all references for the type.
+    Show Call Hierarchy Shift+Alt+H - Show all calls from or to a function.
+  You can navigate via symbol search using the Go to Symbol commands from the Command Palette (Ctrl+Shift+P).
+    🚣 Go to Symbol in File - Ctrl+Shift+O
+    🚣 Go to Symbol in Workspace - Ctrl+T
+
+Design pattern
+  from https://code.visualstudio.com/docs/languages/rust#_refactoring
+  - Convert if statement to ⭕ guarded return
+
+
+dmesg 란..
+
+네, gpioinfo에서 표시되는 unused 상태는 해당 GPIO 핀이 현재 커널이나 사용자 공간에서 활성화되어 사용 중인지를 나타냅니다. 이는 물리적으로 회로에 연결되어 있는지 여부와는 무관합니다.
+
+🚣 Cockpit required re login? 

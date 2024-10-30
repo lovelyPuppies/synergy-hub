@@ -1,0 +1,10 @@
+[
+  "trigger",
+  "/home/wbfw109/repos/synergy-hub/prototypes/_initialization/ubuntu/howto/general",
+  {
+    "name": "make_fish_utilities_executable",
+    "expression": ["allof", ["match", "*.fish"], ["type", "f"], ["exists"]],
+    "command": ["chmod", "u+x"],
+    "append_files": true
+  }
+]

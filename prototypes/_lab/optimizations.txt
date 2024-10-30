@@ -1,0 +1,657 @@
+(Optimization, Performance, Algoirhtm)
+
+※※※※※※※※※※※※※※
+🌟 Algorithm ; https://en.wikipedia.org/wiki/Algorithm
+(Algorithms basics)
+  ⚓ algorithmic efficiency ; https://en.wikipedia.org/wiki/Algorithmic_efficiency
+  ⚓ Heuristic 발견법, 發見法 ; << https://en.wikipedia.org/wiki/Heuristic
+
+  ⚓ Zero-based numbering ; https://en.wikipedia.org/wiki/Zero-based_numbering
+    Zero-based indices, One-based indices
+
+  ⚓ Random access, direct access ; https://en.wikipedia.org/wiki/Random_access
+  ⚓ Sequential access ; https://en.wikipedia.org/wiki/Sequential_access
+
+  ⚓ Canonicalization, standardization, normalization ; https://en.wikipedia.org/wiki/Canonicalization
+
+================================================
+# Optimization: Algorithms, methods, and heuristics
+  ⚓ Combinatorial optimization ; https://en.wikipedia.org/wiki/Combinatorial_optimization
+    ⚓ Dynamic programming ; https://en.wikipedia.org/wiki/Dynamic_programming
+      # Contents
+        🚣 it refers to simplifying a complicated problem by breaking it down into simpler sub-problems in a recursive manner. 
+      #️⃣🚣 sliding window << https://en.wiktionary.org/wiki/sliding_window#English
+        (programming) A descriptor for a data analysis technique where overlapping windows of data of fixed size are analyzed.
+        🚣 The Sliding Window approach is a technique used in dynamic programming to optimize the memory usage
+        , by only keeping track of a subset of the states instead of storing all possible states
+    ⚓ Greedy algorithm ; https://en.wikipedia.org/wiki/Greedy_algorithm
+      📝 &comment ; == Find a optmized way to reduce Opportunity costs
+  ⚓ Convex Optimization ; https://en.wikipedia.org/wiki/Convex_optimization
+    # Convex minimization
+      ⚓ Subgradient method ; https://en.wikipedia.org/wiki/Subgradient_method
+      ⚓ subderivative, subgradient, subdifferential << https://en.wikipedia.org/wiki/Subderivative
+
+  ⚓ Iterative method << https://en.wikipedia.org/wiki/Iterative_method
+(Optimization, Performance basics)
+  ⚓ Optimization problem ; https://en.wikipedia.org/wiki/Optimization_problem
+    ⚓📎 Exact alogirhtm ; << https://en.wikipedia.org/wiki/Exact_algorithm
+    ⚓📎 Heuristic ; << https://en.wikipedia.org/wiki/Heuristic_(computer_science)
+      ⚓ Fully polynomial-time approximation scheme ; << https://en.wikipedia.org/wiki/Fully_polynomial-time_approximation_scheme
+  ⚓📎⭕ Memoization | tabling ; << https://en.wikipedia.org/wiki/Memoization
+  ⚓ String interning ; https://en.wikipedia.org/wiki/String_interning
+    intern
+  #️⃣ square root decomposition ; https://en.wiktionary.org/wiki/square_root_decomposition#English
+
+  ⚓ Pure Function ; https://en.wikipedia.org/wiki/Pure_function
+    📝 &comment
+      recommendation from
+        🔗 https://reactjs.org/tutorial/tutorial.html#why-immutability-is-important
+        🔗 https://eslint.org/docs/rules/no-param-reassign
+
+      pure function 이 많을수록 모듈화 수준이 높다는 의미로 해석할 수 있다.
+    ⚓ referential transparency, referential opacity ; << https://en.wikipedia.org/wiki/Referential_transparency
+        💡 An expression is called referentially transparent if it can be replaced with its corresponding value (and vice-versa) without changing the program's behavior.
+        This requires that the expression be pure, that is to say the expression value must be the same for the same inputs and its evaluation must have no side effects.
+        ⚪ An expression that is not referentially transparent is called ✔️referentially opaque✔️.
+      #️⃣ 2 Examples and counterexamples ; https://en.wikipedia.org/wiki/Referential_transparency#Examples_and_counterexamples
+      #️⃣ 4 Another example ; https://en.wikipedia.org/wiki/Referential_transparency#Another_example
+  
+  ⚓ Out Of Memory (OOM) ; https://en.wikipedia.org/wiki/Out_of_memory
+  ⚓ memory footprint ; https://en.wikipedia.org/wiki/Memory_footprint
+  ⚓ computational resource ; https://en.wikipedia.org/wiki/Computational_resource
+
+  ⚓ computer performance ; https://en.wikipedia.org/wiki/Computer_performance
+  ⚓ programming complexity, software complexity ; https://en.wikipedia.org/wiki/Programming_complexity
+    - complicated
+    - complex
+
+    2 Types
+      - Accidental complexity
+      - Essential complexity
+  ⚓ computational complexity, complexity ; https://en.wikipedia.org/wiki/Computational_complexity
+  ⚓ mathematical optimization ; https://en.wikipedia.org/wiki/Mathematical_optimization
+  
+
+  ⚓📎 lookup table (LUT) ; https://en.wikipedia.org/wiki/Lookup_table
+      - Temporal locality
+      - Spatial locality
+      - Branch locality
+      - Equidistant locality
+  ⚓ stride of an array, increment, pitch, step size ; https://en.wikipedia.org/wiki/Stride_of_an_array
+
+
+  ⚓ Non-Uniform Memory Access, NUMA ; https://en.wikipedia.org/wiki/Non-uniform_memory_access
+  ⚓ Deep learning processor (DLP), deep learning accelerator ; https://en.wikipedia.org/wiki/Deep_learning_processor
+  ⚓ AI accelerator, Neural Processing Unit, NPU ; https://en.wikipedia.org/wiki/AI_accelerator
+  ⚓ Tensor Processing Unit, TPU ; https://en.wikipedia.org/wiki/Tensor_Processing_Unit
+    📝 &comment
+      https://voidint.com/2020/10/14/cpu-gpu-tpu-npu/
+  
+  ⚓ GPU virtualization ; https://en.wikipedia.org/wiki/GPU_virtualization
+  ⚓ paravirtualization, para-virtualization ; https://en.wikipedia.org/wiki/Paravirtualization
+
+
+  ⚓ optimal control ; https://en.wikipedia.org/wiki/Optimal_control
+
+  ⚓ convex function ; https://en.wikipedia.org/wiki/Convex_function
+    - convex
+
+
+
+================================================
+(Complexity class)
+  ⚓ Complexity class ; https://en.wikipedia.org/wiki/Complexity_class
+    (Decision problem) << 
+      ⚓ Decision problem ; https://en.wikipedia.org/wiki/Decision_problem
+        📝 &comment; It is important that all decision problem not only have Exact algoirhtm but may also Heuristic (approximation).
+        ⚓ Decidable problem ; << https://en.wikipedia.org/wiki/Decidability_(logic)
+        ⚓ Undecidable problem ; << https://en.wikipedia.org/wiki/Undecidable_problem
+      ⚓ Complement (complexity) ; https://en.wikipedia.org/wiki/Complement_(complexity)
+    (Deterministic) <<
+      ⚓📎 Deterministic algorithm ; https://en.wikipedia.org/wiki/Deterministic_algorithm
+        Formally, a deterministic algorithm computes a mathematical function; ...
+      ⚓🖇️ Nondeterministic algorithm ; https://en.wikipedia.org/wiki/Nondeterministic_algorithm 📅 2023-03-22 05:09:48
+        📝 &comment; Note that a decision problem may exist individually according to definition of a optimized problem. refer to TSP for e.g.
+        #️⃣💡 Use
+          ... In computational complexity theory, nondeterministic algorithms are ones that, at every possible step, can allow for multiple continuations
+    ⚓📎 Reduction | 환산 ; https://en.wikipedia.org/wiki/Reduction_(complexity)
+      ... reducible ... When this is true, solving A cannot be harder than solving B. 
+      🚣 "Harder" means ... shorthand notation ...
+      🔍 The mathematical structure generated on a set of problems by the reductions of a particular type generally forms a preorder, ...
+    # Considered feasible
+      ⚓ P | PTIME | DTIME (n^O(1)) ; https://en.wikipedia.org/wiki/P_(complexity)
+    # Suspected infeasible
+      ⚓ Nondeterministic Polynomial time (NP) ; https://en.wikipedia.org/wiki/NP_(complexity)
+        📝 &comment ; understanding from 🔗 chatGPT
+          NP is the class of decision problems for which there exists a polynomial-time algorithm that can verify a solution in polynomial time.
+          namely given Witness (Certificate | Guess), and if Verifier (Certifier) can verify a solution in polynomial time, it is NP.
+            - NP is not limited to non-deterministic Turing machines, although they are often used to define the class.
+              NP includes the class of decision problems that can be solved by a non-deterministic Turing machine in polynomial time.
+              ; A non-deterministic Turing machine is a hypothetical computer that can try all possible paths of computation at once simultaneously.
+              It means problems in not only exponentially increasing but also worse than exponential are included in NP.
+            - This Certificate can be thought of as a Guess because the machine is not guaranteed to know whether the certificate is valid or not until it is checked.
+              note that verifier algorithm (that is type of Decider) is a deterministic Turing machine, not a non-deterministic Turing machine.
+
+          all decision problems are in P or NP (not in P) except for undecidable problems (like Busy Beaver).
+          all solvable decision problems in pseudo-polynomial time are NP (not in P) when encoded in binary.
+
+          NP-hard problems are not necessarily in NP, while NP-complete problems are a subset of NP problems that are also NP-hard.
+        # Contents
+          (witenss | certificate), (verifier, certifier)
+        ⚓📎 NP-hardness ; https://en.wikipedia.org/wiki/NP-hardness
+          📝 &comment ; (comparsion) 🆚 NP-hardness, NP-completeness from 🔗 chatGPT
+            To summarize, NP-hardness refers to the lower bound of the difficulty of a problem
+            , while NP-completeness refers to the combination of both upper and lower bounds.
+            NP-complete problems are the hardest problems in NP
+            , while NP-hard problems may be even harder (not in NP) or easier (in NP but not NP-complete).
+          #️⃣📎💡 Definition ; https://en.wikipedia.org/wiki/NP-hardness#Definition
+        ⚓ NP-completeness ; https://en.wikipedia.org/wiki/NP-completeness
+          # Contents
+            "Complete" refers to the property of being able to simulate everything in the same complexity class.
+            - NP-C | NPC
+            #️⃣📎💡 Formal definition ; https://en.wikipedia.org/wiki/NP-completeness#Formal_definition
+            #️⃣🔍💡 NP-complete problems ; https://en.wikipedia.org/wiki/NP-completeness#NP-complete_problems
+              🔍 Interpretion of Picture ... Some NP-complete problems, indicating the reductions typically used to prove their NP-completeness.
+          ⚓📎 Weak NP-completeness ; << https://en.wikipedia.org/wiki/Weak_NP-completeness
+            #🔍💡 Strong and weak NP-hardness vs. strong and weak polynomial-time algorithms
+          ⚓ Strong NP-completeness ; << https://en.wikipedia.org/wiki/Strong_NP-completeness
+            A problem is said to be strongly NP-complete (NP-complete in the strong sense)
+            , if it remains NP-complete even when all of its numerical parameters are bounded by a polynomial in the length of the input
+        
+        ⚓ P versus NP problem ; << https://en.wikipedia.org/wiki/P_versus_NP_problem
+      ⚓ co-NP ; << https://en.wikipedia.org/wiki/Co-NP
+  ⚓ List of complexity classes ; https://en.wikipedia.org/wiki/List_of_complexity_classes
+
+  # Fit approximation <<
+    ⚓ Computational complexity theory ; << https://en.wikipedia.org/wiki/Computational_complexity_theory
+    ⚓ Big O notation, Bachmann-Landau notation, asymptotic notation ; https://en.wikipedia.org/wiki/Big_O_notation
+      # Contents
+        #️⃣ Orders of common functions ; https://en.wikipedia.org/wiki/Big_O_notation#Orders_of_common_functions
+        #️⃣ Related asymptotic notations ; https://en.wikipedia.org/wiki/Big_O_notation#Related_asymptotic_notations
+          #️⃣ Family of Bachmann–Landau notations ; https://en.wikipedia.org/wiki/Big_O_notation#Family_of_Bachmann%E2%80%93Landau_notations
+            - Big Theta, Big Omega
+      ⚓ Asymptotically optimal algorithm ; << https://en.wikipedia.org/wiki/Asymptotically_optimal_algorithm
+      ⚓ Upper and lower bounds ; https://en.wikipedia.org/wiki/Upper_and_lower_bounds
+    ⚓ Time complexity ; << https://en.wikipedia.org/wiki/Time_complexity
+      📝 &comment; understanding
+        + 🆚 (comparsions) (strongly, weakly, pseudo-) polynomial time   and  Weak NP-completeness
+          - (strongly, weakly, pseudo-) polynomial time
+            Table: Does always one have polynomial time in proportion to these?
+              - size of the input; number of bits required to represent the input.
+              - value of the input; magnitude of the largest integer.
+
+            ;                       Size              Value
+            strongly polynomial:    O                 O
+            weakly polynomial:      O                 not necessarily
+              that is, polynomial in the number of integers and the number of bits in the largest integer
+            pseudo-polynomial:      not necessarily   O
+              that is, polynomial in the number of integers and the magnitude of the largest integer
+            
+            🛍️ e.g. of weakly polynomial time is The Euclidean algorithm for computing the greatest common divisor of two integers
+              Its real running time depends logarithmically on the magnitudes of a and b
+            🛍️ e.g. of pseudo-polynomial time is Knapsack problem whose the time complexity is O(n*W).
+              n is size of the input and W is value of the input. e.g.
+              If doubling the size of n increases the time complexity as 2 times. 
+                n = [n1, n2, n3, ... , n10]. from 10 to 20
+              However, doubling the size of W increases the time complexity exponentially, just as the shift operation is applied.
+                W = 1000 in binary term. from (4bit long; 2^3) to 1000000 (8-bit long; 2^7)
+            References
+              https://stackoverflow.com/a/27718369
+          - Weak NP-completeness
+            An NP-complete problem with known pseudo-polynomial time algorithms is called weakly NP-complete. from 🔗 Pseudo-polynomial time
+            if there is an algorithm for the problem whose running time is polynomial in the dimension of the problem and the magnitudes of the data involved from 🔗 Weak NP-completeness
+
+            Note that it is "there is an algorithm for the problem ...", not "there is an solvable algorithm ...".
+            namely, it is the case where solvable algorithm includes an algorithm of definition from 🔗 Weak NP-completeness.
+            
+            so all Weak NP-completeness not have pseudo-polynomial time.
+            Refer to 🔗 Strong and weak NP-hardness vs. strong and weak polynomial-time algorithms
+        ✅ (how-to); how to measure time complexity using examples
+          merge sort ; https://maramarathon.tistory.com/55
+            배열의 길이를 N = 2^k 라 할 때, 합병 단계는 k번 일어난다. (합병은 각 단계마다 N/2*x. x는 합병단계)
+            합병이 일어날 때마다, 임시배열에 원소를 정렬하는 과정에서 원소 개수만큼의 비교연산이 수행된다. 또한, 임시배열의 원소를 원래의 배열로 이동시키는 과정에서 원소 개수만큼의 이동연산이 수행된다.
+            각각의 단계는 여러번의 합병을 포함하고 있으나, 결국 모든 원소들의 개수 합은 N개 이므로 각각의 단계에서 2N 만큼의 이동, 비교 연산이 일어난다.
+            결국, 시간복잡도는 합병 단계 k번 * 각각의 단계에서 연산 횟수 2N = O(kN)이 된다.
+            N = 2^k, k = logN 이므로 합병 정렬의 시간복잡도는 O(kN) = O(NlogN)이 된다. 
+      # Contents
+        Time complexity is commonly estimated by counting the number of elementary operations performed by the algorithm, supposing that each elementary operation takes a fixed amount of time to perform.
+        #️⃣ Table of common time complexities ; https://en.wikipedia.org/wiki/Time_complexity#Table_of_common_time_complexities
+        #️⃣ quasilinear time | log-linear time ; https://en.wikipedia.org/wiki/Time_complexity#Quasilinear_time
+          linearithmic time
+        #️⃣ Polynomial time ; https://en.wikipedia.org/wiki/Time_complexity#Polynomial_time
+          #️⃣ Strongly and weakly polynomial time ; https://en.wikipedia.org/wiki/Time_complexity#Strongly_and_weakly_polynomial_time
+            📝 &comment; https://cs.stackexchange.com/questions/7543/are-there-strongly-polynomial-algorithms-that-take-more-than-polynomial-time
+            Strongly polynomial time is defined in the arithmetic model of computation.
+            🚣 In this model of computation the basic arithmetic operations (addition, subtraction, multiplication, division, and comparison) take a unit time step to perform, regardless of the sizes of the operands.
+          └ ⚓📎 Pseudo-polynomial time ; https://en.wikipedia.org/wiki/Pseudo-polynomial_time
+            🔗 (comparsions) (strongly, weakly, pseudo-) polynomial time   and  Weak NP-completeness
+            #🔍 Generalizing to non-numeric problems
+              📝 &comment; SAT 문제하고나서 다시 보기. SAT 와 3-SAT, 2-SAT.. 이런식으로 있음., dynamic 프로그래밍으로 일반화한 SAT 풀 수 있는듯?
+                m(n) 이 size of the input, k(n) 이 value of the input 이라고 보면 어느정도 해석은 됨.
+              💡 The distinction between the value of a number and its length is one of encoding: if numeric inputs are always encoded in unary, then pseudo-polynomial would coincide with polynomial.
+                for example, refer to SSP wikipedia.
+          #️⃣ Complexity classes ; https://en.wikipedia.org/wiki/Time_complexity#Complexity_classes
+        #️⃣ Superpolynomial time ; https://en.wikipedia.org/wiki/Time_complexity#Superpolynomial_time
+      ⚓ Ackermann function ; << https://en.wikipedia.org/wiki/Ackermann_function
+        #️⃣🚣 Inverse Ackermann function ; https://en.wikipedia.org/wiki/Ackermann_function#Inverse
+          In fact, α(n) is less than 5 for any practical input size n, ...
+          from 🔗 Disjoint-set
+            The inverse Ackermann function grows extraordinarily slowly
+            , so this factor is 4 or less for any n that can actually be written in the physical universe. 
+
+      ⚓ Time Complexity of Python language ; << https://wiki.python.org/moin/TimeComplexity
+    ⚓ Amortized analysis, 분할 상환 분석 << https://en.wikipedia.org/wiki/Amortized_analysis
+    ⚓ Space complexity ; << https://en.wikipedia.org/wiki/Space_complexity
+      📝🚣 &comment: understanding
+        - 재귀함수의 경우, 호출한 만큼 함수가 스택에 추가되므로 O(n) 의 복잡도를 가진다. 
+        - n 번 함수를 호출 했다고 해서 반드시 공간복잡도가 O(n) 은 아니다. 함수들이 동시에 스택에 존재하는 것이 아니기 떄문.
+  ⚓ Computational hardness assumption ; https://en.wikipedia.org/wiki/Computational_hardness_assumption
+    # Non-cryptographic
+      ⚓ Exponential time hypothesis ; https://en.wikipedia.org/wiki/Exponential_time_hypothesis
+
+⚓ Computational complexity of mathematical operations ; << https://en.wikipedia.org/wiki/Computational_complexity_of_mathematical_operations
+⚓ List of algorithms ; https://en.wikipedia.org/wiki/List_of_algorithms
+  📝 &comment; it integrates some Main subjects:
+    - Well-known computer science algorithms
+    - Number-theoretic algorithms
+  ⚓ Algorithmic paradigm ; << https://en.wikipedia.org/wiki/Algorithmic_paradigm
+    📝 &comment; Tip
+      - keep on eye to lexical elements: ("a", "the"), ("exactly", "less than", "greater than", "equal than"), <upper case>
+      - modularize from low-level to high-level
+    ⚓📎📍 Divide-and-conquer algorithm ; https://en.wikipedia.org/wiki/Divide-and-conquer_algorithm
+      As in mathematical induction, it is often necessary to generalize the problem to make it amenable to a recursive solution.
+      The correctness of a divide-and-conquer algorithm is usually proved by mathematical induction, and its computational cost is often determined by solving recurrence relations.
+
+  #️⃣ Combinatorial algorithms ; https://en.wikipedia.org/wiki/List_of_algorithms#Combinatorial_algorithms
+    #️⃣ General combinatorial algorithms ; https://en.wikipedia.org/wiki/List_of_algorithms#General_combinatorial_algorithms
+      ⚓ Eight queens puzzle | n queens problem ; https://en.wikipedia.org/wiki/Eight_queens_puzzle
+        🔍 #P-complete
+        #️⃣📰 Related problems ; https://en.wikipedia.org/wiki/Eight_queens_puzzle#Related_problems
+    #️⃣ Graph algorithms ; https://en.wikipedia.org/wiki/List_of_algorithms#Graph_algorithms
+      ⚓ Maximum cardinality matching ; https://en.wikipedia.org/wiki/Maximum_cardinality_matching
+        ⚓ Hopcroft–Karp algorithm ; https://en.wikipedia.org/wiki/Hopcroft%E2%80%93Karp_algorithm
+      ⚓ Topological sorting | topological ordering ; https://en.wikipedia.org/wiki/Topological_sorting
+        ⚓ Feedback arc set ; https://en.wikipedia.org/wiki/Feedback_arc_set
+          📝 &comment; It seems that no condition where feedback arc set is connected (namely, it allows forest shape) is.
+          np-hard
+      #️⃣ Graph drawing ; https://en.wikipedia.org/wiki/List_of_algorithms#Graph_drawing
+      #️⃣ Network theory ; https://en.wikipedia.org/wiki/List_of_algorithms#Network_theory
+      #️⃣ Routing for graphs ; https://en.wikipedia.org/wiki/List_of_algorithms#Routing_for_graphs
+        ⚓📎 minimum spanning tree (MST), minimum weight spanning tree  ; https://en.wikipedia.org/wiki/Minimum_spanning_tree
+          # Contents
+            #️⃣ Properties ; https://en.wikipedia.org/wiki/Minimum_spanning_tree#Properties
+              #️⃣ Cut Property ; https://en.wikipedia.org/wiki/Minimum_spanning_tree#Cut_property
+              #️⃣ Minimum cost edge ; https://en.wikipedia.org/wiki/Minimum_spanning_tree#Minimum-cost_edge
+            #️⃣ Algorithms ; https://en.wikipedia.org/wiki/Minimum_spanning_tree#Algorithms
+              #️⃣ Classic algorithms ; https://en.wikipedia.org/wiki/Minimum_spanning_tree#Classic_algorithms
+                🚣 ... related decision problems such as determining whether a particular edge is in the MST or determining if the minimum total weight exceeds a certain value are in P.
+          ⚓📎 Kruskal's algorithm ; https://en.wikipedia.org/wiki/Kruskal%27s_algorithm
+        ⚓📎 Shortest path problem ; https://en.wikipedia.org/wiki/Shortest_path_problem
+          ⚓ Dijkstra's algorithm ; https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
+
+        ⚓ Hamiltonian path problem | Hamiltonian cycle problem ; << https://en.wikipedia.org/wiki/Hamiltonian_path_problem
+          ⚓ Hamiltonian path | traceable path ; << https://en.wikipedia.org/wiki/Hamiltonian_path
+            (Hamiltonian cycle | Hamiltonian circuit)
+          ⚓📎 Travelling salesman problem (TSP) ; https://en.wikipedia.org/wiki/Travelling_salesman_problem
+            # Contents
+              (| travelling salesperson problem)
+              🔍 The TSP has several applications even in its purest formulation, ...
+              #️⃣📎 Description ; https://en.wikipedia.org/wiki/Travelling_salesman_problem#Description
+                # As a graph problem
+                # Asymmetric and symmetric
+                #🔍 Related problems
+              #️⃣ Computing a solution ; https://en.wikipedia.org/wiki/Travelling_salesman_problem#Computing_a_solution
+                #️⃣ Exact algorithms ; https://en.wikipedia.org/wiki/Travelling_salesman_problem#Exact_algorithms
+                  ⚓📎🔍 Held–Karp algorithm ; https://en.wikipedia.org/wiki/Held%E2%80%93Karp_algorithm
+                    #️⃣📎 Algorithmic complexity ; https://en.wikipedia.org/wiki/Held%E2%80%93Karp_algorithm#Algorithmic_complexity
+                      📝 &comment; derivation process of Time complexity
+                        $k(n-k-1)\binom{n-1}{k} = k(n-k-1)\frac{(n-1)!}{k!(n-k-1)!}$ ...
+                        binomial coefficient 부터 공부해야할듯.
+                #️⃣ Heuristic and approximation algorithms ; https://en.wikipedia.org/wiki/Travelling_salesman_problem#Heuristic_and_approximation_algorithms
+                  # Constructive heuristics
+            
+            ⚓ Bottleneck traveling salesman problem (bottleneck TSP) ; << https://en.wikipedia.org/wiki/Bottleneck_traveling_salesman_problem
+            ⚓ Traveling purchaser problem (TPP) ; https://en.wikipedia.org/wiki/Traveling_purchaser_problem
+            ⚓ Set TSP problem ; https://en.wikipedia.org/wiki/Set_TSP_problem
+          ⚓ Nearest neighbour algorithm ; https://en.wikipedia.org/wiki/Nearest_neighbour_algorithm
+
+        ⚓ Eulerian path | Eulerian trail ; https://en.wikipedia.org/wiki/Eulerian_path
+          (Eulerian circuit | Eulerian cycle)
+
+
+      #️⃣ Graph search, graph traversal ; https://en.wikipedia.org/wiki/List_of_algorithms#Graph_search
+        ⚓ State space search ; https://en.wikipedia.org/wiki/State_space_search
+       & https://en.wikipedia.org/wiki/Graph_traversal
+        ⚓ tree traversal, tree search, walking the tree; << https://en.wikipedia.org/wiki/Tree_traversal
+        #️⃣ Types ; https://en.wikipedia.org/wiki/Tree_traversal#Types
+          #️⃣ Depth-first search ; https://en.wikipedia.org/wiki/Tree_traversal#Depth-first_search
+            N: Visit the current node.
+            L: Recursively traverse the current node's left subtree.
+            R: Recursively traverse the current node's right subtree.
+            #️⃣ Pre-order (NLR) ; https://en.wikipedia.org/wiki/Tree_traversal#Pre-order,_NLR
+            #️⃣ Post-order (LRN) ; https://en.wikipedia.org/wiki/Tree_traversal#Post-order,_LRN
+            #️⃣ In-order (LNR) ; https://en.wikipedia.org/wiki/Tree_traversal#In-order,_LNR
+            #️⃣ Reverse pre-order (NRL) ; https://en.wikipedia.org/wiki/Tree_traversal#Reverse_pre-order,_NRL
+            #️⃣ Reverse post-order (RLN) ; https://en.wikipedia.org/wiki/Tree_traversal#Reverse_post-order,_RLN
+            #️⃣ Reverse in-order (RNL) ; https://en.wikipedia.org/wiki/Tree_traversal#Reverse_in-order,_RNL
+           & ⚓📎 Depth-first search (DFS) ; https://en.wikipedia.org/wiki/Depth-first_search
+            The algorithm starts at the root node (selecting some arbitrary node as the root node in the case of a graph) 
+            🚣 Extra memory, usually a stack, is needed to keep track of the nodes discovered so far along a specified branch which helps in backtracking of the graph.
+            
+            #️⃣📎 2 Example ; https://en.wikipedia.org/wiki/Depth-first_search#Example
+            #️⃣📎💡 4 Pseudocode ; https://en.wikipedia.org/wiki/Depth-first_search#Pseudocode
+              🚣 The non-recursive implementation is similar to breadth-first search but differs from it in two ways: 🆚 ...
+
+            ⚓📎🔍 iterative deepening search, iterative deepening depth-first search (IDS), (IDDFS); << https://en.wikipedia.org/wiki/Iterative_deepening_depth-first_search
+              🔍 ... it visits the nodes in the search tree in the same order as depth-first search, but the cumulative order in which nodes are first visited is effectively breadth-first.
+          #️⃣ Breadth-first search; https://en.wikipedia.org/wiki/Tree_traversal#Breadth-first_search
+           & ⚓📎🔍 Breadth-first search (BFS) ; https://en.wikipedia.org/wiki/Breadth-first_search
+            🚣 Extra memory, usually a queue, is needed to keep track of the child nodes that were encountered but not yet explored.
+            For example, in a chess endgame a chess engine may build the game tree from the current position ...
+            🚣 when the start node (sometimes referred to as a 'search key') is explicitly given ...
+            🚣 ... Note that the word node is usually interchangeable with the word vertex.
+            - 🔍 solution node DFS and BFS 🆚, (start node | search key)
+            - 🔍 Breadth-first search can be generalized to graphs, when ... 
+
+            #️⃣📎 Pseudocode ; https://en.wikipedia.org/wiki/Breadth-first_search#Pseudocode
+            #️⃣ Analysis ; https://en.wikipedia.org/wiki/Breadth-first_search#Analysis
+              #️⃣📎🔍💡 Time and space complexity ; https://en.wikipedia.org/wiki/Breadth-first_search#Time_and_space_complexity
+
+      #️⃣ Subgraphs ; https://en.wikipedia.org/wiki/List_of_algorithms#Subgraphs
+
+    #️⃣ Sequence algorithms ; https://en.wikipedia.org/wiki/List_of_algorithms#Sequence_algorithms
+      #️⃣ Approximate sequence matching ; https://en.wikipedia.org/wiki/List_of_algorithms#Approximate_sequence_matching
+        ⚓ String metrics ; << https://en.wikipedia.org/wiki/String_metric
+          ⚓ Hamming distance ; https://en.wikipedia.org/wiki/Hamming_distance
+      #️⃣ Selection algorithms ; https://en.wikipedia.org/wiki/List_of_algorithms#Selection_algorithms
+        & ⚓ Selection algorithm ; https://en.wikipedia.org/wiki/Selection_algorithm
+        #️⃣ Partition-based selection ; https://en.wikipedia.org/wiki/Selection_algorithm#Partition-based_selection
+          ⚓ Quickselect ; << https://en.wikipedia.org/wiki/Quickselect
+          #️⃣ Median selection as pivot strategy ; https://en.wikipedia.org/wiki/Selection_algorithm#Median_selection_as_pivot_strategy
+      #️⃣ Sequence search ; https://en.wikipedia.org/wiki/List_of_algorithms#Sequence_search
+        ⚓📎🔍 Binary search | half-interval search | logarithmic search | binary chop, ; https://en.wikipedia.org/wiki/Binary_search_algorithm
+          # Contents
+            🚣 There are specialized data structures designed for fast searching, such as hash tables, that can be searched more efficiently than binary search.
+            🔍 There are numerous variations of binary search ...
+            #️⃣ Algorithm ; https://en.wikipedia.org/wiki/Binary_search_algorithm#Algorithm
+              #️⃣🖇️ Preocedure ; https://en.wikipedia.org/wiki/Binary_search_algorithm#Procedure 📅 2023-03-10 05:37:50
+                #️⃣⭕ Alternative procedure ; https://en.wikipedia.org/wiki/Binary_search_algorithm#Alternative_procedure
+      #️⃣ Sequence merging ; https://en.wikipedia.org/wiki/List_of_algorithms#Sequence_merging
+        & ⚓📎 Merge algorithm ; << https://en.wikipedia.org/wiki/Merge_algorithm
+          🚣 Merge algorithms are a family of algorithms that take multiple sorted lists as input and produce a single list as output, containing all the elements of the inputs lists in sorted order. 
+      #️⃣ Sequence sorting ; https://en.wikipedia.org/wiki/List_of_algorithms#Sequence_sorting
+        & ⚓📎 Sorting algorithm ; https://en.wikipedia.org/wiki/Sorting_algorithm
+          # Contents
+            The most frequently used orders are numerical order and lexicographical order, and either ascending or descending.
+            🚣 Sorting is also often useful for canonicalizing data and for producing human-readable output.
+            🚣 Formally, the output of any sorting algorithm must satisfy two conditions:
+              - The output is in monotonic order (each element is no smaller/larger than the previous element, according to the required order).
+              - The output is a permutation (a reordering, yet retaining all of the original elements) of the input.
+            💡 For optimum efficiency, the input data should be stored in a data structure which allows random access rather than one that allows only sequential access.
+            #️⃣ Classification ; https://en.wikipedia.org/wiki/Sorting_algorithm#Classification
+              #️⃣🚣 Stability ; https://en.wikipedia.org/wiki/Sorting_algorithm#Stability
+            #️⃣💡 Comparison of algorithms ; https://en.wikipedia.org/wiki/Sorting_algorithm#Comparison_of_algorithms
+              #️⃣ Comparison sorts ; https://en.wikipedia.org/wiki/Sorting_algorithm#Comparison_sorts
+              #️⃣ Non-comparison sorts ; https://en.wikipedia.org/wiki/Sorting_algorithm#Non-comparison_sorts
+
+            #️⃣ 4 Popular sorting algorithms ; https://en.wikipedia.org/wiki/Sorting_algorithm#Popular_sorting_algorithms
+            #️⃣📎🚣 Simple sorts ; https://en.wikipedia.org/wiki/Sorting_algorithm#Simple_sorts
+              ... 🆚
+              #️⃣📎 Insertion sort ; https://en.wikipedia.org/wiki/Sorting_algorithm#Insertion_sort
+                🚣 In arrays, the new list and the remaining elements can share the array's space, but insertion is expensive, requiring shifting all following elements over by one.
+                Shellsort is a variant of insertion sort that is more efficient for larger lists.
+              #️⃣📎 Selection sort ; https://en.wikipedia.org/wiki/Sorting_algorithm#Selection_sort
+                selection sort is an 🚣 in-place comparison sorting algorithm.
+                🚣 It does no more than n swaps, and thus is useful where swapping is very expensive.
+            #️⃣📎 Efficient sorts ; https://en.wikipedia.org/wiki/Sorting_algorithm#Efficient_sorts
+              💡 various modifications are used, First ...
+              #️⃣📎 Merge sort ; https://en.wikipedia.org/wiki/Sorting_algorithm#Merge_sort
+                🚣 It is also easily applied to lists, not only arrays, as it only requires sequential access, not random access.
+              #️⃣📎 Heapsort ; https://en.wikipedia.org/wiki/Sorting_algorithm#Heapsort
+                🚣 When it is removed and placed at the end of the list, the heap is rearranged so the largest element remaining moves to the root.
+                Using the heap, finding the next largest element takes O(log n) time, instead of O(n) for a linear scan as in simple selection sort.
+                #️⃣📎📍 Overview ; https://en.wikipedia.org/wiki/Heapsort#Overview
+                  - iParent, iLeftChild, iRightChild
+                  Heapsort can be performed in place. The array can be split into two parts, the sorted array and the heap.
+                  The heap's invariant is preserved after each extraction, so the only cost is that of extraction.
+                #️⃣📎 Algorithm ; https://en.wikipedia.org/wiki/Heapsort#Algorithm
+                  💡 The buildMaxHeap() operation is run once, and is O(n) in performance. The siftDown() function is O(log n), and is called n times.
+                  Therefore, the performance of this algorithm is O(n + n log n) = O(n log n).
+                  #️⃣ Pseudocode ; https://en.wikipedia.org/wiki/Heapsort#Pseudocode
+                    💡 The sorting routine uses two subroutines, heapify and siftDown. The former is the common in-place heap construction routine, while the latter is a common subroutine for implementing heapify.
+
+
+
+              #️⃣📎🔍 Quicksort ; https://en.wikipedia.org/wiki/Sorting_algorithm#Quicksort
+
+            #️⃣ Bubble sort and variants ; https://en.wikipedia.org/wiki/Sorting_algorithm#Bubble_sort_and_variants
+              #️⃣📎 Bubble sort ; https://en.wikipedia.org/wiki/Sorting_algorithm#Bubble_sort
+                Bubble sort can also be used efficiently on a list of any length that is nearly sorted
+          # Theory
+            ⚓ In-place algorithm ; https://en.wikipedia.org/wiki/In-place_algorithm
+            ⚓ Online algorithm ; << https://en.wikipedia.org/wiki/Online_algorithm
+            ⚓ Adaptive sort ; https://en.wikipedia.org/wiki/Adaptive_sort
+            ⚓ Loop invariant ; << https://en.wikipedia.org/wiki/Loop_invariant
+          # Exchange sorts
+            ⚓📎 Bubble sort, sinking sort ; https://en.wikipedia.org/wiki/Bubble_sort
+              ... is named for the way the larger elements "bubble" up to the top of the list.
+              #️⃣ Implementation ; https://en.wikipedia.org/wiki/Bubble_sort#Implementation
+                #️⃣🚣 Optimizing bubble sort ; https://en.wikipedia.org/wiki/Bubble_sort#Optimizing_bubble_sort
+            ⚓ Quicksort ; https://en.wikipedia.org/wiki/Quicksort
+              #️⃣ Algorithm ; https://en.wikipedia.org/wiki/Quicksort#Algorithm
+                #️⃣ Implementation issues ; https://en.wikipedia.org/wiki/Quicksort#Implementation_issues
+                  #️⃣ Choice of pivot ; https://en.wikipedia.org/wiki/Quicksort#Choice_of_pivot
+              #️⃣ Formal analysis ; https://en.wikipedia.org/wiki/Quicksort#Formal_analysis
+                #️⃣ Worst-case analysis ; https://en.wikipedia.org/wiki/Quicksort#Worst-case_analysis
+                #️⃣ Best-case analysis ; https://en.wikipedia.org/wiki/Quicksort#Best-case_analysis
+                #️⃣ Average-case analysis ; https://en.wikipedia.org/wiki/Quicksort#Average-case_analysis
+          # Selection sorts
+            ⚓📎 Selection sorts ; https://en.wikipedia.org/wiki/Selection_sort
+            ⚓📎 Heapsort ; https://en.wikipedia.org/wiki/Heapsort
+              🚣 Unlike selection sort, heapsort does not waste time with a linear-time scan of the unsorted region; rather, heap sort maintains the unsorted region in a heap data structure to more quickly find the largest element in each step.[1]
+
+          # Insertion sorts
+            ⚓📎 Insertion sort ; https://en.wikipedia.org/wiki/Insertion_sort
+              #️⃣ Algorithm; https://en.wikipedia.org/wiki/Insertion_sort#Algorithm
+                🚣 a slightly faster version ...
+            ⚓ Patience sorting ; https://en.wikipedia.org/wiki/Patience_sorting
+          # Merge sorts
+            ⚓📎 Merge sort ; https://en.wikipedia.org/wiki/Merge_sort
+              #️⃣ Ping-pong merge sort ; https://en.wikipedia.org/wiki/Merge_sort#Ping-pong_merge_sort
+              #️⃣ In-place merge sort ; https://en.wikipedia.org/wiki/Merge_sort#In-place_merge_sort
+          # Hybrid sorts
+            ⚓ Timsort ; https://en.wikipedia.org/wiki/Timsort
+            ⚓ Introsort ; https://en.wikipedia.org/wiki/Introsort
+          # Distribution sorts
+            ⚓ Counting sort ; https://en.wikipedia.org/wiki/Counting_sort
+        # Other
+          ⚓ Bitonic mergesort ; https://en.wikipedia.org/wiki/Bitonic_sorter
+            bitonic sequence
+
+      #️⃣ Subsequences ; https://en.wikipedia.org/wiki/List_of_algorithms#Subsequences
+        ⚓ longest common subsequence (LCS) ; https://en.wikipedia.org/wiki/Longest_common_subsequence
+        ⚓📎 Longest increasing subsequence ; https://en.wikipedia.org/wiki/Longest_increasing_subsequence
+          This subsequence is not necessarily contiguous, or unique.
+          #️⃣📎 Example ; https://en.wikipedia.org/wiki/Longest_increasing_subsequence#Example
+          #️⃣📎 Efficient algorithms ; https://en.wikipedia.org/wiki/Longest_increasing_subsequence#Efficient_algorithms
+      #️⃣ Substrings ; https://en.wikipedia.org/wiki/List_of_algorithms#Substrings
+        ⚓📎 String-searching algorithm | string-matching algorithms ; https://en.wikipedia.org/wiki/String-searching_algorithm
+          # Contents
+            haystack, (needles, patterns)
+            🚣 In practice, the method of feasible string-search algorithm may be affected by the string encoding
+      
+
+      ⚓📎 running total | rolling total | partial sum << https://en.wikipedia.org/wiki/Running_total
+        The purposes of a running total are twofold ...
+
+    ⚓ Linear programming (LP) | linear optimization | 선형 계획법, 線型計劃法 ; https://en.wikipedia.org/wiki/Linear_programming
+      #️⃣ Covering/packing dualities ; https://en.wikipedia.org/wiki/Linear_programming#Covering/packing_dualities
+        - Maximum independent set
+        ⚓📎 Set cover problem ; https://en.wikipedia.org/wiki/Set_cover_problem
+        ⚓ Packing problems ; https://en.wikipedia.org/wiki/Packing_problems
+          ⚓ Bin packing problem ; https://en.wikipedia.org/wiki/Bin_packing_problem
+            When the number of bins is restricted to 1 and each item is characterised by both a volume and a value
+            , the problem of maximizing the value of items that can fit in the bin is known as the knapsack problem.
+  #️⃣ Computational mathematics ; https://en.wikipedia.org/wiki/List_of_algorithms#Computational_mathematics
+    #️⃣ Geometry ; https://en.wikipedia.org/wiki/List_of_algorithms#Geometry
+      #️⃣ Line segment intersection: finding whether lines intersect, usually with a sweep line algorithm
+        ⚓📎 Sweep line algorithm | plane sweep algorithm ; << https://en.wikipedia.org/wiki/Sweep_line_algorithm
+          (conceptual sweep line, sweep surface)
+          ⚓ Voronoi diagram ; https://en.wikipedia.org/wiki/Voronoi_diagram
+          └ ⚓ Fortune's algorithm ; https://en.wikipedia.org/wiki/Fortune%27s_algorithm
+
+      ⚓ Closest pair of points problem ; https://en.wikipedia.org/wiki/Closest_pair_of_points_problem
+      ⚓ Area of a triangle ; << https://en.wikipedia.org/wiki/Area_of_a_triangle
+        #️⃣🔍 Using coordinates ; https://en.wikipedia.org/wiki/Area_of_a_triangle#Using_coordinates
+      ⚓ Tessellation | tiling ; << https://en.wikipedia.org/wiki/Tessellation
+    #️⃣ Number theoretic algorithms ; https://en.wikipedia.org/wiki/List_of_algorithms#Number_theoretic_algorithms
+      ⚓ Generation of primes ; https://en.wikipedia.org/wiki/Generation_of_primes
+        ⚓📎 sieve of Eratosthenes ; https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
+          #️⃣ Algorithm and variants ; https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes#Algorithm_and_variants
+          #️⃣ Algorithmic complexity ; https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes#Algorithmic_complexity
+      ⚓ Integer factorization ; https://en.wikipedia.org/wiki/Integer_factorization
+        ⚓📎 trial division ; https://en.wikipedia.org/wiki/Trial_division
+      ⚓ Multiplication algorithm ; https://en.wikipedia.org/wiki/Multiplication_algorithm
+        ⚓ Karatsuba algorithm ; https://en.wikipedia.org/wiki/Karatsuba_algorithm
+      ⚓ Primality test ; https://en.wikipedia.org/wiki/Primality_test
+        📝 &comment; It is in NP. it different with relation between PRIEMS and COMPOSITES;witness CO-NP.
+    #️⃣ Numerical algorithms ; https://en.wikipedia.org/wiki/List_of_algorithms#Numerical_algorithms
+      #️⃣ Root finding ; https://en.wikipedia.org/wiki/List_of_algorithms#Root_finding
+       & https://en.wikipedia.org/wiki/Root-finding_algorithms#Bracketing_methods
+        #️⃣ Bracketing (no derivative) ; https://en.wikipedia.org/wiki/Root-finding_algorithms#Bracketing_methods
+          ⚓📎📍 Bisection method | 이분법, 二分法 ; https://en.wikipedia.org/wiki/Bisection_method
+            (bisection method | dichotomy method | binary search method | interval halving)
+            🔍 It is a very simple and robust method, but it is also relatively slow.
+              🚣 Because of this, it is often used to obtain a rough approximation to a solution which is then used as a starting point for more rapidly converging methods.
+            For polynomials, more elaborate methods exist for testing ...
+            #️⃣ The method ; https://en.wikipedia.org/wiki/Bisection_method#The_method
+              #️⃣ Algorithm ; https://en.wikipedia.org/wiki/Bisection_method#Algorithm
+
+    #️⃣ Optimization algorithms ; https://en.wikipedia.org/wiki/List_of_algorithms#Optimization_algorithms
+      ⚓ Subset sum problem (SSP) ; https://en.wikipedia.org/wiki/Subset_sum_problem
+        📝 &comment; SSP's Time complexity: pseudo-polynomial time.
+        # Contents
+          🔍 SSP is a special case of the knapsack problem and of the multiple subset sum problem.
+          ... The sub-problem for two elements sum is known as two-sum ...
+          #️⃣ Exponential time algorithms ; https://en.wikipedia.org/wiki/Subset_sum_problem#Exponential_time_algorithms
+            #️⃣📎 Horowitz and Sahni ; https://en.wikipedia.org/wiki/Subset_sum_problem#Horowitz_and_Sahni
+          #️⃣ Pseudo-polynomial time dynamic programming solutions ; https://en.wikipedia.org/wiki/Subset_sum_problem#Pseudo-polynomial_time_dynamic_programming_solutions
+        ⚓ 3SUM ; << https://en.wikipedia.org/wiki/3SUM
+          📝 &comment; It is not NP-completeness because it's quadratic algorithm uses "hashing" instead of brute-force search.
+            the 3SUM problem can be 'reduced' to the subset sum problem.
+          #️⃣ Quadratic algorithm ; https://en.wikipedia.org/wiki/3SUM#Quadratic_algorithm
+        ⚓ Multiple subset sum ; << https://en.wikipedia.org/wiki/Multiple_subset_sum
+      
+      ⚓📎 Interval scheduling ; << https://en.wikipedia.org/wiki/Interval_scheduling
+        subset of intervals
+      ⚓ Minimax ; https://en.wikipedia.org/wiki/Minimax
+      ⚓ Vertex k-center problem << https://en.wikipedia.org/wiki/Vertex_k-center_problem
+        📝 &comment; "center" means 🔗 Graph center
+  #️⃣ Computer science ; https://en.wikipedia.org/wiki/List_of_algorithms#Computer_science
+    #️⃣ Cryptography ; https://en.wikipedia.org/wiki/List_of_algorithms#Cryptography
+    #️⃣ Machine learning and statistical classification ; https://en.wikipedia.org/wiki/List_of_algorithms#Machine_learning_and_statistical_classification
+    #️⃣ Programming language theory ; https://en.wikipedia.org/wiki/List_of_algorithms#Programming_language_theory
+      #️⃣ Parsing ; https://en.wikipedia.org/wiki/List_of_algorithms#Parsing
+        & ⚓ Parsing algorithms ; << https://en.wikipedia.org/wiki/Parsing
+        ⚓ Top-down parsing ; https://en.wikipedia.org/wiki/Top-down_parsing
+        ⚓ Bottom-up parsing ; https://en.wikipedia.org/wiki/Bottom-up_parsing
+  #️⃣ Operating systems algorithms ; https://en.wikipedia.org/wiki/List_of_algorithms#Operating_systems_algorithms
+    #️⃣ Scheduling ; https://en.wikipedia.org/wiki/List_of_algorithms#Scheduling
+    & ⚓ Optimal job scheduling problems ; https://en.wikipedia.org/wiki/Optimal_job_scheduling
+      # Other requirements
+        ⚓ Interval scheduling ; https://en.wikipedia.org/wiki/Interval_scheduling
+
+
+
+
+  ⚓ Streaming algorithm ; << https://en.wikipedia.org/wiki/Streaming_algorithm
+  ⚓ Searching algorithm ; << https://en.wikipedia.org/wiki/Search_algorithm
+    📝 &comment; It can not be bound in one paragraph, so it is in placed here. describe details to other paragrpahs.
+  ⚓ Hybrid algorithm ; << https://en.wikipedia.org/wiki/Hybrid_algorithm
+    📝 &comment; It can not be bound in one paragraph, so it is in placed here. describe details to other paragrpahs.
+  
+  ⚓📎 Parametric search ; << https://en.wikipedia.org/wiki/Parametric_search
+    #️⃣📎 Technique ; https://en.wikipedia.org/wiki/Parametric_search#Technique
+      🚣 (test algorithm, decision algorithm). discontinuously
+      Advanced versions of the parametric search technique use a parallel algorithm as the test algorithm ...
+    #️⃣📎 Comparison with binary search ; https://en.wikipedia.org/wiki/Parametric_search#Comparison_with_binary_search
+  ⚓ Couting problem ; << https://en.wikipedia.org/wiki/Counting_problem_(complexity)
+(List of algorithms basics)
+  ⚓📎 Pointer jumping | path doubling ; https://en.wikipedia.org/wiki/Pointer_jumping
+  
+  ⚓ Parallel algorithm ; https://en.wikipedia.org/wiki/Parallel_algorithm
+  ⚓ sequential algorithm | serial algorithm ; https://en.wikipedia.org/wiki/Sequential_algorithm
+# Number-theoretic algorithms
+  (other Number-theoretic) <<
+    ⚓ combination ; https://en.wikipedia.org/wiki/Combination
+      📝 &comment; Time Complexity: O(r * (n choose r)) 🔗 https://stackoverflow.com/questions/53419536/what-is-the-computational-complexity-of-itertools-combinations-in-python
+        , where n is the length of the iterable and r is the size of the combinations being generated.
+      - k-combination
+    ⚓ permutation ; https://en.wikipedia.org/wiki/Permutation
+      Technically, a permutation of a set S is defined as a bijection from S to itself.
+⚓ List of random number generators ; << https://en.wikipedia.org/wiki/List_of_random_number_generators
+  ⚓ Permuted congruential generator (PCG) ; https://en.wikipedia.org/wiki/Permuted_congruential_generator
+⚓ List of computability and complexity topics ; https://en.wikipedia.org/wiki/List_of_computability_and_complexity_topics
+  #️⃣ Named problems ; https://en.wikipedia.org/wiki/List_of_computability_and_complexity_topics#Named_problems
+    ⚓ Knapsack problem ; https://en.wikipedia.org/wiki/Knapsack_problem
+    ⚓ List of knapsack problems ; << https://en.wikipedia.org/wiki/List_of_knapsack_problems
+
+    ⚓ Satisfiability ; https://en.wikipedia.org/wiki/Satisfiability
+      ⚓ Boolean satisfiability problem | 충족 가능성 문제 << https://en.wikipedia.org/wiki/Boolean_satisfiability_problem
+        (| propositional satisfiability problem | SATISFIABILITY | SAT | B-SAT)
+        #️⃣ Complexity ; https://en.wikipedia.org/wiki/Boolean_satisfiability_problem#Complexity
+          # 3-satisfiability | 3-SAT | 3CNFSAT | 3-satisfiability
+            The 3-SAT instance ... reduced to a clique problem.
+  
+  ⚓ List of NP-complete problems ; << https://en.wikipedia.org/wiki/List_of_NP-complete_problems
+  ⚓ List of unsolved problems in computer science ; << https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_computer_science
+  ⚓ List of unsolved problems in mathematics ; https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics
+    #️⃣ Unsolved problems ; https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics#Unsolved_problems
+      #️⃣ Dynamical systems ; https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_mathematics#Dynamical_systems
+        ⚓ Collatz conjecture ; https://en.wikipedia.org/wiki/Collatz_conjecture
+  ⚓ List of undecidable problems ; << https://en.wikipedia.org/wiki/List_of_undecidable_problems
+
+
+⚓ Category:Computer graphics algorithms ; https://en.wikipedia.org/wiki/Category:Computer_graphics_algorithms
+  ⚓ Line drawing algorithm ; https://en.wikipedia.org/wiki/Line_drawing_algorithm
+    ⚓📎 Bresenham's line algorithm ; https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
+      # Method
+        the top-left is (0,0) such that pixel coordinates increase in the right and down directions (e.g. that the pixel at (7,4) is directly above the pixel at (7,5)), and the pixel centers have integer coordinates.
+          🇹🇷 좌표 (x, y)는 픽셀의 중심을 나타내며, 이 좌표는 실제로 화면상의 점이 아니라 픽셀 그 자체를 참조한다.
+          🛍️ e.g. (0,0) is at the top left corner of the grid, (1,1) is at the top left end of the line and (11, 5) is at the bottom right end of the line
+
+        The algorithm will be initially presented only for the octant in which the segment goes down and to the right ( x 0 ≤ x 1 and y 0 ≤ y 1), and its horizontal projection x 1 − x 0 is longer than the vertical projection y 1 − y 0  (the line has a positive slope less than 1).
+          🇹🇷: 2차원 평면에서 Octant 로 표시할 것이다.
+            Octant 1: 기울기 0 이상, 45도 이하 (→ 방향)
+            Octant 2: 기울기 45도 이상, 90도 이하 (↗ 방향)
+            Octant 3: 기울기 90도 이상, 135도 이하 (↖ 방향)
+            Octant 4: 기울기 135도 이상, 180도 이하 (← 방향)
+            Octant 5: 기울기 180도 이상, 225도 이하 (↙ 방향)
+            Octant 6: 기울기 225도 이상, 270도 이하 (↘ 방향)
+            Octant 7: 기울기 270도 이상, 315도 이하 (↙ 방향)
+            Octant 8: 기울기 315도 이상, 360도 이하 (↘ 방향)
+
+        In this octant, for each column x between x 0 and x 1, there is exactly one row y (computed by the algorithm) containing a pixel of the line
+        , while each row between y 0 and y 1 may contain multiple rasterized pixels.
+          🇹🇷 Octant 평면이기 떄문에, 기울기가 1보다 낮아서 다음과 x좌표 1개당 column 은 1개만 가질 수 있지만, y 좌표 1개당 1개 이상의 row 를 가질 수 있다.
+
+        ... 🚣 it keeps an error bound at each stage, which represents the negative of the distance from (a) the point where the line exits the pixel to (b) the top edge of the pix
+          
+
+
+    ⚓ Xiaolin Wu's line algorithm ; https://en.wikipedia.org/wiki/Xiaolin_Wu's_line_algorithm
+
+
+================================================
+etc Allgoirhtms
+  ⚓ 2048 (video game) ; https://en.wikipedia.org/wiki/2048_(video_game)
+    developer Gabriele Cirulli
+    https://play2048.co/
+  ⚓ Endgame tablebase ; https://en.wikipedia.org/wiki/Endgame_tablebase
+
+
+
+----------------------------------------------
+coding competitions
+  ⚓ Google 🔪 Code jam ; https://codingcompetitions.withgoogle.com/codejam/archive
+  ⚓ Google 🔪 Hash code ; https://codingcompetitions.withgoogle.com/hashcode/archive

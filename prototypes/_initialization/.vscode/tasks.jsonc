@@ -1,5 +1,7 @@
+// 📝 Note that the original file of "tasks.json "must be .json file. not jsonc.
 {
   "tasks": [
+    // 🌀 Title: git
     {
       "label": "Git Add, Commit, Push",
       "type": "shell",
@@ -15,6 +17,34 @@
         "panel": "shared"
       },
       "problemMatcher": []
+    },
+    // 🌀 Title: C/C++ with LLVM
+    {
+      "label": "Prepare Build Directory", // Task to create the build directory
+      "type": "shell",
+      "command": "mkdir",
+      "args": [
+        "-p", // Create directories as needed
+        "${workspaceFolder}/build/${relativeFileDirname}"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Build Current C File", // Main build task
+      "type": "shell",
+      "dependsOn": "Prepare Build Directory", // Run the directory creation task first
+      "command": "clang",
+      "args": [
+        "-g", // Include debugging information
+        "${file}", // Current open file to compile
+        "-o",
+        "${workspaceFolder}/build/${relativeFileDirname}/${fileBasenameNoExtension}"
+      ],
+      "problemMatcher": ["$gcc"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
     },
     {
       "label": "Build All LaTeX Files; note/sorted_note/*.tex",

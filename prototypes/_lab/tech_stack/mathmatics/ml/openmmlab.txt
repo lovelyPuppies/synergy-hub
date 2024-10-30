@@ -1,0 +1,88 @@
+list of level 1 subjects with 📘 favorite lookup
+  - OpenMMLab 🔪 MMAction 2
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ OpenMMLab 🔪 MMAction 2; https://mmaction2.readthedocs.io/en/latest/get_started/overview.html
+  📝📎 start from 📅 2024-10-09 17:50:06
+  # Get Started
+    ⚓ Overview ; https://mmaction2.readthedocs.io/en/latest/get_started/overview.html
+    ⚓🖇️ Installation ; https://mmaction2.readthedocs.io/en/latest/get_started/installation.html 📅 2024-10-09 18:28:58
+      %shell> poetry add torch torchvision mmengine mmcv mmaction2 --group openmmlab
+
+    ⚓ Quick Run ; https://mmaction2.readthedocs.io/en/latest/get_started/quick_run.html
+    ⚓ A 20-Minute Guide to MMAction2 FrameWork ; https://mmaction2.readthedocs.io/en/latest/get_started/guide_to_framework.html
+    ⚓ How to contribute to MMAction2 ; https://mmaction2.readthedocs.io/en/latest/get_started/contribution_guide.html
+    ⚓ FAQ ; https://mmaction2.readthedocs.io/en/latest/get_started/faq.html
+  # User Guides
+    ⚓ Inference with existing models ; https://mmaction2.readthedocs.io/en/latest/user_guides/inference.html
+    ⚓ Learn about Configs ; https://mmaction2.readthedocs.io/en/latest/user_guides/config.html
+    ⚓ Training and Test ; https://mmaction2.readthedocs.io/en/latest/user_guides/train_test.html
+    ⚓ Prepare Dataset ; https://mmaction2.readthedocs.io/en/latest/user_guides/prepare_dataset.html
+    ⚓ Finetuning Models ; https://mmaction2.readthedocs.io/en/latest/user_guides/finetune.html
+  # Advanced Guides
+    ⚓ Dataflow in MMAction2 ; https://mmaction2.readthedocs.io/en/latest/advanced_guides/dataflow.html
+    ⚓ Customize Models ; https://mmaction2.readthedocs.io/en/latest/advanced_guides/customize_models.html
+    ⚓ Customize Dataset ; https://mmaction2.readthedocs.io/en/latest/advanced_guides/customize_dataset.html
+    ⚓ Customize Data Pipeline ; https://mmaction2.readthedocs.io/en/latest/advanced_guides/customize_pipeline.html
+    ⚓ Customize Optimizer ; https://mmaction2.readthedocs.io/en/latest/advanced_guides/customize_optimizer.html
+    ⚓ Customize Logging ; https://mmaction2.readthedocs.io/en/latest/advanced_guides/customize_logging.html
+    ⚓ Useful Tools ; https://mmaction2.readthedocs.io/en/latest/useful_tools.html
+  # Model Zoo
+    ⚓ Model Zoo Summary ; https://mmaction2.readthedocs.io/en/latest/modelzoo_statistics.html
+    ⚓ Action Recognition Models ; https://mmaction2.readthedocs.io/en/latest/model_zoo/recognition.html
+    ⚓ Audio-based Action Recognition Models ; https://mmaction2.readthedocs.io/en/latest/model_zoo/recognition_audio.html
+    ⚓ Skeleton-based Action Recognition Models ; https://mmaction2.readthedocs.io/en/latest/model_zoo/skeleton.html
+    ⚓ Spatio Temporal Action Detection Models ; https://mmaction2.readthedocs.io/en/latest/model_zoo/detection.html
+    ⚓ Video Retrieval Models ; https://mmaction2.readthedocs.io/en/latest/model_zoo/retrieval.html
+    ⚓ Action Localization Models ; https://mmaction2.readthedocs.io/en/latest/model_zoo/localization.html
+  # Dataset Zoo
+    ⚓ Dataset Zoo Summary ; https://mmaction2.readthedocs.io/en/latest/datasetzoo_statistics.html
+    ⚓ Preparing ActivityNet ; https://mmaction2.readthedocs.io/en/latest/dataset_zoo/activitynet.html
+    ⚓ Preparing AVA ; https://mmaction2.readthedocs.io/en/latest/dataset_zoo/ava.html
+    ⚓ Preparing AVA-Kinetics ; https://mmaction2.readthedocs.io/en/latest/dataset_zoo/ava_kinetics.html
+    ⚓ Preparing AVA ; https://mmaction2.readthedocs.io/en/latest/dataset_zoo/charades-sta.html
+    ⚓ Preparing Diving48 ; https://mmaction2.readthedocs.io/en/latest/dataset_zoo/diving48.html
+    ⚓ Preparing GYM ; https://mmaction2.readthedocs.io/en/latest/dataset_zoo/gym.html
+    ⚓ Preparing HACS Segments ; https://mmaction2.readthedocs.io/en/latest/dataset_zoo/hacs.html
+    ⚓ Preparing HMDB51 ; https://mmaction2.readthedocs.io/en/latest/dataset_zoo/hmdb51.html
+    ⚓ Preparing HVU ; https://mmaction2.readthedocs.io/en/latest/dataset_zoo/hvu.html
+    ⚓ Preparing Jester ; https://mmaction2.readthedocs.io/en/latest/dataset_zoo/jester.html
+    ⚓ Preparing JHMDB ; https://mmaction2.readthedocs.io/en/latest/dataset_zoo/jhmdb.html
+    ⚓ Preparing Kinetics-[400/600/700] ; https://mmaction2.readthedocs.io/en/latest/dataset_zoo/kinetics.html
+    ⚓ Preparing Kinetics-710 ; https://mmaction2.readthedocs.io/en/latest/dataset_zoo/kinetics710.html
+    ⚓ Preparing Moments in Time ; https://mmaction2.readthedocs.io/en/latest/dataset_zoo/mit.html
+    ⚓ Preparing Multi-Moments in Time ; https://mmaction2.readthedocs.io/en/latest/dataset_zoo/mmit.html
+    ⚓ Preparing MSR-VTT Retrieval/ Video Question-Answering Dataset ; https://mmaction2.readthedocs.io/en/latest/dataset_zoo/msrvtt.html
+    ⚓ Preparing Multisports ; https://mmaction2.readthedocs.io/en/latest/dataset_zoo/multisports.html
+    ⚓ Preparing OmniSource ; https://mmaction2.readthedocs.io/en/latest/dataset_zoo/omnisource.html
+    ⚓ Preparing Skeleton Dataset ; https://mmaction2.readthedocs.io/en/latest/dataset_zoo/skeleton.html
+    ⚓ Preparing Something-Something V1 ; https://mmaction2.readthedocs.io/en/latest/dataset_zoo/sthv1.html
+    ⚓ Preparing Something-Something V2 ; https://mmaction2.readthedocs.io/en/latest/dataset_zoo/sthv2.html
+    ⚓ Preparing THUMOS’14 ; https://mmaction2.readthedocs.io/en/latest/dataset_zoo/thumos14.html
+    ⚓ Preparing UCF-101 ; https://mmaction2.readthedocs.io/en/latest/dataset_zoo/ucf101.html
+    ⚓ Preparing UCF101-24 ; https://mmaction2.readthedocs.io/en/latest/dataset_zoo/ucf101_24.html
+    ⚓ Preparing Video Retrieval Datasets ; https://mmaction2.readthedocs.io/en/latest/dataset_zoo/video_retrieval.html
+  # Projects
+    ⚓ Welcome to Projects of MMAction2 ; https://mmaction2.readthedocs.io/en/latest/projectzoo.html
+    #️⃣ Example Project ; https://mmaction2.readthedocs.io/en/latest/projectzoo.html#example-project
+    #️⃣ Knowledge Distillation Based on MMRazor ; https://mmaction2.readthedocs.io/en/latest/projectzoo.html#knowledge-distillation-based-on-mmrazor
+    #️⃣ UMT Project ; https://mmaction2.readthedocs.io/en/latest/projectzoo.html#umt-project
+    #️⃣ CTRGCN Project ; https://mmaction2.readthedocs.io/en/latest/projectzoo.html#ctrgcn-project
+    #️⃣ Gesture Recognition ; https://mmaction2.readthedocs.io/en/latest/projectzoo.html#gesture-recognition
+    #️⃣ MSG3D Project ; https://mmaction2.readthedocs.io/en/latest/projectzoo.html#msg3d-project
+  # Migration
+    ⚓ Migration from MMAction2 0.x ; https://mmaction2.readthedocs.io/en/latest/migration.html
+  # API Reference
+    ⚓ mmaction.apis ; https://mmaction2.readthedocs.io/en/latest/api.html
+    #️⃣ mmaction.datasets ; https://mmaction2.readthedocs.io/en/latest/api.html#mmaction-datasets
+    #️⃣ mmaction.engine ; https://mmaction2.readthedocs.io/en/latest/api.html#mmaction-engine
+    #️⃣ mmaction.evaluation ; https://mmaction2.readthedocs.io/en/latest/api.html#mmaction-evaluation
+    #️⃣ mmaction.models ; https://mmaction2.readthedocs.io/en/latest/api.html#mmaction-models
+    #️⃣ mmaction.structures ; https://mmaction2.readthedocs.io/en/latest/api.html#mmaction-structures
+    #️⃣ mmaction.testing ; https://mmaction2.readthedocs.io/en/latest/api.html#module-mmaction.testing
+    #️⃣ mmaction.visualization ; https://mmaction2.readthedocs.io/en/latest/api.html#mmaction-visualization
+    #️⃣ mmaction.utils ; https://mmaction2.readthedocs.io/en/latest/api.html#module-mmaction.utils
+  # Notes
+    ⚓ Ecosystem Projects based on MMAction2 ; https://mmaction2.readthedocs.io/en/latest/notes/ecosystem.html
+    ⚓ Changelog ; https://mmaction2.readthedocs.io/en/latest/notes/changelog.html
+  # Switch Language
