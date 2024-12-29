@@ -14178,3 +14178,27 @@ brew list llvm
 
 
 This is a simulated preview with limited functionality. Deactivate 'Headless mode' in extension settings for a full experience.
+
+[프로젝트]
+ADAS 자율주행차 시스템 반도체SW 개발
+  1. 자동차 주행 실시간 고속 인지/판단/제어
+- 자동차 구동 제어 프로그램 기반 ADAS(첨단 운전자 보조 시스템) 개발을 위해 
+  전측방 Lidar, 카메라 등의 센서 기술적용 
+[프로젝트]
+인텔 AI 비젼 개발
+  1. 머신러닝 모델 활용 불량제품 검사 및 제품 분류
+- 인텔 Geti 플랫폼을 활용 컨베이어 벨트를 포함한 자동화 시스템 구축
+[프로젝트]
+엣지 AIoT 시스템 개발
+  1. 드론을 이용한 영상처리 기반의 방범시스템
+- 가속도센서 데이터 기반으로 얼굴인식/ 추적 알고리즘 개발 
+[프로젝트]
+  인텔 엣지 AI 실무 프로젝트
+    1. Face Tracking을 통한 스마트 거치대  (  5 5h)
+  - 인텔 실시간 딥페이크 탐지 기술(FakeCatcher)활용
+    2. (GETi/Open VINO) 딥러닝을 통한 PCB불량탐지  (  7 0H)　
+  - Edge AI Workflow에 따른 PCB불량탐지를 위한 모델 개발
+재량교과
+  1. 기업 현장전문가 및 수료생 초청교육
+  2. 이력서 및 포트폴리오 작성 컨설팅
+  3. 모의면접(역량, 압박, AI 면접등)
