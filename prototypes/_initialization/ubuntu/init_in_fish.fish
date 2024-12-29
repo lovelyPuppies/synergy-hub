@@ -257,14 +257,14 @@ end
 
 
 
-: '
-📦🚀 avahi ; https://github.com/avahi/avahi
-    https://repology.org/project/avahi/versions
-    https://formulae.brew.sh/formula/avahi
+# : '
+# 📦🚀 avahi ; https://github.com/avahi/avahi
+#     https://repology.org/project/avahi/versions
+#     https://formulae.brew.sh/formula/avahi
 
-    Service Discovery for Linux using mDNS/DNS-SD
-'
-brew install avahi
+#     Service Discovery for Linux using mDNS/DNS-SD
+# '
+# brew install avahi
 
 
 
@@ -498,11 +498,12 @@ brew install gcc
 
 : '
 📦 llvm, lld
-https://repology.org/project/llvm/versions
-https://formulae.brew.sh/formula/llvm#default
-https://formulae.brew.sh/formula/lld#default
-lld
-a fast and lightweight linker for building projects efficiently
+    https://repology.org/project/llvm/versions
+    https://formulae.brew.sh/formula/llvm#default
+    https://formulae.brew.sh/formula/lld#default
+    lld
+    
+    a fast and lightweight linker for building projects efficiently
 '
 brew install llvm lld
 # It includes clang, lld, lldb, and various LLVM tools for building, linking, and debugging software.
@@ -517,15 +518,15 @@ echo "❔ You can check the list of binaries with the command 🧮 'ls /home/lin
 
 : '
 📦 compiledb
-https://github.com/nickdiego/compiledb
-https://repology.org/project/compiledb/versions
-https://formulae.brew.sh/formula/compiledb#default
+    https://github.com/nickdiego/compiledb
+    https://repology.org/project/compiledb/versions
+    https://formulae.brew.sh/formula/compiledb#default
 
-Generate a Clang compilation database for Make-based build systems
+    Generate a Clang compilation database for Make-based build systems
 
-Refer to 🔗 _about/about-intellisense_for_c_cpp.md
+    Refer to 🔗 _about/about-intellisense_for_c_cpp.md
 
-🛍️ e.g. It is used for IntelliSense in the kernel build by the Makefile.
+    🛍️ e.g. It is used for IntelliSense in the kernel build by the Makefile.
 '
 brew install compiledb
 
@@ -536,12 +537,13 @@ brew install compiledb
 
 echo "▶️  Installing packages closedly related with Terminal-based eidtor ..."
 : '
-📦 helix
-Terminal-based editor: Helix (hx)
-🔗 https://docs.helix-editor.com/package-managers.html 📅 2024-11-05 15:18:43
-https://repology.org/project/helix-editor/versions
-https://formulae.brew.sh/formula/helix#default
-⌨️ https://docs.helix-editor.com/keymap.html
+📦 helix (hx)   ; Terminal-based editor:
+    🔗 https://docs.helix-editor.com/package-managers.html 📅 2024-11-05 15:18:43
+
+    https://repology.org/project/helix-editor/versions
+    https://formulae.brew.sh/formula/helix#default
+
+    ⌨️ https://docs.helix-editor.com/keymap.html
 '
 brew install helix
 
@@ -549,49 +551,49 @@ brew install helix
 mkdir -p $HOME/.config/helix/themes
 
 echo '
-# My private Theme
-inherits = "dark_high_contrast"
+  # My private Theme
+  inherits = "dark_high_contrast"
 
-## Override the theming for "keyword"s:
-"ui.virtual.inlay-hint" = { fg = "light-gray" }
-"ui.virtual.inlay-hint.parameter" = { fg = "light-gray" }
-"ui.virtual.inlay-hint.type" = { fg = "light-gray" }
-"ui.virtual.wrap" = "light-gray"
+  ## Override the theming for "keyword"s:
+  "ui.virtual.inlay-hint" = { fg = "light-gray" }
+  "ui.virtual.inlay-hint.parameter" = { fg = "light-gray" }
+  "ui.virtual.inlay-hint.type" = { fg = "light-gray" }
+  "ui.virtual.wrap" = "light-gray"
 
-# 🛍️ e.g. "keyword" = { fg = "gold" }
+  # 🛍️ e.g. "keyword" = { fg = "gold" }
 
-## Override colors in the palette:
-# [palette]
-# 🛍️ e.g. berry = "#2A2A4D"
+  ## Override colors in the palette:
+  # [palette]
+  # 🛍️ e.g. berry = "#2A2A4D"
 ' | prettify_indent_via_pipe | tee $HOME/.config/helix/themes/dark_high_contrast_modified.toml >/dev/null
 
 # Helix settings 🔪 Languages
 echo '
-## https://docs.helix-editor.com/languages.html#languagestoml-files
-# C/C++ settings
-[[language]]
-name = "c"
-auto-format = true
-formatter = { command = "clang-format" }
+  ## https://docs.helix-editor.com/languages.html#languagestoml-files
+  # C/C++ settings
+  [[language]]
+  name = "c"
+  auto-format = true
+  formatter = { command = "clang-format" }
 
-[[language]]
-name = "cpp"
-auto-format = true
-formatter = { command = "clang-format" }
+  [[language]]
+  name = "cpp"
+  auto-format = true
+  formatter = { command = "clang-format" }
 ' | prettify_indent_via_pipe | tee $HOME/.config/helix/languages.toml >/dev/null
 
 # Helix settings 🔪 Configuration
 echo '
-# https://docs.helix-editor.com/configuration.html
-## Theme settings
-# ⚓ Helix Theme index ; https://github.com/helix-editor/helix/wiki/Themes
-# https://docs.helix-editor.com/themes.html
-# https://github.com/helix-editor/helix/tree/master/runtime/themes
-theme = "dark_high_contrast_modified"
+  # https://docs.helix-editor.com/configuration.html
+  ## Theme settings
+  # ⚓ Helix Theme index ; https://github.com/helix-editor/helix/wiki/Themes
+  # https://docs.helix-editor.com/themes.html
+  # https://github.com/helix-editor/helix/tree/master/runtime/themes
+  theme = "dark_high_contrast_modified"
 
-## Editors
-[editor]
-lsp.display-inlay-hints = true
+  ## Editors
+  [editor]
+  lsp.display-inlay-hints = true
 ' | prettify_indent_via_pipe | tee $HOME/.config/helix/config.toml >/dev/null
 
 echo "❔ hx --health c"
@@ -606,8 +608,8 @@ hx --health cpp
 echo "▶️  Installing tools for version management and dependency resolution"
 : '
 📦 pipx
-https://repology.org/project/pipx/versions
-https://formulae.brew.sh/formula/pipx#default
+    https://repology.org/project/pipx/versions
+    https://formulae.brew.sh/formula/pipx#default
 '
 brew install pipx
 pipx ensurepath
@@ -623,8 +625,8 @@ register-python-argcomplete --shell fish pipx >$FISH_COMPLETIONS_DIR/pipx.fish
 
 : '
 📦 pyenv
-https://repology.org/project/pyenv/versions
-https://formulae.brew.sh/formula/pyenv#default
+    https://repology.org/project/pyenv/versions
+    https://formulae.brew.sh/formula/pyenv#default
 '
 brew install pyenv
 set -Ux PYENV_ROOT $HOME/.pyenv
@@ -642,8 +644,8 @@ end
 
 : '
 📦 pyenv
-https://repology.org/project/poetry/versions
-https://formulae.brew.sh/formula/poetry#default
+    https://repology.org/project/poetry/versions
+    https://formulae.brew.sh/formula/poetry#default
 '
 brew install poetry
 
@@ -652,8 +654,8 @@ brew install poetry
 
 : '
 📦 conan
-https://repology.org/project/conan/versions
-https://formulae.brew.sh/formula/conan#default
+    https://repology.org/project/conan/versions
+    https://formulae.brew.sh/formula/conan#default
 '
 brew install conan
 
@@ -661,8 +663,8 @@ brew install conan
 
 : '
 📦 rustup
-https://repology.org/project/rustup/versions
-https://formulae.brew.sh/formula/rustup#default
+    https://repology.org/project/rustup/versions
+    https://formulae.brew.sh/formula/rustup#default
 '
 # It install cargo (Rust package manager), clippy (Rust linter), rust-docs, rust-std, rustc, rustfmt (Source code formatter)
 brew install rustup
@@ -677,24 +679,24 @@ set -U fish_user_paths /home/linuxbrew/.linuxbrew/opt/rustup/bin $fish_user_path
 echo "▶️  Installing Web-related tools ..."
 : '
 📦 mariadb
-https://repology.org/project/mariadb/versions
-https://formulae.brew.sh/formula/mariadb#default
-== >Caveats
-A "/etc/my.cnf" from another install may interfere with a Homebrew-built
-server starting up correctly.
+    https://repology.org/project/mariadb/versions
+    https://formulae.brew.sh/formula/mariadb#default
+    == >Caveats
+    A "/etc/my.cnf" from another install may interfere with a Homebrew-built
+    server starting up correctly.
 
-MySQL is configured to only allow connections from localhost by default
+    MySQL is configured to only allow connections from localhost by default
 
-To start mariadb now and restart at login:
-brew services start mariadb
-Or, if you dont want/need a background service you can just run:
-/home/linuxbrew/.linuxbrew/opt/mariadb/bin/mariadbd-safe --datadir=/home/linuxbrew/.linuxbrew/var/mysql
+    To start mariadb now and restart at login:
+    brew services start mariadb
+    Or, if you dont want/need a background service you can just run:
+    /home/linuxbrew/.linuxbrew/opt/mariadb/bin/mariadbd-safe --datadir=/home/linuxbrew/.linuxbrew/var/mysql
 
-❔ mariadb conf file path: mariadb --help | grep my.cnf
-      >> /home/linuxbrew/.linuxbrew/etc/my.cnf
-❔ MariaDB uses the default character set of a database as utf8mb4 (UTF-8 multi-byte 4) when created.
-This means it supports the full range of Unicode characters, including emojis and special symbols.
-You can check the default character set using: 🧮 SHOW VARIABLES LIKE character_set_server
+    ❔ mariadb conf file path: mariadb --help | grep my.cnf
+          >> /home/linuxbrew/.linuxbrew/etc/my.cnf
+    ❔ MariaDB uses the default character set of a database as utf8mb4 (UTF-8 multi-byte 4) when created.
+    This means it supports the full range of Unicode characters, including emojis and special symbols.
+    You can check the default character set using: 🧮 SHOW VARIABLES LIKE character_set_server
 '
 
 brew install mariadb
@@ -702,17 +704,17 @@ set homebrew_maraidb_service_name homebrew.mariadb.service
 set homebrew_maraidb_service_file_path $USER_SYSTEMD_DIR/$homebrew_maraidb_service_name
 
 echo '
-[Unit]
-Description=Homebrew generated unit for mariadb
+  [Unit]
+  Description=Homebrew generated unit for mariadb
 
-[Install]
-WantedBy=default.target
+  [Install]
+  WantedBy=default.target
 
-[Service]
-Type=simple
-ExecStart=/home/linuxbrew/.linuxbrew/opt/mariadb/bin/mariadbd-safe --datadir=/home/linuxbrew/.linuxbrew/var/mysql
-Restart=always
-WorkingDirectory=/home/linuxbrew/.linuxbrew/var
+  [Service]
+  Type=simple
+  ExecStart=/home/linuxbrew/.linuxbrew/opt/mariadb/bin/mariadbd-safe --datadir=/home/linuxbrew/.linuxbrew/var/mysql
+  Restart=always
+  WorkingDirectory=/home/linuxbrew/.linuxbrew/var
 ' | prettify_indent_via_pipe | tee $homebrew_maraidb_service_file_path >/dev/null
 # systemctl --user daemon-reload
 systemctl --user enable $homebrew_maraidb_service_name
@@ -747,18 +749,18 @@ mariadb -u $current_user -D mysql --execute="
 
 : '
 📦 mariadb-connector-c
-https://repology.org/project/mariadb-connector-c/versions
-https://formulae.brew.sh/formula/mariadb-connector-c#default
-== >mariadb-connector-c
-mariadb-connector-c is keg-only, which means it was not symlinked into /home/linuxbrew/.linuxbrew,
-because it conflicts with mariadb.
+    https://repology.org/project/mariadb-connector-c/versions
+    https://formulae.brew.sh/formula/mariadb-connector-c#default
+    == >mariadb-connector-c
+    mariadb-connector-c is keg-only, which means it was not symlinked into /home/linuxbrew/.linuxbrew,
+    because it conflicts with mariadb.
 
-If you need to have mariadb-connector-c first in your PATH, run:
-echo \'export PATH="/home/linuxbrew/.linuxbrew/opt/mariadb-connector-c/bin:$PATH"\' >>/home/wbfw109/.bash_profile
+    If you need to have mariadb-connector-c first in your PATH, run:
+    echo \'export PATH="/home/linuxbrew/.linuxbrew/opt/mariadb-connector-c/bin:$PATH"\' >>/home/wbfw109/.bash_profile
 
-For compilers to find mariadb-connector-c you may need to set:
-export LDFLAGS="-L/home/linuxbrew/.linuxbrew/opt/mariadb-connector-c/lib"
-export CPPFLAGS="-I/home/linuxbrew/.linuxbrew/opt/mariadb-connector-c/include"
+    For compilers to find mariadb-connector-c you may need to set:
+    export LDFLAGS="-L/home/linuxbrew/.linuxbrew/opt/mariadb-connector-c/lib"
+    export CPPFLAGS="-I/home/linuxbrew/.linuxbrew/opt/mariadb-connector-c/include"
 '
 brew install mariadb-connector-c
 # Define and add settings for mariadb-connector-c
@@ -780,20 +782,20 @@ end
 
 : '
 📦 httpd (apache)
-https://repology.org/project/httpd/versions
-https://formulae.brew.sh/formula/httpd#default
-== >Caveats
-DocumentRoot is /home/linuxbrew/.linuxbrew/var/www.
+    https://repology.org/project/httpd/versions
+    https://formulae.brew.sh/formula/httpd#default
+    == >Caveats
+    DocumentRoot is /home/linuxbrew/.linuxbrew/var/www.
 
-The default ports have been set in /home/linuxbrew/.linuxbrew/etc/httpd/httpd.conf to 8080 and in
-/home/linuxbrew/.linuxbrew/etc/httpd/extra/httpd-ssl.conf to 8443 so that httpd can run without sudo.
+    The default ports have been set in /home/linuxbrew/.linuxbrew/etc/httpd/httpd.conf to 8080 and in
+    /home/linuxbrew/.linuxbrew/etc/httpd/extra/httpd-ssl.conf to 8443 so that httpd can run without sudo.
 
-To start httpd now and restart at login:
-brew services start httpd
-Or, if you don\'t want/need a background service you can just run:
-/home/linuxbrew/.linuxbrew/opt/httpd/bin/httpd -D FOREGROUND
+    To start httpd now and restart at login:
+    brew services start httpd
+    Or, if you don\'t want/need a background service you can just run:
+    /home/linuxbrew/.linuxbrew/opt/httpd/bin/httpd -D FOREGROUND
 
-❔ Error log location: /home/linuxbrew/.linuxbrew/var/log/httpd/error_log
+    ❔ Error log location: /home/linuxbrew/.linuxbrew/var/log/httpd/error_log
 '
 brew install httpd
 set homebrew_httpd_service_name homebrew.httpd.service
@@ -857,30 +859,30 @@ mv $tmp_file $apache_config_file_path
 
 : '
 📦 php
-https://repology.org/project/php/versions
-https://formulae.brew.sh/formula/php#default
-== >Caveats
-== >php
-To enable PHP in Apache add the following to httpd.conf and restart Apache:
-LoadModule php_module /home/linuxbrew/.linuxbrew/opt/php/lib/httpd/modules/libphp.so
+    https://repology.org/project/php/versions
+    https://formulae.brew.sh/formula/php#default
+    == >Caveats
+    == >php
+    To enable PHP in Apache add the following to httpd.conf and restart Apache:
+    LoadModule php_module /home/linuxbrew/.linuxbrew/opt/php/lib/httpd/modules/libphp.so
 
-        < FilesMatch \.php$ >
+            < FilesMatch \.php$ >
 
-            SetHandler application/x-httpd-php
-        < /FilesMatch >
+                SetHandler application/x-httpd-php
+            < /FilesMatch >
 
 
-    Finally, check DirectoryIndex includes index.php
-DirectoryIndex index.php index.html
+        Finally, check DirectoryIndex includes index.php
+    DirectoryIndex index.php index.html
 
-The php.ini and php-fpm.ini file can be found in:
-/home/linuxbrew/.linuxbrew/etc/php/8.4/
+    The php.ini and php-fpm.ini file can be found in:
+    /home/linuxbrew/.linuxbrew/etc/php/8.4/
 
-To start php now and restart at login:
-brew services start php
-Or, if you don\'t want/need a background service you can just run:
-/home/linuxbrew/.linuxbrew/opt/php/sbin/php-fpm --nodaemoniz
-🪱 php-fpm: Hypertext Preprocessor FastCGI (Common Gateway Interface) Process Manager
+    To start php now and restart at login:
+    brew services start php
+    Or, if you don\'t want/need a background service you can just run:
+    /home/linuxbrew/.linuxbrew/opt/php/sbin/php-fpm --nodaemoniz
+    🪱 php-fpm: Hypertext Preprocessor FastCGI (Common Gateway Interface) Process Manager
 '
 brew install php
 set homebrew_php_service_name homebrew.php.service
@@ -992,34 +994,34 @@ mv $tmp_file $apache_config_file_path
 
 : '
 📦 phpmyadmin
-https://repology.org/project/phpmyadmin/versions
-https://formulae.brew.sh/formula/phpmyadmin#default
+    https://repology.org/project/phpmyadmin/versions
+    https://formulae.brew.sh/formula/phpmyadmin#default
 
-== >Caveats
-To enable phpMyAdmin in Apache, add the following to httpd.conf and
-restart Apache:
-Alias /phpmyadmin /home/linuxbrew/.linuxbrew/share/phpmyadmin
-        < Directory /home/linuxbrew/.linuxbrew/share/phpmyadmin/ >
+    == >Caveats
+    To enable phpMyAdmin in Apache, add the following to httpd.conf and
+    restart Apache:
+    Alias /phpmyadmin /home/linuxbrew/.linuxbrew/share/phpmyadmin
+            < Directory /home/linuxbrew/.linuxbrew/share/phpmyadmin/ >
 
-            Options Indexes FollowSymLinks MultiViews
-AllowOverride All
-            < IfModule mod_authz_core.c >
+                Options Indexes FollowSymLinks MultiViews
+    AllowOverride All
+                < IfModule mod_authz_core.c >
 
-                Require all granted
-            < /IfModule >
+                    Require all granted
+                < /IfModule >
 
-            < IfModule !mod_authz_core.c >
+                < IfModule !mod_authz_core.c >
 
-                Order allow,deny
-Allow from all
-            < /IfModule >
+                    Order allow,deny
+    Allow from all
+                < /IfModule >
 
-        < /Directory >
+            < /Directory >
 
-    Then open http://localhost/phpmyadmin
-The configuration file is /home/linuxbrew/.linuxbrew/etc/phpmyadmin.config.inc.php
+        Then open http://localhost/phpmyadmin
+    The configuration file is /home/linuxbrew/.linuxbrew/etc/phpmyadmin.config.inc.php
 
-👁️ Check url "localhost:8080/phpmyadmin"
+    👁️ Check url "localhost:8080/phpmyadmin"
 '
 brew install phpmyadmin
 
@@ -1081,12 +1083,12 @@ brew services restart httpd
 
 : '
 📦 volta
-the Hassle-Free JavaScript Tool Manager
-https://volta.sh/
-https://repology.org/project/volta-launcher/versions
-https://formulae.brew.sh/formula/volta#default
+    the Hassle-Free JavaScript Tool Manager
+    https://volta.sh/
+    https://repology.org/project/volta-launcher/versions
+    https://formulae.brew.sh/formula/volta#default
 
-Developed in Rust.
+    Developed in Rust.
 '
 brew instal volta
 
@@ -1114,8 +1116,8 @@ end
 echo "▶️  Installing tools related to VM emulation and communication with connected external devices to the host ..."
 : '
 📦 qemu
-https://repology.org/project/qemu/versions
-https://formulae.brew.sh/formula/qemu#default
+    https://repology.org/project/qemu/versions
+    https://formulae.brew.sh/formula/qemu#default
 '
 brew install qemu
 
@@ -1123,13 +1125,13 @@ brew install qemu
 
 : '
 📦 tio (Terminal Input/Output)
-A serial device I/O tool
-https://github.com/tio/tio (2018) 📅 2024-12-04 13:32:00
-https://repology.org/project/tio/versions
-https://formulae.brew.sh/formula/tio#default
-https://api.github.com/repos/tio/tio
+    A serial device I/O tool
+    https://github.com/tio/tio (2018) 📅 2024-12-04 13:32:00
+    https://repology.org/project/tio/versions
+    https://formulae.brew.sh/formula/tio#default
+    https://api.github.com/repos/tio/tio
 
-🚣 This tool supports color output for serial connections, similar to PuTTY.
+    🚣 This tool supports color output for serial connections, similar to PuTTY.
 '
 brew install tio
 # 🛍️ e.g. %shell> tio /dev/ttyUSB0    # Default baud rate is 115200. Use this with a Raspberry Pi and a USB-to-TTL adapter.
@@ -1141,20 +1143,19 @@ brew install tio
 
 echo "▶️  Installing tools related to Image processing ..."
 : '
-📦 gm
-graphicsmagick
-https://repology.org/project/graphicsmagick/versions
-https://formulae.brew.sh/formula/graphicsmagick#default
+📦 gm (graphicsmagick)
+    https://repology.org/project/graphicsmagick/versions
+    https://formulae.brew.sh/formula/graphicsmagick#default
 
-Image processing tools collection.
-GM is more efficient than ImageMagick so it gets the job done faster using fewer resources.
+    Image processing tools collection.
+    GM is more efficient than ImageMagick so it gets the job done faster using fewer resources.
 
-🛍️ e.g. Updating the Custom Boot Image on Raspberry Pi 4B
-# Reduce the color palette of the image to 224 colors and save it as "puppies_logo_clut224.ppm"
-gm convert -colors 224 puppies_840x480.ppm puppies_logo_clut224.ppm
+    🛍️ e.g. Updating the Custom Boot Image on Raspberry Pi 4B
+    # Reduce the color palette of the image to 224 colors and save it as "puppies_logo_clut224.ppm"
+    gm convert -colors 224 puppies_840x480.ppm puppies_logo_clut224.ppm
 
-# Convert the color-reduced image to ASCII PPM format and save it as "puppies_logo_clut224_ascii.ppm"
-gm convert -compress none puppies_logo_clut224.ppm puppies_logo_clut224_ascii.ppm
+    # Convert the color-reduced image to ASCII PPM format and save it as "puppies_logo_clut224_ascii.ppm"
+    gm convert -compress none puppies_logo_clut224.ppm puppies_logo_clut224_ascii.ppm
 '
 brew install graphicsmagick
 
@@ -1165,111 +1166,111 @@ brew install graphicsmagick
 
 
 
-echo "▶️  Installing Others ..."
-: '
-📦 watchman
-A file watching service
-https://facebook.github.io/watchman/
-https://repology.org/project/watchman/versions
-https://formulae.brew.sh/formula/watchman#default
+# echo "▶️  Installing Others ..."
+# : '
+# 📦 watchman
+# A file watching service
+# https://facebook.github.io/watchman/
+# https://repology.org/project/watchman/versions
+# https://formulae.brew.sh/formula/watchman#default
 
-'
-brew install watchman
+# '
+# brew install watchman
 
-set watchman_bin (which watchman)
-set fish_howto_general_dir $script_dir/howto/general
+# set watchman_bin (which watchman)
+# set fish_howto_general_dir $script_dir/howto/general
 
-## add user service: watchman_file_make_fish_utilities_executable_name.json
-set watchman_service_name "watchman-fish.service"
-set watchman_json_dir $script_dir/watchman
-set watchman_file_make_fish_utilities_executable_name "watchman-make_fish_utilities_executable.json"
+# ## add user service: watchman_file_make_fish_utilities_executable_name.json
+# set watchman_service_name "watchman-fish.service"
+# set watchman_json_dir $script_dir/watchman
+# set watchman_file_make_fish_utilities_executable_name "watchman-make_fish_utilities_executable.json"
 
-# Original JSON file path
-set watchman_json_path $watchman_json_dir/$watchman_file_make_fish_utilities_executable_name
-##💡 Adaptive Watch Directory Updater for Watchman 📅 2024-12-18 03:10:54
+# # Original JSON file path
+# set watchman_json_path $watchman_json_dir/$watchman_file_make_fish_utilities_executable_name
+# ##💡 Adaptive Watch Directory Updater for Watchman 📅 2024-12-18 03:10:54
 
-# New path to replace the second element
-set new_watch_dir $fish_howto_general_dir
+# # New path to replace the second element
+# set new_watch_dir $fish_howto_general_dir
 
-# Temporary file to store the updated JSON
-set temp_json "/tmp/watchman-trigger-updated.json"
+# # Temporary file to store the updated JSON
+# set temp_json "/tmp/watchman-trigger-updated.json"
 
-# Replace the second element of the JSON array using jaq
-cat $watchman_json_path | jaq --arg new_watch_dir "$new_watch_dir" '.[1] = $new_watch_dir' >$temp_json
+# # Replace the second element of the JSON array using jaq
+# cat $watchman_json_path | jaq --arg new_watch_dir "$new_watch_dir" '.[1] = $new_watch_dir' >$temp_json
 
-# Display the updated JSON content
-echo "Updated JSON content:"
-cat $temp_json
+# # Display the updated JSON content
+# echo "Updated JSON content:"
+# cat $temp_json
 
-prettier --write $temp_json
-mv $temp_json $watchman_json_path
-
-
-## Add watchman trigger services
-: '❔ Reason for Creating a Service for Watchman
-- Watchman loses its watch list after a computer restart.
-Creating a system service ensures that Watchman automatically restores its watch list and trigger configurations upon system boot.
-'
-: '❔ Reason for Using a JSON File in Watchman
-- Improved readability and cleanliness:
-Using a JSON file prevents the command from being polluted with escape characters
-, making the configuration easier to read and maintain.
-- Service execution issue with escape characters:
-Even though a command with escape characters works when copied directly into the terminal
-, it fails when registered as a service.
-📝 Watchman expects JSON input through standard input, so it\'s crucial to use double quotes (") to comply with JSON formatting. 📅 2024-12-18 03:16:04
-    By referencing a JSON file instead, this issue is avoided
-    , and the configuration remains consistent and functional across environments.
-'
-echo "
-[Unit]
-Description=Watchman service for Fish utilities (User Scope)
-After=network.target
-
-[Service]
-Type=oneshot
-
-# Watch directory
-ExecStartPre=$watchman_bin watch \"$fish_howto_general_dir\"
-
-# Trigger configuration loaded from file
-ExecStart=/bin/bash -c '$watchman_bin watch $fish_howto_general_dir && \\
-  cat $watchman_json_path | $watchman_bin -j \\
-'
-
-ExecStop=/bin/bash -c '$watchman_bin watch-del \"$fish_howto_general_dir\"'
-
-RemainAfterExit=yes
-
-[Install]
-WantedBy=default.target
-" | tee $USER_SYSTEMD_DIR/$watchman_service_name
-
-systemctl --user daemon-reload
-systemctl --user enable $watchman_service_name
-systemctl --user start $watchman_service_name
-systemctl --user status $watchman_service_name --no-pager
+# prettier --write $temp_json
+# mv $temp_json $watchman_json_path
 
 
-echo "Currently set triggers for the directory: "
-watchman -- trigger-list $fish_howto_general_dir
-echo ""
-echo "Directories currently watched by Watchman:"
-watchman watch-list
+# ## Add watchman trigger services
+# : '❔ Reason for Creating a Service for Watchman
+# - Watchman loses its watch list after a computer restart.
+# Creating a system service ensures that Watchman automatically restores its watch list and trigger configurations upon system boot.
+# '
+# : '❔ Reason for Using a JSON File in Watchman
+# - Improved readability and cleanliness:
+# Using a JSON file prevents the command from being polluted with escape characters
+# , making the configuration easier to read and maintain.
+# - Service execution issue with escape characters:
+# Even though a command with escape characters works when copied directly into the terminal
+# , it fails when registered as a service.
+# 📝 Watchman expects JSON input through standard input, so it\'s crucial to use double quotes (") to comply with JSON formatting. 📅 2024-12-18 03:16:04
+#     By referencing a JSON file instead, this issue is avoided
+#     , and the configuration remains consistent and functional across environments.
+# '
+# echo "
+# [Unit]
+# Description=Watchman service for Fish utilities (User Scope)
+# After=network.target
 
-set replaced_path (string replace "$HOME" "" $fish_howto_general_dir)
-# Define the unique comment line to identify the settings.
-set unique_comment "## fish_howto_general_dir settings"
-# Check if the unique comment line exists in the configuration file.
-if not grep -Fxq "$unique_comment" "$FISH_CONFIG_PATH"
-    # Append the new configuration block only if the unique line is not found.
-    echo "
-    $unique_comment
-    set -x fish_howto_general_dir \$HOME$replaced_path
-    fish_add_path \$fish_howto_general_dir
-    " | prettify_indent_via_pipe | tee -a $FISH_CONFIG_PATH >/dev/null
-    echo -e "\n" >>"$FISH_CONFIG_PATH"
-end
+# [Service]
+# Type=oneshot
+
+# # Watch directory
+# ExecStartPre=$watchman_bin watch \"$fish_howto_general_dir\"
+
+# # Trigger configuration loaded from file
+# ExecStart=/bin/bash -c '$watchman_bin watch $fish_howto_general_dir && \\
+#   cat $watchman_json_path | $watchman_bin -j \\
+# '
+
+# ExecStop=/bin/bash -c '$watchman_bin watch-del \"$fish_howto_general_dir\"'
+
+# RemainAfterExit=yes
+
+# [Install]
+# WantedBy=default.target
+# " | tee $USER_SYSTEMD_DIR/$watchman_service_name
+
+# systemctl --user daemon-reload
+# systemctl --user enable $watchman_service_name
+# systemctl --user start $watchman_service_name
+# systemctl --user status $watchman_service_name --no-pager
+
+
+# echo "Currently set triggers for the directory: "
+# watchman -- trigger-list $fish_howto_general_dir
+# echo ""
+# echo "Directories currently watched by Watchman:"
+# watchman watch-list
+
+# set replaced_path (string replace "$HOME" "" $fish_howto_general_dir)
+# # Define the unique comment line to identify the settings.
+# set unique_comment "## fish_howto_general_dir settings"
+# # Check if the unique comment line exists in the configuration file.
+# if not grep -Fxq "$unique_comment" "$FISH_CONFIG_PATH"
+#     # Append the new configuration block only if the unique line is not found.
+#     echo "
+#     $unique_comment
+#     set -x fish_howto_general_dir \$HOME$replaced_path
+#     fish_add_path \$fish_howto_general_dir
+#     " | prettify_indent_via_pipe | tee -a $FISH_CONFIG_PATH >/dev/null
+#     echo -e "\n" >>"$FISH_CONFIG_PATH"
+# end
 
 
 # ❔ You can check permissions later after install lsd

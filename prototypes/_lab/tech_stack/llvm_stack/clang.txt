@@ -11,7 +11,7 @@ list of level 1 subjects
   https://github.com/clangd/clangd
   clangd is a language server, and provides C++ IDE features to editors.
 
-  ⚓ Configuration ; https://clangd.llvm.org/config#if
+  ⚓ Configuration ; https://clangd.llvm.org/config
     #️⃣ Files ; https://clangd.llvm.org/config#files
       - project configuration: a file named 🪱 .clangd in the source tree.
       - user configuration: a 🪱 config.yaml file in an OS-specific directory:

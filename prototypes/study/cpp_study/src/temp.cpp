@@ -1,10 +1,12 @@
 #include <iostream>
 using namespace std;
 
-int hello_world(){
-    printf("Hello world!!\n");
-    return 0;
+int hello_world() {
+  printf("Hello world!!\n");
+
+  return 0;
 }
+
 // TODO: dynamic_cast, static_cast, const_cast, reinterpret_cast
 
 // TODO: Downcasting ; https://en.wikipedia.org/wiki/Downcasting

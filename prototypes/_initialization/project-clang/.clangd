@@ -7,10 +7,33 @@ CompileFlags:
     - "-I/usr/arm-linux-gnueabihf/include"
     - "-L/usr/arm-linux-gnueabihf/lib"
 ---
-# Add default llvm flags for files in cpp_study/"
+# Common settings for both C and C++ files
 If:
-  PathMatch: "prototypes/study/cpp_study/.*"
+  PathMatch: "prototypes/study/c.*_study/.*\\.(c|cpp|h|hpp)$"
 CompileFlags:
   Add:
-    - "-I/home/linuxbrew/.linuxbrew/opt/llvm/include"
-    - "-I/home/linuxbrew/.linuxbrew/opt/llvm/include/c++/v1"
+    - -Wall
+    - -Wextra
+    - -pedantic
+    - -I/home/linuxbrew/.linuxbrew/opt/llvm/include
+    - -I/home/linuxbrew/.linuxbrew/opt/llvm/include/c++/v1 # For C++ standard library
+    - -L/home/linuxbrew/.linuxbrew/opt/llvm/lib
+    - -O2
+    - -lunwind
+
+# Specific settings for C files
+---
+If:
+  PathMatch: "prototypes/study/c.*_study/.*\\.(c|h)$"
+CompileFlags:
+  Add:
+    - -std=c23
+
+# Specific settings for C++ files
+---
+If:
+  PathMatch: "prototypes/study/c.*_study/.*\\.(cpp|hpp)$"
+CompileFlags:
+  Add:
+    - -std=c++23
+    - -stdlib=libc++

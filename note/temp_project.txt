@@ -14139,3 +14139,38 @@ Enabling SSH X11 forwarding in Visual Studio Code for remote development
 flatpak install -y --user flathub org.kde.digikam
 에서 모든 권한 주는 방법.  maraidb drvier 오류 발생해. "모든" 권한
   줘도 안됨. ..ubuntu 에서 테스트.
+
+
+brew install doxygen
+
+
+
+
+: '
+📦 doxygen
+https://repology.org/project/tio/versions
+https://formulae.brew.sh/formula/tio#default
+https://api.github.com/repos/tio/tio
+
+🚣 This tool supports color output for serial connections, similar to PuTTY.
+'
+brew install tio
+# 🛍️ e.g. %shell> tio /dev/ttyUSB0    # Default baud rate is 115200. Use this with a Raspberry Pi and a USB-to-TTL adapter.
+
+
+
+cd /home/wbfw109/repos/synergy-hub/prototypes/study/cpp_study/p_doxygen_test
+doxygen -g
+
+
+➡️ VcXsrv vs X410
+  https://www.reddit.com/r/bashonubuntuonwindows/comments/t7e7lk/i_couldnt_find_any_benefits_for_x410/
+    VcXsrv 추천: 무료이고, 커뮤니티 지원이 풍부하며 고급 사용자가 문제를 더 쉽게 해결 가능.
+    X410 추천: 단순한 설정과 WSL에 특화된 지원 문서를 원하거나, 자잘한 버그로 인해 VcXsrv 사용에 불편함을 겪는 경우.
+
+
+cat $HOMEBREW_PREFIX
+brew --prefix
+brew --prefix llvm
+brew list llvm
+
