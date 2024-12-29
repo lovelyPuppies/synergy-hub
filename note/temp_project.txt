@@ -14131,3 +14131,11 @@ https://github.com/lovelyPuppies/QTonRaspberryPi
 
 Enabling SSH X11 forwarding in Visual Studio Code for remote development
 
+============ 노트북에
+... digikam 설치 안해봄
+  매터 모듈 사용하는거 ㅇ찾아야 함... 와이파이..
+
+
+flatpak install -y --user flathub org.kde.digikam
+에서 모든 권한 주는 방법.  maraidb drvier 오류 발생해. "모든" 권한
+  줘도 안됨. ..ubuntu 에서 테스트.

@@ -6,7 +6,15 @@ sudo -v
 
 # Function definition
 function setup_xauthority
+    : '
+        🪱 SDDM (Simple Desktop Display Manager) is the default display manager used in KDE-based distributions like Kubuntu.
+        It manages graphical logins and sessions.
+        
+        In this function, SDDM is responsible for launching the Xorg server, which creates the Xauthority file required for graphical authentication.
+        This script locates and copies that file.
+    '
     # Use pgrep to find the Xorg process and extract the path to the Xauthority file
+    #   🛍️ e.g. xauth_path: /run/sddm/xauth_kWfguu
     set xauth_path (pgrep -a Xorg | awk -F '-auth ' '{print $2}' | awk '{print $1}')
 
     # If the path is empty, print an error message and exit with a failure code
