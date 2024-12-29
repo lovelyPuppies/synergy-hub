@@ -14212,14 +14212,16 @@ brew install kotlin
 
 
 경력(개발) 사항
-  프로젝트
-    // 제목 추천.. 
-      ATmega128을 활용한 Smart Fan 제어 시스템 개발
-      ATmeg128/U-ART/MicroChips/GPIO으로 선풍기 제작
 
-      ATmega128 기반 선풍기 제어 시스템 개발
-      ATmega128: 선풍기 제어 시스템 개발
-      // + MVP 패턴 사용
+  프로젝트
+    ATmega128 기반 스마트 팬 제어 시스템 개발
+
+    GPIO 기반 LCD 제어, PWM 기반 모터 속도 제어, UART 통신 기반 사용자 인터페이스
+    MVP 패턴 적용 및 clockMachine, fanMachine 다중 앱 모드 지원
+    app, driver, peripheral 모듈로 분리하여 구조적 코드 관리 강화
+
+
+
 
     // 제목 추천.. 
       Python과 OpenCV로 카메라 필터 앱 개발
