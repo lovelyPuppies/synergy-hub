@@ -1581,9 +1581,12 @@ end
 
 
 
-
-##### When not in WSL
-if test $is_wsl -eq 1
+##### When in WSL
+if test $is_wsl -eq 0
+    # in order to use Hangul in Microsoft Edge in WSL
+    sudo apt install -y fonts-noto-cjk
+else
+    ##### When not in WSL
     #### 📦 IDE: VS Code from https://code.visualstudio.com/docs/setup/linux 📅 2024-11-16 15:34:43
     ## ☑️ If installed from the Snap Store with the --classic option on Wayland in Kubuntu, Hangul input does not work. 📅 2024-12-28 14:22:03 If
     #   %shell> sudo snap install code --classic

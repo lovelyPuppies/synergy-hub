@@ -1,18 +1,16 @@
-실무 기술
+실무 기술 📅 Written at 2024-12-30 00:57:17
   Languages:
     - C, C++, Python, Java, Fish Script
   Embedded Systems:
-    - STM32 (Cortex-M4), Raspberry Pi 4 B (Cortex-A72), Jetson Nano, U-Boot, Arduino
+    - STM32 F411RE (Cortex-M4), Raspberry Pi 4 B (Cortex-A72), Jetson Nano, U-Boot, Arduino
   Hardware Control:
     - Device Driver & Kernel Module Development, GPIO, Timer, Interrupts
   Build Tools:
     - CMake, Conan, Make, Yocto
   Virtualization & Management:
-    - Docker, QEMU
+    - Docker, Devcontainer, QEMU
   Development Tools:
     - VS Code, Git, Clang
-  System Administration:
-    - Ubuntu, Multithreading, ROS, Cross-Compilation
   Networking:
     - TCP/IP, Bluetooth, Wi-Fi, UART, I2C
   AI & Vision:
@@ -20,22 +18,11 @@
   Web Development:
     - APM (Apache, MariaDB, PHP)
   Documentation:
-    - Mermaid
+    - Doxygen, Mermaid, Swagger UI, ReDoc
+  Linux Development & Tools:
+    - Ubuntu, Multithreading, ROS, Cross-Compilation
 
 
-
-
-• C / C++ / Python
-• Matlab
-• C / C++ / Python
-• JAVA
-• Python
-• Linux (Ubuntu)
-• VS Code
-• TCP / IP
-• 영상 처리 (OpenCV)
-• MCU 제어
-• APM (Apache, MaraiDB, PHP)
 
 
 
