@@ -2,7 +2,7 @@
   • Languages:
     C / C++ / Python / Java / Kotlin / Fish Script
   • Embedded Systems:
-    STM32 F411RE (Cortex-M4) / Raspberry Pi 4 B (Cortex-A72) / Jetson Nano / U-Boot / Arduino
+    STM32 F411RE (Cortex-M4) / Raspberry Pi 4 B (Broadcom BCM2711, Cortex-A72) / Jetson Nano / U-Boot / Arduino
   • Hardware Control:
     Device Driver & Kernel Module Development / GPIO / Timer / Interrupts
   • Networking:
@@ -26,6 +26,13 @@
 
 
 경력(개발) 사항
+  [프로젝트]
+    • Raspberry Pi 4 B 기반 LED 제어 및 타이머 관리 디바이스 드라이버 및 애플리케이션 구현
+      - ioctl, poll, hardware interrupt(IRQ) 활용
+      - Clang 기반 Cross-Compilation 및 Makefile 태스크 구조화(build, deploy, clean)로 빌드 및 배포 자동화
+      - 자동 배포, 실행, 및 종료를 위한 Pipeline Script(Fish) 작성 및 활용
+
+
   [직장 경력]
     • 2021.03 ~ 2022.01 (웹 및 AI 시스템 개발)
       - 소매점 고객 동선 분석 시스템: 매장 사진 매핑 및 탐색 알고리즘 구현 (Python, SQLAlchemy, FabricJS).
