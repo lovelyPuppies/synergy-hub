@@ -37,7 +37,11 @@
       - 타이머와 UART 블루투스 통신을 활용한 시간 계산, 동기화 및 알람 관리
       - I2C LCD 제어 및 버튼 인터럽트로 시간/알람 설정
 
-    
+    • Python 및 MediaPipe 기반 카메라 필터 애플리케이션 개발 (팀 프로젝트)
+      - 토끼 귀 필터 구현: MediaPipe Face Mesh로 얼굴 특징점 추출, OpenCV와 Numpy를 활용해 토끼 귀 필터를 오버레이 (alpha blending 적용).
+      - config/ 모듈 작성: 프로젝트 루트 경로를 동적으로 탐색 및 결정하고 리소스와 출력 폴더를 초기화하는 로직 구현.
+      - 구조화된 프로젝트 관리: Mermaid를 활용해 Use Case, Sequence 등 다양한 다이어그램 작성 및 문서화.
+
   [직장 경력]
     • 2021.03 ~ 2022.01 (웹 및 AI 시스템 개발)
       - 소매점 고객 동선 분석 시스템: 매장 사진 매핑 및 탐색 알고리즘 구현 (Python, SQLAlchemy, FabricJS).
