@@ -14161,6 +14161,7 @@ brew install tio
 
 cd /home/wbfw109/repos/synergy-hub/prototypes/study/cpp_study/p_doxygen_test
 doxygen -g
+doxygen Doxyfile
 
 
 ➡️ VcXsrv vs X410
@@ -14174,3 +14175,6 @@ brew --prefix
 brew --prefix llvm
 brew list llvm
 
+
+
+This is a simulated preview with limited functionality. Deactivate 'Headless mode' in extension settings for a full experience.

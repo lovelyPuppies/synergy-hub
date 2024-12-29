@@ -15,7 +15,6 @@ CompileFlags:
     - -Wall
     - -Wextra
     - -pedantic
-    - -I/home/linuxbrew/.linuxbrew/opt/llvm/include
     - -I/home/linuxbrew/.linuxbrew/opt/llvm/include/c++/v1 # For C++ standard library
     - -L/home/linuxbrew/.linuxbrew/opt/llvm/lib
     - -O2
@@ -34,6 +33,9 @@ CompileFlags:
 If:
   PathMatch: "prototypes/study/c.*_study/.*\\.(cpp|hpp)$"
 CompileFlags:
+  Compiler: clang++
   Add:
     - -std=c++23
     - -stdlib=libc++
+    # treat all files as C++
+    - -xc++

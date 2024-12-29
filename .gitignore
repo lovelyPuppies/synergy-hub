@@ -4,8 +4,8 @@
 #     It is inspired from STM32 Cube MX.
 
 
-# Created by https://www.toptal.com/developers/gitignore/api/git,python,c,c++,cmake,ninja,conan,platformio,csharp,node,svelte,yarn,rust,linux,qt,qtcreator
-# Edit at https://www.toptal.com/developers/gitignore?templates=git,python,c,c++,cmake,ninja,conan,platformio,csharp,node,svelte,yarn,rust,linux,qt,qtcreator
+# Created by https://www.toptal.com/developers/gitignore/api/git,python,c,c++,cmake,ninja,conan,doxygen,platformio,csharp,node,svelte,yarn,rust,linux,qt,qtcreator
+# Edit at https://www.toptal.com/developers/gitignore?templates=git,python,c,c++,cmake,ninja,conan,doxygen,platformio,csharp,node,svelte,yarn,rust,linux,qt,qtcreator
 
 ### C ###
 # Prerequisites
@@ -513,6 +513,10 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
+### Doxygen ###
+html
+latex
+
 ### Git ###
 # Created by git for backups. To disable backups in Git:
 # $ git config --global mergetool.keepBackup false
@@ -973,7 +977,7 @@ package
 # and uncomment the following lines
 # .pnp.*
 
-# End of https://www.toptal.com/developers/gitignore/api/git,python,c,c++,cmake,ninja,conan,platformio,csharp,node,svelte,yarn,rust,linux,qt,qtcreator
+# End of https://www.toptal.com/developers/gitignore/api/git,python,c,c++,cmake,ninja,conan,doxygen,platformio,csharp,node,svelte,yarn,rust,linux,qt,qtcreator
 
 
 

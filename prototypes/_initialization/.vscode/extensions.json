@@ -23,7 +23,9 @@
     // 🌀 Build system ~
     "yocto-project.yocto-bitbake",
     // 🌀 Langauge~
-    //   * (Intellisense)
+    //  Web-related Extensions
+    "ms-edgedevtools.vscode-edge-devtools", // https://marketplace.visualstudio.com/items?itemName=ms-edgedevtools.vscode-edge-devtools
+    //  * (Intellisense)
     "VisualStudioExptTeam.vscodeintellicode",
     //      IntelliCode ; https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode
     //        Tags: java, javascript, javascriptreact, python, sql, typescript, typescriptreact

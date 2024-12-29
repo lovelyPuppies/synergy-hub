@@ -1421,6 +1421,19 @@ echo "❗ Reboot required. locale update completed."
 
 
 
+
+#### 📦 Web browser: Microsoft Edge
+## brew install --cask microsoft-edge
+# 🚣 Required for crawling projects; install on both Ubuntu and WSL2 for compatibility.
+# Error: Invalid `--cask` usage: Casks do not work on Linux
+curl -sSL https://packages.microsoft.com/keys/microsoft.asc | sudo gpg --dearmor -o /usr/share/keyrings/microsoft-archive-keyring.gpg
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/microsoft-archive-keyring.gpg] https://packages.microsoft.com/repos/edge stable main" | sudo tee /etc/apt/sources.list.d/microsoft-edge.list >/dev/null
+sudo apt update -y; and sudo apt install -y microsoft-edge-stable
+# Ubuntu default browser settings 
+xdg-settings set default-web-browser microsoft-edge.desktop
+xdg-settings get default-web-browser
+
+
 #### 📦 tailscale; Tailscale is a cloud-based VPN solution that uses peer-to-peer (P2P) connections for direct communication when possible, and falls back to encrypted relay servers for seamless connectivity.
 # https://tailscale.com/download/linux
 curl -fsSL https://tailscale.com/install.sh | sh
@@ -1567,7 +1580,7 @@ else
 end
 
 
-exit 100
+
 
 ##### When not in WSL
 if test $is_wsl -eq 1
@@ -1586,18 +1599,6 @@ if test $is_wsl -eq 1
     sudo apt install -y apt-transport-https
     sudo apt update
     sudo apt install -y code
-
-
-
-    #### 📦 Web browser: Microsoft Edge
-    ## brew install --cask microsoft-edge
-    # Error: Invalid `--cask` usage: Casks do not work on Linux
-    curl -sSL https://packages.microsoft.com/keys/microsoft.asc | sudo gpg --dearmor -o /usr/share/keyrings/microsoft-archive-keyring.gpg
-    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/microsoft-archive-keyring.gpg] https://packages.microsoft.com/repos/edge stable main" | sudo tee /etc/apt/sources.list.d/microsoft-edge.list >/dev/null
-    sudo apt update -y; and sudo apt install -y microsoft-edge-stable
-    # Ubuntu default browser settings 
-    xdg-settings set default-web-browser microsoft-edge.desktop
-    xdg-settings get default-web-browser
 
 
 
@@ -1938,10 +1939,7 @@ if test $is_wsl -eq 1
     echo "❔ [Flatpak] Installed user-scoped apps"
     flatpak list --user --app
 
-
-
 end
-
 
 
 

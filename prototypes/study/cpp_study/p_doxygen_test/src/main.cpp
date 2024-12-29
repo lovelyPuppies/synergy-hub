@@ -1,9 +1,16 @@
+/*
+🧪 Test
+  cd /home/wbfw109/repos/synergy-hub/prototypes/study/cpp_study/p_doxygen_test
+  doxygen -g
+  doxygen Doxyfile
+*/
+
 /**
  * @file main.cpp
  * @brief Entry point for the example project.
  */
 
-#include "math_operations.h"
+#include "math_operations.hpp"
 #include <iostream>
 
 /**
