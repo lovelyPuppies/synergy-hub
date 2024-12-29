@@ -4,7 +4,7 @@
   • Embedded Systems:
     STM32 F411RE (Cortex-M4) / Raspberry Pi 4 B (Broadcom BCM2711, Cortex-A72) / Jetson Nano / U-Boot / Arduino
   • Hardware Control:
-    Device Driver & Kernel Module Development / GPIO / Timer / Interrupts
+    Device Driver & Kernel Module Development / GPIO / Timer / Interrupt
   • Networking:
     TCP/IP / Bluetooth / Wi-Fi / UART / I2C
   • AI & Vision:
@@ -18,7 +18,7 @@
   • Linux Development & Tools:
     Ubuntu / Multithreading / ROS / Cross-Compilation
   • Virtualization & Management:
-    Docker / Devcontainer / QEMU
+    Docker / Devcontainer / QEMU / cloud-init
   • Web Development:
     APM (Apache / MariaDB / PHP)
   • Documentation:
@@ -32,27 +32,27 @@
       - ioctl, poll, hardware interrupt(IRQ) 활용
       - Clang 기반 Cross-Compilation 및 Makefile 태스크 구조화(build, deploy, clean)로 빌드 및 배포 자동화
       - 자동 배포, 실행, 및 종료를 위한 Pipeline Script(Fish) 작성 및 활용
-
     • STM32 Nucleo F411RE 기반 디지털 시계 및 알람 시스템 구현
       - 타이머와 UART 블루투스 통신을 활용한 시간 계산, 동기화 및 알람 관리
       - I2C LCD 제어 및 버튼 인터럽트로 시간/알람 설정
-
+    • 수신호 인식 기반 자율주행 RC카 개발 (Edge AI 활용)
+      - NVIDIA Jetson Nano를 위한 GPU 기반 Docker 환경 및 devcontainer 설정.
+      - Docker 컨테이너에서 Python 스크립트를 부팅 시 자동 실행하도록 systemd 서비스 파일을 생성 및 관리하는 스크립트 작성
+      - Yolov11 (PyTorch 기반, person pose estimation) 을 활용하여 수신호 데이터셋을 ONNX 중간 형식으로 변환 후 TensorRT 양자화로 최적화.
+      - Skeleton 데이터셋 Keypoints 검증 자동화 스크립트를 작성하여 다중 데이터셋(NTU RGB+D, GYM 등)의 Keypoints 개수 검증
     • Python 및 MediaPipe 기반 카메라 필터 애플리케이션 개발 (팀 프로젝트)
-      - 토끼 귀 필터 구현: MediaPipe Face Mesh로 얼굴 특징점 추출, OpenCV와 Numpy를 활용해 토끼 귀 필터를 오버레이 (alpha blending 적용).
-      - config/ 모듈 작성: 프로젝트 루트 경로를 동적으로 탐색 및 결정하고 리소스와 출력 폴더를 초기화하는 로직 구현.
-      - 구조화된 프로젝트 관리: Mermaid를 활용해 Use Case, Sequence 등 다양한 다이어그램 작성 및 문서화.
-
+      - MediaPipe Face Mesh와 OpenCV, Numpy를 활용한 토끼 귀 필터 오버레이 구현(alpha blending 적용)
+      - 프로젝트 루트 경로 탐색 및 리소스 초기화를 자동화하는 config/ 모듈 작성
+      - Mermaid로 Use Case, Sequence 등의 다이어그램 작성
     • ATmega128 기반 스마트 선풍기 제어 시스템 개발
-      - GPIO, UART(Fan 제어), PWM, Timer 등 하드웨어 모듈 활용으로 선풍기 속도 제어 및 상태 표시 구현
-      - MVP 패턴 적용과 디렉터리 구조화(app, driver, peripheral, utility)를 통해 코드 유지보수성 강화
+      - GPIO, UART(Fan 제어), PWM, Timer를 활용하여 선풍기 속도 제어 및 상태 표시 구현
+      - MVP 패턴 적용 및 디렉터리 구조화(app, driver, peripheral, utility)
       - UART 통신 기반 사용자 인터페이스 (버튼, LCD) 제공 및 원형 큐를 활용한 명령 데이터 처리
-
     • 환경 및 네트워크 초기화 자동화 구현
       - 브리지 네트워크 생성 및 Tap 인터페이스 구성 스크립트.
       - Clang Compilation Database 생성, NFS/Samba 클라이언트 초기화, 정적 IP 설정 등 환경 초기화 스크립트.
       - Jetson Nano 의 VNC 설정 자동화 스크립트.
       - Windows, Ubuntu 개발 환경 초기화 스크립트 작성.
-
 
   [직장 경력]
     • 2023.06 ~ 2023.08 (드론 관제 시스템 개발)
