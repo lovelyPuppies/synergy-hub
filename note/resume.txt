@@ -1,29 +1,37 @@
-실무 기술 📅 Written at 2024-12-30 00:57:17
-  Languages:
-    - C, C++, Python, Java, Fish Script
-  Embedded Systems:
-    - STM32 F411RE (Cortex-M4), Raspberry Pi 4 B (Cortex-A72), Jetson Nano, U-Boot, Arduino
-  Hardware Control:
-    - Device Driver & Kernel Module Development, GPIO, Timer, Interrupts
-  Build Tools:
-    - CMake, Conan, Make, Yocto
-  Virtualization & Management:
-    - Docker, Devcontainer, QEMU
-  Development Tools:
-    - VS Code, Git, Clang
-  Networking:
-    - TCP/IP, Bluetooth, Wi-Fi, UART, I2C
-  AI & Vision:
-    - Qt, OpenCV, YOLOv11, MediaPipe
-  Web Development:
-    - APM (Apache, MariaDB, PHP)
-  Documentation:
-    - Doxygen, Mermaid, Swagger UI, ReDoc
-  Linux Development & Tools:
-    - Ubuntu, Multithreading, ROS, Cross-Compilation
+실무 기술 📅 Written at 2024-12-30 01:31:13
+  • Languages:
+    C / C++ / Python / Java / Kotlin / Fish Script
+  • Embedded Systems:
+    STM32 F411RE (Cortex-M4) / Raspberry Pi 4 B (Cortex-A72) / Jetson Nano / U-Boot / Arduino
+  • Hardware Control:
+    Device Driver & Kernel Module Development / GPIO / Timer / Interrupts
+  • Networking:
+    TCP/IP / Bluetooth / Wi-Fi / UART / I2C
+  • AI & Vision:
+    Qt / OpenCV / YOLOv11 / MediaPipe
+  • Build Tools:
+    CMake / Conan / Make / Yocto
+  • Development Tools:
+    VS Code / Git / Clang / PlatformIO
+  • CI/CD
+    GitHub Actions
+  • Linux Development & Tools:
+    Ubuntu / Multithreading / ROS / Cross-Compilation
+  • Virtualization & Management:
+    Docker / Devcontainer / QEMU
+  • Web Development:
+    APM (Apache / MariaDB / PHP)
+  • Documentation:
+    Mermaid / Doxygen / Swagger UI / ReDoc
 
 
-
+경력(개발) 사항
+  [직장 경력]
+    • 2021.03 ~ 2022.01 (웹 및 AI 시스템 개발)
+      - 소매점 고객 동선 분석 시스템: 매장 사진 매핑 및 탐색 알고리즘 구현 (Python, SQLAlchemy, FabricJS).
+      - 위협 감지 시스템: 화재 및 연기 알림 REST API 개발 및 사용자 인증 시스템 구현.
+    • 2023.06 ~ 2023.08 (드론 관제 시스템 개발)
+      - Kotlin과 Spring Security 6.x를 활용한 JWT (Access Token, Refresh Token) 인증 프로세스 구현.
 
 
 ⚓ 긴트 ; http://www.gintlab.com/ 📅 Written at 2024-12-27 11:55:27
