@@ -26,7 +26,7 @@
 
 
 
-경력(개발) 사항
+경력(개발) 사항 📅 Written at 2024-12-30 11:43:10
   [프로젝트]
     • Raspberry Pi 4 B 기반 LED 및 타이머 제어를 위한 커널 모듈 및 디바이스 드라이버 구현
       - ioctl, poll, hardware interrupt(IRQ) 활용
@@ -35,12 +35,12 @@
     • STM32 Nucleo F411RE 기반 디지털 시계 및 알람 시스템 구현
       - 타이머와 UART 블루투스 통신을 활용한 시간 계산, 동기화 및 알람 관리
       - I2C LCD 제어 및 버튼 인터럽트로 시간/알람 설정
-    • 수신호 인식 기반 자율주행 RC카 개발 (Edge AI 활용)
+    • 수신호 인식 기반 자율주행 RC카 개발 (Edge AI)
       - NVIDIA Jetson Nano를 위한 GPU 기반 Docker 환경 및 devcontainer 설정.
       - Docker 컨테이너에서 Python 스크립트를 부팅 시 자동 실행하도록 systemd 서비스 파일을 생성 및 관리하는 스크립트 작성
       - Yolov11 (PyTorch 기반, person pose estimation) 을 활용하여 수신호 데이터셋을 ONNX 중간 형식으로 변환 후 TensorRT 양자화로 최적화.
       - Skeleton 데이터셋 Keypoints 검증 자동화 스크립트를 작성하여 다중 데이터셋(NTU RGB+D, GYM 등)의 Keypoints 개수 검증
-    • Python 및 MediaPipe 기반 카메라 필터 애플리케이션 개발 (팀 프로젝트)
+    • Python 및 MediaPipe 기반 카메라 필터 애플리케이션 개발 (4인)
       - MediaPipe Face Mesh와 OpenCV, Numpy를 활용한 토끼 귀 필터 오버레이 구현(alpha blending 적용)
       - 프로젝트 루트 경로 탐색 및 리소스 초기화를 자동화하는 config/ 모듈 작성
       - Mermaid로 Use Case, Sequence 등의 다이어그램 작성
@@ -48,11 +48,14 @@
       - GPIO, UART(Fan 제어), PWM, Timer를 활용하여 선풍기 속도 제어 및 상태 표시 구현
       - MVP 패턴 적용 및 디렉터리 구조화(app, driver, peripheral, utility)
       - UART 통신 기반 사용자 인터페이스 (버튼, LCD) 제공 및 원형 큐를 활용한 명령 데이터 처리
-    • 환경 및 네트워크 초기화 자동화 구현
+    • 환경 및 네트워크 초기화 자동화 스크립트 작성
       - 브리지 네트워크 생성 및 Tap 인터페이스 구성 스크립트.
       - Clang Compilation Database 생성, NFS/Samba 클라이언트 초기화, 정적 IP 설정 등 환경 초기화 스크립트.
       - Jetson Nano 의 VNC 설정 자동화 스크립트.
-      - Windows, Ubuntu 개발 환경 초기화 스크립트 작성.
+      - Windows, Ubuntu 개발 환경 초기화 스크립트.
+    • IoT의 안전한 운영을 위한 Docker 기반 시스템 환경 설계 및 구현 (3인)
+    • Python 및 IPython 기반 CS 지식 연구 결과를 웹에 시각화하기 위한 라이브러리 개발 (1인)
+    • Pynecone를 활용한 CS 용어 사전 웹 애플리케이션 개발 (1인)
 
   [직장 경력]
     • 2023.06 ~ 2023.08 (드론 관제 시스템 개발)
@@ -803,7 +806,7 @@ Interview
 
   --> 최근에 자기개발한 경험 있으실까요?
     교육 듣기 전부터 이어오는것으로 어떤 스터디를 진행을 한 적이 있다.  or 책
-  
+    
     명근: 전장부품 목록 쇼핑을 해왔다.
       센서마다 스펙들을 알아보기 위해, ㅇㅇ. 공부해보면서..
       ❓   >> 말끝 흐림. 

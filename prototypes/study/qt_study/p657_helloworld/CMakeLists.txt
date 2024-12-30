@@ -1,8 +1,9 @@
+# Written at 📅 2024-12-30 10:21:09
 cmake_minimum_required(VERSION 3.19)
 project(testQt LANGUAGES CXX)
 
 
-# ☑️ If you use Clang , you must ....
+# ☑️ If you use Clang , you must add ...
 set(CMAKE_C_COMPILER "/home/linuxbrew/.linuxbrew/bin/clang")
 set(CMAKE_CXX_COMPILER "/home/linuxbrew/.linuxbrew/bin/clang++")
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)

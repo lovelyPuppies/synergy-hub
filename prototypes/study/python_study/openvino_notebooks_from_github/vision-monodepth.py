@@ -1,5 +1,5 @@
 #%%
-
+문기숙
 import cv2
 import numpy as np
 import openvino as ov
