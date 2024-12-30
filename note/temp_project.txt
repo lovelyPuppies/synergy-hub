@@ -14334,7 +14334,7 @@ Configure Connection
   나타나는 연결 설정 창에서 QDial의 시그널을 valueChanged(int)로 선택하고, QLCDNumber의 슬롯을 display(int)로 선택합니다.
   or Edit menu - Edit Signals/Slots
 
-Qt - Qt designer Form Class vs Qt Item model in Qt IDE?
+Qt - Qt designer Form Class vs Qt Item model in Qt IDE? 
   keyled.h, keyled.cpp 
 
 
@@ -14347,5 +14347,21 @@ STM32WB5MM-DK
   
   
 
-
 https://www.mouser.kr/ProductDetail/STMicroelectronics/STM32WB5MM-DK?qs=pUKx8fyJudBXuFw80Ns78Q%3D%3D&mgh=1
+  AGL ; ROS 2 랑 호환되고 인포테인먼트도 할 수 있는 차량용 OS
+
+라즈베리파 OS
+>>>> https://source.android.com/docs/devices/automotive/start/what_automotive?hl=ko#android-automotive-android-auto
+  agl infotainment
+
+GPS와 기본적인 지도나 경로를 사용하여 목적지로 가는 길을 안내하는 기능은 Raspberry Pi 4에서도 처리할 수 있습니다.
+  
+  AGL
+    >> ROS 2 와 호환되어야 함. infortainment 를 지원행 함.
+  
+
+임베디드 (STM32, Arduino, AVR) S/W 개발 프로젝트 수행
+교통 수신호 인식 AI와 초음파 센서를 활용해 충돌을 방지하는 엣지 디바이스 (RC카) 개발
+커널 모듈 및 디바이스 드라이버 개발 (ioctl, poll, IRQ 활용)
+Yocto Project 기반 빌드 및 임베디드 리눅스 환경 구성 경험
+Qt 기반 GUI 애플리케이션 설계 및 구현
