@@ -38,7 +38,7 @@
     • 수신호 인식 기반 자율주행 RC카 개발 (Edge AI)
       - NVIDIA Jetson Nano를 위한 GPU 기반 Docker 환경 및 devcontainer 설정.
       - Docker 컨테이너에서 Python 스크립트를 부팅 시 자동 실행하도록 systemd 서비스 파일을 생성 및 관리하는 스크립트 작성
-      - Yolov11 (PyTorch 기반, person pose estimation) 을 활용하여 수신호 데이터셋을 ONNX 중간 형식으로 변환 후 TensorRT 양자화로 최적화.
+      - Yolov11 (PyTorch 기반, person pose estimation)을 활용하여 교통 수신호 데이터셋을 학습하고, 이를 ONNX 중간 형식으로 변환한 뒤 TensorRT 양자화를 통해 최적화.
       - Skeleton 데이터셋 Keypoints 검증 자동화 스크립트를 작성하여 다중 데이터셋(NTU RGB+D, GYM 등)의 Keypoints 개수 검증
     • Python 및 MediaPipe 기반 카메라 필터 애플리케이션 개발 (4인)
       - MediaPipe Face Mesh와 OpenCV, Numpy를 활용한 토끼 귀 필터 오버레이 구현(alpha blending 적용)
