@@ -14274,7 +14274,69 @@ git log --diff-filter=A -- <파일명>
   - 이력서에 있는 Skill-Portfolio 에 있는 모든 항목을 포트폴리오 기술서에도 똑같이 작성해야 하나요?
   - 하만이나 이전기수의 사람들은 "포트폴리오 기술서" 를 프로젝트당 보통 몇페이지 정도 작성했나요? 그리고 총 "포트폴리오 기술서"의 전체 페이지 수가 몇쪽이나 되야해요?
     저희도 그렇게 작성해야 하나 싶어서 여쭤봅니다.
-    
+
 
 ❓ 이거 어떻게 학습햇더라 레이블 넣어서?
   Yolov11 (PyTorch 기반, person pose estimation)을 활용하여 교통 수신호 데이터셋을 학습하고, 이를 ONNX 중간 형식으로 변환한 뒤 TensorRT 양자화를 통해 최적화.
+
+Qt creator
+  Qt - Qt Designer Form class
+
+❓ in MainWidget
+  ui->pTab->setLayout(pTab1DevControl->layout()); 
+
+devcontainer.png.
+QWidget
+  [Attributes]:
+    - Laout Vertically
+    layoutStrcech: 1,8,1
+  horizontal layout 1
+    [Attributes]:
+      layoutStretch: 2:1:1
+    QPushButton
+      [Attributes]:
+        Label: pBtimerStart
+        text: TimerStart
+    QComboxBox
+      [Attributes]: 
+        Label: pCBtimerValue
+        50 100 200 500 1000 2000 
+    QPushButton
+      [Attributes]:
+        Label: pBQuit 
+        text: Quit
+  horizontal layout 2
+    QDial
+      [Attributes]:
+        Label: pDialLed
+        maxmimum 255
+        ✔️ notchesVisible
+    QLCDNumber
+      [Attributes]:
+        Label: pLcdNumberaLed
+        maxmimum 255
+        digitcount 2
+        mode: Hex
+        segmentstyle: Filled
+  horizontal layout 3
+    QProgressBar
+      [Attributes]:
+        Label:pProgressBarLed
+Configure Connection
+  valueChanged(int)
+  display(int)
+  qDial <-> qLCDNumber
+
+  툴바에서 시그널 및 슬롯 편집 모드로 전환 (또는 단축키 F4).
+  QDial을 클릭한 후 QLCDNumber로 드래그하여 연결합니다.
+  나타나는 연결 설정 창에서 QDial의 시그널을 valueChanged(int)로 선택하고, QLCDNumber의 슬롯을 display(int)로 선택합니다.
+  or Edit menu - Edit Signals/Slots
+
+Qt - Qt designer Form Class vs Qt Item model in Qt IDE?
+  keyled.h, keyled.cpp 
+
+
+?tab1devcontrol.h
+  #include "keyled.h"
+?tab1devcontrol.cpp
+  #include "keyled.h"

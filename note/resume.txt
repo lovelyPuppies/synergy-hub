@@ -27,42 +27,53 @@
 
 
 경력(개발) 사항 📅 Written at 2024-12-30 11:43:10
-  [프로젝트]
-    • Raspberry Pi 4 B 기반 LED 및 타이머 제어를 위한 커널 모듈 및 디바이스 드라이버 구현
-      - ioctl, poll, hardware interrupt(IRQ) 활용
-      - Clang 기반 Cross-Compilation 및 Makefile 태스크 구조화(build, deploy, clean)로 빌드 및 배포 자동화
-      - 자동 배포, 실행, 및 종료를 위한 Pipeline Script(Fish) 작성 및 활용
-    • STM32 Nucleo F411RE 기반 디지털 시계 및 알람 시스템 구현
-      - 타이머와 UART 블루투스 통신을 활용한 시간 계산, 동기화 및 알람 관리
-      - I2C LCD 제어 및 버튼 인터럽트로 시간/알람 설정
-    • 수신호 인식 기반 자율주행 RC카 개발 (Edge AI)
-      - NVIDIA Jetson Nano를 위한 GPU 기반 Docker 환경 및 devcontainer 설정.
-      - Docker 컨테이너에서 Python 스크립트를 부팅 시 자동 실행하도록 systemd 서비스 파일을 생성 및 관리하는 스크립트 작성
-      - Yolov11 (PyTorch 기반, person pose estimation)을 활용하여 교통 수신호 데이터셋을 학습하고, 이를 ONNX 중간 형식으로 변환한 뒤 TensorRT 양자화를 통해 최적화.
-      - Skeleton 데이터셋 Keypoints 검증 자동화 스크립트를 작성하여 다중 데이터셋(NTU RGB+D, GYM 등)의 Keypoints 개수 검증
-    • Python 및 MediaPipe 기반 카메라 필터 애플리케이션 개발 (4인)
-      - MediaPipe Face Mesh와 OpenCV, Numpy를 활용한 토끼 귀 필터 오버레이 구현(alpha blending 적용)
-      - 프로젝트 루트 경로 탐색 및 리소스 초기화를 자동화하는 config/ 모듈 작성
-      - Mermaid로 Use Case, Sequence 등의 다이어그램 작성
-    • ATmega128 기반 스마트 선풍기 제어 시스템 개발
-      - GPIO, UART(Fan 제어), PWM, Timer를 활용하여 선풍기 속도 제어 및 상태 표시 구현
-      - MVP 패턴 적용 및 디렉터리 구조화(app, driver, peripheral, utility)
-      - UART 통신 기반 사용자 인터페이스 (버튼, LCD) 제공 및 원형 큐를 활용한 명령 데이터 처리
-    • 환경 및 네트워크 초기화 자동화 스크립트 작성
-      - 브리지 네트워크 생성 및 Tap 인터페이스 구성 스크립트.
-      - Clang Compilation Database 생성, NFS/Samba 클라이언트 초기화, 정적 IP 설정 등 환경 초기화 스크립트.
-      - Jetson Nano 의 VNC 설정 자동화 스크립트.
-      - Windows, Ubuntu 개발 환경 초기화 스크립트.
-    • IoT의 안전한 운영을 위한 Docker 기반 시스템 환경 설계 및 구현 (3인)
-    • Python 및 IPython 기반 CS 지식 연구 결과를 웹에 시각화하기 위한 라이브러리 개발 (1인)
-    • Pynecone를 활용한 CS 용어 사전 웹 애플리케이션 개발 (1인)
+    [프로젝트]
+      • Raspberry Pi 4 B 기반 LED 및 타이머 제어를 위한 커널 모듈 및 디바이스 드라이버 구현
+        - ioctl, poll, hardware interrupt(IRQ) 활용
+        - Clang 기반 Cross-Compilation 및 Makefile 태스크 구조화(build, deploy, clean)로 빌드 및 배포 자동화
+        - 자동 배포, 실행, 및 종료를 위한 Pipeline Script(Fish) 작성 및 활용
+      • STM32 Nucleo F411RE 기반 디지털 시계 및 알람 시스템 구현
+        - 타이머와 UART 블루투스 통신을 활용한 시간 계산, 동기화 및 알람 관리
+        - I2C LCD 제어 및 버튼 인터럽트로 시간/알람 설정
+      • 수신호 인식 기반 자율주행 RC카 개발 (Edge AI)
+        - NVIDIA Jetson Nano를 위한 GPU 기반 Docker 환경 및 devcontainer 설정.
+        - Docker 컨테이너에서 Python 스크립트를 부팅 시 자동 실행하도록 systemd 서비스 파일을 생성 및 관리하는 스크립트 작성
+        - Yolov11 (PyTorch 기반, person pose estimation)을 활용하여 교통 수신호 데이터셋을 학습하고, 이를 ONNX 중간 형식으로 변환한 뒤 TensorRT 양자화를 통해 최적화.
+        - Skeleton 데이터셋 Keypoints 검증 자동화 스크립트를 작성하여 다중 데이터셋(NTU RGB+D, GYM 등)의 Keypoints 개수 검증
+      • Python 및 MediaPipe 기반 카메라 필터 애플리케이션 개발 (4인)
+        - MediaPipe Face Mesh와 OpenCV, Numpy를 활용한 토끼 귀 필터 오버레이 구현(alpha blending 적용)
+        - 프로젝트 루트 경로 탐색 및 리소스 초기화를 자동화하는 config/ 모듈 작성
+        - Mermaid로 Use Case, Sequence 등의 다이어그램 작성
+      • ATmega128 기반 스마트 선풍기 제어 시스템 개발
+        - GPIO, UART(Fan 제어), PWM, Timer를 활용하여 선풍기 속도 제어 및 상태 표시 구현
+        - MVP 패턴 적용 및 디렉터리 구조화(app, driver, peripheral, utility)
+        - UART 통신 기반 사용자 인터페이스 (버튼, LCD) 제공 및 원형 큐를 활용한 명령 데이터 처리
+      • 환경 및 네트워크 초기화 자동화 스크립트 작성
+        - 브리지 네트워크 생성 및 Tap 인터페이스 구성 스크립트.
+        - Clang Compilation Database 생성, NFS/Samba 클라이언트 초기화, 정적 IP 설정 등 환경 초기화 스크립트.
+        - Jetson Nano 의 VNC 설정 자동화 스크립트.
+        - Windows, Ubuntu 개발 환경 초기화 스크립트.
+      • IoT의 안전한 운영을 위한 Docker 기반 시스템 환경 설계 및 구현 (3인)
+      • Python 및 IPython 기반 CS 지식 연구 결과를 웹에 시각화하기 위한 라이브러리 개발 (1인)
+      • Pynecone를 활용한 CS 용어 사전 웹 애플리케이션 개발 (1인)
 
-  [직장 경력]
-    • 2023.06 ~ 2023.08 (드론 관제 시스템 개발)
-      - Kotlin과 Spring Security 6.x를 활용한 JWT (Access Token, Refresh Token) 인증 프로세스 구현.
-    • 2021.03 ~ 2022.01 (웹 및 AI 시스템 개발)
-      - 소매점 고객 동선 분석 시스템: 매장 사진 매핑 및 탐색 알고리즘 구현 (Python, SQLAlchemy, FabricJS).
-      - 위협 감지 시스템: 화재 및 연기 알림 REST API 개발 및 사용자 인증 시스템 구현.
+    [직장 경력]
+      • 2023.06 ~ 2023.08 (드론 관제 시스템 개발)
+        - Kotlin과 Spring Security 6.x를 활용한 JWT (Access Token, Refresh Token) 인증 프로세스 구현.
+      • 2021.03 ~ 2022.01 (웹 및 AI 시스템 개발)
+        - 소매점 고객 동선 분석 시스템: 매장 사진 매핑 및 탐색 알고리즘 구현 (Python, SQLAlchemy, FabricJS).
+        - 위협 감지 시스템: 화재 및 연기 알림 REST API 개발 및 사용자 인증 시스템 구현.
+
+
+* Master Resume
+  지원 동기  및 입사 후 포부
+    "임베디드 기술을 통한 디지털 혁신의 주역"
+
+    임베디드 소프트웨어 개발은 다양한 산업의 혁신을 이끄는 핵심 기술로, RTOS 기반 시스템 설계, IoT 통합, 엣지 컴퓨팅 등 첨단 기술의 발전을 실현하는 중요한 역할을 합니다. 특히, 데이터 처리의 효율성과 실시간 대응이 요구되는 환경에서 임베디드 기술은 안정성과 성능을 동시에 제공해야 합니다. 저는 임베디드 소프트웨어 개발자로서 이러한 도전 과제를 해결하며, 조직의 목표를 달성하고 기술적 경쟁력을 강화하는 데 기여하고자 합니다.
+
+    대학교와 다양한 프로젝트 경험을 통해 하드웨어와 소프트웨어의 융합 기술을 익히고, 효율적인 시스템 설계 및 최적화에 대한 전문성을 쌓아왔습니다. 특히, Devcontainer를 활용한 개발 환경 자동화, RTOS 기반 시스템 설계, 그리고 저전력 설계 최적화 경험은 임베디드 소프트웨어 개발 직무에서 요구하는 역량을 강화하는 데 중요한 밑거름이 되었습니다.
+
+    입사 후, 저는 임베디드 시스템 개발자로서 RTOS 최적화, 통신 프로토콜 설계, 하드웨어 초기화 및 드라이버 개발 등의 업무에 주력하며, 조직의 제품과 서비스가 시장에서 높은 경쟁력을 유지할 수 있도록 기여할 것입니다. 또한, 지속적인 학습과 협업을 통해 팀의 기술적 역량을 높이고, 혁신적이고 효율적인 개발 문화를 조성하고자 합니다. 제 기술적 경험과 열정을 바탕으로 조직과 함께 성장하며, 새로운 디지털 혁신을 이끄는 데 앞장서겠습니다.
 
 
 ⚓ 긴트 ; http://www.gintlab.com/ 📅 Written at 2024-12-27 11:55:27
