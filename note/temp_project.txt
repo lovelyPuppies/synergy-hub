@@ -14340,3 +14340,10 @@ Qt - Qt designer Form Class vs Qt Item model in Qt IDE?
   #include "keyled.h"
 ?tab1devcontrol.cpp
   #include "keyled.h"
+
+STM32WB5MM-DK
+  
+  
+
+
+  https://www.mouser.kr/ProductDetail/STMicroelectronics/STM32WB5MM-DK?qs=pUKx8fyJudBXuFw80Ns78Q%3D%3D&mgh=1
