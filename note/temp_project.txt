@@ -13803,6 +13803,7 @@ im-config -n none
 
 
 
+
 defauolt: 
   cat profile
   [Groups/0]
@@ -14412,7 +14413,7 @@ scp qt-pi-binaries.tar.gz ulas@192.168.16.20:/home/ulas/
 
 docker create --name tmpbuild qtcrossbuild
 sleep 1
-docker cp tmpbuild:/build/project/HelloQt6 ./HelloQt6
+docker cp tmpbuild:/build/project/HelloQt6 ./HelloQt6   
 
 
 
@@ -14439,3 +14440,6 @@ study 여기 정리 + ppt 정리.
 
 
 
+
+
+❗ cat /proc/sys/fs/binfmt_misc/status
