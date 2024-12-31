@@ -2,7 +2,10 @@ Emoji 🔗 from VS Code Extension :emojisense: ;https://marketplace.visualstudio
   📅 Modified at 2024-12-31 19:39:15
   📏 Format: <emoji>   <name>    <suffix when use emoji>
   -----
-  📝  :memo:      ""
-  📜  :scroll:    "(how-to) fish script: "
+  📝  :memo:            ""
+  📜  :scroll:          "(how-to) fish script: <Title>"
+  ✍️  :writing_hand:    "(✍️ <Subject> 🔪 study)"
 
+  🚨  :rotating_light:  "(Issue: Error); <Title>"
+  🚨  :rotating_light:  "(Issue: Bug); <Title>"
  

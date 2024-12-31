@@ -1,25 +1,7 @@
 list of level 1 subjects
   - Ubuntu
 
-❌ Do not use Ubuntu 24 Desktop, instead use Kubuntu 📅 2024-12-31 19:47:10
-  우분투는 앱들간의 호환성이 안좋고, 사용성이 좋지 않다. 📅 2024-12-31 19:50:33
-    구체적으로.. 어떤 이유들 때문에..  gtk3 gtk4 엿나? 그 호환성 차이도 잇고..
-
-    KDE 앱과 호환성이 좋지 않다. 그래서 snap 이나 flatpak 으로 설치가 가능하지만, 샌드박스때문에 제한사항이 많다.
-    특히나, 최신에 지속적으로 개발이 이루어지져서 gnome 의 대체제로 떠오르는? wayland 사용설정을 허용하면,
-      VSCOdE 에서는 영문자가 아닌 언어를 입력하면 issue black flickering 문제가 발생한다. 
-      Edge 에서는 영문자가 아닌 언어를 빠르게 입력하면 중간중간 단어가 무시되거나, 지연시간이 생기는 문제가 발생
-      입력기를 ibus, fcitx5, kime 으로 모두 바꿔봣지만 동일.
-      그래서 각각 앱(vscode, edge) 에 .desktop 에 데스크탑 프로토콜(? 맞나?) x11 이 아닌 wayland 로 주면 이 문제들은 사라지긴 하지만, 영문자 이외의 언어 입력이 불가능하게 된다.
-        또한 이게 되더라도, 각 앱마다 설정이 필요하면 수동으로 설정해줘야 해서 매우 불편하다.
-
-
-      https://fcitx-im.org/wiki/Using_Fcitx_5_on_Wayland#KDE_Plasma
-
-    kubuntu 는 그렇지 않다. 
-
-
-
+❌➡️ Switch to Kubuntu for better compatibility if using Ubuntu for desktop purposes 📅 2024-12-31 20:53:29
   This is chosen because ROS2 and Yocto can be developed within containers, providing flexibility and scalability.
   - Yocto 🔪 https://docs.yoctoproject.org/ref-manual/system-requirements.html#supported-linux-distributions
   - ROS 🔪 Supported Platforms ; https://docs.ros.org/en/jazzy/Releases/Release-Jazzy-Jalisco.html
@@ -30,6 +12,139 @@ list of level 1 subjects
 ⚓ Ubuntu ; https://fishshell.com/
   https://github.com/ubuntu
   https://en.wikipedia.org/wiki/Ubuntu
+
+(✍️ Ubuntu 🔪 study)
+  🚨 (Issue: Error); Problems using Wayland display protocol in Ubuntu 📅 2024-12-31 20:37:32
+    ➡️ Switch to Kubuntu for better compatibility if using Ubuntu for desktop purposes
+
+    When
+      - Wayland in Ubuntu
+
+    Symptom
+      - Wayland compatibility issues in Ubuntu cause problems with key applications.
+        - VSCode: Non-English character input leads to black flickering.
+        - Edge: Input delays and dropped words for non-English characters.
+        - Manual fixes for each app are inconvenient.
+
+    Solution
+      - Do not use Wayland display protocol in Ubuntu 24 Desktop. Use X11 (default) display protocol.
+      - ➡️ Switch to Kubuntu for better compatibility if using Ubuntu for desktop purposes
+        - Ubuntu is not well-suited for desktop usage due to compatibility and usability issues. 📅 2024-12-31 19:50:33
+          - Specific reasons include compatibility gaps between GTK3 and GTK4.
+          - Poor integration with KDE applications. While KDE apps can be installed via Snap or Flatpak, sandboxing introduces significant limitations.
+          - When enabling Wayland:
+            - VSCode: Black flickering occurs when typing non-English characters.
+            - Microsoft Edge: Typing non-English characters quickly can cause words to be dropped or delays.
+            - ❗ Switching input methods (ibus, fcitx5, kime) does not resolve these issues.
+            - Setting apps (e.g., VSCode, Edge) to use the `wayland` desktop protocol resolves the issues, but non-English input becomes impossible. Each app also requires manual configuration, which is highly inconvenient.
+
+    Attempts
+      - 🧪 [Fail] Fixing VSCode Black Flickering 📅 2024-11-22 19:59:11
+        ```
+        # 1. Define source and target paths
+        set source_file "/usr/share/applications/code.desktop"
+        set target_file "$HOME/.local/share/applications/code.desktop"
+
+        # 2. Ensure the target directory exists
+        mkdir -p $HOME/.local/share/applications
+
+        # 3. Copy the file to the target location
+        cp $source_file $target_file
+
+        # 4. Modify Exec lines that match the condition
+        # Only replace if '--gtk-version=4' is not found
+        sed -i '/Exec=\/usr\/share\/code\/code/{
+            /--gtk-version=4/!s|Exec=/usr/share/code/code|Exec=/usr/share/code/code --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime|
+        }' $target_file
+
+        # 5. Confirm changes
+        echo "Updated $target_file. Here are the updated Exec lines:"
+        grep "^Exec=" $target_file
+        ```
+      - 🧪 [Fail] Fixing VSCode Black Flickering Using `code-flags.conf` 📅 2024-11-22 19:59:11
+        Tried modifying `$HOME/.config/code-flags.conf` instead of editing the `.desktop` file.
+      - 🧪 [Success] Fixing Edge Hangul IME Delay 📅 2024-11-22 19:59:11
+        ```
+        # 1. Define source and target paths
+        set source_file "/usr/share/applications/microsoft-edge.desktop"
+        set target_file "$HOME/.local/share/applications/microsoft-edge.desktop"
+
+        # 2. Ensure the target directory exists
+        mkdir -p $HOME/.local/share/applications
+
+        # 3. Copy the file to the target location
+        cp $source_file $target_file
+
+        # 4. Modify Exec lines that match the condition
+        # Only replace if '--gtk-version=4' is not found
+        sed -i '/Exec=\/usr\/bin\/microsoft-edge-stable/{
+            /--gtk-version=4/!s|Exec=/usr/bin/microsoft-edge-stable|Exec=/usr/bin/microsoft-edge-stable --enable-features=UseOzonePlatform --ozone-platform=wayland --gtk-version=4|
+        }' $target_file
+        # or, "microsoft-edge --ozone-platform=wayland --enable-wayland-ime --gtk-version=4"
+        # or, for compatibility: "microsoft-edge ozone-platform-hint=auto --enable-wayland-ime --gtk-version=4"
+
+        # 5. Confirm changes
+        echo "Updated $target_file. Here are the updated Exec lines:"
+        grep "^Exec=" $target_file
+        ```
+
+    Notes
+      - 📝 Desktop file updates in Ubuntu take a few seconds to reflect. Wait before testing changes.
+      - ✅ (how); To log in using Wayland in Ubuntu: 📅 2024-12-31 20:45:48
+        1. Check the current session type:
+          ```
+          echo $XDG_SESSION_TYPE
+          # Output: x11 (default)
+          ```
+        2. Enable Wayland in configuration:
+          ```
+          sudo nano /etc/gdm3/custom.conf
+          [daemon]
+          # Uncomment the following line to enable Wayland
+          # WaylandEnable=true
+          ```
+        3. Reboot the system.
+        4. During login, select "Ubuntu on Wayland" from the bottom-right menu.
+        5. Verify the session type:
+          ```
+          echo $XDG_SESSION_TYPE
+          # Output: wayland
+          ```
+
+    Reference
+      - [How to make VSCode run in Wayland mode](https://www.reddit.com/r/Fedora/comments/1afkoge/how_to_make_vscode_run_in_wayland_mode/)
+      - [Using Fcitx 5 on Wayland - Gtk3 / Gtk4](https://fcitx-im.org/wiki/Using_Fcitx_5_on_Wayland#Gtk3_.2F_Gtk4)
+
+
+    Notes
+      - 📝 Desktop file updates in Ubuntu take a few seconds to reflect. Wait before testing changes.
+      - To log in using Wayland in Ubuntu:
+        1. Check the current session type:
+          ```
+          echo $XDG_SESSION_TYPE
+          #  >> x11 (default)
+          ```
+        2. Enable Wayland in configuration:
+          ```
+          sudo nano /etc/gdm3/custom.conf
+          [daemon]
+          # Uncomment the following line to enable Wayland
+          WaylandEnable=true
+          ```
+        3. Reboot the system.
+        4. During login, select "Ubuntu on Wayland" from the bottom-right menu.
+        5. Verify the session type:
+          ```
+          echo $XDG_SESSION_TYPE
+          #  >> wayland
+          ```
+
+    Reference
+      - [How to make VSCode run in Wayland mode](https://www.reddit.com/r/Fedora/comments/1afkoge/how_to_make_vscode_run_in_wayland_mode/)
+      - [Using Fcitx 5 on Wayland - Gtk3 / Gtk4](https://fcitx-im.org/wiki/Using_Fcitx_5_on_Wayland#Gtk3_.2F_Gtk4)
+
+
+
 ----------------------------------------------
 Ubuntu 🔪⚓ Ubuntu Desktop Guide ; https://fishshell.com/docs/current/index.html
   ⚓⌨️ Useful keyboard shortcuts ; https://help.ubuntu.com/stable/ubuntu-help/shell-keyboard-shortcuts.html.en

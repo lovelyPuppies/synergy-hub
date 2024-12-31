@@ -16,7 +16,7 @@ list of level 1 subjects
       poetry env use python<version to use>
       poetry env info 
       poetry install --with=vision,ml
-  - 🚨 (issue): bug ; cannot resolve rc version 📅 2022-12-02 15:15:00
+  - 🚨 (Issue: Bug) ; cannot resolve rc version 📅 2022-12-02 15:15:00
     output
       The current project's Python requirement (3.11.0rc1) is not compatible with some of the required packages Python requirement:
         - study-core requires Python >=3.11.0, <3.12, so it will not be satisfied for Python 3.11.0rc1

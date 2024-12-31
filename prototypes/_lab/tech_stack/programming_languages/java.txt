@@ -150,7 +150,7 @@ Kotlin
             ⚓ listOf ; https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/list-of.html
             ⚓ setof ; https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/set-of.html
 (✍️ Kotlin study)
-  🚨 (issue): error; JVMTarget not supports 20 when `./gradlew build'
+  🚨 (Issue: Error); JVMTarget not supports 20 when `./gradlew build'
     it not occurs when `gradle init' with `application' - `JVM target 20' selections.
     but current version not supports JVM target 20. set 19.
     References

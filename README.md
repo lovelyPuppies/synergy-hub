@@ -63,7 +63,7 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
 │&nbsp;&nbsp;&nbsp;&nbsp;├── [Issues.md](prototypes/_lab/tech_stack/hardware_and_os/Issues.md)  
 │&nbsp;&nbsp;&nbsp;&nbsp;├── os  
 │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;├── linux  
-│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── [ubuntu.txt](prototypes/_lab/tech_stack/hardware_and_os/os/linux/ubuntu.txt)  
+│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── **[ubuntu.txt](prototypes/_lab/tech_stack/hardware_and_os/os/linux/ubuntu.txt)**  
 │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── **[linux.txt](prototypes/_lab/tech_stack/hardware_and_os/os/linux.txt)**  
 │&nbsp;&nbsp;&nbsp;&nbsp;└── serial_tools  
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [tio.txt](prototypes/_lab/tech_stack/hardware_and_os/serial_tools/tio.txt)  

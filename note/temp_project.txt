@@ -612,7 +612,7 @@ Install List
     🪠%shell> 
       wget https://installer-whale.pstatic.net/downloads/installers/naver-whale-stable_amd64.deb -O /tmp/naver-whale-stable_amd64.deb && \
       sudo dpkg -i /tmp/naver-whale-stable_amd64.deb
-    🚨 (issue): bug; 📅 
+    🚨 (Issue: Bug); 📅 
     Uninstall; %shell> sudo apt remove -y naver-whale-stable
 
   Telegram
@@ -2302,7 +2302,7 @@ ADAS 시스템 수신호
         rclone mount는 원격 드라이브를 파일 시스템처럼 다루지만, 파일 단위로 데이터를 처리합니다. 즉, PDF 파일을 수정할 때마다 전체 파일이 다시 업로드됩니다. 따라서 PDF 파일에 주석을 추가하거나 수정하면, 파일 전체(예: 300MB)를 다시 업로드하게 됩니다. rclone mount는 파일의 일부만 변경하는 방식으로 동작하지 않기 때문에, 주석만 수정된 경우에도 전체 파일을 다시 동기화합니다.  
         일부 클라우드 스토리지 서비스는 네이티브 클라이언트(예: Google Drive의 공식 클라이언트)에서 차등 동기화(파일의 일부만 변경된 경우, 그 부분만 업로드)를 지원할 수 있지만, rclone에서는 이러한 기능이 제공되지 않습니다.
 
-        🚨 (issue): bug; Could not open file:///home/wbfw109v2/drive/gdrive/book/...
+        🚨 (Issue: Bug); Could not open file:///home/wbfw109v2/drive/gdrive/book/...
           만약 Snap으로 설치된 Okular에서 이러한 문제가 발생했다면, Snap의 보안 샌드박스 때문일 수 있습니다. 이 경우 Snap 대신 apt로 설치된 버전을 사용하는 것이 좋습니다.
             ...
           sudo snap remove okular
@@ -11498,82 +11498,7 @@ Android Emulator 📅 2024-12-19 09:32:19
   ➡️ How to make vscode run in Wayland mode ; https://linuxconfig.org/how-to-enable-disable-wayland-on-ubuntu-22-04-desktop
     2️⃣ https://www.reddit.com/r/Ubuntu/comments/1fg00x7/best_way_to_run_android_apps_on_ubuntu_2204/
       I have been using Wayland + Waydroid with 22.04 for 6 months, no problem.
-      ❔ Does Waydroid require Wayland?
-
-      echo $XDG_SESSION_TYPE
-      >> x11
-      sudo nano /etc/gdm3/custom.conf
-        [daemon]
-        # Uncomment the line below to force the login screen to use Xorg
-        # WaylandEnable=true
-      sudo systemctl restart gdm3
-      로그인 창에서 우측 하단으로부터 Ubuntu on Wayland 로 로그인.
-      ➜ echo $XDG_SESSION_TYPE
-
-
-      이게 그리고 우분투에서 wayland 를 활성화하고, ibus 나 fcitx 등 어떤 입력기를 사용하더라도
-      ⚠️ Problems
-            입력기가 ibus, fcitx 일 때 한글을 vscode 에서 입력할 때 화면이 자꾸 black flickering 되는 문제가 있음.
-              https://fcitx-im.org/wiki/Using_Fcitx_5_on_Wayland#Gtk3_.2F_Gtk4
-
-      이런 문제가 있엇는데 kubuntu 에서는 (기본이 wayland, fictx) 를 사용할 떄에는 그런 문제가 없네?
-
-      이런 문제가 있엇는데 kubuntu 에서는 (기본이 wayland, fictx) 를 사용할 떄에는 그런 문제가 없네?
-    ⚠️ Problems
-      입력기가 ibus, fcitx 일 때 한글을 vscode 에서 입력할 때 화면이 자꾸 black flickering 되는 문제가 있음.
-        https://fcitx-im.org/wiki/Using_Fcitx_5_on_Wayland#Gtk3_.2F_Gtk4
-      ❓📰 How to make vscode run in Wayland mode ; https://www.reddit.com/r/Fedora/comments/1afkoge/how_to_make_vscode_run_in_wayland_mode/
-
-      🧪 Try... solve VScode black flickering [Fail] 📅 2024-11-22 19:59:11
-        // tee to $HOME/.config/code-flags.conf... 
-      🧪 Try...:solve VScode black flickering [Fail]: pass arguments to VSCOde run command  📅 2024-11-22 19:59:11
-        not works. 
-          # 1. Define source and target paths
-          set source_file "/usr/share/applications/code.desktop"
-          set target_file "$HOME/.local/share/applications/code.desktop"
-
-          # 2. Ensure the target directory exists
-          mkdir -p $HOME/.local/share/applications
-
-          # 3. Copy the file to the target location
-          cp $source_file $target_file
-
-          # 4. Modify Exec lines that match the condition
-          # Only replace if '--gtk-version=4' is not found
-          sed -i '/Exec=\/usr\/share\/code\/code/{
-              /--gtk-version=4/!s|Exec=/usr/share/code/code|Exec=/usr/share/code/code --enable-features=UseOzonePlatform --ozone-platform=wayland --enable-wayland-ime|
-          }' $target_file
-          # 5. Confirm changes
-          echo "Updated $target_file. Here are the updated Exec lines:"
-          grep "^Exec=" $target_file 
-
-      🧪 Try... solve Edge browser Hangul IME delay [Success] 📅 2024-11-22 19:59:11
-          https://www.reddit.com/r/MicrosoftEdge/comments/1gdaifm/ibus_rime_doesnt_work_with_microsoft_edge_under/ may be useless.. in kime keyboard type.. 📅 2024-11-22 19:59:11
-          # ok. microsoft-edge --ozone-platform=wayland --enable-wayland-ime --gtk-version=4
-          microsoft-edge ozone-platform-hint=auto --enable-wayland-ime --gtk-version=4
-            
-          # 1. Define source and target paths
-          set source_file "/usr/share/applications/microsoft-edge.desktop"
-          set target_file "$HOME/.local/share/applications/microsoft-edge.desktop"
-
-          # 2. Ensure the target directory exists
-          mkdir -p $HOME/.local/share/applications
-
-          # 3. Copy the file to the target location
-          cp $source_file $target_file
-
-          # 4. Modify Exec lines that match the condition
-          # Only replace if '--gtk-version=4' is not found
-          sed -i '/Exec=\/usr\/bin\/microsoft-edge-stable/{
-              /--gtk-version=4/!s|Exec=/usr/bin/microsoft-edge-stable|Exec=/usr/bin/microsoft-edge-stable --enable-features=UseOzonePlatform --ozone-platform=wayland --gtk-version=4|
-          }' $target_file
-
-          # 5. Confirm changes
-          echo "Updated $target_file. Here are the updated Exec lines:"
-          grep "^Exec=" $target_file
-
-          📝 dekstop file 이 변경되면 실제 우분투 데스크탑의 좌측 desktop 바로가기는 즉시가 아니라 몇 초후에 교치된다.
-
+      ❔ Does Waydroid require Wayland? OO..
     3️⃣ Waydroid ; https://docs.waydro.id/usage/install-on-desktops#ubuntu-debian-and-derivatives
       https://waydro.id/
       https://github.com/waydroid/
@@ -14471,3 +14396,5 @@ study 여기 정리 + ppt 정리.
 
 
 5951 줄 ~ 시작
+
+onlyoffice 도 정리
