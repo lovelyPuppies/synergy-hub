@@ -14207,9 +14207,7 @@ WSL 에서 카메라 적용하려면 커스텀 커널 빌드해야 하고 카메
       - If you want to use USB Device Camera in Opencv in local, work it outside such as at company.
 
 
-
 study 여기 정리 + ppt 정리.
-
 
 
 ❗ cat /proc/sys/fs/binfmt_misc/status
