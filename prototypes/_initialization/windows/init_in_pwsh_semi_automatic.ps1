@@ -258,7 +258,16 @@ scoop install extras/okular
 scoop install extras/gimp
 scoop install extras/rufus
 scoop install extras/digikam # https://www.digikam.org/
+
 scoop install extras/tartube  # https://github.com/axcore/tartube
+<#
+❌ Do not use "4K YouTube to MP3 Converter" ; https://www.4kdownload.com 📅 2024-12-31 11:04:59
+  https://www.4kdownload.com/troubleshooting/troubleshooting-cant-activate-with-license-key/2
+  * Activation limit reached problem
+    Licenses are tied to the current OS setup. If you format or reinstall the OS, the license is lost and cannot be renewed easily.
+    License renewal is cumbersome and may require purchasing a new key after exceeding activation limits.
+#>
+
 scoop install extras/powertoys
 <#
   - ✔️ customize FancyZone
