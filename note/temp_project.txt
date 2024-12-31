@@ -14176,8 +14176,15 @@ docker build -t qtcrossbuild .
 
 
 docker cp tmpbuild:/build/qt-pi-binaries.tar.gz ./qt-pi-binaries.tar.gz
-cp qt-pi-binaries.tar.gz ~/nfs/
-scp qt-pi-binaries.tar.gz ulas@192.168.16.20:/home/ulas/
+cp qt-pi-binaries.tar.gz /nfs/
+ssh r-pi.local "
+qt6_dir=/usr/local/qt6
+
+sudo mkdir -p \$qt6_dir
+sudo chown \$USER:\$USER \$qt6_dir
+sudo chmod 700 \$qt6_dir
+tar -xvf /mnt/host/qt-pi-binaries.tar.gz -C \$qt6_dir
+"
 
 
 
