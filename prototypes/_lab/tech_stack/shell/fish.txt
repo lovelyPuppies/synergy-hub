@@ -2,18 +2,20 @@ list of level 1 subjects
   - Fish
   
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
-⚓ Fish ; https://fishshell.com/
+⚓⭕ Fish ; https://fishshell.com/
   The user-friendly command line shell.
   fish-shell/fish-shell ; https://github.com/fish-shell/fish-shell
-----------------------------------------------
-Fish 🔪⚓ Introduction ; https://fishshell.com/docs/current/index.html
-  #️⃣ Installation
+
 (✍️ Fish study)
   Pratice 🛍️ e.g.
     ❔ open .tex file 📅 2024-09-12 00:45:30
       %shell> code **/*.tex
     ❔ replace all .tex file with .txt file 📅 2024-09-12 00:45:30
       %shell> for file in **/*.tex; mv $file (string replace .tex .txt $file); end
+
+----------------------------------------------
+Fish 🔪⚓ Introduction ; https://fishshell.com/docs/current/index.html
+  #️⃣ Installation
 
 ----------------------------------------------
 Fish 🔪⚓ Tutorial ; https://fishshell.com/docs/current/tutorial.html
