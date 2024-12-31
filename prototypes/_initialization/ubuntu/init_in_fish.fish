@@ -1511,15 +1511,8 @@ end
 : '
 ❗ Do not install the Docker series using Homebrew. 📅 2024-12-31 09:51:13
   Homebrew does not include the Docker daemon or containerd (the container runtime): docker, docker-compose, or docker-buildx.
-
-📦 docker-completion
-    https://repology.org/project/docker-completion/versions
-    https://formulae.brew.sh/formula/docker-completion#default
-
-📦 docker-clean
-    https://repology.org/project/docker-clean/versions
-    https://formulae.brew.sh/formula/docker-clean#default
-    https://github.com/ZZROTDesign/docker-clean
+    and docker-completion not required because it is officially supported by Docker.
+    docker-clean also not required bcause it is natively supported by Docker like "prune" command.
 '
 ## Install using the apt repository ; https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
 # Add Docker's official GPG key:
@@ -1547,6 +1540,11 @@ sudo usermod -aG docker $USER
 echo "❗ You must log out and log back in for your group membership changes to take effect."
 # Alternatively, you can test the changes immediately by running the following command:
 #   %shell> newgrp docker
+
+## Docker Completion ; https://docs.docker.com/engine/cli/completion/#fish
+mkdir -p ~/.config/fish/completions
+docker completion fish >~/.config/fish/completions/docker.fish
+
 
 
 
