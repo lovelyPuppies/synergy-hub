@@ -74,7 +74,7 @@ sudo ln -s /home/linuxbrew/.linuxbrew/bin/fish_indent /usr/bin/fish_indent
 
 : '
 ☑️ Issue: Bug; Why does linuxbrew bin path not take precedence when using fish shell as the default in VSCode remote-SSH? 📅 2024-11-16 12:08:18
-  - Environment
+  - Environment 
     Fish shell was installed using the apt repository or GPG key method for Debian 12.
     The original fish shell was removed, and fish was reinstalled using Homebrew.
     empty: cat ~/.config/fish/config.fish
