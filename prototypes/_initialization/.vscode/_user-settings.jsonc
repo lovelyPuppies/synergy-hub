@@ -105,8 +105,10 @@
     "editor.tabSize": 4
   },
   // 🌀 Title: C/Cpp
+  // cmake ; https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools
   "cmake.showOptionsMovedNotification": false,
   "cmake.options.statusBarVisibility": "hidden",
+  "cmake.cmakePath": "/home/linuxbrew/.linuxbrew/bin/cmake",
   // clcangd ; https://marketplace.visualstudio.com/items?itemName=llvm-vs-code-extensions.vscode-clangd
   // ☑️ clcangd cannot recognize the path for tools installed via Linux Homebrew. So manually add the path to clcangd. 📅 2024-12-04 16:14:52
   "clangd.path": "/home/linuxbrew/.linuxbrew/bin/clangd",

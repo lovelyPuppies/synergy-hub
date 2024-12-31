@@ -14350,7 +14350,7 @@ devcontainer.png.
     valueChanged(int)
     display(int)
     qDial <-> qLCDNumber
-
+    
     툴바에서 시그널 및 슬롯 편집 모드로 전환 (또는 단축키 F4).
     QDial을 클릭한 후 QLCDNumber로 드래그하여 연결합니다.
     나타나는 연결 설정 창에서 QDial의 시그널을 valueChanged(int)로 선택하고, QLCDNumber의 슬롯을 display(int)로 선택합니다.

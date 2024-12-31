@@ -3,6 +3,12 @@ project(qt_widget LANGUAGES CXX)
 
 find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets)
 
+# ⚙️
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)  # .ui 파일 자동 처리
+set(CMAKE_AUTORCC ON)
+
+
 qt_standard_project_setup()
 
 qt_add_executable(qt_widget
