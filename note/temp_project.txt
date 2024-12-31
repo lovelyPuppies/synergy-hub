@@ -3974,7 +3974,7 @@ PyTorch built with:
   - Build settings: BLAS_INFO=open, BUILD_TYPE=Release, CXX_COMPILER=/opt/rh/devtoolset-10/root/usr/bin/c++, CXX_FLAGS= -Wno-deprecated -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -fopenmp -DNDEBUG -DUSE_KINETO -DLIBKINETO_NOCUPTI -DUSE_QNNPACK -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -DEDGE_PROFILER_USE_KINETO -O2 -fPIC -Wno-narrowing -Wall -Wextra -Werror=return-type -Wno-missing-field-initializers -Wno-type-limits -Wno-array-bounds -Wno-unknown-pragmas -Wno-unused-parameter -Wno-unused-function -Wno-unused-result -Wno-unused-local-typedefs -Wno-strict-overflow -Wno-strict-aliasing -Wno-error=deprecated-declarations -Wno-stringop-overflow -Wno-psabi -Wno-error=pedantic -Wno-error=redundant-decls -Wno-error=old-style-cast -fdiagnostics-color=always -faligned-new -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Werror=cast-function-type -Wno-stringop-overflow, LAPACK_INFO=open, TORCH_VERSION=1.12.1, USE_CUDA=OFF, USE_CUDNN=OFF, USE_EIGEN_FOR_BLAS=ON, USE_EXCEPTION_PTR=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_MKL=OFF, USE_MKLDNN=OFF, USE_MPI=OFF, USE_NCCL=OFF, USE_NNPACK=ON, USE_OPENMP=ON, USE_ROCM=OFF, 
 
 GPG stands for GNU Privacy Guard, a cryptographic system used to verify the integrity and authenticity of downloaded files or software. In the context of Docker installation, the GPG key is used to ensure that the Docker packages you're installing are indeed from the official Docker repository and haven’t been tampered with.
-sudo apt-get install ca-certificates curl gnupg lsb-release
+sudo apt-get install ca-certificates curl gnupg
 
 
 (myenv) root@jsnano:~/test# deactivate
@@ -13600,12 +13600,10 @@ default:
 maintain default Global Options - Hotkey - Trigger Input Method: (Ctrl + Sapce)
   because /hangul key may not exists an keyboard or key is overlpaped in a tool like VSCODE
 
+https://community.kde.org/Kubuntu/PPAs
 
-❯ echo $XDG_SESSION_TYPE 
-  wayland
-
-
-  https://community.kde.org/Kubuntu/PPAs
+❯ echo $XDG_SESSION_TYPE ; https://www.freedesktop.org/software/systemd/man/latest/pam_systemd.html#%24XDG_SESSION_TYPE
+  
 
 
 echo $XDG_SESSION_TYPE
@@ -14228,7 +14226,6 @@ onlyoffice 도 정리
 
     https://ubuntu.com/tutorials/how-to-install-onlyoffice-server-on-ubuntu#2-installation
     ?? sudo snap install onlyoffice-ds 으로 설치하면
-dpkg -s lsb-release
 
 
 Linux Standard Base (LSB) ; https://refspecs.linuxbase.org/
@@ -14300,7 +14297,6 @@ $XDG_SESSION_TYPE 공식 문서 찾기
 
     viu puppy.jpg
     🆗
-
 
 
 vcsrv settings..  rEADME 에 추가?
