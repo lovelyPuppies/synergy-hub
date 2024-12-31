@@ -1,6 +1,6 @@
-# Project Documentation
+# Synergy Hub Documentation
 
-- [Project Documentation](#project-documentation)
+- [Synergy Hub Documentation](#synergy-hub-documentation)
   - [🗂 Directory Structure](#-directory-structure)
   - [📌 Project Shortcuts](#-project-shortcuts)
   - [🔧 Tech Stack](#-tech-stack)
@@ -62,7 +62,7 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
 │&nbsp;&nbsp;&nbsp;&nbsp;├── os  
 │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;├── linux  
 │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── [ubuntu.txt](prototypes/_lab/tech_stack/hardware_and_os/os/linux/ubuntu.txt)  
-│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── [linux.txt](prototypes/_lab/tech_stack/hardware_and_os/os/linux.txt)  
+│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── **[linux.txt](prototypes/_lab/tech_stack/hardware_and_os/os/linux.txt)**  
 │&nbsp;&nbsp;&nbsp;&nbsp;└── serial_tools  
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [tio.txt](prototypes/_lab/tech_stack/hardware_and_os/serial_tools/tio.txt)  
 ├── libraries  
@@ -113,29 +113,31 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
 
 ## 🚀 Project Setup Instructions (Ubuntu)
 
-1. Copy configurations:
+1. Common Configurations:
 
-   - 🎱 `prototypes/_initialization/.vscode/_user-settings.jsonc` to your user settings.
-   - 🎱 `prototypes/_initialization/.vscode/_user-keybindings.jsonc` to your user keybindings.
-   - 🎱 `prototypes/_initialization/.vscode/extensions.json` to the mono-repository for VS Code recommendations.
-   - 🎱 `prototypes/_initialization/.vscode/task.json` for common task settings.
+   - 🎱 Copy **[settings.json](prototypes/_initialization/.vscode/_user-settings.jsonc)** to your user settings.
+   - 🎱 Copy **[keybindings.json](prototypes/_initialization/.vscode/_user-keybindings.jsonc)** to your user keybindings.
+   - 🎱 Copy **[extensions.json](prototypes/_initialization/.vscode/extensions.json)** to the mono-repository for VS Code recommendations.
+   - 🎱 Copy **[tasks.json](prototypes/_initialization/.vscode/tasks.jsonc)** for common task settings.
 
-2. Run initialization script:
+2. Run **[initialization script](prototypes/_initialization/ubuntu/init_in_bash.sh)**:
 
    ```bash
    #!/bin/bash
    bash prototypes/_initialization/ubuntu/init_in_bash.sh
    ```
 
-3. Run semi-automatic script for user-interactive steps:
+3. **[Use semi-automatic script snippets for user-interactive tasks](prototypes/_initialization/ubuntu/init_in_fish_semi_automatic.fish)**
 
-   ```fish
-   # Refer to `prototypes/_initialization/ubuntu/init_in_fish_semi_automatic.fish`
-   ```
+   ➡️ Refer to `prototypes/_initialization/ubuntu/init_in_fish_semi_automatic.fish`
+
+   > This file contains script snippets for user-interactive tasks.  
+   > Please **read the script carefully** and install only the necessary packages.
 
 4. Update and upgrade your system periodically:
 
    ```bash
+   #!/bin/bash
    brew update && brew upgrade
    sudo apt update && sudo apt upgrade -y
    sudo snap refresh
