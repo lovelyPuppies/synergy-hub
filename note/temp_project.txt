@@ -14302,3 +14302,6 @@ $XDG_SESSION_TYPE 공식 문서 찾기
     🆗
 
 
+
+vcsrv settings..  rEADME 에 추가?
+
