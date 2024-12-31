@@ -9,7 +9,7 @@ list of level 1 subjects
       ROS releases are tied to a certain Ubuntu version. For Ubuntu 24.04 there is only ROS2 Jazzy right now. If want to use Humble, you have to install Ubuntu 22.04 or use Docker.
 
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
-⚓ Ubuntu ; https://fishshell.com/
+⚓ Ubuntu ; https://ubuntu.com/
   https://github.com/ubuntu
   https://en.wikipedia.org/wiki/Ubuntu
 
@@ -29,9 +29,11 @@ list of level 1 subjects
     Solution
       - Do not use Wayland display protocol in Ubuntu 24 Desktop. Use X11 (default) display protocol.
       - ➡️ Switch to Kubuntu for better compatibility if using Ubuntu for desktop purposes
+        - 💡 Kubuntu uses Wayland as the default display protocol, and it integrates smoothly with applications.
         - Ubuntu is not well-suited for desktop usage due to compatibility and usability issues. 📅 2024-12-31 19:50:33
           - Specific reasons include compatibility gaps between GTK3 and GTK4.
-          - Poor integration with KDE applications. While KDE apps can be installed via Snap or Flatpak, sandboxing introduces significant limitations.
+          - Poor integration with KDE applications. 🛍️ e.g., KDE apps cannot have their themes changed.
+            And while KDE apps can be installed via Snap or Flatpak, sandboxing introduces significant limitations.
           - When enabling Wayland:
             - VSCode: Black flickering occurs when typing non-English characters.
             - Microsoft Edge: Typing non-English characters quickly can cause words to be dropped or delays.

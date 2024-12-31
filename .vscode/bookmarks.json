@@ -74,12 +74,22 @@
 			"path": "note/temp_project.txt",
 			"bookmarks": [
 				{
-					"line": 11592,
+					"line": 11013,
+					"column": 34,
+					"label": ""
+				},
+				{
+					"line": 11504,
 					"column": 7,
 					"label": ""
 				},
 				{
-					"line": 14192,
+					"line": 13474,
+					"column": 0,
+					"label": ""
+				},
+				{
+					"line": 14096,
 					"column": 37,
 					"label": ""
 				}
