@@ -1120,6 +1120,31 @@ echo "▶️  Installing tools related to VM emulation and communication with co
     https://formulae.brew.sh/formula/qemu#default
 '
 brew install qemu
+echo "Check available commands using 🧮 brew list qemu"
+
+
+echo "Checking if KVM is enabled ..."
+lsmod | grep kvm
+# >>
+#   kvm_intel             483328  0
+#   kvm                  1425408  1 kvm_intel
+qemu-system-x86_64 --help | grep -- -enable-kvm
+#  >> -enable-kvm enable KVM full virtualization support
+
+if test $status -eq 0
+    echo "KVM is enabled."
+else
+    echo "❗ KVM is not enabled. Check your kvm module."
+end
+
+
+: '
+📦 libvirt
+    https://repology.org/project/libvirt/versions
+    https://formulae.brew.sh/formula/libvirt#default
+'
+brew install libvirt
+
 
 
 

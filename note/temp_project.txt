@@ -14163,7 +14163,7 @@ devcontainer.png.
   QWidget
     [Attributes]:
       - Laout Vertically
-      layoutStrcech: 1,8,1
+      layoutStrcech: 1,4,1, 4
     horizontal layout 1
       [Attributes]:
         layoutStretch: 2:1:1
@@ -14183,7 +14183,7 @@ devcontainer.png.
       QDial
         [Attributes]:
           Label: pDialLed
-          maxmimum 255
+          maxmimum 255  
           ✔️ notchesVisible
       QLCDNumber
         [Attributes]:
@@ -14196,6 +14196,17 @@ devcontainer.png.
       QProgressBar
         [Attributes]:
           Label:pProgressBarLed
+    gridLayout
+      QChceckBox  
+        [Attributes]:
+          Label: pCBKey1
+      QChceckBox
+        [Attributes]:
+          Label: pCBKey2
+      QChceckBox
+        [Attributes]:
+          Label: pCBKey3  
+        
   Configure Connection
     valueChanged(int)
     display(int)
@@ -14220,6 +14231,9 @@ devcontainer.png.
   on_pPBtimerSart_clicked(bool chceked)
     if cecked
       QString strValue = ui->pCbtimerValue>currentText();
+
+  g
+
 $ sudo apt install qemu-system-x86 qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils virt-manager
 
 
@@ -14255,7 +14269,8 @@ this function is not supported by the connection driver: virConnectListAllNodeDe
 
 크로스 컴파일을ㅇ ㅟ해 필요한 것. virt 그거?
 일단 크로스컴파일 환경 세팅하고, libvirt 인가 그거 설치..
-
+❗ grep "virt-manager" /var/log/dpkg.log
+  설치날짜 확인... kubuntu 설치할때 자동으로 설치된듯. full optional package 하니까.
 
 
 📰📰📰 todo: When custom kernel build and test in Yocto for Jetson Nano 
