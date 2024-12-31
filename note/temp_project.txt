@@ -14280,12 +14280,115 @@ $XDG_SESSION_TYPE 공식 문서 찾기
     freedesktop.org가 설계하여 GNOME, KDE, 그리고 다른 데스크톱 환경에서 모두 사용.
 
   >> 단 ❓
-    하드웨어 가속:    간접적인 하드웨어 가속(예: GLX, XRender)	    직접적인 하드웨어 가속 (예: EGL)
-      OpenGL App → GLX (OpenGL Extension to X) → X Server (XRender) → GPU → 디스플레이
-      OpenGL App → EGL (Embedded-System Graphics Library) → GPU → Wayland Compositor → 디스플레이
     네트워크 투명성:	원격 클라이언트 지원 (예: X Forwarding)	      기본적으로 지원하지 않음 (네트워크 프로토콜이 아님)
       으로, 그래픽을 원격에서 띄우기 위해서는 x11을 써야 한다.
-2D
+
+
+      # X11 vs Wayland Rendering Path and Roles
+
+      ## 1. X11 Rendering Path
+      X11's rendering process involves multiple intermediary steps, making it less efficient compared to Wayland. Below is the rendering path:
+
+      ```plaintext
+      OpenGL App → GLX → X Server → GPU → X Server → Display
+      ```
+
+      ### **Roles of Each Step**
+      1. **OpenGL App**:
+        - Generates rendering requests using OpenGL.
+
+      2. **GLX (OpenGL Extension to X)**:
+        - Acts as a bridge between OpenGL and the X Server.
+        - Converts rendering requests into a format understood by the X Server.
+
+      3. **X Server (First Stage)**:
+        - Receives the rendering requests from GLX and forwards them to the GPU.
+        - Acts as the central manager for all client requests.
+
+      4. **GPU**:
+        - Processes the rendering requests and generates the output.
+        - Sends the rendering results back to the X Server.
+
+      5. **X Server (Second Stage)**:
+        - Combines the rendering results from the GPU with other graphical elements.
+        - Handles composition and sends the final output to the display.
+
+      6. **Display**:
+        - Outputs the final composed result to the screen.
+
+      ---
+
+      ## 2. Wayland Rendering Path
+      Wayland simplifies the rendering process by removing the X Server's intermediary role, allowing direct communication between the application and the GPU. The rendering path is as follows:
+
+      ```plaintext
+      OpenGL App → EGL → GPU → Wayland Compositor → Display
+      ```
+
+      ### **Roles of Each Step**
+      1. **OpenGL App**:
+        - Generates rendering requests using OpenGL.
+
+      2. **EGL (Embedded-System Graphics Library)**:
+        - Provides a direct communication channel between the application and the GPU.
+        - Converts OpenGL requests into commands that the GPU can execute.
+
+      3. **GPU**:
+        - Processes rendering requests directly from the application.
+        - Generates the rendered output and sends it to the Wayland Compositor.
+
+      4. **Wayland Compositor**:
+        - Combines rendering results from multiple applications.
+        - Sends the final composed output to the display.
+        - Does not perform its own rendering; its role is limited to composition.
+
+      5. **Display**:
+        - Outputs the final composed result to the screen.
+
+      ---
+
+      ## 3. Comparison of X11 and Wayland Rendering Paths
+
+      | **Step**                | **X11 (Indirect)**                                  | **Wayland (Direct)**                               |
+      |-------------------------|----------------------------------------------------|---------------------------------------------------|
+      | **Rendering Requests**  | OpenGL App → GLX                                | OpenGL App → EGL                               |
+      | **GPU Job Requests**    | GLX → X Server → GPU                        | EGL → GPU                                      |
+      | **Rendering Results**   | GPU → X Server → Display                     | GPU → Wayland Compositor → Display        |
+      | **Intermediary Layers** | X Server handles all requests and rendering results | Wayland Compositor handles composition only       |
+      | **Compositor Role**     | Integrated into X Server                           | Dedicated to Wayland Compositor                   |
+
+      ---
+
+      ## 4. Key Differences
+
+      1. **X Server's Role (X11 Bottleneck)**:
+        - In X11, the X Server acts as an intermediary for both rendering requests and results, causing potential bottlenecks.
+        - In Wayland, the X Server is removed, and rendering requests are directly handled by the GPU.
+
+      2. **Rendering Path Simplification**:
+        - X11: Rendering requests must pass through the X Server twice (to and from the GPU).
+        - Wayland: Rendering requests are sent directly to the GPU, and results are passed to the compositor.
+
+      3. **Performance**:
+        - Wayland's direct communication minimizes latency and optimizes performance.
+        - X11's additional layers result in higher latency and inefficiency.
+
+      ---
+
+      ## 5. Conclusion
+      ### **X11 Rendering Path**
+      ```plaintext
+      OpenGL App → GLX → X Server → GPU → X Server → Display
+      ```
+      - X Server acts as the central manager, causing potential performance bottlenecks.
+
+      ### **Wayland Rendering Path**
+      ```plaintext
+      OpenGL App → EGL → GPU → Wayland Compositor → Display
+      ```
+      - Applications and GPUs communicate directly, with the compositor focusing on composition only.
+
+      Wayland eliminates X11's inefficiencies by simplifying the rendering process and leveraging direct communication between applications and GPUs, making it the better choice for modern graphics environments.
 
 
 📰 Rust 기반.. Viu.. 터미널 이미지 뷰어?
