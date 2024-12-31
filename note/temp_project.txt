@@ -14279,6 +14279,15 @@ $XDG_SESSION_TYPE 공식 문서 찾기
     애플리케이션 간의 메시징을 담당하는 기술.
     freedesktop.org가 설계하여 GNOME, KDE, 그리고 다른 데스크톱 환경에서 모두 사용.
 
+  >> 단 ❓
+    하드웨어 가속:    간접적인 하드웨어 가속(예: GLX, XRender)	    직접적인 하드웨어 가속 (예: EGL)
+      OpenGL App → GLX (OpenGL Extension to X) → X Server (XRender) → GPU → 디스플레이
+      OpenGL App → EGL (Embedded-System Graphics Library) → GPU → Wayland Compositor → 디스플레이
+    네트워크 투명성:	원격 클라이언트 지원 (예: X Forwarding)	      기본적으로 지원하지 않음 (네트워크 프로토콜이 아님)
+      으로, 그래픽을 원격에서 띄우기 위해서는 x11을 써야 한다.
+2D
+
+
 📰 Rust 기반.. Viu.. 터미널 이미지 뷰어?
   픽셀 단위의 이미지 품질에 한계가 있습니다. 이유는 다음과 같습니다.
 📅 2024-12-31 21:39:30 .. viu 너무 업데이트도니지오래됨. 2021 녀 10월.
