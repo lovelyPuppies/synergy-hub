@@ -14220,11 +14220,7 @@ devcontainer.png.
   on_pPBtimerSart_clicked(bool chceked)
     if cecked
       QString strValue = ui->pCbtimerValue>currentText();
-  
-
-
-https://www.mankier.com/package/shadow-utils
-https://github.com/shadow-maint/shadow
+$ sudo apt install qemu-system-x86 qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils virt-manager
 
 
 https://formulae.brew.sh/formula/libvirt  
