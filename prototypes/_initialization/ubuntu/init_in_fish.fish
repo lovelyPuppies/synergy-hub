@@ -1138,21 +1138,39 @@ else
 end
 
 
-: '
-📦 libvirt
-    https://repology.org/project/libvirt/versions
-    https://formulae.brew.sh/formula/libvirt#default
+# : '
+# 📦 libvirt
+#     https://repology.org/project/libvirt/versions
+#     https://formulae.brew.sh/formula/libvirt#default
 
-    ==> Caveats
-    To start libvirt now and restart at login:
-      brew services start libvirt
-    Or, if you don\'t want/need a background service you can just run:
-      /home/linuxbrew/.linuxbrew/opt/libvirt/sbin/libvirtd -f /home/linuxbrew/.linuxbrew/etc/libvirt/libvirtd.conf
-'
-brew install libvirt
+#     ==> Caveats
+#       To start libvirt now and restart at login:
+#         brew services start libvirt
+#       Or, if you don\'t want/need a background service you can just run:
+#         /home/linuxbrew/.linuxbrew/opt/libvirt/sbin/libvirtd -f /home/linuxbrew/.linuxbrew/etc/libvirt/libvirtd.conf
 
-brew services start libvirt
+#     ☑️ Note: You may encounter errors if libvirt is already installed via "apt". 📅 2024-12-31 12:11:27
+#       ❗ These errors may persist unless you reboot your computer even after running the following command:
+#         sudo apt remove libvirt-clients libvirt-daemon libvirt-daemon-config-network libvirt-daemon-config-nwfilter libvirt-daemon-driver-qemu libvirt-daemon-system libvirt-daemon-system-systemd \
+#           virt-manager
 
+#       🛍️ e.g.
+#         If you installed Kubuntu with optional packages, libvirt-related packages might already exist.
+#         You can check this with the following command:
+#           dpkg -l | grep libvirt
+
+#         systemctl --user status homebrew.libvirt.service -l --no-pager
+#           >> 
+#             Dec 31 11:49:13 iot-04 libvirtd[63559]: Unable to find 'dnsmasq' binary in $PATH: No such file or directory
+#             Dec 31 11:49:13 iot-04 libvirtd[63559]: internal error: Unable to get system bus connection: Could not connect: No such file or directory
+#             Dec 31 11:49:13 iot-04 libvirtd[63559]: DBus not available, disabling firewalld support in bridge_network_driver: internal error: Unable to get system bus connection: Could not connect: No such file or directory
+#             Dec 31 11:49:13 iot-04 libvirtd[63559]: internal error: Unable to get system bus connection: Could not connect: No such file or directory
+#         brew dnsmasq
+#         brew services start dnsmasq
+#           >> Warning: dnsmasq must be run as root to start at system startup!
+# '
+# brew install libvirt
+# brew services start libvirt
 
 
 

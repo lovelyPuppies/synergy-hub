@@ -14254,63 +14254,16 @@ cockpit
 this function is not supported by the connection driver: virConnectListAllNodeDevices
 
   이 오류의 원인은 libvirt의 nodedev 데몬이 설치되지 않았기 때문입니다.
- 
-해결방법
-따라서, libvirt의 nodedev 데몬을 설치해야합니다.
-그러나 ubuntu의 경우에는 nodedev관련된 .deb 파일이 없습니다.
-그래서 .rpm 파일을 통해서 ubuntu에 설치하는 방법을 사용해야합니다.
- 
-그래서 현재 설치되어있는 libvirt 버전의 버전과 맞는 libvirt-nodedev daemon을 설치해야합니다.
-아래 링크에서 libvirt 버전에 맞는  .rpm 파일을 다운로드 받을 수 있습니다.
-출처: https://ray5273.tistory.com/entry/QEMU-오류-해결-this-function-is-not-supported-by-the-connection-driver-virtConnectNodeDevice [Micro Changes, Macro Impact:티스토리]
+https://github.com/PhysicsX/QTonRaspberryPi
+  🚣 ??? sudo apt install bridge-utils
+sudo apt install libvirt-clients libvirt-daemon libvirt-daemon-config-network libvirt-daemon-config-nwfilter libvirt-daemon-driver-qemu libvirt-daemon-system libvirt-daemon-system-systemd
 
-
-
-
-크로스 컴파일을ㅇ ㅟ해 필요한 것. virt 그거?
-일단 크로스컴파일 환경 세팅하고, libvirt 인가 그거 설치..
 ❗ grep "virt-manager" /var/log/dpkg.log
   설치날짜 확인... kubuntu 설치할때 자동으로 설치된듯. full optional package 하니까.
 
 
-https://formulae.brew.sh/formula/dnsmasq#default
->>>>> systemctl --user status homebrew.libvirt.service -l --no-pager
-  Dec 31 11:49:13 iot-04 libvirtd[63559]: Unable to find 'dnsmasq' binary in $PATH: No such file or directory
-  Dec 31 11:49:13 iot-04 libvirtd[63559]: internal error: Unable to get system bus connection: Could not connect: No such file or directory
-  Dec 31 11:49:13 iot-04 libvirtd[63559]: DBus not available, disabling firewalld support in bridge_network_driver: internal error: Unable to get system bus connection: Could not connect: No such file or directory
-  Dec 31 11:49:13 iot-04 libvirtd[63559]: internal error: Unable to get system bus connection: Could not connect: No such file or directory
-  
-📦 dnsmasq  📅 2024-12-03 05:29:48
-  brew install dnsmsq
-  ==> Caveats
-  To start dnsmasq now and restart at startup:
-    sudo brew services start dnsmasq
-
-  brew services start dnsmasq
-    >> Warning: dnsmasq must be run as root to start at system startup!
-
-  .. Do not install in homebrew..
-  because..
-
-
-
 📰📰📰 todo: When custom kernel build and test in Yocto for Jetson Nano 
 📦 libvirt  📅 2024-12-03 05:29:48
-    https://repology.org/project/libvirt/versions
-    https://formulae.brew.sh/formula/libvirt#default
-
-    https://libvirt.org/docs.html
-    brew install libvirt
-    set homebrew_libvirt_service_name homebrew.libvirt.service
-    brew services start libvirt --debug
-    systemctl --user status $homebrew_libvirt_service_name --no-pager
-
-    ==> Caveats
-      To start libvirt now and restart at login:
-        brew services start libvirt --debug
-      Or, if you don't want/need a background service you can just run:
-        /home/linuxbrew/.linuxbrew/opt/libvirt/sbin/libvirtd -f /home/linuxbrew/.linuxbrew/etc/libvirt/libvirtd.conf
-
   ❔ virt-manager 
       https://repology.org/project/virt-manager/versions
       https://formulae.brew.sh/formula/virt-manager#default
@@ -14356,7 +14309,6 @@ https://formulae.brew.sh/formula/dnsmasq#default
   VS Code PORTS 탭이 동작하지 않는 이유는 WSL2의 NAT 네트워크와 cockpit.socket의 요청 기반 동작 때문일 가능성이 높습니다.
     >>>>> 설치는 했고, qemu 랑 연동 방법?
 
-
   >>>>>>> https://cockpit-project.org/applications
     # Virtual Machines ; https://github.com/cockpit-project/cockpit-machines
       apt-cache plicy cockpit-machines
@@ -14378,3 +14330,19 @@ https://formulae.brew.sh/formula/dnsmasq#default
   CPU 아키텍처를 ARM으로 변경하려면 libvirt XML을 직접 편집하여 arch='aarch64' 및 emulator='/usr/bin/qemu-system-aarch64' 등의 설정을 추가해야 합니다.
 
 
+https://github.com/cockpit-project/cockpit-machines
+
+네, Virt-Manager(및 virt-* 관련 프로젝트)의 활발한 개발이 거의 중단된 상태로 보이는 것이 사실입니다. 마지막으로 주요 업데이트가 이루어진 시점은 2022년이며, 이후에는 눈에 띄는 새로운 릴리스나 기능 추가가 없습니다.
+
+상황 분석: Virt-Manager의 상태
+활동 부족:
+
+Virt-Manager 프로젝트는 Red Hat에서 시작되었지만, Red Hat이 RHEL 8부터 공식적으로 Cockpit으로 전환하면서 사실상 주요 개발 리소스가 Cockpit에 집중되었습니다.
+Virt-Manager는 더 이상 Red Hat의 주요 프로젝트로 간주되지 않으며, 커뮤니티 주도로만 유지되고 있습니다.
+Deprecated 선언:
+
+RHEL 8 이후 Virt-Manager는 Deprecated(더 이상 권장하지 않음) 처리되었으며, Red Hat은 Cockpit-Machines를 대체 도구로 제안하고 있습니다.
+Fedora에서도 여전히 사용할 수 있지만, Fedora와 CentOS 사용자는 점차 Cockpit-Machines로 전환하도록 유도받고 있습니다.
+최신 업데이트 이후 활동 부족:
+
+2022년 이후 Virt-Manager의 업데이트는 주로 버그 수정 및 소규모 개선에 머물렀으며, 대규모 기능 개발은 사실상 중단된 상태입니다.
