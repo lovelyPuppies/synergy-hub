@@ -2119,49 +2119,7 @@ OpenVINO Training Extensions ; https://openvinotoolkit.github.io/training_extens
   https://openvinotoolkit.github.io/training_extensions/stable/guide/get_started/installation.html#run-tests
 mermaid 그래프에 추가.
   tensort / openvino .. 
-  .
-⚓ https://docs.docker.com/engine/install/ubuntu/
-  #️⃣ Uninstall old versions ; https://docs.docker.com/engine/install/ubuntu/#uninstall-old-versions
-  #️⃣ Instasll using the apt repository
-# Add Docker's official GPG key:
-sudo apt-get update
-sudo apt-get install ca-certificates curl
-sudo install -m 0755 -d /etc/apt/keyrings
-sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-sudo chmod a+r /etc/apt/keyrings/docker.asc
-# Add the repository to Apt sources:
-echo "deb [arch=(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu (source /etc/os-release; echo $VERSION_CODENAME) stable" \
-    | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-# Update the package list:
-sudo apt-get update
-https://docs.docker.com/desktop/install/linux/
-https://docs.docker.com/desktop/install/linux/ubuntu/
-sudo apt-get update
-sudo apt-get install ./docker-desktop-<arch>.deb
-# install docker
-sudo apt install -y docker.io
-GPG stands for GNU Privacy Guard, a cryptographic system used to verify the integrity and authenticity of downloaded files or software. In the context of Docker installation, the GPG key is used to ensure that the Docker packages you're installing are indeed from the official Docker repository and haven’t been tampered with.
-sudo apt-get install ca-certificates curl gnupg lsb-release
-🆚📰 Why is apt-key being deprecated? keyrings....
-🛺 automation script: install docker 🔗 https://docs.docker.com/engine/install/ubuntu/
-  # Add Docker's official GPG key:
-  sudo apt update
-  sudo apt install -y ca-certificates curl
-  sudo install -m 0755 -d /etc/apt/keyrings
-  sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-  sudo chmod a+r /etc/apt/keyrings/docker.asc
-  # Add the repository to Apt sources:
-  bash -c 'echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null'
-  # 
-  sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-  sudo chown -R $USER:$USER ~/.docker
-  #
-  sudo systemctl status docker
-  sudo systemctl start docker
-  sudo systemctl enable docker
-  
-  # 
-  sudo docker run hello-world
+
 🚣 OTX as docker
   git clone https://github.com/openvinotoolkit/training_extensions.git
   cd training_extensions/docker
@@ -2179,8 +2137,6 @@ ModuleNotFoundError: No module named 'otx'
     sudo usermod -aG docker $USER
     newgrp docker # new group
 CDMA; LTE, 5G
-
-
 
 
 
@@ -14287,62 +14243,6 @@ Qt creator
 ❓ in MainWidget
   ui->pTab->setLayout(pTab1DevControl->layout()); 
 
-devcontainer.png.
-QWidget
-  [Attributes]:
-    - Laout Vertically
-    layoutStrcech: 1,8,1
-  horizontal layout 1
-    [Attributes]:
-      layoutStretch: 2:1:1
-    QPushButton
-      [Attributes]:
-        Label: pBtimerStart
-        text: TimerStart
-    QComboxBox
-      [Attributes]: 
-        Label: pCBtimerValue
-        50 100 200 500 1000 2000 
-    QPushButton
-      [Attributes]:
-        Label: pBQuit 
-        text: Quit
-  horizontal layout 2
-    QDial
-      [Attributes]:
-        Label: pDialLed
-        maxmimum 255
-        ✔️ notchesVisible
-    QLCDNumber
-      [Attributes]:
-        Label: pLcdNumberaLed
-        maxmimum 255
-        digitcount 2
-        mode: Hex
-        segmentstyle: Filled
-  horizontal layout 3
-    QProgressBar
-      [Attributes]:
-        Label:pProgressBarLed
-Configure Connection
-  valueChanged(int)
-  display(int)
-  qDial <-> qLCDNumber
-
-  툴바에서 시그널 및 슬롯 편집 모드로 전환 (또는 단축키 F4).
-  QDial을 클릭한 후 QLCDNumber로 드래그하여 연결합니다.
-  나타나는 연결 설정 창에서 QDial의 시그널을 valueChanged(int)로 선택하고, QLCDNumber의 슬롯을 display(int)로 선택합니다.
-  or Edit menu - Edit Signals/Slots
-
-Qt - Qt designer Form Class vs Qt Item model in Qt IDE? 
-  keyled.h, keyled.cpp 
-
-
-?tab1devcontrol.h
-  #include "keyled.h"
-?tab1devcontrol.cpp
-  #include "keyled.h"
-
 STM32WB5MM-DK
   
   
@@ -14373,22 +14273,105 @@ https://github.com/PhysicsX/QTonRaspberryPi
 
 
 
+Oo to slot.. option 없음.. 
 
-# https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
-# Add Docker's official GPG key:
-sudo apt-get update
-sudo apt-get install ca-certificates curl
-sudo install -m 0755 -d /etc/apt/keyrings
-sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-sudo chmod a+r /etc/apt/keyrings/docker.asc
-
-# Add the repository to Apt sources:
-echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
-  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
-  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo apt-get update
+PbQuit_clikced() qApp ->quit()
 
 
-# sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-sudo apt-get install -y docker-ce containerd.io
+  .
+⚓ https://docs.docker.com/engine/install/ubuntu/
+  #️⃣ Uninstall old versions ; https://docs.docker.com/engine/install/ubuntu/#uninstall-old-versions
+  #️⃣ Instasll using the apt repository
+
+GPG stands for GNU Privacy Guard, a cryptographic system used to verify the integrity and authenticity of downloaded files or software. In the context of Docker installation, the GPG key is used to ensure that the Docker packages you're installing are indeed from the official Docker repository and haven’t been tampered with.
+sudo apt-get install ca-certificates curl gnupg lsb-release
+🆚📰 Why is apt-key being deprecated? keyrings....
+🛺 automation script: install docker 🔗 https://docs.docker.com/engine/install/ubuntu/
+  # Add Docker's official GPG key:
+  sudo apt update
+  sudo apt install -y ca-certificates curl
+  sudo install -m 0755 -d /etc/apt/keyrings
+  sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+  sudo chmod a+r /etc/apt/keyrings/docker.asc
+  # Add the repository to Apt sources:
+  bash -c 'echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null'
+  # 
+  sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+  sudo chown -R $USER:$USER ~/.docker
+  #
+  sudo systemctl status docker
+  sudo systemctl start docker
+  sudo systemctl enable docker
+  
+  # 
+  sudo docker run hello-world
+  
+
+
+
+devcontainer.png.
+  QWidget
+    [Attributes]:
+      - Laout Vertically
+      layoutStrcech: 1,8,1
+    horizontal layout 1
+      [Attributes]:
+        layoutStretch: 2:1:1
+      QPushButton
+        [Attributes]:
+          Label: pBtimerStart
+          text: TimerStart
+      QComboxBox
+        [Attributes]: 
+          Label: pCBtimerValue
+          50 100 200 500 1000 2000 
+      QPushButton
+        [Attributes]:
+          Label: pBQuit 
+          text: Quit
+    horizontal layout 2
+      QDial
+        [Attributes]:
+          Label: pDialLed
+          maxmimum 255
+          ✔️ notchesVisible
+      QLCDNumber
+        [Attributes]:
+          Label: pLcdNumberaLed
+          maxmimum 255
+          digitcount 2
+          mode: Hex
+          segmentstyle: Filled
+    horizontal layout 3
+      QProgressBar
+        [Attributes]:
+          Label:pProgressBarLed
+  Configure Connection
+    valueChanged(int)
+    display(int)
+    qDial <-> qLCDNumber
+
+    툴바에서 시그널 및 슬롯 편집 모드로 전환 (또는 단축키 F4).
+    QDial을 클릭한 후 QLCDNumber로 드래그하여 연결합니다.
+    나타나는 연결 설정 창에서 QDial의 시그널을 valueChanged(int)로 선택하고, QLCDNumber의 슬롯을 display(int)로 선택합니다.
+    or Edit menu - Edit Signals/Slots
+
+    QTimer
+
+  Qt - Qt designer Form Class vs Qt Item model in Qt IDE? 
+    keyled.h, keyled.cpp 
+
+
+  ?tab1devcontrol.h
+    #include "keyled.h"
+  ?tab1devcontrol.cpp
+    #include "keyled.h"
+
+  on_pPBtimerSart_clicked(bool chceked)
+    if cecked
+      QString strValue = ui->pCbtimerValue>currentText();
+  
+
+
+https://www.mankier.com/package/shadow-utils
+https://github.com/shadow-maint/shadow

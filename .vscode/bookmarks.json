@@ -62,6 +62,11 @@
 					"line": 528,
 					"column": 0,
 					"label": ""
+				},
+				{
+					"line": 544,
+					"column": 8,
+					"label": ""
 				}
 			]
 		},
@@ -69,7 +74,7 @@
 			"path": "note/temp_project.txt",
 			"bookmarks": [
 				{
-					"line": 11837,
+					"line": 11793,
 					"column": 7,
 					"label": ""
 				}

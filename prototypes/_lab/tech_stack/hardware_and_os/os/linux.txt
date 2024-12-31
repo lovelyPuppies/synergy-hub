@@ -542,6 +542,16 @@ Linux 🔪 Man pages
   ⚓🧮 avahi-set-host-name(1) ; https://www.mankier.com/1/avahi-set-host-name
 
 
+⚓ shadow-utils ; https://www.mankier.com/package/shadow-utils
+  📝 Complete manuals are available only after building the source (no official prebuilt man page available)
+  
+  Utilities for managing accounts and shadow password files ; https://github.com/shadow-maint/shadow
+
+  ⚓🧮💡 newgrp ; https://github.com/shadow-maint/shadow
+    log in to a new group
+    📝 You can also run the following command to activate the changes to groups ...
+
+
 ----------------------------------------------
 Linux 🔪 Build Tools
 

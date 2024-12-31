@@ -1521,7 +1521,7 @@ end
     https://formulae.brew.sh/formula/docker-clean#default
     https://github.com/ZZROTDesign/docker-clean
 '
-## https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
+## Install using the apt repository ; https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
 # Add Docker's official GPG key:
 sudo apt update
 sudo apt install -y ca-certificates curl
@@ -1529,12 +1529,28 @@ sudo install -m 0755 -d /etc/apt/keyrings
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
 sudo chmod a+r /etc/apt/keyrings/docker.asc
 
+
 # Add the repository to Apt sources:
-echo \
-    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
-  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
+bash -c 'echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+'
 sudo apt update
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+## Manage Docker as a non-root user ; https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user
+# 🚣 Create the docker group.
+sudo groupadd docker
+# Add your user to the docker group.
+sudo usermod -aG docker $USER
+echo "❗ You must log out and log back in for your group membership changes to take effect."
+# Alternatively, you can test the changes immediately by running the following command:
+#   %shell> newgrp docker
+
+
+
+
 
 
 echo "▶️  Distributed file system protocol"
