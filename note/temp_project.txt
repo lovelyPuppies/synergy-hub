@@ -14368,3 +14368,6 @@ Qt 기반 GUI 애플리케이션 설계 및 구현
 
 
 프로젝트 기술서.. readme 를 만들고 hwp 에 붙여넣기하자.
+https://github.com/PhysicsX/QTonRaspberryPi
+
+

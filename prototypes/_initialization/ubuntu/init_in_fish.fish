@@ -1115,11 +1115,35 @@ end
 
 echo "▶️  Installing tools related to VM emulation and communication with connected external devices to the host ..."
 : '
+📦 docker
+    https://repology.org/project/docker/versions
+    https://formulae.brew.sh/formula/docker#default
+📦 docker-completion
+    https://repology.org/project/docker-completion/versions
+    https://formulae.brew.sh/formula/docker-completion#default
+📦 docker-compose
+    https://repology.org/project/docker-compose/versions
+    https://formulae.brew.sh/formula/docker-compose#default
+📦 docker-buildx
+    https://repology.org/project/docker-buildx/versions
+    https://formulae.brew.sh/formula/docker-buildx#default
+
+📦 docker-clean
+    https://repology.org/project/docker-clean/versions
+    https://formulae.brew.sh/formula/docker-clean#default
+    https://github.com/ZZROTDesign/docker-clean
+'
+brew install docker docker-completion docker-compose docker-buildx
+brew install docker-clean
+
+: '
 📦 qemu
     https://repology.org/project/qemu/versions
     https://formulae.brew.sh/formula/qemu#default
 '
 brew install qemu
+
+
 
 
 
