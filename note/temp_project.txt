@@ -14333,14 +14333,34 @@ sudo apt install libvirt-clients libvirt-daemon libvirt-daemon-config-network li
 https://github.com/cockpit-project/cockpit-machines
 
 
+# Set up QEMU for multi-architecture support
+docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+: '
+This command sets up QEMU to enable multi-architecture execution on the host system.
+  📌 Key behavior:
+    - This command modifies 🚣 the host kernel's binfmt_misc settings, not just within the container.
+    - Once the setup is complete, the container can exit, and the host system will still support multi-architecture binaries.
 
-Set up QEMU for multi-architecture support
+  🧩 What is binfmt_misc?
+    - `binfmt_misc` is a Linux kernel feature that allows specifying an interpreter for executing binaries based on their file format.
+    - Example: When executing an ARM64 binary, the kernel automatically invokes QEMU as the interpreter to run it.
 
-$ docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
-Create and use a new Buildx builder instance
+  🔍 How does it work?
+    1. When a binary is executed, the kernel reads its header (the first few bytes of the file).
+    2. The kernel compares the header to the 🪱 magic numbers registered in binfmt_misc to determine the appropriate interpreter.
+    3. If QEMU is registered as the interpreter, the kernel uses QEMU to execute the binary.
+
+  Notes:
+    - The `--privileged` option allows the Docker container to modify the host kernel's binfmt_misc settings.
+    - This command requires administrative privileges as it directly affects the host system configuration.
+'
+      
+# Create and use a new Buildx builder instance
+
 
 $ docker buildx create --use --name mybuilder
 $ docker buildx inspect mybuilder --bootstrap
 Verify Buildx installation
 
 $ docker buildx ls
+
