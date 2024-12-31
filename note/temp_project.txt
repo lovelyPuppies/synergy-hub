@@ -14237,12 +14237,19 @@ Linux Standard Base (LSB) ; https://refspecs.linuxbase.org/
 
 인터뷰 준비:
   lsb_release -a 🆚  uname -a
-  lsb_release는 배포판 정보를 출력하며, 주로 배포판 이름, 버전, 코드네임 등을 확인하는 데 사용됩니다.
-  uname은 커널과 하드웨어 정보를 확인하며, OS 커널 수준의 정보를 제공합니다.
+    lsb_release는 배포판 정보를 출력하며, 주로 배포판 이름, 버전, 코드네임 등을 확인하는 데 사용됩니다.
+    uname은 커널과 하드웨어 정보를 확인하며, OS 커널 수준의 정보를 제공합니다.
 
+  Pluggable Authentication Module (PAM) ; https://en.wikipedia.org/wiki/Pluggable_Authentication_Module
+    PAM은 인증에 의존하는 프로그램들이 내부 인증 방식과 분리되어 독립적으로 작성될 수 있도록 하는 메커니즘.
+  freedesktop.org (fd.o), formerly X Desktop Group (XDG) ; https://en.wikipedia.org/wiki/Freedesktop.org
 
 $XDG_SESSION_TYPE 공식 문서 찾기
+  XDG는 **"X Desktop Group"**의 약자입니다. 이 그룹은 나중에 freedesktop.org로 이름이 변경되었으며
+  , Linux 및 Unix 기반 시스템에서 데스크톱 환경과 관련된 표준을 정의하고 개발하는 역할을 담당합니다.
 
+  freedesktop.org(fd.o), 이전의 X Desktop Group(XDG)은 Linux 및 기타 Unix 계열 운영 체제의 X Window System(X11) 및 Wayland를 위한
+  , 자유 소프트웨어 데스크톱 환경에 대한 상호 운용성 및 공유 기반 기술을 개발하기 위한 프로젝트입니다.
 
 📰 Rust 기반.. Viu.. 터미널 이미지 뷰어?
   https://github.com/atanunq/viu
