@@ -14358,9 +14358,50 @@ This command sets up QEMU to enable multi-architecture execution on the host sys
 # Create and use a new Buildx builder instance
 
 
-$ docker buildx create --use --name mybuilder
-$ docker buildx inspect mybuilder --bootstrap
-Verify Buildx installation
+docker buildx create --use --name mybuilder
+기본 Docker 빌더는 단일 플랫폼(x86 또는 ARM 등)에서만 작동하며, 고급 기능(예: 멀티 플랫폼 빌드, 캐시 관리, 병렬 빌드)을 지원하지 않습니다.
+Buildx를 사용하려면 새로운 빌더 인스턴스를 생성하여 활성화해야 합니다.
+멀티 플랫폼 빌드 지원
 
-$ docker buildx ls
+Buildx를 통해 ARM, x86, PowerPC 등의 다양한 플랫폼에서 실행 가능한 이미지를 빌드하려면, 빌더 인스턴스가 필요합니다.
+이 빌더 인스턴스는 QEMU 또는 Docker BuildKit과 같은 멀티 플랫폼 빌드를 지원하는 백엔드를 설정합니다.
+독립적인 빌더 관리
 
+Buildx 빌더는 서로 독립적으로 동작하므로, 프로젝트마다 별도의 빌더를 설정하고 관리할 수 있습니다.
+빌더 인스턴스를 생성하면, 다른 빌더와 충돌 없이 작업을 분리할 수 있습니다.
+
+
+docker buildx inspect mybuilder --bootstrap
+# Verify Buildx installation
+docker buildx ls
+
+
+# Compile Qt 6.8.0 with Docker
+git clone https://github.com/PhysicsX/QTonRaspberryPi $HOME/repos/QTonRaspberryPi
+cd $HOME/repos/QTonRaspberryPi
+
+# Use multiple Dockerfiles for cross-compRun the command to create rasbian(debian) image.
+$ docker buildx build --platform linux/arm64 --load -f DockerFileRasp -t raspimage .
+ilation: one for preparing ARM environment, another for building Qt binaries
+## DockerFileRasp
+#   # If you want to choose 32 bit Rasbian then change this line accordingly. Otherwise compilation will fail
+#   # In this file it is 64 bit -> 2024-07-04-raspios-bookworm-arm64.img
+#   FROM arm64v8/debian:bookworm
+
+docker buildx build --platform linux/arm64 --load -f DockerFileRasp -t raspimage .
+
+
+docker create --name temp-arm raspimage
+docker cp temp-arm:/build/rasp.tar.gz ./rasp.tar.gz
+#  You do not need to extract it. Do not touch it.
+
+docker build -t qtcrossbuild .
+위 명령에는 buildx가 사용되지 않았습니다. 이유는 buildx는 QEMU를 사용하며, x86 기반 Ubuntu에서는 QEMU가 필요하지 않기 때문입니다. 빌드는 시간이 조금 걸릴 수 있습니다(16GB RAM에서 테스트했으며, 몇 시간이 걸렸습니다).
+# 빌드가 완료되면 오류 없이 이미지가 생성됩니다. 이 이미지 내부의 /build/project 디렉토리에 Raspberry Pi에서 실행할 준비가 된 HelloQt6 바이너리를 찾을 수 있습니다
+
+각 줄 (45자) 제한
+  디바이스 드라이버 및 커널 모듈 설계 및 구현 능력
+  STM32 및 Jetson Nano 플랫폼에서 하드웨어 제어 경험
+  C/C++ 기반 임베디드 시스템 및 소프트웨어 개발
+  Docker와 Devcontainer를 활용한 환경 설정 자동화
+  GitHub Actions로 CI/CD 및 GitHub Pages 배포 경험
