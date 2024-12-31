@@ -1,5 +1,11 @@
 # Project Documentation
 
+- [Project Documentation](#project-documentation)
+  - [🗂 Directory Structure](#-directory-structure)
+  - [📌 Project Shortcuts](#-project-shortcuts)
+  - [🔧 Tech Stack](#-tech-stack)
+  - [🚀 Project Setup Instructions (Ubuntu)](#-project-setup-instructions-ubuntu)
+
 ## 🗂 Directory Structure
 
 ```
