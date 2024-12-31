@@ -1,0 +1,16 @@
+list of level 1 subjects
+  - fcitx (Korean IME)
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ fcitx ; https://github.com/Riey/fcitx
+  📝 It only supports Korean and English 📅 2024-12-31 19:56:07
+  Korean IME
+  # Why fcitx
+    Written in 🚀 Rust, no segmentation fault.
+  # Supported frontend
+    Wayland
+    Qt6
+
+(✍️ fcitx 🔪 study)
+  📜 (how-to) fish script: Install fcitx (Korean IME) 📅 2024-12-03 19:55:28
+    ### Install fcitx (Korean IME)

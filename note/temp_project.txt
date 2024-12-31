@@ -5037,13 +5037,14 @@ ELF: excutable link format.
         입력(stdin)과 출력(stdout/stderr)이 모두 처리되지 않으면, 터미널이 대기 상태에 빠질 수 있습니다.
         fcitx5의 경우, 출력과 입력 모두 터미널 연결을 끊어야 프롬프트로 자동 복귀합니다.
 
-
       disown - remove a process from the list of jobs
 
       disown [PID ...]
 
       DESCRIPTION
       disown removes the specified job from the list of jobs. The job itself continues to exist, but fish does not keep track of it any longer.
+https://fcitx-im.org/wiki/Using_Fcitx_5_on_Wayland#KDE_Plasma
+  
 Fcitx: Flexible Context-aware Input Tool with eXtension support
   - 📰 sudo apt install fcitx5 fcitx5-hangul >> https://github.com/Riey/kime?tab=readme-ov-file 으로 바꾸기? wayland 로 변경..
     https://osg.kr/archives/405
@@ -9425,18 +9426,12 @@ STM32
 
 
 
-5951 줄 ~ 시작
-
-
 /boot/cfg file.
 
 
 https://kernel.org/
   mkdir ~/kernel
   
-  wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.12.3.tar.xz 
-    wget -O $kime_deb_filename https://github.com/Riey/kime/releases/download/v3.1.1/kime_ubuntu-22.04_v3.1.1_amd64.deb
-
 .. tag file 도 지워줘야 한다? 배포시에는.. linux/tag ... 어떻게 만들지?
 
   tar cvfj linux_6_6.y.ksh.tar.bz2
@@ -13727,6 +13722,38 @@ hosts:          files mdns4_minimal [NOTFOUND=return] mymachines dns
   그래서 sudo apt 으로 설치하면 권한문제가 생기지 않고, 시스템 테마를 따라기도 하지만, 버전이 낮고 일부 기능이 정상적으로 작동 안되는거같아.
             
 📅 2024-12-28 16:27:59
+: '
+☑️ Never install ibus in Kubuntu 📅 2024-12-31 19:08:08
+  When:
+    - Installed ibus and/or kime on Kubuntu (default input method is fcitx5).
+
+  Symptom:
+    - Desktop becomes unresponsive for several minutes after boot.
+    - Mouse clicks and taskbar take an unusually long time to respond.
+    - Possible conflicts with the default fcitx5 input method.
+
+  Solution:
+    Avoid installing `ibus` or other input methods that conflict with `fcitx5` in Kubuntu.
+
+    1. Purge `ibus` and related packages:
+      ```bash
+      sudo apt purge ibus
+      sudo apt autoremove
+      ```
+    2. Ensure `fcitx5` is installed and set as the default input method:
+      ```bash
+      sudo apt install --reinstall fcitx5
+      im-config -n fcitx5
+      ```
+    3. Reboot the system:
+      ```bash
+      sudo reboot
+      ```
+    4. Test desktop responsiveness and input methods.
+'
+
+
+
 sudo apt install -y fcitx5-hangul
 killall fcitx5
 while pgrep -x fcitx5 > /dev/null
@@ -14413,8 +14440,7 @@ scp qt-pi-binaries.tar.gz ulas@192.168.16.20:/home/ulas/
 
 docker create --name tmpbuild qtcrossbuild
 sleep 1
-docker cp tmpbuild:/build/project/HelloQt6 ./HelloQt6   
-
+docker cp tmpbuild:/build/project/HelloQt6 ./HelloQt6     
 
 
 
@@ -14440,6 +14466,8 @@ study 여기 정리 + ppt 정리.
 
 
 
-
-
 ❗ cat /proc/sys/fs/binfmt_misc/status
+
+
+
+5951 줄 ~ 시작

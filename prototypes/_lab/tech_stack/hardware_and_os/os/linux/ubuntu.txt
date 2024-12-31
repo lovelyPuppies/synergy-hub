@@ -1,7 +1,25 @@
 list of level 1 subjects
   - Ubuntu
 
-⭕ Use Ubuntu 24 Desktop 📅 2024-11-24 16:31:39
+❌ Do not use Ubuntu 24 Desktop, instead use Kubuntu 📅 2024-12-31 19:47:10
+  우분투는 앱들간의 호환성이 안좋고, 사용성이 좋지 않다. 📅 2024-12-31 19:50:33
+    구체적으로.. 어떤 이유들 때문에..  gtk3 gtk4 엿나? 그 호환성 차이도 잇고..
+
+    KDE 앱과 호환성이 좋지 않다. 그래서 snap 이나 flatpak 으로 설치가 가능하지만, 샌드박스때문에 제한사항이 많다.
+    특히나, 최신에 지속적으로 개발이 이루어지져서 gnome 의 대체제로 떠오르는? wayland 사용설정을 허용하면,
+      VSCOdE 에서는 영문자가 아닌 언어를 입력하면 issue black flickering 문제가 발생한다. 
+      Edge 에서는 영문자가 아닌 언어를 빠르게 입력하면 중간중간 단어가 무시되거나, 지연시간이 생기는 문제가 발생
+      입력기를 ibus, fcitx5, kime 으로 모두 바꿔봣지만 동일.
+      그래서 각각 앱(vscode, edge) 에 .desktop 에 데스크탑 프로토콜(? 맞나?) x11 이 아닌 wayland 로 주면 이 문제들은 사라지긴 하지만, 영문자 이외의 언어 입력이 불가능하게 된다.
+        또한 이게 되더라도, 각 앱마다 설정이 필요하면 수동으로 설정해줘야 해서 매우 불편하다.
+
+
+      https://fcitx-im.org/wiki/Using_Fcitx_5_on_Wayland#KDE_Plasma
+
+    kubuntu 는 그렇지 않다. 
+
+
+
   This is chosen because ROS2 and Yocto can be developed within containers, providing flexibility and scalability.
   - Yocto 🔪 https://docs.yoctoproject.org/ref-manual/system-requirements.html#supported-linux-distributions
   - ROS 🔪 Supported Platforms ; https://docs.ros.org/en/jazzy/Releases/Release-Jazzy-Jalisco.html

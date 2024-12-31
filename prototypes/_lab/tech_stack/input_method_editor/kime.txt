@@ -1,0 +1,41 @@
+list of level 1 subjects
+  - KIME (Korean IME)
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ kime ; https://github.com/Riey/kime
+  📝 It only supports Korean and English 📅 2024-12-31 19:56:07
+  Korean IME
+  # Why kime
+    Written in 🚀 Rust, no segmentation fault.
+  # Supported frontend
+    Wayland
+    Qt6
+
+(✍️ kime 🔪 study)
+  📜 (how-to) fish script: Install kime (Korean IME) 📅 2024-12-03 19:55:28
+    ### Install kime (Korean IME)
+    # Set temporary directory path
+    set tmp_dir /tmp
+    set kime_deb_filename $tmp_dir/kime_ubuntu-22.04.deb
+
+    # Check if kime package is already installed
+    if not dpkg-query --status kime >/dev/null 2>&1
+        # If kime is not installed, download the package
+        echo "Downloading kime package..."
+        wget -O $kime_deb_filename https://github.com/Riey/kime/releases/download/v3.1.1/kime_ubuntu-22.04_v3.1.1_amd64.deb
+
+        # Install the package
+        echo "Installing kime package..."
+        sudo dpkg -i $kime_deb_filename
+
+        # No need to manually remove the .deb file, as /tmp is automatically cleaned
+    else
+        echo "kime is already installed."
+    end
+
+    # Set kime as the input method using im-config
+    echo "Setting kime as the input method..."
+    im-config -n kime
+
+    echo "❗ Reboot is required for the changes to take effect."
+

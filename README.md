@@ -1,10 +1,13 @@
 # Synergy Hub Documentation
 
+📅 Modified at 2024-12-31 19:44:10
+
 - [Synergy Hub Documentation](#synergy-hub-documentation)
   - [🗂 Directory Structure](#-directory-structure)
   - [📌 Project Shortcuts](#-project-shortcuts)
   - [🔧 Tech Stack](#-tech-stack)
   - [🚀 Project Setup Instructions (Ubuntu)](#-project-setup-instructions-ubuntu)
+  - [📏 Rule](#-rule)
 
 ## 🗂 Directory Structure
 
@@ -44,7 +47,6 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
 ├── design_pattern_and_uml  
 │&nbsp;&nbsp;&nbsp;&nbsp;├── [d2.txt](prototypes/_lab/tech_stack/design_pattern_and_uml/d2.txt)  
 │&nbsp;&nbsp;&nbsp;&nbsp;├── [design_pattern.txt](prototypes/_lab/tech_stack/design_pattern_and_uml/design_pattern.txt)  
-│&nbsp;&nbsp;&nbsp;&nbsp;└── [mermaid_example.md](prototypes/_lab/tech_stack/design_pattern_and_uml/mermaid_example.md)  
 ├── editor  
 │&nbsp;&nbsp;&nbsp;&nbsp;├── gui_based-ide  
 │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;├── [microchip_studio.txt](prototypes/_lab/tech_stack/editor/gui_based-ide/microchip_studio.txt)  
@@ -143,3 +145,7 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
    flatpak update -y
    brew update && brew upgrade
    ```
+
+## 📏 Rule
+
+- [Emoji rule](prototypes/_initialization/_rule/emoji.txt)

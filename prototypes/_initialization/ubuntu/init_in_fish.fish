@@ -2181,31 +2181,6 @@ end
 
 
 ##### Custom commands for packages that need to specify release versions, etc.
-#### Install Korean IME (Input Method Editor) 📅 2024-12-03 19:55:28
-# # Set temporary directory path
-# set tmp_dir /tmp
-# set kime_deb_filename $tmp_dir/kime_ubuntu-22.04.deb
-
-# # Check if kime package is already installed
-# if not dpkg-query --status kime >/dev/null 2>&1
-#     # If kime is not installed, download the package
-#     echo "Downloading kime package..."
-#     wget -O $kime_deb_filename https://github.com/Riey/kime/releases/download/v3.1.1/kime_ubuntu-22.04_v3.1.1_amd64.deb
-
-#     # Install the package
-#     echo "Installing kime package..."
-#     sudo dpkg -i $kime_deb_filename
-
-#     # No need to manually remove the .deb file, as /tmp is automatically cleaned
-# else
-#     echo "kime is already installed."
-# end
-
-# # Set kime as the input method using im-config
-# echo "Setting kime as the input method..."
-# im-config -n kime
-
-# echo "❗ Reboot is required for the changes to take effect."
 
 
 # echo "# For integration with VSCode's 'python.defaultInterpreterPath' key-value" >>"$FISH_CONFIG_PATH"
