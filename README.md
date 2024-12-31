@@ -121,15 +121,19 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
 
    - 🎱 Copy **[settings.json](prototypes/_initialization/.vscode/_user-settings.jsonc)** to your user settings.
    - 🎱 Copy **[keybindings.json](prototypes/_initialization/.vscode/_user-keybindings.jsonc)** to your user keybindings.
-   - 🎱 Copy **[extensions.json](prototypes/_initialization/.vscode/extensions.json)** to the mono-repository for VS Code recommendations.
-   - 🎱 Copy **[tasks.json](prototypes/_initialization/.vscode/tasks.jsonc)** for common task settings.
+   - 🎱 Copy **[extensions.json](prototypes/_initialization/.vscode/extensions.json)** to your project settings for VS Code recommendations in the mono-repository
+   - 🎱 Copy **[tasks.json](prototypes/_initialization/.vscode/tasks.jsonc)** your project settings for common tasks.
 
 2. Run **[initialization script](prototypes/_initialization/ubuntu/init_in_bash.sh)**:
+
+   📝 Note that this script requires the password to be entered multiple times \(about 4 times\), because **[Homebrew command invalidates the sudo timestamp \(sudo password cache\)](https://brew.sh/2024/07/30/homebrew-security-audit/)**.
 
    ```bash
    #!/bin/bash
    bash prototypes/_initialization/ubuntu/init_in_bash.sh
    ```
+
+   It automatically and additionally runs 🚣 **[init_in_fish.fish](prototypes/_initialization/ubuntu/init_in_fish.fish)** as the last line in the script.
 
 3. **[Use semi-automatic script snippets for user-interactive tasks](prototypes/_initialization/ubuntu/init_in_fish_semi_automatic.fish)**
 

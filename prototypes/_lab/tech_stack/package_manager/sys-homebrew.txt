@@ -35,29 +35,29 @@ list of level 1 subjects
       Ensures cutting-edge features and security updates are available promptly.
       Provides a more flexible and current package management system for macOS and Linux environments.
 
-* 🚨 (Issue: Bug); brew breaks sudo password cache 📅 2024-12-09 02:48:31
-  Description
-    Homebrew forces re-authentication for sudo commands, ignoring the sudo password cache and requiring repeated password inputs.
+  * 🚨 (Issue: Bug); brew breaks sudo password cache (sudo timestamp) 📅 2024-12-09 02:48:31
+    Description
+      Homebrew forces re-authentication for sudo commands, ignoring the sudo password cache and requiring repeated password inputs.
 
-  When
-    The issue occurs during Homebrew commands executed in the Fish shell:
-      Example steps to reproduce:
-        sudo -v
-        echo First
-        brew install tree
-        sudo -v
-        echo Two
-    The problem persists regardless of the following /etc/sudoers configurations:
-      Defaults !tty_tickets
-      Defaults timestamp_timeout=30
+    When
+      The issue occurs during Homebrew commands executed in the Fish shell:
+        Example steps to reproduce:
+          sudo -v
+          echo First
+          brew install tree
+          sudo -v
+          echo Two
+      The problem persists regardless of the following /etc/sudoers configurations:
+        Defaults !tty_tickets
+        Defaults timestamp_timeout=30
 
-  Explanation
-    ➡️ > This is likely a WONTFIX, sorry. We clear the sudo password cache intentionally as a precaution against privilege escalation attacks.
-      See https://brew.sh/2024/07/30/homebrew-security-audit/.
+    Explanation
+      ➡️ > This is likely a WONTFIX, sorry. We clear the sudo password cache intentionally as a precaution against privilege escalation attacks.
+        See https://brew.sh/2024/07/30/homebrew-security-audit/.
 
-  Reference 
-    https://github.com/Homebrew/brew/issues/17905
-    https://brew.sh/2024/07/30/homebrew-security-audit/
-      
-      
-      
+    Reference 
+      https://github.com/Homebrew/brew/issues/17905
+      https://brew.sh/2024/07/30/homebrew-security-audit/
+        
+        
+        
