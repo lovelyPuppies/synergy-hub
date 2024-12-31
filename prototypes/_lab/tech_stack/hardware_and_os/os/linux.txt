@@ -1,6 +1,7 @@
 list of level 1 subjects
   - Linux
   
+
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
 ⚓ Linux ; https://github.com/torvalds/linux
   https://en.wikipedia.org/wiki/Linux
@@ -81,9 +82,32 @@ Linux 🔪 Man pages
       6         Games and screensavers
       7         Miscellaneous
       8         System administration commands and daemons
+  📝 Some Packages' complete manuals are available only after building the source (no official prebuilt man page available) 📅 2025-01-01 00:30:11
+    , because e2fsprogs utilities (e.g., e2label.8.in) use templates for generating man pages.
+    so, in this case, refer to ⚖️ https://www.mankier.com
 
   https://directory.fsf.org/wiki/GNU
   https://www.gnu.org/software/#allgnupkgs
+
+
+⚓🧮 lsb_release(1) ; https://www.mankier.com/1/lsb_release
+  ⚖️ Default manual page
+  📝 The LSB standard documentation often does not explicitly include details about the lsb_release command.
+    This is because lsb_release is provided as a package management tool by specific distributions
+    , and the LSB standard itself focuses more on compatibility requirements than on the implementation of specific commands.
+  
+    Traced the references
+      https://refspecs.linuxfoundation.org/lsb.shtml  
+        https://wiki.linuxfoundation.org/lsb/documentation
+          https://wiki.linuxfoundation.org/lsb/start
+            https://answers.launchpad.net/ubuntu/noble/amd64/lsb-release
+
+  # -r,  --release
+    Display the release number of the distribution.
+  # -a,  --all
+    Display all of the above information.
+
+
 
 ⚓🧮 awk (gawk) ; https://www.gnu.org/software/gawk/manual/gawk.html
   # 2 Running awk and gawk
@@ -280,7 +304,8 @@ Linux 🔪 Man pages
 
     #️⃣ 21.2 🧮 arch: Print machine hardware name ; https://www.gnu.org/software/coreutils/manual/coreutils.html#arch-invocation
     #️⃣ 21.3 🧮 nproc: Print the number of available processors ; https://www.gnu.org/software/coreutils/manual/coreutils.html#nproc-invocation
-    #️⃣ 21.4 🧮 uname: Print system information ; https://www.gnu.org/software/coreutils/manual/coreutils.html#uname-invocation
+    #️⃣ 21.4 🧮🚣 uname: Print system information ; https://www.gnu.org/software/coreutils/manual/coreutils.html#uname-invocation
+      ; unix name
       ‘-a’, ‘--all’
         Print all of the below information, except omit the processor type and the hardware platform name if they are unknown.
       ‘-r’, ‘--kernel-release’
@@ -405,24 +430,23 @@ Linux 🔪 Man pages
 
   ⚓ Directives ; https://www.freedesktop.org/software/systemd/man/latest/systemd.directives.html
   ⚓ Index ; https://www.freedesktop.org/software/systemd/man/latest/
-
-
-  ⚓ systemd docs ; https://www.freedesktop.org/software/systemd/man/latest/
-    📝 It redirect freedesktop.org
+⚓ systemd 🔪 docs ; https://www.freedesktop.org/software/systemd/man/latest/
+  📝 It redirect freedesktop.org
+  
+  ⚓🧮 systemctl ; https://www.freedesktop.org/software/systemd/man/latest/systemctl.html#
+    #️⃣🚀 halt ; https://www.freedesktop.org/software/systemd/man/latest/systemctl.html#halt
+      alternative of "halt", "shutdown"
+    #️⃣🚀 poweroff ; https://www.freedesktop.org/software/systemd/man/latest/systemctl.html#poweroff
+      alternative of "poweroff", "shutdown"
+    #️⃣🚀 reboot ; https://www.freedesktop.org/software/systemd/man/latest/systemctl.html#reboot
+      alternative of "reboot", "shutdown"
     
-    ⚓🧮 systemctl ; https://www.freedesktop.org/software/systemd/man/latest/systemctl.html#
-      #️⃣🚀 halt ; https://www.freedesktop.org/software/systemd/man/latest/systemctl.html#halt
-        alternative of "halt", "shutdown"
-      #️⃣🚀 poweroff ; https://www.freedesktop.org/software/systemd/man/latest/systemctl.html#poweroff
-        alternative of "poweroff", "shutdown"
-      #️⃣🚀 reboot ; https://www.freedesktop.org/software/systemd/man/latest/systemctl.html#reboot
-        alternative of "reboot", "shutdown"
-      
 
-    ⚓🧮 hostnamectl — Control the system hostname ; https://www.freedesktop.org/software/systemd/man/latest/hostnamectl.html
-      # hostname [NAME]
-        If no argument is given, print the system hostname. If an optional argument NAME is provided then the command changes the system hostname to NAME.
+  ⚓🧮 hostnamectl — Control the system hostname ; https://www.freedesktop.org/software/systemd/man/latest/hostnamectl.html
+    # hostname [NAME]
+      If no argument is given, print the system hostname. If an optional argument NAME is provided then the command changes the system hostname to NAME.
 
+  ⚓ pam_systemd  ; https://www.freedesktop.org/software/systemd/man/latest/pam_systemd.html#
 
 ⚓ OpenSSH ; https://www.openssh.com/manual.html
   ⚓ 🧮 ssh(1) — The basic rlogin/rsh-like client program ; https://man.openbsd.org/ssh
@@ -491,8 +515,7 @@ Linux 🔪 Man pages
 
 
 ⚓ e2fsprogs ; https://www.mankier.com/package/e2fsprogs
-  📝 Complete manuals are available only after building the source (no official prebuilt man page available)
-    , because e2fsprogs utilities (e.g., e2label.8.in) use templates for generating man pages.
+  ⚖️ Default manual page
 
   https://github.com/tytso/e2fsprogs
   https://en.wikipedia.org/wiki/E2fsprogs
@@ -528,7 +551,7 @@ Linux 🔪 Man pages
 
 ⚓ avahi ; https://www.mankier.com/package/e2fsprogs
   https://avahi.org/
-  📝 Complete manuals are available only after building the source (no official prebuilt man page available)
+  ⚖️ Default manual page
   📝 %shell>
     apt-cache show libnss-mdns | rg Priority
       >> Priority: optional
@@ -543,7 +566,7 @@ Linux 🔪 Man pages
 
 
 ⚓ shadow-utils ; https://www.mankier.com/package/shadow-utils
-  📝 Complete manuals are available only after building the source (no official prebuilt man page available)
+  ⚖️ Default manual page
   
   Utilities for managing accounts and shadow password files ; https://github.com/shadow-maint/shadow
 
