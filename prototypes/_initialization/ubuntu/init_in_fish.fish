@@ -1115,28 +1115,6 @@ end
 
 echo "▶️  Installing tools related to VM emulation and communication with connected external devices to the host ..."
 : '
-📦 docker
-    https://repology.org/project/docker/versions
-    https://formulae.brew.sh/formula/docker#default
-📦 docker-completion
-    https://repology.org/project/docker-completion/versions
-    https://formulae.brew.sh/formula/docker-completion#default
-📦 docker-compose
-    https://repology.org/project/docker-compose/versions
-    https://formulae.brew.sh/formula/docker-compose#default
-📦 docker-buildx
-    https://repology.org/project/docker-buildx/versions
-    https://formulae.brew.sh/formula/docker-buildx#default
-
-📦 docker-clean
-    https://repology.org/project/docker-clean/versions
-    https://formulae.brew.sh/formula/docker-clean#default
-    https://github.com/ZZROTDesign/docker-clean
-'
-brew install docker docker-completion docker-compose docker-buildx
-brew install docker-clean
-
-: '
 📦 qemu
     https://repology.org/project/qemu/versions
     https://formulae.brew.sh/formula/qemu#default
@@ -1376,10 +1354,10 @@ end
 
 
 echo "🥞 Installing available stable versions from apt in fish shell ..."
-
 ## ☑️ Issue: Bug; Ubuntu VScode PlatformIO extension messages 'PlatformIO: Can not find working Python 3.6+ Interpreter' 📅 2024-11-22 14:12:31
 #   https://community.platformio.org/t/ubuntu-vscode-pio-extension-install-platformio-can-not-find-working-python-3-6-interpreter/27853
 sudo apt install -y python3-venv
+
 
 
 
@@ -1529,8 +1507,34 @@ if not grep -Fxq "$unique_comment" "$FISH_CONFIG_PATH"
 end
 
 
+#### 📦 docker ; for development
+: '
+❗ Do not install the Docker series using Homebrew. 📅 2024-12-31 09:51:13
+  Homebrew does not include the Docker daemon or containerd (the container runtime): docker, docker-compose, or docker-buildx.
 
+📦 docker-completion
+    https://repology.org/project/docker-completion/versions
+    https://formulae.brew.sh/formula/docker-completion#default
 
+📦 docker-clean
+    https://repology.org/project/docker-clean/versions
+    https://formulae.brew.sh/formula/docker-clean#default
+    https://github.com/ZZROTDesign/docker-clean
+'
+## https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
+# Add Docker's official GPG key:
+sudo apt update
+sudo apt install -y ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources:
+echo \
+    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
+sudo apt update
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 
 echo "▶️  Distributed file system protocol"
