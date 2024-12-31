@@ -1,151 +1,138 @@
-# Project Setup Instructions
+# Project Documentation
 
-📝 Note that
+## 🗂 Directory Structure
 
-- This directory includes prototypes to compose new project.
-- After the installation for basic settings, additional installation is required for each project.
-- Its purpose is to compose project-specific isolated environment with cross-platform and cross-compiling in Windows 11.
-  - But some may be different like executable extension, built-in shell commands, compiler, etc.
-- the README.md written at 📅 2024-08-29 00:24:41
-
-### Update commands
-
-🪠 (fish shell)
-
-```bash
-#!/usr/bin/env fish
-
-sudo apt update && sudo apt upgrade -y
-
-brew update && brew upgrade
+```
+📁 projects (📰 TODO)
+└── 📂 embedded
+├── 📁 project_alarm_clock
+└── 📁 smart_trash_bin
 ```
 
-### 1. VSCode Extension Installation
+## 📌 Project Shortcuts
 
-- %VSCode> Preferences: Open User Settings (JSON)
-  User settings
+- [**Raspberry Pi 4 B 기반 커널 모듈 및 디바이스 드라이버 구현 (LED 제어)**](prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer)
+- [**Jetson Nano와 Edge AI를 활용한 실시간 수신호 인식 자율주행 RC카 개발 프로젝트**](https://github.com/opmaksim/Signal-Project) (External Link)
+- **STM32 Nucleo F411RE 기반 디지털 시계 및 알람 시스템 구현**: TODO
+- [**Python 및 MediaPipe 기반 카메라 필터 애플리케이션 개발**](prototypes/study/python_study/camera_filter_app)
+- [**환경 및 네트워크 초기화 자동화 스크립트 작성**](prototypes/_initialization)
+- **ATmega128 기반 스마트 선풍기 제어 시스템 개발**: TODO
+- [**IoT의 안전한 운영을 위한 Docker 기반 시스템 환경 설 계 및 구현**](https://github.com/wbfw109/safe_iot_architecture) \(External Link\)
+- [**Python 및 IPython 기반 CS 지식 연구 결과를 웹에 시각화하기 위한 라이브러리 개발**](https://github.com/wbfw109/study-core?tab=readme-ov-file#31-python-utilities) \(External Link\)
+- [**Pynecone를 활용한 CS 용어 사전 웹 애플리케이션 개발**](https://github.com/wbfw109/study-core?tab=readme-ov-file#41-glossary-service) \(External Link\)
 
-- .vscode/settings.json
-  Project-specific settings
+## 🔧 Tech Stack
 
-- .vscode/extensions.json
-  Install recommended extension of VScode
+tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)  
+├── build_tool  
+│&nbsp;&nbsp;&nbsp;&nbsp;├── build_system  
+│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;├── meta_build_system  
+│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── yocto_project  
+│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [bitbake.txt](prototypes/_lab/tech_stack/build_tool/build_system/meta_build_system/yocto_project/bitbake.txt)  
+│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [yocto.txt](prototypes/_lab/tech_stack/build_tool/build_system/meta_build_system/yocto_project/yocto.txt)  
+│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── [ninja.txt](prototypes/_lab/tech_stack/build_tool/build_system/ninja.txt)  
+│&nbsp;&nbsp;&nbsp;&nbsp;└── build_system_generator  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [cmake.txt](prototypes/_lab/tech_stack/build_tool/build_system_generator/cmake.txt)  
+├── code_quality_tool  
+│&nbsp;&nbsp;&nbsp;&nbsp;└── [ruff.txt](prototypes/_lab/tech_stack/code_quality_tool/ruff.txt)  
+├── design_pattern_and_uml  
+│&nbsp;&nbsp;&nbsp;&nbsp;├── [d2_example.d2](prototypes/_lab/tech_stack/design_pattern_and_uml/d2_example.d2)  
+│&nbsp;&nbsp;&nbsp;&nbsp;├── [d2.txt](prototypes/_lab/tech_stack/design_pattern_and_uml/d2.txt)  
+│&nbsp;&nbsp;&nbsp;&nbsp;├── [design_pattern.txt](prototypes/_lab/tech_stack/design_pattern_and_uml/design_pattern.txt)  
+│&nbsp;&nbsp;&nbsp;&nbsp;└── [mermaid_example.md](prototypes/_lab/tech_stack/design_pattern_and_uml/mermaid_example.md)  
+├── editor  
+│&nbsp;&nbsp;&nbsp;&nbsp;├── gui_based-ide  
+│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;├── [microchip_studio.txt](prototypes/_lab/tech_stack/editor/gui_based-ide/microchip_studio.txt)  
+│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;├── [visual_studio.txt](prototypes/_lab/tech_stack/editor/gui_based-ide/visual_studio.txt)  
+│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── [vs_code.txt](prototypes/_lab/tech_stack/editor/gui_based-ide/vs_code.txt)  
+│&nbsp;&nbsp;&nbsp;&nbsp;└── terminal_based  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [helix.txt](prototypes/_lab/tech_stack/editor/terminal_based/helix.txt)  
+├── [fonts.txt](prototypes/_lab/tech_stack/fonts.txt)  
+├── hardware_and_os  
+│&nbsp;&nbsp;&nbsp;&nbsp;├── arm  
+│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── [arm_compiler.txt](prototypes/_lab/tech_stack/hardware_and_os/arm/arm_compiler.txt)  
+│&nbsp;&nbsp;&nbsp;&nbsp;├── hardware  
+│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── [nvidia.txt](prototypes/_lab/tech_stack/hardware_and_os/hardware/nvidia.txt)  
+│&nbsp;&nbsp;&nbsp;&nbsp;├── [Issues.md](prototypes/_lab/tech_stack/hardware_and_os/Issues.md)  
+│&nbsp;&nbsp;&nbsp;&nbsp;├── os  
+│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;├── linux  
+│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── [ubuntu.txt](prototypes/_lab/tech_stack/hardware_and_os/os/linux/ubuntu.txt)  
+│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── [linux.txt](prototypes/_lab/tech_stack/hardware_and_os/os/linux.txt)  
+│&nbsp;&nbsp;&nbsp;&nbsp;└── serial_tools  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [tio.txt](prototypes/_lab/tech_stack/hardware_and_os/serial_tools/tio.txt)  
+├── libraries  
+│&nbsp;&nbsp;&nbsp;&nbsp;└── cpp  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [google_test.txt](prototypes/_lab/tech_stack/libraries/cpp/google_test.txt)  
+├── llvm_stack  
+│&nbsp;&nbsp;&nbsp;&nbsp;└── [clang.txt](prototypes/_lab/tech_stack/llvm_stack/clang.txt)  
+├── mathmatics  
+│&nbsp;&nbsp;&nbsp;&nbsp;├── [mathmatics_symbols.txt](prototypes/_lab/tech_stack/mathmatics/mathmatics_symbols.txt)  
+│&nbsp;&nbsp;&nbsp;&nbsp;└── ml  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [ml-glossary.md](prototypes/_lab/tech_stack/mathmatics/ml/ml-glossary.md)  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [openmmlab.txt](prototypes/_lab/tech_stack/mathmatics/ml/openmmlab.txt)  
+├── monitoring_tools  
+│&nbsp;&nbsp;&nbsp;&nbsp;└── file_system_monitoring  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [watchman.txt](prototypes/_lab/tech_stack/monitoring_tools/file_system_monitoring/watchman.txt)  
+├── package_manager  
+│&nbsp;&nbsp;&nbsp;&nbsp;├── [env-nix.txt](prototypes/_lab/tech_stack/package_manager/env-nix.txt)  
+│&nbsp;&nbsp;&nbsp;&nbsp;├── [env-volta.txt](prototypes/_lab/tech_stack/package_manager/env-volta.txt)  
+│&nbsp;&nbsp;&nbsp;&nbsp;├── [lang-cargo.txt](prototypes/_lab/tech_stack/package_manager/lang-cargo.txt)  
+│&nbsp;&nbsp;&nbsp;&nbsp;├── [lang-conan.txt](prototypes/_lab/tech_stack/package_manager/lang-conan.txt)  
+│&nbsp;&nbsp;&nbsp;&nbsp;├── [lang-pipx.txt](prototypes/_lab/tech_stack/package_manager/lang-pipx.txt)  
+│&nbsp;&nbsp;&nbsp;&nbsp;├── [lang-poetry.txt](prototypes/_lab/tech_stack/package_manager/lang-poetry.txt)  
+│&nbsp;&nbsp;&nbsp;&nbsp;├── [sys-choco.txt](prototypes/_lab/tech_stack/package_manager/sys-choco.txt)  
+│&nbsp;&nbsp;&nbsp;&nbsp;├── [sys-homebrew.txt](prototypes/_lab/tech_stack/package_manager/sys-homebrew.txt)  
+│&nbsp;&nbsp;&nbsp;&nbsp;├── [sys-pacman.txt](prototypes/_lab/tech_stack/package_manager/sys-pacman.txt)  
+│&nbsp;&nbsp;&nbsp;&nbsp;├── [sys-pixi.txt](prototypes/_lab/tech_stack/package_manager/sys-pixi.txt)  
+│&nbsp;&nbsp;&nbsp;&nbsp;└── [sys-scoop.txt](prototypes/_lab/tech_stack/package_manager/sys-scoop.txt)  
+├── programming_languages  
+│&nbsp;&nbsp;&nbsp;&nbsp;├── [c+cpp.txt](prototypes/_lab/tech_stack/programming_languages/c+cpp.txt)  
+│&nbsp;&nbsp;&nbsp;&nbsp;├── [java.txt](prototypes/_lab/tech_stack/programming_languages/java.txt)  
+│&nbsp;&nbsp;&nbsp;&nbsp;├── [python.txt](prototypes/_lab/tech_stack/programming_languages/python.txt)  
+│&nbsp;&nbsp;&nbsp;&nbsp;└── [rust.txt](prototypes/_lab/tech_stack/programming_languages/rust.txt)  
+├── remote_access_tools  
+│&nbsp;&nbsp;&nbsp;&nbsp;└── [tailscale.txt](prototypes/_lab/tech_stack/remote_access_tools/tailscale.txt)  
+├── scm  
+│&nbsp;&nbsp;&nbsp;&nbsp;└── [git.txt](prototypes/_lab/tech_stack/scm/git.txt)  
+├── shell  
+│&nbsp;&nbsp;&nbsp;&nbsp;├── [fish.txt](prototypes/_lab/tech_stack/shell/fish.txt)  
+│&nbsp;&nbsp;&nbsp;&nbsp;└── [powershell.txt](prototypes/_lab/tech_stack/shell/powershell.txt)  
+├── virtualization  
+│&nbsp;&nbsp;&nbsp;&nbsp;└── os_level_virtualization  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [container-dev_container.txt](prototypes/_lab/tech_stack/virtualization/os_level_virtualization/container-dev_container.txt)  
+└── web  
+ ├── web_browser  
+ │&nbsp;&nbsp;&nbsp;&nbsp;└── [edge.txt](prototypes/_lab/tech_stack/web/web_browser/edge.txt)  
+ └── web_server  
+ └── [nginx.txt](prototypes/_lab/tech_stack/web/web_server/nginx.txt)
 
-- .vscode/c_cpp_properties.json
-  Set C/C++ Intellisesne
+## 🚀 Project Setup Instructions (Ubuntu)
 
-- .vscode/tasks.json
+1. Copy configurations:
 
----
+   - 🎱 `prototypes/_initialization/.vscode/_user-settings.jsonc` to your user settings.
+   - 🎱 `prototypes/_initialization/.vscode/_user-keybindings.jsonc` to your user keybindings.
+   - 🎱 `prototypes/_initialization/.vscode/extensions.json` to the mono-repository for VS Code recommendations.
+   - 🎱 `prototypes/_initialization/.vscode/task.json` for common task settings.
 
-### 2. Other settings
-
-Other settings is already written to integrate with VSCode.: **Intellisense**, **Toolchain**, clang-format
-
-- CMakeLists.txt
-- conanfile.py
-
----
-
-### 4. \[Optional\] Device settings
-
-If you want to use USB device specifically Camera, you must set following options.
-
-#### USB camera
-
-If your OS is **Windows 11**
-
-1. First, check connected USB Camera Device is in Device Manager - Camera
-
-2. Windows Settings
-
-   - Privacy & security
-
-     - Camera
-       - ☑️ Camera access
-       - ☑️ Let apps access your camera
-         - ☑️ Let desktop apps access your camera
-
-   - FAQ
-     - ❓ When using multiple cameras, there were cases where opencv-python did not recognize two cameras on the same port hub.
-       > cv2.VideoCapture(index).isOpend() is True, but frame returned by read() is False.
-
----
-
-## Project Name Origin
-
-Written at 📅 2024-12-14 10:39:25
-
-**synergy-hub**
-
-- **"Synergy"**: This project is not a single-purpose repository but a collection of diverse domains, such as notes, designs, and code. The term "synergy" represents the collaboration and integration between these elements to create greater value.
-- **"Hub"**: It emphasizes the project's role as a central point where multiple projects and ideas converge, fostering growth and serving as a platform for further expansion.
-
-The name reflects the project's vision of being more than just a repository — a foundation for creative collaboration and innovation.
-
-## \_Doing
-
-<details>
-<summary>Click to expand</summary>
-
-### latex Workshop ; https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop
-
-```bash
-# shell command
-sudo apt install -y texlive-full
-```
-
-### VS code and github cli
-
-```bash
-#!/bin/bash
-gh auth login
-```
-
-### Conan \(C++\) : Order of Tasks C++
-
-1. Configure my cpp sources
-
-   ```cmake
-   # 🛍️ e.g. CMake configuration for cpp_study target
-   # ➡️ whenever structure of directory is changed, use this.
-   add_executable(cpp_study
-       src/cpp_study.cpp
-       src/main.cpp
-       <new cpp source1>
-       <new cpp source2> # ...
-   )
-   ```
-
-2. Install dependencies and set the build type to Debug:
-
-   ```bash
-   # shell command
-   # ➡️ whenever conanfile.py is changed, use this.
-   conan install . -s build_type=Debug --build=missing
-   ```
-
-3. CMake Configure Preset; configure preset:
-
-   ```bash
-   # shell command
-   # ➡️ whenever CMakeLists is changed, use this.
-   cmake --preset conan-debug
-   ```
-
-4. CMake Build; build project:
+2. Run initialization script:
 
    ```bash
-   # shell command
-   # ➡️ whenever (source | include) file is changed, use this.
-   cmake --build --preset conan-debug
+   #!/bin/bash
+   bash prototypes/_initialization/ubuntu/init_in_bash.sh
    ```
 
-5. Run the created executable:
+3. Run semi-automatic script for user-interactive steps:
+
+   ```fish
+   # Refer to `prototypes/_initialization/ubuntu/init_in_fish_semi_automatic.fish`
+   ```
+
+4. Update and upgrade your system periodically:
 
    ```bash
-   # shell command
-   ./build/Debug/cpp_study
+   brew update && brew upgrade
+   sudo apt update && sudo apt upgrade -y
+   sudo snap refresh
+   flatpak update
    ```
-
-</details>
