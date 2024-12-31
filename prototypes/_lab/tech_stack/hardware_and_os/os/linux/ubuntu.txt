@@ -14,7 +14,7 @@ list of level 1 subjects
   https://en.wikipedia.org/wiki/Ubuntu
 
 (✍️ Ubuntu 🔪 study)
-  🚨 (Issue: Error); Problems using Wayland display protocol in Ubuntu 📅 2024-12-31 20:37:32
+  🚨 (Issue: Error); Problems using Wayland 🪱 graphic display server protocol in Ubuntu 📅 2024-12-31 20:37:32
     ➡️ Switch to Kubuntu for better compatibility if using Ubuntu for desktop purposes
 
     When
@@ -27,9 +27,9 @@ list of level 1 subjects
         - Manual fixes for each app are inconvenient.
 
     Solution
-      - Do not use Wayland display protocol in Ubuntu 24 Desktop. Use X11 (default) display protocol.
+      - Do not use Wayland graphic display server protocol in Ubuntu 24 Desktop. Use X11 (default) graphic display server protocol.
       - ➡️ Switch to Kubuntu for better compatibility if using Ubuntu for desktop purposes
-        - 💡 Kubuntu uses Wayland as the default display protocol, and it integrates smoothly with applications.
+        - 💡 Kubuntu uses Wayland as the default graphic display server protocol, and it integrates smoothly with applications.
         - Ubuntu is not well-suited for desktop usage due to compatibility and usability issues. 📅 2024-12-31 19:50:33
           - Specific reasons include compatibility gaps between GTK3 and GTK4.
           - Poor integration with KDE applications. 🛍️ e.g., KDE apps cannot have their themes changed.

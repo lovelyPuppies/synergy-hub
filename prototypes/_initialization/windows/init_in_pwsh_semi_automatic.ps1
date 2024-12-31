@@ -251,13 +251,14 @@ scoop install main/ffmpeg
 #>
 
 scoop install main/gdrive
+scoop install extras/vcxsrv
 scoop install extras/bandizip
-scoop install extras/kakaotalk
 scoop install extras/potplayer
 scoop install extras/okular
 scoop install extras/gimp
 scoop install extras/rufus
 scoop install extras/digikam # https://www.digikam.org/
+scoop install extras/kakaotalk
 
 scoop install extras/tartube  # https://github.com/axcore/tartube
 <#
