@@ -36,7 +36,6 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
 ├── code_quality_tool  
 │&nbsp;&nbsp;&nbsp;&nbsp;└── [ruff.txt](prototypes/_lab/tech_stack/code_quality_tool/ruff.txt)  
 ├── design_pattern_and_uml  
-│&nbsp;&nbsp;&nbsp;&nbsp;├── [d2_example.d2](prototypes/_lab/tech_stack/design_pattern_and_uml/d2_example.d2)  
 │&nbsp;&nbsp;&nbsp;&nbsp;├── [d2.txt](prototypes/_lab/tech_stack/design_pattern_and_uml/d2.txt)  
 │&nbsp;&nbsp;&nbsp;&nbsp;├── [design_pattern.txt](prototypes/_lab/tech_stack/design_pattern_and_uml/design_pattern.txt)  
 │&nbsp;&nbsp;&nbsp;&nbsp;└── [mermaid_example.md](prototypes/_lab/tech_stack/design_pattern_and_uml/mermaid_example.md)  

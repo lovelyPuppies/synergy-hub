@@ -14413,32 +14413,9 @@ WSL 에서 카메라 적용하려면 커스텀 커널 빌드해야 하고 카메
 
 
 
-
-내 프로젝트 구조를 정리해야 해.
-
-주 구성.
-  - 디렉터리 구조도 (tree command with emoji 📁, 📂)
-  - 프로젝트 바로가기
-    
-    - Jetson Nano와 Edge AI를 활용한 실시간 수신호 인식 자율주행 RC카 개발 (외부 링크); https://github.com/opmaksim/Signal-Project
-    
-
-  - Project Setup Instructions (Ubuntu)
-    ```bash
-    # Updtae and Upgrade packages
-
-    brew update && brew upgrade
-
-    sudo apt update && sudo apt upgrade -y
-
-    sudo snap refresh
-
-    flatpak update
-
-    ```
-  
+study 여기 정리 + ppt 정리.
 
 
-  Ubuntu Qt 에서 
 
-  
+
+
