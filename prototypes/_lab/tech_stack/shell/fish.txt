@@ -64,12 +64,23 @@ Fish 🔪⚓ The fish language ; https://fishshell.com/docs/current/language.htm
 
 
 
-
+  
 ================================================
 ⚓⭕ Fish shell modules ; https://code.visualstudio.com/docs
   https://github.com/jorgebucaran/fisher
 
   ⚓⭕ Replay.fish ; https://github.com/jorgebucaran/replay.fish 📅 2024-12-10 21:09:03
+    📝 Note: replay is not actively maintained and may not support all use cases.
+
+    🚨 Not works for source /etc/os-release 📅 2024-12-31 13:13:04
+      ➡️ Use loadenv if not bash script file like "replay source oe-init-build-env" in Yocto Project
+      replay 'source /etc/os-release && echo $ID'
+        echo $ID
+        ubuntu
+        ""
+
+
+
     Why Replay.fish is Essential:
       Replay.fish allows Fish shell to integrate changes from Bash commands dynamically. 
       This is especially useful for developers using scripts like oe-init-build-env in Yocto,
@@ -114,3 +125,5 @@ Fish 🔪⚓ The fish language ; https://fishshell.com/docs/current/language.htm
 
     Reference
       https://stackoverflow.com/questions/63107468/source-env-variables-from-bitbake-made-sdk-using-fish
+  
+

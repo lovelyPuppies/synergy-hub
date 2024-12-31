@@ -18,7 +18,7 @@ qt6_wrap_ui(UISrcs mainwidget.ui)
 
 qt_add_executable(testQt
     WIN32 MACOSX_BUNDLE
-    main.cpp    
+    main.cpp            
     mainwidget.cpp
     mainwidget.hpp
     ${UISrcs}  # Processed UI sources

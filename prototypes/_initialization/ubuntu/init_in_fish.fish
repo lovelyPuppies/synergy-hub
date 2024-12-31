@@ -72,10 +72,19 @@ mkdir -p $font_dir
 : '
 Fish plugins
   ⚓ replay.fish ; https://github.com/jorgebucaran/replay.fish      
+    📝 Note: replay is not actively maintained and may not support all use cases.
+
+    🚨 (Issue); Not works for source /etc/os-release 📅 2024-12-31 13:13:04
+      ➡️ Use loadenv if not bash script file like "replay source oe-init-build-env" in Yocto Project
+      replay "source /etc/os-release && echo $ID"
+        echo $ID
+      >>
+        ubuntu
+        ""
+  ⚓ loadenv.fish ; https://github.com/jorgebucaran/replay.fish      
 '
 fisher install jorgebucaran/replay.fish
-
-
+fisher install berk-karaal/loadenv.fish
 
 
 
@@ -1601,11 +1610,23 @@ docker completion fish >~/.config/fish/completions/docker.fish
           >>
             error: failed to connect to the hypervisor
             error: Failed to connect socket to \'/home/linuxbrew/.linuxbrew/var/run/libvirt/virtqemud-sock\': No such file or directory
-'
+
+            '
 # Ubuntu - Install libvirt ; https://ubuntu.com/server/docs/libvirt
-sudo apt install -y libvirt-daemon-system
+sudo apt install -y libvirt-daemon-system libvirt-clients
 
+## libvirt-clients
+#   🛍️ e.g. virsh list --all
 
+: '
+📦 cockpit, cockpit-machine
+'
+loadenv /etc/os-release
+
+sudo apt install -y --target-release $VERSION_CODENAME-backports cockpit cockpit-machines
+
+sudo systemctl enable --now cockpit.socket
+echo "🚣 If you already have Cockpit on your server, point your web browser to: https://localhost:9090"
 
 
 

@@ -14263,49 +14263,49 @@ sudo apt install libvirt-clients libvirt-daemon libvirt-daemon-config-network li
 
 
 📰📰📰 todo: When custom kernel build and test in Yocto for Jetson Nano 
-📦 libvirt  📅 2024-12-03 05:29:48
-  ❔ virt-manager 
-      https://repology.org/project/virt-manager/versions
-      https://formulae.brew.sh/formula/virt-manager#default
-      virt-manager: macOS is required for this software.
-      Error: virt-manager: An unsatisfied requirement failed this build.
-      ➡️ instead, use Cockpit for compatibility and convinience
+❔ virt-manager 
+    네, Virt-Manager(및 virt-* 관련 프로젝트)의 활발한 개발이 거의 중단된 상태로 보이는 것이 사실입니다. 마지막으로 주요 업데이트가 이루어진 시점은 2022년이며, 이후에는 눈에 띄는 새로운 릴리스나 기능 추가가 없습니다.
+
+    상황 분석: Virt-Manager의 상태
+    활동 부족:
+
+    Virt-Manager 프로젝트는 Red Hat에서 시작되었지만, Red Hat이 RHEL 8부터 공식적으로 Cockpit으로 전환하면서 사실상 주요 개발 리소스가 Cockpit에 집중되었습니다.
+    Virt-Manager는 더 이상 Red Hat의 주요 프로젝트로 간주되지 않으며, 커뮤니티 주도로만 유지되고 있습니다.
+    Deprecated 선언:
+
+    RHEL 8 이후 Virt-Manager는 Deprecated(더 이상 권장하지 않음) 처리되었으며, Red Hat은 Cockpit-Machines를 대체 도구로 제안하고 있습니다.
+    Fedora에서도 여전히 사용할 수 있지만, Fedora와 CentOS 사용자는 점차 Cockpit-Machines로 전환하도록 유도받고 있습니다.
+    최신 업데이트 이후 활동 부족:
+
+    2022년 이후 Virt-Manager의 업데이트는 주로 버그 수정 및 소규모 개선에 머물렀으며, 대규모 기능 개발은 사실상 중단된 상태입니다.
 
     https://cockpit-project.org/running.html
 
+    macOS 에서는 사용도 안된다. WSL2 에서도 안 됨.
 
-  # It includes a background daemon (libvirtd) and command-line tools virsh, etc to control it.
 
-
-  https://cockpit-project.org/running.html#ubuntu
-  loadenv /etc/os-release
-  sudo apt install -y --target-release $VERSION_CODENAME-backports cockpit
-  sudo apt remove -y --target-release $VERSION_CODENAME-backports cockpit
-
-    Running Cockpit
-    If you already have Cockpit on your server, point your web browser to: https://ip-address-of-machine:9090
-
+⚓ Running Cockpit ; https://cockpit-project.org/running.html#ubuntu
+  Running Cockpit
+    If you already have Cockpit on your server, point your web browser to: https://localhost:9090
     Use your system user account and password to log in. See the guide for more info.
 
-    After installing Cockpit itself, consider installing additional applications in Cockpit.
+    After installing Cockpit itself, consider installing additional applications in Cockpit
+      https://cockpit-project.org/applications.html
 
-  1️⃣ sudo systemctl status cockpit.socket
-  sudo systemctl enable --now cockpit.socket
+⚓🖇️ Start up ; https://cockpit-project.org/guide/latest/startup.html#startup-boot 📅 2024-12-04 00:17:59
+  Cockpit's 🪱 cockpit-ws (Cockpit Web Service) component is what the browser connects to and it typically starts 🚣 on demand via systemd socket activation.
+  The actual cockpit.service and cockpit-ws process will start on demand when a browser accesses the cockpit.socket, usually on 🪱 port 9090.
+  Once a user logs in then a 🪱 cockpit-bridge process will be started in a Linux user login session.
+    💡 Only systems that you connect to with your browser need to have the cockpit.socket enabled. 
+      For systems that you add through host switcher the bridge is started via SSH on demand.
+  #💡 Process exit
+  # Boot start up
+    sudo systemctl enable cockpit.socket
 
-  ⚓🖇️ Start up ; https://cockpit-project.org/guide/latest/startup.html#startup-boot 📅 2024-12-04 00:17:59
-    Cockpit's 🪱 cockpit-ws (Cockpit Web Service) component is what the browser connects to and it typically starts 🚣 on demand via systemd socket activation.
-    The actual cockpit.service and cockpit-ws process will start on demand when a browser accesses the cockpit.socket, usually on 🪱 port 9090.
-    Once a user logs in then a 🪱 cockpit-bridge process will be started in a Linux user login session.
-      💡 Only systems that you connect to with your browser need to have the cockpit.socket enabled. 
-        For systems that you add through host switcher the bridge is started via SSH on demand.
-    #💡 Process exit
-    # Boot start up
-      sudo systemctl enable cockpit.socket
-
-    ☑️ so "sudo systemctl enable --now cockpit" is Invalid command
-      https://superuser.com/questions/1790212/error-when-enabling-cockpit-project-on-debian-12-bookworm
-  ... 9090 -< localhost:9090
-    https://code.visualstudio.com/docs/editor/port-forwarding
+  ☑️ so "sudo systemctl enable --now cockpit" is Invalid command
+    https://superuser.com/questions/1790212/error-when-enabling-cockpit-project-on-debian-12-bookworm
+... 9090 -< localhost:9090
+  https://code.visualstudio.com/docs/editor/port-forwarding
   VS Code PORTS 탭이 동작하지 않는 이유는 WSL2의 NAT 네트워크와 cockpit.socket의 요청 기반 동작 때문일 가능성이 높습니다.
     >>>>> 설치는 했고, qemu 랑 연동 방법?
 
@@ -14332,17 +14332,15 @@ sudo apt install libvirt-clients libvirt-daemon libvirt-daemon-config-network li
 
 https://github.com/cockpit-project/cockpit-machines
 
-네, Virt-Manager(및 virt-* 관련 프로젝트)의 활발한 개발이 거의 중단된 상태로 보이는 것이 사실입니다. 마지막으로 주요 업데이트가 이루어진 시점은 2022년이며, 이후에는 눈에 띄는 새로운 릴리스나 기능 추가가 없습니다.
 
-상황 분석: Virt-Manager의 상태
-활동 부족:
 
-Virt-Manager 프로젝트는 Red Hat에서 시작되었지만, Red Hat이 RHEL 8부터 공식적으로 Cockpit으로 전환하면서 사실상 주요 개발 리소스가 Cockpit에 집중되었습니다.
-Virt-Manager는 더 이상 Red Hat의 주요 프로젝트로 간주되지 않으며, 커뮤니티 주도로만 유지되고 있습니다.
-Deprecated 선언:
+Set up QEMU for multi-architecture support
 
-RHEL 8 이후 Virt-Manager는 Deprecated(더 이상 권장하지 않음) 처리되었으며, Red Hat은 Cockpit-Machines를 대체 도구로 제안하고 있습니다.
-Fedora에서도 여전히 사용할 수 있지만, Fedora와 CentOS 사용자는 점차 Cockpit-Machines로 전환하도록 유도받고 있습니다.
-최신 업데이트 이후 활동 부족:
+$ docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+Create and use a new Buildx builder instance
 
-2022년 이후 Virt-Manager의 업데이트는 주로 버그 수정 및 소규모 개선에 머물렀으며, 대규모 기능 개발은 사실상 중단된 상태입니다.
+$ docker buildx create --use --name mybuilder
+$ docker buildx inspect mybuilder --bootstrap
+Verify Buildx installation
+
+$ docker buildx ls
