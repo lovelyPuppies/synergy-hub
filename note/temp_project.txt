@@ -14387,7 +14387,11 @@ ilation: one for preparing ARM environment, another for building Qt binaries
 #   # In this file it is 64 bit -> 2024-07-04-raspios-bookworm-arm64.img
 #   FROM arm64v8/debian:bookworm
 
+
+
+
 docker buildx build --platform linux/arm64 --load -f DockerFileRasp -t raspimage .
+
 
 
 docker create --name temp-arm raspimage
@@ -14397,6 +14401,22 @@ docker cp temp-arm:/build/rasp.tar.gz ./rasp.tar.gz
 docker build -t qtcrossbuild .
 위 명령에는 buildx가 사용되지 않았습니다. 이유는 buildx는 QEMU를 사용하며, x86 기반 Ubuntu에서는 QEMU가 필요하지 않기 때문입니다. 빌드는 시간이 조금 걸릴 수 있습니다(16GB RAM에서 테스트했으며, 몇 시간이 걸렸습니다).
 # 빌드가 완료되면 오류 없이 이미지가 생성됩니다. 이 이미지 내부의 /build/project 디렉토리에 Raspberry Pi에서 실행할 준비가 된 HelloQt6 바이너리를 찾을 수 있습니다
+
+
+
+docker cp tmpbuild:/build/qt-pi-binaries.tar.gz ./qt-pi-binaries.tar.gz
+cp qt-pi-binaries.tar.gz ~/nfs/
+scp qt-pi-binaries.tar.gz ulas@192.168.16.20:/home/ulas/
+
+
+
+docker create --name tmpbuild qtcrossbuild
+sleep 1
+docker cp tmpbuild:/build/project/HelloQt6 ./HelloQt6
+
+
+
+
 
 
 WSL 에서 카메라 적용하려면 커스텀 커널 빌드해야 하고 카메라 권한 허용해야 하고, .. 또 ms 가 하라는대로 그거도 해야 함.

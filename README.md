@@ -138,8 +138,8 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
 
    ```bash
    #!/bin/bash
-   brew update && brew upgrade
    sudo apt update && sudo apt upgrade -y
    sudo snap refresh
-   flatpak update
+   flatpak update -y
+   brew update && brew upgrade
    ```
