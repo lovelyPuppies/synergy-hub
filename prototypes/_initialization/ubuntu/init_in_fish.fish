@@ -1142,9 +1142,16 @@ end
 📦 libvirt
     https://repology.org/project/libvirt/versions
     https://formulae.brew.sh/formula/libvirt#default
+
+    ==> Caveats
+    To start libvirt now and restart at login:
+      brew services start libvirt
+    Or, if you don\'t want/need a background service you can just run:
+      /home/linuxbrew/.linuxbrew/opt/libvirt/sbin/libvirtd -f /home/linuxbrew/.linuxbrew/etc/libvirt/libvirtd.conf
 '
 brew install libvirt
 
+brew services start libvirt
 
 
 

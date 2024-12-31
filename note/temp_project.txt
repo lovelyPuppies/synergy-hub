@@ -14273,6 +14273,27 @@ this function is not supported by the connection driver: virConnectListAllNodeDe
   설치날짜 확인... kubuntu 설치할때 자동으로 설치된듯. full optional package 하니까.
 
 
+https://formulae.brew.sh/formula/dnsmasq#default
+>>>>> systemctl --user status homebrew.libvirt.service -l --no-pager
+  Dec 31 11:49:13 iot-04 libvirtd[63559]: Unable to find 'dnsmasq' binary in $PATH: No such file or directory
+  Dec 31 11:49:13 iot-04 libvirtd[63559]: internal error: Unable to get system bus connection: Could not connect: No such file or directory
+  Dec 31 11:49:13 iot-04 libvirtd[63559]: DBus not available, disabling firewalld support in bridge_network_driver: internal error: Unable to get system bus connection: Could not connect: No such file or directory
+  Dec 31 11:49:13 iot-04 libvirtd[63559]: internal error: Unable to get system bus connection: Could not connect: No such file or directory
+  
+📦 dnsmasq  📅 2024-12-03 05:29:48
+  brew install dnsmsq
+  ==> Caveats
+  To start dnsmasq now and restart at startup:
+    sudo brew services start dnsmasq
+
+  brew services start dnsmasq
+    >> Warning: dnsmasq must be run as root to start at system startup!
+
+  .. Do not install in homebrew..
+  because..
+
+
+
 📰📰📰 todo: When custom kernel build and test in Yocto for Jetson Nano 
 📦 libvirt  📅 2024-12-03 05:29:48
     https://repology.org/project/libvirt/versions
