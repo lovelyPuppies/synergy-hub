@@ -14171,7 +14171,7 @@ docker build -t qtcrossbuild .
 위 명령에는 buildx가 사용되지 않았습니다. 이유는 buildx는 QEMU를 사용하며, x86 기반 Ubuntu에서는 QEMU가 필요하지 않기 때문입니다. 빌드는 시간이 조금 걸릴 수 있습니다(16GB RAM에서 테스트했으며, 몇 시간이 걸렸습니다).
 # 빌드가 완료되면 오류 없이 이미지가 생성됩니다. 이 이미지 내부의 /build/project 디렉토리에 Raspberry Pi에서 실행할 준비가 된 HelloQt6 바이너리를 찾을 수 있습니다
 
-
+  
 
 docker cp tmpbuild:/build/qt-pi-binaries.tar.gz ./qt-pi-binaries.tar.gz
 cp qt-pi-binaries.tar.gz /nfs/
@@ -14396,20 +14396,12 @@ $XDG_SESSION_TYPE 공식 문서 찾기
 📅 2024-12-31 21:39:30 .. viu 너무 업데이트도니지오래됨. 2021 녀 10월.
 
   
-➡️ https://github.com/atanunq/viu
-  https://formulae.brew.sh/formula/viu
-  https://github.com/atanunq/viu
-  Simple terminal image viewer written in Rust
-  brew install viu
-
-
-  test>> wget -O puppy.jpg https://i.redd.it/ddlmwqmg52m41.jpg
-    2880*1800
-    https://www.reddit.com/r/wallpaper/comments/fgyfq1/puppy_babies_cute_dogs_wallpaper_1920_x_1080/
-
-    viu puppy.jpg
-    🆗
-
 
 vcsrv settings..  rEADME 에 추가?
+
+
+in Rsapberry pi
+  sudo apt install x11-apps
+  이거 같은 리눅스 운영   체제끼리는 그냥 ssh -XY 로 접속하면  자동으로 DISPLAY 가 설정이 되가지고 뭐 따로 설정 안해줘도 xeyes 같은거 하면 자동으로 내 호스트 환경에 보이네
+
 

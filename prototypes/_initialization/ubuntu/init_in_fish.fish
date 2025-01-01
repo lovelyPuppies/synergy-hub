@@ -382,6 +382,33 @@ brew install procs
 brew install jaq
 
 
+
+
+: '
+📦🚀 jaq (Just Another Query) ; https://github.com/atanunq/viu
+    https://repology.org/project/viu/versions
+    https://formulae.brew.sh/formula/viu#default
+    
+    Simple terminal image viewer written in Rust
+    Developed in Rust.
+
+    🛍️ Usage e.g. in Wezterm, %shell>
+        # download 2400 * 1600 resolution image
+        wget -O ~/Downloads/puppy.jpg https://images.unsplash.com/photo-1507146426996-ef05306b995a?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=berkay-gumustekin-ngqyo2AYYnE-unsplash.jpg&w=2400
+        viu ~/Downloads/puppy.jpg
+        
+'
+brew install viu
+
+
+
+
+
+
+
+
+
+
 : '
 📦 prettier
     https://repology.org/project/prettier/versions
@@ -410,7 +437,7 @@ brew install viu
 
 
 
-echo "▶️  Installing C/++ tools ..."
+echo "▶️ Installing C/++ tools ..."
 : '
 📦 cmake
     https://repology.org/project/cmake/versions
@@ -544,7 +571,7 @@ brew install compiledb
 
 
 
-echo "▶️  Installing packages closedly related with Terminal-based eidtor ..."
+echo "▶️ Installing packages closedly related with Terminal-based eidtor ..."
 : '
 📦 helix (hx)   ; Terminal-based editor:
     🔗 https://docs.helix-editor.com/package-managers.html 📅 2024-11-05 15:18:43
@@ -614,7 +641,7 @@ hx --health cpp
 
 
 
-echo "▶️  Installing tools for version management and dependency resolution"
+echo "▶️ Installing tools for version management and dependency resolution"
 : '
 📦 pipx
     https://repology.org/project/pipx/versions
@@ -644,7 +671,7 @@ fish_add_path $PYENV_ROOT/bin
 set unique_comment '## [pyenv] settings'
 if not grep -Fxq "$unique_comment" "$FISH_CONFIG_PATH"
     echo "
-    $unique_comment"'
+$unique_comment"'
 pyenv init - | source
 ' | prettify_indent_via_pipe | tee -a $FISH_CONFIG_PATH >/dev/null
     echo -e "\n" >>"$FISH_CONFIG_PATH"
@@ -685,7 +712,7 @@ set -U fish_user_paths /home/linuxbrew/.linuxbrew/opt/rustup/bin $fish_user_path
 
 
 
-echo "▶️  Installing Web-related tools ..."
+echo "▶️ Installing Web-related tools ..."
 : '
 📦 mariadb
     https://repology.org/project/mariadb/versions
@@ -731,23 +758,24 @@ systemctl --user start $homebrew_maraidb_service_name
 systemctl --user status $homebrew_maraidb_service_name --no-pager
 
 
-# from "select host, user, password from user;", "invalid" is a placeholder indicating that no password is set for the user. so I set these:
+# from "select host, user, password from user
+", "invalid" is a placeholder indicating that no password is set for the user. so I set these:
 set mariadb_root_password root
 set current_user_dev "$current_user"_dev
 mariadb -u $current_user -D mysql --execute="
-    SELECT User, Host, plugin FROM mysql.user;
+SELECT User, Host, plugin FROM mysql.user
 
-    ALTER USER '$current_user'@'localhost' IDENTIFIED VIA unix_socket;
-    ALTER USER 'root'@'localhost' IDENTIFIED BY '$mariadb_root_password';
+ALTER USER '$current_user'@'localhost' IDENTIFIED VIA unix_socket
+ALTER USER 'root'@'localhost' IDENTIFIED BY '$mariadb_root_password'
 
-    CREATE USER IF NOT EXISTS '$current_user_dev'@'%' IDENTIFIED BY '$current_user_dev';
-    GRANT ALL PRIVILEGES ON *.* TO '$current_user_dev'@'%';
-    
-    CREATE USER IF NOT EXISTS '$current_user_dev'@'localhost' IDENTIFIED BY '$current_user_dev';
-    GRANT ALL PRIVILEGES ON *.* TO '$current_user_dev'@'localhost';
+CREATE USER IF NOT EXISTS '$current_user_dev'@'%' IDENTIFIED BY '$current_user_dev'
+GRANT ALL PRIVILEGES ON *.* TO '$current_user_dev'@'%'
 
-    FLUSH PRIVILEGES;
-    SELECT User, Host, plugin FROM mysql.user;
+CREATE USER IF NOT EXISTS '$current_user_dev'@'localhost' IDENTIFIED BY '$current_user_dev'
+GRANT ALL PRIVILEGES ON *.* TO '$current_user_dev'@'localhost'
+
+FLUSH PRIVILEGES
+SELECT User, Host, plugin FROM mysql.user
 "
 # If you set with 'IDENTIFIED VIA unix_socket',
 #   - The account will use the Unix Socket plugin for authentication.
@@ -776,11 +804,11 @@ brew install mariadb-connector-c
 set unique_comment "## [mariadb-connector-c] add binary dir to path"
 if not grep -Fxq "$unique_comment" "$FISH_CONFIG_PATH"
     echo "
-    $unique_comment
-    fish_add_path /home/linuxbrew/.linuxbrew/opt/mariadb-connector-c/bin
-    set -gx LDFLAGS \$LDFLAGS -L/home/linuxbrew/.linuxbrew/opt/mariadb-connector-c/lib
-    set -gx CPPFLAGS \$CPPFLAGS -I/home/linuxbrew/.linuxbrew/opt/mariadb-connector-c/include
-    " | prettify_indent_via_pipe | tee -a $FISH_CONFIG_PATH >/dev/null
+$unique_comment
+fish_add_path /home/linuxbrew/.linuxbrew/opt/mariadb-connector-c/bin
+set -gx LDFLAGS \$LDFLAGS -L/home/linuxbrew/.linuxbrew/opt/mariadb-connector-c/lib
+set -gx CPPFLAGS \$CPPFLAGS -I/home/linuxbrew/.linuxbrew/opt/mariadb-connector-c/include
+" | prettify_indent_via_pipe | tee -a $FISH_CONFIG_PATH >/dev/null
     echo -e "\n" >>"$FISH_CONFIG_PATH"
 end
 
@@ -815,8 +843,8 @@ set apache_config_file_path "/home/linuxbrew/.linuxbrew/etc/httpd/httpd.conf"
 
 
 # Update the User directive in the httpd.conf file
-# Replace any line starting with "User" to "User <current_user>"
-# Replace any line starting with "Group" to "Group <current_user>"
+# Replace any line starting with "User" to "User <current_user >"
+# Replace any line starting with "Group" to "Group <current_user >"
 sed -i "s/^User .*/User $current_user/" $apache_config_file_path
 sed -i "s/^Group .*/Group $current_user/" $apache_config_file_path
 echo "Updated $apache_config_file_path: User and Group set to $current_user"
@@ -904,7 +932,7 @@ systemctl --user status $homebrew_php_service_name --no-pager
 set php_module_unique_comment "#⚙️ Load PHP module for Apache"
 set php_module "LoadModule php_module /home/linuxbrew/.linuxbrew/opt/php/lib/httpd/modules/libphp.so"
 
-set directoryindex_unique_comment "    #⚙️ DirectoryIndex for PHP"
+set directoryindex_unique_comment " #⚙️ DirectoryIndex for PHP"
 set directoryindex_block "    #⚙️ DirectoryIndex for PHP\n    DirectoryIndex index.php index.html"
 
 # Create a temporary file
@@ -2061,6 +2089,16 @@ else
 
     # Call the function to update the config
     update_fish_interactive_block --unique-comment="$unique_comment" --contents="$alias_function"
+
+    # set default shell for WezTerm
+    echo "
+      local wezterm = require 'wezterm'
+
+      return {
+          default_prog = { 'fish' }
+      }
+    " | prettify_indent_via_pipe | tee $HOME/.wezterm.lua >/dev/null
+
 
 
 

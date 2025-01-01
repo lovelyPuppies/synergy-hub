@@ -14,53 +14,58 @@
 			"path": "prototypes/_lab/tech_stack/hardware_and_os/os/linux.txt",
 			"bookmarks": [
 				{
-					"line": 117,
+					"line": 93,
 					"column": 1,
 					"label": ""
 				},
 				{
-					"line": 426,
+					"line": 401,
 					"column": 22,
 					"label": ""
 				},
 				{
-					"line": 450,
+					"line": 426,
 					"column": 1,
 					"label": ""
 				},
 				{
-					"line": 460,
+					"line": 436,
 					"column": 1,
 					"label": ""
 				},
 				{
-					"line": 470,
+					"line": 446,
 					"column": 1,
 					"label": ""
 				},
 				{
-					"line": 478,
+					"line": 454,
 					"column": 1,
 					"label": ""
 				},
 				{
-					"line": 486,
+					"line": 462,
 					"column": 7,
 					"label": ""
 				},
 				{
-					"line": 497,
+					"line": 473,
 					"column": 12,
 					"label": ""
 				},
 				{
-					"line": 516,
+					"line": 492,
 					"column": 28,
 					"label": ""
 				},
 				{
-					"line": 551,
+					"line": 528,
 					"column": 0,
+					"label": ""
+				},
+				{
+					"line": 544,
+					"column": 8,
 					"label": ""
 				}
 			]
@@ -69,8 +74,8 @@
 			"path": "note/temp_project.txt",
 			"bookmarks": [
 				{
-					"line": 11837,
-					"column": 7,
+					"line": 14178,
+					"column": 22,
 					"label": ""
 				}
 			]

@@ -18,8 +18,8 @@ qt_standard_project_setup()
 qt_add_executable(testQt
     WIN32 MACOSX_BUNDLE
     main.cpp
-    CustomWidget.cpp
-    CustomWidget.h
+    mainwindow.cpp
+    mainwindow.h
 )
 
 qt_add_translations(

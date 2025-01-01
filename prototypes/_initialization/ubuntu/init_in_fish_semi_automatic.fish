@@ -1,4 +1,19 @@
 #!/usr/bin/env fish
+: ' ❔ Kubuntu settings
+Right click the Task bar - Show Panel Configuration
+    - Panel Settings
+        - Visibility: ✔️ Auto hide
+'
+
+
+
+
+
+
+
+
+
+
 : '
 ✅ (how-to) edit for .hwp files in Linux; 📅 2024-12-20 16:46:04
     Hancom docs ; https://www.hancomdocs.com/ko/home
