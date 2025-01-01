@@ -1,0 +1,12 @@
+# Ignore everything by default
+*
+
+# Do not ignore directories (necessary to handle .gitkeep)
+!*/
+
+# Do not ignore 1-level files in the root directory
+!/*
+
+# Do not ignore .gitkeep files in all directories
+!**/.gitkeep
+!/.init/*

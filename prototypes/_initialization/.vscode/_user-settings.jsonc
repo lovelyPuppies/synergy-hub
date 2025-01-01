@@ -82,6 +82,10 @@
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  // 🌀 Title: Docker
+  "[dockerfile]": {
+    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+  },
   // 🌀 Title: Fish shell
   "[fish]": {
     "editor.tabSize": 4,

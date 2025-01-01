@@ -14600,3 +14600,20 @@ cat /etc/os-release | grep VERSION
   VERSION_ID="12"
   VERSION="12 (bookworm)"
   VERSION_CODENAME=bookworm
+
+
+2. Docker 명령어 팁
+컨테이너가 종료된 상태에서 터미널을 열어 접근하기
+컨테이너가 종료되었더라도 터미널로 접근하려면 아래 명령어를 사용할 수 있습니다:
+
+bash
+Copy code
+docker run -it --entrypoint fish <image_name>
+이 명령어는 컨테이너를 즉시 실행하고 종료되지 않도록 유지합니다.
+
+이미 실행된 컨테이너에 접속
+이미 종료된 컨테이너에 접근하려면 다음을 사용합니다:
+
+bash
+Copy code
+docker start -ai <container_id>
