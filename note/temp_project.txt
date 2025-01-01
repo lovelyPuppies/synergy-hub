@@ -9482,7 +9482,7 @@ https://en.wikipedia.org/wiki/Unistd.h
 Cross compile ; https://rannnneey.tistory.com/entry/Raspberry-Pi-Kernel-Build-Local-Cross-Complie
 
 
->>>>>>>>>>.
+>>>>>>>>>>. 
 https://stackoverflow.com/questions/16033748/how-to-find-out-which-linux-driver-is-hogging-my-gpio
   /sys/kernel/debug/gpio is part of the Legacy GPIO Interface and may not be present on newer kernels. A replacement is the gpioinfo tool of libgpio-tools; these tools use the newer character device interface for handling gpios.
     https://www.kernel.org/doc/html/v5.15/driver-api/gpio/legacy.html
@@ -9496,8 +9496,7 @@ gpio_set_value:
   Legacy 인터페이스에서 GPIO 핀 값을 설정합니다.
   최신 커널에서는 gpio_set_value 대신 gpiod_set_value 같은 Character Device 기반 인터페이스를 사용합니다.
 
-⭕ https://github.com/Rust-for-Linux
-
+⭕ https://github.com/Rust- for-Linux
 
 
 ❯ find /usr/src -name kobject.h
@@ -14101,7 +14100,7 @@ sudo apt install libvirt-clients libvirt-daemon libvirt-daemon-config-network li
 https://github.com/cockpit-project/cockpit-machines
 
 
-# Set up QEMU for multi-architecture support
+#⚫ Set up QEMU for multi-architecture support
 docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 : '
 This command sets up QEMU to enable multi-architecture execution on the host system.
@@ -14124,9 +14123,7 @@ This command sets up QEMU to enable multi-architecture execution on the host sys
 '
       
 # Create and use a new Buildx builder instance
-
-
-docker buildx create --use --name mybuilder
+# docker buildx create --use --name mybuilder
 기본 Docker 빌더는 단일 플랫폼(x86 또는 ARM 등)에서만 작동하며, 고급 기능(예: 멀티 플랫폼 빌드, 캐시 관리, 병렬 빌드)을 지원하지 않습니다.
 Buildx를 사용하려면 새로운 빌더 인스턴스를 생성하여 활성화해야 합니다.
 멀티 플랫폼 빌드 지원
@@ -14158,15 +14155,12 @@ ilation: one for preparing ARM environment, another for building Qt binaries
 
 
 
-docker buildx build --platform linux/arm64 --load -f DockerFileRasp -t raspimage .
-
-
-
-docker create --name temp-arm raspimage
-docker cp temp-arm:/build/rasp.tar.gz ./rasp.tar.gz
+# ⚫ docker buildx build --platform linux/arm64 --load -f DockerFileRasp -t raspimage .
+# ⚫ docker create --name temp-arm raspimage
+# ⚫ docker cp temp-arm:/build/rasp.tar.gz ./rasp.tar.gz
 #  You do not need to extract it. Do not touch it.
 
-docker build -t qtcrossbuild .
+# ⚫ docker build -t qtcrossbuild .
 위 명령에는 buildx가 사용되지 않았습니다. 이유는 buildx는 QEMU를 사용하며, x86 기반 Ubuntu에서는 QEMU가 필요하지 않기 때문입니다. 빌드는 시간이 조금 걸릴 수 있습니다(16GB RAM에서 테스트했으며, 몇 시간이 걸렸습니다).
 # 빌드가 완료되면 오류 없이 이미지가 생성됩니다. 이 이미지 내부의 /build/project 디렉토리에 Raspberry Pi에서 실행할 준비가 된 HelloQt6 바이너리를 찾을 수 있습니다
 
@@ -14174,14 +14168,15 @@ docker build -t qtcrossbuild .
 
 docker cp tmpbuild:/build/qt-pi-binaries.tar.gz ./qt-pi-binaries.tar.gz
 cp qt-pi-binaries.tar.gz /nfs/
-ssh r-pi.local "
+ssh r-pi.local '
 qt6_dir=/usr/local/qt6
 
-sudo mkdir -p \$qt6_dir
-sudo chown \$USER:\$USER \$qt6_dir
-sudo chmod 700 \$qt6_dir
-tar -xvf /mnt/host/qt-pi-binaries.tar.gz -C \$qt6_dir
-"
+# sudo mkdir -p $qt6_dir
+# sudo chown $USER:$USER $qt6_dir
+# sudo chmod 700 $qt6_dir
+echo $qt6_dir
+tar -xvf /mnt/host/qt-pi-binaries.tar.gz -C $qt6_dir
+'
 
 
 
@@ -14365,7 +14360,7 @@ $XDG_SESSION_TYPE 공식 문서 찾기
 
       2. **Rendering Path Simplification**:
         - X11: Rendering requests must pass through the X Server twice (to and from the GPU).
-        - Wayland: Rendering requests are sent directly to the GPU, and results are passed to the compositor.
+        - Wayland: Rendering requests are sent directly to the GPU, and results are passed to t he compositor.
 
       3. **Performance**:
         - Wayland's direct communication minimizes latency and optimizes performance.
