@@ -1,35 +1,166 @@
-# Build with a specific version
+# Guide for Using synergy-hub-lfs-backup Docker Image
 
-set docker_hub_user wbfw109v2 (my nickname)
+## Build the Image
 
-# or docker build -t synergy-hub-backup-env . (but if you want to push later, you must ... later..)
+To build the Docker image, use the following command:
 
-docker build -t $docker_hub_user/synergy-hub-backup-env:0.1 .
+```bash
+#!/usr/bin/env fish
+docker build -t $docker_hub_user/synergy-hub-lfs-backup:0.1 .
+```
 
-# Add latest tag
+- 🛍️ e.g.
 
-docker tag $docker_hub_user/synergy-hub-backup-env:0.1 $docker_hub_user/synergy-hub-backup-env:latest
+  ```bash
+  #!/usr/bin/env fish
+  docker build -t wbfw109v2/synergy-hub-lfs-backup:0.1 .
 
-# Push both tags
+  ##### 🌴 OR
+  # Alternatively, you can use a generic name without specifying the Docker Hub username:
+  docker build -t synergy-hub-lfs-backup:0.1 .
+  #❕ But if you plan to push the image to Docker Hub later, you must add your Docker Hub username. This can be done by retagging the image:
+  #   docker tag synergy-hub-lfs-backup:0.1 $docker_hub_user/synergy-hub-lfs-backup:0.1
+  docker tag synergy-hub-lfs-backup:0.1 wbfw109v2/synergy-hub-lfs-backup:0.1
+  ```
 
-docker push $docker_hub_user/synergy-hub-backup-env:0.1
-docker push $docker_hub_user/synergy-hub-backup-env:latest
+## Push the Image to Docker Hub
 
-docker tag synergy-hub-backup-env:0.1 <docker_hub_username>/synergy-hub-backup-env:0.1
-docker push <docker_hub_username>/synergy-hub-backup-env:0.1
+### Prerequisites for Docker Push
 
-### how to use
+Before pushing the Docker image to Docker Hub, ensure the following:
 
-docker run -it --rm wbfw109v2/synergy-hub-backup-env
+1. **Log in to Docker Hub**:
 
-check from pushed docker hub
-docker rmi synergy-hub-backup-env
-docker pull
+   ```bash
+   #!/usr/bin/env fish
+   docker login
+   ```
 
-how to push
+2. **Tag the Image as `latest`**:
 
-docker login
+   If not already tagged, add the `latest` tag to the image:
 
-규악이 꽤 있는 lfs 대신 docker hub 를 public 으로 저장소를 사용하자자 것은 다음 링크로부터 영감을 받음.
+   ```bash
+   #!/usr/bin/env fish
+   docker tag $docker_hub_user/synergy-hub-lfs-backup:0.1 $docker_hub_user/synergy-hub-lfs-backup:latest
+   ```
 
-## https://github.com/PhysicsX/QTonRaspberryPi/tree/main
+   - 🛍️ e.g.
+
+     ```bash
+     #!/usr/bin/env fish
+     docker tag wbfw109v2/synergy-hub-lfs-backup:0.1 wbfw109v2/synergy-hub-lfs-backup:latest
+     ```
+
+### Push to Docker Hub
+
+```bash
+#!/usr/bin/env fish
+docker push $docker_hub_user/synergy-hub-lfs-backup:0.1
+docker push $docker_hub_user/synergy-hub-lfs-backup:latest
+```
+
+- 🛍️ e.g.
+
+  ```bash
+  #!/usr/bin/env fish
+  docker push wbfw109v2/synergy-hub-lfs-backup:0.1
+  docker push wbfw109v2/synergy-hub-lfs-backup:latest
+  ```
+
+## Write Repository Overview on Docker Hub
+
+Set the repository overview with the following content:
+
+>     Refer to https://github.com/lovelyPuppies/synergy-hub/tree/main/prototypes/_initialization/lfs
+
+## Pull the Image from Docker Hub
+
+To pull the image, use the following command:
+
+```bash
+#!/usr/bin/env fish
+docker pull $docker_hub_user/synergy-hub-lfs-backup:latest
+```
+
+- 🛍️ e.g.
+
+  ```bash
+  #!/usr/bin/env fish
+  docker pull wbfw109v2/synergy-hub-lfs-backup:latest
+  ```
+
+## Accessing the Image
+
+To check the files within the container, you can run it interactively:
+
+```bash
+#!/usr/bin/env fish
+docker run -it --rm $docker_hub_user/synergy-hub-lfs-backup
+```
+
+- 🛍️ e.g.
+
+  ```bash
+  #!/usr/bin/env fish
+  docker run -it --rm wbfw109v2/synergy-hub-lfs-backup
+  ```
+
+➡️ **Normal Usage**; create a container and copy the files to the host system.
+
+1. Create a named container:
+
+   ```bash
+   #!/usr/bin/env fish
+   docker create --name synergy-hub-lfs $docker_hub_user/synergy-hub-lfs-backup
+   ```
+
+   - 🛍️ e.g.
+
+     ```bash
+     #!/usr/bin/env fish
+     docker create --name synergy-hub-lfs wbfw109v2/synergy-hub-lfs-backup
+     ```
+
+2. Copy the files from the container:
+
+   ```bash
+   #!/usr/bin/env fish
+   docker cp synergy-hub-lfs:/files/qt/qt6.8.0-arm64-bookworm-dev-env.tar.gz ./
+   docker cp synergy-hub-lfs:/files/qt/qt6.8.0-arm64-bookworm-app-Hello ./
+   ```
+
+3. Clean up the container after copying:
+   ```bash
+   #!/usr/bin/env fish
+   docker rm synergy-hub-lfs
+   ```
+
+## Testing the Image
+
+To test the image:
+
+1. Remove any local copies:
+   ```bash
+   #!/usr/bin/env fish
+   docker rmi synergy-hub-lfs-backup
+   ```
+2. Pull the latest image from Docker Hub:
+
+   ```bash
+   #!/usr/bin/env fish
+   docker pull $docker_hub_user/synergy-hub-lfs-backup:latest
+   ```
+
+   - 🛍️ e.g.
+
+     ```bash
+     #!/usr/bin/env fish
+     docker pull wbfw109v2/synergy-hub-lfs-backup:latest
+     ```
+
+## Output sources
+
+- Build output from [PhysicsX/QTonRaspberryPi](https://github.com/PhysicsX/QTonRaspberryPi/tree/main)
+  - qt6.8.0-arm64-bookworm-app-Hello
+  - qt6.8.0-arm64-bookworm-dev-env.tar.gz

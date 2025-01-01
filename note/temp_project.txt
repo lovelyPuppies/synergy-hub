@@ -14602,7 +14602,7 @@ cat /etc/os-release | grep VERSION
   VERSION_CODENAME=bookworm
 
 
-2. Docker 명령어 팁
+  2. Docker 명령어 팁
 컨테이너가 종료된 상태에서 터미널을 열어 접근하기
 컨테이너가 종료되었더라도 터미널로 접근하려면 아래 명령어를 사용할 수 있습니다:
 
