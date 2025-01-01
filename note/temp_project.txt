@@ -14155,36 +14155,53 @@ ilation: one for preparing ARM environment, another for building Qt binaries
 
 
 
-# ⚫ docker buildx build --platform linux/arm64 --load -f DockerFileRasp -t raspimage .
-# ⚫ docker create --name temp-arm raspimage
-# ⚫ docker cp temp-arm:/build/rasp.tar.gz ./rasp.tar.gz
+⚫ docker buildx build --platform linux/arm64 --load -f DockerFileRasp -t raspimage .
+⚫ docker create --name temp-arm raspimage
+⚫ docker cp temp-arm:/build/rasp.tar.gz ./rasp.tar.gz
 #  You do not need to extract it. Do not touch it.
 
-# ⚫ docker build -t qtcrossbuild .
+# https://youtu.be/5XvQ_fLuBX0?t=932
+⚫ docker build -t qtcrossbuild .
 위 명령에는 buildx가 사용되지 않았습니다. 이유는 buildx는 QEMU를 사용하며, x86 기반 Ubuntu에서는 QEMU가 필요하지 않기 때문입니다. 빌드는 시간이 조금 걸릴 수 있습니다(16GB RAM에서 테스트했으며, 몇 시간이 걸렸습니다).
 # 빌드가 완료되면 오류 없이 이미지가 생성됩니다. 이 이미지 내부의 /build/project 디렉토리에 Raspberry Pi에서 실행할 준비가 된 HelloQt6 바이너리를 찾을 수 있습니다
+docker build --no-cache -t qt crossbuild .
 
-  
-
-docker cp tmpbuild:/build/qt-pi-binaries.tar.gz ./qt-pi-binaries.tar.gz
-cp qt-pi-binaries.tar.gz /nfs/
-ssh r-pi.local '
-qt6_dir=/usr/local/qt6
-
-# sudo mkdir -p $qt6_dir
-# sudo chown $USER:$USER $qt6_dir
-# sudo chmod 700 $qt6_dir
-echo $qt6_dir
-tar -xvf /mnt/host/qt-pi-binaries.tar.gz -C $qt6_dir
-'
+⚫ docker create --name tmpbuild qtcrossbuild
+⚫ docker ps -a
 
 
+🪱 Common Microcontroller Software Interface Standard (CMSIS)
 
-docker create --name tmpbuild qtcrossbuild
 sleep 1
-docker cp tmpbuild:/build/project/HelloQt6 ./HelloQt6     
+docker cp tmpbuild:/build/project/HelloQt6 ./HelloQt6
+
++---------------------+--------------------------------+
+| Application Layer   | 사용자가 작성하는 고수준 로직  |
++---------------------+--------------------------------+
+| OS/RTOS             | 운영체제 또는 실시간 운영체제   |
++---------------------+--------------------------------+
+| BSP                 | 하드웨어 초기화 및 제어 제공   |
++---------------------+--------------------------------+
+| HAL/Drivers         | 하드웨어 추상화 및 드라이버    |
++---------------------+--------------------------------+
+| Hardware            | 실제 보드와 장치              |
++---------------------+--------------------------------+
 
 
+
+STM32
+  ├── Core
+  │   ├── Inc                # 프로젝트 공통 헤더
+  │   ├── Src                # 프로젝트 공통 소스
+  │   └── Startup            # MCU 초기화 코드 (어셈블리)
+  ├── Drivers
+  │   ├── CMSIS              # Cortex-M CMSIS 관련 코드
+  │   └── STM32F4xx_HAL_Driver # HAL 드라이버 (GPIO, UART, I2C 등)
+
+  ├── Debug                  # 빌드 아티팩트 (디버그 빌드)
+  └── Middlewares            # RTOS, FATFS 등 상위 계층 기능 (필요 시)
+
+////////////// https://www.youtube.com/watch?v=xQ8PkT8Utfc
 
 WSL 에서 카메라 적용하려면 커스텀 커널 빌드해야 하고 카메라 권한 허용해야 하고, .. 또 ms 가 하라는대로 그거도 해야 함.
   ## Changelog
@@ -14392,4 +14409,55 @@ in Rsapberry pi
 lsblk
   sudo raspi-config
 Advanced Options > Expand Filesystem
+
+// https://youtu.be/xQ8PkT8Utfc?t=1173
+
+//? 화면 문제인가?..  빌드가 되도 helloqt 가 없고, 압축파일도 깨져있던데.. 
+  Settings - System - Power Management
+    - Suspend Session
+      - After a period of inactivity: ✔️ Do nothing
+    - Display and Brightness
+      - Turn off screen: ✔️ Never
+  
+// pwd: $HOME/repos/QTonRaspberryPi
+// docker image rm qtcrossbuild:latest
+git clone https://github.com/PhysicsX/QTonRaspberryPi
+docker buildx build --platform linux/arm64 --load -f DockerFileRasp -t raspimage . && \
+docker create --name temp-arm raspimage && \
+docker cp temp-arm:/build/rasp.tar.gz ./rasp.tar.gz && \
+docker build -t qtcrossbuild . && \ 
+docker build --no-cache -t qtcrossbuild . && \
+docker create --name tmpbuild qtcrossbuild && \
+docker cp tmpbuild:/build/project/HelloQt6 ./HelloQt6 && \
+file HelloQt6 && \
+docker cp tmpbuild:/build/qt-pi-binaries.tar.gz ./qt-pi-binaries.tar.gz
+
+
+cp ./qt-pi-binaries.tar.gz /nfs/ && \
+ssh r-pi.local '
+qt6_dir=/usr/local/qt6
+echo "Installing in $qt6_dir ..."
+
+sudo mkdir -p $qt6_dir
+sudo chown $USER:$USER $qt6_dir
+sudo chmod 700 $qt6_dir 
+tar -xvf /mnt/host/qt-pi-binaries.tar.gz -C $qt6_dir
+'
+
+
+: '
+docker cp tmpbuild:/build/project/HelloQt6 ./HelloQt6
+  >> Successfully copied 76.8kB to /home/wbfw109v2/repos/QTonRaspberryPi/HelloQt6
+file HelloQt6
+  >> HelloQt6: ELF 64-bit LSB pie executable, ARM aarch64, version 1 (GNU/Linux), dynamically linked, interpreter /lib/ld-linux-aarch64.so.1, BuildID[sha1]=cba75cb32445aa53c148906e033dc3c982beb314, for GNU/Linux 3.7.0, not stripped
+docker cp tmpbuild:/build/qt-pi-binaries.tar.gz ./qt-pi-binaries.tar.gz
+  >> Successfully copied 44.5MB to $HOME/repos/QTonRaspberryPi/qt-pi-binaries.tar.gz
+'
+
+
+
+
+
+## rm -rf QTonRaspberryPi and use "--no-cache" when 빌드가 되도 helloqt 가 없고, 압축파일도 깨져있던데..... (파일 크기가 매우 작음. 바이트 수준. 그것으로 확인 가능) when use "docker build --no-cache -t qtcrossbuild ."
+
 

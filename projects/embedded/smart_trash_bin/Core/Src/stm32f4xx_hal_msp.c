@@ -88,7 +88,7 @@ void HAL_MspInit(void)
 * This function configures the hardware resources used in this example
 * @param hi2c: I2C handle pointer
 * @retval None
-*/
+*/  
 void HAL_I2C_MspInit(I2C_HandleTypeDef* hi2c)
 {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
