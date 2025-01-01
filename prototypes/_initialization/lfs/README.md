@@ -1,5 +1,7 @@
 # Guide for Using synergy-hub-lfs-backup Docker Image
 
+📅 Written at 2025-01-02 03:35:50
+
 - [Guide for Using synergy-hub-lfs-backup Docker Image](#guide-for-using-synergy-hub-lfs-backup-docker-image)
   - [Build the Image](#build-the-image)
   - [Push the Image to Docker Hub](#push-the-image-to-docker-hub)
@@ -138,8 +140,8 @@ docker run -it --rm $docker_hub_user/synergy-hub-lfs-backup
 
    ```bash
    #!/usr/bin/env fish
-   docker cp synergy-hub-lfs:/files/qt/qt6.8.0-arm64-bookworm-dev-env.tar.gz ./
-   docker cp synergy-hub-lfs:/files/qt/qt6.8.0-arm64-bookworm-app-Hello ./
+   docker cp synergy-hub-lfs:/files/qt/qt6.8.0-arm64v8-bookworm-dev-env.tar.gz ./
+   docker cp synergy-hub-lfs:/files/qt/qt6.8.0-arm64v8-bookworm-app-Hello ./
    ```
 
 3. Clean up the container after copying:
@@ -174,5 +176,5 @@ To test the image:
 ## Output sources
 
 - Build output from [PhysicsX/QTonRaspberryPi](https://github.com/PhysicsX/QTonRaspberryPi/tree/main)
-  - qt6.8.0-arm64-bookworm-app-Hello
-  - qt6.8.0-arm64-bookworm-dev-env.tar.gz
+  - qt6.8.0-arm64v8-bookworm-app-Hello
+  - qt6.8.0-arm64v8-bookworm-dev-env.tar.gz
