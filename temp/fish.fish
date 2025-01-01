@@ -16,7 +16,6 @@ trap on_interrupt SIGINT
 set script_dir /home/wbfw109v2/repos/synergy-hub/prototypes/_initialization/ubuntu
 
 
-# #!/usr/bin/env bash
 
 # # 경로 설정
 # set FISH_SCRIPT_PATH "/home/wbfw109v2/repos/synergy-hub/prototypes/_initialization/ubuntu/file_supervisor/inotify-make_fish_utilities_executable.fish"
