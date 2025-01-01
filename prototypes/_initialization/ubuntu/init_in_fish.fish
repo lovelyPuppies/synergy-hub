@@ -384,24 +384,24 @@ brew install jaq
 
 
 
+
 : '
-📦🚀 jaq (Just Another Query) ; https://github.com/atanunq/viu
-    https://repology.org/project/viu/versions
-    https://formulae.brew.sh/formula/viu#default
-    
-    Simple terminal image viewer written in Rust
-    Developed in Rust.
+📦 timg (Terminal image and video viewer)
+    https://repology.org/project/timg/versions
+    https://formulae.brew.sh/formula/timg#default
 
     🛍️ Usage e.g. in Wezterm, %shell>
         # download 2400 * 1600 resolution image
-        wget -O ~/Downloads/puppy.jpg https://images.unsplash.com/photo-1507146426996-ef05306b995a?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=berkay-gumustekin-ngqyo2AYYnE-unsplash.jpg&w=2400
-        viu ~/Downloads/puppy.jpg
-        
+        wget -O ~/Downloads/puppy.jpg "https://images.unsplash.com/photo-1507146426996-ef05306b995a?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=berkay-gumustekin-ngqyo2AYYnE-unsplash.jpg&w=2400"
+        timg ~/Downloads/puppy.jpg
+
+        wget -O ~/Downloads/test_svg.svg "https://www.svgrepo.com/show/765/library.svg"
+        timg ~/Downloads/test_svg.svg
+
+        wget -O ~/Downloads/test_gif.gif "https://upload.wikimedia.org/wikipedia/commons/c/c8/132C_trans.gif"
+        timg ~/Downloads/test_gif.gif
 '
-brew install viu
-
-
-
+brew install timg
 
 
 

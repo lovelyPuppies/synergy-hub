@@ -1,0 +1,31 @@
+list of level 1 subjects
+  - timg
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓⭕ timg ; https://github.com/hzeller/timg/
+  https://timg.sh/
+  Terminal Image and Video Viewer
+  - Written in C++.
+  - 🚣 Supports high-resolution image rendering even in remote environments (ssh) (tested in WezTerm).
+  - 🚣 Supports SVG, gif, jpg, png, ... files.
+  - 🚣 It can be installed by brew and apt, etc.
+
+
+(✍️ timg 🔪 study)
+  🆚 (Comparison); timg, viu, chafa 📅 2025-01-01 15:20:51
+    ➡️ use timg
+    * viu: https://github.com/atanunq/viu
+      - ⚠️ In remote environments (ssh), it does not render high resolution. (in WezTerm)
+        Installed via cloning from source or `cargo install`.
+      - Written in Rust.
+      - Supports Kitty terminal protocol.
+
+    * chafa: https://github.com/hpjansson/chafa
+      - ⚠️ In remote environments (ssh), it does not render high resolution. (in WezTerm)
+      - Written in C.
+      - Supports Kitty terminal protocol.
+      - Supports SVG files.
+----------------------------------------------
+timg 🔪⚓ Installation ; https://github.com/hzeller/timg/?tab=readme-ov-file#installation
+
+

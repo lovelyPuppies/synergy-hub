@@ -14211,7 +14211,6 @@ study 여기 정리 + ppt 정리.
 ❗ cat /proc/sys/fs/binfmt_misc/status
 
 
-
 5951 줄 ~ 시작
 
 onlyoffice 도 정리
@@ -14391,17 +14390,14 @@ $XDG_SESSION_TYPE 공식 문서 찾기
       Wayland eliminates X11's inefficiencies by simplifying the rendering process and leveraging direct communication between applications and GPUs, making it the better choice for modern graphics environments.
 
 
-📰 Rust 기반.. Viu.. 터미널 이미지 뷰어?
-  픽셀 단위의 이미지 품질에 한계가 있습니다. 이유는 다음과 같습니다.
-📅 2024-12-31 21:39:30 .. viu 너무 업데이트도니지오래됨. 2021 녀 10월.
-
-  
-
-vcsrv settings..  rEADME 에 추가?
+uart gpio 다양한 기능을 제공하는 선풍기 제공. 데이터시트 
 
 
 in Rsapberry pi
   sudo apt install x11-apps
   이거 같은 리눅스 운영   체제끼리는 그냥 ssh -XY 로 접속하면  자동으로 DISPLAY 가 설정이 되가지고 뭐 따로 설정 안해줘도 xeyes 같은거 하면 자동으로 내 호스트 환경에 보이네
 
+lsblk
+  sudo raspi-config
+Advanced Options > Expand Filesystem
 
