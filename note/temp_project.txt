@@ -14419,30 +14419,58 @@ Advanced Options > Expand Filesystem
       - After a period of inactivity: ✔️ Do nothing
     - Display and Brightness
       - Turn off screen: ✔️ Never
-  
-// pwd: $HOME/repos/QTonRaspberryPi
-// docker image rm qtcrossbuild:latest
-git clone https://github.com/PhysicsX/QTonRaspberryPi
-docker buildx build --platform linux/arm64 --load -f DockerFileRasp -t raspimage . && \
-docker create --name temp-arm raspimage && \
-docker cp temp-arm:/build/rasp.tar.gz ./rasp.tar.gz && \
-docker build -t qtcrossbuild . && \ 
-docker build --no-cache -t qtcrossbuild . && \
-docker create --name tmpbuild qtcrossbuild && \
-docker cp tmpbuild:/build/project/HelloQt6 ./HelloQt6 && \
-file HelloQt6 && \
-docker cp tmpbuild:/build/qt-pi-binaries.tar.gz ./qt-pi-binaries.tar.gz
 
-cp ./qt-pi-binaries.tar.gz ./HelloQt6 /nfs/ && \
-ssh r-pi.local '
-export qt6_dir=/usr/local/qt6
-echo "Installing in $qt6_dir ..."
+synergy-hub-large-archives
 
-sudo mkdir -p $qt6_dir
-sudo chown $USER:$USER $qt6_dir
-sudo chmod 700 $qt6_dir 
-tar -xvf /mnt/host/qt-pi-binaries.tar.gz -C $qt6_dir
-'
+
+
+🧮  Common
+  // pwd: $HOME/repos/QTonRaspberryPi
+  // docker image rm qtcrossbuild:latest
+  git clone https://github.com/PhysicsX/QTonRaspberryPi
+  🧮 if 64bit (user-space. when install Raspbery Pi OS)
+
+    docker buildx build --platform linux/arm64 --load -f DockerFileRasp -t raspimage . && \
+    docker create --name temp-arm raspimage && \
+    docker cp temp-arm:/build/rasp.tar.gz ./rasp.tar.gz && \
+    docker build -t qtcrossbuild . && \ 
+    docker build --no-cache -t qtcrossbuild . && \
+    docker create --name tmpbuild qtcrossbuild && \
+    docker cp tmpbuild:/build/project/HelloQt6 ./qt6.8.0-arm64-bookworm-app-Hello && \
+    file qt6.8.0-arm64-bookworm-app-Hello && \
+    docker cp tmpbuild:/build/qt-pi-binaries.tar.gz ./qt6.8.0-arm64-bookworm-dev-env.tar.gz
+
+    cp ./qt-pi-binaries.tar.gz ./qt6.8.0-arm64-bookworm-app-Hello /nfs/ && \
+    ssh r-pi.local '
+    export qt6_dir=/usr/local/qt6
+    echo "Installing in $qt6_dir ..."
+
+    sudo mkdir -p $qt6_dir
+    sudo chown $USER:$USER $qt6_dir
+    sudo chmod 700 $qt6_dir 
+    tar -xvf /mnt/host/qt-pi-binaries.tar.gz -C $qt6_dir
+    '
+  🧮 if 32bit (user-space. when install Raspbery Pi OS)
+    docker buildx build --platform linux/arm64 --load -f DockerFileRasp -t raspimage . && \
+    docker create --name temp-arm raspimage && \
+    docker cp temp-arm:/build/rasp.tar.gz ./rasp.tar.gz && \
+    docker build -t qtcrossbuild . && \ 
+    docker build --no-cache -t qtcrossbuild . && \
+    docker create --name tmpbuild qtcrossbuild && \
+    docker cp tmpbuild:/build/project/HelloQt6 ./HelloQt6 && \
+    file HelloQt6 && \
+    docker cp tmpbuild:/build/qt-pi-binaries.tar.gz ./qt-pi-binaries.tar.gz
+
+    cp ./qt-pi-binaries.tar.gz ./HelloQt6 /nfs/ && \
+    ssh r-pi.local '
+    export qt6_dir=/usr/local/qt6
+    echo "Installing in $qt6_dir ..."
+
+    sudo mkdir -p $qt6_dir
+    sudo chown $USER:$USER $qt6_dir
+    sudo chmod 700 $qt6_dir 
+    tar -xvf /mnt/host/qt-pi-binaries.tar.gz -C $qt6_dir
+    '
 
 
 : '
@@ -14564,4 +14592,11 @@ armhf
 
   즉, 사용자 공간을 32비트에서 64비트로 전환하거나, 64비트에서 32비트로 전환하려면 새로운 OS 이미지를 설치해야 합니다.
 
-  
+🧮 사용자 공간 아키텍처 확인
+  dpkg --print-architecture
+
+
+cat /etc/os-release | grep VERSION
+  VERSION_ID="12"
+  VERSION="12 (bookworm)"
+  VERSION_CODENAME=bookworm

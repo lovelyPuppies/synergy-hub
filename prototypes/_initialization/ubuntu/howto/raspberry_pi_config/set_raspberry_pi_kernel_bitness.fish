@@ -1,9 +1,8 @@
 
 #!/usr/bin/env fish
-
 # Written at 📅 2025-01-01 20:06:45
 
-function set_raspberry_pi_os_bit
+function set_raspberry_pi_kernel_bitness
     # Prompt user to select OS bit mode
     echo "Select OS bit mode:"
     echo "1. 32-bit"
@@ -86,4 +85,4 @@ function set_raspberry_pi_os_bit
 end
 
 # Run the function
-set_raspberry_pi_os_bit
+set_raspberry_pi_kernel_bitness
