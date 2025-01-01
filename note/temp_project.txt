@@ -13577,7 +13577,6 @@ im-config -n none
 ⚠️ Use "Virtual keyboard" KCM (Virtual Keyboard KCM(KWin)) to launch fcitx5. This is required to use text-input protocol. If you launch fcitx this way, make sure you do not use "restart" in the tray menu, since the socket passed from KWin can not be reused with the newly restarted fcitx.
 
 
-
 default: 
   cat profile
   [Groups/0]
@@ -14389,9 +14388,7 @@ $XDG_SESSION_TYPE 공식 문서 찾기
 
       Wayland eliminates X11's inefficiencies by simplifying the rendering process and leveraging direct communication between applications and GPUs, making it the better choice for modern graphics environments.
 
-
 uart gpio 다양한 기능을 제공하는 선풍기 제공. 데이터시트 
-
 
 in Rsapberry pi
   sudo apt install x11-apps

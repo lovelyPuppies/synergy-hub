@@ -130,7 +130,7 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
 
 2. Run **[initialization script](prototypes/_initialization/ubuntu/init_in_bash.sh)**:
 
-   📝 Note that this script requires the password to be entered multiple times \(about 4 times\), because **[Homebrew command invalidates the sudo timestamp \(sudo password cache\)](https://brew.sh/2024/07/30/homebrew-security-audit/)**.
+   📝 Note that this script requires the password to be entered multiple times \(about 4 times\), because **[Homebrew command invalidates the sudo timestamp \(sudo password cache\)](https://github.com/Homebrew/brew/issues/17905#issuecomment-2258522878)**.
 
    ```bash
    #!/bin/bash
