@@ -14473,7 +14473,7 @@ FROM arm64v8/debian:bookworm
     '
   🧮 if 32bit (user-space. when install Raspbery Pi OS)
 
-    docker buildx build --platform linux/arm64 --load -f DockerFileRasp -t raspimage . && \
+    docker buildx build --platform linux/arm/v7 --load -f DockerFileRasp -t raspimage . && \
     docker create --name temp-arm raspimage && \
     docker cp temp-arm:/build/rasp.tar.gz ./rasp.tar.gz && \
     docker build -t qtcrossbuild . && \ 
@@ -14493,7 +14493,12 @@ FROM arm64v8/debian:bookworm
     sudo chmod 700 $qt6_dir 
     tar -xvf /mnt/host/qt-pi-binaries.tar.gz -C $qt6_dir
     '
-
+ 1 warning found (use docker --debug to expand):
+ - InvalidBaseImagePlatform: Base image arm32v7/debian:bookworm was pulled with platform "linux/arm/v7", expected "linux/arm64" for current build (line 4)
+WARNING: The requested image's platform (linux/arm64) does not match the detected host platform (linux/amd64/v4) and no specific platform was requested
+0821d28262843d0b2637d774df4b7cdc9f5ef3e8e4496bb6fe97fc73eb0d3967
+Successfully copied 308MB to /home/wbfw109v2/repos/QTonRaspberryPi/rasp.tar.gz
+[+] Building 465.0s (13/19)            
 
 : '
 docker cp tmpbuild:/build/project/HelloQt6 ./HelloQt6
@@ -14639,3 +14644,5 @@ docker run -it --entrypoint fish <image_name>
 bash
 Copy code
 docker start -ai <container_id>
+
+scoop install extras/potplayer
