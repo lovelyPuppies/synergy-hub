@@ -1,5 +1,17 @@
 # Guide for Using synergy-hub-lfs-backup Docker Image
 
+- [Guide for Using synergy-hub-lfs-backup Docker Image](#guide-for-using-synergy-hub-lfs-backup-docker-image)
+  - [Build the Image](#build-the-image)
+  - [Push the Image to Docker Hub](#push-the-image-to-docker-hub)
+    - [Prerequisites for Docker Push](#prerequisites-for-docker-push)
+    - [Push to Docker Hub](#push-to-docker-hub)
+  - [Write Repository Overview on Docker Hub](#write-repository-overview-on-docker-hub)
+  - [1️⃣ Pull the Image from Docker Hub](#1️⃣-pull-the-image-from-docker-hub)
+  - [2️⃣ Accessing the Image](#2️⃣-accessing-the-image)
+    - [➡️ **Normal Usage**; create a container and copy the files to the host system.](#️-normal-usage-create-a-container-and-copy-the-files-to-the-host-system)
+  - [Testing the Image](#testing-the-image)
+  - [Output sources](#output-sources)
+
 ## Build the Image
 
 To build the Docker image, use the following command:
@@ -74,7 +86,7 @@ Set the repository overview with the following content:
 
 >     Refer to https://github.com/lovelyPuppies/synergy-hub/tree/main/prototypes/_initialization/lfs
 
-## Pull the Image from Docker Hub
+## 1️⃣ [Pull the Image from Docker Hub](https://hub.docker.com/r/wbfw109v2/synergy-hub-lfs-backup)
 
 To pull the image, use the following command:
 
@@ -90,7 +102,7 @@ docker pull $docker_hub_user/synergy-hub-lfs-backup:latest
   docker pull wbfw109v2/synergy-hub-lfs-backup:latest
   ```
 
-## Accessing the Image
+## 2️⃣ Accessing the Image
 
 To check the files within the container, you can run it interactively:
 
@@ -106,7 +118,7 @@ docker run -it --rm $docker_hub_user/synergy-hub-lfs-backup
   docker run -it --rm wbfw109v2/synergy-hub-lfs-backup
   ```
 
-➡️ **Normal Usage**; create a container and copy the files to the host system.
+### ➡️ **Normal Usage**; create a container and copy the files to the host system.
 
 1. Create a named container:
 
