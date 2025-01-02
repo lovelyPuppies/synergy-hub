@@ -101,7 +101,7 @@ docker pull $docker_hub_user/synergy-hub-lfs-backup:latest
 
   ```bash
   #!/usr/bin/env fish
-  docker pull wbfw109v2/synergy-hub-lfs-backup:latest
+  docker pull wbfw109v2/synergy-hub-lfs-backup
   ```
 
 ## 2️⃣ Accessing the Image
@@ -175,7 +175,7 @@ To test the image:
 ## Output sources
 
 - Build output from [PhysicsX/QTonRaspberryPi](https://github.com/PhysicsX/QTonRaspberryPi/tree/main)
-  - qt6.8.0-arm64v8-bookworm-dev-env.tar.gz
+  - qt6.8.0-arm64v8-bookworm-dev_env.tar.gz
   - qt6.8.0-arm64v8-bookworm-app-Hello
-  - qt6.8.0-arm32v7-bookworm-dev-env.tar.gz
+  - qt6.8.0-arm32v7-bookworm-dev_env.tar.gz
   - qt6.8.0-arm32v7-bookworm-app-Hello

@@ -35,7 +35,7 @@ How to reproduct
   docker create --name tmpbuild qtcrossbuild && \
   docker cp tmpbuild:/build/project/HelloQt6 ./qt6.8.0-arm32v7-bookworm-app-Hello && \
   file qt6.8.0-arm32v7-bookworm-app-Hello && \
-  docker cp tmpbuild:/build/qt-pi-binaries.tar.gz ./qt6.8.0-arm32v7-bookworm-dev-env.tar.gz
+  docker cp tmpbuild:/build/qt-pi-binaries.tar.gz ./qt6.8.0-arm32v7-bookworm-dev_env.tar.gz
   ```
 
 - output

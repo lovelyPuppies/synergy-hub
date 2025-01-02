@@ -14473,7 +14473,7 @@ FROM arm64v8/debian:bookworm
     docker create --name tmpbuild qtcrossbuild && \
     docker cp tmpbuild:/build/project/HelloQt6 ./qt6.8.0-arm64v8-bookworm-app-Hello && \
     file qt6.8.0-arm64v8-bookworm-app-Hello && \
-    docker cp tmpbuild:/build/qt-pi-binaries.tar.gz ./qt6.8.0-arm64v8-bookworm-dev-env.tar.gz
+    docker cp tmpbuild:/build/qt-pi-binaries.tar.gz ./qt6.8.0-arm64v8-bookworm-dev_env.tar.gz
 
     cp ./qt-pi-binaries.tar.gz ./qt6.8.0-arm64v8-bookworm-app-Hello /nfs/ && \
     ssh r-pi.local '
@@ -14486,7 +14486,7 @@ FROM arm64v8/debian:bookworm
     tar -xvf /mnt/host/qt-pi-binaries.tar.gz -C $qt6_dir
     '
   🧮 if 32bit (user-space. when install Raspbery Pi OS)
-    set qt_dev_env_archive_file_name qt6.8.0-arm32v7-bookworm-dev-env.tar.gz
+    set qt_dev_env_archive_file_name qt6.8.0-arm32v7-bookworm-dev_env.tar.gz
     set qt_app_hello_file_name qt6.8.0-arm32v7-bookworm-app-Hello
 
     docker run --rm --privileged multiarch/qemu-user-static --reset -p yes && \
@@ -14513,7 +14513,7 @@ FROM arm64v8/debian:bookworm
     cp ./$qt_dev_env_archive_file_name ./$qt_app_hello_file_name /nfs/
     ssh r-pi.local '
     export qt6_dir=/usr/local/qt6
-    qt_dev_env_archive_file_name=qt6.8.0-arm32v7-bookworm-dev-env.tar.gz
+    qt_dev_env_archive_file_name=qt6.8.0-arm32v7-bookworm-dev_env.tar.gz
     echo "Installing in $qt6_dir ..."
 
     sudo mkdir -p $qt6_dir && \ 
@@ -14529,6 +14529,20 @@ FROM arm64v8/debian:bookworm
     >> 
       Hello world 4
     # set -gx LD_LIBRARY_PATH "$LD_LIBRARY_PATH":/usr/local/qt6/lib/
+
+
+
+  set qt_platforms_dir $HOME/qt-platforms
+  mkdir -p $qt_platforms_dir
+
+  set qt_platform_dir_name (string replace -- "-dev_env.tar.gz" "" $qt_dev_env_archive_file_name)
+  set qt_platform_dir $qt_platforms/$qt_platform_dir_name
+  mkdir -p $qt_platform_dir
+  tar -xvf ./$qt_dev_env_archive_file_name -C $qt_platform_dir
+
+
+
+qt6.8.0-arm32v7-bookworm
 
 
  1 warning found (use docker --debug to expand):
