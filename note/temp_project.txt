@@ -14486,6 +14486,9 @@ FROM arm64v8/debian:bookworm
     tar -xvf /mnt/host/qt-pi-binaries.tar.gz -C $qt6_dir
     '
   🧮 if 32bit (user-space. when install Raspbery Pi OS)
+    set qt_dev_env_archive_file_name qt6.8.0-arm32v7-bookworm-dev-env.tar.gz
+    set qt_app_hello_file_name qt6.8.0-arm32v7-bookworm-app-Hello
+
     docker run --rm --privileged multiarch/qemu-user-static --reset -p yes && \
     docker buildx inspect --bootstrap | grep linux/arm/v7 && \
     docker buildx build --platform linux/arm/v7 --no-cache --load -f DockerFileRasp -t raspimage . && \
@@ -14493,21 +14496,41 @@ FROM arm64v8/debian:bookworm
     docker cp temp-arm:/build/rasp.tar.gz ./rasp.tar.gz && \
     docker build --no-cache -t qtcrossbuild . && \
     docker create --name tmpbuild qtcrossbuild && \
-    docker cp tmpbuild:/build/project/HelloQt6 ./qt6.8.0-arm32v7-bookworm-app-Hello && \
-    file qt6.8.0-arm32v7-bookworm-app-Hello && \
-    docker cp tmpbuild:/build/qt-pi-binaries.tar.gz ./qt6.8.0-arm32v7-bookworm-dev-env.tar.gz
+    docker cp tmpbuild:/build/project/HelloQt6 ./$qt_app_hello_file_name && \
+    file $qt_app_hello_file_name && \
+    docker cp tmpbuild:/build/qt-pi-binaries.tar.gz ./$qt_dev_env_archive_file_name
+    >>
+      d200efa5f0021a0c46ceb1678cb81141443a7b08027cf47f7e94c312cbfed488
+      Successfully copied 13.3kB to $HOME/repos/QTonRaspberryPi/$qt_app_hello_file_name
+      $qt_app_hello_file_name: ELF 32-bit LSB pie executable, ARM, EABI5 version 1 (GNU/Linux), dynamically linked, interpreter /lib/ld-linux-armhf.so.3, BuildID[sha1]=d948607b3fda22c46458a563390e933807949d75, for GNU/Linux 3.2.0, not stripped
+      Successfully copied 40MB to $HOME/repos/QTonRaspberryPi/$qt_dev_env_archive_file_name
+    ls -la
+    >>
+      .rwxr-xr-x $USER $USER  11 KB Thu Jan  2 20:58:52 2025  $qt_app_hello_file_name
+      .rw-r--r-- $USER $USER  38 MB Thu Jan  2 20:58:50 2025  $qt_dev_env_archive_file_name
 
-    cp ./qt-pi-binaries.tar.gz ./qt6.8.0-arm32v7-bookworm-app-Hello /nfs/
-    sleep 1
+
+    cp ./$qt_dev_env_archive_file_name ./$qt_app_hello_file_name /nfs/
     ssh r-pi.local '
-    export qt6_dir=/usr/local/qt6   
+    export qt6_dir=/usr/local/qt6
+    qt_dev_env_archive_file_name=qt6.8.0-arm32v7-bookworm-dev-env.tar.gz
     echo "Installing in $qt6_dir ..."
 
-    sudo mkdir -p $qt6_dir  
-    sudo chown $USER:$USER $qt6_dir
-    sudo chmod 700 $qt6_dir 
-    tar -xvf /mnt/host/qt-pi-binaries.tar.gz -C $qt6_dir
+    sudo mkdir -p $qt6_dir && \ 
+    sudo chown $USER:$USER $qt6_dir && \
+    sudo chmod 700 $qt6_dir && \ 
+    tar -xvf /mnt/host/$qt_dev_env_archive_file_name -C $qt6_dir
     '
+
+    ssh r-pi.local '
+    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/qt6/lib/
+    /mnt/host/qt6.8.0-arm32v7-bookworm-app-Hello
+    '
+    >> 
+      Hello world 4
+    # set -gx LD_LIBRARY_PATH "$LD_LIBRARY_PATH":/usr/local/qt6/lib/
+
+
  1 warning found (use docker --debug to expand):
  - InvalidBaseImagePlatform: Base image arm32v7/debian:bookworm was pulled with platform "linux/arm/v7", expected "linux/arm64" for current build (line 4)
 WARNING: The requested image's platform (linux/arm64) does not match the detected host platform (linux/amd64/v4) and no specific platform was requested
@@ -14523,6 +14546,31 @@ file HelloQt6
 docker cp tmpbuild:/build/qt-pi-binaries.tar.gz ./qt-pi-binaries.tar.gz
   >> Successfully copied 44.5MB to $HOME/repos/QTonRaspberryPi/qt-pi-binaries.tar.gz
 '
+
+
+set -gx LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/qt6/lib/
+pi@pi19:/mnt/host $ ./qt6.8.0-arm32v7-bookworm-app-Hello
+Hello world 4
+pi@pi19:/mnt/host $ echo $LD_LIBRARY_PATH 
+:/usr/local/qt6/lib/
+
+
+
+
+❓ Fish shell colon.. 
+  exported variable has colon substituted in script ; https://github.com/fish-shell/fish-shell/issues/1374
+
+    Yeah, there's this annoying code "variable_can_be_array" that tries to determine whether colons mean array separators. I don't have any good ideas here.
+
+
+
+
+
+
+
+
+
 
 ldd ./HelloQt6
 
@@ -14662,84 +14710,6 @@ docker start -ai <container_id>
 
 scoop install extras/potplayer
 
-wbfw109v2 in 🌐 iot-04 in QTonRaspberryPi on  main [!] 
-❯ docker buildx build --platform linux/arm/v7 --load -f DockerFileRasp -t raspimage .
-  sleep 1
-  docker create --name temp-arm raspimage
-  sleep 1
-  docker cp temp-arm:/build/rasp.tar.gz ./rasp.tar.gz
-  sleep 1
-  docker build --no-cache -t qtcrossbuild .
-  sleep 1
-  docker create --name tmpbuild qtcrossbuild
-  sleep 1
-  docker cp tmpbuild:/build/project/HelloQt6 ./qt6.8.0-arm32v7-bookworm-app-Hello
-  sleep 1
-  file qt6.8.0-arm32v7-bookworm-app-Hello
-  sleep 1
-  docker cp tmpbuild:/build/qt-pi-binaries.tar.gz ./qt6.8.0-arm32v7-bookworm-dev-env.tar.gz
-[+] Building 13.2s (11/11) FINISHED                                                                                                                                                 docker-container:mybuilder
- => [internal] load build definition from DockerFileRasp                                                                                                                                                  0.0s
- => => transferring dockerfile: 2.56kB                                                                                                                                                                    0.0s
- => [internal] load metadata for docker.io/arm32v7/debian:bookworm                                                                                                                                        1.6s
- => [auth] arm32v7/debian:pull token for registry-1.docker.io                                                                                                                                             0.0s
- => [internal] load .dockerignore                                                                                                                                                                         0.0s
- => => transferring context: 2B                                                                                                                                                                           0.0s
- => [1/5] FROM docker.io/arm32v7/debian:bookworm@sha256:1c7160e2d494e213e98e1bd1a8c76a78b24eb297ccd8a067e91de3cb0e2adde9                                                                                  0.1s
- => => resolve docker.io/arm32v7/debian:bookworm@sha256:1c7160e2d494e213e98e1bd1a8c76a78b24eb297ccd8a067e91de3cb0e2adde9                                                                                  0.1s
- => CACHED [2/5] RUN touch /build.log                                                                                                                                                                     0.0s
- => CACHED [3/5] RUN {     echo "deb http://deb.debian.org/debian bookworm main contrib non-free" > /etc/apt/sources.list &&     echo "deb-src http://deb.debian.org/debian bookworm main contrib non-fr  0.0s
- => CACHED [4/5] WORKDIR /build                                                                                                                                                                           0.0s
- => CACHED [5/5] RUN tar cvfz rasp.tar.gz -C / lib usr/include usr/lib                                                                                                                                    0.0s
- => exporting to docker image format                                                                                                                                                                     11.2s
- => => exporting layers                                                                                                                                                                                   0.0s
- => => exporting manifest sha256:d8874338930772010755ac5d6d30cc205d18e2b560cd63d8d5be7c8a3d752b00                                                                                                         0.0s
- => => exporting config sha256:b4ac750383b50a2dfb8289f91c1104d0cc69aae269d78588aa1d7f5270cda578                                                                                                           0.0s
- => => sending tarball                                                                                                                                                                                   11.1s
- => importing to docker                                                                                                                                                                                   8.4s
- => => loading layer d801be16a882 458.75kB / 44.20MB                                                                                                                                                      8.4s
- => => loading layer d67627954a51 97B / 97B                                                                                                                                                               7.8s
- => => loading layer f3e033f92f9e 445.09MB / 488.99MB                                                                                                                                                     7.7s
- => => loading layer b3e80702f45e 95B / 95B                                                                                                                                                               0.6s
- => => loading layer 9c86620724cd 557.06kB / 305.40MB                                                                                                                                                     0.5s
-WARNING: The requested image's platform (linux/arm/v7) does not match the detected host platform (linux/amd64/v4) and no specific platform was requested
-c162e27efb75ff137adc3da6339bdd80e2cb202e1a134bf130a3715439d2ce4a
-Successfully copied 308MB to /home/wbfw109v2/repos/QTonRaspberryPi/rasp.tar.gz
-[+] Building 2109.4s (20/20) FINISHED                                                                                                                                                           docker:default
- => [internal] load build definition from Dockerfile                                                                                                                                                      0.0s
- => => transferring dockerfile: 5.70kB                                                                                                                                                                    0.0s
- => [internal] load metadata for docker.io/library/debian:bookworm                                                                                                                                        1.6s
- => [auth] library/debian:pull token for registry-1.docker.io                                                                                                                                             0.0s
- => [internal] load .dockerignore                                                                                                                                                                         0.0s
- => => transferring context: 2B                                                                                                                                                                           0.0s
- => CACHED [ 1/14] FROM docker.io/library/debian:bookworm@sha256:b877a1a3fdf02469440f1768cf69c9771338a875b7add5e80c45b756c92ac20a                                                                         0.0s
- => [internal] load build context                                                                                                                                                                         0.1s
- => => transferring context: 4.68kB                                                                                                                                                                       0.0s
- => [ 2/14] RUN {     set -e &&     apt-get update && apt-get install -y     wget     git     build-essential     make     cmake     rsync     sed     libclang-dev     ninja-build     gcc     bison   133.1s
- => [ 3/14] WORKDIR /build                                                                                                                                                                                0.2s 
- => [ 4/14] RUN mkdir sysroot sysroot/usr sysroot/opt                                                                                                                                                     0.4s 
- => [ 5/14] COPY rasp.tar.gz /build/rasp.tar.gz                                                                                                                                                           0.5s 
- => [ 6/14] RUN tar xvfz /build/rasp.tar.gz -C /build/sysroot                                                                                                                                             5.1s 
- => [ 7/14] COPY toolchain.cmake /build/                                                                                                                                                                  0.3s 
- => [ 8/14] RUN {     echo "Building CMake from source" &&     mkdir cmakeBuild && cd cmakeBuild &&     git clone https://github.com/Kitware/CMake.git &&     cd CMake &&     ./bootstrap && make -j$(  381.1s 
- => [ 9/14] RUN {     set -e &&     echo "Fix symbollic link" &&     wget https://raw.githubusercontent.com/riscv/riscv-poky/master/scripts/sysroot-relativelinks.py &&     chmod +x sysroot-relative  1560.1s
- => [10/14] RUN tar -czvf qt-host-binaries.tar.gz -C /build/qt6/host .                                                                                                                                    5.3s
- => [11/14] RUN tar -czvf qt-p      i-binaries.tar.gz -C /build/qt6/pi .                                                                                                                                                  0.8s
- => [12/14] RUN mkdir /build/     project                                                                                                                                                                      0.4s
- => [13/14] COPY project /build/project                                                                                                                                                                   0.2s
- => [14/14] RUN {     cd /build/project &&     /build/qt6/pi/bin/qt-cmake . &&     cmake --build .; } 2>&1 | tee -a /build.log                                                                            0.4s
- => exporting to image                                                                                                                                                                                   19.5s
- => => exporting layers                                                                                                                                                                                  19.4s
- => => writing image sha256:0a60c69215ebf57656333d3127e74f46e44b37559a4f69e4a976365da9995839                                                                                                              0.0s
- => => naming to docker.io/library/qtcrossbuild                                                                                                                                                           0.0s
-dde57a7d9f90ade30f7fc7517f71ddf5808844ceca10c9228575f45e1aa875f5
-Error response from daemon: Could not find the file /build/project/HelloQt6 in container tmpbuild
-qt6.8.0-arm32v7-bookworm-app-Hello: cannot open `qt6.8.0-arm32v7-bookworm-app-Hello' (No such file or directory)
-Successfully copied 2.05kB to /h    ome/wbfw109v2/repos/QTonRaspberryPi/qt6.8.0-arm32v7-bookworm-dev-env.tar.gz
-
-
-docker cp tmpbuild:/build/build.log ./build.log
-cat build.log
 
 
 
@@ -15672,7 +15642,6 @@ echo "Kernel setup and module build complete!"
 
 >> compiledb make
 
-
 https://www.saramin.co.kr/zf_user/jobs/relay/view?isMypage=no&rec_idx=49414507&recommend_ids=eJxNj7ERA0EIA6txDkggiF2I%2B%2B%2FCfv%2FMc%2BGOFgEcCsX4tNdLb06FA%2FMgYOHa1DiTP%2FQbndabZhO0lWmCH1WZumbtlgPppyySi%2FIJW7lQdWH8kUjL3r3ThW0usnQc%2BWv2emR6MvlUJUaxKdTKOR9UX2l8AYYxQJo%3D&view_type=search&searchword=bsp+%EA%B0%9C%EB%B0%9C%EC%9E%90&searchType=search&gz=1&t_ref_scnid=816&t_ref_content=SRI_050_SCH_CVS_RCT_AVA&t_ref=search&inner_source=saramin&inner_medium=pattern&inner_campaign=SRI_050_SCH_CVS_RCT_AVA&inner_term=2&referNonce=6b3d9f8137177908ab91&relayNonce=b5e37e3d8f7c3ac9a654&paid_fl=n&immediately_apply_layer_open=n#seq=0  
 
 
@@ -15756,3 +15725,4 @@ libc6-dev-armhf-cross \
 
 iot_client
 
+❓ LD_LIBRARY_PATH 
