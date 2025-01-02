@@ -43,10 +43,9 @@ arm_boost=1
 otg_mode=1
 
 [cm5]
-dt  overlay=dwc2,dr_mode=host
+dtoverlay=dwc2,dr_mode=host
 
 [all]
 enable_uart=1
 #kernel=u-boot.bin
 arm_64bit=1
-      

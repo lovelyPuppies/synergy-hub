@@ -14757,4 +14757,31 @@ GPIO, Timer, UART 등 MCU 주변 장치의 기본 드라이버.
 STM32의 HAL은 MCU 내부 주변 장치(GPIO, Timer, UART, I2C, SPI등)를 초기화하고 제어하는 기본 드라이버 계층입니다. 여기서 **"MCU 주변 장치"**는 보드 전체가 아니라, MCU 칩 자체에 내장된 하드웨어 기능을 의미합니다.
 
 HAL에서 **"MCU 주변 장치"**란 MCU 칩 내에 포함된 하드웨어 모듈(GPIO, Timer, UART 등)을 의미하며, 보드 전체를 지칭하지 않습니다.
+
+
+
+QTonRaspberryPi on  main [!?] took 3h12m9s 
   
+
+  AioTclient prefix
+
+Qt
+  attribute: pixmap
+
+
+https://github.com/settings/appearance
+  High contrast
+
+mp4 to gif with resize
+<-- https://ezgif.com/video-to-gif --> 
+  540px x AUTO
+  Frame Rate: 10 FPS
+  Optimize for static background (assign more colors to moving parts of the image)
+
+
+
+
+/*
+전략 패턴 (Strategy Pattern): 객체의 행위를 캡슐화하고, 런타임에 다양한 행위를 바꿀 수 있도록 함.
+의존성 주입 (Dependency Injection): 객체의 의존성을 외부에서 주입하여 결합도를 낮추고, 유연성과 테스트 용이성을 높임.
+*/

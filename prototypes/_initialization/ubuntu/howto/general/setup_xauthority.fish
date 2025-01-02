@@ -11,7 +11,7 @@ function setup_xauthority
         It manages graphical logins and sessions.
         
         In this function, SDDM is responsible for launching the Xorg server, which creates the Xauthority file required for graphical authentication.
-        This script locates and copies that file.
+        This script locates and copies that file.       
     '
     # Use pgrep to find the Xorg process and extract the path to the Xauthority file
     #   🛍️ e.g. xauth_path: /run/sddm/xauth_kWfguu
