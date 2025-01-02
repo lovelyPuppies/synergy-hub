@@ -14451,7 +14451,7 @@ FROM arm64v8/debian:bookworm
   git clone https://github.com/PhysicsX/QTonRaspberryPi
   🧮 if 64bit (user-space. when install Raspbery Pi OS)
 
-    docker buildx build --platform linux/arm64 --load -f DockerFileRasp -t raspimage . && \
+    docker buildx build --platform linux/arm64 --no-cache --load -f DockerFileRasp -t raspimage . && \
     docker create --name temp-arm raspimage && \
     docker cp temp-arm:/build/rasp.tar.gz ./rasp.tar.gz && \
     docker build --no-cache -t qtcrossbuild . && \
@@ -14471,7 +14471,14 @@ FROM arm64v8/debian:bookworm
     tar -xvf /mnt/host/qt-pi-binaries.tar.gz -C $qt6_dir
     '
   🧮 if 32bit (user-space. when install Raspbery Pi OS)
-    docker buildx build --platform linux/arm/v7 --load -f DockerFileRasp -t raspimage . && docker create --name temp-arm raspimage && docker cp temp-arm:/build/rasp.tar.gz ./rasp.tar.gz && docker build --no-cache -t qtcrossbuild . && docker create --name tmpbuild qtcrossbuild && docker cp tmpbuild:/build/project/HelloQt6 ./qt6.8.0-arm32v7-bookworm-app-Hello && file qt6.8.0-arm32v7-bookworm-app-Hello && docker cp tmpbuild:/build/qt-pi-binaries.tar.gz ./qt6.8.0-arm32v7-bookworm-dev-env.tar.gz
+    docker buildx build --platform linux/arm/v7 --no-cache --load -f DockerFileRasp -t raspimage . && \
+    docker create --name temp-arm raspimage && \
+    docker cp temp-arm:/build/rasp.tar.gz ./rasp.tar.gz && \
+    docker build --no-cache -t qtcrossbuild . && \
+    docker create --name tmpbuild qtcrossbuild && \
+    docker cp tmpbuild:/build/project/HelloQt6 ./qt6.8.0-arm32v7-bookworm-app-Hello && \
+    file qt6.8.0-arm32v7-bookworm-app-Hello && \
+    docker cp tmpbuild:/build/qt-pi-binaries.tar.gz ./qt6.8.0-arm32v7-bookworm-dev-env.tar.gz
 
     cp ./qt-pi-binaries.tar.gz ./qt6.8.0-arm32v7-bookworm-app-Hello /nfs/
     sleep 1
@@ -15648,3 +15655,67 @@ echo "Kernel setup and module build complete!"
 
 
 https://www.saramin.co.kr/zf_user/jobs/relay/view?isMypage=no&rec_idx=49414507&recommend_ids=eJxNj7ERA0EIA6txDkggiF2I%2B%2B%2FCfv%2FMc%2BGOFgEcCsX4tNdLb06FA%2FMgYOHa1DiTP%2FQbndabZhO0lWmCH1WZumbtlgPppyySi%2FIJW7lQdWH8kUjL3r3ThW0usnQc%2BWv2emR6MvlUJUaxKdTKOR9UX2l8AYYxQJo%3D&view_type=search&searchword=bsp+%EA%B0%9C%EB%B0%9C%EC%9E%90&searchType=search&gz=1&t_ref_scnid=816&t_ref_content=SRI_050_SCH_CVS_RCT_AVA&t_ref=search&inner_source=saramin&inner_medium=pattern&inner_campaign=SRI_050_SCH_CVS_RCT_AVA&inner_term=2&referNonce=6b3d9f8137177908ab91&relayNonce=b5e37e3d8f7c3ac9a654&paid_fl=n&immediately_apply_layer_open=n#seq=0  
+
+
+
+
+
+
+
+
+
+
+?cmake 가 없나?.. 이게 패키지들이 path 가 아니라 절대경로를 참조하는게 있나봄.. 설치하자 무조건..
+  cmake....
+  sudo apt install cmake
+
+
+
+
+Compile qtbase for host
+CMake Warning:
+  No source or binary directory provided.  Both will be assumed to be the
+  same as the current working directory, but note that this warning will
+  become a fatal error in future CMake releases.
+
+
+toolchain.cmake 
+  set(TARGET_ARCHITECTURE aarch64-linux-gnu)
+  to set(TARGET_ARCHITECTURE arm-linux-gnueabihf)
+
+Dockerfile
+    gcc-12-aarch64-linux-gnu \
+    g++-12-aarch64-linux-gnu \
+    to
+
+    gcc-arm-linux-gnueabihf \
+    g++-arm-linux-gnueabihf \
+
+
+    binutils-aarch64-linux-gnu \
+    to
+    binutils-arm-linux-gnueabihf \
+
+
+    libc6-arm64-cross \
+    libc6-dev-arm64-cross \
+    to 
+
+    libc6-armhf-cross \
+    libc6-dev-armhf-cross \
+
+toolchain.cmake
+  # Set the C and C++ compilers
+  set(CMAKE_C_COMPILER /usr/bin/${TARGET_ARCHITECTURE}-gcc-12)
+  set(CMAKE_CXX_COMPILER /usr/bin/${TARGET_ARCHITECTURE}-g++-12)
+
+  to
+
+  set(CMAKE_C_COMPILER /usr/bin/${TARGET_ARCHITECTURE}-gcc)
+  set(CMAKE_CXX_COMPILER /usr/bin/${TARGET_ARCHITECTURE}-g++)
+
+DockerfileRasp
+  libc6-arm64-cross
+  to
+  
+  libc6-armhf-cross
