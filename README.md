@@ -6,6 +6,7 @@
   - [🗂 Directory Structure](#-directory-structure)
   - [📌 Project Shortcuts](#-project-shortcuts)
   - [🔧 Tech Stack](#-tech-stack)
+  - [Issues tracking](#issues-tracking)
   - [🚀 Project Setup Instructions (Ubuntu)](#-project-setup-instructions-ubuntu)
   - [📏 Rule](#-rule)
 
@@ -126,6 +127,10 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
 │&nbsp;&nbsp;&nbsp;&nbsp;└── [edge](prototypes/_lab/tech_stack/web/web_browser/edge.txt)  
 └── web_server  
 &nbsp;&nbsp;&nbsp;&nbsp;└── [nginx](prototypes/_lab/tech_stack/web/web_server/nginx.txt)
+
+## Issues tracking
+
+- [Cross-compiling Qt for a 32-bit Raspberry Pi does not work well](https://github.com/PhysicsX/QTonRaspberryPi/issues/21)
 
 ## 🚀 Project Setup Instructions (Ubuntu)
 
