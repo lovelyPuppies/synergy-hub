@@ -1,0 +1,56 @@
+list of level 1 subjects with 📘 favorite lookup
+  - vcxsrv
+
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓⭕ vcxsrv ; https://vcxsrv.com/
+  Open-Source X Server for Windows
+
+
+(✍️ vcxsrv 🔪 study)
+  ✅ (how-to); set forward graphic to Windows 📅 2025-01-03 05:42:23
+
+    SSH server setting
+      Add these in fish config file:
+        ## (SSH X11 forwarding) Automatically set $DISPLAY for X11 forwarding when connected via SSH
+        # 🚧 Prerequisite: Refer to 🔗 'setup_xauthority.fish' whenever rebooting the system or restarting the display manager
+        # Check if the shell session is initiated over SSH by verifying the presence of SSH_CLIENT
+        if set --query SSH_CLIENT
+          # Extract the IP address of the Tailscale device labeled 'home'
+          set windows_11_client_ip (tailscale status | awk '$2 == "home" {print $1}')
+          # Set and export the DISPLAY variable to enable X11 forwarding to the detected IP
+          set -gx DISPLAY $windows_11_client_ip":0.0"
+        end
+      
+    SSH client settings
+      1. Configure SSH connection in VS Code by running 🧮 %VSCODE> Remote-SSH: Open SSH Configuration File...
+        
+
+        ForwardX11Trusted yes
+        ForwardX11 yes
+
+         🛍️ Example:
+           # from Tailscale
+           Host tailscale-machine
+             HostName <ip>
+             User wbfw109v2
+             ForwardX11Trusted yes
+             ForwardX11 yes
+
+      2. in Windows, run VcXsrv (Xlaunch.exe): 🧮 %shell:pwsh> & "C:\Program Files\VcXsrv\vcxsrv.exe" :0 -multiwindow -ac -clipboard -wgl -nounixkill
+        ❔ Command Explanation:
+          xlaunch.exe
+            Launches the X server program.
+          :0
+            Sets the display number. Typically, the first display is assigned as :0.
+          -multiwindow
+            Configures the X server to operate in multi-window mode, allowing each X11 application to open as a separate Windows window.
+          -ac
+            Stands for "Access Control." Disables access control, allowing all clients to connect freely to the X server.
+          -clipboard
+            Enables clipboard sharing so that text can be copied and pasted between Windows and X11 applications.
+          -wgl
+            Stands for "Windows Graphics Library." Activates native OpenGL support, allowing X11 applications to render graphics using Windows' OpenGL capabilities.
+          -nounixkill
+            Prevents the Unix-style 'Ctrl + Alt + Backspace' combination from terminating the X server. This helps prevent accidental shutdowns in a Windows environment.
+

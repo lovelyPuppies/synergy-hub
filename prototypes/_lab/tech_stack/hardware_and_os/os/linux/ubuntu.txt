@@ -92,7 +92,7 @@ list of level 1 subjects
 
     Notes
       - 📝 Desktop file updates in Ubuntu take a few seconds to reflect. Wait before testing changes.
-      - ✅ (how); To log in using Wayland in Ubuntu: 📅 2024-12-31 20:45:48
+      - ✅ (how-to); log in using Wayland in Ubuntu: 📅 2024-12-31 20:45:48
         1. Check the current session type:
           ```
           echo $XDG_SESSION_TYPE

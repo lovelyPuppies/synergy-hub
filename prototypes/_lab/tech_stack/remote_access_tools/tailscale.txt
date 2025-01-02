@@ -1,8 +1,6 @@
 list of level 1 subjects with 📘 favorite lookup
   - tailscale
   
-----------------------------------------------
-
 
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
 ⚓⭕ tailscale ; https://tailscale.com/

@@ -1541,11 +1541,14 @@ echo "else if the installed computer is client, run 🧮 sudo tailscale up"
   - Patched algorithm to accommodate changes introduced in VSCode version 1.95.2, where the SSH_CONNECTION value was updated
     , and the client IP is no longer 127.0.0.1 when connecting to the SSH server from WSL2.
 '
-set unique_comment "## (ssh x11 forwarding) Automatically set \$DISPLAY for X11 forwarding when connected via SSH"
+
+# refer to 🔗 ✅ (how-to); set forward graphic to Windows
+set unique_comment "## (SSH X11 forwarding) Automatically set \$DISPLAY for X11 forwarding when connected via SSH"
+
 if not grep -Fxq "$unique_comment" "$FISH_CONFIG_PATH"
     echo "
     $unique_comment
-    # 🚧 Prerequisite: refer to 🔗 'setup_xauthority.fish' whenever reboot system or restart display manager
+    # 🚧 Prerequisite: Refer to 🔗 'setup_xauthority.fish' whenever rebooting the system or restarting the display manager
     # Check if the shell session is initiated over SSH by verifying the presence of SSH_CLIENT
     if set --query SSH_CLIENT
         # Extract the IP address of the Tailscale device labeled 'home'
