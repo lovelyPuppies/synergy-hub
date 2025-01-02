@@ -14471,29 +14471,15 @@ FROM arm64v8/debian:bookworm
     tar -xvf /mnt/host/qt-pi-binaries.tar.gz -C $qt6_dir
     '
   🧮 if 32bit (user-space. when install Raspbery Pi OS)
-    docker buildx build --platform linux/arm/v7 --load -f DockerFileRasp -t raspimage .
-    sleep 1
-    docker create --name temp-arm raspimage
-    sleep 1
-    docker cp temp-arm:/build/rasp.tar.gz ./rasp.tar.gz
-    sleep 1
-    docker build --no-cache -t qtcrossbuild .
-    sleep 1
-    docker create --name tmpbuild qtcrossbuild
-    sleep 1
-    docker cp tmpbuild:/build/project/HelloQt6 ./qt6.8.0-arm32v7-bookworm-app-Hello
-    sleep 1
-    file qt6.8.0-arm32v7-bookworm-app-Hello
-    sleep 1
-    docker cp tmpbuild:/build/qt-pi-binaries.tar.gz ./qt6.8.0-arm32v7-bookworm-dev-env.tar.gz
+    docker buildx build --platform linux/arm/v7 --load -f DockerFileRasp -t raspimage . && docker create --name temp-arm raspimage && docker cp temp-arm:/build/rasp.tar.gz ./rasp.tar.gz && docker build --no-cache -t qtcrossbuild . && docker create --name tmpbuild qtcrossbuild && docker cp tmpbuild:/build/project/HelloQt6 ./qt6.8.0-arm32v7-bookworm-app-Hello && file qt6.8.0-arm32v7-bookworm-app-Hello && docker cp tmpbuild:/build/qt-pi-binaries.tar.gz ./qt6.8.0-arm32v7-bookworm-dev-env.tar.gz
 
     cp ./qt-pi-binaries.tar.gz ./qt6.8.0-arm32v7-bookworm-app-Hello /nfs/
     sleep 1
     ssh r-pi.local '
-    export qt6_dir=/usr/local/qt6
+    export qt6_dir=/usr/local/qt6   
     echo "Installing in $qt6_dir ..."
 
-    sudo mkdir -p $qt6_dir
+    sudo mkdir -p $qt6_dir  
     sudo chown $USER:$USER $qt6_dir
     sudo chmod 700 $qt6_dir 
     tar -xvf /mnt/host/qt-pi-binaries.tar.gz -C $qt6_dir
@@ -14730,3 +14716,12 @@ Successfully copied 2.05kB to /home/wbfw109v2/repos/QTonRaspberryPi/qt6.8.0-arm3
 
 docker cp tmpbuild:/build/build.log ./build.log
 cat build.log
+
+❓ 키보드 alt shift 동시키 안먹음.  
+  https://www.mechanical-keyboard.org/key-rollover-test/
+  이건 잘 됨.
+
+
+
+sudo apt install evtest
+sudo evtest
