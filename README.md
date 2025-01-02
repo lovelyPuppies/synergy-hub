@@ -39,10 +39,12 @@
 - [**환경 및 네트워크 초기화 자동화 스크립트 작성**](prototypes/_initialization)
   🏷️ Tag: Fish script, ...
 
+- [synergy-hub **LFS using docker**](prototypes/_initialization/lfs/README.md)
+  🏷️ Tag: Docker, LFS
+
 - [**IoT의 안전한 운영을 위한 Docker 기반 시스템 환경 설 계 및 구현**](https://github.com/wbfw109/safe_iot_architecture) \(External Link\)
 - [**Python 및 IPython 기반 CS 지식 연구 결과를 웹에 시각화하기 위한 라이브러리 개발**](https://github.com/wbfw109/study-core?tab=readme-ov-file#31-python-utilities) \(External Link\)
 - [**Pynecone를 활용한 CS 용어 사전 웹 애플리케이션 개발**](https://github.com/wbfw109/study-core?tab=readme-ov-file#41-glossary-service) \(External Link\)
-- [synergy-hub **lfs using docker**](prototypes/_initialization/lfs/README.md)
 
 ## 🔧 Tech Stack
 
