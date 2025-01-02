@@ -14783,7 +14783,29 @@ mp4 to gif with resize
 /*
 전략 패턴 (Strategy Pattern): 객체의 행위를 캡슐화하고, 런타임에 다양한 행위를 바꿀 수 있도록 함.
 의존성 주입 (Dependency Injection): 객체의 의존성을 외부에서 주입하여 결합도를 낮추고, 유연성과 테스트 용이성을 높임.
-*/
+*/    
 
 TODO: fanProject.tar backup to Onedrive, google, mega...
 
+커널 빌드 과정에서 사용되는 kconfig(커널 구성 도구) 스크립트는 flex를 사용해 스캐너 코드를 생성합니다. 
+
+이 스캐너는 Makefile이나 설정 파일에서 특정 패턴을 인식하고 처리하는 데 사용됩니다.
+
+
+How to :
+  git clone ... raspberrypi kenrel..
+
+
+  in order to kernel make
+  # flex: 입력 데이터를 토큰으로 나누는 역할(예: 숫자, 키워드, 연산자).
+  # bison: flex가 생성한 토큰을 받아 문법에 따라 구문 트리를 만드는 역할.
+  # arm-linux-gnueabihf-gcc: ...
+  sudo apt install -y flex bison \
+    arm-linux-gnueabihf-gcc
+  # get default .config
+    
+  # ...
+  make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- modules
+
+
+arm-linux-gnueabihf-gcc 
