@@ -140,8 +140,7 @@ docker run -it --rm $docker_hub_user/synergy-hub-lfs-backup
 
    ```bash
    #!/usr/bin/env fish
-   docker cp synergy-hub-lfs:/files/qt/qt6.8.0-arm64v8-bookworm-dev-env.tar.gz ./
-   docker cp synergy-hub-lfs:/files/qt/qt6.8.0-arm64v8-bookworm-app-Hello ./
+   docker cp synergy-hub-lfs:/files/ ./
    ```
 
 3. Clean up the container after copying:
@@ -176,5 +175,7 @@ To test the image:
 ## Output sources
 
 - Build output from [PhysicsX/QTonRaspberryPi](https://github.com/PhysicsX/QTonRaspberryPi/tree/main)
-  - qt6.8.0-arm64v8-bookworm-app-Hello
   - qt6.8.0-arm64v8-bookworm-dev-env.tar.gz
+  - qt6.8.0-arm64v8-bookworm-app-Hello
+  - qt6.8.0-arm32v7-bookworm-dev-env.tar.gz
+  - qt6.8.0-arm32v7-bookworm-app-Hello
