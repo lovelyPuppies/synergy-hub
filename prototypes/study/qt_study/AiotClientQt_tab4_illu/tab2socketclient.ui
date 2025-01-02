@@ -52,10 +52,10 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="2,7,1">
      <item>
-      <widget class="QLineEdit" name="PLErecvId"/>
+      <widget class="QLineEdit" name="pLErecvId"/>
      </item>
      <item>
-      <widget class="QLineEdit" name="PLEsendData"/>
+      <widget class="QLineEdit" name="pLEsendData"/>
      </item>
      <item>
       <widget class="QPushButton" name="pPBsendButton">
@@ -71,7 +71,7 @@
  <resources/>
  <connections>
   <connection>
-   <sender>PLEsendData</sender>
+   <sender>pLEsendData</sender>
    <signal>returnPressed()</signal>
    <receiver>pPBsendButton</receiver>
    <slot>click()</slot>
@@ -83,6 +83,22 @@
     <hint type="destinationlabel">
      <x>412</x>
      <y>323</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pPBrecvDataClear</sender>
+   <signal>clicked()</signal>
+   <receiver>pTErecvData</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>349</x>
+     <y>28</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>348</x>
+     <y>101</y>
     </hint>
    </hints>
   </connection>

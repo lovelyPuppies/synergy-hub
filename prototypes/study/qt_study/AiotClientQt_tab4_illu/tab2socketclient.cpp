@@ -7,7 +7,10 @@ Tab2SocketClient::Tab2SocketClient(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->pPBsendButton->setEnabled(false);
+    pKeyboard = new Keyboard();
     pSocketClient = new SocketClient(this);
+    connect(ui->pLErecvId,SIGNAL(selectionChanged()),this, SLOT(keyboardSlot()));
+    connect(ui->pLEsendData,SIGNAL(selectionChanged()),this, SLOT(keyboardSlot()));
     connect(pSocketClient,SIGNAL(sigSocketRecv(QString)), this, SLOT(socketRecvUpdateSlot(QString)));
 }
 
@@ -54,17 +57,20 @@ void Tab2SocketClient::socketRecvUpdateSlot(QString strRecvData)
         if(bOk)
             emit ledWriteSig(ledNo);
     }
-    else if(qList[2].indexOf("SETDIAL") == 0)
+    else if((qList[2].indexOf("LAMP") == 0) || (qList[2].indexOf("GAS") == 0))
     {
-        int dialNo = qList[3].toInt();
-        emit setDialValueSig(dialNo);
+         emit tab3RecvDataSig(strRecvData);
+    }
+    else if(qList[2].indexOf("SENSOR") == 0)
+    {
+         emit tab4RecvDataSig(strRecvData);
     }
 }
 
 void Tab2SocketClient::on_pPBsendButton_clicked()
 {
-    QString strRecvId = ui->PLErecvId->text();
-    QString strSendData = ui->PLEsendData->text();
+    QString strRecvId = ui->pLErecvId->text();
+    QString strSendData = ui->pLEsendData->text();
     if(!strSendData.isEmpty())
     {
         if(strRecvId.isEmpty())
@@ -72,12 +78,18 @@ void Tab2SocketClient::on_pPBsendButton_clicked()
         else
             strSendData = "["+strRecvId+"]"+strSendData;
         pSocketClient->slotSocketSendData(strSendData);
-        ui->PLEsendData->clear();
+        ui->pLEsendData->clear();
     }
 }
 
-void Tab2SocketClient::slotSocketSendDataDial(int dialValue)
+void Tab2SocketClient::keyboardSlot()
 {
-    QString strValue = "[KSH_PI]SETDIAL@"+QString::number(dialValue);
-    pSocketClient->slotSocketSendData(strValue);
+    QLineEdit *pQLineEdit = (QLineEdit *)sender();
+    pKeyboard->setLineEdit(pQLineEdit);
+    pKeyboard->show();
+}
+
+SocketClient * Tab2SocketClient::getpSocketClient()
+{
+    return pSocketClient;
 }

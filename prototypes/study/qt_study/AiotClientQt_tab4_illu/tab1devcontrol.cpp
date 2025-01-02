@@ -64,7 +64,6 @@ void Tab1DevControl::setValueDialSlot()
     else
         dialValue++;
     ui->pDialLed->setValue(dialValue);
-    emit timeoutDialSignal(dialValue);
 }
 
 void Tab1DevControl::on_pCBtimerValue_currentTextChanged(const QString &arg1)
@@ -95,7 +94,7 @@ void Tab1DevControl::keyCheckBoxSlot(int key)
            else
                pQCheckBoxArray[i]->setChecked(true);
        }
-   }
+   }   
 }
 
 void Tab1DevControl::keyCheckBoxKeyboardSlot(int key)
@@ -108,9 +107,4 @@ void Tab1DevControl::keyCheckBoxKeyboardSlot(int key)
 KeyLed * Tab1DevControl::getpKeyLed()
 {
     return pKeyLed;
-}
-
-QDial * Tab1DevControl::getpQDial()
-{
-    return ui->pDialLed;
 }

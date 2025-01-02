@@ -5,7 +5,6 @@
 #include <QTimer>
 #include <QDebug>
 #include <QButtonGroup>
-#include <QDial>
 #include "keyled.h"
 namespace Ui {
 class Tab1DevControl;
@@ -19,10 +18,6 @@ public:
     explicit Tab1DevControl(QWidget *parent = nullptr);
     ~Tab1DevControl();
     KeyLed * getpKeyLed();
-    QDial * getpQDial();
-
-signals:
-    void timeoutDialSignal(int);
 
 private slots:
     void on_pPBQuit_clicked();
