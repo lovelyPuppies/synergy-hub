@@ -14531,17 +14531,20 @@ FROM arm64v8/debian:bookworm
     # set -gx LD_LIBRARY_PATH "$LD_LIBRARY_PATH":/usr/local/qt6/lib/
 
 
+    📅 2025-01-03 06:30:30
+      set qt_platforms_dir $HOME/qt-platforms
+      mkdir -p $qt_platforms_dir
 
-  set qt_platforms_dir $HOME/qt-platforms
-  mkdir -p $qt_platforms_dir
+      set qt_platform_dir_name (string replace -- "-dev_env.tar.gz" "" $qt_dev_env_archive_file_name)
+      set qt_platform_dir $qt_platforms_dir/$qt_platform_dir_name
+      mkdir -p $qt_platform_dir
+      tar -xvf ./$qt_dev_env_archive_file_name -C $qt_platform_dir
+      
+      echo $qt_platform_dir
+        >> $HOME/qt-platforms/qt6.8.0-arm32v7-bookworm
 
-  set qt_platform_dir_name (string replace -- "-dev_env.tar.gz" "" $qt_dev_env_archive_file_name)
-  set qt_platform_dir $qt_platforms/$qt_platform_dir_name
-  mkdir -p $qt_platform_dir
-  tar -xvf ./$qt_dev_env_archive_file_name -C $qt_platform_dir
-
-
-
+➡️➡️➡️➡️
+  >CMake: Select Configure Preset
 qt6.8.0-arm32v7-bookworm
 
 
@@ -15725,7 +15728,7 @@ DockerfileRasp
 
 
 
-
+📅 2025-01-03 07:18:21
 #### For 32bit cross compile c/c++ programs? 
 # package set!!! for develeopment
 
@@ -15740,3 +15743,4 @@ libc6-dev-armhf-cross \
 iot_client
 
 ❓ LD_LIBRARY_PATH 
+

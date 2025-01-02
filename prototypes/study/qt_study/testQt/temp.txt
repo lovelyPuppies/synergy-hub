@@ -1,0 +1,54 @@
+CMakePresets.json 을 구성하지 않았을 때
+
+>CMake: Edit User-Local CMake Kits
+
+[
+  {
+    "name": "Qt-6.8.0-clang_64",
+    "environmentVariables": {
+      "VSCODE_QT_FOLDER": "/home/wbfw109v2/Qt/6.8.0/gcc_64",
+      "PATH": "/home/wbfw109v2/Qt/6.8.0/gcc_64/bin:${env:PATH}:/home/linuxbrew/.linuxbrew/bin"
+    },
+    "compilers": {
+      "C": "/home/linuxbrew/.linuxbrew/bin/clang",
+      "CXX": "/home/linuxbrew/.linuxbrew/bin/clang++"
+    },
+    "isTrusted": true,
+    "preferredGenerator": {
+      "name": "Ninja Multi-Config"
+    },
+    "toolchainFile": "/home/wbfw109v2/Qt/6.8.0/gcc_64/lib/cmake/Qt6/qt.toolchain.cmake"
+  },
+  {
+    "name": "GCC 14.2.0 x86_64-linux-gnu",
+    "compilers": {
+      "C": "/usr/bin/gcc",
+      "CXX": "/usr/bin/g++"
+    },
+    "isTrusted": true
+  },
+  {
+    "name": "Qt-6.8.0-gcc_64",
+    "environmentVariables": {
+      "VSCODE_QT_FOLDER": "/home/wbfw109v2/Qt/6.8.0/gcc_64",
+      "PATH": "/home/wbfw109v2/Qt/6.8.0/gcc_64:/home/wbfw109v2/Qt/6.8.0/gcc_64/bin:${env:PATH}:/home/wbfw109v2/Qt/Tools/Ninja"
+    },
+    "isTrusted": true,
+    "preferredGenerator": {
+      "name": "Ninja Multi-Config"
+    },
+    "toolchainFile": "/home/wbfw109v2/Qt/6.8.0/gcc_64/lib/cmake/Qt6/qt.toolchain.cmake"
+  }
+]
+
+
+
+>CMake: Select a Kit
+
+
+
+가능함.
+근데 CMakePresets 을 만들면 이 기능이 비활성화된다..
+
+
+이는 CMakePresets.json이 CMake Kits를 대체하기 때문입니다.
