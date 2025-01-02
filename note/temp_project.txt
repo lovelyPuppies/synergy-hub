@@ -14700,8 +14700,8 @@ Successfully copied 308MB to /home/wbfw109v2/repos/QTonRaspberryPi/rasp.tar.gz
  => [ 8/14] RUN {     echo "Building CMake from source" &&     mkdir cmakeBuild && cd cmakeBuild &&     git clone https://github.com/Kitware/CMake.git &&     cd CMake &&     ./bootstrap && make -j$(  381.1s 
  => [ 9/14] RUN {     set -e &&     echo "Fix symbollic link" &&     wget https://raw.githubusercontent.com/riscv/riscv-poky/master/scripts/sysroot-relativelinks.py &&     chmod +x sysroot-relative  1560.1s
  => [10/14] RUN tar -czvf qt-host-binaries.tar.gz -C /build/qt6/host .                                                                                                                                    5.3s
- => [11/14] RUN tar -czvf qt-pi-binaries.tar.gz -C /build/qt6/pi .                                                                                                                                        0.8s
- => [12/14] RUN mkdir /build/project                                                                                                                                                                      0.4s
+ => [11/14] RUN tar -czvf qt-p      i-binaries.tar.gz -C /build/qt6/pi .                                                                                                                                                  0.8s
+ => [12/14] RUN mkdir /build/     project                                                                                                                                                                      0.4s
  => [13/14] COPY project /build/project                                                                                                                                                                   0.2s
  => [14/14] RUN {     cd /build/project &&     /build/qt6/pi/bin/qt-cmake . &&     cmake --build .; } 2>&1 | tee -a /build.log                                                                            0.4s
  => exporting to image                                                                                                                                                                                   19.5s
@@ -14711,17 +14711,50 @@ Successfully copied 308MB to /home/wbfw109v2/repos/QTonRaspberryPi/rasp.tar.gz
 dde57a7d9f90ade30f7fc7517f71ddf5808844ceca10c9228575f45e1aa875f5
 Error response from daemon: Could not find the file /build/project/HelloQt6 in container tmpbuild
 qt6.8.0-arm32v7-bookworm-app-Hello: cannot open `qt6.8.0-arm32v7-bookworm-app-Hello' (No such file or directory)
-Successfully copied 2.05kB to /home/wbfw109v2/repos/QTonRaspberryPi/qt6.8.0-arm32v7-bookworm-dev-env.tar.gz
+Successfully copied 2.05kB to /h    ome/wbfw109v2/repos/QTonRaspberryPi/qt6.8.0-arm32v7-bookworm-dev-env.tar.gz
 
 
 docker cp tmpbuild:/build/build.log ./build.log
 cat build.log
 
-❓ 키보드 alt shift 동시키 안먹음.  
-  https://www.mechanical-keyboard.org/key-rollover-test/
-  이건 잘 됨.
 
 
 
-sudo apt install evtest
-sudo evtest
+이렇게 하니까 명확히 이해되네. 사용자가 만든 외부 모듈이라고 보니까. peripheral 이란 이름은 하드웨어 레지스터 이름같아서 명확하지 않아보여서 부적절하고. HAL 이 아니라 HAL 로 하기에도 부적절하고.
+근데 그러면 실제로 임베디드 시니어 개발자들은 저 외부 모듈을 어떻게 구조화시켜?
+그냥 modules 이라고 하니까 어색한데
+
+
+peripherals:
+  외부 장치를 뜻하지만, MCU의 Peripheral 레지스터와 혼동될 가능성이 있음.
+  MCU 내부 레지스터 및 기능과의 혼동을 피하기 위해
+
+  맞습니다! peripheral이라는 용어는 임베디드 시스템 전반에서, 특히 **MCU 내부의 기능(GPIO, UART, SPI 등)**과 혼동될 가능성이 매우 높기 때문에, AVR뿐만 아니라 라즈베리파이와 같은 ARM 기반 플랫폼에서도 사용하는 것을 피하는 것이 합리적입니다.
+
+in Wiktionary
+
+https://en.wiktionary.org/wiki/device
+Noun
+> device (plural devices)
+(computer hardware) A peripheral device; an item of hardware.
+
+https://en.wiktionary.org/wiki/peripheral_device#English
+Noun
+> peripheral device (plural peripheral devices)
+  (computer hardware) An electronic device that is outside the computer's system unit (external to the computer's enclosing case), but used by the computer to which it is connected, such as a printer or a scanner.
+
+
+
+
+CMSIS (Core/Drivers/CMSIS):
+
+MCU와 CPU 코어 레벨 관련 코드.
+예: 인터럽트 핸들러, 레지스터 접근.
+HAL (Drivers/STM32F4xx_HAL_Driver):
+
+GPIO, Timer, UART 등 MCU 주변 장치의 기본 드라이버.
+예: HAL_GPIO_Init(), HAL_UART_Transmit().
+STM32의 HAL은 MCU 내부 주변 장치(GPIO, Timer, UART, I2C, SPI등)를 초기화하고 제어하는 기본 드라이버 계층입니다. 여기서 **"MCU 주변 장치"**는 보드 전체가 아니라, MCU 칩 자체에 내장된 하드웨어 기능을 의미합니다.
+
+HAL에서 **"MCU 주변 장치"**란 MCU 칩 내에 포함된 하드웨어 모듈(GPIO, Timer, UART 등)을 의미하며, 보드 전체를 지칭하지 않습니다.
+

@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Tab1DevControl</class>
+ <widget class="QWidget" name="Tab1DevControl">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>634</width>
+    <height>429</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout" stretch="1,4,1,4">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0,0">
+     <item>
+      <widget class="QPushButton" name="pPBtimerStart">
+       <property name="text">
+        <string>TimerStart</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="pCBtimerValue">
+       <item>
+        <property name="text">
+         <string>50</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>100</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>200</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>500</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>1000</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2000</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pPBQuit">
+       <property name="text">
+        <string>Quit</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QDial" name="pDialLed">
+       <property name="maximum">
+        <number>255</number>
+       </property>
+       <property name="tracking">
+        <bool>true</bool>
+       </property>
+       <property name="wrapping">
+        <bool>true</bool>
+       </property>
+       <property name="notchesVisible">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLCDNumber" name="pLcdNumberLed">
+       <property name="digitCount">
+        <number>2</number>
+       </property>
+       <property name="mode">
+        <enum>QLCDNumber::Hex</enum>
+       </property>
+       <property name="segmentStyle">
+        <enum>QLCDNumber::Filled</enum>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QProgressBar" name="pProgressBarLed">
+       <property name="maximum">
+        <number>255</number>
+       </property>
+       <property name="value">
+        <number>0</number>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <item>
+      <layout class="QGridLayout" name="pGridLayoutKey">
+       <item row="1" column="1">
+        <widget class="QCheckBox" name="pCBKey3">
+         <property name="text">
+          <string>&amp;3</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QCheckBox" name="pCBKey2">
+         <property name="text">
+          <string>&amp;2</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QCheckBox" name="pCBKey4">
+         <property name="text">
+          <string>&amp;4</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QCheckBox" name="pCBKey1">
+         <property name="text">
+          <string>&amp;1</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QCheckBox" name="pCBKey5">
+         <property name="text">
+          <string>&amp;5</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QCheckBox" name="pCBKey6">
+         <property name="text">
+          <string>&amp;6</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QCheckBox" name="pCBKey7">
+         <property name="text">
+          <string>&amp;7</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QCheckBox" name="pCBKey8">
+         <property name="text">
+          <string>&amp;8</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QLCDNumber" name="pLcdNumberKey">
+       <property name="digitCount">
+        <number>2</number>
+       </property>
+       <property name="mode">
+        <enum>QLCDNumber::Hex</enum>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>pDialLed</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>pLcdNumberLed</receiver>
+   <slot>display(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>157</x>
+     <y>192</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>458</x>
+     <y>189</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pDialLed</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>pProgressBarLed</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>225</x>
+     <y>259</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>285</x>
+     <y>411</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
