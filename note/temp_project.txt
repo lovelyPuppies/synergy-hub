@@ -15738,3 +15738,21 @@ DockerfileRasp
   to
   
   libc6-armhf-cross
+
+
+
+
+
+#### For 32bit cross compile c/c++ programs? 
+# package set!!! for develeopment
+
+gcc-arm-linux-gnueabihf \
+g++-arm-linux-gnueabihf \
+
+binutils-arm-linux-gnueabihf \
+libc6-armhf-cross \
+libc6-dev-armhf-cross \
+
+
+iot_client
+
