@@ -317,7 +317,7 @@ stateDiagram-v2
          fnd->value = value;
      }
      ```
-  
+
 4. **FSM Design Challenges**
 
    ➡️ Explore alternatives to simplify FSM design further while maintaining functionality.
