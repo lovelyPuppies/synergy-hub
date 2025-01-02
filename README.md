@@ -6,7 +6,7 @@
   - [🗂 Directory Structure](#-directory-structure)
   - [📌 Project Shortcuts](#-project-shortcuts)
   - [🔧 Tech Stack](#-tech-stack)
-  - [Issues tracking](#issues-tracking)
+  - [❓ Issues tracking](#-issues-tracking)
   - [🚀 Project Setup Instructions (Ubuntu)](#-project-setup-instructions-ubuntu)
   - [📏 Rule](#-rule)
 
@@ -25,14 +25,19 @@
 
   🏷️ Tag: ATmega128, AVR, Peripherals (UART, I2C, PWM, Timer), Design Pattern (MVP), Finite State Machine
 
-- [**Raspberry Pi 4 B 기반 커널 모듈 및 디바이스 드라이버 구현 (LED 제어)**](prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer)
+- [**Raspberry Pi 4 B 기반 커널 모듈 및 디바이스 드라이버 구현 (LED 제어)**](prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/README.md)
+  🏷️ Tag: ...
+
 - [**Jetson Nano와 Edge AI를 활용한 실시간 수신호 인식 자율주행 RC카 개발 프로젝트**](https://github.com/opmaksim/Signal-Project) (External Link)
 
-  🏷️ Tag: Edge AI, On-Device
+  🏷️ Tag: Edge AI, On-Device, Yolo v11, JetSon Nano, ...
 
 - **STM32 Nucleo F411RE 기반 디지털 시계 및 알람 시스템 구현**: TODO
 - [**Python 및 MediaPipe 기반 카메라 필터 애플리케이션 개발**](prototypes/study/python_study/camera_filter_app)
+  🏷️ Tag: OpenCV, MediaPipe, ...
+
 - [**환경 및 네트워크 초기화 자동화 스크립트 작성**](prototypes/_initialization)
+  🏷️ Tag: Fish script, ...
 
 - [**IoT의 안전한 운영을 위한 Docker 기반 시스템 환경 설 계 및 구현**](https://github.com/wbfw109/safe_iot_architecture) \(External Link\)
 - [**Python 및 IPython 기반 CS 지식 연구 결과를 웹에 시각화하기 위한 라이브러리 개발**](https://github.com/wbfw109/study-core?tab=readme-ov-file#31-python-utilities) \(External Link\)
@@ -128,7 +133,9 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
 └── web_server  
 &nbsp;&nbsp;&nbsp;&nbsp;└── [nginx](prototypes/_lab/tech_stack/web/web_server/nginx.txt)
 
-## Issues tracking
+## ❓ Issues tracking
+
+- conan 🔪 [\[package\] pulseaudio/14.2 : I'm using clang 18 but error; Compiler does not support -std=gnu11](https://github.com/conan-io/conan-center-index/issues/25075)
 
 - [Cross-compiling Qt for a 32-bit Raspberry Pi does not work well](https://github.com/PhysicsX/QTonRaspberryPi/issues/21)
 
