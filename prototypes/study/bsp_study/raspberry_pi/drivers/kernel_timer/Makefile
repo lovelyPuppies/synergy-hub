@@ -43,7 +43,8 @@ build: $(APP_NAME).out
 
 # Deploy built artifacts
 deploy:
-	cp $(MODULE_NAME).ko /nfs/drivers  # Copy the kernel module
+	mkdir -p /nfs/drivers
+	cp $(MODULE_NAME).ko /nfs/drivers/  						# Copy the kernel module
 	cp $(APP_NAME).out /nfs/drivers/$(APP_NAME)  							# Copy the app without extension
 
 # Build the application

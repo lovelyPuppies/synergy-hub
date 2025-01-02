@@ -15670,6 +15670,8 @@ make -j (nproc) ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- modules
 echo "Kernel setup and module build complete!"
 
 
+>> compiledb make
+
 
 https://www.saramin.co.kr/zf_user/jobs/relay/view?isMypage=no&rec_idx=49414507&recommend_ids=eJxNj7ERA0EIA6txDkggiF2I%2B%2B%2FCfv%2FMc%2BGOFgEcCsX4tNdLb06FA%2FMgYOHa1DiTP%2FQbndabZhO0lWmCH1WZumbtlgPppyySi%2FIJW7lQdWH8kUjL3r3ThW0usnQc%2BWv2emR6MvlUJUaxKdTKOR9UX2l8AYYxQJo%3D&view_type=search&searchword=bsp+%EA%B0%9C%EB%B0%9C%EC%9E%90&searchType=search&gz=1&t_ref_scnid=816&t_ref_content=SRI_050_SCH_CVS_RCT_AVA&t_ref=search&inner_source=saramin&inner_medium=pattern&inner_campaign=SRI_050_SCH_CVS_RCT_AVA&inner_term=2&referNonce=6b3d9f8137177908ab91&relayNonce=b5e37e3d8f7c3ac9a654&paid_fl=n&immediately_apply_layer_open=n#seq=0  
 
