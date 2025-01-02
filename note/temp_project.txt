@@ -14445,11 +14445,26 @@ end
 
 FROM arm64v8/debian:bookworm
 
+📝 
+  docker prune 명령은 Docker 데몬의 상태를 초기화하거나 불필요한 데이터를 삭제하기 때문에, 이전에 설정했던 QEMU의 멀티아키텍처 지원 설정이 사라질 수 있습니다.
+
+  docker run --rm --privileged multiarch/qemu-user-static --reset -p yes 명령은 QEMU를 Docker 데몬에 임시로 등록하는 방식으로 동작합니다. 그러나 docker system prune 또는 docker builder prune 같은 명령을 실행하면, 다음과 같은 이유로 설정이 초기화됩니다:
+
+  QEMU 바이너리가 삭제됨:
+
+  QEMU 설정은 Docker 내부의 binfmt 등록으로 이루어집니다. docker prune 시 관련 컨테이너와 설정이 제거됩니다.
+  빌더 재설정:
+
+  docker buildx 빌더가 다시 초기화되면서 QEMU를 사용하는 플랫폼 지원이 해제될 수 있습니다.
+
 🧮  Common
   // pwd: $HOME/repos/QTonRaspberryPi
   // docker image rm qtcrossbuild:latest
   git clone https://github.com/PhysicsX/QTonRaspberryPi
   🧮 if 64bit (user-space. when install Raspbery Pi OS)
+
+    docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+    docker buildx inspect --bootstrap | grep linux/arm64
 
     docker buildx build --platform linux/arm64 --no-cache --load -f DockerFileRasp -t raspimage . && \
     docker create --name temp-arm raspimage && \
@@ -14471,6 +14486,9 @@ FROM arm64v8/debian:bookworm
     tar -xvf /mnt/host/qt-pi-binaries.tar.gz -C $qt6_dir
     '
   🧮 if 32bit (user-space. when install Raspbery Pi OS)
+    docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+    docker buildx inspect --bootstrap | grep linux/arm/v7
+
     docker buildx build --platform linux/arm/v7 --no-cache --load -f DockerFileRasp -t raspimage . && \
     docker create --name temp-arm raspimage && \
     docker cp temp-arm:/build/rasp.tar.gz ./rasp.tar.gz && \
