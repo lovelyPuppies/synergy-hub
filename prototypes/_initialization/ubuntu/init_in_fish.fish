@@ -758,8 +758,7 @@ systemctl --user start $homebrew_maraidb_service_name
 systemctl --user status $homebrew_maraidb_service_name --no-pager
 
 
-# from "select host, user, password from user
-", "invalid" is a placeholder indicating that no password is set for the user. so I set these:
+# from "select host, user, password from user", "invalid" is a placeholder indicating that no password is set for the user. so I set these:
 set mariadb_root_password root
 set current_user_dev "$current_user"_dev
 mariadb -u $current_user -D mysql --execute="
