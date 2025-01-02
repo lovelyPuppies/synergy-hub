@@ -14798,13 +14798,14 @@ How to :
 
   in order to kernel make
   # flex: 입력 데이터를 토큰으로 나누는 역할(예: 숫자, 키워드, 연산자).
-  # bison: flex가 생성한 토큰을 받아 문법에 따라 구문 트리를 만드는 역할.
-  # arm-linux-gnueabihf-gcc: ...
+  # bison: flex가 생성 한 토큰을 받아 문법에 따라 구문 트리를 만드는 역할.
+  # arm-linux-gnueabihf: ...
   sudo apt install -y flex bison \
-    arm-linux-gnueabihf-gcc
+    gcc-arm-linux-gnueabihf
   # get default .config
     
   # ...
+  make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- bcm2711_defconfig
   make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- modules
 
 
