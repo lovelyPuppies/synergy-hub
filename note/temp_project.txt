@@ -15822,28 +15822,30 @@ perl init-repository --module-subset=qtbase,qttools
     -- Configuring submodule 'qtgrpc'
 
 
-  cd $HOME  
-  # mirror of https://github.com/qt/qt5
-  # git clone "https://codereview.qt-project.org/qt/qt5"
-    git clone https://github.com/qt/qt5
-    cd qt5/
-    
-    https://github.com/qt/qt5
-    # 6.8.0 https://github.com/qt/qt5/tree/6.8.0
-    git checkout 6.8.1
-    perl init-repository -f 
-    cd $HOME/qt-hostbuild/
-    
-    # find /usr -name "nss.pc"
-    # export PKG_CONFIG_PATH="/usr/lib/x86_64-linux-gnu/pkgconfig:$PKG_CONFIG_PATH"
-    # export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
-    # export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH
-    # pkg-config --libs nss
+    # https://en.wikipedia.org/wiki/Qt_(software)
+    #   https://github.com/qt
+    cd $HOME  
+    # mirror of https://github.com/qt/qt5
+    # git clone "https://codereview.qt-project.org/qt/qt5"
+      git clone https://github.com/qt/qt5
+      cd qt5/
+      
+      https://github.com/qt/qt5
+      # 6.8.0 https://github.com/qt/qt5/tree/6.8.0
+      git checkout 6.8.1
+      perl init-repository -f 
+      cd $HOME/qt-hostbuild/
+      
+      # find /usr -name "nss.pc"
+      # export PKG_CONFIG_PATH="/usr/lib/x86_64-linux-gnu/pkgconfig:$PKG_CONFIG_PATH"
+      # export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
+      # export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH
+      # pkg-config --libs nss
 
-    cmake ../qt5/ -GNinja -DCMAKE_BUILD_TYPE=Release -DQT_BUILD_EXAMPLES=OFF -DQT_BUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=$HOME/qt-host
-    # cmake --build . --target moc --parallel 8
-    cmake --build . --parallel 8
-    cmake --install .
+      cmake ../qt5/ -GNinja -DCMAKE_BUILD_TYPE=Release -DQT_BUILD_EXAMPLES=OFF -DQT_BUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=$HOME/qt-host
+      # cmake --build . --target moc --parallel 8
+      cmake --build . --parallel 8
+      cmake --install .
 
 
 
