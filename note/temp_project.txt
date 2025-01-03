@@ -15812,7 +15812,7 @@ perl init-repository --module-subset=qtbase,qttools
     -- Configuring submodule 'qtwebengine'
     Traceback (most recent call last):
       File "<string>", line 1, in <module>
-        import html5lib
+        import html5lib 
     ModuleNotFoundError: No module named 'html5lib'
     [QtWebEngine] -- Checking 'ulimit -n'
     [QtWebEngine]  -- Open files limit 1073741816
@@ -15832,13 +15832,24 @@ perl init-repository --module-subset=qtbase,qttools
   git checkout 6.8.0
   perl init-repository -f
   cd $HOME/qt-hostbuild/
+  
+  find /usr -name "nss.pc"
+  export PKG_CONFIG_PATH="/usr/lib/x86_64-linux-gnu/pkgconfig:$PKG_CONFIG_PATH"
+  export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
+  export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH
+
+
+  pkg-config --libs nss
+
 
   cmake ../qt5/ -GNinja -DCMAKE_BUILD_TYPE=Release -DQT_BUILD_EXAMPLES=OFF -DQT_BUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=$HOME/qt-host
+  
+  cmake --build . --target moc --parallel 8
   cmake --build . --parallel 8
   cmake --install .
 
 
-   
+
   # Sysroot 동기화
   # rsync
   #   -a: Archive mode, which ensures the synchronization retains file permissions, timestamps, symbolic links, etc.
@@ -15957,3 +15968,25 @@ https://codereview.qt-project.org/qt/qt5
   
 >>>>. Qt vscode 에서 할 때 Open in Qt Desiner 이전에 Cmake configure,는 해야하는듯? build가지?..
   안그러면 디자이너에서 옵션이 안뜸.. 
+
+
+  https://doc.qt.io/qt-6/qtcharts-index.html
+
+
+➡️ https://doc.qt.io/qt-6/qtqml-index.html
+
+
+
+## qt_binaries settings
+set -x qt_binaries $HOME/qt/6.8.0/gcc_64/bin
+fish_add_path $qt_binaries
+
+// QML Tutorial 1. Value Types ; https://doc.qt.io/qt-6/qml-tutorial1.html
+➡️❌ QML
+  ⚓ QmlSandbox
+    https://marketplace.visualstudio.com/items?itemName=SavenkovIgor.QmlSandboxExtension
+    여러 개 파일로 구성된 QML 의 경우 live preview 를 볼수 없다.
+  문제는 이 확장 이외에는 live preview 를 지원하는 확장이 없다.
+  또한 Qt creator 와 다르게 UI 에서 시그널/슬롯, 속성 등을 다루는 기능이 없어서 백엔드와 같이 작업하기 불편하다.
+
+
