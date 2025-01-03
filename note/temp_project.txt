@@ -15746,3 +15746,87 @@ iot_client
 
 
 
+
+TODO: fanProject.tar
+  다시 클라우드 드라이브에 추가.
+
+in raspberry pi
+  sudo apt-get install -y cmake libjpeg9-dev gcc g++
+  ❯ apt-cache show libjpeg9-dev
+
+  git clone https://github.com/jacksonliam/mjpg-streamer
+  cd mjpg-streamer/mjpg-streamer-experimental
+  make
+  sudo make install
+
+  ./start.sh
+
+  #   curl http://10.10.14.59:8080/
+  # 10.10.14.59:8080/?action=stream
+
+  # wget 10.10.14.59:8080/?action=snapshot
+  # eog 
+
+View2_1 = QWebEngineView(this);
+View2_1->load(QUrl(QStringLiteral("...naver.com.."))  
+
+
+sudo apt-get install libegl1-mesa-dev libgles2-mesa-dev
+
+
+perl init-repository --module-subset=qtbase,qttools
+
+
+
+
+perl init-repository --module-subset=qtbase,qttools
+
+➡️ 다시..
+  호스트
+  ===========
+  mkdir -p ~/rpi-sysroot/usr ~/rpi-sysroot/opt ~/qt-host ~/qt-raspi 
+  
+  mkdir -p $HOME/qt-hostbuild $HOME/qtpi-build
+
+  cd $HOME
+  # mirror of https://github.com/qt/qt5
+  git clone "https://codereview.qt-project.org/qt/qt5"
+  cd qt5/
+  
+  # 6.8.0 https://github.com/qt/qt5/tree/6.8.0
+  git checkout 6.8.0
+  perl init-repository -f
+  cd $HOME/qt-hostbuild/
+
+  cmake ../qt5/ -GNinja -DCMAKE_BUILD_TYPE=Release -DQT_BUILD_EXAMPLES=OFF -DQT_BUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=$HOME/qt-host
+  cmake --build . --parallel 8
+  cmake --install .
+
+
+
+
+   
+  # Sysroot 동기화
+  set raspberry_pi_ip 10.10.14.59
+  
+  rsync -avzS --rsync-path="rsync" --delete "pi@"$raspberry_pi_ip":/lib/ ~/rpi-sysroot/lib"
+  rsync -avzS --rsync-path="rsync" --delete "pi@"$raspberry_pi_ip":/usr/include/ ~/rpi-sysroot/usr/include"
+  rsync -avzS --rsync-path="rsync" --delete "pi@"$raspberry_pi_ip":/usr/lib/ ~/rpi-sysroot/usr/lib"
+  rsync -avzS --rsync-path="rsync" --delete "pi@"$raspberry_pi_ip":/opt/vc ~/rpi-sysroot/opt/vc"
+
+  sudo apt install symlinks
+
+
+  라즈베리파이
+  ===
+  sudo apt update
+  sudo apt full-upgrade
+  sudo reboot
+
+  # 😠 Next, install the package dependencies.
+  sudo apt-get install -y libboost-all-dev libudev-dev libinput-dev libts-dev libmtdev-dev libjpeg-dev libfontconfig1-dev libssl-dev libdbus-1-dev libglib2.0-dev libxkbcommon-dev libegl1-mesa-dev libgbm-dev libgles2-mesa-dev mesa-common-dev libasound2-dev libpulse-dev gstreamer1.0-omx libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev  gstreamer1.0-alsa libvpx-dev libsrtp2-dev libsnappy-dev libnss3-dev "^libxcb.*" flex bison libxslt-dev ruby gperf libbz2-dev libcups2-dev libatkmm-1.6-dev libxi6 libxcomposite1 libfreetype6-dev libicu-dev libsqlite3-dev libxslt1-dev
+      sudo apt-get install -y libavcodec-dev libavformat-dev libswscale-dev libx11-dev freetds-dev libpq-dev libiodbc2-dev firebird-dev libgst-dev libxext-dev libxcb1 libxcb1-dev libx11-xcb1 libx11-xcb-dev libxcb-keysyms1 libxcb-keysyms1-dev libxcb-image0 libxcb-image0-dev libxcb-shm0 libxcb-shm0-dev libxcb-icccm4 libxcb-icccm4-dev libxcb-sync1 libxcb-sync-dev libxcb-render-util0 libxcb-render-util0-dev libxcb-xfixes0-dev libxrender-dev libxcb-shape0-dev libxcb-randr0-dev libxcb-glx0-dev libxi-dev libdrm-dev libxcb-xinerama0 libxcb-xinerama0-dev libatspi2.0-dev libxcursor-dev libxcomposite-dev libxdamage-dev libxss-dev libxtst-dev libpci-dev libcap-dev libxrandr-dev libdirectfb-dev libaudio-dev libxkbcommon-x11-dev
+
+
+https://github.com/qt/qtbase
+https://codereview.qt-project.org/qt/qt5

@@ -10,17 +10,17 @@ find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets LinguistTools)
 
 qt_standard_project_setup()
 
-qt_add_executable(testQt        
+qt_add_executable(testQt
     WIN32 MACOSX_BUNDLE
     main.cpp
     mainwindow.cpp
     mainwindow.h
-)   
+)
     
 qt_add_translations(
     TARGETS testQt
     # TS_FILES testQt_ko_KR.ts
-)   
+)
 
 target_link_libraries(testQt
     PRIVATE
