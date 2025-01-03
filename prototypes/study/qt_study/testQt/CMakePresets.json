@@ -10,12 +10,13 @@
         "PATH": "/home/wbfw109v2/Qt/6.8.0/gcc_64/bin:/home/linuxbrew/.linuxbrew/bin"
       },
       "cacheVariables": {
-        "CMAKE_C_COMPILER": "/home/linuxbrew/.linuxbrew/bin/clang",
-        "CMAKE_CXX_COMPILER": "/home/linuxbrew/.linuxbrew/bin/clang++",
-        "CMAKE_PREFIX_PATH": "/home/wbfw109v2/Qt/6.8.0/gcc_64/lib/cmake",
-        "CMAKE_MAKE_PROGRAM": "/home/linuxbrew/.linuxbrew/bin/ninja",
+        "CMAKE_C_COMPILER": "clang",
+        "CMAKE_CXX_COMPILER": "clang++",
+        "CMAKE_PREFIX_PATH": "cmake",
+        "CMAKE_MAKE_PROGRAM": "ninja",
         "CMAKE_EXE_LINKER_FLAGS": "-fuse-ld=lld"
-      }
+      },
+      "toolchainFile": "/home/wbfw109v2/Qt/6.8.0/gcc_64/lib/cmake/Qt6/qt.toolchain.cmake"
     }
   ]
 }
