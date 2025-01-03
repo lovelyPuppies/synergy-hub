@@ -19,7 +19,7 @@ LINKER := ld.lld
 
 # Clang flags for the kernel module
 TARGET_TOOLCHAIN := arm-linux-gnueabihf  	# Target toolchain prefix
-CPU_ARCH_FLAGS := -march=armv8-a  				# Specify ARMv8-A architecture
+CPU_ARCH_FLAGS := -march=armv7-a  				# Specify ARMv8-A architecture
 
 # Flags for kernel module compilation
 CLANG_FLAGS := --target=$(TARGET_TOOLCHAIN) $(CPU_ARCH_FLAGS) \
@@ -40,6 +40,8 @@ default: build deploy
 build: $(APP_NAME).out
 	$(MAKE) -C $(KERNEL_DIR) M=$(MODULE_DIR) modules ARCH=$(KERNEL_ARCHITECTURE) \
 	CC=$(COMPILER) LD=$(LINKER) KBUILD_CFLAGS="$(CLANG_FLAGS)"
+	modinfo $(MODULE_NAME).ko
+
 
 # Deploy built artifacts
 deploy:

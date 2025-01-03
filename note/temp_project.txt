@@ -14863,6 +14863,20 @@ cd raspberry-pi
 echo "Setting up default kernel configuration..."
 make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- bcm2711_defconfig
 
+# 커널 부터 빌드해야 한다. 그렇지 않으면 이 소스로부터 빌드한 커널버전과 맞지 않아서 작동하지 않음. 마이너 버전 포함..
+#  uname -r
+#     >> 6.6.62+rpt-rpi-v7l
+#  cat ~/repos/kernels/raspberry-pi/include/generated/utsrelease.h
+#     #define UTS_RELEASE "6.6.69-v7l+"
+
+# Build the kernel image
+make -j (nproc) ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- zImage
+# Copy the built kernel image
+mkdir -p /nfs/kernels/pi/
+cp arch/arm/boot/zImage /nfs/kernels/pi/kernel7l.img
+# Deploy kernel to Raspberry Pi
+ssh r-pi.local "sudo cp /mnt/host/kernels/pi/kernel7l.img /boot/firmware/kernel7l.img"
+
 # Build the kernel modules
 echo "Building kernel modules..."
 make -j (nproc) ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- modules
@@ -14871,6 +14885,7 @@ make -j (nproc) ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- modules
 echo "Kernel setup and module build complete!"
 
 
+영상 찍는거 시나리오 생각.
 
 
 
@@ -15633,7 +15648,7 @@ cd $HOME/repos/kernels
 # Clone Raspberry Pi kernel source repository
 
 if not test -d raspberry-pi
-git clone https://github.com/raspberrypi/linux raspberry-pia
+git clone --depth=1 --branch rpi-6.6.y https://github.com/raspberrypi/linux.git raspberry-pi
 else
 echo "Kernel repository already exists, skipping clone."
 end
@@ -15650,7 +15665,7 @@ make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- bcm2711_defconfig
 # Build the kernel modules
 
 echo "Building kernel modules..."
-make -j (nproc) ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- modules
+make --jobs (nproc) ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- modules
 
 # Output success message
 
@@ -15750,6 +15765,11 @@ iot_client
 TODO: fanProject.tar
   다시 클라우드 드라이브에 추가.
 
+
+cat ~/repos/kernels/raspberry-pi/include/generated/utsrelease.h
+  #define UTS_RELEASE "6.6.69-v7l+
+
+
 in raspberry pi
   sudo apt-get install -y cmake libjpeg9-dev gcc g++
   ❯ apt-cache show libjpeg9-dev
@@ -15808,7 +15828,11 @@ perl init-repository --module-subset=qtbase,qttools
 
   설치 후 rm -fr qt-hostbuild.. 를 하고 다시 해야 확인가능.
 
-  python3 -m pip install --break-system-packages html5lib
+  # gen/third_party/libevent/event.h:5:10: fatal error: event.h: No such file or directory
+  sudo apt install libevent-dev
+  
+
+
     -- Configuring submodule 'qtwebengine'
     Traceback (most recent call last):
       File "<string>", line 1, in <module>
@@ -15836,8 +15860,14 @@ perl init-repository --module-subset=qtbase,qttools
       perl init-repository -f 
       cd $HOME/qt-hostbuild/
       
+      
+      # pkg-config --libs icu-uc icu-i18n
+      #   >> -licui18n -L/usr/lib/x86_64-linux-gnu -licuuc -licudata
       # find /usr -name "nss.pc"
-      # export PKG_CONFIG_PATH="/usr/lib/x86_64-linux-gnu/pkgconfig:$PKG_CONFIG_PATH"
+      export PKG_CONFIG_PATH="/usr/lib/x86_64-linux-gnu/pkgconfig:$PKG_CONFIG_PATH"
+      export LDFLAGS="-L/usr/lib/x86_64-linux-gnu"
+      export CXXFLAGS="-I/usr/include"
+
       # export PKG_CONFIG_PATH="/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH"
       # export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH
       # pkg-config --libs nss
@@ -15848,6 +15878,40 @@ perl init-repository --module-subset=qtbase,qttools
       cmake --install .
 
 
+    # WARNING: QtWebEngine won't be built. Could not find all necessary libraries for qpa-xcb support. X11:YES LIBDRM:YES XCOMPOSITE:YES XCURSOR:NO XRANDR:YES XI:YES XPROTO:YES XSHMFENCE:YES XTST:YES
+    # Install missing dependencies for X11 support:
+
+    sudo apt-get install libx11-dev libxcursor-dev libxrandr-dev libxcomposite-dev libxext-dev libxdamage-dev libxi-dev
+
+
+    rm -fr ~/qt5 ~/qt-hostbuild ~/qt-host
+    mkdir -p ~/qt5 ~/qt-hostbuild ~/qt-host
+
+    cd $HOME
+    git clone "https://codereview.qt-project.org/qt/qt5"
+    cd qt5/
+    git checkout 6.8.1
+    perl init-repository -f
+
+    cd ..
+    mkdir $HOME/qt-hostbuild
+    cd $HOME/qt-hostbuild/
+
+    cmake -GNinja ../qt5/ -DCMAKE_BUILD_TYPE=Release -DQT_BUILD_EXAMPLES=OFF -DQT_BUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=$HOME/qt-host
+    
+
+
+    cmake --build . --parallel 8
+    cmake --install .
+
+
+
+      cmake --build . --parallel 8
+
+      [2/12697] Linking CXX shared library qtbase/lib/libQt6Core.so.6.8.1
+      FAILED: qtbase/lib/libQt6Core.so.6.8.1 
+      // .. 안됨.. ❌ 절대 직접 빌드 xx.. 하.. 따라햇는데  
+        # https://wiki.qt.io/Cross-Compile_Qt_6_for_Raspberry_Pi
 
   # Sysroot 동기화
   # rsync
@@ -15989,3 +16053,164 @@ fish_add_path $qt_binaries
   또한 Qt creator 와 다르게 UI 에서 시그널/슬롯, 속성 등을 다루는 기능이 없어서 백엔드와 같이 작업하기 불편하다.
 
 
+
+
+ cmake --build . --parallel (nproc)
+[3/11278] Linking CXX shared library qtbase/lib/libQt6Core.so.6.8.1
+FAILED: qtbase/lib/libQt6Core.so.6.8.1  
+
+이거 혹시, 해당 라즈베리파이소스에서 빌드한 커널모듈을 insmod 가 가능하게하려면, 우선 라즈베리파이소스에서 zImage 를 빌드해서 그거부터 옮겨야 같은 커널로 만들어야 하는건가?
+ㅇㅇ...
+
+
+
+
+윈도우는 드라이버가 독립적으로 작동합니다. 드라이버는 특정 하드웨어를 제어하는 코드로, 운영체제 커널과는 별개로 설치됩니다. 윈도우는 드라이버가 특정 운영체제 버전과는 크게 연관되지 않으며, 다양한 하드웨어와 호환될 수 있도록 드라이버를 설계하는 경우가 많습니다.
+
+독립적인 드라이버: 윈도우의 드라이버는 보통 하드웨어와 소프트웨어의 호환성만을 고려하고, 운영체제의 커널 버전과의 호환성은 크게 신경 쓰지 않습니다. 드라이버가 OS의 커널과 직접 결합되지 않기 때문에, 드라이버가 OS 버전과 맞지 않아도 동작할 수 있는 경우가 많습니다.
+리눅스는 커널 모듈을 사용합니다. 커널 모듈은 현재 실행 중인 커널과 밀접하게 연결되어 있으며, 커널의 버전이나 설정에 따라 작동합니다. 그래서 리눅스에서는 커널 모듈(.ko 파일)이 특정 커널 버전과 호환되어야 하며, 만약 커널이 업데이트되면, 해당 커널에 맞는 모듈을 다시 빌드해야 합니다.
+
+커널 의존성: 리눅스의 .ko 커널 모듈은 커널 버전 및 구성 옵션에 의존합니다. 즉, 커널이 업데이트되면 모듈도 다시 빌드하여 새 커널에 맞춰야 합니다.
+
+
+너무말이 안되는데?
+
+뭔가 파일이 너무 .. 조잡한거같음..
+
+
+
+
+메모리 업데이트됨
+빠르게 동작을 시연하는 영상 시나리오는 다음과 같이 구성할 수 있습니다:
+
+1. 시작 화면 (인트로)
+목표: 프로젝트 시작을 알리는 화면.
+장면:
+화면에 "LED 제어 커널 드라이버 동작 시연"이라고 적힌 텍스트가 잠시 나타납니다.
+텍스트는 빠르게 사라짐.
+2. 애플리케이션 실행 (명령어 입력)
+목표: kernel_timer_app을 실행하여 LED 값을 설정하고 타이머를 시작합니다.
+장면:
+kernel_timer_app 0x0F 100 명령어를 입력하고 실행합니다.
+실행 후, dmesg로 커널 로그 확인 (짧게).
+3. LED 동작 확인 (타이머 실행)
+목표: 타이머가 실행되고 LED가 주기적으로 깜빡이는 장면.
+장면:
+LED가 1초마다 깜빡이면서 타이머가 동작하는 모습.
+LED 값이 0x0F로 설정되어 깜빡이는 장면을 보여줍니다.
+4. 키 입력을 통한 동작 (키보드로 제어)
+목표: key1, key2, key3, key8 키 입력에 따른 동작.
+장면:
+key1: 타이머 멈추기.
+key2: 타이머 시간 변경 (키보드로 시간 입력).
+key3: LED 값 변경 (0x00~0xFF).
+key8: 애플리케이션 종료.
+각 키 입력 후 LED 상태 및 타이머 동작을 보여줍니다.
+5. 애플리케이션 종료
+목표: 애플리케이션 종료 및 타이머 멈추기.
+장면:
+"q" 또는 "Q"를 입력하여 애플리케이션 종료.
+LED가 멈추고, 타이머도 정지하는 모습.
+6. 결과 화면 (끝)
+목표: 프로젝트 종료 후 최종 상태.
+장면: 화면에 "동작 완료" 텍스트가 잠시 나타나며, LED가 멈추는 장면.
+영상 구성:
+명령어 입력 (1-2초)
+kernel_timer_app 0x0F 100 입력.
+LED 동작 (3-5초)
+LED 깜빡이는 장면.
+키 입력 및 제어 (5-10초)
+key1, key2, key3, key8로 제어하는 장면.
+애플리케이션 종료 (10-12초)
+"q" 입력 후 애플리케이션 종료.
+이 동선으로 영상이 빠르게 동작 시연되며, 각 기능을 명확하게 보여줄 수 있습니다.
+
+
+
+OpenCV와 같은 라이브러리에서의 사용:
+OpenCV 같은 유명한 라이브러리에서도 디버깅 메시지나 로깅을 관리할 때 이와 유사한 패턴을 사용합니다. OpenCV는 디버깅 메시지를 출력하는 여러 방법을 제공합니다. OpenCV는 디버그 모드에서 CV_LOG_* 매크로를 사용하여 로그를 관리하고, 배포 시에는 로그를 비활성화하는 방식입니다.
+
+OpenCV의 디버깅/로깅 예시 (간략화된 예시):
+
+cpp
+코드 복사
+#define CV_LOG_DEBUG(msg) \
+    if (cv::getLogLevel() >= cv::LOG_LEVEL_DEBUG) { \
+        std::cout << "DEBUG: " << msg << std::endl; \
+    }
+
+
+
+
+
+너무 답이 없는데? qt online installre 로 설치하는 게 아니라면, 이런거 일일이 다 수정해도 설치하기 힘든 수준이야.
+
+소스 빌드가 필요한 이유가 없다면, Qt Online Installer나 배포판 패키지를 활용하는 것이 훨씬 생산적입니다. 특히 WebEngine과 같은 복잡한 모듈은 시간이 많이 소요되고 실패 가능성이 높기 때문에, 기존에 빌드된 바이너리를 활용하는 것이 더 실용적입니다.
+  Qt가 흔히 사용되지 않는 이유 중 하나는 이러한 초기 설정의 어려움이 개발자 진입 장벽을 높이기 때문입니다. 하지만 일단 설정이 완료되면, Qt는 강력한 기능과 크로스플랫폼 지원으로 뛰어난 개발 환경을 제공합니다. 👍
+
+❗ TODO: 카메라 필터앱도 해야하네.. 인생네컷.. >>>>>>>>>>> 코드 이쁘게 정리부터 하고 Jetson nano 정리... 크로스컴파일 생각하면서.
+
+
+방법이 이거밖에 없나.. 도커.. https://github.com/PhysicsX/QTonRaspberryPi
+
+
+
+1. 지금 호스트 Qt 는 oneline instaler 로 잘 설치햇고 이미 cmake preset 도 구성한 상태야.
+크로스컴파일+ 라즈베리파이용 cmakepreset 을 구성하려 하는데 그냥 방법이 안보이는데? 실제로 예시도 하나도 없고. 
+
+도커로부터 빌드하는게 잇긴 한데.. 이거는 도커 컨테이너 안에서 "크로스컴파일"하는거라 intellisense 못받나? 아닌가? 어차피 버전 똑같으면 qt library 는 같아서 상관없나? 빌드할때만 어차피 내부적으로 각 아키텍처마다 필요한 거를 참조하는거니까? 
+2. 그리고 만약 이런 경우 cmake preset 을 만들 수가 있나? 툴체인, 프리셋으로 로컬 경로가 아니라 도커 컨테이너 안의 경로를 설정해야하는거라 불가능하지? 
+3. 그러면 그냥 tasks 로 구성하는게 나으려나 어쩔 수 없이?
+4. 만약 이거도 안되는 경우는 실제 임베디드 개발자는 어떻게 하나? 각 라즈베리파이나 젯슨 나노와 같은 기기에 online installer (desiner, ide 이런거 말고, 런타임과 컴파일만 가능하도록) 설치해서, 호스트에서 소스를 nfs/ 로 copy 하고, 라즈베리파이나 젯슨에서 /nfs 에서 이거를 빌드하는 식으로 하나? (실제 임베디드 QT 개발자는 어떻게하고 있지? 2024~2025년 기준.)
+qt6.8.0-essentials	
+essential module libraries
+essential module headers
+essential module private headers
+essential module runtime tools
+essential module development tools
+qt6.8.0-essentials-dev	
+essential module libraries
+essential module headers
+essential module private headers
+essential module runtime tools
+essential module development tools
+qt6.8.0-full	
+essential module libraries
+essential module headers
+essential module private headers
+essential module runtime tools
+essential module development tools
+add-on module libraries
+add-on module headers
+add-on module private headers
+add-on module runtime tools
+add-on module development tools
+sources
+qt6.8.0-full-dev	
+essential module libraries
+essential module headers
+essential module private headers
+essential module runtime tools
+essential module development tools
+add-on module libraries
+add-on module headers
+add-on module private headers
+add-on module runtime tools
+add-on module development tools
+sources
+qt6.8.0-full-dbg	
+Qt debug information files for:
+essential module libraries
+add-on module libraries
+qt6.8.0-sdk	
+latest Qt Creator
+qt6.8.0-full-dev (details above)
+qt6.8.0-full-dbg (details above)
+Ninja
+CMake
+
+
+
+=====
+내가 말하는 도커로 크로스컴파일 하는 방법: https://raw.githubusercontent.com/PhysicsX/QTonRaspberryPi/refs/heads/main/README.md
+이거 읽었어.

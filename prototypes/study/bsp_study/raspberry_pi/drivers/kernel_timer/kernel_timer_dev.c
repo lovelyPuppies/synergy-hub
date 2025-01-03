@@ -7,7 +7,8 @@ Edge 디바이스 리눅스 BSP
 1. ✔️ Device driver uses
   - ✔️ Poll (I/O 다중화)
   - ✔️ Blocking I/O
-    처리할 데이터가 없을 시 프로세스를 대기 상태(Sleep on) 으로 전환하고, key 인터럽트 발생 시 wake up 하여 준비/실행 상태로 전환하여 처리한다.
+    처리할 데이터가 없을 시 프로세스를 대기 상태(Sleep on) 으로 전환하고, key
+인터럽트 발생 시 wake up 하여 준비/실행 상태로 전환하여 처리한다.
     ```
     wake_up_interruptible(&waitQueueRead); // in keyIsr()
     wait_event_interruptible(waitQueueRead, pKeyData->keyNum // in ledkey_read()
@@ -36,18 +37,19 @@ Edge 디바이스 리눅스 BSP
 5. ✔️ Operations based on read key
   - key1: ioctl(TIMER_STOP)
   - key2: input timer value
-    key2를 입력 시 키보드로 커널 타이머 시간을 100분의 1초 단위로 입력 받아 (TIMER_VALUE)
+    key2를 입력 시 키보드로 커널 타이머 시간을 100분의 1초 단위로 입력 받아
+(TIMER_VALUE)
   - key3: input led value from stdin (0x00~0xff)
     write the led value
   - key4: ioctl(TIMER_STOP)
   - key8: ioctl(TIMER_STOP) with Application close
 
-    and write변경된 값으로 on/off, 및 'Q' 또는 'q' 입력 시 타이머는 멈추고 응용프로세스를 종료.
+    and write변경된 값으로 on/off, 및 'Q' 또는 'q' 입력 시 타이머는 멈추고
+응용프로세스를 종료.
 
 6. Timer Start 하면 실행되도록. insmod할 때 말고.
 
 */
-#include "ioctl_test.h"
 #include <linux/errno.h>
 #include <linux/fcntl.h>
 #include <linux/fs.h>
@@ -63,7 +65,22 @@ Edge 디바이스 리눅스 BSP
 #include <linux/types.h>
 #include <linux/wait.h>
 
+#include "ioctl_test.h"
+
 #define DEBUG 1
+
+// 디버그 매크로 정의
+/**
+이 패턴은 "가변 인자 매크로"(variadic macro)와 **"디버깅 매크로"**의 조합입니다. 패턴 이름을 따로 정할 수 있지만, **"디버깅 로깅 매크로"**나 **"가변 인자 매크로"**로 불릴 수 있습니다.
+ 
+ */
+#ifdef DEBUG
+  #define DEBUG_LOG(fmt, ...)                                                  \
+    printk(KERN_DEBUG "DEBUG: %s:%d:%s: " fmt, __FILE__, __LINE__, __func__,   \
+           __VA_ARGS__)
+#else
+  #define DEBUG_LOG(fmt, ...) // 디버깅 코드가 포함되지 않음
+#endif
 
 #define LEDKEY_DEV_NAME  "ledKey"
 #define LEDKEY_DEV_MAJOR 230
@@ -72,8 +89,8 @@ Edge 디바이스 리눅스 BSP
 #define ON         1
 #define GPIO_COUNT 8
 
-//static int keyNum = 0;
-//static int irqKey[GPIO_COUNT];
+// static int keyNum = 0;
+// static int irqKey[GPIO_COUNT];
 typedef struct {
   int keyNum;
   int irqKey[GPIO_COUNT];
@@ -133,6 +150,7 @@ irqreturn_t keyIsr(int irq, void *data) {
         break;
       }
     }
+    DEBUG_LOG("x = %d, y = %d\n", x, y); // 디버그 모드에서만 실행
   }
 #if DEBUG
   printk("keyIsr() irq : %d, keyNum : %d\n", irq, pKeyData->keyNum);
@@ -142,7 +160,6 @@ irqreturn_t keyIsr(int irq, void *data) {
 }
 
 static int ledkey_open(struct inode *inode, struct file *filp) {
-
   int result = 0;
   keyDataStruct *pKeyData;
   char *irqName[GPIO_COUNT] = {
@@ -191,7 +208,8 @@ static ssize_t ledkey_read(struct file *filp, char *buf, size_t count,
 
   if (!(filp->f_flags & O_NONBLOCK)) {
     wait_event_interruptible(waitQueueRead, pKeyData->keyNum);
-    //		wait_event_interruptible_timeout(waitQueueRead, gpioKeyGet(), 100);	 // 100/HZ = 1sec
+    //		wait_event_interruptible_timeout(waitQueueRead, gpioKeyGet(),
+    // 100);	 // 100/HZ = 1sec
   }
 #if DEBUG
   printk("call read -> key : %#04x\n", pKeyData->keyNum);
@@ -237,7 +255,6 @@ static ssize_t ledkey_write(struct file *filp, const char *buf, size_t count,
   return sizeof(kbuf);
 }
 static __poll_t ledkey_poll(struct file *filp, struct poll_table_struct *wait) {
-
   unsigned int mask = 0;
   keyDataStruct *pKeyData = (keyDataStruct *)filp->private_data;
 #ifdef DEBUG

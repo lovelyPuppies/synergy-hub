@@ -4,6 +4,7 @@
 
 - [Kernel Timer Mini Project](#kernel-timer-mini-project)
   - [Project Introduction](#project-introduction)
+    - [Features](#features)
     - [🎯 Project Purposes](#-project-purposes)
     - [🖼️ Hardware Setup](#️-hardware-setup)
     - [🎥 Kernel Timer Demo](#-kernel-timer-demo)
@@ -25,6 +26,16 @@
 ## Project Introduction
 
 This project demonstrates the implementation of a kernel timer module on Linux for edge devices. It integrates hardware-based interrupts, user-space applications, and kernel space logic for managing timers and GPIO operations.
+
+### Features
+
+(e.g. 선풍기의 경우)
+
+- 전원 제어: 선풍기 전원을 켜거나 끌 수 있음.
+- 팬 속도 조절: 저속, 중속, 고속으로 팬 속도를 변경 가능.
+- 모드 전환: 수동 모드와 자동 모드 간 전환 가능.
+- 타이머 설정: 3, 5, 7분 타이머 설정으로 자동 종료.
+- 상태 표시: LCD 및 FND로 현재 모드, 속도, 타이머 상태 표시.
 
 ### 🎯 Project Purposes
 
