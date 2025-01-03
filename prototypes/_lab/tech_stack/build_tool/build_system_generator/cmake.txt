@@ -4,6 +4,9 @@ list of level 1 subjects
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
 ⚓ CMake ; https://cmake.org/
   CMake is the de-facto standard for building C++ code,
+
+
+
 (✍️ CMake code study)
   ✅ (how-to); to integrate CMake (with | without package manager) and VS Code 📅 2024-08-20 07:37:16
     ➡️
@@ -50,7 +53,7 @@ list of level 1 subjects
 
 
 ----------------------------------------------
-⚓ Reference ; https://cmake.org/cmake/help/latest/
+⚓ Reference ; https://cmake.org/cmake/help/latest/index.html
   # Command-Line Tools
     ⚓🚣 cmake ; https://cmake.org/cmake/help/latest/manual/cmake.1.html
 
@@ -84,3 +87,14 @@ list of level 1 subjects
         ⚓ set_target_properties() ; https://cmake.org/cmake/help/latest/command/set_target_properties.html
 
 
+    ⚓ cmake-presets ; https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html 
+      #️⃣ Format ; https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html#format
+        "environment": {
+          "MY_ENVIRONMENT_VARIABLE": "Test",
+          "PATH": "$env{HOME}/ninja/bin:$penv{PATH}"    //  🚣 $env{HOME}
+        },
+
+        #️⃣ Macro Expansion ; https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html#macro-expansion
+          - ${sourceDir}
+
+        
