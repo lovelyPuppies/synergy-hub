@@ -15784,14 +15784,49 @@ perl init-repository --module-subset=qtbase,qttools
 ➡️ 다시..
   호스트
   ===========
-  mkdir -p ~/rpi-sysroot/usr ~/rpi-sysroot/opt ~/qt-host ~/qt-raspi 
-  
+  mkdir -p ~/qt-host ~/qt-raspi 
+  mkdir -p $HOME/rpi-sysroot/usr $HOME/rpi-sysroot/opt \
+    $HOME/rpi-sysroot/lib $HOME/rpi-sysroot/usr/include $HOME/rpi-sysroot/usr/lib $HOME/rpi-sysroot/opt/vc
   mkdir -p $HOME/qt-hostbuild $HOME/qtpi-build
 
-  cd $HOME
+  # install qt dependencies
+  sudo apt install -y  make cmake build-essential libclang-dev clang ninja-build gcc git bison python3 gperf pkg-config libfontconfig1-dev libfreetype6-dev libx11-dev libx11-xcb-dev libxext-dev libxfixes-dev libxi-dev libxrender-dev libxcb1-dev libxcb-glx0-dev libxcb-keysyms1-dev libxcb-image0-dev libxcb-shm0-dev libxcb-icccm4-dev libxcb-sync-dev libxcb-xfixes0-dev libxcb-shape0-dev libxcb-randr0-dev libxcb-render-util0-dev libxcb-util-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev libatspi2.0-dev libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev
+  # install cross compiler
+  sudo apt install -y gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
+  
+
+  # WARNING: QtWebEngine won't be built. Build requires nss >= 3.26.
+  sudo apt install libnss3-1d-dev
+
+
+  # WARNING: No backend for low level audio found.
+  sudo apt install libjack-dev
+  # WARNING: No media backend found
+  sudo apt install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
+
+  # WARNING: SensorFW support currently not enabled with cmake
+
+  설치 후 rm -fr qt-hostbuild.. 를 하고 다시 해야 확인가능.
+
+  python3 -m pip install --break-system-packages html5lib
+    -- Configuring submodule 'qtwebengine'
+    Traceback (most recent call last):
+      File "<string>", line 1, in <module>
+        import html5lib
+    ModuleNotFoundError: No module named 'html5lib'
+    [QtWebEngine] -- Checking 'ulimit -n'
+    [QtWebEngine]  -- Open files limit 1073741816
+    [QtWebEngine] -- Support check for QtWebEngine failed: Python3 html5lib is missing.
+    [QtWebEngine] -- Support check for QtPdf failed: Python3 html5lib is missing.
+    -- Configuring submodule 'qtdoc'
+    -- Configuring submodule 'qtgrpc'
+
+
+  cd $HOME  
   # mirror of https://github.com/qt/qt5
   git clone "https://codereview.qt-project.org/qt/qt5"
   cd qt5/
+  
   
   # 6.8.0 https://github.com/qt/qt5/tree/6.8.0
   git checkout 6.8.0
@@ -15803,18 +15838,29 @@ perl init-repository --module-subset=qtbase,qttools
   cmake --install .
 
 
-
-
    
   # Sysroot 동기화
+  # rsync
+  #   -a: Archive mode, which ensures the synchronization retains file permissions, timestamps, symbolic links, etc.
+  #   -v: Verbose output, providing detailed information about the synchronization process.
+  #   -z: Compress data during transfer to reduce network usage and increase speed.
+  #   -S: Handle sparse files efficiently to save space and improve performance during synchronization.
+  #   --rsync-path="rsync": Specify the command to run on the remote system; in this case, it's the standard `rsync`.
+  #   --delete: Remove files from the destination that no longer exist in the source, ensuring exact mirroring.
+  ## ❕ Rqeuires sudo in raspberry pi
   set raspberry_pi_ip 10.10.14.59
-  
-  rsync -avzS --rsync-path="rsync" --delete "pi@"$raspberry_pi_ip":/lib/ ~/rpi-sysroot/lib"
-  rsync -avzS --rsync-path="rsync" --delete "pi@"$raspberry_pi_ip":/usr/include/ ~/rpi-sysroot/usr/include"
-  rsync -avzS --rsync-path="rsync" --delete "pi@"$raspberry_pi_ip":/usr/lib/ ~/rpi-sysroot/usr/lib"
-  rsync -avzS --rsync-path="rsync" --delete "pi@"$raspberry_pi_ip":/opt/vc ~/rpi-sysroot/opt/vc"
+  rsync -avzS --rsync-path="sudo rsync" --delete pi@$raspberry_pi_ip:/lib/ ~/rpi-sysroot/lib/
+  rsync -avzS --rsync-path="sudo rsync" --delete pi@$raspberry_pi_ip:/usr/include/ ~/rpi-sysroot/usr/include/
+  rsync -avzS --rsync-path="sudo rsync" --delete pi@$raspberry_pi_ip:/usr/lib/ ~/rpi-sysroot/usr/lib/
+  rsync -avzS --rsync-path="sudo rsync" --delete pi@$raspberry_pi_ip:/opt/vc/ ~/rpi-sysroot/opt/vc/
 
   sudo apt install symlinks
+  cd $HOME
+  symlinks -rc rpi-sysroot
+
+
+
+
 
 
   라즈베리파이
@@ -15827,6 +15873,87 @@ perl init-repository --module-subset=qtbase,qttools
   sudo apt-get install -y libboost-all-dev libudev-dev libinput-dev libts-dev libmtdev-dev libjpeg-dev libfontconfig1-dev libssl-dev libdbus-1-dev libglib2.0-dev libxkbcommon-dev libegl1-mesa-dev libgbm-dev libgles2-mesa-dev mesa-common-dev libasound2-dev libpulse-dev gstreamer1.0-omx libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev  gstreamer1.0-alsa libvpx-dev libsrtp2-dev libsnappy-dev libnss3-dev "^libxcb.*" flex bison libxslt-dev ruby gperf libbz2-dev libcups2-dev libatkmm-1.6-dev libxi6 libxcomposite1 libfreetype6-dev libicu-dev libsqlite3-dev libxslt1-dev
       sudo apt-get install -y libavcodec-dev libavformat-dev libswscale-dev libx11-dev freetds-dev libpq-dev libiodbc2-dev firebird-dev libgst-dev libxext-dev libxcb1 libxcb1-dev libx11-xcb1 libx11-xcb-dev libxcb-keysyms1 libxcb-keysyms1-dev libxcb-image0 libxcb-image0-dev libxcb-shm0 libxcb-shm0-dev libxcb-icccm4 libxcb-icccm4-dev libxcb-sync1 libxcb-sync-dev libxcb-render-util0 libxcb-render-util0-dev libxcb-xfixes0-dev libxrender-dev libxcb-shape0-dev libxcb-randr0-dev libxcb-glx0-dev libxi-dev libdrm-dev libxcb-xinerama0 libxcb-xinerama0-dev libatspi2.0-dev libxcursor-dev libxcomposite-dev libxdamage-dev libxss-dev libxtst-dev libpci-dev libcap-dev libxrandr-dev libdirectfb-dev libaudio-dev libxkbcommon-x11-dev
 
+sudo apt install libavcodec-dev libavformat-dev libswscale-dev libavutil-dev
+
+>> qt 빌드 시 발생.. ffmpeg 가 snap 에 설치되어잇는데 못찾는듯? ㅇ
+  CMake Error at qtmultimedia/src/plugins/multimedia/ffmpeg/cmake_install.cmake:60 (file):
+    file INSTALL cannot find
+    "/home/wbfw109v2/qt-hostbuild/qtbase/plugins/multimedia/libffmpegmediaplugin.so":
+    No such file or directory.
+  Call Stack (most recent call first):
+    qtmultimedia/src/plugins/multimedia/cmake_install.cmake:47 (include)
+    qtmultimedia/src/plugins/cmake_install.cmake:47 (include)
+    qtmultimedia/src/cmake_install.cmake:77 (include)
+    qtmultimedia/cmake_install.cmake:47 (include)
+    cmake_install.cmake:87 (include)
+
+  https://launchpad.net/ubuntu/+source/ffmpeg
+
+  ❓
+    ❯ which ffmpeg
+    /home/linuxbrew/.linuxbrew/bin/ffmpeg
+
+    ~/qt-hostbuild via △ v3.31.3 
+    ❯ brew remove ffmpeg
+    Error: Refusing to uninstall /home/linuxbrew/.linuxbrew/Cellar/ffmpeg/7.1_4
+    because it is required by timg, which is currently installed.
+    You can override this and force removal with:
+      brew uninstall --ignore-dependencies ffmpeg
+
+  
 
 https://github.com/qt/qtbase
 https://codereview.qt-project.org/qt/qt5
+
+
+❓ 과제
+  GUI 프레임워크: QT GUI 프레임워크를 활용한 센서 데이터 관리 시스템
+  - project name: sensorMan_PJS
+  - Main window widget 은 Tab widget 사용
+  - 첫번째 탭 화면에서는 iot 서버와 데이터 송/수신이 가능한 클라이언트 구현
+    - Line Edit 더블클릭 시 가상 키보드 구현
+  - 두 번째 탭 화면에서는 iot 서버에서 10초 단위로 수신된 조도/온도/습도 데이터를 실시간 라인차트 구현
+    ❔ 데이터 수신 포맷: [HM_CON]SENSOR@90@27.5@20.9
+  - 세 번째 탭 화면에서는 수신된 센서 데이터를 sqlite 데이터베이스를 활용하여 저장하고
+    , 검색 기간별 데이터 조회 및 삭제 기능 구현
+    , 조회된 센서데이터는 라인차트로 구현
+  
+  Socket, Snesor, Sqlite 탭.
+    Socket:
+      수신 데이터, --space--, 수신 삭제, 서버 해제
+      --메시지 박스--
+      --호스트 텍스트 박스--, -- 데이터--, 송신
+    Sensor:
+      시간별 조도, 온도 습도 그래프.
+      우측 상단에 Clear 버튼
+    Sqlite  
+      
+  Design
+    [element: Tab Widget]
+      Right click - ✔️ Insert Page
+      Tab count: 3
+      Tab name: (Socket, Snesor, Sqlite)
+        [element: Tab1 (Socket)]
+          - Attributes:
+            layoutStrecth: 2, 5, 2, 2
+          [element: Vertical Layout] * 1
+            - after create layout elements, Right click  - Layout - ✔️ Lay Out Vertically
+            Attributes:
+              layoutStrecth: 1,5,1
+            [element: Horizontal Layout] 1
+              [element: Lable]
+                Attributes:
+                  alignment - Horizontal - ✔️ AlignHCenter
+              [element: Spacer]
+              [element: Push Button]
+              [element: Push Button]
+                
+            [element: Horizontal Layout] 2
+              * [element: Text Edit]
+            [element: Horizontal Layout] 3 
+              Attributes:
+                spacing: 20
+              * [element: Line Edit], [element: Line Edit], [element: Push Button]
+  
+>>>>. Qt vscode 에서 할 때 Open in Qt Desiner 이전에 Cmake configure,는 해야하는듯? build가지?..
+  안그러면 디자이너에서 옵션이 안뜸.. 
