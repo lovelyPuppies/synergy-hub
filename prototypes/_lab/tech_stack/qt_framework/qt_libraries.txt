@@ -24,3 +24,57 @@ qt 🔪 Getting Started
 ----------------------------------------------
 qt 🔪 Development Tools
   ⚓ Build with CMake ; https://doc.qt.io/qt-6/cmake-manual.html
+
+
+
+Cross-compiling Qt for a given device requires a 🪱 toolchain and a 🪱 sysroot.
+  The toolchain is expected to contain a version of gcc, or another compiler, and associated tools built for cross-compilation.
+  This means these tools run on the host system (typically x64), while producing binaries for the target architecture (for example, 32 or 64 bit ARM).
+  The sysroot contains the headers and libraries for the target system, allowing compiling and linking libraries and applications on the host.
+
+This overview page describes to the generic approach, where no distribution building systems, such as Yocto or Buildroot, are used. It is always possible to cross-compile and deploy Qt onto a device as long as a suitable toolchain and sysroot are available.
+When running Qt-based applications without a windowing system, such as X11 or Wayland, some devices require vendor-specific adaptation code for 🪱 EGL and 🪱 OpenGL ES support.
+
+# Toolchain Files versus Device Makespecs
+  In Qt 5, you would typically use a device spec under the 🚣 qtbase/mkspecs/devices directory. ...
+  🛍️ For example, you could have configured a Qt 5 build for a Raspberry Pi 2 with a configure command like the following:
+
+  ⭕ Note: configure always uses the Ninja generator and build tool if a ninja executable is available.
+    Ninja is cross-platform, feature-rich, performant, and recommended on all platforms. The use of other generators might work but is not officially supported.
+
+
+  With Qt 6 and CMake, this approach is no longer sufficient on its own. Rather, a CMake toolchain file must be provided before configuring can happen.
+    It is in this file where customization with regards to compiler and linker flags, and toolchain and sysroot specific quirks, happens.
+  In the below sections we will present a toolchain file that can be used in many cases, with minimal customization.
+    It is based on the approach presented in 🛍️📍this blog post. ; https://www.qt.io/blog/standalone-boot2qt-/-yocto-sdk-cmake-toolchain
+
+  🚣 While CMake is the only supported build system for building Qt itself, applications may still be built using qmake in Qt 6.0.
+
+# Host Tools
+  💡 Cross-compiling Qt requires a host build of Qt being available.
+    During the build, tools such as 🚣 moc, rcc, qmlcachegen, qsb, and others, are invoked from there.
+    For example, if one cross-compiles for ARM on an x64 machine, a local x64 build of the same Qt version must be made available first.
+#🚧 Configuring Qt
+  Let's assume that the following are available:
+    - a toolchain and sysroot under $HOME/rpi-sdk,
+    - a checkout of Qt, at minimum the qtbase module, under $HOME/qt-cross,
+    - a host build of Qt in $HOME/qt-host.
+  In addition, the following must be decided before configuring:
+    - Where will the Qt build be installed on the local system once the build completes? In the example we will use $HOME/qt6-rpi.
+    - Where will the Qt build be deployed on the device? In the example we will use /usr/local/qt6.
+
+  
+  To enable applications to be built with 🚣 qmake (legacy) as well, the Qt 5 style device spec and device options must be specified, in addition to all arguments shown above:
+
+  By default, when cross-compiling, only the Qt libraries and tools that are supposed to run on the target device are built.
+    ⚖️ Build-related tools like moc and uic are not built. Building such tools can be enabled by setting QT_FORCE_BUILD_TOOLS to ON.
+    📝❔ moc (Meta-Object Compiler), uic (User Interface Compiler)
+      By default, these tools are excluded during cross-compilation because they are development utilities, not runtime dependencies.
+      - moc (Meta-Object Compiler): Generates code to support Qt's signal-slot mechanism and introspection features. Not needed on target devices as these are precompiled.
+      - uic (User Interface Compiler): Converts .ui files created in Qt Designer into C++ code. Used during development but not required for runtime on target devices.
+        
+  Once configuration completes without errors, run cmake --build . --parallel to build.
+  Once built, run cmake --install .to install the results to $HOME/qt6-rpi.
+  From there the Qt build can be deployed to the device by using rsync, scp, or another method.
+
+  If building individual Qt modules, one can use the qt-configure-module script from 
