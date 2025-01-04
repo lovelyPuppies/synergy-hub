@@ -15699,47 +15699,40 @@ CMake Warning:
   become a fatal error in future CMake releases.
 
 
-toolchain.cmake 
-  set(TARGET_ARCHITECTURE aarch64-linux-gnu)
-  to set(TARGET_ARCHITECTURE arm-linux-gnueabihf)
-
 Dockerfile
     gcc-12-aarch64-linux-gnu \
     g++-12-aarch64-linux-gnu \
-    to
-
-    gcc-arm-linux-gnueabihf \
-    g++-arm-linux-gnueabihf \
-
-
     binutils-aarch64-linux-gnu \
-    to
-    binutils-arm-linux-gnueabihf \
-
-
     libc6-arm64-cross \
     libc6-dev-arm64-cross \
-    to 
-
+    ➡️
+    gcc-arm-linux-gnueabihf \
+    g++-arm-linux-gnueabihf \
+    binutils-arm-linux-gnueabihf \
     libc6-armhf-cross \
     libc6-dev-armhf-cross \
 
 toolchain.cmake
   # Set the C and C++ compilers
+  set(TARGET_ARCHITECTURE aarch64-linux-gnu)
   set(CMAKE_C_COMPILER /usr/bin/${TARGET_ARCHITECTURE}-gcc-12)
   set(CMAKE_CXX_COMPILER /usr/bin/${TARGET_ARCHITECTURE}-g++-12)
-
-  to
-
+  ➡️ 
+  set(TARGET_ARCHITECTURE arm-linux-gnueabihf)
   set(CMAKE_C_COMPILER /usr/bin/${TARGET_ARCHITECTURE}-gcc)
   set(CMAKE_CXX_COMPILER /usr/bin/${TARGET_ARCHITECTURE}-g++)
 
 DockerfileRasp
+  FROM arm64v8/debian:bookworm
   libc6-arm64-cross
-  to
-  
+  ➡️ 
+  FROM arm32v7/debian:bookworm
   libc6-armhf-cross
 
+build command:
+   docker buildx build --platform linux/arm64 --load -f DockerFileRasp -t raspimage .
+  ➡️ 
+   docker buildx build --platform linux/arm/v7 --load -f DockerFileRasp -t raspimage .
 
 
 
@@ -16152,8 +16145,8 @@ cpp
 
 
 방법이 이거밖에 없나.. 도커.. https://github.com/PhysicsX/QTonRaspberryPi
-
-
+❓ https://wiki.qt.io/Cross-Compile_Qt_6_for_Raspberry_Pi#Building_Qt_6_for_Host_Machine
+  맞습니다! 이 문서는 Qt 애플리케이션 자체를 크로스 컴파일하는 방법이 아니라, Qt 라이브러리를 크로스 컴파일하여 라즈베리 파이에서 사용할 수 있도록 배포하는 방법을 다룹니다.
 
 1. 지금 호스트 Qt 는 oneline instaler 로 잘 설치햇고 이미 cmake preset 도 구성한 상태야.
 크로스컴파일+ 라즈베리파이용 cmakepreset 을 구성하려 하는데 그냥 방법이 안보이는데? 실제로 예시도 하나도 없고. 
@@ -16221,3 +16214,23 @@ CMake
 "디바이스에 Qt Online Installer를 사용하는 경우는 드뭅니다. 대신, 크로스컴파일 환경에서 컴파일한 라이브러리와 헤더만 디바이스에 설치하는 경우가 많습니다." 드물다고? 
 
 근데 런타임, 컴파일이 되도록 하는 툴은 그럼 어떻게 설치하는데? qt6.8 을 컴파일/실행하기 위한 라이브러리를 라즈베리파이에 설치 가능해? 
+
+
+❓ Qt Application 배포 방식
+  windeployqt --release path\to\your_application
+    윈도우에서는 동적 링크를 사용하여 Qt 애플리케이션을 배포할 때, 필요한 Qt 라이브러리를 애플리케이션과 함께 번들로 제공해야 합니다.
+
+  linuxdeployqt path/to/your_application -appimage
+    Linux에서는 Qt 애플리케이션을 AppImage와 같은 포맷으로 배포하거나 실행 파일과 라이브러리를 함께 제공할 수 있습니다.
+    https://github.com/probonopd/linuxdeployqt?tab=readme-ov-file
+    📰 Please note: As of 2024 , I am no longer actively working on this codebase in favor of https://github.com/probonopd/go-appimage.
+
+  근데 linuxdeploy 이거는,  음.. 그러니까 빌드된 결과물에 대해서 실행하는거야? 그럼 크로스컴파일시 결과물에 대해서는 경로를 어떻게찾나?;;
+
+
+Qt5 qml mqtt chart raspberry pi
+  https://www.youtube.com/watch?v=1IqdZ9gLZx8
+
+빌드를 통해서만 사용이 가능하고, 임베디드 기기라 빌드하고 거기서 개발하는것으 ㄴ어렵고..
+
+https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/
