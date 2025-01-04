@@ -1,0 +1,26 @@
+list of level 1 subjects
+  - qt modules
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓⭕ qt modules ; https://doc.qt.io/qt-6/index.html
+
+
+----------------------------------------------
+qt 🔪 Getting Started
+  ⚓ Get and Install Qt ; https://doc.qt.io/qt-6/get-and-install-qt.html
+    ⚓ Building Qt Sources ; https://doc.qt.io/qt-6/build-sources.html 
+      # Embedded Linux
+        ⚓ Configure an Embedded Linux Device ; https://doc.qt.io/qt-6/configure-linux-device.html
+          #️⃣ An Example Toolchain File ; https://doc.qt.io/qt-6/configure-linux-device.html#an-example-toolchain-file
+        ⚓ Qt for Embedded Linux ; https://doc.qt.io/qt-6/embedded-linux.html
+
+
+      #📍 Module-specific System Requirements
+        ⚓ Building Qt WebEngine from Source ; https://doc.qt.io/qt-6/qtwebengine-platform-notes.html
+        ⚓ Building Qt Quick 3D from Source ; https://doc.qt.io/qt-6/qtquick3d-index.html#building-from-source
+        ⚓ Building Qt Multimedia from Source ; https://doc.qt.io/qt-6/qtmultimedia-building-from-source.html
+        ⚓ Qt GRPC and Qt Protobuf Module Requirements ; https://doc.qt.io/qt-6/qtgrpc-index.html#module-prerequisites
+
+----------------------------------------------
+qt 🔪 Development Tools
+  ⚓ Build with CMake ; https://doc.qt.io/qt-6/cmake-manual.html

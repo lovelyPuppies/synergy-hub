@@ -16234,3 +16234,14 @@ Qt5 qml mqtt chart raspberry pi
 빌드를 통해서만 사용이 가능하고, 임베디드 기기라 빌드하고 거기서 개발하는것으 ㄴ어렵고..
 
 https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/
+
+
+Qt 5: mkspecs/devices에서 장치별 설정 파일 사용.
+Qt 6: CMake toolchain 파일을 통해 모든 빌드 설정 관리.
+
+
+https://doc.qt.io/qt-6/linux-requirements.html
+https://doc.qt.io/qt-6/linux-building.html
+
+
+EGL Full-Screen ; Qt가 EGL과 OpenGL ES를 활용하여 창 없는 환경에서 전체 화면 렌더링을 수행하는 플랫폼 플러그인입니다.
