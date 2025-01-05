@@ -7,6 +7,9 @@ project(testQt LANGUAGES CXX)
 set(CMAKE_C_COMPILER "/home/linuxbrew/.linuxbrew/bin/clang")
 set(CMAKE_CXX_COMPILER "/home/linuxbrew/.linuxbrew/bin/clang++")
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+# set(CMAKE_C_COMPILER clang)
+# set(CMAKE_CXX_COMPILER clang++)
+# 추가 플래그 설정
 
 # ☑️ If you use a custom compiler (e.g., GCC 14.2, Clang) instead of the Qt6 built-in GCC 📅 2024-12-29 01:45:42
 #   , you must explicitly set the CMAKE_PREFIX_PATH to locate Qt6's CMake configuration files.

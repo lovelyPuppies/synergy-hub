@@ -53,3 +53,25 @@ cmake -DCMAKE_C_COMPILER=/home/linuxbrew/.linuxbrew/bin/clang \
 
 
 https://apps.microsoft.com/detail/9pm8lp83g3l3?hl=en-US&gl=US
+
+
+1️⃣
+  cmake -DCMAKE_TOOLCHAIN_FILE=toolchain.cmake \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+        -S . \
+        -B build
+
+  cmake --build build
+
+  file build/testQt
+  mkdir -p /nfs/qt
+  cp build/testQt /nfs/qt/
+
+
+  ssh r-pi.local '
+    ## if in fish shell instead of bash shell
+    # set -gx LD_LIBRARY_PATH "$LD_LIBRARY_PATH":/usr/local/qt6/lib/
+    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/qt6/lib/
+    /mnt/host/qt/testQt
+  '
