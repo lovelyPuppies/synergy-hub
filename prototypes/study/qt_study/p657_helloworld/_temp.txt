@@ -146,15 +146,34 @@ Cmakepreset.json
 }
 
 🚨 In included file: 'type_traits' file not foundclang(pp_file_not_found)
-qglobal.h(13, 12): Error occurred here
-QApplication
-/home/wbfw109v2/qt-platforms/qt6.8.0-arm32v7-bookworm/include/QtWidgets/QApplication
-이렇게 나온느데 이게 근본원인인가?
+  qglobal.h(13, 12): Error occurred here
+  QApplication
+  /home/wbfw109v2/qt-platforms/qt6.8.0-arm32v7-bookworm/include/QtWidgets/QApplication
+  이렇게 나온느데 이게 근본원인인가?
 
 
-############### 
-target_include_directories(${PROJECT_NAME} PRIVATE
-    /usr/arm-linux-gnueabihf/include/c++/14
-    /usr/arm-linux-gnueabihf/include/c++/14/arm-linux-gnueabihf
-    /usr/arm-linux-gnueabihf/include
-)
+  ############### 
+  CMakeLists.txt
+  target_include_directories(${PROJECT_NAME} PRIVATE
+      /usr/arm-linux-gnueabihf/include/c++/14
+      /usr/arm-linux-gnueabihf/include/c++/14/arm-linux-gnueabihf
+      /usr/arm-linux-gnueabihf/include
+  )
+
+
+  path 순서 설정
+  !!
+  "environment": {
+    "PATH": "$env{HOME}/qt-platforms/qt6.8.0-arm32v7-bookworm/bin:$env{HOME}/Qt/6.8.0/gcc_64/bin:/home/linuxbrew/.linuxbrew/bin",
+    "VSCODE_QT_FOLDER": "$env{HOME}/qt-platforms/qt6.8.0-arm32v7-bookworm/bin"
+  },
+  
+  ➡️
+  file build/Debug/testQt
+  mkdir -p /nfs/qt
+  cp build/Debug/testQt /nfs/qt
+  ssh r-pi.local "
+    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/qt6/lib/
+    ls -l /mnt/host/qt/testQt
+    /mnt/host/qt/testQt
+  "
