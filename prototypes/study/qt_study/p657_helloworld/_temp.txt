@@ -144,3 +144,17 @@ Cmakepreset.json
     }
   ]
 }
+
+🚨 In included file: 'type_traits' file not foundclang(pp_file_not_found)
+qglobal.h(13, 12): Error occurred here
+QApplication
+/home/wbfw109v2/qt-platforms/qt6.8.0-arm32v7-bookworm/include/QtWidgets/QApplication
+이렇게 나온느데 이게 근본원인인가?
+
+
+############### 
+target_include_directories(${PROJECT_NAME} PRIVATE
+    /usr/arm-linux-gnueabihf/include/c++/14
+    /usr/arm-linux-gnueabihf/include/c++/14/arm-linux-gnueabihf
+    /usr/arm-linux-gnueabihf/include
+)

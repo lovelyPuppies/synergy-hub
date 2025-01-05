@@ -54,3 +54,11 @@ qt_generate_deploy_app_script(
 )
 install(SCRIPT ${deploy_script})
 
+
+
+############### 
+target_include_directories(${PROJECT_NAME} PRIVATE
+    /usr/arm-linux-gnueabihf/include/c++/14
+    /usr/arm-linux-gnueabihf/include/c++/14/arm-linux-gnueabihf
+    /usr/arm-linux-gnueabihf/include
+)

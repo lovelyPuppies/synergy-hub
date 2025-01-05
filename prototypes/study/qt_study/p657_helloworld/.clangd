@@ -1,0 +1,6 @@
+CompileFlags:
+  Add: [
+    "-isystem", "/home/wbfw109v2/qt-platforms/qt6.8.0-arm32v7-bookworm/include",
+    "-isystem", "/home/wbfw109v2/rpi-sysroot/usr/include",
+    "-isystem", "/home/wbfw109v2/rpi-sysroot/usr/include/c++/10"
+  ]
