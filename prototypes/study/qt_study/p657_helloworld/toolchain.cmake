@@ -2,20 +2,18 @@
 set(CMAKE_SYSTEM_NAME Linux)
 set(CMAKE_SYSTEM_PROCESSOR arm)
 
-# Clang 기반 크로스 컴파일러 설정
-set(CMAKE_C_COMPILER /usr/bin/clang)
-set(CMAKE_CXX_COMPILER /usr/bin/clang++)
 
 # Clang 크로스 컴파일 타겟 및 sysroot 설정
-set(CMAKE_C_FLAGS "--target=arm-linux-gnueabihf --sysroot=/home/wbfw109v2/rpi-sysroot")
-set(CMAKE_CXX_FLAGS "--target=arm-linux-gnueabihf --sysroot=/home/wbfw109v2/rpi-sysroot")
+set(SYSROOT_PATH "$ENV{HOME}/rpi-sysroot")
 
-# Qt 경로 설정
-set(CMAKE_PREFIX_PATH /home/wbfw109v2/qt-platforms/qt6.8.0-arm32v7-bookworm)
-set(QT_HOST_PATH /home/wbfw109v2/Qt/6.8.0/gcc_64)
+# CFLAGS 및 CXXFLAGS에 sysroot 설정
+set(CMAKE_C_FLAGS "--target=arm-linux-gnueabihf --sysroot=${SYSROOT_PATH}")
+set(CMAKE_CXX_FLAGS "--target=arm-linux-gnueabihf --sysroot=${SYSROOT_PATH}")
+
+
 
 # 크로스 컴파일 환경에서 라이브러리 및 헤더 검색 설정
-set(CMAKE_FIND_ROOT_PATH /home/wbfw109v2/rpi-sysroot)
+set(CMAKE_FIND_ROOT_PATH ${SYSROOT_PATH})
 set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
 set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
 set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
@@ -23,13 +21,21 @@ set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
 
 ##############
 # CFLAGS 및 CXXFLAGS에 include 경로 추가 (공백으로 구분)
-string(APPEND CMAKE_C_FLAGS " -I/usr/arm-linux-gnueabihf/include/c++/14")
-string(APPEND CMAKE_C_FLAGS " -I/usr/arm-linux-gnueabihf/include/c++/14/arm-linux-gnueabihf")
-string(APPEND CMAKE_C_FLAGS " -I/usr/arm-linux-gnueabihf/include")
+# Include 경로 설정 (공통으로 사용할 경우)
+set(CROSS_COMPILE_INCLUDE_PATHS
+    "/usr/arm-linux-gnueabihf/include/c++/14"
+    "/usr/arm-linux-gnueabihf/include/c++/14/arm-linux-gnueabihf"
+    "/usr/arm-linux-gnueabihf/include"
+)
 
-string(APPEND CMAKE_CXX_FLAGS " -I/usr/arm-linux-gnueabihf/include/c++/14")
-string(APPEND CMAKE_CXX_FLAGS " -I/usr/arm-linux-gnueabihf/include/c++/14/arm-linux-gnueabihf")
-string(APPEND CMAKE_CXX_FLAGS " -I/usr/arm-linux-gnueabihf/include")
+# CFLAGS 및 CXXFLAGS에 include 경로 추가
+foreach(PATH ${CROSS_COMPILE_INCLUDE_PATHS})
+    ## If use     "CMAKE_C_COMPILER": "clang",        in CMakePresets.json - configurePresets - cacheVariables
+    # string(APPEND CMAKE_C_FLAGS " -I${PATH}")
+    string(APPEND CMAKE_CXX_FLAGS " -I${PATH}")
+endforeach()
+
+
 # ✅ (How-to) cross compile to raspberry pi 4 B
 # cmake -DCMAKE_TOOLCHAIN_FILE=toolchain.cmake \
 # -DCMAKE_BUILD_TYPE=Release \
@@ -38,9 +44,9 @@ string(APPEND CMAKE_CXX_FLAGS " -I/usr/arm-linux-gnueabihf/include")
 
 # cmake --build build
 
-# file build/testQt
+# file build/Debug/testQt
 # mkdir -p /nfs/qt
-# cp build/testQt /nfs/qt/
+# cp build/Debug/testQt /nfs/qt/
 
 
 # ssh r-pi.local '
