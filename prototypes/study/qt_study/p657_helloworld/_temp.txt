@@ -1,35 +1,106 @@
+qt 6.8 에서 크로스컴파일 작업을 하고 있어. 지금 gcc 로 빌드중인데 clangd 의 intellisense 가 작동을 제대로 안해 (오류). 그와 별개로 크로스컴파일은 잘 되고 실행도 잘 되고 있어.
 
-###################
-# https://www.interelectronix.com/kr/lajeubeli-paiyong-qt-68-keuloseu-keompail.html
-# https://wiki.qt.io/Cross-Compile_Qt_6_for_Raspberry_Pi
-# 크로스 컴파일 설정 로깅
-if (CMAKE_TOOLCHAIN_FILE)
-    message(STATUS "Using Toolchain File: ${CMAKE_TOOLCHAIN_FILE}")
-else()
-    message(STATUS "No Toolchain File specified; building for host system.")
-endif()
+==============
+***** toolchain.cmake
+set(CMAKE_SYSTEM_NAME Linux)
+set(CMAKE_SYSTEM_PROCESSOR arm)
 
+# 크로스 컴파일러 설정
+set(CMAKE_C_COMPILER /usr/bin/arm-linux-gnueabihf-gcc)
+set(CMAKE_CXX_COMPILER /usr/bin/arm-linux-gnueabihf-g++)
 
+# sysroot 설정
+set(CMAKE_SYSROOT /home/wbfw109v2/rpi-sysroot)
 
+# Qt 경로 설정
+set(CMAKE_PREFIX_PATH /home/wbfw109v2/qt-platforms/qt6.8.0-arm32v7-bookworm)
+set(QT_HOST_PATH /home/wbfw109v2/Qt/6.8.0/gcc_64)
 
-brew install vulkan-tools
-  ==> vulkan-tools
-  The mock ICD files have been installed in
-    /home/linuxbrew/.linuxbrew/opt/vulkan-tools/lib/mock_icd
-  You can use them with the Vulkan Loader by setting
-    export VK_ICD_FILENAMES=/home/linuxbrew/.linuxbrew/opt/vulkan-tools/lib/mock_icd/VkICD_mock_icd.json
-
-  >> before install when cmake configuration
-    [cmake] -- Could NOT find WrapVulkanHeaders (missing: Vulkan_INCLUDE_DIR) 
-  >> after install when cmake configuration
-    [cmake] -- Found WrapVulkanHeaders: /home/linuxbrew/.linuxbrew/include
+# 크로스 컴파일 환경에서 라이브러리 및 헤더 검색 설정
+set(CMAKE_FIND_ROOT_PATH /home/wbfw109v2/rpi-sysroot)
+set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
 
 
 
-cmake -DCMAKE_C_COMPILER=/home/linuxbrew/.linuxbrew/bin/clang \
-            -DCMAKE_CXX_COMPILER=/home/linuxbrew/.linuxbrew/bin/clang++ \
-            -S /home/wbfw109v2/repos/synergy-hub/prototypes/study/qt_study/p657_helloworld \
-            -B /home/wbfw109v2/repos/synergy-hub/prototypes/study/qt_study/p657_helloworld/build
+//
+==============
+***** CmakePresets.json
+
+    {
+      "name": "Qt-6.8.0-cross-arm",
+      "generator": "Ninja Multi-Config",
+      "binaryDir": "${sourceDir}/build-cross-arm",
+      "description": "Cross-compile for Raspberry Pi (ARM32v7)",
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/toolchain.cmake",
+        "QT_HOST_PATH": "$env{HOME}/Qt/6.8.0/gcc_64",
+        "Qt6_DIR": "$env{HOME}/qt-platforms/qt6.8.0-arm32v7-bookworm/lib/cmake/Qt6"
+      },
+      "environment": {
+        "PATH": "$env{HOME}/qt-platforms/qt6.8.0-arm32v7-bookworm/bin:/usr/bin:/home/linuxbrew/.linuxbrew/bin"
+      }
+    }
+
+
+==============
+***** CMakeLists.txt
+# Written at 📅 2024-12-30 10:21:09
+cmake_minimum_required(VERSION 3.19)
+project(testQt LANGUAGES CXX)
+
+
+# ☑️ If you use Clang , you must add ...
+
+# set(CMAKE_C_COMPILER "/home/linuxbrew/.linuxbrew/bin/clang")
+# set(CMAKE_CXX_COMPILER "/home/linuxbrew/.linuxbrew/bin/clang++")
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+# set(CMAKE_C_COMPILER clang)
+# set(CMAKE_CXX_COMPILER clang++)
+# 추가 플래그 설정
+
+# ☑️ If you use a custom compiler (e.g., GCC 14.2, Clang) instead of the Qt6 built-in GCC 📅 2024-12-29 01:45:42
+#   , you must explicitly set the CMAKE_PREFIX_PATH to locate Qt6's CMake configuration files.
+# set(CMAKE_PREFIX_PATH "$ENV{HOME}/Qt/6.8.0/gcc_64/lib/cmake")
+
+find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets LinguistTools)
+
+qt_standard_project_setup()
+
+qt_add_executable(testQt
+    WIN32 MACOSX_BUNDLE
+    main.cpp
+    CustomWidget.cpp
+    CustomWidget.h
+)
+
+qt_add_translations(
+    TARGETS testQt
+    # TS_FILES testQt_ko_KR.ts
+)
+
+target_link_libraries(testQt
+    PRIVATE
+        Qt::Core
+        Qt::Widgets
+)
+
+include(GNUInstallDirs)
+
+install(TARGETS testQt
+    BUNDLE  DESTINATION .
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+)
+
+qt_generate_deploy_app_script(
+    TARGET testQt
+    OUTPUT_SCRIPT deploy_script
+    NO_UNSUPPORTED_PLATFORM_ERROR
+)
+install(SCRIPT ${deploy_script})
+
 
 
 ❗
@@ -60,18 +131,47 @@ https://apps.microsoft.com/detail/9pm8lp83g3l3?hl=en-US&gl=US
         -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
         -S . \
-        -B build
+        -B build-cross-arm
 
-  cmake --build build
+  cmake --build build-cross-arm
 
-  file build/testQt
+  file build-cross-arm/Debug/testQt
   mkdir -p /nfs/qt
-  cp build/testQt /nfs/qt/
+  cp build-cross-arm/Debug/testQt /nfs/qt/
 
 
   ssh r-pi.local '
     ## if in fish shell instead of bash shell
     # set -gx LD_LIBRARY_PATH "$LD_LIBRARY_PATH":/usr/local/qt6/lib/
+    ls -l /mnt/host/qt/testQt
     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/qt6/lib/
     /mnt/host/qt/testQt
   '
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      {
+      "name": "Qt-6.8.0-cross-arm",
+      "generator": "Ninja Multi-Config",
+      "binaryDir": "${sourceDir}/build-cross-arm",
+      "description": "Cross-compile for Raspberry Pi (ARM32v7)",
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/toolchain.cmake",
+        "QT_HOST_PATH": "$env{HOME}/Qt/6.8.0/gcc_64",
+        "Qt6_DIR": "$env{HOME}/qt-platforms/qt6.8.0-arm32v7-bookworm/lib/cmake/Qt6"
+      },
+      "environment": {
+        "PATH": "$env{HOME}/qt-platforms/qt6.8.0-arm32v7-bookworm/bin:/usr/bin:/home/linuxbrew/.linuxbrew/bin"
+      }
+    }

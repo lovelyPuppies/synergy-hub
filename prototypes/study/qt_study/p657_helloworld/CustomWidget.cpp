@@ -1,7 +1,7 @@
-#include "CustomWidget.h"
 #include <QApplication>
+//
+#include "CustomWidget.h"
 #include <QPushButton>
-#include <qwidget.h>
 
 CustomWidget::CustomWidget(QWidget *parent) : QWidget(parent) {
   QPushButton *button = new QPushButton("Quit", this);

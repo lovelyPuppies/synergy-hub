@@ -1,7 +1,7 @@
 #ifndef __CUSTOM_WIDGET__
-#define __CUSTOM_WIDGET__
+  #define __CUSTOM_Wz IDGET__
 
-#include <qwidget.h>
+  #include <qwidget.h>
 
 class CustomWidget : public QWidget {
   Q_OBJECT

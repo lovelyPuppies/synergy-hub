@@ -1,14 +1,21 @@
+# 시스템 정보 설정
 set(CMAKE_SYSTEM_NAME Linux)
 set(CMAKE_SYSTEM_PROCESSOR arm)
 
 # 크로스 컴파일러 설정
-set(CMAKE_C_COMPILER /usr/bin/arm-linux-gnueabihf-gcc)
-set(CMAKE_CXX_COMPILER /usr/bin/arm-linux-gnueabihf-g++)
+set(CMAKE_C_COMPILER /home/linuxbrew/.linuxbrew/bin/clang)
+set(CMAKE_CXX_COMPILER /home/linuxbrew/.linuxbrew/bin/clang++)
+set(CMAKE_LINKER ld.lld)
+
+# Clang 타겟 설정
+set(CMAKE_C_FLAGS "--target=arm-linux-gnueabihf -march=armv7-a -fuse-ld=lld")
+set(CMAKE_CXX_FLAGS "--target=arm-linux-gnueabihf -march=armv7-a -fuse-ld=lld")
+set(CMAKE_EXE_LINKER_FLAGS "--target=arm-linux-gnueabihf -march=armv7-a -fuse-ld=lld")
 
 # sysroot 설정
 set(CMAKE_SYSROOT /home/wbfw109v2/rpi-sysroot)
 
-# Qt 경로 설정
+# Qt 설치 경로
 set(CMAKE_PREFIX_PATH /home/wbfw109v2/qt-platforms/qt6.8.0-arm32v7-bookworm)
 set(QT_HOST_PATH /home/wbfw109v2/Qt/6.8.0/gcc_64)
 

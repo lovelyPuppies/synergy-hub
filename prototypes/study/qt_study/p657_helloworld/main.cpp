@@ -1,5 +1,6 @@
-#include "CustomWidget.h"
 #include <QApplication>
+//
+#include "CustomWidget.h"
 #include <QLabel>
 #include <QLocale>
 #include <QTranslator>

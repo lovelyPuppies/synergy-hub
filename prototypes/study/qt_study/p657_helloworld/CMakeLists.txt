@@ -4,8 +4,9 @@ project(testQt LANGUAGES CXX)
 
 
 # ☑️ If you use Clang , you must add ...
-set(CMAKE_C_COMPILER "/home/linuxbrew/.linuxbrew/bin/clang")
-set(CMAKE_CXX_COMPILER "/home/linuxbrew/.linuxbrew/bin/clang++")
+
+# set(CMAKE_C_COMPILER "/home/linuxbrew/.linuxbrew/bin/clang")
+# set(CMAKE_CXX_COMPILER "/home/linuxbrew/.linuxbrew/bin/clang++")
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 # set(CMAKE_C_COMPILER clang)
 # set(CMAKE_CXX_COMPILER clang++)
