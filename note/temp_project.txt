@@ -16247,3 +16247,13 @@ https://doc.qt.io/Boot2Qt/b2qt-qsg-raspberry.html?utm_source=chatgpt.com
 ❌ https://wiki.qt.io/Cross-Compile_Qt_6_for_Raspberry_Pi >> 커뮤니티 기반이엇음 .하.. 최신 상태가 아닐 수 있으며, 정확성과 일관성이 공식 문서보다 떨어질 수 있습니다.
 ❌ Boot to Qt 이미지를 SD 카드에 플래싱하면, 라즈베리 파이에 설치된 기존 운영 체제(예: 라즈비안)는 덮어쓰게 됩니다.
   
+
+
+
+
+파일 생성 시점 문제:
+compile_commands.json은 CMake configure가 완료된 후 생성되지만, 파일 존재 여부를 CMakeLists.txt에서 바로 확인하려고 하면 실패합니다.
+환경 변경의 한계:
+execute_process()는 하위 프로세스에서만 환경을 수정하므로, 파일 생성이나 다른 설정이 CMake의 상위 프로세스에 영향을 미치지 않습니다.
+적합한 해결책:
+configure 단계 이후 후속 작업으로 파일을 처리해야 하며, CMake 자체로는 타이밍 문제를 해결하기 어렵습니다.

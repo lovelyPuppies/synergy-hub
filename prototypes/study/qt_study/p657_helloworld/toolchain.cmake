@@ -43,23 +43,20 @@ foreach(PATH ${CROSS_COMPILE_INCLUDE_PATHS})
 endforeach()
 
 
-# ✅ (How-to) cross compile to raspberry pi 4 B
-# cmake -DCMAKE_TOOLCHAIN_FILE=toolchain.cmake \
-# -DCMAKE_BUILD_TYPE=Release \
-# -S . \
-# -B build
-
-# cmake --build build
-
-# file build/Debug/testQt
-# mkdir -p /nfs/qt
-# cp build/Debug/testQt /nfs/qt/
 
 
-# ssh r-pi.local '
-# ## if in fish shell instead of bash shell
-# # set -gx LD_LIBRARY_PATH "$LD_LIBRARY_PATH":/usr/local/qt6/lib/
-# export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/qt6/lib/
-# ls -l /mnt/host/qt/testQt
-# /mnt/host/qt/testQt
-# '
+set(COMMENT_BLOCK "
+    ✅ (How-to) Run an Executable on Raspberry Pi 4 B from the Host Machine 📅 2025-01-06 07:22:55
+    file build/arm32v7-raspberrypi4/Debug/testQt
+    mkdir -p /nfs/qt
+    cp build/arm32v7-raspberrypi4/Debug/testQt /nfs/qt/
+
+    ssh r-pi.local '
+        ## if in fish shell instead of bash shell
+        # set -gx LD_LIBRARY_PATH \"$LD_LIBRARY_PATH\":/usr/local/qt6/lib/
+        export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/qt6/lib/
+        ls -l /mnt/host/qt/testQt
+        /mnt/host/qt/testQt
+    '
+")
+
