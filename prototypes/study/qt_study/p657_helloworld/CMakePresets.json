@@ -11,7 +11,7 @@
       "binaryDir": "${sourceDir}/build",
       "description": "Cross-compile for Raspberry Pi (ARM32v7)",
       "environment": {
-        "PATH": "/home/linuxbrew/.linuxbrew/bin:$env{HOME}/Qt/6.8.0/gcc_64/bin:$env{HOME}/qt-platforms/qt6.8.0-arm32v7-bookworm/bin",
+        "PATH": "$env{HOME}/qt-platforms/qt6.8.0-arm32v7-bookworm/bin:$env{HOME}/Qt/6.8.0/gcc_64/bin:/home/linuxbrew/.linuxbrew/bin",
         "VSCODE_QT_FOLDER": "$env{HOME}/qt-platforms/qt6.8.0-arm32v7-bookworm/bin"
       },
       "cacheVariables": {
