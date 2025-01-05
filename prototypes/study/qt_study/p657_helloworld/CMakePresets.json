@@ -6,19 +6,26 @@
   },
   "configurePresets": [
     {
-      "name": "Qt-6.8.0-clang_64",
+      "name": "Qt-6.8.0-cross-arm",
       "generator": "Ninja Multi-Config",
-      "binaryDir": "${sourceDir}/build-clang_64",
+      "binaryDir": "${sourceDir}/build",
+      "description": "Cross-compile for Raspberry Pi (ARM32v7)",
       "environment": {
-        "VSCODE_QT_FOLDER": "$env{HOME}/Qt/6.8.0/gcc_64",
-        "PATH": "$env{HOME}/Qt/6.8.0/gcc_64/bin:/home/linuxbrew/.linuxbrew/bin:/bin:/usr/bin"
+        "PATH": "/home/linuxbrew/.linuxbrew/bin:$env{HOME}/Qt/6.8.0/gcc_64/bin:$env{HOME}/qt-platforms/qt6.8.0-arm32v7-bookworm/bin",
+        "VSCODE_QT_FOLDER": "$env{HOME}/Qt/6.8.0/gcc_64"
       },
       "cacheVariables": {
         "CMAKE_C_COMPILER": "clang",
         "CMAKE_CXX_COMPILER": "clang++",
         "CMAKE_PREFIX_PATH": "cmake",
         "CMAKE_MAKE_PROGRAM": "ninja",
-        "CMAKE_EXE_LINKER_FLAGS": "-fuse-ld=lld"
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "CMAKE_EXE_LINKER_FLAGS": "-fuse-ld=lld",
+        "CMAKE_CXX_STANDARD": "23",
+        "CMAKE_CXX_STANDARD_REQUIRED": "ON",
+        "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/toolchain.cmake",
+        "QT_HOST_PATH": "$env{HOME}/Qt/6.8.0/gcc_64",
+        "Qt6_DIR": "$env{HOME}/qt-platforms/qt6.8.0-arm32v7-bookworm/lib/cmake/Qt6"
       },
       "toolchainFile": "$env{HOME}/Qt/6.8.0/gcc_64/lib/cmake/Qt6/qt.toolchain.cmake"
     }
