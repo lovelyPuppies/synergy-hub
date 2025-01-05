@@ -44,7 +44,7 @@
         "QT_HOST_PATH": "$env{HOME}/Qt/6.8.0/gcc_64",
         "Qt6_DIR": "$env{HOME}/qt-platforms/qt6.8.0-arm32v7-bookworm/lib/cmake/Qt6"
       },
-      "toolchainFile": "${sourceDir}/toolchain.cmake"
+      "toolchainFile": "${sourceDir}/cmake-qt-6.8.0-clang-arm32v7-raspberrypi4-toolchain.cmake"
     }
   ]
 }
