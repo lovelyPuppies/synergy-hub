@@ -14,7 +14,8 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # ☑️ If you use a custom compiler (e.g., GCC 14.2, Clang) instead of the Qt6 built-in GCC 📅 2024-12-29 01:45:42
 #   , you must explicitly set the CMAKE_PREFIX_PATH to locate Qt6's CMake configuration files.
-set(CMAKE_PREFIX_PATH "$ENV{HOME}/Qt/6.8.0/gcc_64/lib/cmake")
+
+
 
 find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets LinguistTools)
 
