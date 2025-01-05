@@ -22,9 +22,16 @@ set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
 ##############
 # CFLAGS 및 CXXFLAGS에 include 경로 추가 (공백으로 구분)
 # Include 경로 설정 (공통으로 사용할 경우)
+file(GLOB STANDARD_LIB_PATHS "/usr/arm-linux-gnueabihf/include/c++/*")
+list(SORT STANDARD_LIB_PATHS)
+list(REVERSE STANDARD_LIB_PATHS)
+list(GET STANDARD_LIB_PATHS 0 SELECTED_CPP_PATH)
+
+message(STATUS "Detected C++ standard library path: ${SELECTED_CPP_PATH}")
+
 set(CROSS_COMPILE_INCLUDE_PATHS
-    "/usr/arm-linux-gnueabihf/include/c++/14"
-    "/usr/arm-linux-gnueabihf/include/c++/14/arm-linux-gnueabihf"
+    "${SELECTED_CPP_PATH}"
+    "${SELECTED_CPP_PATH}/arm-linux-gnueabihf"
     "/usr/arm-linux-gnueabihf/include"
 )
 
