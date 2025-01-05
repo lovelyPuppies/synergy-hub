@@ -78,3 +78,13 @@ When running Qt-based applications without a windowing system, such as X11 or Wa
   From there the Qt build can be deployed to the device by using rsync, scp, or another method.
 
   If building individual Qt modules, one can use the qt-configure-module script from 
+
+
+
+  📰❓ If building individual Qt modules, one can use the qt-configure-module script from the bin directory of the staging location ($HOME/qt6-rpi in the example) to configure additional modules, such as qtdeclarative, qtquick3d, and so on.
+  They can then be built using cmake --build . and installed to the staging location by running cmake --install .
+  💡 Note: Before starting the build, always inspect the output of the configuration step carefully: does it have all the expected features enabled?
+    With the Raspberry Pi 4 example, we expect that EGL, OpenGL ES and EGLFS GBM are all reported as yes, otherwise the EGLFS platform plugin and its eglfs_kms backend will not be functional on the device.
+    For getting function mouse, keyboard, and touch input, either 🪱evdev or libinput must be enabled.
+
+  🪱 evdev: Input Event Device

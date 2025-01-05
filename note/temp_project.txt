@@ -16171,3 +16171,6 @@ C:\Users\wbfw1\AppData\Roaming\Microsoft\Windows\Recent\AutomaticDestinations
 
 
 프레임버퍼(/dev/fb0)*
+
+GBM: Generic Buffer Management의 약자로
+, DRM(Direct Rendering Manager) API와 연동하여 EGL과 OpenGL ES에서 사용할 수 있는 버퍼를 관리하는 Linux 커널 기반의 메커니즘입니다.

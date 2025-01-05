@@ -4,23 +4,23 @@ Written at 📅 2025-01-05 07:23:06
 
 ## Rendering Path Differences Table
 
-| Layer                        | EGLFS                               | LinuxFB                     | X11                               | Wayland                             |
-| ---------------------------- | ----------------------------------- | --------------------------- | --------------------------------- | ----------------------------------- |
-| 1) Application Layer         | OpenGL/OpenGL ES/Vulkan             | OpenGL/Software Rendering   | OpenGL/OpenGL ES/Vulkan           | OpenGL/OpenGL ES/Vulkan             |
-| 2) Graphics Management Layer | -                                   | -                           | -                                 | -                                   |
-| 2a) Rendering Context        | EGL (OpenGL/OpenGL ES)              | N/A                         | GLX                               | EGL (OpenGL/OpenGL ES)              |
-| 2b) Surface Creation         | EGL Surface                         | Framebuffer Surface         | GLX Pixmap                        | EGL Surface                         |
-| 2c) Command Submission       | OpenGL/OpenGL ES Commands (via EGL) | CPU-Based Commands          | OpenGL Commands (via GLX)         | OpenGL/OpenGL ES Commands (via EGL) |
-| 3) GPU Driver Layer          | -                                   | -                           | -                                 | -                                   |
-| 3a) Driver Processing        | GPU Driver                          | CPU Processing              | GPU Driver                        | GPU Driver                          |
-| 3b) Rendering Execution      | GPU Hardware                        | CPU (Software Rendering)    | GPU Hardware                      | GPU Hardware                        |
-| 3c) Framebuffer Write        | Direct Write to Framebuffer         | Direct Write to Framebuffer | GPU Framebuffer Managed by Driver | GPU Framebuffer Managed by Driver   |
-| 4) Display Management Layer  | -                                   | -                           | -                                 | -                                   |
-| 4a) Display Server           | N/A                                 | N/A                         | X Server                          | Wayland Compositor                  |
-| 4b) Framebuffer Management   | EGLFS (Direct GPU Buffer Access)    | LinuxFB                     | GPU Driver/DRM-KMS                | GPU Driver/DRM-KMS                  |
-| 5) Output Layer              | -                                   | -                           | -                                 | -                                   |
-| 5a) Display Controller       | DRM/KMS                             | DRM/KMS                     | DRM/KMS                           | DRM/KMS                             |
-| 5b) Display Device           | HDMI/LCD/VGA                        | HDMI/LCD/VGA                | HDMI/LCD/VGA                      | HDMI/LCD/VGA                        |
+| Layer                        | EGLFS                               | LinuxFB                   | X11                             | Wayland                             |
+| ---------------------------- | ----------------------------------- | ------------------------- | ------------------------------- | ----------------------------------- |
+| 1) Application Layer         | OpenGL/OpenGL ES/Vulkan             | OpenGL/Software Rendering | OpenGL/OpenGL ES/Vulkan         | OpenGL/OpenGL ES/Vulkan             |
+| 2) Graphics Management Layer | -                                   | -                         | -                               | -                                   |
+| 2a) Rendering Context        | EGL (OpenGL/OpenGL ES)              | N/A                       | GLX                             | EGL (OpenGL/OpenGL ES)              |
+| 2b) Surface Creation         | EGL Surface                         | Framebuffer Surface       | GLX Pixmap                      | EGL Surface                         |
+| 2c) Command Submission       | OpenGL/OpenGL ES Commands (via EGL) | CPU-Based Commands        | OpenGL Commands (via GLX)       | OpenGL/OpenGL ES Commands (via EGL) |
+| 3) GPU Driver Layer          | -                                   | -                         | -                               | -                                   |
+| 3a) Driver Processing        | GPU Driver                          | CPU Processing            | GPU Driver                      | GPU Driver                          |
+| 3b) Rendering Execution      | GPU Hardware                        | CPU (Software Rendering)  | GPU Hardware                    | GPU Hardware                        |
+| 3c) Framebuffer Write        | GPU Framebuffer Write               | CPU Framebuffer Write     | GPU Framebuffer Write           | GPU Framebuffer Write               |
+| 4) Display Management Layer  | -                                   | -                         | -                               | -                                   |
+| 4a) Display Server           | N/A                                 | N/A                       | X Server                        | Wayland Compositor                  |
+| 4b) Framebuffer Management   | GBM (GPU Buffer Management)         | LinuxFB                   | DRM-KMS (GPU Buffer Management) | GBM (GPU Buffer Management)         |
+| 5) Output Layer              | -                                   | -                         | -                               | -                                   |
+| 5a) Display Controller       | DRM/KMS                             | DRM/KMS                   | DRM/KMS                         | DRM/KMS                             |
+| 5b) Display Device           | HDMI/LCD/VGA                        | HDMI/LCD/VGA              | HDMI/LCD/VGA                    | HDMI/LCD/VGA                        |
 
 ---
 
@@ -29,25 +29,25 @@ Written at 📅 2025-01-05 07:23:06
 ### LinuxFB Rendering Path
 
 ```plaintext
-App (CPU-based Rendering) → Framebuffer → DRM/KMS → Display
+Application → CPU → LinuxFB → DRM/KMS → Display
 ```
 
 ### EGLFS Rendering Path
 
 ```plaintext
-App → EGL → GPU → Framebuffer → DRM/KMS → Display
+Application → EGL → GPU → GBM → DRM/KMS → Display
 ```
 
 ### X11 Rendering Path
 
 ```plaintext
-App → GLX → X Server → GPU → Framebuffer → DRM/KMS → Display
+Application → GLX → X Server → GPU → X Server (Low Level: DRM/KMS) → DRM/KMS → Display
 ```
 
 ### Wayland Rendering Path
 
 ```plaintext
-App → EGL → Wayland Compositor → GPU → Framebuffer → DRM/KMS → Display
+Application → EGL → Wayland Compositor → GPU → GBM → DRM/KMS → Display
 ```
 
 ---
@@ -163,8 +163,8 @@ Writes rendered content to a framebuffer for display output.
 
 🛍️ e.g.
 
-- **Direct Write to Framebuffer**: CPU writes directly to the framebuffer memory.
-- **GPU Framebuffer**: GPU-managed memory buffer for rendering output.
+- **GPU Framebuffer**: GPU-managed memory where rendered data is written.
+- **CPU Framebuffer**: Framebuffer where CPU-rendered data is written directly.
 
 ---
 
@@ -192,9 +192,9 @@ Handles framebuffer allocation and management for display output.
 
 🛍️ e.g.
 
+- **GBM (Generic Buffer Manager)**: Allocates and manages GPU buffers for rendering and display.
 - **EGLFS (EGL Full-Screen)**: Direct GPU access to manage buffers.
-- **LinuxFB (Linux Framebuffer)**: Direct CPU access to framebuffer devices.
-- **GPU Driver**: Allocates and manages framebuffers via DRM/KMS.
+- **LinuxFB (Linux Framebuffer)**: Manages CPU-rendered framebuffer devices.
 
 ---
 
