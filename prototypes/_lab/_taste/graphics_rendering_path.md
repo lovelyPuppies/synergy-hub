@@ -1,6 +1,6 @@
-# Graphics Rendering Path Differences Based on Graphic Platform Plugins (EGLFS, LinuxFB) and Display Servers (X11, Wayland)
+# Graphics Rendering Path Differences: Platform Plugins (EGLFS, LinuxFB) vs. Windowing Systems and Display Servers (X11, Wayland)
 
-Written at 📅 2025-01-05 07:23:06
+Written at 📅 2025-01-05 11:30:17
 
 ## Rendering Path Differences Table
 

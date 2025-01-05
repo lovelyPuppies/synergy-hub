@@ -16174,3 +16174,75 @@ C:\Users\wbfw1\AppData\Roaming\Microsoft\Windows\Recent\AutomaticDestinations
 
 GBM: Generic Buffer Management의 약자로
 , DRM(Direct Rendering Manager) API와 연동하여 EGL과 OpenGL ES에서 사용할 수 있는 버퍼를 관리하는 Linux 커널 기반의 메커니즘입니다.
+
+
+
+vfpv4: ARM 프로세서에서 사용하는 부동소수점 유닛(FPU, Floating Point Unit)의 한 종류입니다.
+
+vfpv4는 vfp(Vector Floating Point)의 4번째 버전으로, NEON 같은 SIMD 명령어 세트와 함께 사용됩니다.
+최적화와 고속 수학 계산을 지원하는 환경을 나타냅니다.
+
+🪱 helper script.. 
+  헬퍼 스크립트(helper script)는 특정 작업을 쉽게 수행하도록 만들어진 스크립트입니다.
+  매번 긴 명령어를 작성하지 않아도 간단한 명령으로 프로젝트를 빌드하거나 설정할 수 있습니다.
+
+
+1. include_guard의 동작 방식
+  CMake에서 특정 파일이 중복으로 포함되는 것을 방지합니다.
+  파이썬처럼 전역적으로 해당 파일의 포함 여부를 추적 및 관리합니다.
+
+
+  3. Python의 import 관리와의 유사성
+    파이썬에서 모듈은 한 번만 import 되며, 이후는 캐싱됩니다. include_guard(GLOBAL)는 이러한 파이썬의 import 관리 방식과 비슷합니다:
+
+
+특정 CMake 파일이 여러 번 호출되어도, include_guard 덕분에 중복 처리되지 않습니다.
+  파이썬의 모듈 캐싱처럼 동작하며, 불필요한 작업을 방지합니다.
+    그럼 일일이 # IF def 를 안쓰도록 방지하기 위한 모던 c++ 방식인가? 자바나 파이썬과 같은 편의성을 제공하려고?
+  ㄴㄴ CMake의 include_guard는 C++ 소스 코드가 아닌, CMake 빌드 스크립트 단계에서 중복 포함을 방지합니다.
+  이는 C++의 #ifndef나 #pragma once와는 별개의 기능입니다.
+헤더 가드를 대체하는 방식 -> #pragma once >??
+  C++20에서 도입된 모듈은 헤더 파일 대신 모듈 인터페이스를 사용하여 전처리기 없이 중복 포함 문제를 해결합니다.
+
+
+
+
+그러니까 x11, wayland 같은 것이 설치되어있지 안ㅇ흔 headless 환경에서도, QT 앱을 띄울 수 있다는거야? 디스플레이 장치가 하나 있으면:?
+  ChatGPT said:
+    네, X11이나 Wayland 같은 윈도잉 시스템이 없는 헤드리스(headless) 환경에서도 Qt 애플리케이션을 띄울 수 있습니다. 단, 디스플레이 장치가 연결되어 있고 적절한 플랫폼 플러그인(예: EGLFS, LinuxFB 등)이 지원되는 경우에 가능합니다.
+
+
+  EGLFS: OpenGL ES를 활용하여 렌더링을 하며, 화면 전체를 Qt 애플리케이션이 점유합니다
+  화면당 하나의 전체 화면 Qt 윈도우만 지원하며, 데스크톱 환경처럼 다중 창 관리나 크기 조정은 불가능합니다.
+  디스플레이 장치가 하나라도 있다면, 애플리케이션을 전체 화면으로 띄울 수 있습니다.
+
+
+Use Qt Quick instead of Qt Widgets
+  With Qt Quick, it's possible to use either hardware-accelerated or software-rendered backends. For complex Uls, using Qt Widgets on embedded targets is not recommended, as it will always use a software backend.
+
+  There are trade-offs here:
+    Using the QML engine and Qt Quick comes with initial overhead.
+    If your UI is very simple and repaints rarely, it may perform faster when implemented using Widgets instead of QML.
+    If your UI benefits from animations, smooth scrolling,and scaling, rendering effects, or 3D you need to have GPU acceleration, and thus Qt Quick.
+
+    
+
+  
+
+  Qt Widgets는 CPU 기반의 렌더링 방식을 사용하며, 비교적 정적이고 단순한 UI에 적합합니다.
+    QWidget, QMainWindow 등을 사용해 UI를 구성.
+    복잡한 애니메이션이나 부드러운 화면 전환에는 한계가 있음.
+    하지만, 단순한 UI(예: 폼, 버튼 위주)에서는 여전히 유용하며, QML 학습 곡선을 피할 수 있음.
+
+  QML:
+    QML은 Qt Quick의 UI를 선언적으로 정의하는 언어입니다.
+    JSON과 유사한 구문으로 빠르게 UI를 설계하고, JavaScript를 통해 동작을 제어할 수 있습니다.
+
+  ➡️📰❓ Qt QML 에 대해서 연동해보고, 연동 시 intellisense 를 지원하는지 확인해 봐야 함.
+    How to create a simple Qt Quick application ; https://www.youtube.com/watch?v=Bo5Og2fb1CA
+
+
+https://doc.qt.io/Boot2Qt/b2qt-qsg-raspberry.html?utm_source=chatgpt.com
+❌ https://wiki.qt.io/Cross-Compile_Qt_6_for_Raspberry_Pi >> 커뮤니티 기반이엇음 .하.. 최신 상태가 아닐 수 있으며, 정확성과 일관성이 공식 문서보다 떨어질 수 있습니다.
+❌ Boot to Qt 이미지를 SD 카드에 플래싱하면, 라즈베리 파이에 설치된 기존 운영 체제(예: 라즈비안)는 덮어쓰게 됩니다.
+  
