@@ -1,0 +1,962 @@
+FROM debian:bookworm
+
+# Fix symbolic link and prepare directories
+RUN { \
+    set -e && \
+    echo "Fix symbolic link and create directories" && \
+    wget https://raw.githubusercontent.com/riscv/riscv-poky/master/scripts/sysroot-relativelinks.py && \
+    chmod +x sysroot-relativelinks.py && \
+    python3 sysroot-relativelinks.py /build/sysroot && \
+    mkdir -p qt6 qt6/host qt6/pi qt6/host-build qt6/pi-build qt6/src; \
+} 2>&1 | tee -a /build.log
+
+# Download required submodules
+RUN { \
+    set -e && \ 
+    echo "Download Qt submodules" && \
+    cd qt6/src && \
+    for module in \
+        qtbase-everywhere-src-6.8.0.tar.xz \
+        qtshadertools-everywhere-src-6.8.0.tar.xz \
+        qtwebview-everywhere-src-6.8.0.tar.xz \
+        qtwebsockets-everywhere-src-6.8.0.tar.xz \
+        qtwebengine-everywhere-src-6.8.0.tar.xz \
+        qtwebchannel-everywhere-src-6.8.0.tar.xz \
+        qtwayland-everywhere-src-6.8.0.tar.xz \
+        qtvirtualkeyboard-everywhere-src-6.8.0.tar.xz \
+        qttranslations-everywhere-src-6.8.0.tar.xz \
+        qttools-everywhere-src-6.8.0.tar.xz \
+        qtsvg-everywhere-src-6.8.0.tar.xz \
+        qtspeech-everywhere-src-6.8.0.tar.xz \
+        qtserialport-everywhere-src-6.8.0.tar.xz \
+        qtserialbus-everywhere-src-6.8.0.tar.xz \
+        qtsensors-everywhere-src-6.8.0.tar.xz \
+        qtscxml-everywhere-src-6.8.0.tar.xz \
+        qtremoteobjects-everywhere-src-6.8.0.tar.xz \
+        qtquicktimeline-everywhere-src-6.8.0.tar.xz \
+        qtquickeffectmaker-everywhere-src-6.8.0.tar.xz \
+        qtquick3dphysics-everywhere-src-6.8.0.tar.xz \
+        qtquick3d-everywhere-src-6.8.0.tar.xz \
+        qtpositioning-everywhere-src-6.8.0.tar.xz \
+        qtnetworkauth-everywhere-src-6.8.0.tar.xz \
+        qtmultimedia-everywhere-src-6.8.0.tar.xz \
+        qtlottie-everywhere-src-6.8.0.tar.xz \
+        qtlocation-everywhere-src-6.8.0.tar.xz \
+        qtlanguageserver-everywhere-src-6.8.0.tar.xz \
+        qtimageformats-everywhere-src-6.8.0.tar.xz \
+        qthttpserver-everywhere-src-6.8.0.tar.xz \
+        qtgrpc-everywhere-src-6.8.0.tar.xz \
+        qtgraphs-everywhere-src-6.8.0.tar.xz \
+        qtdoc-everywhere-src-6.8.0.tar.xz \
+        qtdatavis3d-everywhere-src-6.8.0.tar.xz \
+        qtconnectivity-everywhere-src-6.8.0.tar.xz \
+        qtcharts-everywhere-src-6.8.0.tar.xz \
+        qtactiveqt-everywhere-src-6.8.0.tar.xz \
+        qt5compat-everywhere-src-6.8.0.tar.xz \
+        qt3d-everywhere-src-6.8.0.tar.xz \
+        qtdeclarative-everywhere-src-6.8.0.tar.xz; do \
+        wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/$module; \
+    done; \
+} 2>&1 | tee -a /build.log
+
+# Extract and prepare host build
+RUN { \
+    set -e && \
+    echo "Extract Qt modules for host build" && \
+    cd qt6/host-build && \
+    tar xf ../src/qtbase-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtshadertools-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtwebview-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtwebsockets-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtwebengine-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtwebchannel-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtwayland-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtvirtualkeyboard-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qttranslations-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qttools-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtsvg-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtspeech-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtserialport-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtserialbus-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtsensors-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtscxml-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtremoteobjects-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtquicktimeline-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtquickeffectmaker-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtquick3dphysics-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtquick3d-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtpositioning-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtnetworkauth-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtmultimedia-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtlottie-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtlocation-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtlanguageserver-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtimageformats-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qthttpserver-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtgrpc-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtgraphs-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtdoc-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtdatavis3d-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtconnectivity-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtcharts-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtactiveqt-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qt5compat-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qt3d-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtdeclarative-everywhere-src-6.8.0.tar.xz; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtbase for host
+RUN { \
+    set -e && \
+    echo "Compile qtbase for host" && \
+    cd qt6/host-build/qtbase-everywhere-src-6.8.0 && \
+    cmake -GNinja -DCMAKE_BUILD_TYPE=Release -DQT_BUILD_EXAMPLES=OFF -DQT_BUILD_TESTS=OFF \
+        -DCMAKE_INSTALL_PREFIX=/build/qt6/host && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtshadertools for host
+RUN { \
+    set -e && \
+    echo "Compile qtshadertools for host" && \
+    cd qt6/host-build/qtshadertools-everywhere-src-6.8.0 && \
+    /build/qt6/host/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtwebview for host
+RUN { \
+    set -e && \
+    echo "Compile qtwebview for host" && \
+    cd qt6/host-build/qtwebview-everywhere-src-6.8.0 && \
+    /build/qt6/host/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtwebsockets for host
+RUN { \
+    set -e && \
+    echo "Compile qtwebsockets for host" && \
+    cd qt6/host-build/qtwebsockets-everywhere-src-6.8.0 && \
+    /build/qt6/host/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtwebengine for host
+RUN { \
+    set -e && \
+    echo "Compile qtwebengine for host" && \
+    cd qt6/host-build/qtwebengine-everywhere-src-6.8.0 && \
+    /build/qt6/host/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtwebchannel for host
+RUN { \
+    set -e && \
+    echo "Compile qtwebchannel for host" && \
+    cd qt6/host-build/qtwebchannel-everywhere-src-6.8.0 && \
+    /build/qt6/host/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtwayland for host
+RUN { \
+    set -e && \
+    echo "Compile qtwayland for host" && \
+    cd qt6/host-build/qtwayland-everywhere-src-6.8.0 && \
+    /build/qt6/host/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtvirtualkeyboard for host
+RUN { \
+    set -e && \
+    echo "Compile qtvirtualkeyboard for host" && \
+    cd qt6/host-build/qtvirtualkeyboard-everywhere-src-6.8.0 && \
+    /build/qt6/host/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qttranslations for host
+RUN { \
+    set -e && \
+    echo "Compile qttranslations for host" && \
+    cd qt6/host-build/qttranslations-everywhere-src-6.8.0 && \
+    /build/qt6/host/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qttools for host
+RUN { \
+    set -e && \
+    echo "Compile qttools for host" && \
+    cd qt6/host-build/qttools-everywhere-src-6.8.0 && \
+    /build/qt6/host/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtsvg for host
+RUN { \
+    set -e && \
+    echo "Compile qtsvg for host" && \
+    cd qt6/host-build/qtsvg-everywhere-src-6.8.0 && \
+    /build/qt6/host/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtspeech for host
+RUN { \
+    set -e && \
+    echo "Compile qtspeech for host" && \
+    cd qt6/host-build/qtspeech-everywhere-src-6.8.0 && \
+    /build/qt6/host/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtserialport for host
+RUN { \
+    set -e && \
+    echo "Compile qtserialport for host" && \
+    cd qt6/host-build/qtserialport-everywhere-src-6.8.0 && \
+    /build/qt6/host/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtserialbus for host
+RUN { \
+    set -e && \
+    echo "Compile qtserialbus for host" && \
+    cd qt6/host-build/qtserialbus-everywhere-src-6.8.0 && \
+    /build/qt6/host/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtsensors for host
+RUN { \
+    set -e && \
+    echo "Compile qtsensors for host" && \
+    cd qt6/host-build/qtsensors-everywhere-src-6.8.0 && \
+    /build/qt6/host/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtscxml for host
+RUN { \
+    set -e && \
+    echo "Compile qtscxml for host" && \
+    cd qt6/host-build/qtscxml-everywhere-src-6.8.0 && \
+    /build/qt6/host/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtremoteobjects for host
+RUN { \
+    set -e && \
+    echo "Compile qtremoteobjects for host" && \
+    cd qt6/host-build/qtremoteobjects-everywhere-src-6.8.0 && \
+    /build/qt6/host/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtquicktimeline for host
+RUN { \
+    set -e && \
+    echo "Compile qtquicktimeline for host" && \
+    cd qt6/host-build/qtquicktimeline-everywhere-src-6.8.0 && \
+    /build/qt6/host/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtquickeffectmaker for host
+RUN { \
+    set -e && \
+    echo "Compile qtquickeffectmaker for host" && \
+    cd qt6/host-build/qtquickeffectmaker-everywhere-src-6.8.0 && \
+    /build/qt6/host/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtquickeffectmaker for host
+RUN { \
+    set -e && \
+    echo "Compile qtquickeffectmaker for host" && \
+    cd qt6/host-build/qtquickeffectmaker-everywhere-src-6.8.0 && \
+    /build/qt6/host/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtquick3dphysics for host
+RUN { \
+    set -e && \
+    echo "Compile qtquick3dphysics for host" && \
+    cd qt6/host-build/qtquick3dphysics-everywhere-src-6.8.0 && \
+    /build/qt6/host/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtquick3d for host
+RUN { \
+    set -e && \
+    echo "Compile qtquick3d for host" && \
+    cd qt6/host-build/qtquick3d-everywhere-src-6.8.0 && \
+    /build/qt6/host/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtpositioning for host
+RUN { \
+    set -e && \
+    echo "Compile qtpositioning for host" && \
+    cd qt6/host-build/qtpositioning-everywhere-src-6.8.0 && \
+    /build/qt6/host/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtnetworkauth for host
+RUN { \
+    set -e && \
+    echo "Compile qtnetworkauth for host" && \
+    cd qt6/host-build/qtnetworkauth-everywhere-src-6.8.0 && \
+    /build/qt6/host/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtmultimedia for host
+RUN { \
+    set -e && \
+    echo "Compile qtmultimedia for host" && \
+    cd qt6/host-build/qtmultimedia-everywhere-src-6.8.0 && \
+    /build/qt6/host/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtlottie for host
+RUN { \
+    set -e && \
+    echo "Compile qtlottie for host" && \
+    cd qt6/host-build/qtlottie-everywhere-src-6.8.0 && \
+    /build/qt6/host/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtlocation for host
+RUN { \
+    set -e && \
+    echo "Compile qtlocation for host" && \
+    cd qt6/host-build/qtlocation-everywhere-src-6.8.0 && \
+    /build/qt6/host/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtlanguageserver for host
+RUN { \
+    set -e && \
+    echo "Compile qtlanguageserver for host" && \
+    cd qt6/host-build/qtlanguageserver-everywhere-src-6.8.0 && \
+    /build/qt6/host/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtimageformats for host
+RUN { \
+    set -e && \
+    echo "Compile qtimageformats for host" && \
+    cd qt6/host-build/qtimageformats-everywhere-src-6.8.0 && \
+    /build/qt6/host/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qthttpserver for host
+RUN { \
+    set -e && \
+    echo "Compile qthttpserver for host" && \
+    cd qt6/host-build/qthttpserver-everywhere-src-6.8.0 && \
+    /build/qt6/host/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtgrpc for host
+RUN { \
+    set -e && \
+    echo "Compile qtgrpc for host" && \
+    cd qt6/host-build/qtgrpc-everywhere-src-6.8.0 && \
+    /build/qt6/host/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtgraphs for host
+RUN { \
+    set -e && \
+    echo "Compile qtgraphs for host" && \
+    cd qt6/host-build/qtgraphs-everywhere-src-6.8.0 && \
+    /build/qt6/host/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtdoc for host
+RUN { \
+    set -e && \
+    echo "Compile qtdoc for host" && \
+    cd qt6/host-build/qtdoc-everywhere-src-6.8.0 && \
+    /build/qt6/host/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtdatavis3d for host
+RUN { \
+    set -e && \
+    echo "Compile qtdatavis3d for host" && \
+    cd qt6/host-build/qtdatavis3d-everywhere-src-6.8.0 && \
+    /build/qt6/host/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtconnectivity for host
+RUN { \
+    set -e && \
+    echo "Compile qtconnectivity for host" && \
+    cd qt6/host-build/qtconnectivity-everywhere-src-6.8.0 && \
+    /build/qt6/host/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtcharts for host
+RUN { \
+    set -e && \
+    echo "Compile qtcharts for host" && \
+    cd qt6/host-build/qtcharts-everywhere-src-6.8.0 && \
+    /build/qt6/host/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtactiveqt for host
+RUN { \
+    set -e && \
+    echo "Compile qtactiveqt for host" && \
+    cd qt6/host-build/qtactiveqt-everywhere-src-6.8.0 && \
+    /build/qt6/host/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qt5compat for host
+RUN { \
+    set -e && \
+    echo "Compile qt5compat for host" && \
+    cd qt6/host-build/qt5compat-everywhere-src-6.8.0 && \
+    /build/qt6/host/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qt3d for host
+RUN { \
+    set -e && \
+    echo "Compile qt3d for host" && \
+    cd qt6/host-build/qt3d-everywhere-src-6.8.0 && \
+    /build/qt6/host/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtdeclarative for host
+RUN { \
+    set -e && \
+    echo "Compile qtdeclarative for host" && \
+    cd qt6/host-build/qtdeclarative-everywhere-src-6.8.0 && \
+    /build/qt6/host/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Extract and prepare Raspberry Pi build
+RUN { \
+    set -e && \
+    echo "Extract Qt modules for Raspberry Pi build" && \
+    cd qt6/pi-build && \
+    tar xf ../src/qtbase-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtshadertools-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtwebview-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtwebsockets-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtwebengine-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtwebchannel-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtwayland-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtvirtualkeyboard-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qttranslations-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qttools-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtsvg-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtspeech-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtserialport-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtserialbus-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtsensors-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtscxml-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtremoteobjects-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtquicktimeline-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtquickeffectmaker-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtquick3dphysics-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtquick3d-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtpositioning-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtnetworkauth-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtmultimedia-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtlottie-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtlocation-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtlanguageserver-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtimageformats-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qthttpserver-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtgrpc-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtgraphs-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtdoc-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtdatavis3d-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtconnectivity-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtcharts-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtactiveqt-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qt5compat-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qt3d-everywhere-src-6.8.0.tar.xz && \
+    tar xf ../src/qtdeclarative-everywhere-src-6.8.0.tar.xz; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtbase for Raspberry Pi
+RUN { \
+    set -e && \
+    echo "Compile qtbase for Raspberry Pi" && \
+    cd qt6/pi-build/qtbase-everywhere-src-6.8.0 && \
+    cmake -GNinja -DCMAKE_BUILD_TYPE=Release -DINPUT_opengl=es2 -DQT_BUILD_EXAMPLES=OFF -DQT_BUILD_TESTS=OFF \
+        -DQT_HOST_PATH=/build/qt6/host -DCMAKE_STAGING_PREFIX=/build/qt6/pi \
+        -DCMAKE_INSTALL_PREFIX=/usr/local/qt6 -DCMAKE_TOOLCHAIN_FILE=/build/toolchain.cmake \
+        -DQT_FEATURE_xcb=ON -DFEATURE_xcb_xlib=ON -DQT_FEATURE_xlib=ON && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtshadertools for Raspberry Pi
+RUN { \
+    set -e && \
+    echo "Compile qtshadertools for Raspberry Pi" && \
+    cd qt6/pi-build/qtshadertools-everywhere-src-6.8.0 && \
+    /build/qt6/pi/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtwebview for Raspberry Pi
+RUN { \
+    set -e && \
+    echo "Compile qtwebview for Raspberry Pi" && \
+    cd qt6/pi-build/qtwebview-everywhere-src-6.8.0 && \
+    /build/qt6/pi/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtwebsockets for Raspberry Pi
+RUN { \
+    set -e && \
+    echo "Compile qtwebsockets for Raspberry Pi" && \
+    cd qt6/pi-build/qtwebsockets-everywhere-src-6.8.0 && \
+    /build/qt6/pi/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtwebengine for Raspberry Pi
+RUN { \
+    set -e && \
+    echo "Compile qtwebengine for Raspberry Pi" && \
+    cd qt6/pi-build/qtwebengine-everywhere-src-6.8.0 && \
+    /build/qt6/pi/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtwebchannel for Raspberry Pi
+RUN { \
+    set -e && \
+    echo "Compile qtwebchannel for Raspberry Pi" && \
+    cd qt6/pi-build/qtwebchannel-everywhere-src-6.8.0 && \
+    /build/qt6/pi/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtwayland for Raspberry Pi
+RUN { \
+    set -e && \
+    echo "Compile qtwayland for Raspberry Pi" && \
+    cd qt6/pi-build/qtwayland-everywhere-src-6.8.0 && \
+    /build/qt6/pi/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtvirtualkeyboard for Raspberry Pi
+RUN { \
+    set -e && \
+    echo "Compile qtvirtualkeyboard for Raspberry Pi" && \
+    cd qt6/pi-build/qtvirtualkeyboard-everywhere-src-6.8.0 && \
+    /build/qt6/pi/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qttranslations for Raspberry Pi
+RUN { \
+    set -e && \
+    echo "Compile qttranslations for Raspberry Pi" && \
+    cd qt6/pi-build/qttranslations-everywhere-src-6.8.0 && \
+    /build/qt6/pi/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qttools for Raspberry Pi
+RUN { \
+    set -e && \
+    echo "Compile qttools for Raspberry Pi" && \
+    cd qt6/pi-build/qttools-everywhere-src-6.8.0 && \
+    /build/qt6/pi/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtsvg for Raspberry Pi
+RUN { \
+    set -e && \
+    echo "Compile qtsvg for Raspberry Pi" && \
+    cd qt6/pi-build/qtsvg-everywhere-src-6.8.0 && \
+    /build/qt6/pi/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtspeech for Raspberry Pi
+RUN { \
+    set -e && \
+    echo "Compile qtspeech for Raspberry Pi" && \
+    cd qt6/pi-build/qtspeech-everywhere-src-6.8.0 && \
+    /build/qt6/pi/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtserialport for Raspberry Pi
+RUN { \
+    set -e && \
+    echo "Compile qtserialport for Raspberry Pi" && \
+    cd qt6/pi-build/qtserialport-everywhere-src-6.8.0 && \
+    /build/qt6/pi/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtserialbus for Raspberry Pi
+RUN { \
+    set -e && \
+    echo "Compile qtserialbus for Raspberry Pi" && \
+    cd qt6/pi-build/qtserialbus-everywhere-src-6.8.0 && \
+    /build/qt6/pi/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtsensors for Raspberry Pi
+RUN { \
+    set -e && \
+    echo "Compile qtsensors for Raspberry Pi" && \
+    cd qt6/pi-build/qtsensors-everywhere-src-6.8.0 && \
+    /build/qt6/pi/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtscxml for Raspberry Pi
+RUN { \
+    set -e && \
+    echo "Compile qtscxml for Raspberry Pi" && \
+    cd qt6/pi-build/qtscxml-everywhere-src-6.8.0 && \
+    /build/qt6/pi/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtremoteobjects for Raspberry Pi
+RUN { \
+    set -e && \
+    echo "Compile qtremoteobjects for Raspberry Pi" && \
+    cd qt6/pi-build/qtremoteobjects-everywhere-src-6.8.0 && \
+    /build/qt6/pi/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtquicktimeline for Raspberry Pi
+RUN { \
+    set -e && \
+    echo "Compile qtquicktimeline for Raspberry Pi" && \
+    cd qt6/pi-build/qtquicktimeline-everywhere-src-6.8.0 && \
+    /build/qt6/pi/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtquickeffectmaker for Raspberry Pi
+RUN { \
+    set -e && \
+    echo "Compile qtquickeffectmaker for Raspberry Pi" && \
+    cd qt6/pi-build/qtquickeffectmaker-everywhere-src-6.8.0 && \
+    /build/qt6/pi/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtquickeffectmaker for Raspberry Pi
+RUN { \
+    set -e && \
+    echo "Compile qtquickeffectmaker for Raspberry Pi" && \
+    cd qt6/pi-build/qtquickeffectmaker-everywhere-src-6.8.0 && \
+    /build/qt6/pi/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtquick3dphysics for Raspberry Pi
+RUN { \
+    set -e && \
+    echo "Compile qtquick3dphysics for Raspberry Pi" && \
+    cd qt6/pi-build/qtquick3dphysics-everywhere-src-6.8.0 && \
+    /build/qt6/pi/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtquick3d for Raspberry Pi
+RUN { \
+    set -e && \
+    echo "Compile qtquick3d for Raspberry Pi" && \
+    cd qt6/pi-build/qtquick3d-everywhere-src-6.8.0 && \
+    /build/qt6/pi/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtpositioning for Raspberry Pi
+RUN { \
+    set -e && \
+    echo "Compile qtpositioning for Raspberry Pi" && \
+    cd qt6/pi-build/qtpositioning-everywhere-src-6.8.0 && \
+    /build/qt6/pi/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtnetworkauth for Raspberry Pi
+RUN { \
+    set -e && \
+    echo "Compile qtnetworkauth for Raspberry Pi" && \
+    cd qt6/pi-build/qtnetworkauth-everywhere-src-6.8.0 && \
+    /build/qt6/pi/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtmultimedia for Raspberry Pi
+RUN { \
+    set -e && \
+    echo "Compile qtmultimedia for Raspberry Pi" && \
+    cd qt6/pi-build/qtmultimedia-everywhere-src-6.8.0 && \
+    /build/qt6/pi/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtlottie for Raspberry Pi
+RUN { \
+    set -e && \
+    echo "Compile qtlottie for Raspberry Pi" && \
+    cd qt6/pi-build/qtlottie-everywhere-src-6.8.0 && \
+    /build/qt6/pi/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtlocation for Raspberry Pi
+RUN { \
+    set -e && \
+    echo "Compile qtlocation for Raspberry Pi" && \
+    cd qt6/pi-build/qtlocation-everywhere-src-6.8.0 && \
+    /build/qt6/pi/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtlanguageserver for Raspberry Pi
+RUN { \
+    set -e && \
+    echo "Compile qtlanguageserver for Raspberry Pi" && \
+    cd qt6/pi-build/qtlanguageserver-everywhere-src-6.8.0 && \
+    /build/qt6/pi/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtimageformats for Raspberry Pi
+RUN { \
+    set -e && \
+    echo "Compile qtimageformats for Raspberry Pi" && \
+    cd qt6/pi-build/qtimageformats-everywhere-src-6.8.0 && \
+    /build/qt6/pi/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qthttpserver for Raspberry Pi
+RUN { \
+    set -e && \
+    echo "Compile qthttpserver for Raspberry Pi" && \
+    cd qt6/pi-build/qthttpserver-everywhere-src-6.8.0 && \
+    /build/qt6/pi/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtgrpc for Raspberry Pi
+RUN { \
+    set -e && \
+    echo "Compile qtgrpc for Raspberry Pi" && \
+    cd qt6/pi-build/qtgrpc-everywhere-src-6.8.0 && \
+    /build/qt6/pi/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtgraphs for Raspberry Pi
+RUN { \
+    set -e && \
+    echo "Compile qtgraphs for Raspberry Pi" && \
+    cd qt6/pi-build/qtgraphs-everywhere-src-6.8.0 && \
+    /build/qt6/pi/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtdoc for Raspberry Pi
+RUN { \
+    set -e && \
+    echo "Compile qtdoc for Raspberry Pi" && \
+    cd qt6/pi-build/qtdoc-everywhere-src-6.8.0 && \
+    /build/qt6/pi/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtdatavis3d for Raspberry Pi
+RUN { \
+    set -e && \
+    echo "Compile qtdatavis3d for Raspberry Pi" && \
+    cd qt6/pi-build/qtdatavis3d-everywhere-src-6.8.0 && \
+    /build/qt6/pi/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtconnectivity for Raspberry Pi
+RUN { \
+    set -e && \
+    echo "Compile qtconnectivity for Raspberry Pi" && \
+    cd qt6/pi-build/qtconnectivity-everywhere-src-6.8.0 && \
+    /build/qt6/pi/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtcharts for Raspberry Pi
+RUN { \
+    set -e && \
+    echo "Compile qtcharts for Raspberry Pi" && \
+    cd qt6/pi-build/qtcharts-everywhere-src-6.8.0 && \
+    /build/qt6/pi/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtactiveqt for Raspberry Pi
+RUN { \
+    set -e && \
+    echo "Compile qtactiveqt for Raspberry Pi" && \
+    cd qt6/pi-build/qtactiveqt-everywhere-src-6.8.0 && \
+    /build/qt6/pi/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qt5compat for Raspberry Pi
+RUN { \
+    set -e && \
+    echo "Compile qt5compat for Raspberry Pi" && \
+    cd qt6/pi-build/qt5compat-everywhere-src-6.8.0 && \
+    /build/qt6/pi/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qt3d for Raspberry Pi
+RUN { \
+    set -e && \
+    echo "Compile qt3d for Raspberry Pi" && \
+    cd qt6/pi-build/qt3d-everywhere-src-6.8.0 && \
+    /build/qt6/pi/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Compile qtdeclarative for Raspberry Pi
+RUN { \
+    set -e && \
+    echo "Compile qtdeclarative for Raspberry Pi" && \
+    cd qt6/pi-build/qtdeclarative-everywhere-src-6.8.0 && \
+    /build/qt6/pi/bin/qt-configure-module . && \
+    cmake --build . --parallel 4 && \
+    cmake --install .; \
+} 2>&1 | tee -a /build.log
+
+# Final step: Compilation finished
+RUN { \
+    set -e && \
+    echo "Compilation is finished"; \
+} 2>&1 | tee -a /build.log

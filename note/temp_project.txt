@@ -11525,7 +11525,7 @@ TODO: Qt
     ## Instllation Folder
     $HOME/Qt # (default)
     # 
-    Custom Installation
+    Custom Installation   
     ✔️ Qt 6.8 for Desktop Development
     ✔️ Qt 6.8 for Mobile Development
     ✔️ Qt Design Studio
@@ -11539,12 +11539,19 @@ TODO: Qt
     
     
     #!/usr/bin/env fish
+    wget -O ~/Downloads/qt-unified https://download.qt.io/official_releases/online_installers/qt-unified-linux-x64-online.run
+    chmod 700 ~/Downloads/qt-unified
+    ## if in ARM
+    # wget https://download.qt.io/official_releases/online_installers/qt-unified-linux-arm64-online.run
+    ~/Downloads/qt-unified-linux-x64-online.run
+
+
     echo "⌨️  Enter your Qt account password: "
     read -s qt_pw
     echo "" # 줄 바꿈 (입력 후 줄바꿈이 필요)
 
     wget -O ~/Downloads/qt-unified https://download.qt.io/official_releases/online_installers/qt-unified-linux-x64-online.run
-    chmod 700 ~/Downloads/qt-unified
+    chmod 700 ~/Downloads/qt-unified  
 
     set qt_installer "$HOME/Downloads/qt-unified"
     set install_dir "$HOME/Qt"
@@ -11555,7 +11562,8 @@ TODO: Qt
         --email $qt_email \
         --pw $qt_pw \
         --accept-licenses --default-answer --confirm-command \
-        install qt6.8.0-full-dev
+        install qt6.8.0-full
+        # qt6.8.0-full-dev
 
 
   유지보수 및 업데이트
@@ -14387,9 +14395,9 @@ FROM arm64v8/debian:bookworm
     docker buildx build --platform linux/arm/v7 --no-cache --load -f DockerFileRasp -t raspimage . && \
     docker create --name temp-arm raspimage && \
     docker cp temp-arm:/build/rasp.tar.gz ./rasp.tar.gz && \
-    docker build --no-cache -t qtcrossbuild . && \
+       && \
     docker create --name tmpbuild qtcrossbuild && \
-    docker cp tmpbuild:/build/project/HelloQt6 ./$qt_app_hello_file_name && \
+    docker cp tmpbuild:/build/project/HelloQt6 ./$qt_app_hello_file_name &  & \
     file $qt_app_hello_file_name && \
     docker cp tmpbuild:/build/qt-pi-binaries.tar.gz ./$qt_dev_env_archive_file_name
     >>
@@ -15546,11 +15554,17 @@ cd ~/qt-build && \
   ~/qt5/configure -prefix ~/qt-host \
   -skip qtgrpc # 📰 TODO.. after grpc build
 cd ~/qt-build && \
-  ninja
+  cmake --build . --parallel
+
+
+
+sudo apt-get install -y libsnappy-dev libvulkan-dev libicu-dev
 
 #   
 export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig
 export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu
+export LD_LIBRARY_PATH=/home/linuxbrew/.linuxbrew/Cellar/icu4c@76/76.1_1/lib:$LD_LIBRARY_PATH
+export PKG_CONFIG_PATH=/home/linuxbrew/.linuxbrew/Cellar/icu4c@76/76.1_1/lib/pkgconfig:$PKG_CONFIG_PATH
 
 
 export PKG_CONFIG_PATH=/usr/local/icu/lib/pkgconfig:$PKG_CONFIG_PATH
@@ -15576,6 +15590,7 @@ cdcmake -GNinja \
   $HOME/qt5
 
   nohup ./init-repository --module-subset=default > output.log 2>&1 &
+
 
 
 
