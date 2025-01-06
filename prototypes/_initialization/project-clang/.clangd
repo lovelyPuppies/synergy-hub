@@ -27,6 +27,8 @@ If:
 CompileFlags:
   Add:
     - -std=c23
+    - -I/home/linuxbrew/.linuxbrew/opt/mariadb-connector-c/include
+    - -L/home/linuxbrew/.linuxbrew/opt/mariadb-connector-c/lib
 
 # Specific settings for C++ files
 ---

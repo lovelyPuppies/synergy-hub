@@ -5,18 +5,23 @@
 - [Kernel Timer Mini Project](#kernel-timer-mini-project)
   - [Project Introduction](#project-introduction)
     - [Features](#features)
-    - [🎯 Project Purposes](#-project-purposes)
-    - [🖼️ Hardware Setup](#️-hardware-setup)
-    - [🎥 Kernel Timer Demo](#-kernel-timer-demo)
+- [LED Timer and Button Interaction](#led-timer-and-button-interaction)
+  - [동작 흐름](#동작-흐름)
+    - [1. 초기 LED 반전 시작](#1-초기-led-반전-시작)
+    - [2. 버튼 동작에 따른 LED/타이머 제어](#2-버튼-동작에-따른-led타이머-제어)
+    - [3. 애플리케이션 종료](#3-애플리케이션-종료)
+  - [🎯 Project Purposes](#-project-purposes)
+  - [🖼️ Hardware Setup](#️-hardware-setup)
+    - [Notes](#notes)
+    - [Using Devices](#using-devices)
+    - [GPIO Pinout Table](#gpio-pinout-table)
+  - [🎥 Kernel Timer Demo](#-kernel-timer-demo)
+  - [🖼️ Software Setup](#️-software-setup)
   - [🌐 Project Overview](#-project-overview)
     - [🛠️ Tools](#️-tools)
       - [\[🧑‍💻 Software\]](#-software)
       - [\[🖥️ Hardware\]](#️-hardware)
     - [📁 Directory Structure](#-directory-structure)
-    - [📖 Design Patterns and Benefits](#-design-patterns-and-benefits)
-      - [Layer Overview](#layer-overview)
-      - [Applied Design Pattern](#applied-design-pattern)
-      - [❗ Benefits of the Design](#-benefits-of-the-design)
     - [FSM (Finite State Machine)](#fsm-finite-state-machine)
       - [🎛️ Inputs (Button Definitions)](#️-inputs-button-definitions)
       - [📊 Diagram](#-diagram)
@@ -37,6 +42,38 @@ This project demonstrates the implementation of a kernel timer module on Linux f
 - 타이머 설정: 3, 5, 7분 타이머 설정으로 자동 종료.
 - 상태 표시: LCD 및 FND로 현재 모드, 속도, 타이머 상태 표시.
 
+# LED Timer and Button Interaction
+
+### 동작 흐름
+
+#### 1. 초기 LED 반전 시작
+
+- 애플리케이션 실행 시:
+  - LED 값과 타이머 주기를 설정 (`ioctl(TIMER_VALUE)`).
+  - `ioctl(TIMER_START)`를 호출하여 LED가 일정 시간마다(설정된 타이머 주기) 반전됩니다.
+- LED는 타이머 주기에 따라 **ON/OFF**가 반복됩니다.
+
+#### 2. 버튼 동작에 따른 LED/타이머 제어
+
+- **버튼 1**:
+  - 타이머를 정지(`ioctl(TIMER_STOP)`). LED는 현재 상태에서 멈춤.
+- **버튼 2**:
+  - 타이머 주기를 새로 입력받아 설정.
+    - 입력 후 **`ioctl(TIMER_VALUE)`**와 함께 타이머 재시작(`TIMER_START`) -> LED 반전 속도가 변경.
+- **버튼 3**:
+  - 새 LED 값을 입력받아 설정.
+    - 입력 값에 따라 특정 LED 패턴으로 변경.
+- **버튼 4**:
+  - 타이머를 다시 시작(`ioctl(TIMER_START`).
+- **버튼 8**:
+  - 타이머 정지 후 애플리케이션 종료.
+
+#### 3. 애플리케이션 종료
+
+- 사용자가 **'Q' 또는 'q'**를 입력하거나 버튼 8을 누르면:
+  - LED 동작 중지(`TIMER_STOP`).
+  - 애플리케이션 종료.
+
 ### 🎯 Project Purposes
 
 - Implement a kernel timer with start, stop, and configuration functionalities.
@@ -45,11 +82,117 @@ This project demonstrates the implementation of a kernel timer module on Linux f
 
 ### 🖼️ Hardware Setup
 
-- **Breadboard Setup**: (TODO: I will add this)
+#### Notes
+
+- ⚪: Available (Not Configured)
+- 🟢: Assigned with Configuration
+- 🎛️: Assigned with Configuration but Not phsyically connected
+
+#### Using Devices
+
+- [NEWTC 🔪 LED Output Board 🔪 AM-TL8](https://www.d-evicemart.co.kr/goods/view?no=6772)
+  - [Manual](https://www.newtc.co.kr/dpshop/bbs/download.php?bo_table=m45&wr_id=41&no=0&sca=&sfl=wr_subject||wr_content&stx=AM-TL8&sop=and)
+    - 5V
+- [NEWTC 🔪 Switch Input Board 🔪 AM-TS8](https://www.devicemart.co.kr/goods/view?no=11701)
+  - [Manual](https://www.newtc.co.kr/dpshop/bbs/download.php?bo_table=m45&wr_id=90&no=0&sfl=&stx=&sst=wr_hit&sod=asc&sop=and&page=4)
+    - 5V
+- **1** \* GPIO 40Pin 20cm Rainbow Ribbon Cable
+- **1** \* Assembled T Type RPi GPIO adapter with neoprene foam protect, Sorted label printed 40 pins for easy prototyping
+
+#### GPIO Pinout Table
+
+| GPIO Pins             | GPIO Pins Status | GPIO Pins Status | GPIO Pins            |
+| --------------------- | ---------------- | ---------------- | -------------------- |
+| 01-3.3V               | ⚪               | 🟢               | 02-5V                |
+| 03-GPIO02 (SDA1)      | ⚪               | ⚪               | 04-5V                |
+| 05-GPIO03 (SCL1)      | ⚪               | 🟢               | 06-GND               |
+| 07-GPIO04             | ⚪               | 🟢 (USB to TTL)  | 08-GPIO14 (TXD)      |
+| 09-GND                | ⚪               | 🟢 (USB to TTL)  | 10-GPIO15 (RXD)      |
+| 11-GPIO17 (PWM0)      | 🟢 (Button 2)    | 🟢 (Button 3)    | 12-GPIO18 (PCM_CLK)  |
+| 13-GPIO27 (PWM1)      | ⚪               | ⚪               | 14-GND               |
+| 15-GPIO22             | 🟢 (Button 7)    | 🟢 (Button 8)    | 16-GPIO23            |
+| 17-3.3V               | ⚪               | ⚪               | 18-GPIO24            |
+| 19-GPIO10 (SPI0 MOSI) | 🟢 (LED 5)       | ⚪               | 20-GND               |
+| 21-GPIO09 (SPI0 MISO) | 🟢 (LED 4)       | ⚪               | 22-GPIO25            |
+| 23-GPIO11 (SPI0 SCLK) | 🟢 (LED 6)       | 🟢 (LED 3)       | 24-GPIO08 (CE0)      |
+| 25-GND                | ⚪               | 🟢 (LED 2)       | 26-GPIO07 (CE1)      |
+| 27-GPIO00 (I2C0 SDA)  | ⚪               | ⚪               | 28-GPIO01 (I2C0 SCL) |
+| 29-GPIO05             | ⚪               | ⚪               | 30-GND               |
+| 31-GPIO06             | 🟢 (LED 1)       | 🟢 (LED 7)       | 32-GPIO12            |
+| 33-GPIO13             | 🟢 (LED 8)       | ⚪               | 34-GND               |
+| 35-GPIO19             | 🟢 (Button 4)    | 🟢 (Button 1)    | 36-GPIO16            |
+| 37-GPIO26             | ⚪               | 🟢 (Button 5)    | 38-GPIO20            |
+| 39-GND                | ⚪               | 🟢 (Button 6)    | 40-GPIO21            |
 
 ### 🎥 Kernel Timer Demo
 
 - Demo video showcasing the kernel timer in action: `demo_video.mp4`.
+
+### 🖼️ Software Setup
+
+!!! For 32bit cross compile c/c++ programs?
+!! package set!!! for develeopment
+
+gcc-arm-linux-gnueabihf \
+g++-arm-linux-gnueabihf \
+
+binutils-arm-linux-gnueabihf \
+libc6-armhf-cross \
+libc6-dev-armhf-cross \
+
+```
+#!/usr/bin/env fish
+
+## Description:
+
+# This script sets up the necessary environment and tools for Linux kernel driver development and builds the Raspberry Pi kernel.
+
+## Install required packages
+
+# - flex: Splits input data into tokens (e.g., numbers, keywords, operators).
+
+# - bison: Processes tokens generated by flex and creates a parse tree based on grammar.
+
+# - gcc-arm-linux-gnueabihf: ARM cross-compiler for building ARM binaries.
+
+echo "Installing required tools..."
+sudo apt update && sudo apt install -y flex bison gcc-arm-linux-gnueabihf
+
+## Create directories for kernel sources
+
+echo "Setting up kernel repositories..."
+mkdir -p $HOME/repos/kernels
+cd $HOME/repos/kernels
+
+# Clone Raspberry Pi kernel source repository
+
+if not test -d raspberry-pi
+git clone --depth=1 --branch rpi-6.6.y https://github.com/raspberrypi/linux.git raspberry-pi
+else
+echo "Kernel repository already exists, skipping clone."
+end
+
+# Navigate to the kernel source directory
+
+cd raspberry-pi
+
+# Get the default kernel configuration for Raspberry Pi 4
+
+echo "Setting up default kernel configuration..."
+make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- bcm2711_defconfig
+
+# Build the kernel modules
+
+echo "Building kernel modules..."
+make --jobs (nproc) ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- modules
+
+# Output success message
+
+echo "Kernel setup and module build complete!"
+
+
+>> compiledb make
+```
 
 ## 🌐 Project Overview
 
@@ -76,23 +219,6 @@ project/
 ├── ioctl_test.h
 └── README.md
 ```
-
-### 📖 Design Patterns and Benefits
-
-#### Layer Overview
-
-- User application interacts with the kernel module using ioctl and standard file operations.
-
-#### Applied Design Pattern
-
-- **Driver Model**: Encapsulates GPIO and timer logic within the driver.
-- **Ioctl Command Pattern**: Simplifies communication between user and kernel space.
-
-#### ❗ Benefits of the Design
-
-- Clear separation between user and kernel logic.
-- Flexible timer configurations.
-- Modular and reusable driver design.
 
 ### FSM (Finite State Machine)
 

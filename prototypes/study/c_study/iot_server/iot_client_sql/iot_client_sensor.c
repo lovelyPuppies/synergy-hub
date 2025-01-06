@@ -1,5 +1,5 @@
 #include <arpa/inet.h>
-#include <mysql/mysql.h>
+#include <mariadb/mysql.h>
 #include <pthread.h>
 #include <signal.h>
 #include <stdio.h>
@@ -9,9 +9,9 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-#define BUF_SIZE 100
+#define BUF_SIZE  100
 #define NAME_SIZE 20
-#define ARR_CNT 5
+#define ARR_CNT   5
 
 void *send_msg(void *arg);
 void *recv_msg(void *arg);

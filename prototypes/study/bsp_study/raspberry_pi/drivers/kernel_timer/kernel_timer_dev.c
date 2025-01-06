@@ -69,10 +69,9 @@ Edge 디바이스 리눅스 BSP
 
 #define DEBUG 1
 
-// 디버그 매크로 정의
+// 💡 디버그 매크로 정의
 /**
 이 패턴은 "가변 인자 매크로"(variadic macro)와 **"디버깅 매크로"**의 조합입니다. 패턴 이름을 따로 정할 수 있지만, **"디버깅 로깅 매크로"**나 **"가변 인자 매크로"**로 불릴 수 있습니다.
- 
  */
 #ifdef DEBUG
   #define DEBUG_LOG(fmt, ...)                                                  \
@@ -150,7 +149,6 @@ irqreturn_t keyIsr(int irq, void *data) {
         break;
       }
     }
-    DEBUG_LOG("x = %d, y = %d\n", x, y); // 디버그 모드에서만 실행
   }
 #if DEBUG
   printk("keyIsr() irq : %d, keyNum : %d\n", irq, pKeyData->keyNum);

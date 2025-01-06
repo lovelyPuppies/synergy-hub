@@ -10,56 +10,202 @@ RUN { \
     mkdir -p qt6 qt6/host qt6/pi qt6/host-build qt6/pi-build qt6/src; \
 } 2>&1 | tee -a /build.log
 
-# Download required submodules
-RUN { \
-    set -e && \ 
-    echo "Download Qt submodules" && \
-    cd qt6/src && \
-    for module in \
-        qtbase-everywhere-src-6.8.0.tar.xz \
-        qtshadertools-everywhere-src-6.8.0.tar.xz \
-        qtwebview-everywhere-src-6.8.0.tar.xz \
-        qtwebsockets-everywhere-src-6.8.0.tar.xz \
-        qtwebengine-everywhere-src-6.8.0.tar.xz \
-        qtwebchannel-everywhere-src-6.8.0.tar.xz \
-        qtwayland-everywhere-src-6.8.0.tar.xz \
-        qtvirtualkeyboard-everywhere-src-6.8.0.tar.xz \
-        qttranslations-everywhere-src-6.8.0.tar.xz \
-        qttools-everywhere-src-6.8.0.tar.xz \
-        qtsvg-everywhere-src-6.8.0.tar.xz \
-        qtspeech-everywhere-src-6.8.0.tar.xz \
-        qtserialport-everywhere-src-6.8.0.tar.xz \
-        qtserialbus-everywhere-src-6.8.0.tar.xz \
-        qtsensors-everywhere-src-6.8.0.tar.xz \
-        qtscxml-everywhere-src-6.8.0.tar.xz \
-        qtremoteobjects-everywhere-src-6.8.0.tar.xz \
-        qtquicktimeline-everywhere-src-6.8.0.tar.xz \
-        qtquickeffectmaker-everywhere-src-6.8.0.tar.xz \
-        qtquick3dphysics-everywhere-src-6.8.0.tar.xz \
-        qtquick3d-everywhere-src-6.8.0.tar.xz \
-        qtpositioning-everywhere-src-6.8.0.tar.xz \
-        qtnetworkauth-everywhere-src-6.8.0.tar.xz \
-        qtmultimedia-everywhere-src-6.8.0.tar.xz \
-        qtlottie-everywhere-src-6.8.0.tar.xz \
-        qtlocation-everywhere-src-6.8.0.tar.xz \
-        qtlanguageserver-everywhere-src-6.8.0.tar.xz \
-        qtimageformats-everywhere-src-6.8.0.tar.xz \
-        qthttpserver-everywhere-src-6.8.0.tar.xz \
-        qtgrpc-everywhere-src-6.8.0.tar.xz \
-        qtgraphs-everywhere-src-6.8.0.tar.xz \
-        qtdoc-everywhere-src-6.8.0.tar.xz \
-        qtdatavis3d-everywhere-src-6.8.0.tar.xz \
-        qtconnectivity-everywhere-src-6.8.0.tar.xz \
-        qtcharts-everywhere-src-6.8.0.tar.xz \
-        qtactiveqt-everywhere-src-6.8.0.tar.xz \
-        qt5compat-everywhere-src-6.8.0.tar.xz \
-        qt3d-everywhere-src-6.8.0.tar.xz \
-        qtdeclarative-everywhere-src-6.8.0.tar.xz; do \
-        wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/$module; \
-    done; \
-} 2>&1 | tee -a /build.log
+### Download required submodules
+RUN { set -e && cd qt6/src && \
+    wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtbase-everywhere-src-6.8.0.tar.xz; \
+    } 2>&1 | tee -a /build.log
 
-# Extract and prepare host build
+# Download qtshadertools submodule
+RUN { set -e && cd qt6/src && \
+    wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtshadertools-everywhere-src-6.8.0.tar.xz; \
+    } 2>&1 | tee -a /build.log
+
+# Download qtwebview submodule
+RUN { set -e && cd qt6/src && \
+    wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtwebview-everywhere-src-6.8.0.tar.xz; \
+    } 2>&1 | tee -a /build.log
+
+# Download qtwebsockets submodule
+RUN { set -e && cd qt6/src && \
+    wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtwebsockets-everywhere-src-6.8.0.tar.xz; \
+    } 2>&1 | tee -a /build.log
+
+# Download qtwebengine submodule
+RUN { set -e && cd qt6/src && \
+    wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtwebengine-everywhere-src-6.8.0.tar.xz; \
+    } 2>&1 | tee -a /build.log
+
+# Download qtwebchannel submodule
+RUN { set -e && cd qt6/src && \
+    wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtwebchannel-everywhere-src-6.8.0.tar.xz; \
+    } 2>&1 | tee -a /build.log
+
+# Download qtwayland submodule
+RUN { set -e && cd qt6/src && \
+    wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtwayland-everywhere-src-6.8.0.tar.xz; \
+    } 2>&1 | tee -a /build.log
+
+# Download qtvirtualkeyboard submodule
+RUN { set -e && cd qt6/src && \
+    wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtvirtualkeyboard-everywhere-src-6.8.0.tar.xz; \
+    } 2>&1 | tee -a /build.log
+
+# Download qttranslations submodule
+RUN { set -e && cd qt6/src && \
+    wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qttranslations-everywhere-src-6.8.0.tar.xz; \
+    } 2>&1 | tee -a /build.log
+
+# Download qttools submodule
+RUN { set -e && cd qt6/src && \
+    wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qttools-everywhere-src-6.8.0.tar.xz; \
+    } 2>&1 | tee -a /build.log
+
+# Download qtsvg submodule
+RUN { set -e && cd qt6/src && \
+    wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtsvg-everywhere-src-6.8.0.tar.xz; \
+    } 2>&1 | tee -a /build.log
+
+# Download qtspeech submodule
+RUN { set -e && cd qt6/src && \
+    wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtspeech-everywhere-src-6.8.0.tar.xz; \
+    } 2>&1 | tee -a /build.log
+
+# Download qtserialport submodule
+RUN { set -e && cd qt6/src && \
+    wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtserialport-everywhere-src-6.8.0.tar.xz; \
+    } 2>&1 | tee -a /build.log
+
+# Download qtserialbus submodule
+RUN { set -e && cd qt6/src && \
+    wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtserialbus-everywhere-src-6.8.0.tar.xz; \
+    } 2>&1 | tee -a /build.log
+
+# Download qtsensors submodule
+RUN { set -e && cd qt6/src && \
+    wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtsensors-everywhere-src-6.8.0.tar.xz; \
+    } 2>&1 | tee -a /build.log
+
+# Download qtscxml submodule
+RUN { set -e && cd qt6/src && \
+    wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtscxml-everywhere-src-6.8.0.tar.xz; \
+    } 2>&1 | tee -a /build.log
+
+# Download qtremoteobjects submodule
+RUN { set -e && cd qt6/src && \
+    wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtremoteobjects-everywhere-src-6.8.0.tar.xz; \
+    } 2>&1 | tee -a /build.log
+
+# Download qtquicktimeline submodule
+RUN { set -e && cd qt6/src && \
+    wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtquicktimeline-everywhere-src-6.8.0.tar.xz; \
+    } 2>&1 | tee -a /build.log
+
+# Download qtquickeffectmaker submodule
+RUN { set -e && cd qt6/src && \
+    wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtquickeffectmaker-everywhere-src-6.8.0.tar.xz; \
+    } 2>&1 | tee -a /build.log
+
+# Download qtquick3dphysics submodule
+RUN { set -e && cd qt6/src && \
+    wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtquick3dphysics-everywhere-src-6.8.0.tar.xz; \
+    } 2>&1 | tee -a /build.log
+
+# Download qtquick3d submodule
+RUN { set -e && cd qt6/src && \
+    wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtquick3d-everywhere-src-6.8.0.tar.xz; \
+    } 2>&1 | tee -a /build.log
+
+# Download qtpositioning submodule
+RUN { set -e && cd qt6/src && \
+    wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtpositioning-everywhere-src-6.8.0.tar.xz; \
+    } 2>&1 | tee -a /build.log
+
+# Download qtnetworkauth submodule
+RUN { set -e && cd qt6/src && \
+    wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtnetworkauth-everywhere-src-6.8.0.tar.xz; \
+    } 2>&1 | tee -a /build.log
+
+# Download qtmultimedia submodule
+RUN { set -e && cd qt6/src && \
+    wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtmultimedia-everywhere-src-6.8.0.tar.xz; \
+    } 2>&1 | tee -a /build.log
+
+# Download qtlottie submodule
+RUN { set -e && cd qt6/src && \
+    wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtlottie-everywhere-src-6.8.0.tar.xz; \
+    } 2>&1 | tee -a /build.log
+
+# Download qtlocation submodule
+RUN { set -e && cd qt6/src && \
+    wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtlocation-everywhere-src-6.8.0.tar.xz; \
+    } 2>&1 | tee -a /build.log
+
+# Download qtlanguageserver submodule
+RUN { set -e && cd qt6/src && \
+    wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtlanguageserver-everywhere-src-6.8.0.tar.xz; \
+    } 2>&1 | tee -a /build.log
+
+# Download qtimageformats submodule
+RUN { set -e && cd qt6/src && \
+    wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtimageformats-everywhere-src-6.8.0.tar.xz; \
+    } 2>&1 | tee -a /build.log
+
+# Download qthttpserver submodule
+RUN { set -e && cd qt6/src && \
+    wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qthttpserver-everywhere-src-6.8.0.tar.xz; \
+    } 2>&1 | tee -a /build.log
+
+# Download qtgrpc submodule
+RUN { set -e && cd qt6/src && \
+    wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtgrpc-everywhere-src-6.8.0.tar.xz; \
+    } 2>&1 | tee -a /build.log
+
+# Download qtgraphs submodule
+RUN { set -e && cd qt6/src && \
+    wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtgraphs-everywhere-src-6.8.0.tar.xz; \
+    } 2>&1 | tee -a /build.log
+
+# Download qtdoc submodule
+RUN { set -e && cd qt6/src && \
+    wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtdoc-everywhere-src-6.8.0.tar.xz; \
+    } 2>&1 | tee -a /build.log
+
+# Download qtdatavis3d submodule
+RUN { set -e && cd qt6/src && \
+    wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtdatavis3d-everywhere-src-6.8.0.tar.xz; \
+    } 2>&1 | tee -a /build.log
+
+# Download qtconnectivity submodule
+RUN { set -e && cd qt6/src && \
+    wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtconnectivity-everywhere-src-6.8.0.tar.xz; \
+    } 2>&1 | tee -a /build.log
+
+# Download qtcharts submodule
+RUN { set -e && cd qt6/src && \
+    wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtcharts-everywhere-src-6.8.0.tar.xz; \
+    } 2>&1 | tee -a /build.log
+
+# Download qtactiveqt submodule
+RUN { set -e && cd qt6/src && \
+    wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtactiveqt-everywhere-src-6.8.0.tar.xz; \
+    } 2>&1 | tee -a /build.log
+
+# Download qt5compat submodule
+RUN { set -e && cd qt6/src && \
+    wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qt5compat-everywhere-src-6.8.0.tar.xz; \
+    } 2>&1 | tee -a /build.log
+
+# Download qt3d submodule
+RUN { set -e && cd qt6/src && \
+    wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qt3d-everywhere-src-6.8.0.tar.xz; \
+    } 2>&1 | tee -a /build.log
+
+# Download qtdeclarative submodule
+RUN { set -e && cd qt6/src && \
+    wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtdeclarative-everywhere-src-6.8.0.tar.xz; \
+    } 2>&1 | tee -a /build.log
+
+### Extract and prepare host build
 RUN { \
     set -e && \
     echo "Extract Qt modules for host build" && \

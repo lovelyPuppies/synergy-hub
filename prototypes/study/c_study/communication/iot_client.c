@@ -1,20 +1,21 @@
 // 📅 2024-11-06 14:36:06
 
 // Library inclusions for necessary functionalities
+// #include <signal.h>  // Signal handling functions.
 #include <arpa/inet.h> // Defines functions for internet operations, such as inet_addr.
 #include <pthread.h> // Includes POSIX thread support.
-#include <signal.h>  // Signal handling functions.
 #include <stdio.h>   // Standard I/O functions, like printf and fgets.
 #include <stdlib.h>  // Standard library functions, such as memory allocation.
 #include <string.h>  // String handling functions, such as memset and strcpy.
+#include <sys/select.h>
 #include <sys/socket.h> // Provides socket definitions and functions.
 #include <sys/types.h> // Provides system data types used in socket programming.
 #include <unistd.h>    // Standard UNIX functions, like close.
 
 // Define buffer and name size limits
-#define BUF_SIZE 100
+#define BUF_SIZE  100
 #define NAME_SIZE 20
-#define ARR_CNT 5
+#define ARR_CNT   5
 
 // Function declarations for sending, receiving, and handling errors
 void *send_msg(void *arg);
