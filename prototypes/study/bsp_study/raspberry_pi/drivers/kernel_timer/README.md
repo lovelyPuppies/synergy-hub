@@ -45,7 +45,7 @@ This project demonstrates the implementation of a kernel timer module on Linux f
 
 ### 🖼️ Hardware Setup
 
-- **Breadboard Setup**: A basic breadboard setup involving 8 LEDs and buttons connected to GPIO pins.
+- **Breadboard Setup**: (TODO: I will add this)
 
 ### 🎥 Kernel Timer Demo
 
