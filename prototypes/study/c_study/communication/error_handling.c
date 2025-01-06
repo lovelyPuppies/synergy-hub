@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
 // Function to handle errors.
 void error_handling(char *message) {
   // Outputs error message to standard error.
@@ -12,3 +11,5 @@ void error_handling(char *message) {
   // Terminates program after error.
   exit(1);
 }
+
+// clang -c error_handling.c -o error_handling.o

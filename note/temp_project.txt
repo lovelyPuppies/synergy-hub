@@ -16250,3 +16250,159 @@ https://doc.qt.io/Boot2Qt/b2qt-qsg-raspberry.html?utm_source=chatgpt.com
 
 
 /home/wbfw109v2/toolchain/rpi_toolchain.cmake
+
+
+mkdir -p ~/qt-host ~/qt-build
+
+git clone https://github.com/qt/qt5
+cd ~/qt5 && git checkout 6.8.0 && \
+./init-repository --module-subset=default
+❗ sudo apt install build-essential autoconf libtool
+  build-essential is already the newest version (12.10ubuntu1).
+  Installing:
+    autoconf  libtool
+cd ~/qt-build && \
+  ~/qt5/configure -prefix ~/qt-host \
+  -skip qtgrpc # 📰 TODO.. after grpc build
+cd ~/qt-build && \
+  ninja
+
+#   
+export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig
+export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu
+
+
+export PKG_CONFIG_PATH=/usr/local/icu/lib/pkgconfig:$PKG_CONFIG_PATH
+export LD_LIBRARY_PATH=/usr/local/icu/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH
+export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig:$PKG_CONFIG_PATH
+
+
+icu-config --version
+pkg-config --modversion icu-uc
+
+76.1
+74.2
+
+
+
+cdcmake -GNinja \
+  -DCMAKE_TOOLCHAIN_FILE=$HOME/toolchain/rpi_toolchain.cmake \
+  -DCMAKE_INSTALL_PREFIX=$HOME/qt-build \
+  -DQT_HOST_PATH=$HOME/qt-host \
+  -DQT_BUILD_EXAMPLES=OFF \
+  -DQT_BUILD_TESTS=OFF \
+  $HOME/qt5
+
+  nohup ./init-repository --module-subset=default > output.log 2>&1 &
+
+
+
+❗ rm -rf ~/qt-build/CMakeCache.txt ~/qt-build/CMakeFiles
+
+# Module-specific System Requirements
+  ⚓ Building Qt WebEngine from Source ; https://doc.qt.io/qt-6/qtwebengine-platform-notes.html
+  ⚓ Building Qt Quick 3D from Source ; https://doc.qt.io/qt-6/qtquick3d-index.html#building-from-source
+  ⚓ Building Qt Multimedia from Source ; https://doc.qt.io/qt-6/qtmultimedia-building-from-source.html
+  ⚓ Qt GRPC and Qt Protobuf Module Requirements ; https://doc.qt.io/qt-6/qtgrpc-index.html#module-prerequisites
+
+
+  #!/usr/bin/env fish
+  sudo apt install --reinstall libgrpc++-dev
+  Linux, using apt or apt-get, for example:
+
+  sudo apt install -y protobuf-compiler
+  protoc --version  # Ensure compiler version is 3+
+
+
+
+  # Script to install dependencies for Qt modules
+  # Make sure to run this script with superuser privileges if required.
+
+  # Common dependencies for building Qt
+  echo "Installing common dependencies for Qt..."
+  sudo apt update
+  sudo apt install -y build-essential cmake ninja-build python3-pip pkg-config
+  pip3 install html5lib  # Required for some modules like Qt WebEngine
+
+  # Qt WebEngine dependencies
+  echo "Installing dependencies for Qt WebEngine..."
+  sudo apt install -y nodejs bison flex gperf
+  sudo apt install -y libdbus-1-dev libfontconfig1-dev \
+                      libdrm-dev libxcomposite-dev libxcursor-dev \
+                      libxi-dev libxrandr-dev libxscrnsaver-dev libxtst-dev
+
+  # Qt Multimedia dependencies
+  echo "Installing dependencies for Qt Multimedia..."
+  sudo apt install -y libavcodec-dev libavformat-dev libswscale-dev \
+                      libswresample-dev libavutil-dev libpulse-dev
+
+  # Optional: VAAPI and GStreamer support for Qt Multimedia
+  echo "Installing optional dependencies for hardware acceleration in Qt Multimedia..."
+  sudo apt install -y libva-dev libvdpau-dev
+  sudo apt install -y libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
+
+  # Qt Quick 3D dependencies
+  echo "Installing dependencies for Qt Quick 3D..."
+  sudo apt install -y mesa-common-dev libvulkan-dev libgl1-mesa-dev
+
+  # Qt GRPC dependencies
+  echo "Installing dependencies for Qt GRPC..."
+  sudo apt install -y protobuf-compiler libprotobuf-dev libgrpc-dev libssl-dev
+
+  # Final message
+  echo "All dependencies for selected Qt modules have been installed!"
+
+
+============ 라즈베리파이 추가설치?
+#!/usr/bin/env fish
+
+# Script to install runtime libraries for Qt applications on the Raspberry Pi
+# Make sure to run this script with superuser privileges.
+
+echo "Updating package lists..."
+sudo apt update
+
+# Common runtime libraries for most Qt applications
+echo "Installing common runtime libraries for Qt..."
+sudo apt install -y libegl1-mesa libgles2-mesa libgbm1 libfontconfig1 libfreetype6
+
+# Qt WebEngine runtime libraries
+echo "Installing runtime libraries for Qt WebEngine..."
+sudo apt install -y libdbus-1-3 libfontconfig1 libxcomposite1 \
+                    libxcursor1 libxi6 libxrandr2 libxtst6 libnss3 libssl-dev
+
+# Qt Multimedia runtime libraries
+echo "Installing runtime libraries for Qt Multimedia..."
+sudo apt install -y libavcodec58 libavformat58 libswscale5 \
+                    libswresample3 libavutil56 libpulse0
+
+# Optional: Hardware acceleration for video playback (VAAPI, VDPAU)
+echo "Installing optional hardware acceleration libraries for Qt Multimedia..."
+sudo apt install -y libva-drm2 libva-x11-2 libvdpau1
+
+# Optional: GStreamer backend for Qt Multimedia
+echo "Installing GStreamer libraries for Qt Multimedia..."
+sudo apt install -y gstreamer1.0-plugins-base gstreamer1.0-plugins-good
+
+# Qt Quick 3D runtime libraries
+echo "Installing runtime libraries for Qt Quick 3D..."
+sudo apt install -y libgl1-mesa-dri libvulkan1
+
+# Qt GRPC runtime libraries
+echo "Installing runtime libraries for Qt GRPC..."
+sudo apt install -y libprotobuf23 libgrpc10 libssl-dev
+
+# Additional common libraries for Qt applications
+echo "Installing additional runtime libraries for common Qt functionalities..."
+sudo apt install -y libharfbuzz0b libicu66 zlib1g libpng16-16 libjpeg8 libwebp6
+
+echo "All runtime dependencies for Qt applications have been installed!"
+
+
+📰TODO
+  git clone --recurse-submodules -b v1.51.1 https://github.com/grpc/grpc
+  cd grpc
+  // 
+
+➡️ /home/wbfw109v2/qt-build/config.summary
