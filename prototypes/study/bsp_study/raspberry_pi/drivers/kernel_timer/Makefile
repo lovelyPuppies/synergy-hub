@@ -7,8 +7,8 @@ obj-m := $(MODULE_NAME).o
 # Paths
 KERNEL_DIR := $(HOME)/repos/kernels/raspberry-pi
 MODULE_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
-APP_SRC := $(APP_NAME).c
-
+APP_SRC := src/$(APP_NAME).c
+MODULE_SRC := src/$(MODULE_NAME).c
 
 # Target architecture and compiler settings
 KERNEL_ARCHITECTURE := arm  # Target architecture (ARM)
@@ -58,7 +58,7 @@ clean:
 	rm -rf *.ko                   # Remove kernel object files
 	rm -rf *.mod.*                # Remove module-related files
 	rm -rf .*.cmd                 # Remove temporary build files
-	rm -rf *.o                    # Remove object files
+	rm -rf src/*.o                    # Remove object files
 	rm -rf modules.order          # Remove module order file
 	rm -rf Module.symvers         # Remove symbol versioning file
 	rm -rf .tmp_versions          # Remove temporary versioning files
