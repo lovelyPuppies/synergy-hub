@@ -401,7 +401,7 @@ brew install jaq
         wget -O ~/Downloads/test_gif.gif "https://upload.wikimedia.org/wikipedia/commons/c/c8/132C_trans.gif"
         timg ~/Downloads/test_gif.gif
 '
-brew install timg
+# brew install timg
 
 
 

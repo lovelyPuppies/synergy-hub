@@ -8,7 +8,7 @@ RUN { \
     chmod +x sysroot-relativelinks.py && \
     python3 sysroot-relativelinks.py /build/sysroot && \
     mkdir -p qt6 qt6/host qt6/pi qt6/host-build qt6/pi-build qt6/src; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
 ### Download required submodules
 RUN { set -e && cd qt6/src && \
@@ -249,7 +249,7 @@ RUN { \
     tar xf ../src/qt5compat-everywhere-src-6.8.0.tar.xz && \
     tar xf ../src/qt3d-everywhere-src-6.8.0.tar.xz && \
     tar xf ../src/qtdeclarative-everywhere-src-6.8.0.tar.xz; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
 # Compile qtbase for host
 RUN { \
@@ -257,10 +257,10 @@ RUN { \
     echo "Compile qtbase for host" && \
     cd qt6/host-build/qtbase-everywhere-src-6.8.0 && \
     cmake -GNinja -DCMAKE_BUILD_TYPE=Release -DQT_BUILD_EXAMPLES=OFF -DQT_BUILD_TESTS=OFF \
-        -DCMAKE_INSTALL_PREFIX=/build/qt6/host && \
+    -DCMAKE_INSTALL_PREFIX=/build/qt6/host && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
 # Compile qtshadertools for host
 RUN { \
@@ -270,7 +270,7 @@ RUN { \
     /build/qt6/host/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
 # Compile qtwebview for host
 RUN { \
@@ -280,7 +280,7 @@ RUN { \
     /build/qt6/host/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
 # Compile qtwebsockets for host
 RUN { \
@@ -290,7 +290,7 @@ RUN { \
     /build/qt6/host/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
 # Compile qtwebengine for host
 RUN { \
@@ -300,7 +300,7 @@ RUN { \
     /build/qt6/host/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
 # Compile qtwebchannel for host
 RUN { \
@@ -310,7 +310,7 @@ RUN { \
     /build/qt6/host/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
 # Compile qtwayland for host
 RUN { \
@@ -320,7 +320,7 @@ RUN { \
     /build/qt6/host/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
 # Compile qtvirtualkeyboard for host
 RUN { \
@@ -330,7 +330,7 @@ RUN { \
     /build/qt6/host/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
 # Compile qttranslations for host
 RUN { \
@@ -340,7 +340,7 @@ RUN { \
     /build/qt6/host/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
 # Compile qttools for host
 RUN { \
@@ -350,7 +350,7 @@ RUN { \
     /build/qt6/host/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
 # Compile qtsvg for host
 RUN { \
@@ -360,7 +360,7 @@ RUN { \
     /build/qt6/host/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
 # Compile qtspeech for host
 RUN { \
@@ -370,7 +370,7 @@ RUN { \
     /build/qt6/host/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
 # Compile qtserialport for host
 RUN { \
@@ -380,7 +380,7 @@ RUN { \
     /build/qt6/host/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
 # Compile qtserialbus for host
 RUN { \
@@ -390,7 +390,7 @@ RUN { \
     /build/qt6/host/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
 # Compile qtsensors for host
 RUN { \
@@ -400,7 +400,7 @@ RUN { \
     /build/qt6/host/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
 # Compile qtscxml for host
 RUN { \
@@ -410,7 +410,7 @@ RUN { \
     /build/qt6/host/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
 # Compile qtremoteobjects for host
 RUN { \
@@ -420,7 +420,7 @@ RUN { \
     /build/qt6/host/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
 # Compile qtquicktimeline for host
 RUN { \
@@ -430,7 +430,7 @@ RUN { \
     /build/qt6/host/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
 # Compile qtquickeffectmaker for host
 RUN { \
@@ -440,7 +440,7 @@ RUN { \
     /build/qt6/host/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
 # Compile qtquickeffectmaker for host
 RUN { \
@@ -450,7 +450,7 @@ RUN { \
     /build/qt6/host/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
 # Compile qtquick3dphysics for host
 RUN { \
@@ -460,7 +460,7 @@ RUN { \
     /build/qt6/host/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
 # Compile qtquick3d for host
 RUN { \
@@ -470,7 +470,7 @@ RUN { \
     /build/qt6/host/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
 # Compile qtpositioning for host
 RUN { \
@@ -480,7 +480,7 @@ RUN { \
     /build/qt6/host/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
 # Compile qtnetworkauth for host
 RUN { \
@@ -490,7 +490,7 @@ RUN { \
     /build/qt6/host/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
 # Compile qtmultimedia for host
 RUN { \
@@ -500,7 +500,7 @@ RUN { \
     /build/qt6/host/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
 # Compile qtlottie for host
 RUN { \
@@ -510,7 +510,7 @@ RUN { \
     /build/qt6/host/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
 # Compile qtlocation for host
 RUN { \
@@ -520,7 +520,7 @@ RUN { \
     /build/qt6/host/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
 # Compile qtlanguageserver for host
 RUN { \
@@ -530,7 +530,7 @@ RUN { \
     /build/qt6/host/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
 # Compile qtimageformats for host
 RUN { \
@@ -540,7 +540,7 @@ RUN { \
     /build/qt6/host/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
 # Compile qthttpserver for host
 RUN { \
@@ -550,7 +550,7 @@ RUN { \
     /build/qt6/host/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
 # Compile qtgrpc for host
 RUN { \
@@ -560,7 +560,7 @@ RUN { \
     /build/qt6/host/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
 # Compile qtgraphs for host
 RUN { \
@@ -570,7 +570,7 @@ RUN { \
     /build/qt6/host/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
 # Compile qtdoc for host
 RUN { \
@@ -580,7 +580,7 @@ RUN { \
     /build/qt6/host/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
 # Compile qtdatavis3d for host
 RUN { \
@@ -590,7 +590,7 @@ RUN { \
     /build/qt6/host/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
 # Compile qtconnectivity for host
 RUN { \
@@ -600,7 +600,7 @@ RUN { \
     /build/qt6/host/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
 # Compile qtcharts for host
 RUN { \
@@ -610,7 +610,7 @@ RUN { \
     /build/qt6/host/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
 # Compile qtactiveqt for host
 RUN { \
@@ -620,7 +620,7 @@ RUN { \
     /build/qt6/host/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
 # Compile qt5compat for host
 RUN { \
@@ -630,7 +630,7 @@ RUN { \
     /build/qt6/host/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
 # Compile qt3d for host
 RUN { \
@@ -640,7 +640,7 @@ RUN { \
     /build/qt6/host/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
 # Compile qtdeclarative for host
 RUN { \
@@ -650,7 +650,7 @@ RUN { \
     /build/qt6/host/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
 # Extract and prepare Raspberry Pi build
 RUN { \
@@ -696,7 +696,7 @@ RUN { \
     tar xf ../src/qt5compat-everywhere-src-6.8.0.tar.xz && \
     tar xf ../src/qt3d-everywhere-src-6.8.0.tar.xz && \
     tar xf ../src/qtdeclarative-everywhere-src-6.8.0.tar.xz; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
 # Compile qtbase for Raspberry Pi
 RUN { \
@@ -704,14 +704,14 @@ RUN { \
     echo "Compile qtbase for Raspberry Pi" && \
     cd qt6/pi-build/qtbase-everywhere-src-6.8.0 && \
     cmake -GNinja -DCMAKE_BUILD_TYPE=Release -DINPUT_opengl=es2 -DQT_BUILD_EXAMPLES=OFF -DQT_BUILD_TESTS=OFF \
-        -DQT_HOST_PATH=/build/qt6/host -DCMAKE_STAGING_PREFIX=/build/qt6/pi \
-        -DCMAKE_INSTALL_PREFIX=/usr/local/qt6 -DCMAKE_TOOLCHAIN_FILE=/build/toolchain.cmake \
-        -DQT_FEATURE_xcb=ON -DFEATURE_xcb_xlib=ON -DQT_FEATURE_xlib=ON && \
+    -DQT_HOST_PATH=/build/qt6/host -DCMAKE_STAGING_PREFIX=/build/qt6/pi \
+    -DCMAKE_INSTALL_PREFIX=/usr/local/qt6 -DCMAKE_TOOLCHAIN_FILE=/build/toolchain.cmake \
+    -DQT_FEATURE_xcb=ON -DFEATURE_xcb_xlib=ON -DQT_FEATURE_xlib=ON && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
-# Compile qtshadertools for Raspberry Pi
+# Compile qtshadertools, qtwebview, qtwebsockets for Raspberry Pi
 RUN { \
     set -e && \
     echo "Compile qtshadertools for Raspberry Pi" && \
@@ -719,29 +719,19 @@ RUN { \
     /build/qt6/pi/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
-
-# Compile qtwebview for Raspberry Pi
-RUN { \
-    set -e && \
     echo "Compile qtwebview for Raspberry Pi" && \
-    cd qt6/pi-build/qtwebview-everywhere-src-6.8.0 && \
+    cd ../qtwebview-everywhere-src-6.8.0 && \
     /build/qt6/pi/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
-
-# Compile qtwebsockets for Raspberry Pi
-RUN { \
-    set -e && \
     echo "Compile qtwebsockets for Raspberry Pi" && \
-    cd qt6/pi-build/qtwebsockets-everywhere-src-6.8.0 && \
+    cd ../qtwebsockets-everywhere-src-6.8.0 && \
     /build/qt6/pi/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
-# Compile qtwebengine for Raspberry Pi
+# Compile qtwebengine, qtwebchannel, qtwayland for Raspberry Pi
 RUN { \
     set -e && \
     echo "Compile qtwebengine for Raspberry Pi" && \
@@ -749,29 +739,19 @@ RUN { \
     /build/qt6/pi/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
-
-# Compile qtwebchannel for Raspberry Pi
-RUN { \
-    set -e && \
     echo "Compile qtwebchannel for Raspberry Pi" && \
-    cd qt6/pi-build/qtwebchannel-everywhere-src-6.8.0 && \
+    cd ../qtwebchannel-everywhere-src-6.8.0 && \
     /build/qt6/pi/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
-
-# Compile qtwayland for Raspberry Pi
-RUN { \
-    set -e && \
     echo "Compile qtwayland for Raspberry Pi" && \
-    cd qt6/pi-build/qtwayland-everywhere-src-6.8.0 && \
+    cd ../qtwayland-everywhere-src-6.8.0 && \
     /build/qt6/pi/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
-# Compile qtvirtualkeyboard for Raspberry Pi
+# Compile qtvirtualkeyboard, qttranslations, qttools for Raspberry Pi
 RUN { \
     set -e && \
     echo "Compile qtvirtualkeyboard for Raspberry Pi" && \
@@ -779,29 +759,19 @@ RUN { \
     /build/qt6/pi/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
-
-# Compile qttranslations for Raspberry Pi
-RUN { \
-    set -e && \
     echo "Compile qttranslations for Raspberry Pi" && \
-    cd qt6/pi-build/qttranslations-everywhere-src-6.8.0 && \
+    cd ../qttranslations-everywhere-src-6.8.0 && \
     /build/qt6/pi/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
-
-# Compile qttools for Raspberry Pi
-RUN { \
-    set -e && \
     echo "Compile qttools for Raspberry Pi" && \
-    cd qt6/pi-build/qttools-everywhere-src-6.8.0 && \
+    cd ../qttools-everywhere-src-6.8.0 && \
     /build/qt6/pi/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
-# Compile qtsvg for Raspberry Pi
+# Compile qtsvg, qtspeech, qtserialport for Raspberry Pi
 RUN { \
     set -e && \
     echo "Compile qtsvg for Raspberry Pi" && \
@@ -809,29 +779,19 @@ RUN { \
     /build/qt6/pi/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
-
-# Compile qtspeech for Raspberry Pi
-RUN { \
-    set -e && \
     echo "Compile qtspeech for Raspberry Pi" && \
-    cd qt6/pi-build/qtspeech-everywhere-src-6.8.0 && \
+    cd ../qtspeech-everywhere-src-6.8.0 && \
     /build/qt6/pi/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
-
-# Compile qtserialport for Raspberry Pi
-RUN { \
-    set -e && \
     echo "Compile qtserialport for Raspberry Pi" && \
-    cd qt6/pi-build/qtserialport-everywhere-src-6.8.0 && \
+    cd ../qtserialport-everywhere-src-6.8.0 && \
     /build/qt6/pi/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
-# Compile qtserialbus for Raspberry Pi
+# Compile qtserialbus, qtsensors, qtscxml for Raspberry Pi
 RUN { \
     set -e && \
     echo "Compile qtserialbus for Raspberry Pi" && \
@@ -839,29 +799,19 @@ RUN { \
     /build/qt6/pi/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
-
-# Compile qtsensors for Raspberry Pi
-RUN { \
-    set -e && \
     echo "Compile qtsensors for Raspberry Pi" && \
-    cd qt6/pi-build/qtsensors-everywhere-src-6.8.0 && \
+    cd ../qtsensors-everywhere-src-6.8.0 && \
     /build/qt6/pi/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
-
-# Compile qtscxml for Raspberry Pi
-RUN { \
-    set -e && \
     echo "Compile qtscxml for Raspberry Pi" && \
-    cd qt6/pi-build/qtscxml-everywhere-src-6.8.0 && \
+    cd ../qtscxml-everywhere-src-6.8.0 && \
     /build/qt6/pi/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
-# Compile qtremoteobjects for Raspberry Pi
+# Compile qtremoteobjects, qtquicktimeline, qtquickeffectmaker for Raspberry Pi
 RUN { \
     set -e && \
     echo "Compile qtremoteobjects for Raspberry Pi" && \
@@ -869,39 +819,19 @@ RUN { \
     /build/qt6/pi/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
-
-# Compile qtquicktimeline for Raspberry Pi
-RUN { \
-    set -e && \
     echo "Compile qtquicktimeline for Raspberry Pi" && \
-    cd qt6/pi-build/qtquicktimeline-everywhere-src-6.8.0 && \
+    cd ../qtquicktimeline-everywhere-src-6.8.0 && \
     /build/qt6/pi/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
-
-# Compile qtquickeffectmaker for Raspberry Pi
-RUN { \
-    set -e && \
     echo "Compile qtquickeffectmaker for Raspberry Pi" && \
-    cd qt6/pi-build/qtquickeffectmaker-everywhere-src-6.8.0 && \
+    cd ../qtquickeffectmaker-everywhere-src-6.8.0 && \
     /build/qt6/pi/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
-# Compile qtquickeffectmaker for Raspberry Pi
-RUN { \
-    set -e && \
-    echo "Compile qtquickeffectmaker for Raspberry Pi" && \
-    cd qt6/pi-build/qtquickeffectmaker-everywhere-src-6.8.0 && \
-    /build/qt6/pi/bin/qt-configure-module . && \
-    cmake --build . --parallel 4 && \
-    cmake --install .; \
-} 2>&1 | tee -a /build.log
-
-# Compile qtquick3dphysics for Raspberry Pi
+# Compile qtquick3dphysics, qtquick3d, qtpositioning for Raspberry Pi
 RUN { \
     set -e && \
     echo "Compile qtquick3dphysics for Raspberry Pi" && \
@@ -909,29 +839,19 @@ RUN { \
     /build/qt6/pi/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
-
-# Compile qtquick3d for Raspberry Pi
-RUN { \
-    set -e && \
     echo "Compile qtquick3d for Raspberry Pi" && \
-    cd qt6/pi-build/qtquick3d-everywhere-src-6.8.0 && \
+    cd ../qtquick3d-everywhere-src-6.8.0 && \
     /build/qt6/pi/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
-
-# Compile qtpositioning for Raspberry Pi
-RUN { \
-    set -e && \
     echo "Compile qtpositioning for Raspberry Pi" && \
-    cd qt6/pi-build/qtpositioning-everywhere-src-6.8.0 && \
+    cd ../qtpositioning-everywhere-src-6.8.0 && \
     /build/qt6/pi/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
-# Compile qtnetworkauth for Raspberry Pi
+# Compile qtnetworkauth, qtmultimedia, qtlottie for Raspberry Pi
 RUN { \
     set -e && \
     echo "Compile qtnetworkauth for Raspberry Pi" && \
@@ -939,29 +859,19 @@ RUN { \
     /build/qt6/pi/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
-
-# Compile qtmultimedia for Raspberry Pi
-RUN { \
-    set -e && \
     echo "Compile qtmultimedia for Raspberry Pi" && \
-    cd qt6/pi-build/qtmultimedia-everywhere-src-6.8.0 && \
+    cd ../qtmultimedia-everywhere-src-6.8.0 && \
     /build/qt6/pi/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
-
-# Compile qtlottie for Raspberry Pi
-RUN { \
-    set -e && \
     echo "Compile qtlottie for Raspberry Pi" && \
-    cd qt6/pi-build/qtlottie-everywhere-src-6.8.0 && \
+    cd ../qtlottie-everywhere-src-6.8.0 && \
     /build/qt6/pi/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
-# Compile qtlocation for Raspberry Pi
+# Compile qtlocation, qtlanguageserver, qtimageformats for Raspberry Pi
 RUN { \
     set -e && \
     echo "Compile qtlocation for Raspberry Pi" && \
@@ -969,29 +879,19 @@ RUN { \
     /build/qt6/pi/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
-
-# Compile qtlanguageserver for Raspberry Pi
-RUN { \
-    set -e && \
     echo "Compile qtlanguageserver for Raspberry Pi" && \
-    cd qt6/pi-build/qtlanguageserver-everywhere-src-6.8.0 && \
+    cd ../qtlanguageserver-everywhere-src-6.8.0 && \
     /build/qt6/pi/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
-
-# Compile qtimageformats for Raspberry Pi
-RUN { \
-    set -e && \
     echo "Compile qtimageformats for Raspberry Pi" && \
-    cd qt6/pi-build/qtimageformats-everywhere-src-6.8.0 && \
+    cd ../qtimageformats-everywhere-src-6.8.0 && \
     /build/qt6/pi/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
-# Compile qthttpserver for Raspberry Pi
+# Compile qthttpserver, qtgrpc, qtgraphs for Raspberry Pi
 RUN { \
     set -e && \
     echo "Compile qthttpserver for Raspberry Pi" && \
@@ -999,29 +899,19 @@ RUN { \
     /build/qt6/pi/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
-
-# Compile qtgrpc for Raspberry Pi
-RUN { \
-    set -e && \
     echo "Compile qtgrpc for Raspberry Pi" && \
-    cd qt6/pi-build/qtgrpc-everywhere-src-6.8.0 && \
+    cd ../qtgrpc-everywhere-src-6.8.0 && \
     /build/qt6/pi/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
-
-# Compile qtgraphs for Raspberry Pi
-RUN { \
-    set -e && \
     echo "Compile qtgraphs for Raspberry Pi" && \
-    cd qt6/pi-build/qtgraphs-everywhere-src-6.8.0 && \
+    cd ../qtgraphs-everywhere-src-6.8.0 && \
     /build/qt6/pi/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
-# Compile qtdoc for Raspberry Pi
+# Compile qtdoc, qtdatavis3d, qtconnectivity for Raspberry Pi
 RUN { \
     set -e && \
     echo "Compile qtdoc for Raspberry Pi" && \
@@ -1029,29 +919,19 @@ RUN { \
     /build/qt6/pi/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
-
-# Compile qtdatavis3d for Raspberry Pi
-RUN { \
-    set -e && \
     echo "Compile qtdatavis3d for Raspberry Pi" && \
-    cd qt6/pi-build/qtdatavis3d-everywhere-src-6.8.0 && \
+    cd ../qtdatavis3d-everywhere-src-6.8.0 && \
     /build/qt6/pi/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
-
-# Compile qtconnectivity for Raspberry Pi
-RUN { \
-    set -e && \
     echo "Compile qtconnectivity for Raspberry Pi" && \
-    cd qt6/pi-build/qtconnectivity-everywhere-src-6.8.0 && \
+    cd ../qtconnectivity-everywhere-src-6.8.0 && \
     /build/qt6/pi/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
-# Compile qtcharts for Raspberry Pi
+# Compile qtcharts, qtactiveqt, qt5compat for Raspberry Pi
 RUN { \
     set -e && \
     echo "Compile qtcharts for Raspberry Pi" && \
@@ -1059,29 +939,19 @@ RUN { \
     /build/qt6/pi/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
-
-# Compile qtactiveqt for Raspberry Pi
-RUN { \
-    set -e && \
     echo "Compile qtactiveqt for Raspberry Pi" && \
-    cd qt6/pi-build/qtactiveqt-everywhere-src-6.8.0 && \
+    cd ../qtactiveqt-everywhere-src-6.8.0 && \
     /build/qt6/pi/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
-
-# Compile qt5compat for Raspberry Pi
-RUN { \
-    set -e && \
     echo "Compile qt5compat for Raspberry Pi" && \
-    cd qt6/pi-build/qt5compat-everywhere-src-6.8.0 && \
+    cd ../qt5compat-everywhere-src-6.8.0 && \
     /build/qt6/pi/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
-# Compile qt3d for Raspberry Pi
+# Compile qt3d, qtdeclarative for Raspberry Pi
 RUN { \
     set -e && \
     echo "Compile qt3d for Raspberry Pi" && \
@@ -1089,20 +959,15 @@ RUN { \
     /build/qt6/pi/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
-
-# Compile qtdeclarative for Raspberry Pi
-RUN { \
-    set -e && \
     echo "Compile qtdeclarative for Raspberry Pi" && \
-    cd qt6/pi-build/qtdeclarative-everywhere-src-6.8.0 && \
+    cd ../qtdeclarative-everywhere-src-6.8.0 && \
     /build/qt6/pi/bin/qt-configure-module . && \
     cmake --build . --parallel 4 && \
     cmake --install .; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log
 
 # Final step: Compilation finished
 RUN { \
     set -e && \
     echo "Compilation is finished"; \
-} 2>&1 | tee -a /build.log
+    } 2>&1 | tee -a /build.log

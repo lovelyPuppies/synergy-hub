@@ -14390,14 +14390,21 @@ FROM arm64v8/debian:bookworm
     set qt_dev_env_archive_file_name qt6.8.0-arm32v7-bookworm-dev_env.tar.gz
     set qt_app_hello_file_name qt6.8.0-arm32v7-bookworm-app-Hello
 
+    # ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️ Required !!
     docker run --rm --privileged multiarch/qemu-user-static --reset -p yes && \
     docker buildx inspect --bootstrap |   grep linux/arm/v7 && \
+
     docker buildx build --platform linux/arm/v7 --no-cache --load -f DockerFileRasp -t raspimage . && \
     docker create --name temp-arm raspimage && \
     docker cp temp-arm:/build/rasp.tar.gz ./rasp.tar.gz && \
-       && \
+
+
+    # ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️ Required !!
+    docker run --rm --privileged multiarch/qemu-user-static --reset -p yes && \
+    docker buildx inspect --bootstrap |   grep linux/arm/v7 && \
+    docker build --no-cache -t qtcrossbuild . && \
     docker create --name tmpbuild qtcrossbuild && \
-    docker cp tmpbuild:/build/project/HelloQt6 ./$qt_app_hello_file_name &  & \
+    docker cp tmpbuild:/build/project/HelloQt6 ./$qt_app_hello_file_name && \
     file $qt_app_hello_file_name && \
     docker cp tmpbuild:/build/qt-pi-binaries.tar.gz ./$qt_dev_env_archive_file_name
     >>
@@ -15627,3 +15634,21 @@ echo "All runtime dependencies for Qt applications have been installed!"
 이력서 변경 필요 ==============
 
 //////////// misc 파일 가져와야 함.
+  > [130/136] RUN {     set -e &&     echo "Compile qtdeclarative for Raspberry Pi" &&     cd qt6/pi-build/qtdeclarative-everywhere-src-6.8.0 &&     /build/qt6/pi/bin/qt-configure-module . &&     cmake --build . --parallel 4 &&     cmake --install .; } 2>&1 | tee -a /build.log:
+  ------
+  Dockerfile:1206
+  --------------------
+  1205 |     # Compile qtdeclarative for Raspberry Pi
+  1206 | >>> RUN { \
+  1207 | >>>     set -e && \
+  1208 | >>>     echo "Compile qtdeclarative for Raspberry Pi" && \
+  1209 | >>>     cd qt6/pi-build/qtdeclarative-everywhere-src-6.8.0 && \
+  1210 | >>>     /build/qt6/pi/bin/qt-configure-module . && \
+  1211 | >>>     cmake --build . --parallel 4 && \
+  1212 | >>>     cmake --install .; \
+  1213 | >>> } 2>&1 | tee -a /build.log
+  1214 |     
+  --------------------
+  ERROR: failed to solve: failed to prepare np9c857wt6h685v9glzj8set8 as znjnloair8q16228a41z7urjq: max depth exceeded
+
+

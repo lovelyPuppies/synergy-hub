@@ -10,8 +10,7 @@
       "generator": "Ninja Multi-Config",
       "binaryDir": "${sourceDir}/build/x64-linux",
       "environment": {
-        "VSCODE_QT_FOLDER": "$env{HOME}/Qt/6.8.0/gcc_64",
-        "PATH": "/home/linuxbrew/.linuxbrew/bin:$env{HOME}/Qt/6.8.0/gcc_64/bin:$env{HOME}/qt-platforms/qt6.8.0-arm32v7-bookworm/bin:/bin:/usr/bin"
+        "PATH": "/home/linuxbrew/.linuxbrew/bin:/bin:/usr/bin"
       },
       "cacheVariables": {
         "CMAKE_CXX_COMPILER": "clang++",
@@ -30,8 +29,7 @@
       "binaryDir": "${sourceDir}/build/arm32v7-raspberrypi4",
       "description": "Cross-compile for Raspberry Pi (ARM32v7)",
       "environment": {
-        "PATH": "$env{HOME}/qt-platforms/qt6.8.0-arm32v7-bookworm/bin:$env{HOME}/Qt/6.8.0/gcc_64/bin:/home/linuxbrew/.linuxbrew/bin:/bin:/usr/bin",
-        "VSCODE_QT_FOLDER": "$env{HOME}/qt-platforms/qt6.8.0-arm32v7-bookworm/bin"
+        "PATH": "/home/linuxbrew/.linuxbrew/bin:/bin:/usr/bin"
       },
       "cacheVariables": {
         "CMAKE_CXX_COMPILER": "clang++",

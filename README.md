@@ -122,7 +122,6 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
 │&nbsp;&nbsp;&nbsp;&nbsp;└── [powershell](prototypes/_lab/tech_stack/shell/powershell.txt)  
 ├── terminal  
 │&nbsp;&nbsp;&nbsp;&nbsp;├── emulator  
-│&nbsp;&nbsp;&nbsp;&nbsp;└── **[wezterm](prototypes/_lab/tech_stack/terminal_emulator/wezterm.txt)**  
 │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── **[wezterm](prototypes/_lab/tech_stack/terminal/emulator/wezterm.txt)**  
 │&nbsp;&nbsp;&nbsp;&nbsp;└── graphics_tools  
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── **[timg](prototypes/_lab/tech_stack/terminal/graphics_tools/timg.txt)**  
