@@ -5,13 +5,12 @@
   },
   // Change the default source code mount ; https://code.visualstudio.com/remote/advancedcontainers/change-default-source-mount
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
-  "workspaceFolder": "/workspace",
   // 👇 Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
   "remoteUser": "vscode",
   // 👇 Features to add to the Dev Container. More info: https://containers.dev/implementors/features.
   "features": {
-    "ghcr.io/meaningful-ooo/devcontainer-features/fish:1": {},
-    "ghcr.io/devcontainers/features/github-cli:1": {}
+    "ghcr.io/devcontainers-extra/features/fish-apt-get:1": {}
+    // "ghcr.io/devcontainers/features/github-cli:1": {}
     // "ghcr.io/devcontainers/features/pyt  hon:1": {
     //   "version": "3.11",
     //   "installTools": true,
@@ -21,9 +20,7 @@
   },
   "containerEnv": {
     "DISPLAY": ":1",
-    "XAUTHORITY": "/tmp/.Xauthority",
-    "ROS_MASTER_URI": "http://localhost:11311",
-    "ROS_HOSTNAME": "localhost"
+    "XAUTHORITY": "/tmp/.Xauthority"
   },
   "runArgs": [
     "--runtime",
@@ -56,7 +53,7 @@
   // "forwardPorts": [],
   // 👇 Use 'postCreateCommand' to run commands after the container is created.
   // "postCreateCommand": "pip3 install --upgrade pip && pip3 install -r requirements/requirements_dev.txt && pip3 install -e .",
-  "postCreateCommand": "source /opt/ros/noetic/setup.bash && rosdep update",
+  // "postCreateCommand": "source /opt/ros/noetic/setup.bash && rosdep update",
   // 👇 Configure tool-specific properties.
   "customizations": {
     "vscode": {

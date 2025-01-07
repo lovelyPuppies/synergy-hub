@@ -129,3 +129,5 @@ sudo apt-get install ros-noetic-joy ros-noetic-teleop-twist-joy \
  ros-noetic-gmapping ros-noetic-navigati on ros-noetic-interactive-markers
 
 rviz Create virtualziation: Camera
+
+GEMBIRD

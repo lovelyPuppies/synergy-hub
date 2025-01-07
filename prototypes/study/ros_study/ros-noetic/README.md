@@ -31,6 +31,7 @@ in Real Turtlebot 3
   
   터틀봇 사용하려면?
   sudo apt install ros-noetic-usb-cam
+  sudo apt install ros-noetic-cv-camera
 
 
 

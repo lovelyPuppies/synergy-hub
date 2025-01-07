@@ -22,19 +22,30 @@
     "XAUTHORITY": "/tmp/.Xauthority"
   },
   "runArgs": [
-    "--runtime", "nvidia", // Ensure NVIDIA runtime is used for GPU access
-    "--gpus", "all",
-    "--network", "host",  // Use the host network stack, allowing the container to share the host's IP address and access local services.
-    "--ipc", "host",      // Share the host's inter-process communication (IPC) resources, including shared memory and semaphores, with the container.
+    "--runtime",
+    "nvidia", // Ensure NVIDIA runtime is used for GPU access
+    "--gpus",
+    "all",
+    "--network",
+    "host", // Use the host network stack, allowing the container to share the host's IP address and access local services.
+    "--ipc",
+    "host", // Share the host's inter-process communication (IPC) resources, including shared memory and semaphores, with the container.
     // "--shm-size", "2gb", // Allocate shared memory
-    "--device", "/dev/video0", // Access to video input devices
-    "--device", "/dev/ttyACM0",
-    "--device", "/dev/ttyACM1",
-    "--device", "/dev/ttyACM2",
-    "--volume", "/tmp/.X11-unix:/tmp/.X11-unix", // X11 forwarding for GUI apps
-    "--volume", "/home/jsnano/.Xauthority:/tmp/.Xauthority:rw", // X authority
+    "--device",
+    "/dev/video0", // Access to video input devices
+    "--device",
+    "/dev/ttyACM0",
+    "--device",
+    "/dev/ttyACM1",
+    "--device",
+    "/dev/ttyACM2",
+    "--volume",
+    "/tmp/.X11-unix:/tmp/.X11-unix", // X11 forwarding for GUI apps
+    "--volume",
+    "/home/jsnano/.Xauthority:/tmp/.Xauthority:rw", // X authority
     "--privileged", // may be required to access hardware and devices fully
-    "--name", "signal_masters"
+    "--name",
+    "signal_masters"
   ],
   // may be required to add "--privileged"?
   // 👇 Use 'forwardPorts' to make a list of ports inside the container available locally.
@@ -61,11 +72,8 @@
         }
       }
     }
-    
   }
-
 }
-
 
 /*
 # check jetson-nano's cuda version
@@ -82,4 +90,3 @@
 >> R32 (release), REVISION: 7.5,
 Jetson Linux 32.7.5 is included as part of JetPack 4.6.5
 */
-

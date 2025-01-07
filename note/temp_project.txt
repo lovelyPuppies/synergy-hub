@@ -3359,7 +3359,7 @@ sudo apt install libnvidia-encode1
   - Hardware-level virtualization
   - Creates and runs virtual machines
   - Type1: Native/Bare-metal.
-  - Type2: (VMWare, QEMU, ...) ?
+  - Type2: (VMWare, QEMU, ...) ?      
   BootLoader 가 하드웨어를 운영체제가 쓸 수 있도록 초기화를 한다. 부팅 시간이 필요하다는 것이 단점. 30~60초 필요.
   좋지 않다는 것은 아니다. Windows 도 이것 기반으로 돌아가고 있음.
   >> 고급 차량에는 Hypervisor 에 여러 OS 를 사용하기 위해 사용된다고도 함.
@@ -15713,3 +15713,59 @@ export ROS_HOSTNAME=IP_ADDRESS_OF_RASPBERRY_PI
 
 🧮 mpv --hwdec=vdpau 5640919-hd_1080_1920_30fps.mp4
    
+
+🧮 VSCODE 좌측 하단 "Dev Container: ..." click. -> Reopen Folder Locally
+  .devcontainer/Dockerfile
+    # ROS Noetic base image
+    FROM ros:noetic-robot
+
+    ARG DEBIAN_FRONTEND=noninteractive
+    ARG USER=vscode
+
+
+    # 1. Install sudo and create the vscode user with root privileges
+    RUN apt-get update && apt-get install -y --no-install-recommends sudo \
+        && useradd -m -d /home/$USER -s /bin/bash $USER \
+        && usermod -aG sudo,video,dialout,plugdev,audio $USER \
+        && echo "$USER ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
+    # 2. Update dependencies index
+    RUN apt-get update
+
+    # 3. Switch to the vscode user
+    USER $USER
+    ARG HOME="/home/$USER"
+    # create directories pre-emptively to avoid permission issues 📅 2025-01-07 20:03:16
+    RUN mkdir -p $HOME/.config $HOME/.local
+    RUN sudo chown -R $USER:$USER /home/$USER /home/$USER/.config /home/$USER/.local
+
+    RUN echo $USER > $HOME/test.txt
+    # 4. Set environment variables for pyenv and PATH
+    ENV PATH="${HOME}/.local/bin:$PATH"
+
+  .devcontainer/devcontainer.json
+    "features": {
+      "ghcr.io/meaningful-ooo/devcontainer-features/fish:1": {},
+    }
+
+
+  error: can not save history
+  warning-path: Unable to locate data directory derived from $HOME: '/home/vscode/.local/share/fish'.
+  warning-path: The error was 'Permission denied'.
+  warning-path: Please set $HOME to a directory where you have write access.
+
+  error: Unable to open universal variable file '/': Permission denied
+  mkdir: cannot create directory ‘/home/vscode/.config/fish’: Permission denied
+  mkdir: cannot create directory ‘/home/vscode/.config/fish’: Permission denied
+  mkdir: cannot create directory ‘/home/vscode/.config/fish’: Permission denied
+  error: Unable to open universal variable file '/': Permission denied
+  warning: An error occurred while redirecting file '/home/vscode/.config/fish/config.fish'
+  open: Permission denied
+  error: Unable to open universal variable file '/': Permission denied
+  error: Unable to open universal variable file '/': Permission denied
+
+
+  >> 
+  # https://stackoverflow.com/questions/69328173/fish-shell-error-unable-to-open-universal-variable-file-permission-denie
+
+  instead,   use ..  "ghcr.io/meaningful-ooo/devcontainer-features/fish:1": {},

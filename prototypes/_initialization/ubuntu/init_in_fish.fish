@@ -1660,8 +1660,16 @@ echo "🚣 If you already have Cockpit on your server, point your web browser to
 
 
 
+: '
+📦 x11-utils
+  - Required for 🧮 "xhost +local:docker" to allow X11 access in Docker containers.
+    Refer to `prototypes/_initialization/ubuntu/howto/general/setup_x11_docker.fish`
+'
+apt install -y x11-utils
 
-sudo apt install -y mpv
+
+
+# sudo apt install -y mpv
 # A free, open source, and cross-platform media player
 
 
