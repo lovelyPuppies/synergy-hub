@@ -131,3 +131,19 @@ sudo apt-get install ros-noetic-joy ros-noetic-teleop-twist-joy \
 rviz Create virtualziation: Camera
 
 GEMBIRD
+
+
+
+
+
+
+
+
+
+vscode@iot-04 /workspace> ^C
+vscode@iot-04 /workspace> v4l2-ctl --list-devices
+
+USB2.0 PC CAMERA: USB2.0 PC CAM (usb-0000:00:14.0-9.2):
+        /dev/video0
+        /dev/video1
+        /dev/media0

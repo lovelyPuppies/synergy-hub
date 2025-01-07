@@ -5,6 +5,7 @@
   },
   // Change the default source code mount ; https://code.visualstudio.com/remote/advancedcontainers/change-default-source-mount
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+  "workspaceFolder": "/workspace",
   // 👇 Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
   "remoteUser": "vscode",
   // 👇 Features to add to the Dev Container. More info: https://containers.dev/implementors/features.
@@ -43,7 +44,7 @@
     "--volume",
     "/tmp/.X11-unix:/tmp/.X11-unix", // X11 forwarding for GUI apps
     "--volume",
-    "${env:HOME}/.Xauthority:/root/.Xauthority", // X authority
+    "${env:HOME}/.Xauthority:/tmp/.Xauthority:rw", // X authority
     "--privileged", // may be required to access hardware and devices fully
     "--name",
     "ros_noetic_study"

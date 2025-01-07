@@ -15777,14 +15777,60 @@ export ROS_HOSTNAME=IP_ADDRESS_OF_RASPBERRY_PI
   udev also handles all user space events raised when hardware devices are added into the system or removed from it, 🚣 including firmware loading as required by certain devices.
 
 
-sudo nano /etc/udev/rules.d/99-docker.rules
 # 666
 # 모든 사용자(소유자, 그룹, 기타 사용자)가 읽기/쓰기 가능.
 # Docker 컨테이너는 호스트의 /dev 디렉터리에서 장치를 마운트하므로, 컨테이너 내 사용자(일반적으로 root 또는 비루트 사용자)가 호스트의 "기타 사용자" 권한으로 장치에 접근하게 됩니다.
 # 따라서, Docker 컨테이너에서 장치에 접근하려면 666 (읽기/쓰기 모두 허용) 권한이 필요합니다.
 echo 'SUBSYSTEM=="video4linux", GROUP="docker", MODE="0666"' | sudo tee /etc/udev/rules.d/99-docker.rules
-
-
 sudo udevadm control --reload-rules
 sudo udevadm trigger
 
+
+
+  
+FFmpeg의 정적 빌드(static build)는 설치가 간편하지만, 라이선스 제한으로 인해 일부 비자유(non-free) 라이브러리를 포함하지 않을 수 있습니다. 이로 인해 특정 코덱이나 기능이 지원되지 않을 수 있습니다.
+  예를 들어, H.264와 같은 코덱은 특허 문제로 인해 기본 정적 빌드에 포함되지 않을 수 있습니다. 따라서 이러한 코덱을 사용하려면 소스에서 직접 컴파일하여 필요한 라이브러리를 포함시키는 것이 좋습니다. 
+
+  ???
+  예를 들어, H.264 코덱은 MPEG LA와 같은 특허 풀에 의해 관리되며, 상업적 사용 시 라이선스 비용이 부과될 수 있습니다. 그러나 비영리적 사용이나 일정 규모 이하의 사용에 대해서는 로열티가 면제되기도 합니다. 자세한 내용은 MPEG LA의 공식 웹사이트를 참고하시기 바랍니다.
+
+    H.264는 다양한 단체가 소유 한 특허로 보호된다. H.264에 필수적인 대부분의 특허는 (전부는 아니지만) MPEG LA[1] 특허 풀에서 관리한다.
+    특허 된 H.264 기술을 상업적으로 사용하려면 MPEG LA 및 기타 특허 소유자에게 로열티를 지불해야한다. H.264를 채용 한 제품을 구입 한 소비자에게 별도로 사용료를 부과 할 수는 없지만, 제품 가격에 그 비용이 포함된다.
+    MPEG LA는 최종 사용자가 인터넷 비디오 스트리밍을 위한 H.264 기술 사용을 무료로 허용했다.
+    Cisco Systems는 오픈 소스로 공개된 H.264 인코더 용 바이너리(OpenH264)[2] 사용자들을 대신하여 MPEG LA에 로열티를 지불한다. H.264 알고리즘에 영향을 미치거나 기술하는 특허들은 100 개가 넘는다. 그 중 일부는 특허 만료가 되었지만, 대부분은 2028년 만료 기점을 가진다.
+❓❓❓❓❓❓❓❓📰 TODO:..
+우분투에서 아래와 같이 apt-get으로 ffmpeg을 설치할 수 있다.$> sudo apt-get install ffmpeg하지만 위와 같이 설치할 경우 h264 코덱이 포함되지 않아서 h264 인코딩 혹은 디코딩 하는데 제약 사항이 생긴다.그래서 h264 소스를 다운받은 후 ffmpeg을 다시 빌드를 해주어야 하는데 그 방법은 아래와 같다.
+  https://yujuwon.tistory.com/entry/우분투에서-ffmpeg-설치-방법 [Ju Factory:티스토리]
+
+  https://trac.ffmpeg.org/wiki/CompilationGuide
+  https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu
+
+  sudo apt-get update -qq && sudo apt-get -y install \
+    autoconf \
+    automake \
+    build-essential \
+    cmake \
+    git-core \
+    libass-dev \
+    libfreetype6-dev \
+    libgnutls28-dev \
+    libmp3lame-dev \
+    libsdl2-dev \
+    libtool \
+    libva-dev \
+    libvdpau-dev \
+    libvorbis-dev \
+    libxcb1-dev \
+    libxcb-shm0-dev \
+    libxcb-xfixes0-dev \
+    meson \
+    ninja-build \
+    pkg-config \
+    texinfo \
+    wget \
+    yasm \
+    zlib1g-dev
+  # ❗ On Ubuntu 20.04 you may also need this command: (​note)
+  sudo apt install libunistring-dev libaom-dev libdav1d-dev
+  # ❗ Note: Server users can omit the ffplay and x11grab dependencies: libsdl2-dev libva-dev libvdpau-dev libxcb1-dev libxcb-shm0-dev libx cb-xfixes0-dev.
+    libsdl2-dev libva-dev libvdpau-dev libxcb1-dev libxcb-shm0-dev libxcb-xfixes0-dev
