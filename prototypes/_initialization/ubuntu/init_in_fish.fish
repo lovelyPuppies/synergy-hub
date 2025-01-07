@@ -1661,6 +1661,8 @@ echo "🚣 If you already have Cockpit on your server, point your web browser to
 
 
 
+sudo apt install -y mpv
+# A free, open source, and cross-platform media player
 
 
 
@@ -2102,6 +2104,15 @@ else
     " | prettify_indent_via_pipe | tee $HOME/.wezterm.lua >/dev/null
 
 
+    ### ❌ mpv from flatpak ; https://flathub.org/apps/io.mpv.Mpv 📅 2025-01-07 16:37:24
+    #   ; A free, open source, and cross-platform media player
+    # [🧱 130; INT] ❯ [ffmpeg/demuxer]
+    #   video4linux2,v4l2: Some buffers are still owned by the caller on close.
+    #   video4linux2,v4l2: Some buffers are still owned by the caller on close.
+    #   [ffmpeg] ioctl(VIDIOC_QBUF): Bad file descriptor
+    # Exiting... (Quit)
+    # (process:2): GLib-GIO-CRITICAL **: 16:55:12.147: g_dbus_connection_emit_signal: assertion 'G_IS_DBUS_CONNECTION (connection)' failed
+    # (process:2): GLib-GIO-CRITICAL **: 16:55:12.147: g_dbus_connection_unregister_object: assertion 'G_IS_DBUS_CONNECTION (connection)' failed
 
 
     echo "❔ [Flatpak] Installed user-scoped apps"

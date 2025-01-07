@@ -14,7 +14,7 @@ trap on_interrupt SIGINT
 
 
 set script_dir /home/wbfw109v2/repos/synergy-hub/prototypes/_initialization/ubuntu
-
+        
 
 
 # # 경로 설정

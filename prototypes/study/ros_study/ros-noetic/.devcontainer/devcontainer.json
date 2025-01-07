@@ -3,6 +3,9 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
+  // Change the default source code mount ; https://code.visualstudio.com/remote/advancedcontainers/change-default-source-mount
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+  "workspaceFolder": "/workspace",
   // 👇 Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
   "remoteUser": "vscode",
   // 👇 Features to add to the Dev Container. More info: https://containers.dev/implementors/features.
@@ -17,9 +20,10 @@
     // }
   },
   "containerEnv": {
-    // "DISPLAY": "localhost:10.0",
-    "DISPLAY": ":0",
-    "XAUTHORITY": "/tmp/.Xauthority"
+    "DISPLAY": ":1",
+    "XAUTHORITY": "/tmp/.Xauthority",
+    "ROS_MASTER_URI": "http://localhost:11311",
+    "ROS_HOSTNAME": "localhost"
   },
   "runArgs": [
     "--runtime",
@@ -42,7 +46,7 @@
     "--volume",
     "/tmp/.X11-unix:/tmp/.X11-unix", // X11 forwarding for GUI apps
     "--volume",
-    "/home/wbfw109v2/.Xauthority:/tmp/.Xauthority:rw", // X authority
+    "${env:HOME}/.Xauthority:/root/.Xauthority", // X authority
     "--privileged", // may be required to access hardware and devices fully
     "--name",
     "ros_noetic_study"
@@ -52,6 +56,7 @@
   // "forwardPorts": [],
   // 👇 Use 'postCreateCommand' to run commands after the container is created.
   // "postCreateCommand": "pip3 install --upgrade pip && pip3 install -r requirements/requirements_dev.txt && pip3 install -e .",
+  "postCreateCommand": "source /opt/ros/noetic/setup.bash && rosdep update",
   // 👇 Configure tool-specific properties.
   "customizations": {
     "vscode": {

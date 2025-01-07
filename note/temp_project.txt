@@ -15653,7 +15653,7 @@ echo "All runtime dependencies for Qt applications have been installed!"
 
 
 
-  
+
 박준수_삼성_직무
 // 영상 찾아보기
 
@@ -15680,3 +15680,36 @@ echo "All runtime dependencies for Qt applications have been installed!"
   docker run --rm --gpus all nvidia/cuda:12.6.3-base-ubuntu24.04 nvidia-smi
 
 
+# 7. Export LD_PRELOAD for dynamic linking
+RUN echo 'export LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libgomp.so.1:$LD_PRELOAD' >> ~/.bashrc
+  libgomp는 **GNU OpenMP(Runtime)**의 공유 라이브러리입니다. OpenMP는 다중 스레드 병렬 프로그래밍을 위한 API 표준으로, libgomp는 OpenMP 명령어를 처리하고 실행하는 데 필요한 런타임 지원을 제공합니다.
+
+
+rostopic lits
+rqt // qt 앱..? in ROS 우분투 앱에서.. check 
+  Plugins - Topics -  Topic Monitor 
+
+
+
+sudo apt update
+sudo apt install -y x11-xserver-utils 
+
+
+========
+# Replace IP_ADDRESS_OF_REMOTE_PC with the IP address of remote PC.
+# Bothe Remote PC and Raspberry Pi should be connected in the same >
+# e.g) export ROS_MASTER_URI=http://192.168.0.10:11311
+export ROS_MASTER_URI=http://IP_ADDRESS_OF_REMOTE_PC:11311
+
+# Replace IP_ADDRESS_OF_RASPBERRY_PI with the IP address of Raspber>
+# e.g) export ROS_HOSTNAME=192.168.0.11
+export ROS_HOSTNAME=IP_ADDRESS_OF_RASPBERRY_PI
+
+
+    export TURTLEBOT3_MODEL=burger
+    roslaunch turtlebot3_bringup turtlebot3_robot.launch
+
+
+
+🧮 mpv --hwdec=vdpau 5640919-hd_1080_1920_30fps.mp4
+   
