@@ -15834,3 +15834,157 @@ FFmpeg의 정적 빌드(static build)는 설치가 간편하지만, 라이선스
   sudo apt install libunistring-dev libaom-dev libdav1d-dev
   # ❗ Note: Server users can omit the ffplay and x11grab dependencies: libsdl2-dev libva-dev libvdpau-dev libxcb1-dev libxcb-shm0-dev libx cb-xfixes0-dev.
     libsdl2-dev libva-dev libvdpau-dev libxcb1-dev libxcb-shm0-dev libxcb-xfixes0-dev
+
+
+. This means that even if the instructions in your Dockerfile are re-ordered later, the COPY doesn't break.
+
+
+🆚
+  OS 레벨 가상화는 운영 체제에서 사용자 공간을 격리하여 컨테이너를 제공하는 기술을 말합니다. Docker, LXC 등이 이에 해당합니다.
+    Docker와 같은 기술은 OS 레벨 가상화로 부르는 것이 더 적절합니다.
+    Docker는 하나의 커널에서 여러 격리된 사용자 공간(컨테이너)을 실행하기 때문입니다.
+  커널 레벨 가상화는 운영 체제 커널 자체가 가상화의 주요 역할을 담당하는 것을 뜻하며, KVM(Linux Kernel Virtual Machine)이 이에 해당합니다.
+    KVM (Kernel-based Virtual Machine)은 커널 레벨 가상화로 부르는 것이 더 적합합니다.
+    KVM은 하드웨어 가상화를 활용해 전체 OS를 실행하도록 커널이 하이퍼바이저 역할을 수행합니다.
+
+  VMware와 VirtualBox는 소프트웨어 기반 가상화 도구로, 자체적으로 하이퍼바이저 역할을 수행합니다.
+    VMware와 VirtualBox는 자체 하이퍼바이저 엔진을 사용하므로 KVM과는 무관합니다.
+  QEMU는 기본적으로 소프트웨어 에뮬레이터이지만, KVM을 통해 하드웨어 가속을 지원할 수 있습니다.
+    QEMU는 다양한 하드웨어 아키텍처와 디바이스를 에뮬레이션할 수 있는 강력한 소프트웨어. 독보적.
+
+  | **특징**                 | **OS 레벨 가상화**                  | **하드웨어 레벨 가상화**           |
+  |---------------------------|-------------------------------------|------------------------------------|
+  | **격리 수준**             | 프로세스 수준 (낮음)                | 하드웨어 수준 (높음)              |
+  | **호스트 OS 의존성**      | 있음 (동일 커널 필요)               | 없음 (다른 OS 실행 가능)          |
+  | **시작/중지 속도**        | 빠름 (초 단위)                      | 느림 (분 단위)                    |
+  | **리소스 사용량**         | 적음                               | 많음                              |
+  | **적용 사례**             | 마이크로서비스, CI/CD 환경          | 다양한 OS 테스트, 완전 격리 환경 |
+
+
+  # 하드웨어 레벨 가상화의 시작/중지 속도가 느린 이유
+
+  ## 1. 가상 머신(VM)의 시작/중지 과정
+  - 하드웨어 레벨 가상화는 가상 머신(VM)이 **완전한 운영 체제와 가상 하드웨어 환경**을 실행해야 하기 때문에 느립니다.
+  - **과정**:
+    1. 하이퍼바이저가 가상 하드웨어를 초기화.
+    2. 가상 머신 내부에서 운영 체제(OS)가 부팅 (BIOS/UEFI 실행 포함).
+    3. 운영 체제 부팅 완료 후 VM이 준비 상태로 전환.
+
+  이 과정은 실제 물리적인 하드웨어가 부팅되는 방식과 유사하기 때문에 시간이 소요됩니다.
+
+  ---
+
+  ## 2. 하드웨어 가상화의 작동 속도
+  - VM은 하이퍼바이저를 통해 하드웨어 자원을 **간접적으로 접근**합니다.
+  - 하드웨어 자원을 가상화하면서 발생하는 **오버헤드**가 작동 속도를 저하시킬 수 있습니다.
+    - **예**: I/O 작업, 네트워크 호출 등에서 추가 처리 단계 필요.
+  - 이로 인해 **OS-level Virtualization**보다 시작/중지 속도와 작동 속도가 느립니다.
+
+  ---
+
+  ## 3. OS 레벨 가상화의 빠른 속도 이유
+  - 컨테이너는 호스트 OS의 커널을 공유하므로, 운영 체제를 부팅하거나 하드웨어를 가상화할 필요가 없습니다.
+  - 애플리케이션과 라이브러리만 로드하면 되기 때문에:
+    - **시작/중지 시간**이 빠릅니다.
+    - **성능 오버헤드**가 적습니다.
+
+  ---
+
+  ## 요약
+  | **특징**                 | **하드웨어 레벨 가상화 (VM)**          | **OS 레벨 가상화 (컨테이너)**      |
+  |---------------------------|---------------------------------------|-----------------------------------|
+  | **OS 부팅 필요 여부**     | 필요 (운영 체제 전체 부팅)            | 불필요 (커널 공유)               |
+  | **가상 하드웨어 초기화**  | 있음                                 | 없음                            |
+  | **I/O 처리 오버헤드**      | 큼                                   | 적음                            |
+  | **시작/중지 속도**        | 느림                                | 빠름                            |
+
+
+  ❓ A hypervisor, also known as a virtual machine monitor (VMM) or virtualizer, is a type of computer software, firmware or hardware that creates and runs virtual machines. A
+    https://en.wikipedia.org/wiki/Hypervisor
+
+    https://en.wikipedia.org/wiki/Hypervisor#Classification
+      Type-1, native or bare-metal hypervisors
+         ... e.g.? Hyper-V, Xen, VMware ESXi.
+         사용 사례:
+          대규모 데이터센터, 클라우드 서비스.
+          
+      Type-2 or hosted hypervisors
+        호스트 OS에서 동작하는 일반 애플리케이션처럼 실행됩니다.
+          예: VirtualBox, VMware Workstation.
+          사용 사례:
+          개발 환경, 데스크톱 가상화.
+
+
+  Docker는 커널 기능을 활용하여 컨테이너를 생성 및 관리합니다:
+    Namespace: 프로세스, 네트워크, 파일 시스템 등의 격리를 제공.
+    cgroups(Control Groups): CPU, 메모리와 같은 자원 제한을 제공.
+    하드웨어 가상화 기술(Type-1, Type-2)을 직접 사용하지 않습니다.
+  Docker는 하이퍼바이저를 필요로 하지 않지만, Windows나 macOS에서 Docker Desktop을 사용할 때는 하이퍼바이저가 필요합니다.
+    Windows에서 Docker는 Hyper-V 또는 WSL 2를 사용.
+    macOS에서는 VirtualBox 또는 Apple의 하이퍼바이저를 사용.
+
+
+  # Docker and its Dependency on Hypervisors in Windows/macOS
+
+  ## 1. Docker's Basic Working Principle
+  - Docker utilizes **Linux kernel features** (e.g., cgroups, namespaces) to provide virtualization.
+  - This means Docker runs **natively on Linux** without needing a hypervisor.
+
+  ---
+
+  ## 2. Why Docker Needs Hypervisors on Windows and macOS
+
+  ### (1) **Windows**
+  - **Problem**: Windows does not have a Linux kernel, so Docker needs to emulate a Linux environment.
+  - **Solution**:
+    1. **Hyper-V**:
+      - Hyper-V is used to run a Linux virtual machine (VM).
+      - Docker containers run inside this Linux VM.
+    2. **WSL 2 (Windows Subsystem for Linux 2)**:
+      - WSL 2 is a lightweight Linux VM.
+      - Docker utilizes WSL 2 to execute Linux containers.
+      - **WSL 2 itself relies on Hyper-V** internally to function.
+
+  **Conclusion**: On Windows, Docker indirectly relies on Hyper-V or WSL 2 (which uses Hyper-V) to provide a Linux kernel environment.
+
+  ---
+
+  ### (2) **macOS**
+  - **Problem**: macOS also lacks a Linux kernel.
+  - **Solution**:
+    1. **Apple's Hypervisor Framework**:
+      - Docker uses macOS's built-in virtualization capabilities to run a Linux VM.
+    2. **VirtualBox (legacy)**:
+      - Docker Desktop previously used VirtualBox to run Linux VMs but now primarily uses Apple's hypervisor framework.
+
+  **Conclusion**: On macOS, Docker depends on hypervisors to provide a Linux environment.
+
+  ---
+
+  ## 3. Why Linux Doesn't Require a Hypervisor
+  - Linux already includes the **native Linux kernel** that Docker directly utilizes.
+  - Docker containers can run directly on the host OS without any need for additional virtualization layers.
+
+  ---
+
+  ## 4. Summary Table
+
+  | **Environment** | **Hypervisor Dependency**                         | **Reason**                                                        |
+  |------------------|---------------------------------------------------|--------------------------------------------------------------------|
+  | **Linux**        | No                                                | Docker uses the native Linux kernel.                              |
+  | **Windows**      | Yes (Hyper-V or WSL 2)                            | Docker needs a Linux kernel, provided by a Linux VM.              |
+  | **macOS**        | Yes (Apple Hypervisor Framework or VirtualBox)    | Docker uses a Linux VM to emulate the Linux environment.          |
+
+  ---
+
+  ## Key Takeaways
+  - **Linux**: Docker operates without a hypervisor because it uses the native Linux kernel.
+  - **Windows**: Docker relies on Hyper-V or WSL 2 to emulate a Linux kernel.
+  - **macOS**: Docker uses a hypervisor (Apple's framework) to run Linux VMs.
+
+
+
+TODO: 📰 DOcker devcontainer 대체..  ; https://www.redhat.com/en/blog/5-reasons-choose-podman-2025?utm_source=chatgpt.com
+  https://code.visualstudio.com/remote/advancedcontainers/docker-options#_podman
+  
+  Podman은 Docker Hub를 비롯한 다양한 컨테이너 이미지 레지스트리와 호환됩니다. 이는 Podman이 OCI(Open Container Initiative) 표준을 준수하기 때문입니다. 따라서, Podman을 사용하여 Docker Hub에서 이미지를 pull하거나 push하는 것이 가능합니다. 또한, Podman의 CLI는 Docker와 유사하여, 기존 Docker 사용자들이 큰 변경 없이 Podman으로 전환할 수 있습니다. 
