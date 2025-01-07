@@ -45,7 +45,7 @@ ubuntu@bot19:~$ ps -eo pid,etime,cmd | grep unattended-upgr
    $ sudo apt-get install dphys-swapfile
    $ sudo vi /sbin/dphys-swapfile
 
----
+---         
 
 ## CONF_SWAPSIZE=2048
 
@@ -83,7 +83,7 @@ sudo apt-get update
 
 # Install libc6 for armhf architecture
 echo "Installing libc6:armhf..."
-sudo apt-get install -y libc6:armhf
+sudo apt-get install -y libc6armhf:
 
 # Set the OpenCR port (update /dev/ttyACM0 if your device uses a different port)
 set -x OPENCR_PORT /dev/ttyACM0

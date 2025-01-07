@@ -15769,3 +15769,22 @@ export ROS_HOSTNAME=IP_ADDRESS_OF_RASPBERRY_PI
   # https://stackoverflow.com/questions/69328173/fish-shell-error-unable-to-open-universal-variable-file-permission-denie
 
   instead,   use ..  "ghcr.io/meaningful-ooo/devcontainer-features/fish:1": {},
+
+
+⚓📎 dev (userspace /dev) https://en.wikipedia.org/wiki/Udev
+  udev (userspace /dev) is a device manager for the Linux kernel. ...
+  udev primarily manages device nodes in the /dev directory.
+  udev also handles all user space events raised when hardware devices are added into the system or removed from it, 🚣 including firmware loading as required by certain devices.
+
+
+sudo nano /etc/udev/rules.d/99-docker.rules
+# 666
+# 모든 사용자(소유자, 그룹, 기타 사용자)가 읽기/쓰기 가능.
+# Docker 컨테이너는 호스트의 /dev 디렉터리에서 장치를 마운트하므로, 컨테이너 내 사용자(일반적으로 root 또는 비루트 사용자)가 호스트의 "기타 사용자" 권한으로 장치에 접근하게 됩니다.
+# 따라서, Docker 컨테이너에서 장치에 접근하려면 666 (읽기/쓰기 모두 허용) 권한이 필요합니다.
+echo 'SUBSYSTEM=="video4linux", GROUP="docker", MODE="0666"' | sudo tee /etc/udev/rules.d/99-docker.rules
+
+
+sudo udevadm control --reload-rules
+sudo udevadm trigger
+
