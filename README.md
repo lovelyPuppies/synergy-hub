@@ -25,12 +25,12 @@
 
   🏷️ Tag: ATmega128, AVR, Peripherals (UART, I2C, PWM, Timer), Design Pattern (MVP), Finite State Machine
 
-- [**Raspberry Pi 4 B 기반 커널 모듈 및 디바이스 드라이버 구현 (LED 제어)**](prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/README.md)
-  🏷️ Tag: ...
-
 - [**Jetson Nano와 Edge AI를 활용한 실시간 수신호 인식 자율주행 RC카 개발 프로젝트**](https://github.com/opmaksim/Signal-Project) (External Link)
 
-  🏷️ Tag: Edge AI, On-Device, Yolo v11, JetSon Nano, ...
+  🏷️ Tag: Edge AI, On-Device, Yolo v11, JetSon Nano
+
+- [**Raspberry Pi 4 B 기반 커널 모듈 및 디바이스 드라이버 구현 (LED 제어)**](prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/README.md)
+  🏷️ Tag: ...
 
 - **STM32 Nucleo F411RE 기반 디지털 시계 및 알람 시스템 구현**: TODO
 - [**Python 및 MediaPipe 기반 카메라 필터 애플리케이션 개발**](prototypes/study/python_study/camera_filter_app)
@@ -45,6 +45,8 @@
 - [**IoT의 안전한 운영을 위한 Docker 기반 시스템 환경 설 계 및 구현**](https://github.com/wbfw109/safe_iot_architecture) \(External Link\)
 - [**Python 및 IPython 기반 CS 지식 연구 결과를 웹에 시각화하기 위한 라이브러리 개발**](https://github.com/wbfw109/study-core?tab=readme-ov-file#31-python-utilities) \(External Link\)
 - [**Pynecone를 활용한 CS 용어 사전 웹 애플리케이션 개발**](https://github.com/wbfw109/study-core?tab=readme-ov-file#41-glossary-service) \(External Link\)
+
+- [**Turtlebot 3**] (📰 Doing)
 
 ## 🔧 Tech Stack
 
