@@ -15654,8 +15654,6 @@ echo "All runtime dependencies for Qt applications have been installed!"
 
 
 
-박준수_삼성_직무
-// 영상 찾아보기
 
 !!!! docker 에서 GPU 사용하려면 필수!!
   # NVIDIA GPG Key 추가
@@ -15839,6 +15837,9 @@ FFmpeg의 정적 빌드(static build)는 설치가 간편하지만, 라이선스
 . This means that even if the instructions in your Dockerfile are re-ordered later, the COPY doesn't break.
 
 
+
+
+
 🆚
   OS 레벨 가상화는 운영 체제에서 사용자 공간을 격리하여 컨테이너를 제공하는 기술을 말합니다. Docker, LXC 등이 이에 해당합니다.
     Docker와 같은 기술은 OS 레벨 가상화로 부르는 것이 더 적절합니다.
@@ -15897,6 +15898,15 @@ FFmpeg의 정적 빌드(static build)는 설치가 간편하지만, 라이선스
   | **가상 하드웨어 초기화**  | 있음                                 | 없음                            |
   | **I/O 처리 오버헤드**      | 큼                                   | 적음                            |
   | **시작/중지 속도**        | 느림                                | 빠름                            |
+
+
+
+
+
+
+
+
+
 
 
   ❓ A hypervisor, also known as a virtual machine monitor (VMM) or virtualizer, is a type of computer software, firmware or hardware that creates and runs virtual machines. A
@@ -15988,3 +15998,11 @@ TODO: 📰 DOcker devcontainer 대체..  ; https://www.redhat.com/en/blog/5-reas
   https://code.visualstudio.com/remote/advancedcontainers/docker-options#_podman
   
   Podman은 Docker Hub를 비롯한 다양한 컨테이너 이미지 레지스트리와 호환됩니다. 이는 Podman이 OCI(Open Container Initiative) 표준을 준수하기 때문입니다. 따라서, Podman을 사용하여 Docker Hub에서 이미지를 pull하거나 push하는 것이 가능합니다. 또한, Podman의 CLI는 Docker와 유사하여, 기존 Docker 사용자들이 큰 변경 없이 Podman으로 전환할 수 있습니다. 
+
+
+https://docs.docker.com/build/building/multi-stage/
+
+// 영상 찾아보기
+
+
+FPGA(Field-Programmable Gate Array)는 프로그래머가 원하는 대로 하드웨어 회로를 설계하고 수정할 수 있는 재구성 가능한 디지털 집적회로입니다. FPGA
