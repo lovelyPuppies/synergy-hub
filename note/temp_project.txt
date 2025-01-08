@@ -16028,18 +16028,6 @@ ngrok: 로컬 서버에 HTTPS 접근을 위한 터널링 서비스.
 
 
 
-⚓ ROS ; https://wiki.ros.org/
-
-
-https://www.saramin.co.kr/zf_user/jobs/relay/view?isMypage=no&rec_idx=49679985&recommend_ids=eJxNjrkVQ0EIA6txziEExC7E%2FXfhPezdH84TGoRGwqifUnnlG01B0AZyY7KqB%2BrCKHGLg4Sk60GkE7NrO21H5VFFFz2uWeji96%2FCqh6olD4qqJlO9K0KVuTz2NfIbU5pA%2B7INm%2FeVYLuOCpGtvDfLRC1NvtP5SOZqi%2BPekCj&view_type=mail_landing&gz=1&relayNonce=7a7a7081c508e3c9f977&immediately_apply_layer_open=n#seq=0
-
-
-https://en.wikipedia.org/wiki/Robot_Operating_System  
-  https://www.ros.org/
-  ⚓ ROS 2 docs ; https://docs.ros.org/en/jazzy/index.html
-  ⚓ ROS 1 docs (legacy) ; https://wiki.ros.org/
-
-
   cw cd ~/catkin_ws
   cs='cd ~/catkin _ws/src/
 
@@ -16145,7 +16133,7 @@ ROS 동작 테스트
       if not ret:
           print("Error: Failed to capture image.")
           break
-
+  
       # Display the resulting frame
       cv2.imshow('Video Feed', frame)
 
@@ -16183,3 +16171,17 @@ echo "keyboard-configuration keyboard-configuration/xkb-keymap select us" | sudo
 
 
 unzip ~/Downloads/Project_README.zip -d ~/Downloads/Project_README
+
+
+
+
+
+⚓ ROS ; https://wiki.ros.org/
+
+https://www.saramin.co.kr/zf_user/jobs/relay/view?isMypage=no&rec_idx=49679985&recommend_ids=eJxNjrkVQ0EIA6txziEExC7E%2FXfhPezdH84TGoRGwqifUnnlG01B0AZyY7KqB%2BrCKHGLg4Sk60GkE7NrO21H5VFFFz2uWeji96%2FCqh6olD4qqJlO9K0KVuTz2NfIbU5pA%2B7INm%2FeVYLuOCpGtvDfLRC1NvtP5SOZqi%2BPekCj&view_type=mail_landing&gz=1&relayNonce=7a7a7081c508e3c9f977&immediately_apply_layer_open=n#seq=0
+
+
+https://en.wikipedia.org/wiki/Robot_Operating_System  
+  https://www.ros.org/
+  ⚓ ROS 2 docs ; https://docs.ros.org/en/jazzy/index.html
+  ⚓ ROS 1 docs (legacy) ; https://wiki.ros.org/
