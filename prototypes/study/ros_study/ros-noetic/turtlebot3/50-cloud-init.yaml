@@ -22,9 +22,13 @@ network:
       access-points:
           embA: 
               password: embA1234  
-
-# sudo mv 50-cloud-init.yaml /media/wbfw109v2/writable/etc/netplan/50-cloud-init.yaml
-# echo bot19 | sudo tee /media/wbfw109v2/writable/etc/hostname
+: '🧮 in Turtlebot 3
+sudo mv 50-cloud-init.yaml /media/wbfw109v2/writable/etc/netplan/50-cloud-init.yaml
+echo bot19 | sudo tee /media/wbfw109v2/writable/etc/hostname
 # https://emanual.robotis.com/docs/en/platform/turtlebot3/sbc_setup/#sbc-setup
-# e. Login with ID ubuntu and PASSWORD turtlebot.`
-# ssh ubuntu@10.10.14.119
+# Login with ⚖️ ID ubuntu and ⚖️ PASSWORD turtlebot.`
+'
+
+: '🧮 in Host PC
+ssh ubuntu@10.10.14.119
+'

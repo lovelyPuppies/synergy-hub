@@ -6,10 +6,49 @@
 - set DISPLAY as HOST's DISPLAY value
 
 
+### Turtlebot 3 installation
 
-  --env ROS_MASTER_URI=192.168.0.102:11311 \
-  --env ROS_HOSTNAME=192.168.0.102
-🆗
+#### Download and unzip image file
+```bash
+#!/usr/bin/env fish
+
+### 🤚 User interaction Required: Download TurtleBot3 SBC Image ; https://emanual.robotis.com/docs/en/platform/turtlebot3/sbc_setup/#download-turtlebot3-sbc-image
+
+## 🌴 If Raspberry pi 3B+ ROS Noetic image
+# wget -O ~/Downloads/turtlebot3_img.zip https://uc78af44b8f08ee5be6fed0f873e.dl.dropboxusercontent.com/cd/0/get/Chy-y3JWxMyNUXdH2PPbkcRQrQIeHB7Hf5J4gFNBApzPGDH96adDhuN-RmENmtUagr-la0UdyTpCt4WpwUr_BWn56NKQ2aw70DQLZWWJVH19t4rSbVjckNSexw2tAEDOrEPhKz0Xd7vBBQGSuHsS54Sm/file?dl=1
+
+## 🌴 If Raspberry Pi 4B (2GB or 4GB) ROS Noetic image
+# wget -O ~/Downloads/turtlebot3_img.zip https://uc5279c49ae348c5b5b7d3ad14c6.dl.dropboxusercontent.com/cd/0/get/ChwjnpCLCreYAXEtP32ne_Ntfy-birwEgKDogLxEvKWe99nmgmDy6WA7NWe_VsPuuzlKC89BqTUFIQuMS-CL8bBTu42xsA2CCBLbY51bX0SGFQPCJbFmBpT2GaqSUGNgcBAgUiJhFaonSjq_I64pXZ8N/file?dl=1
+
+###
+unzip ~/Downloads/turtlebot3_img.zip -d turtlebot3_img
+
+```
+
+#### 🤚 User interaction Required: Mount Card reader device to Host PC
+
+
+#### Write the image file to SD card
+```bash
+#!/usr/bin/env fish
+
+## Install rpi-imager 
+sudo apt install -y rpi-imager
+rpi-imager
+# 🤚 User interaction Required: ...
+```
+
+#### Extend the SD card partitions to provide sufficient space for operations.
+```bash
+#!/usr/bin/env fish
+
+# Run partition manager (if not KDE environment, install "gparted" and run)
+sudo partitionmanager
+# 🤚 User interaction Required: ...
+```
+
+  
+
 # export ROS_MASTER_URI=http://<Remote_PC_IP>:11311
 # export ROS_HOSTNAME=<Remote_PC_IP>
 export ROS_MASTER_URI=http://10.10.14.19:11311

@@ -16155,8 +16155,8 @@ ROS 동작 테스트
 
   # Release the capture and close windows
   cap.release()
-  cv2.destroyAllWindows()
-
+  cv2.destr oyAllWindows() 
+  
 
   된다. cheese 만 안되는듯. wayland 문제? ssh 터틀봇 or docker 로 접속해서도 안되늑널 보니.
   그냥 cheese 에서 자체가 device 인식을 못해. 도커 안에서뿐 아니라 ssh 에 접속해서도. 
@@ -16180,3 +16180,6 @@ for the keyboard of this computer.
 
 echo "keyboard-configuration keyboard-configuration/layoutcode select us" | sudo debconf-set-selections
 echo "keyboard-configuration keyboard-configuration/xkb-keymap select us" | sudo debconf-set-selections
+
+
+unzip ~/Downloads/Project_README.zip -d ~/Downloads/Project_README
