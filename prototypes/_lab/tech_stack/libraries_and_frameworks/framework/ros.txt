@@ -3,14 +3,45 @@ list of level 1 subjects
   - ROS 1
   
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
-⚓ ROS 2 ;
-  https://github.com/google/ros
-  https://google.github.io/ros/
+⚓ ROS 2 ; https://www.ros.org/
+  https://en.wikipedia.org/wiki/Robot_Operating_System
 ----------------------------------------------
-# Get Started
-----------------------------------------------
-# Guides
-----------------------------------------------
+ROS 2 🔪 Docs ; https://docs.ros.org/en/jazzy/index.html
+  # Concepts
+    # Basic Concepts
+      ⚓ Nodes ; https://docs.ros.org/en/jazzy/Concepts/Basic/About-Nodes.html
+      ⚓ Discovery ; https://docs.ros.org/en/jazzy/Concepts/Basic/About-Discovery.html
+      ⚓ Interfaces ; https://docs.ros.org/en/jazzy/Concepts/Basic/About-Interfaces.html
+      ⚓ Topics ; https://docs.ros.org/en/jazzy/Concepts/Basic/About-Topics.html
+      ⚓ Services ; https://docs.ros.org/en/jazzy/Concepts/Basic/About-Services.html
+      ⚓ Actions ; https://docs.ros.org/en/jazzy/Concepts/Basic/About-Actions.html
+      ⚓ Parameters ; https://docs.ros.org/en/jazzy/Concepts/Basic/About-Parameters.html
+      ⚓ Introspection with command line tools ; https://docs.ros.org/en/jazzy/Concepts/Basic/About-Command-Line-Tools.html
+      ⚓ Launch ; https://docs.ros.org/en/jazzy/Concepts/Basic/About-Launch.html
+      ⚓ Client libraries ; https://docs.ros.org/en/jazzy/Concepts/Basic/About-Client-Libraries.html
+    # Intermediate Concepts
+    
+    # Advanced Concepts
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ ROS 1 ; https://wiki.ros.org/
+
 # Reference
   # References
     ⚓ Assertions ; https://google.github.io/ros/reference/assertions.html
