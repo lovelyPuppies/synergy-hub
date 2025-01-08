@@ -1,18 +1,19 @@
 ### 🚧 Prerequsite
+
 - Run script in Host
   ```
   fish prototypes/_initialization/ubuntu/howto/general/setup_xauthority.fish
   ```
 - set DISPLAY as HOST's DISPLAY value
 
-
-### Turtlebot 3 installation
+### 1️⃣ Turtlebot 3 installation in Host
 
 #### Download and unzip image file
+
 ```bash
 #!/usr/bin/env fish
 
-### 🤚 User interaction Required: Download TurtleBot3 SBC Image ; https://emanual.robotis.com/docs/en/platform/turtlebot3/sbc_setup/#download-turtlebot3-sbc-image
+### 🤚 User interaction: Download TurtleBot3 SBC Image ; https://emanual.robotis.com/docs/en/platform/turtlebot3/sbc_setup/#download-turtlebot3-sbc-image
 
 ## 🌴 If Raspberry pi 3B+ ROS Noetic image
 # wget -O ~/Downloads/turtlebot3_img.zip https://uc78af44b8f08ee5be6fed0f873e.dl.dropboxusercontent.com/cd/0/get/Chy-y3JWxMyNUXdH2PPbkcRQrQIeHB7Hf5J4gFNBApzPGDH96adDhuN-RmENmtUagr-la0UdyTpCt4WpwUr_BWn56NKQ2aw70DQLZWWJVH19t4rSbVjckNSexw2tAEDOrEPhKz0Xd7vBBQGSuHsS54Sm/file?dl=1
@@ -25,68 +26,130 @@ unzip ~/Downloads/turtlebot3_img.zip -d turtlebot3_img
 
 ```
 
-#### 🤚 User interaction Required: Mount Card reader device to Host PC
-
+#### 🤚 User interaction: Mount Card reader device to Host PC
 
 #### Write the image file to SD card
+
 ```bash
 #!/usr/bin/env fish
 
-## Install rpi-imager 
+## Install rpi-imager
 sudo apt install -y rpi-imager
 rpi-imager
-# 🤚 User interaction Required: ...
+# 🤚 User interaction: ...
 ```
 
 #### Extend the SD card partitions to provide sufficient space for operations.
+
 ```bash
 #!/usr/bin/env fish
 
 # Run partition manager (if not KDE environment, install "gparted" and run)
 sudo partitionmanager
-# 🤚 User interaction Required: ...
+# 🤚 User interaction: ...
 ```
 
-  
+#### Modify network settings and Hostname
+
+```bash
+#!/usr/bin/env fish
+
+# check mount location of SD Card
+lsblk
+
+# 🤚 User interaction: Set the mount parent directory of the SD card
+set mount_parent <...>
+
+sudo mv 50-cloud-init.yaml  $mount_parent/etc/netplan/50-cloud-init.yaml
+echo bot19 | sudo tee $mount_parent/etc/hostname
+```
+
+#### After unmounting, reinsert the SD card into the TurtleBot
+
+### 2️⃣ Turtlebot 3 installation in Turtlebot 3
+
+#### [OpenCR Setup](https://emanual.robotis.com/docs/en/platform/turtlebot3/opencr_setup/#opencr-setup)
+
+- 🤚 User interaction: Connect the OpenCR to the Rasbperry Pi using the micro USB cable
+
+- Update Firmware
+
+  ```bash
+  #!/usr/bin/env fish
+
+  # Install required packages on the Raspberry Pi to upload the OpenCR firmware.
+  sudo dpkg --add-architecture armhf
+  sudo apt-get update && apt-get install -y libc6:armhf
+  # Depending on the platform, use either burger or waffle for the OPENCR_MODEL name.
+  export OPENCR_PORT=/dev/ttyACM0
+  export OPENCR_MODEL=burger_noetic
+  rm -rf ./opencr_update.tar.bz2
+  # Download the firmware and loader, then extract the file.
+  wget https://github.com/ROBOTIS-GIT/OpenCR-Binaries/raw/master/turtlebot3/ROS1/latest/opencr_update.tar.bz2
+  tar -xvf opencr_update.tar.bz2
+  # Upload firmware to the OpenCR.
+  cd ./opencr_update
+  ./update.sh $OPENCR_PORT $OPENCR_MODEL.opencr
+  ```
+
+- If firmware upload fails, try uploading with the recovery mode. Below sequence activates the recovery mode of OpenCR. Under the recovery mode, the STATUS led of OpenCR will blink periodically.
+
+  - Hold down the PUSH SW2 button.
+  - Press the Reset button.
+  - Release the Reset button.
+
+![alt text](https://emanual.robotis.com/assets/images/parts/controller/opencr10/bootloader_19.png)
+
+#### SSH Connection test
+
+```bash
+#!/usr/bin/env fish
+
+# Login with ⚖️ ID ubuntu and ⚖️ PASSWORD turtlebot ; https://emanual.robotis.com/docs/en/platform/turtlebot3/sbc_setup/#sbc-setup
+
+ssh ubuntu@10.10.14.119
+
+```
+
+- 📝 Note: "10.10.14.119" is the TurtleBot's IP address specified in the fil e [turtlebot3/50-cloud-init.yaml](turtlebot3/50-cloud-init.yaml).
+  You may need to change this to match your TurtleBot's network configuration.
+
+#### After unmounting, reinsert the SD card into the TurtleBot
 
 # export ROS_MASTER_URI=http://<Remote_PC_IP>:11311
+
 # export ROS_HOSTNAME=<Remote_PC_IP>
+
 export ROS_MASTER_URI=http://10.10.14.19:11311
 export ROS_HOSTNAME=10.10.14.19
-export TURTLEBOT3_MODEL=burger  
+export TURTLEBOT3_MODEL=burger
 
 ---
 
-
 in Real Turtlebot 3
-  export ROS_MASTER_URI=http://10.10.14.19:11311
-  export ROS_HOSTNAME=10.10.14.119
-  export TURTLEBOT3_MODEL=burger
-  # export ROS_MASTER_URI=http://<Remote_PC_IP>:11311
-  # export ROS_HOSTNAME=<TurtleBot3_IP>
+export ROS_MASTER_URI=http://10.10.14.19:11311
+export ROS_HOSTNAME=10.10.14.119
+export TURTLEBOT3_MODEL=burger
 
-  export TURTLEBOT3_MODEL=burger
-  roslaunch turtlebot3_bringup turtlebot3_robot.launch
-  
-  터틀봇 사용하려면?
-  sudo apt install ros-noetic-usb-cam
-  sudo apt install ros-noetic-cv-camera
+# export ROS_MASTER_URI=http://<Remote_PC_IP>:11311
 
+# export ROS_HOSTNAME=<TurtleBot3_IP>
 
+export TURTLEBOT3_MODEL=burger
+roslaunch turtlebot3_bringup turtlebot3_robot.launch
 
+터틀봇 사용하려면?
+sudo apt install ros-noetic-usb-cam
+sudo apt install ros-noetic-cv-camera
 
 rviz
-  Interact - Image - Image Topic - /cv_camera/image_raw
-  transport ihnt: raw
-
+Interact - Image - Image Topic - /cv_camera/image_raw
+transport ihnt: raw
 
 ~/ros
-~/slam.sh           
+~/slam.sh
 
 sshpass -p turtlebot ssh ubuntu@10.10.14.119
-
-
-
 
 . 카메라 노드 실행
 카메라 데이터를 퍼블리시하는 ROS 노드를 실행해야 합니다. 아래는 USB 카메라를 사용하는 예제입니다.
@@ -95,7 +158,9 @@ sshpass -p turtlebot ssh ubuntu@10.10.14.119
 카메라 노드 실행:
 
 roslaunch usb_cam usb_cam-test.launch
-# 
+
+#
+
 rostopic list
 
 rosrun map_server map_saver -f ~/map
@@ -106,24 +171,23 @@ slam.sh
 
 ////////  
 ⚓ Navigation ; https://emanual.robotis.com/docs/en/platform/turtlebot3/navigation/#navigation
-  ⚠️ 위치 교정 이후에는 telepo 앱을 종료해야 한다. 값을 던저주는데 프로세싱을 하기 때문에 자주 멈추기 떄문.
-  2d Nav Goal; 2D Pose Estimate
+⚠️ 위치 교정 이후에는 telepo 앱을 종료해야 한다. 값을 던저주는데 프로세싱을 하기 때문에 자주 멈추기 떄문.
+2d Nav Goal; 2D Pose Estimate
 
+1.  setup_xauthority.fish
+2.  ssh -XY ubuntu@10.10.14.119
 
-1. 
-setup_xauthority.fish
-2. ssh -XY ubuntu@10.10.14.119
-  ```bash
-  #!bin/bash  
-  # in ubuntu@bot19:~$
-  echo $DISPLAY
-  # >> localhost:10.0
+```bash
+#!bin/bash
+# in ubuntu@bot19:~$
+echo $DISPLAY
+# >> localhost:10.0
 3. xeyes
 
 
 
 
-  docker 우분투 컨테이너에서 장치 권한 모두 주고, cheese 명령어르 입력하니까 다음과 같이나와.  wayland 호환이안되나? 나는 호스트에서 사용중이고 host+local docker? 인가 그 명령어도 썻어. 그래서 xeyes 는 잘 되는데 .. (내 호스트는 kubuntu 24.10) . cheese 만 안되네.
+docker 우분투 컨테이너에서 장치 권한 모두 주고, cheese 명령어르 입력하니까 다음과 같이나와.  wayland 호환이안되나? 나는 호스트에서 사용중이고 host+local docker? 인가 그 명령어도 썻어. 그래서 xeyes 는 잘 되는데 .. (내 호스트는 kubuntu 24.10) . cheese 만 안되네.
 docker 우분투 컨테이너에서 장치 권한 모두 주고, cheese 명령어르 입력하니까 다음과 같이나와.  wayland 호환이안되나? 나는 호스트에서 사용중이고 host+local docker? 인가 그 명령어도 썻어. 그래서 xeyes 는 잘 되는데 .. (내 호스트는 kubuntu 24.10) . cheese 만 안되네.
 
 
@@ -153,39 +217,39 @@ libEGL warning: wayland-egl: could not open /dev/dri/renderD128 (Permission deni
 ** (cheese:18461): CRITICAL **: 04:10:06.105: cheese_preferences_dialog_setup_resolutions_for_device: assertion 'device != NULL' failed
 
 (cheese:18461): dconf-WARNING **: 04:10:06.106: failed to commit changes to dconf: Failed to execute child process “dbus-launch” (No such file or directory)
-^C⏎                                                                                
+^C⏎
 vscode@iot-04 /workspace [SIGINT]> groups
 vscode dialout sudo audio video plugdev
 
 
 xhost +local:docker 이미 사용함.
 이미 devcontainer..json 에 비디오 장치 전달함.
-  "runArgs": [
-    "--runtime",
-    "nvidia", // Ensure NVIDIA runtime is used for GPU access
-    "--gpus",
-    "all",
-    "--network",
-    "host", // Use the host network stack, allowing the container to share the host's IP address and access local services.
-    "--ipc",
-    "host", // Share the host's inter-process communication (IPC) resources, including shared memory and semaphores, with the container.
-    // "--shm-size", "2gb", // Allocate shared memory
-    "--device",
-    "/dev/video0", // Access to video input devices
-    "--device",
-    "/dev/ttyACM0",
-    "--device",
-    "/dev/ttyACM1",
-    "--device",
-    "/dev/ttyACM2",
-    "--volume",
-    "/tmp/.X11-unix:/tmp/.X11-unix", // X11 forwarding for GUI apps
-    "--volume",
-    "${env:HOME}/.Xauthority:/tmp/.Xauthority:rw", // X authority
-    "--privileged", // may be required to access hardware and devices fully
-    "--name",
-    "ros_noetic_study"
-  ],
+"runArgs": [
+  "--runtime",
+  "nvidia", // Ensure NVIDIA runtime is used for GPU access
+  "--gpus",
+  "all",
+  "--network",
+  "host", // Use the host network stack, allowing the container to share the host's IP address and access local services.
+  "--ipc",
+  "host", // Share the host's inter-process communication (IPC) resources, including shared memory and semaphores, with the container.
+  // "--shm-size", "2gb", // Allocate shared memory
+  "--device",
+  "/dev/video0", // Access to video input devices
+  "--device",
+  "/dev/ttyACM0",
+  "--device",
+  "/dev/ttyACM1",
+  "--device",
+  "/dev/ttyACM2",
+  "--volume",
+  "/tmp/.X11-unix:/tmp/.X11-unix", // X11 forwarding for GUI apps
+  "--volume",
+  "${env:HOME}/.Xauthority:/tmp/.Xauthority:rw", // X authority
+  "--privileged", // may be required to access hardware and devices fully
+  "--name",
+  "ros_noetic_study"
+],
 
 vscode@iot-04 /workspace> xeyes^C
 vscode@iot-04 /workspace> ls /dev/video0
@@ -194,8 +258,8 @@ vscode@iot-04 /workspace> ls /dev/video0
 
 
 cheese requires
-  sudo apt-get update
-  sudo apt-get install dbus-x11
+sudo apt-get update
+sudo apt-get install dbus-x11
 
 
 
@@ -205,3 +269,4 @@ vscode@iot-04:/workspace$ apt-cache policy ros-noetic-desktop-full
 ros-noetic-desktop-full:
 
 rostopic echo /move_base/goal
+```

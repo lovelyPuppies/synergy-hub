@@ -9,4 +9,4 @@ Emoji 🔗 from VS Code Extension :emojisense: ;https://marketplace.visualstudio
   🚨  :rotating_light:  "(Issue: Error); <Title>"
   🚨  :rotating_light:  "(Issue: Bug); <Title>"
  
-  🤚  :raised_hand:     "User interaction Required: <Title>"
+  🤚  :raised_hand:     "User interaction: <Title>"
