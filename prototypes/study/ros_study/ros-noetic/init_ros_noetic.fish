@@ -22,9 +22,10 @@ fisher install berk-karaal/loadenv.fish
 # Desktop-Full Install: (Recommended) : Everything in Desktop plus 2D/3D simulators and 2D/3D perception packages
 
 
+
 # https://askubuntu.com/questions/876240/how-to-automate-setting-up-of-keyboard-configuration-package   
 #📍 If you're using sudo be sure to put it after sudo, eg sudo DEBIAN_FRONTEND=noninteractive apt-get install ...
-sudo DEBIAN_FRONTEND=noninteractive apt install -y keyboard-configuration
+# sudo DEBIAN_FRONTEND=noninteractive apt install -y keyboard-configuration
 sudo apt install -y ros-noetic-desktop-full
 
 
@@ -61,4 +62,5 @@ ros-noetic-gmapping ros-noetic-navigation ros-noetic-interactive-markers
 
 # Install TurtleBot3 Packages
 sudo apt install -y ros-noetic-dynamixel-sdk ros-noetic-turtlebot3-msgs ros-noetic-turtlebot3
+
 
