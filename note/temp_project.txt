@@ -16153,7 +16153,6 @@ ROS 동작 테스트
 
 
 
-
 // https://wiki.ros.org/noetic/Installation/Ubuntu
 
 : 'In order to prevent intreactive seession for 
@@ -16166,12 +16165,174 @@ The layout of keyboards varies per country, with some countries having multiple 
 for the keyboard of this computer.
 '
 
-echo "keyboard-configuration keyboard-configuration/layoutcode select us" | sudo debconf-set-selections
-echo "keyboard-configuration keyboard-configuration/xkb-keymap select us" | sudo debconf-set-selections
-
 
 unzip ~/Downloads/Project_README.zip -d ~/Downloads/Project_README
 
 
 https://www.saramin.co.kr/zf_user/jobs/relay/view?isMypage=no&rec_idx=49679985&recommend_ids=eJxNjrkVQ0EIA6txziEExC7E%2FXfhPezdH84TGoRGwqifUnnlG01B0AZyY7KqB%2BrCKHGLg4Sk60GkE7NrO21H5VFFFz2uWeji96%2FCqh6olD4qqJlO9K0KVuTz2NfIbU5pA%2B7INm%2FeVYLuOCpGtvDfLRC1NvtP5SOZqi%2BPekCj&view_type=mail_landing&gz=1&relayNonce=7a7a7081c508e3c9f977&immediately_apply_layer_open=n#seq=0
 
+
+apt-get install sshpass
+sshpass -p 'ssh접속비밀번호' ssh 'ssh접속계정'@'ssh접속주소' '명령어'
+➡️ sshpass -p turtlebot ssh -XY ubuntu@10.10.14.119
+NVIDIA Container Toolkit ; https://github.com/NVIDIA/nvidia-container-toolkit
+  NVIDIA Container Toolkit has superseded NVIDIA Container Runtime ; https://github.com/NVIDIA/nvidia-container-runtime
+
+  ## Installing with Apt ; https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html#installing-with-apt
+bash -c "curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \
+  && curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \
+    sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \
+    sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
+"
+sudo apt update && sudo apt install -y nvidia-container-toolkit
+
+
+
+NVIDIA 드라이버: GPU와 운영 체제 간의 원활한 통신을 위해 필수적입니다.
+CUDA (Compute Unified Device Architecture): NVIDIA의 병렬 컴퓨팅 플랫폼으로, GPU를 활용한 연산을 가능하게 합니다.
+cuDNN (CUDA Deep Neural Network Library): 딥러닝 연산에 최적화된 GPU 가속 라이브러리로, 딥러닝 프레임워크의 성능을 향상시킵니다.
+
+# https://ubuntu.com/server/docs/nvidia-drivers-installation
+sudo ubuntu-drivers --gpgpu list
+
+
+If ubuntu / and nvidia grpahic driver.. 📅 2025-01-08 19:58:09
+sudo ubuntu-drivers --gpgpu install ; https://ubuntu.com/server/docs/nvidia-drivers-installation
+  sudo ubuntu-drivers --gpgpu install
+
+
+
+
+
+
+⚠️ wayland not use nvidira gpu driver
+  https://askubuntu.com/questions/1510264/nvidia-gpu-does-not-work-with-wayland-in-ubuntu-22-04-4
+
+  wbfw109v2@iot-04:~$ ubuntu-drivers devices
+  == /sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0 ==
+  modalias : pci:v000010DEd00002783sv00001458sd0000413Bbc03sc00i00
+  vendor   : NVIDIA Corporation
+  model    : AD104 [GeForce RTX 4070 SUPER]
+  driver   : nvidia-driver-565-server - distro non-free
+  driver   : nvidia-driver-560 - distro non-free
+  driver   : nvidia-driver-565-server-open - distro non-free
+  driver   : nvidia-driver-550-server - distro non-free
+  driver   : nvidia-driver-560-open - distro non-free recommended
+  driver   : nvidia-driver-550-server-open - distro non-free
+  driver   : xserver-xorg-video-nouveau - distro free builtin
+
+
+  ❯ nvidia-smi
+  Wed Jan  8 20:13:12 2025       
+  +-----------------------------------------------------------------------------------------+
+  | NVIDIA-SMI 560.35.03              Driver Version: 560.35.03      CUDA Version: 12.6     |
+
+  # https://www.reddit.com/r/linux_gaming/comments/17ubgrl/nvidia_libnvidiaeglwayland1_do_i_need_to_install/
+  EGL은 'Embedded-System Graphics Library'
+
+  https://launchpad.net/ubuntu/+source/egl-wayland
+
+  >>> sudo apt install libnvidia-egl-wayland1 libnvidia-egl-wayland-dev
+
+
+!!!❗ sudo apt install nvtop 
+  # 잘 되는데? GPU 50% 까지 잘 올라감.
+  docker run --rm -it --gpus all \
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -e DISPLAY=$DISPLAY \
+    --runtime=nvidia \
+    --gpus all \
+    ros:noetic-robot
+
+  sudo apt install -y libgl1-mesa-glx libglu1-mesa \
+    glmark2
+  glmark2
+
+  mpv --hwdec=help
+  mpv 
+  mpv --gpu-context=wayland --hwdec=nvdec  "https://youtu.be/ceIvN7fcoo0" --ytdl-format="bestvideo[height<=2160]+bestaudio"
+  mpv --hwdec=nvdec --vo=gpu --log-file=mpv.log "https://youtu.be/ceIvN7fcoo0"
+
+  mpv --gpu-context=xwayland --hwdec=nvdec /dev/video0
+
+  mpv --list-options
+
+
+[   4.172][v][vd] Opening decoder rawvideo
+[   4.172][v][vd] Not trying to use hardware decoding: codec rawvideo is not on whitelist.
+
+
+mpv  --log-file=mpv.log --hwdec=cuda-copy --gpu-context=wayland /dev/video0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+sudo apt install v4l-utils
+v4l2-ctl --list-formats-ext -d /dev/video0
+
+ioctl: VIDIOC_ENUM_FMT
+        Type: Video Capture
+
+        [0]: 'YUYV' (YUYV 4:2:2)
+                Size: Discrete 640x480
+                        Interval: Discrete 0.033s (30.000 fps)
+                        Interval: Discrete 0.067s (15.000 fps)
+                Size: Discrete 352x288
+                        Interval: Discrete 0.033s (30.000 fps)
+                        Interval: Discrete 0.067s (15.000 fps)
+                Size: Discrete 320x240
+                        Interval: Discrete 0.033s (30.000 fps)
+                        Interval: Discrete 0.067s (15.000 fps)
+                Size: Discrete 176x144
+                        Interval: Discrete 0.033s (30.000 fps)
+                        Interval: Discrete 0.067s (15.000 fps)
+                Size: Discrete 160x120
+                        Interval: Discrete 0.033s (30.000 fps)
+                        Interval: Discrete 0.067s (15.000 fps)
+
+VLC 는 지연이 MPV 보다 훨씬 적은데 아직도 지연이 잇다. 하드웨어 GPU 가속 0% 인건 동일함
+vlc v4l2:///dev/video0 --avcodec-hw=vaapi
+
+
+
+
+ENV TZ=Asia/Seoul
+  https://velog.io/@whattsup_kim/GPU-%EA%B0%9C%EB%B0%9C%ED%99%98%EA%B2%BD-%EA%B5%AC%EC%B6%95%ED%95%98%EA%B8%B0-docker%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%98%EC%97%AC-%EA%B0%9C%EB%B0%9C%ED%99%98%EA%B2%BD-%ED%95%9C-%EB%B2%88%EC%97%90-%EA%B5%AC%EC%B6%95%ED%95%98%EA%B8%B0
+
+>> ❗ Haruna는 KDE Plasma 환경에서 Qt-based의 미디어 플레이어로, KDE와 잘 통합되어 있습니다.d
+  📅 2025-01-08 21:36:05
+  kamoso 는 빠르다.
+  webcamoid 도 kamoso 처럼 정상적으로 실시간 스트리밍이 되어 빠르긴한데, webcamoid 는 CPU 사용률이 높은 문제가 있다.
+  vlc, mpv 는 gpu 를 사용하지 않고, 지연시간이 매우 길다. 특히 mpv 는 사용 못할 정도로 길다.
+  vlc, mpv가 wayland 랑 호환이 안되는 문제 같기도 함.
+
+  sudo apt update
+  sudo apt upgrade -y "gstreamer*"
+  아님 이 문제엿나?
+
+  webcamoid ; 각각의 비율은 시스템에서 할당된 CPU 코어들에 대한 비율을 나타내므로, 단순히 두 값이 합산되지 않습니다.
+
+  Webcamoid vs kamoso
+    ? libvpx VP8    to      NVIDIA NVENC av1 encoder
+    kamoso flatpak 에서의 경우도 같다. ; https://flathub.org/apps/org.kde.kamoso
+
+    Changes in version 24.12.0
+  ⚠️ 본체에 직접 USB 2.0 슬롯에 GEMBIRD USB2.0 PC CAMERA 를 꽂으니까 스트리밍이 매우 느리다. 📅 2025-01-08 21:57:04
+    3.0 슬롯에 꽂을 것.. webcamoid or kamoso 를 사용하자.

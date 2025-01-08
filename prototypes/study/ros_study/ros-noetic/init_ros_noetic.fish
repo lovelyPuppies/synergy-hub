@@ -3,6 +3,11 @@
 sudo apt update
 sudo apt install curl
 
+# 🐟 Fish Shell initialization
+set -Ux FISH_CONFIG_PATH "$HOME/.config/fish/config.fish"
+mkdir -p $FISH_CONFIG_PATH
+set -U fish_greeting
+
 
 # Fisher 🔪 Installation ; https://github.com/jorgebucaran/fisher
 curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
@@ -26,7 +31,7 @@ sudo apt install -y ros-noetic-desktop-full
 # 🥞 To find available packages, see ROS Index or use: https://index.ros.org/packages/page/1/time/#noetic
 #   apt search ros-noetic
 
-echo "replay source /opt/ros/noetic/setup.bash" | tee $HOME/.config/fish/config.fish > /dev/null
+echo "replay source /opt/ros/noetic/setup.bash" | tee $FISH_CONFIG_PATH > /dev/null
 source $HOME/.config/fish/config.fish
 
 

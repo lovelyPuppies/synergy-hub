@@ -240,3 +240,21 @@ ubuntu@ubuntu00:~/ros$ rostopic pub /move_base_simple/goal geometry_msgs/PoseSta
 
 p0 지점 이동 명령
 ubuntu@ubuntu00:~/ros$ rostopic pub /move_base_simple/goal geometry_msgs/PoseStamped '{header: {stamp: now, frame_id: "map"}, pose: {position: { x: 0.0, y: 0.0, z: 0.0}, orientation: { w: 0.7071067657322372}}}'
+
+
+in docker ROS 1 container
+  set -x TURTLEBOT3_MODEL burger
+  set -x ROS_HOSTNAME 10.10.14.19
+  set -x ROS_MASTER_URI http://10.10.14.19:11311
+
+  # terminal 1
+  roscore
+
+  # terminal 2
+  rosrun rviz rviz -d `rospack find turtlebot3_description`/rviz/model.rviz
+
+>> 터틀봇을 제어하는 xyz, 3방향 화살표가 나오지 않음  
+
+
+
+roscore

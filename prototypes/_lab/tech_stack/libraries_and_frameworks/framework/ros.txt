@@ -24,7 +24,6 @@ ROS 2 🔪 Docs ; https://docs.ros.org/en/jazzy/index.html
     # Advanced Concepts
 
 
-    
 
 
 
