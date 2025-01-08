@@ -16016,3 +16016,152 @@ PySide6: GUI 기반 프로그램 설계 및 사용자 인터페이스 구현.
 Flask: 로컬 서버 구축 및 카카오톡 연동 기능 제공.
 ngrok: 로컬 서버에 HTTPS 접근을 위한 터널링 서비스.
 카카오톡 오픈빌더: 채널 연동 및 사진 전송 챗봇 구현.
+
+
+로봇 OS
+  NAOqi
+  OPPOS (Open Platform for Robotic Services)
+  OpenRAVE
+  MoveIt
+  Microsoft Robotics Developer Studio (MRDS)
+
+
+
+
+⚓ ROS ; https://wiki.ros.org/
+
+
+https://www.saramin.co.kr/zf_user/jobs/relay/view?isMypage=no&rec_idx=49679985&recommend_ids=eJxNjrkVQ0EIA6txziEExC7E%2FXfhPezdH84TGoRGwqifUnnlG01B0AZyY7KqB%2BrCKHGLg4Sk60GkE7NrO21H5VFFFz2uWeji96%2FCqh6olD4qqJlO9K0KVuTz2NfIbU5pA%2B7INm%2FeVYLuOCpGtvDfLRC1NvtP5SOZqi%2BPekCj&view_type=mail_landing&gz=1&relayNonce=7a7a7081c508e3c9f977&immediately_apply_layer_open=n#seq=0
+
+
+https://en.wikipedia.org/wiki/Robot_Operating_System  
+  https://www.ros.org/
+  ⚓ ROS 2 docs ; https://docs.ros.org/en/jazzy/index.html
+  ⚓ ROS 1 docs (legacy) ; https://wiki.ros.org/
+
+
+  cw cd ~/catkin_ws
+  cs='cd ~/catkin _ws/src/
+
+ROs echosystem
+  App <-> ROS <-> Robot
+
+
+  - node-based communication    
+  - robot dev tools...
+    cli, gazebo, rqt, rviz
+ROS 동작 테스트
+  turtlesim 패키지
+  roscore
+  rosrun turtlesim turtlesim_node
+  rosrun turtlesim turtle_teleop_key
+  rosrun rqt_graph rqt_graph
+  //  
+
+  VSCode ROS extension\
+
+  Node, message
+  Topic, Publisher, Subscriber
+  service, Service server, Service client
+  Action, Action server, Action client
+
+  * Master 구동
+    ROS 1 은 XMLRPC (XML-Remote Procedure Call) 사용함.
+      마스터는 노드 정보 관리를 함.
+      - %shell> roscore
+  * Subscriber node 구동 (ROS_HOSTNAME -> ROS_MASTER_URL)
+    - %shell> rosrun <package_name> <node_name>
+  * Publisher node 구동
+    - %shell> rosrun <package_name> <node_name>
+  ;
+    마스터는 구독자 노드에게 새로운 공급 정보를 알린다.
+    구독자 노드는 공급자 노드의 TCP URI 주소와 포트번호를 전송.
+    TCPROS 를 사용하여 발행자 노드와 직접 연결한다.
+    발행자 노드는 구독자 노드에게 메시지를 전 송 (topic)
+  
+  topic 방식으로 접속을 끊지 않는 이상 지속적으로 메시지를 전송. 
+  서비스는 토픽과 달리 1회에 한해 접속하고 서비스 요청 및 서비스 응답이 수행한 서로의 접속을 끓는다.? 1회성?
+
+❔
+  in ubuntu, rosrun turtlesim turtle_teleop_key
+  in ubuntu, rostopic echo /turtle1/cmd_vel
+  in ubuntu, rostopic echo /turtle1/pose
+
+  rostpic list -v
+  >> 방향키 움직이기. 한 번 움직이면 멈춰서, 계속 가려고 하면 우분투에서 방향키를 줘야 한다.
+  // 같은 우분투에서 
+
+  rostopic pub -1 /cmd_vel gemetry_msgs/Twist -- '[1.0, 0.0, 0.0]' '[0.0,0.0,0.0]'  
+
+
+  rostopic pub -1 /cmd_vel gemetry_msgs/Twist -r 2 -- '[0.05, 0.0, 0.0]' '[0.0,0.0,0.0]'  
+          
+🚨 Cheese in Wayland. not works. but other x11-apps and camera streaming from opencv-python works well.
+  ROS 도커 이미지 문제인지 알앗는데 일반 우분투 도커 이미지에서 동일. (kubuntu 24.10) ~
+
+  Initializing machine ID from random generator.
+  /usr/lib/tmpfiles.d/legacy.conf:13: Duplicate line for path "/run/lock", ignoring.
+  /usr/lib/tmpfiles.d/systemd-network.conf:10: Failed to resolve user 'systemd-network': No such process
+  /usr/lib/tmpfiles.d/systemd-network.conf:11: Failed to resolve user 'systemd-network': No such process
+  /usr/lib/tmpfiles.d/systemd-network.conf:12: Failed to resolve user 'systemd-network': No such process
+  /usr/lib/tmpfiles.d/systemd-network.conf:13: Failed to resolve user 'systemd-network': No such process
+  /usr/lib/tmpfiles.d/systemd.conf:22: Failed to resolve group 'systemd-journal': No such process
+  /usr/lib/tmpfiles.d/systemd.conf:23: Failed to resolve group 'systemd-journal': No such process
+  /usr/lib/tmpfiles.d/systemd.conf:27: Failed to resolve group 'systemd-journal': No such process
+  /usr/lib/tmpfiles.d/systemd.conf:28: Failed to resolve group 'systemd-journal': No such process
+  /usr/lib/tmpfiles.d/systemd.conf:29: Failed to resolve group 'systemd-journal': No such process
+  Creating group 'systemd-jou
+
+
+  nvme0n1: Failed to write 'change' to '/sys/devices/pci0000:00/0000:00:06.0/0000:02:00.0/nvme/nvme0/nvme0n1/uevent': Read-only file system
+  Created symlink '/etc/systemd/system/graphical.target.wants/udisks2.s 
+
+
+
+
+  python3 -m venv myenv
+  source myenv/bin/activate
+
+  pip install --upgrade pip 
+
+  pip install opencv-python
+
+  python -c "import cv2; print(cv2.__version__)"
+
+
+  import cv2
+
+  # Open the default camera (usually the first camera)
+  cap = cv2.VideoCapture(0)
+
+  if not cap.isOpened():
+      print("Error: Could not open video device.")
+  else:
+      print("Press 'q' to quit.")
+
+  while cap.isOpened():
+      # Capture frame-by-frame
+      ret, frame = cap.read()
+      if not ret:
+          print("Error: Failed to capture image.")
+          break
+
+      # Display the resulting frame
+      cv2.imshow('Video Feed', frame)
+
+      # Exit loop if 'q' is pressed
+      if cv2.waitKey(1) & 0xFF == ord('q'):
+          break
+
+  # Release the capture and close windows
+  cap.release()
+  cv2.destroyAllWindows()
+
+
+  된다. cheese 만 안되는듯. wayland 문제? ssh 터틀봇 or docker 로 접속해서도 안되늑널 보니.
+  그냥 cheese 에서 자체가 device 인식을 못해. 도커 안에서뿐 아니라 ssh 에 접속해서도. 
+  애초에 root 계정이야. opencv-python 에서는 잘 된다니까? cheese 명령어로만 안 돼. wayland 호환성 문제인가? cheese 의
+  ㅇㅇ..
+
+
+

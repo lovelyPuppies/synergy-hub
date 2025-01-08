@@ -75,10 +75,85 @@ slam.sh
 setup_xauthority.fish
 2. ssh -XY ubuntu@10.10.14.119
   ```bash
-  #!bin/bash
+  #!bin/bash  
   # in ubuntu@bot19:~$
   echo $DISPLAY
   # >> localhost:10.0
 3. xeyes
 
 
+
+
+  docker 우분투 컨테이너에서 장치 권한 모두 주고, cheese 명령어르 입력하니까 다음과 같이나와.  wayland 호환이안되나? 나는 호스트에서 사용중이고 host+local docker? 인가 그 명령어도 썻어. 그래서 xeyes 는 잘 되는데 .. (내 호스트는 kubuntu 24.10) . cheese 만 안되네.
+docker 우분투 컨테이너에서 장치 권한 모두 주고, cheese 명령어르 입력하니까 다음과 같이나와.  wayland 호환이안되나? 나는 호스트에서 사용중이고 host+local docker? 인가 그 명령어도 썻어. 그래서 xeyes 는 잘 되는데 .. (내 호스트는 kubuntu 24.10) . cheese 만 안되네.
+
+
+code@iot-04 /workspace> cheese
+libEGL warning: failed to open /dev/dri/renderD128: Permission denied
+
+libEGL warning: wayland-egl: could not open /dev/dri/renderD128 (Permission denied)
+
+(cheese:18461): Gdk-WARNING **: 04:10:06.091: Native Windows taller than 65535 pixels are not supported
+** Message: 04:10:06.101: cheese-application.vala:214: Error during camera setup: No device found
+
+
+(cheese:18461): cheese-CRITICAL **: 04:10:06.105: cheese_camera_device_get_name: assertion 'CHEESE_IS_CAMERA_DEVICE (device)' failed
+
+(cheese:18461): GLib-CRITICAL **: 04:10:06.105: g_variant_new_string: assertion 'string != NULL' failed
+
+(cheese:18461): GLib-CRITICAL **: 04:10:06.105: g_variant_ref_sink: assertion 'value != NULL' failed
+
+(cheese:18461): GLib-GIO-CRITICAL **: 04:10:06.105: g_settings_schema_key_type_check: assertion 'value != NULL' failed
+
+(cheese:18461): GLib-CRITICAL **: 04:10:06.105: g_variant_get_type_string: assertion 'value != NULL' failed
+
+(cheese:18461): GLib-GIO-CRITICAL **: 04:10:06.105: g_settings_set_value: key 'camera' in 'org.gnome.Cheese' expects type 's', but a GVariant of type '(null)' was given
+
+(cheese:18461): GLib-CRITICAL **: 04:10:06.105: g_variant_unref: assertion 'value != NULL' failed
+
+** (cheese:18461): CRITICAL **: 04:10:06.105: cheese_preferences_dialog_setup_resolutions_for_device: assertion 'device != NULL' failed
+
+(cheese:18461): dconf-WARNING **: 04:10:06.106: failed to commit changes to dconf: Failed to execute child process “dbus-launch” (No such file or directory)
+^C⏎                                                                                
+vscode@iot-04 /workspace [SIGINT]> groups
+vscode dialout sudo audio video plugdev
+
+
+xhost +local:docker 이미 사용함.
+이미 devcontainer..json 에 비디오 장치 전달함.
+  "runArgs": [
+    "--runtime",
+    "nvidia", // Ensure NVIDIA runtime is used for GPU access
+    "--gpus",
+    "all",
+    "--network",
+    "host", // Use the host network stack, allowing the container to share the host's IP address and access local services.
+    "--ipc",
+    "host", // Share the host's inter-process communication (IPC) resources, including shared memory and semaphores, with the container.
+    // "--shm-size", "2gb", // Allocate shared memory
+    "--device",
+    "/dev/video0", // Access to video input devices
+    "--device",
+    "/dev/ttyACM0",
+    "--device",
+    "/dev/ttyACM1",
+    "--device",
+    "/dev/ttyACM2",
+    "--volume",
+    "/tmp/.X11-unix:/tmp/.X11-unix", // X11 forwarding for GUI apps
+    "--volume",
+    "${env:HOME}/.Xauthority:/tmp/.Xauthority:rw", // X authority
+    "--privileged", // may be required to access hardware and devices fully
+    "--name",
+    "ros_noetic_study"
+  ],
+
+vscode@iot-04 /workspace> xeyes^C
+vscode@iot-04 /workspace> ls /dev/video0
+/dev/video0
+
+
+
+cheese requires
+  sudo apt-get update
+  sudo apt-get install dbus-x11
