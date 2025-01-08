@@ -39,7 +39,7 @@
     "/dev/ttyACM0",
     "--device",
     "/dev/ttyACM1",
-    "--device",
+    "--device", // Access to serial devices
     "/dev/ttyACM2",
     "--volume",
     "/tmp/.X11-unix:/tmp/.X11-unix", // X11 forwarding for GUI apps
@@ -63,7 +63,8 @@
         // https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/
         "ms-iot.vscode-ros",
         //
-        "PKief.material-icon-theme"
+        "PKief.material-icon-theme",
+        "ms-azuretools.vscode-docker"
         // "ms-python.python",
         // "njpwerner.autodocstring",
         // "ms-toolsai.jupyter",

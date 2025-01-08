@@ -157,3 +157,12 @@ vscode@iot-04 /workspace> ls /dev/video0
 cheese requires
   sudo apt-get update
   sudo apt-get install dbus-x11
+
+
+
+
+/////////
+vscode@iot-04:/workspace$ apt-cache policy ros-noetic-desktop-full
+ros-noetic-desktop-full:
+
+rostopic echo /move_base/goal

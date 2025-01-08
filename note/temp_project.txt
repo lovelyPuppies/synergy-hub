@@ -9029,7 +9029,7 @@ Ignore my previous comment -- it appears your cppStandard is c++11 or c++14 and 
   # host
   ssh-keygen -t rsa -b 2048
   ssh-copy-id r-pi.local
-ssh pi@pi19.local
+ssh pi@pi19.local 
 
 #!/usr/bin/env fish
 
@@ -16132,7 +16132,7 @@ ROS 동작 테스트
   import cv2
 
   # Open the default camera (usually the first camera)
-  cap = cv2.VideoCapture(0)
+  cap = cv2.VideoCapture(0) 
 
   if not cap.isOpened():
       print("Error: Could not open video device.")
@@ -16165,3 +16165,18 @@ ROS 동작 테스트
 
 
 
+
+// https://wiki.ros.org/noetic/Installation/Ubuntu
+
+: 'In order to prevent intreactive seession for 
+
+debconf: falling back to frontend: Readline
+Configuring keyboard-configuration
+----------------------------------
+
+The layout of keyboards varies per country, with some countries having multiple common layouts. Please select the country of origin
+for the keyboard of this computer.
+'
+
+echo "keyboard-configuration keyboard-configuration/layoutcode select us" | sudo debconf-set-selections
+echo "keyboard-configuration keyboard-configuration/xkb-keymap select us" | sudo debconf-set-selections

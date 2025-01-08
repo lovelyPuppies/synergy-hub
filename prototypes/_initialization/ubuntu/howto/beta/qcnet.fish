@@ -345,7 +345,7 @@ function initialize_shared_files
         # ➡️ You must assign new <vm_id> and configure network if you want to use vm with network.
         vm_test_id:
           # 🚣 fix address by MAC address
-          match:
+          match:    
             macaddress: "52:54:00:12:34:56"
           # wakeonlan: true
           dhcp4: false

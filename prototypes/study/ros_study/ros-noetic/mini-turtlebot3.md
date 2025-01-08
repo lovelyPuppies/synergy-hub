@@ -1,5 +1,3 @@
-https://emanual.robotis.com/docs/en/platform/turtlebot3/overview/#overview
-
 https://emanual.robotis.com/docs/en/platform/turtlebot3/features/#features
 
 Models: Items Burger 🆚 Waffle Pi
@@ -147,3 +145,18 @@ USB2.0 PC CAMERA: USB2.0 PC CAM (usb-0000:00:14.0-9.2):
         /dev/video0
         /dev/video1
         /dev/media0
+
+
+sudo ln -s /usr/share/zoneinfo/Asia/Seoul ocaltime
+
+SLAM - Turning Guide; Save Map; .. map server..
+
+
+❓ vcstool은 ROS에서 소스 코드 레포지토리의 리스트를 관리하는 도구입니다
+
+turtlebot3 burger noetic docker image       
+
+
+
+❗ What packages are in different ros dockerhub images? ; https://robotics.stackexchange.com/questions/101048/what-packages-are-in-different-ros-dockerhub-images
+
