@@ -16336,3 +16336,13 @@ ENV TZ=Asia/Seoul
     Changes in version 24.12.0
   ⚠️ 본체에 직접 USB 2.0 슬롯에 GEMBIRD USB2.0 PC CAMERA 를 꽂으니까 스트리밍이 매우 느리다. 📅 2025-01-08 21:57:04
     3.0 슬롯에 꽂을 것.. webcamoid or kamoso 를 사용하자.
+
+
+
+
+
+내가 SSH 가 아닌 kubuntu 24 wayland 환경에서 devcontainer 를 사용햇다가,
+ssh 로 kubuntu24 에 접속해서 devcontianer 로 개발하려는데, 컨테이너를 재시작하려니까
+ docker container start ded8a5af1e88
+Error response from daemon: invalid mount config for type "bind": bind source path does not exist: /run/user/1000/wayland-0
+Error: failed to start containers: ded8a5af1e88
