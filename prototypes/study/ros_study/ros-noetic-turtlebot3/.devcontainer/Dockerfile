@@ -14,6 +14,7 @@ RUN apt update && \
     curl nano && \
     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime
 
+    
 
 ##### ROS - noetic installation https://wiki.ros.org/noetic/Installation/Ubuntu
 # Desktop-Full Install: (Recommended) : Everything in Desktop plus 2D/3D simulators and 2D/3D perception packages
@@ -58,6 +59,12 @@ RUN apt install -y ros-noetic-dynamixel-sdk ros-noetic-turtlebot3-msgs ros-noeti
 
 
 
+#### 📦 Install Fish shell
+RUN apt install -y software-properties-common && \
+    apt-add-repository -y ppa:fish-shell/release-3 && \
+    apt update && apt install -y fish && \
+    chsh -s $(which fish)
+
 
 
 ##### 👤 Add User
@@ -81,9 +88,3 @@ ENV PATH="${HOME}/.local/bin:$PATH"
 
 
 
-
-#### 📦 Install Fish shell
-RUN apt install -y software-properties-common && \
-    apt-add-repository -y ppa:fish-shell/release-3 && \
-    apt update && apt install -y fish && \
-    chsh -s $(which fish)

@@ -1,140 +1,3 @@
-### Glossary
-
-- [Oroca](https://github.com/oroca)
-  Oroca is a project group established by a Korean developer
-
-### 🚧 Prerequsite
-
-- Run script in Host
-  ```
-  fish prototypes/_initialization/ubuntu/howto/general/setup_xauthority.fish
-  ```
-- set DISPLAY as HOST's DISPLAY value
-
-### 1️⃣ Turtlebot 3 installation in Host
-
-#### Download and unzip image file
-
-```bash
-#!/usr/bin/env fish
-
-### 🤚 User interaction: Download TurtleBot3 SBC Image ; https://emanual.robotis.com/docs/en/platform/turtlebot3/sbc_setup/#download-turtlebot3-sbc-image
-
-## 🌴 If Raspberry pi 3B+ ROS Noetic image
-# wget -O ~/Downloads/turtlebot3_img.zip https://uc78af44b8f08ee5be6fed0f873e.dl.dropboxusercontent.com/cd/0/get/Chy-y3JWxMyNUXdH2PPbkcRQrQIeHB7Hf5J4gFNBApzPGDH96adDhuN-RmENmtUagr-la0UdyTpCt4WpwUr_BWn56NKQ2aw70DQLZWWJVH19t4rSbVjckNSexw2tAEDOrEPhKz0Xd7vBBQGSuHsS54Sm/file?dl=1
-
-## 🌴 If Raspberry Pi 4B (2GB or 4GB) ROS Noetic image
-# wget -O ~/Downloads/turtlebot3_img.zip https://uc5279c49ae348c5b5b7d3ad14c6.dl.dropboxusercontent.com/cd/0/get/ChwjnpCLCreYAXEtP32ne_Ntfy-birwEgKDogLxEvKWe99nmgmDy6WA7NWe_VsPuuzlKC89BqTUFIQuMS-CL8bBTu42xsA2CCBLbY51bX0SGFQPCJbFmBpT2GaqSUGNgcBAgUiJhFaonSjq_I64pXZ8N/file?dl=1
-
-###
-unzip ~/Downloads/turtlebot3_img.zip -d turtlebot3_img
-
-```
-
-#### 🤚 User interaction: Mount Card reader device to Host PC
-
-#### Write the image file to SD card
-
-```bash
-#!/usr/bin/env fish
-
-## Install rpi-imager
-sudo apt install -y rpi-imager
-rpi-imager
-# 🤚 User interaction: ...
-```
-
-#### Extend the SD card partitions to provide sufficient space for operations.
-
-```bash
-#!/usr/bin/env fish
-
-# Run partition manager (if not KDE environment, install "gparted" and run)
-sudo partitionmanager
-# 🤚 User interaction: ...
-```
-
-#### Modify network settings and Hostname
-
-```bash
-#!/usr/bin/env fish
-
-# check mount location of SD Card
-lsblk
-
-# 🤚 User interaction: Set the mount parent directory of the SD card
-set mount_parent <...>
-
-sudo mv 50-cloud-init.yaml  $mount_parent/etc/netplan/50-cloud-init.yaml
-echo bot19 | sudo tee $mount_parent/etc/hostname
-```
-
-#### After unmounting, reinsert the SD card into the TurtleBot
-
-### 2️⃣ Turtlebot 3 installation in Turtlebot 3
-
-#### [OpenCR Setup](https://emanual.robotis.com/docs/en/platform/turtlebot3/opencr_setup/#opencr-setup)
-
-- 🤚 User interaction: Connect the OpenCR to the Rasbperry Pi using the micro USB cable
-
-- Update Firmware
-
-  ```bash
-  #!/usr/bin/env fish
-
-  # Install required packages on the Raspberry Pi to upload the OpenCR firmware.
-  sudo dpkg --add-architecture armhf
-  sudo apt-get update && apt-get install -y libc6:armhf
-  # Depending on the platform, use either burger or waffle for the OPENCR_MODEL name.
-  export OPENCR_PORT=/dev/ttyACM0
-  export OPENCR_MODEL=burger_noetic
-  rm -rf ./opencr_update.tar.bz2
-  # Download the firmware and loader, then extract the file.
-  wget https://github.com/ROBOTIS-GIT/OpenCR-Binaries/raw/master/turtlebot3/ROS1/latest/opencr_update.tar.bz2
-  tar -xvf opencr_update.tar.bz2
-  # Upload firmware to the OpenCR.
-  cd ./opencr_update
-  ./update.sh $OPENCR_PORT $OPENCR_MODEL.opencr
-  ```
-
-- If firmware upload fails, try uploading with the recovery mode. Below sequence activates the recovery mode of OpenCR. Under the recovery mode, the STATUS led of OpenCR will blink periodically.
-
-  - Hold down the PUSH SW2 button.
-  - Press the Reset button.
-  - Release the Reset button.
-
-![alt text](https://emanual.robotis.com/assets/images/parts/controller/opencr10/bootloader_19.png)
-
-#### SSH Connection test
-
-```bash
-#!/usr/bin/env fish
-
-# Login with ⚖️ ID ubuntu and ⚖️ PASSWORD turtlebot ; https://emanual.robotis.com/docs/en/platform/turtlebot3/sbc_setup/#sbc-setup
-
-ssh ubuntu@10.10.14.119
-
-```
-
-- 📝 Note: "10.10.14.119" is the TurtleBot's IP address specified in the fil e [turtlebot3/50-cloud-init.yaml](turtlebot3/50-cloud-init.yaml).
-  You may need to change this to match your TurtleBot's network configuration.
-
-#### After unmounting, reinsert the SD card into the TurtleBot
-
-# export ROS_MASTER_URI=http://<Remote_PC_IP>:11311
-
-# export ROS_HOSTNAME=<Remote_PC_IP>
-
-export ROS_MASTER_URI=http://10.10.14.19:11311
-export ROS_HOSTNAME=10.10.14.19
-export TURTLEBOT3_MODEL=burger
-
----
-
-in Real Turtlebot 3
-export ROS_MASTER_URI=http://10.10.14.19:11311
-export ROS_HOSTNAME=10.10.14.119
-export TURTLEBOT3_MODEL=burger
 
 # export ROS_MASTER_URI=http://<Remote_PC_IP>:11311
 
@@ -453,3 +316,294 @@ vscode@iot-04 /workspace> ls /opt/ros/noetic/etc/catkin/profile.d
 chsh
 
 catkin_create_pkg beginner_tutorials std_msgs rospy roscpp
+
+
+❓ 라즈베리파이3 에서만 발생?
+  sudo apt install 패키지설치시 아래 오류 발생시
+  Waiting for cache lock: Could not get lock /var/lib/dpkg/lock-frontend
+
+  # lock 파일 제거
+  $ sudo rm /var/lib/apt/lists/lock 
+  $ sudo rm /var/cache/apt/archives/lock
+  $ sudo rm /var/lib/dpkg/lock*
+  # 패키지 업데이트
+  $ sudo dpkg --configure -a
+  sudo apt update
+
+
+9. 스왑메모리 확장
+$ sudo apt-get install dphys-swapfile
+$ sudo vi /sbin/dphys-swapfile
+-----------------------------
+CONF_SWAPSIZE=2048
+------------------------------
+$ sudo /etc/init.d/dphys-swapfile restart
+$ free
+
+
+10. 터틀봇 환경 변수 등록 및 실행
+$ vi .bashrc
+--------------------------------------------------
+export ROS_MASTER_URI=http://10.10.14.XX:11311		# XX :ubuntu host 주소
+export ROS_HOSTNAME=10.10.141.120			#라즈베리파이 host wifi 주소
+export TURTLEBOT3_MODEL=burger
+
+---------------------------------------------------
+11. 터틀봇 usb webcam 사용
+turtlebot3 설치 
+$ sudo apt install ros-noetic-cv-camera
+$ rosrun cv_camera cv_camera_node
+
+ubuntu Master 
+$ rqt_image_view #실행후 /cv_camera/image_raw 선택
+
+slam 또는 navigation 실행 후 좌측 display 창에 
+ Image  topic에  /cv_camera/image_raw  선택 , 
+ Transport Hint에 raw 선택
+
+12.터틀봇 목적지 좌표값 출력
+ubuntu@ubuntu00:~/ros$ rostopic echo /move_base/goal
+p0지점
+x:0
+y:0
+========================================
+p1지점
+header:
+  seq: 0
+  stamp:
+    secs: 1736319928
+    nsecs: 245587507
+  frame_id: ''
+goal_id:
+  stamp:
+    secs: 0
+    nsecs:         0
+  id: ''
+goal:
+  target_pose:
+    header:
+      seq: 0
+      stamp:
+        secs: 1736319928
+        nsecs: 245318063
+      frame_id: "map"
+    pose:
+      position:
+        x: 8.880085945129395
+        y: -0.032529067248106
+        z: 0.0
+      orientation:
+        x: 0.0
+        y: 0.0
+        z: 0.6710057018155441
+        w: 0.7414521887020289
+========================================
+p2 지점
+header:
+  seq: 1
+  stamp:
+    secs: 1736320029
+    nsecs:  50458993
+  frame_id: ''
+goal_id:
+  stamp:
+    secs: 0
+    nsecs:         0
+  id: ''
+goal:
+  target_pose:
+    header:
+      seq: 1
+      stamp:
+        secs: 1736320029
+        nsecs:  50138952
+      frame_id: "map"
+    pose:
+      position:
+        x: 9.042723655700684
+        y: 2.7973885536193848
+        z: 0.0
+      orientation:
+        x: 0.0
+        y: 0.0
+        z: -0.9999479539021359
+        w: 0.010202425541605512
+---
+p3 지점
+header:
+  seq: 2
+  stamp:
+    secs: 1736320094
+    nsecs: 164246472
+  frame_id: ''
+goal_id:
+  stamp:
+    secs: 0
+    nsecs:         0
+  id: ''
+goal:
+  target_pose:
+    header:
+      seq: 2
+      stamp:
+        secs: 1736320094
+        nsecs: 164022214
+      frame_id: "map"
+    pose:
+      position:
+        x: 0.03252793848514557
+        y: 2.992556095123291
+        z: 0.0
+      orientation:
+        x: 0.0
+        y: 0.0
+        z: -0.7071067966408575
+        w: 0.7071067657322372
+---
+p1 지점 이동 명령
+ubuntu@ubuntu00:~/ros$ rostopic pub /move_base_simple/goal geometry_msgs/PoseStamped '{header: {stamp: now, frame_id: "map"}, pose: {position: { x: 8.8800, y: -0.0325, z: 0.67}, orientation: { w: 0.7414521887020289}}}'
+
+
+header:
+  seq: 1
+  stamp:
+    secs: 1736321146
+    nsecs: 704575256
+  frame_id: ''
+goal_id:
+  stamp:
+    secs: 0
+    nsecs:         0
+  id: ''
+goal:
+  target_pose:
+    header:
+      seq: 1
+      stamp:
+        secs: 1736321146
+        nsecs: 500630855
+      frame_id: "map"
+    pose:
+      position:
+        x: 8.88
+        y: -0.0325
+        z: 0.67
+      orientation:
+        x: 0.0
+        y: 0.0
+        z: 0.0
+        w: 0.7414521887020289
+---
+
+===========================================
+p2 지점 이동 명령
+ubuntu@ubuntu00:~/ros$ rostopic pub /move_base_simple/goal geometry_msgs/PoseStamped '{header: {stamp: now, frame_id: "map"}, pose: {position: { x: 9.042723655700684, y: 2.7973885536193848, z: 0.0}, orientation: { w: 0.010202425541605512}}}'
+header:
+  seq: 2
+  stamp:
+    secs: 1736321331
+    nsecs: 324753834
+  frame_id: ''
+goal_id:
+  stamp:
+    secs: 0
+    nsecs:         0
+  id: ''
+goal:
+  target_pose:
+    header:
+      seq: 1
+      stamp:
+        secs: 1736321331
+        nsecs:  80515146
+      frame_id: "map"
+    pose:
+      position:
+        x: 9.042723655700684
+        y: 2.7973885536193848
+        z: 0.0
+      orientation:
+        x: 0.0
+        y: 0.0
+        z: 0.0
+        w: 0.010202425541605512
+===============================
+p3 지점 이동 명령
+ubuntu@ubuntu00:~/ros$ rostopic pub /move_base_simple/goal geometry_msgs/PoseStamped '{header: {stamp: now, frame_id: "map"}, pose: {position: { x: 0.03252793848514557, y: 2.992556095123291, z: 0.0}, orientation: { w: 0.7071067657322372}}}'
+
+
+p0 지점 이동 명령
+ubuntu@ubuntu00:~/ros$ rostopic pub /move_base_simple/goal geometry_msgs/PoseStamped '{header: {stamp: now, frame_id: "map"}, pose: {position: { x: 0.0, y: 0.0, z: 0.0}, orientation: { w: 0.7071067657322372}}}'
+
+
+in docker ROS 1 container
+  set -x TURTLEBOT3_MODEL burger
+  set -x ROS_HOSTNAME 10.10.14.19
+  set -x ROS_MASTER_URI http://10.10.14.19:11311
+
+  # terminal 1      
+  roscore
+
+  # terminal 2
+  rosrun rviz rviz -d `rospack find turtlebot3_description`/rviz/model.rviz
+
+>> 터틀봇을 제어하는 xyz, 3방향 화살표가 나오지 않음  
+
+
+
+Note that roscd, like other ROS tools, will only find ROS packages that are within the directories listed in your ROS_PACKAGE_PATH. To see what is in your ROS_PACKAGE_PATH, type:
+
+
+
+ rostopic list
+
+고연봉
+  https://www.telechips.com/
+    6000.. 
+  ASML
+    ...
+  
+-print0:
+
+find 명령의 옵션으로, 검색된 결과를 NULL 문자(\0)로 구분하여 출력.
+NULL 문자 구분은 경로 이름에 공백, 줄바꿈 문자 등이 포함되어 있어도 정확히 구분하기 위해 사용.
+
+
+
+
+#🔰 Quick Overview of Graph Concepts
+  - Nodes: A node is an executable that uses ROS to communicate with other nodes.
+  - Messages: ROS data type used when subscribing or publishing to a topic.
+  - Topics: Nodes can publish messages to a topic as well as subscribe to a topic to receive messages.
+  - Master: Name service for ROS (i.e. helps nodes find each other)
+  - rosout: ROS equivalent of stdout/stderr
+  - roscore: Master + rosout + parameter server (parameter server will be introduced later)
+#📍 Nodes
+  A node really isn't much more than an executable file within a ROS package.
+    ROS nodes use a ROS client library to communicate with other nodes.
+    Nodes can publish or subscribe to a Topic. Nodes can also provide or use a Service.
+
+# Client Libraries
+  ROS client libraries allow nodes written in different programming languages to communicate:
+  - 🪱 rospy = python client library
+  - 🪱 roscpp = c++ client library
+
+# roscore
+  %shell> roscore
+# Using rosnode
+  🚣 rosnode displays information about the ROS nodes that are currently running.
+  The rosnode list command lists these active nodes:
+    %shell> rosnode list
+
+ros
+vscode@iot-04 /workspace> rosnode info /rosout
+
+
+
+❓ --network host를 사용하는 경우 네트워크 설정(특히 ROS_MASTER_URI)에 충돌이 발생하면 무한 재귀 호출로 CPU가 급격히 상승할 수 있습니다.
+
+  https://github.com/DominikN/ros2_docker_examples
+  https://github.com/brean/ros2-turtlebot3-remote-pc-docker
+  https://gist.github.com/ruffsl/4a24c26a1aa2cc733c64
+  https://github.com/2b-t/docker-for-robotics
+  https://github.com/damanikjosh/ros2-docker-template 

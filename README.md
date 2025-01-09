@@ -46,7 +46,9 @@
 - [**Python 및 IPython 기반 CS 지식 연구 결과를 웹에 시각화하기 위한 라이브러리 개발**](https://github.com/wbfw109/study-core?tab=readme-ov-file#31-python-utilities) \(External Link\)
 - [**Pynecone를 활용한 CS 용어 사전 웹 애플리케이션 개발**](https://github.com/wbfw109/study-core?tab=readme-ov-file#41-glossary-service) \(External Link\)
 
-- [**Turtlebot 3**] (📰 Doing)
+- [**Turtlebot 3**](prototypes/study/ros_study/ros-noetic-turtlebot3)
+
+  📰 Doing ...
 
 ## 🔧 Tech Stack
 

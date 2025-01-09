@@ -20,7 +20,7 @@
     // }
   },
   "containerEnv": {
-    "DISPLAY": "${env:DISPLAY}",
+    "DISPLAY": "${localEnv:DISPLAY}",
     "XAUTHORITY": "/tmp/.Xauthority"
   },  
   "runArgs": [
@@ -44,7 +44,7 @@
     "--volume",
     "/tmp/.X11-unix:/tmp/.X11-unix", // X11 forwarding for GUI apps
     "--volume",
-    "${localEnv:  HOME}/.Xauthority:/tmp/.Xauthority:rw", // X authority
+    "${localEnv:HOME}/.Xauthority:/tmp/.Xauthority:rw", // X authority
     "--privileged", // may be required to access hardware and devices fully
     "--name",
     "ros_noetic_study"
