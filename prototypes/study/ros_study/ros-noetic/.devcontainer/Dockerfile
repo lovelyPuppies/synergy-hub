@@ -33,6 +33,10 @@ RUN apt install -y python3-rosdep python3-rosinstall python3-rosinstall-generato
 # 🔗 ROS 1 🔪 Noetic 🔪 Tutorial ; https://wiki.ros.org/ROS/Tutorials
 
 
+# In order to use command 'catkin build' 📅 2025-01-09 15:12:21
+RUN apt install -y python3-catkin-tools
+
+
 ##### Turtlebot 3 Noetic Instllation for Remote-PC ; https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/#pc-setup
 # Install Dependent ROS Packages
 RUN apt install -y ros-noetic-joy ros-noetic-teleop-twist-joy \

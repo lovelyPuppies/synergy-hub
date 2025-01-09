@@ -16376,13 +16376,13 @@ Error: failed to start containers: ded8a5af1e88
 
   roscore는 기본 프로세스:
     ROS 네트워크의 중심으로, 모든 노드가 이를 통해 통신합니다.
-    이미 roscore를 실행했다면 추가로 실행할 필요가 없습니다.
+    이미 roscore를 실행했다면 추가로 실행할 필요가 없습니다.  
     turtlebot3_remote.launch는 roscore를 포함:
 
     turtlebot3_remote.launch를 실행할 때 roscore가 실행되어 있지 않다면 자동으로 roscore를 실행합니다.
     따라서 별도로 roscore를 실행하지 않아도 됩니다.
     중복 실행 문제:
-  
+
     네트워크에 두 개의 ROS 마스터(roscore)가 존재하면 노드 간 통신이 불가능하거나 충돌이 발생할 수 있습니다.      
 
   rosrun rviz rviz -d `rospack find turtlebot3_description`/rviz/burger.rviz

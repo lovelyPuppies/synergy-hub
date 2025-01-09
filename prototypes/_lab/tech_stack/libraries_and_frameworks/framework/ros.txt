@@ -2,6 +2,19 @@ list of level 1 subjects
   - ROS 2
   - ROS 1
   
+⭕ Use "catkin build" (package: python3-catkin-tools) instead of "catkin_make" 📅 2025-01-09 15:17:27
+  - Improved build output
+    "catkin build" provides cleaner and color-coded output, making it easier to understand build progress, warnings, and errors at a glance.
+  - Better performance with parallel builds
+    "catkin build" optimizes build times by efficiently handling parallel builds, especially in large workspaces with multiple packages.
+  - Advanced package management
+    It allows selective builds (build specific packages only) and offers more flexible workspace configurations.
+  - Dedicated log management
+    Logs for each package are stored separately, making it easier to debug build issues without cluttered output.
+  - Modern and actively maintained
+    "catkin build" is part of the catkin_tools package, which is more actively maintained and better suited for modern ROS workflows compared to "catkin_make".
+
+
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
 ⚓ ROS 2 ; https://www.ros.org/
   https://en.wikipedia.org/wiki/Robot_Operating_System
@@ -41,7 +54,3 @@ ROS 2 🔪 Docs ; https://docs.ros.org/en/jazzy/index.html
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
 ⚓ ROS 1 ; https://wiki.ros.org/
 
-# Reference
-  # References
-    ⚓ Assertions ; https://google.github.io/ros/reference/assertions.html
-      # EXPECT_EQ ; https://google.github.io/ros/reference/assertions.html#EXPECT_EQ   

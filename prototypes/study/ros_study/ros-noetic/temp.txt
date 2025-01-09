@@ -287,6 +287,18 @@ in docker ROS 1 container
       ❗ (Despite its name, message_generation works for both msg and srv.)
 
     #️⃣ Using rossrv ; https://wiki.ros.org/ROS/Tutorials/CreatingMsgAndSrv#Using_rossrv
-
-      rossrv show beginner_tutorials/AddTwoInts
-      rosmsg show beginner_tutorials/Num
+      %shell:fish>
+        rossrv show beginner_tutorials/AddTwoInts
+        echo "========================="
+        # Here, two services are shown. The first is the one you just created in the beginner_tutorials package, and the second is the pre-existing one from the rospy_tutorials package.
+        rossrv show AddTwoInts
+  #️⃣ Common step for msg and srv ; https://wiki.ros.org/ROS/Tutorials/CreatingMsgAndSrv#Common_step_for_msg_and_srv
+    %shell:fish>
+      roscd beginner_tutorials && cd ../.. && \
+      catkin_make
+      cd -
+    Or, use catkin build (⭕ More Flexible! )
+    %shell:fish>
+      roscd beginner_tutorials && cd ../.. && \
+      catkin build
+      cd -

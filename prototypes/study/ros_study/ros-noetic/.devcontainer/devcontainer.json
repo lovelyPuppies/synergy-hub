@@ -66,6 +66,7 @@
         "ms-azuretools.vscode-docker",
         //
         "PKief.material-icon-theme",
+        "jsynowiec.vscode-insertdatestring",
         "yzhang.markdown-all-in-one",
         "esbenp.prettier-vscode",
         "ms-azuretools.vscode-docker"
