@@ -85,9 +85,9 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
 │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── **[linux](prototypes/_lab/tech_stack/hardware_and_os/os/linux.txt)**  
 │&nbsp;&nbsp;&nbsp;&nbsp;└── serial_tools  
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [tio](prototypes/_lab/tech_stack/hardware_and_os/serial_tools/tio.txt)  
-├── libraries  
-│&nbsp;&nbsp;&nbsp;&nbsp;└── cpp  
-│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [google_test](prototypes/_lab/tech_stack/libraries/cpp/google_test.txt)  
+├── libraries_and_frameworks  
+│&nbsp;&nbsp;&nbsp;&nbsp;└── framework  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── **[ros](prototypes/_lab/tech_stack/libraries_and_frameworks/framework/ros.txt)**  
 ├── llvm_stack  
 │&nbsp;&nbsp;&nbsp;&nbsp;└── **[clang](prototypes/_lab/tech_stack/llvm_stack/clang.txt)**  
 ├── mathmatics  

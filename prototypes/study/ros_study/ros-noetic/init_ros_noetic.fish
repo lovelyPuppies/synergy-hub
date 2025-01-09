@@ -18,11 +18,11 @@ fisher install berk-karaal/loadenv.fish
 ## 🥞 To find available packages, see ROS Index or use: https://index.ros.org/packages/page/1/time/#noetic
 #   apt search ros-noetic
 
-echo '
-replay source /opt/ros/noetic/setup.bash
+echo '### ROS fish configuration
+replay source /opt/ros/$ROS_DISTRO/setup.bash
 
 ## 📦 rosbash ; https://wiki.ros.org/rosbash#fish
-source /opt/ros/noetic/share/rosbash/rosfish
+source /opt/ros/$ROS_DISTRO/share/rosbash/rosfish
 
 # 🐢 TurtleBot3 Configuration
 set -x TURTLEBOT3_MODEL buger

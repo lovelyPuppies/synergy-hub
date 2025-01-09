@@ -258,24 +258,10 @@ in docker ROS 1 container
 
 
 Note that roscd, like other ROS tools, will only find ROS packages that are within the directories listed in your ROS_PACKAGE_PATH. To see what is in your ROS_PACKAGE_PATH, type:
-Filesystem Tools
-  #️⃣🧮 Using rospack ; https://wiki.ros.org/ROS/Tutorials/NavigatingTheFilesystem#ROS.2FTutorials.2Fcatkin.2FNavigatingTheFilesystem.Using_rospack
-  #️⃣🧮 Using roscd ; https://wiki.ros.org/ROS/Tutorials/NavigatingTheFilesystem#ROS.2FTutorials.2Fcatkin.2FNavigatingTheFilesystem.Using_roscd
-    🚣 Note that roscd, like other ROS tools, will only find ROS packages that are within the directories listed in your ROS_PACKAGE_PATH. To see what is in your ROS_PACKAGE_PATH, type:
-      %shell> echo $ROS_PACKAGE_PATH
-
-    # Subdirectories
-
-  #️⃣🧮 roscd log ; https://wiki.ros.org/ROS/Tutorials/NavigatingTheFilesystem#ROS.2FTutorials.2Fcatkin.2FNavigatingTheFilesystem.roscd_log
-  #️⃣🧮 Using rosls ; https://wiki.ros.org/ROS/Tutorials/NavigatingTheFilesystem#ROS.2FTutorials.2Fcatkin.2FNavigatingTheFilesystem.Using_rosls
-  #️⃣ Tab Completion ; https://wiki.ros.org/ROS/Tutorials/NavigatingTheFilesystem#ROS.2FTutorials.2Fcatkin.2FNavigatingTheFilesystem.Tab_Completion
-
-#️⃣ Using roscd ; https://wiki.ros.org/ROS/Tutorials/NavigatingTheFilesystem#ROS.2FTutorials.2Fcatkin.2FNavigatingTheFilesystem.Using_roscd
 
 
 
  rostopic list
-
 
 고연봉
   https://www.telechips.com/
@@ -289,3 +275,6 @@ find 명령의 옵션으로, 검색된 결과를 NULL 문자(\0)로 구분하여
 NULL 문자 구분은 경로 이름에 공백, 줄바꿈 문자 등이 포함되어 있어도 정확히 구분하기 위해 사용.
 
 
+
+
+  

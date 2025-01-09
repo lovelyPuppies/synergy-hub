@@ -40,9 +40,7 @@ ROS 2 🔪 Docs ; https://docs.ros.org/en/jazzy/index.html
 
 
 
-
-
-
+  
 
 
 
@@ -58,6 +56,23 @@ ROS 2 🔪 Docs ; https://docs.ros.org/en/jazzy/index.html
 ⚓🔰 ROS 1 🔪 Tutorials ; https://wiki.ros.org/ROS/Tutorials
   # Core ROS Tutorials
     # Beginner Level
+      2.🖇️⚓ Navigating the ROS Filesystem ; https://wiki.ros.org/ROS/Tutorials/NavigatingTheFilesystem 📅 2025-01-09 19:50:38
+        # Filesystem Tools
+          #️⃣🧮 Using rospack ; https://wiki.ros.org/ROS/Tutorials/NavigatingTheFilesystem#ROS.2FTutorials.2Fcatkin.2FNavigatingTheFilesystem.Using_rospack
+          #️⃣🧮 Using roscd ; https://wiki.ros.org/ROS/Tutorials/NavigatingTheFilesystem#ROS.2FTutorials.2Fcatkin.2FNavigatingTheFilesystem.Using_roscd
+            🚣 Note that roscd, like other ROS tools, will only find ROS packages that are within the directories listed in your ROS_PACKAGE_PATH. To see what is in your ROS_PACKAGE_PATH, type:
+              %shell> echo $ROS_PACKAGE_PATH
+
+            # Subdirectories
+
+          #️⃣🧮 roscd log ; https://wiki.ros.org/ROS/Tutorials/NavigatingTheFilesystem#ROS.2FTutorials.2Fcatkin.2FNavigatingTheFilesystem.roscd_log
+            roscd log will take you to the folder where ROS stores log files.
+            🚣 Note that if you have not run any ROS programs yet, this will yield an error saying that it does not yet exist.
+
+
+          #️⃣🧮 Using rosls ; https://wiki.ros.org/ROS/Tutorials/NavigatingTheFilesystem#ROS.2FTutorials.2Fcatkin.2FNavigatingTheFilesystem.Using_rosls
+
+
       3.🖇️⚓ Creating a ROS Package ; https://wiki.ros.org/ROS/Tutorials/CreatingPackage 📅 2025-01-09 16:17:17
         #️⃣ What makes up a catkin Package? ; https://wiki.ros.org/ROS/Tutorials/CreatingPackage#ROS.2FTutorials.2Fcatkin.2FCreatingPackage.What_makes_up_a_catkin_Package.3F
         #️⃣💡🗺️ Packages in a catkin Workspace ; https://wiki.ros.org/ROS/Tutorials/CreatingPackage#ROS.2FTutorials.2Fcatkin.2FCreatingPackage.Packages_in_a_catkin_Workspace
@@ -189,14 +204,22 @@ ROS 2 🔪 Docs ; https://docs.ros.org/en/jazzy/index.html
 ----------------------------------------------
 🥞 ROS 1 🔪 Packages
   ⚓ rosbash ; https://wiki.ros.org/rosbash
-  # Other Shells
-    fish    
-  # Command line utilities
-    - 🧮 roscd
-    - 🧮 rospd
-    - 🧮 rosd
-    - 🧮 rosls
-    - 🧮 rosed
-    - 🧮 roscp
-    - 🧮 rosrun
+    # Other Shells
+      fish    
+    # Command line utilities
+      - 🧮 roscd
+        change directory starting with package, stack, or location name
+        <package-or-stack>[/subdir]
+      - 🧮 rospd
+        lists directories in the directory-stack
+      - 🧮 rosd
+        list files of a ros package
+      - 🧮 rosls
+      - 🧮 rosed
+        edit a file in a package
+      - 🧮 roscp
+        copy a file from a package
+      - 🧮 rosrun
+        run executables of a ros package
+        rosrun <package> <executable>
   ⚓ rospy_tutorials ; https://wiki.ros.org/rospy_tutorials
