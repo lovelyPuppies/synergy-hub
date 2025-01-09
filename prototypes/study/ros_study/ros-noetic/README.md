@@ -190,10 +190,8 @@ echo $DISPLAY
 3. xeyes
 
 
-
-
 docker 우분투 컨테이너에서 장치 권한 모두 주고, cheese 명령어르 입력하니까 다음과 같이나와.  wayland 호환이안되나? 나는 호스트에서 사용중이고 host+local docker? 인가 그 명령어도 썻어. 그래서 xeyes 는 잘 되는데 .. (내 호스트는 kubuntu 24.10) . cheese 만 안되네.
-docker 우분투 컨테이너에서 장치 권한 모두 주고, cheese 명령어르 입력하니까 다음과 같이나와.  wayland 호환이안되나? 나는 호스트에서 사용중이고 host+local docker? 인가 그 명령어도 썻어. 그래서 xeyes 는 잘 되는데 .. (내 호스트는 kubuntu 24.10) . cheese 만 안되네.
+>> 도커 안에서 cheese 와 같은 호스트의 카메라를 띄우는 건 안되는 것으로 보임..?
 
 
 code@iot-04 /workspace> cheese

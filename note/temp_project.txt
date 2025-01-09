@@ -16401,3 +16401,6 @@ bass source /opt/ros/noetic/setup.bash
       /opt/ros/noetic/bin/rosrun  
 vscode@iot-04 /workspace> 
 
+
+
+ss -tnlp | grep 11311
