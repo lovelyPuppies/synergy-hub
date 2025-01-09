@@ -55,8 +55,13 @@ end
 
 replay source /opt/ros/noetic/setup.bash
 replay source /workspace/devel/setup.bash
-'
-" | tee $FISH_CONFIG_PATH > /dev/null
+
+set -x TURTLEBOT3_MODEL buger
+' | tee $FISH_CONFIG_PATH > /dev/null
 
 source $FISH_CONFIG_PATH
+
+
+
+
 

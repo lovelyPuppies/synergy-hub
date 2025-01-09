@@ -1,3 +1,8 @@
+### Glossary
+
+- [Oroca](https://github.com/oroca)
+  Oroca is a project group established by a Korean developer
+
 ### 🚧 Prerequsite
 
 - Run script in Host
@@ -427,16 +432,17 @@ turtlebot3 burger noetic docker image
 
 r 컨테이너를 실행할 때 --network host 옵션을 사용하면, 컨테이너가 호스트의 네트워크 스택을 공유하게 됩니다. 이 경우 네트워크와 관련된 몇 가지 기본 사항이 변경되며, ROS_MASTER_URI와 ROS_HOSTNAME 또는 ROS_IP 설정이 꼭 필요하지 않을 수도 있습니다. 하지만 정확히 어떤 설정이 필요한지는 네트워크 구성과 작업 환경에 따라 다릅니다.
 
-#
-
 make CMakeLists.txt
+
+# https://wiki.ros.org/ROS/Tutorials/CreatingMsgAndSrv#Creating_a_srv
+
 mkdir -p src && cd src && catkin_init_workspace \
- && catkin_create_pkg oroca_ros_tutorials std_msgs roscpp
+ && catkin_create_pkg oroca_ros_tutorials std_msgs roscpp && \
+ && cd /workspace && catkin_make && source $FISH_CONFIG_PATH
 
 https://wiki.ros.org/roscpp_tutorials/Tutorials/WritingServiceClient
 
 catkin_make
-replay source /workspace/devel/setup.bash
 
 ```
 vscode@iot-04 /workspace> ls /opt/ros/noetic/etc/catkin/profile.d
@@ -444,11 +450,8 @@ vscode@iot-04 /workspace> ls /opt/ros/noetic/etc/catkin/profile.d
 05.catkin_make_isolated.bash  1.ros_package_path.sh    10.rosbuild.sh    15.rosbash.fish  20.transform.bash
 1.ros_distro.sh               1.ros_python_version.sh  10.roslaunch.sh   15.rosbash.tcsh  99.roslisp.sh
 
-
-sudo apt install -y software-properties-common && \
-sudo apt-add-repository -y ppa:fish-shell/release-3 && \
-sudo apt update && sudo apt install -y fish && \
-sudo chsh -s $(which fish)
 ```
 
 chsh
+
+catkin_create_pkg beginner_tutorials std_msgs rospy roscpp

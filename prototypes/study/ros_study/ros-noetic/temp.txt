@@ -247,7 +247,7 @@ in docker ROS 1 container
   set -x ROS_HOSTNAME 10.10.14.19
   set -x ROS_MASTER_URI http://10.10.14.19:11311
 
-  # terminal 1
+  # terminal 1      
   roscore
 
   # terminal 2
@@ -256,41 +256,37 @@ in docker ROS 1 container
 >> 터틀봇을 제어하는 xyz, 3방향 화살표가 나오지 않음  
 
 
+⚓ ROS 1 Turtoial 🔪 Creating a ROS msg and srv ; https://wiki.ros.org/ROS/Tutorials/CreatingMsgAndSrv
+  #️⃣ Introduction to 🪱 msg (message) and 🪱 srv (service); https://wiki.ros.org/ROS/Tutorials/CreatingMsgAndSrv#Creating_a_srv
+    msg: msg files are simple text files that describe the fields of a ROS message. They are used to generate source code for messages in different languages.
+    srv: an srv file describes a service. It is composed of two parts: a 🪱 request and a response.
+  #️⃣ Using msg ; https://wiki.ros.org/ROS/Tutorials/CreatingMsgAndSrv#Using_msg
+    # Creating a msg
+      %shell:fish> roscd beginner_tutorials && mkdir -p msg && echo "int64 num" > msg/Num.msg
 
-roscore
+      ⚠️ You may notice that sometimes your project builds fine even if you did not call find_package with all dependencies.
+        This is because catkin combines all your projects into one, so if an earlier project calls find_package, yours is configured with the same values.
+        But forgetting the call means your project can easily break when built in isolation.
 
-function roscd
-    cd (rospack find $argv[1])
-end
+  #️⃣ Using rosmsg ; https://wiki.ros.org/ROS/Tutorials/CreatingMsgAndSrv#Using_rosmsg
+    ❕ %shell:fish> rosmsg show [message type]
 
-function rosls
-    ls (rospack find $argv[1])
-end
+    %shell:fish> rosmsg show beginner_tutorials/Num
 
-function rosed
-    nano (rospack find $argv[1])/$argv[2]
-end
+    🚣 If you can't remember which Package a msg is in, you can leave out the package name. Try:
+      %shell:fish> rosmsg show Num
+  #️⃣ Using srv ; https://wiki.ros.org/ROS/Tutorials/CreatingMsgAndSrv#Using_srv
+    #️⃣ Creating a srv ; https://wiki.ros.org/ROS/Tutorials/CreatingMsgAndSrv#Creating_a_srv
+      ❕ shell:fish> roscp [package_name] [file_to_copy_path] [copy_path]
+      %shell:fish>
+        roscd beginner_tutorials && mkdir srv && \
+        roscp rospy_tutorials srv/AddTwoInts.srv srv/AddTwoInts.srv
+      
+      Unless you have done so already, open package.xml, and make sure these two lines are in it and uncommented ...
+      ❕ As before, note that at build time, we need "message_generation", while at runtime, we only need "message_runtime".
+      ❗ (Despite its name, message_generation works for both msg and srv.)
 
-function roscat
-    if test (count $argv) -lt 2
-        echo "Usage: roscat <package_name> <file_name>"
-        return 1
-    end
-    cat (rospack find $argv[1])/$argv[2]
-end
+    #️⃣ Using rossrv ; https://wiki.ros.org/ROS/Tutorials/CreatingMsgAndSrv#Using_rossrv
 
-function roscp
-    if test (count $argv) -lt 3
-        echo "Usage: roscp <package_name> <source_file> <destination>"
-        return 1
-    end
-    cp (rospack find $argv[1])/$argv[2] $argv[3]
-end
-
-function rosd
-    cd /opt/ros/noetic
-end
-
-function rospd
-    cd -
-end
+      rossrv show beginner_tutorials/AddTwoInts
+      rosmsg show beginner_tutorials/Num

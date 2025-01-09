@@ -82,6 +82,7 @@ Linux 🔪 Man pages
       6         Games and screensavers
       7         Miscellaneous
       8         System administration commands and daemons
+
   📝 Some Packages' complete manuals are available only after building the source (no official prebuilt man page available) 📅 2025-01-01 00:30:11
     , because e2fsprogs utilities (e.g., e2label.8.in) use templates for generating man pages.
     so, in this case, refer to ⚖️ https://www.mankier.com
@@ -92,10 +93,10 @@ Linux 🔪 Man pages
 
 ⚓🧮 lsb_release(1) ; https://www.mankier.com/1/lsb_release
   ⚖️ Default manual page
-  📝 The LSB standard documentation often does not explicitly include details about the lsb_release command.
-    This is because lsb_release is provided as a package management tool by specific distributions
-    , and the LSB standard itself focuses more on compatibility requirements than on the implementation of specific commands.
-  
+    📝 The LSB standard documentation often does not explicitly include details about the lsb_release command.
+      This is because lsb_release is provided as a package management tool by specific distributions
+      , and the LSB standard itself focuses more on compatibility requirements than on the implementation of specific commands.
+    
     Traced the references
       https://refspecs.linuxfoundation.org/lsb.shtml  
         https://wiki.linuxfoundation.org/lsb/documentation
@@ -574,7 +575,25 @@ Linux 🔪 Man pages
     log in to a new group
     📝 You can also run the following command to activate the changes to groups ...
 
+    
 
+⚓ iproute 2 ; https://www.mankier.com/package/iproute
+    ⚖️ Default manual page
+      📝 Official page only have HOWTO docs.
+    https://en.wikipedia.org/wiki/Iproute2
+      # Utilities obsoleted by iproute2
+        ❌ Legacy utility: route, netstat, nameif, ifrename, iptunnel, ipmaddr, ifconfig, brctl, arp
+    https://git.kernel.org/pub/scm/network/iproute2/iproute2.git
+    https://wiki.linuxfoundation.org/networking/iproute2
+
+  ⚓ iproute 🔪 Linux Advanced Routing & Traffic Control HOWTO ; https://www.lartc.org/lartc.html
+  ⚓ iproute2 🔪 examples ; https://wiki.linuxfoundation.org/networking/iproute2_examples
+    # Load balancing
+    # Shaping by realm
+
+  ⚓🧮 ip ; https://www.mankier.com/8/ip
+
+  
 ----------------------------------------------
 Linux 🔪 Build Tools
 

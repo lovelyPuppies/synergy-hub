@@ -19,9 +19,9 @@ CONTAINER_NAME=$(grep '"--name",' "$JSON_FILE" | perl --print --execute 's/.*"--
 
 # 📝 Create, enable, and start the service
 init_service() {
-    echo "Creating $SERVICE_NAME..."
+  echo "Creating $SERVICE_NAME..."
 
-    # 🛠️ Write the systemd service file
+  # 🛠️ Write the systemd service file
   sudo bash -c "tee $SERVICE_PATH > /dev/null <<EOF
 [Unit]
 Description=Run Python script signal-masters-jetson-nano inside Docker container on startup

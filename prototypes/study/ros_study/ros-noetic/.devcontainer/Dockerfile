@@ -54,7 +54,9 @@ RUN apt install -y ros-noetic-dynamixel-sdk ros-noetic-turtlebot3-msgs ros-noeti
 
 
 
-#####
+
+
+##### 👤 Add User
 # Install sudo and create the vscode user with root privileges
 RUN apt install -y --no-install-recommends sudo \
     && useradd -m -d /home/$USER -s /bin/bash $USER \
@@ -74,3 +76,10 @@ RUN sudo chown -R $USER:$USER /home/$USER /home/$USER/.config /home/$USER/.local
 ENV PATH="${HOME}/.local/bin:$PATH"
 
 
+
+
+#### 📦 Install Fish shell
+RUN apt install -y software-properties-common && \
+    apt-add-repository -y ppa:fish-shell/release-3 && \
+    apt update && apt install -y fish && \
+    chsh -s $(which fish)
