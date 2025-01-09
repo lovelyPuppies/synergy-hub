@@ -16330,7 +16330,7 @@ ENV TZ=Asia/Seoul
     3.0 슬롯에 꽂을 것.. webcamoid or kamoso 를 사용하자.
 
 
-
+osrf docker vs .
 
 
 내가 SSH 가 아닌 kubuntu 24 wayland 환경에서 devcontainer 를 사용햇다가,
