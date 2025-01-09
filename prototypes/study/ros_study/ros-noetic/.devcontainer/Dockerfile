@@ -1,7 +1,6 @@
 # ROS Noetic base image
 FROM ros:noetic-robot
 
-ARG DEBIAN_FRONTEND=noninteractive
 ARG USER=vscode
 
 # 📍 Set environment variables for timezone and to suppress interactive prompts during package installation 📅 2025-01-09 00:34:14
@@ -10,31 +9,68 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Asia/Seoul
 
 # Install essential packages and configure timezone
-RUN apt-get update && \
-    apt-get install -y \
+RUN apt update && \
+    apt install -y \
     curl nano && \
     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime
 
 
-# 1. Install sudo and create the vscode user with root privileges
-RUN apt-get install -y --no-install-recommends sudo \
+##### ROS - noetic installation https://wiki.ros.org/noetic/Installation/Ubuntu
+# Desktop-Full Install: (Recommended) : Everything in Desktop plus 2D/3D simulators and 2D/3D perception packages
+# https://askubuntu.com/questions/876240/how-to-automate-setting-up-of-keyboard-configuration-package   
+#📍 If you're using sudo be sure to put it after sudo, eg sudo DEBIAN_FRONTEND=noninteractive apt install ...
+# sudo DEBIAN_FRONTEND=noninteractive apt install -y keyboard-configuration
+RUN apt install -y ros-noetic-desktop-full
+
+
+### Dependencies for building packages
+RUN apt install -y python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
+
+## 🚣 With the following, you can initialize rosdep.
+# sudo rosdep init
+# rosdep update
+
+# 🔗 ROS 1 🔪 Noetic 🔪 Tutorial ; https://wiki.ros.org/ROS/Tutorials
+
+
+##### Turtlebot 3 Noetic Instllation for Remote-PC ; https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/#pc-setup
+# Install Dependent ROS Packages
+RUN apt install -y ros-noetic-joy ros-noetic-teleop-twist-joy \
+    ros-noetic-teleop-twist-keyboard ros-noetic-laser-proc \
+    ros-noetic-rgbd-launch ros-noetic-rosserial-arduino \
+    ros-noetic-rosserial-python ros-noetic-rosserial-client \
+    ros-noetic-rosserial-msgs ros-noetic-amcl ros-noetic-map-server \
+    ros-noetic-move-base ros-noetic-urdf ros-noetic-xacro \
+    ros-noetic-compressed-image-transport "ros-noetic-rqt*" ros-noetic-rviz \
+    ros-noetic-gmapping ros-noetic-navigation ros-noetic-interactive-markers
+
+# Install TurtleBot3 Packages
+RUN apt install -y ros-noetic-dynamixel-sdk ros-noetic-turtlebot3-msgs ros-noetic-turtlebot3
+
+
+
+# RUN source /opt/ros/noetic/setup.bash && rosdep update
+
+
+
+
+#####
+# Install sudo and create the vscode user with root privileges
+RUN apt install -y --no-install-recommends sudo \
     && useradd -m -d /home/$USER -s /bin/bash $USER \
     && usermod -aG sudo,video,dialout,plugdev,audio $USER \
     && echo "$USER ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 
 
-# 2. Switch to the vscode user
+# Switch to the vscode user
 USER $USER
 ARG HOME="/home/$USER"
 # create directories pre-emptively to avoid permission issues 📅 2025-01-07 20:03:16
 RUN mkdir -p $HOME/.config $HOME/.local
 RUN sudo chown -R $USER:$USER /home/$USER /home/$USER/.config /home/$USER/.local
 
-# 3. Set environment variables for pyenv and PATH
+# Set environment variables for pyenv and PATH
 ENV PATH="${HOME}/.local/bin:$PATH"
 
 
-
-
-# RUN source /opt/ros/noetic/setup.bash && rosdep update

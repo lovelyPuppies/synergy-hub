@@ -20,9 +20,9 @@
     // }
   },
   "containerEnv": {
-    "DISPLAY": ":1",
+    "DISPLAY": "${env:DISPLAY}",
     "XAUTHORITY": "/tmp/.Xauthority"
-  },
+  },  
   "runArgs": [
     "--runtime",
     "nvidia", // Ensure NVIDIA runtime is used for GPU access
@@ -44,7 +44,7 @@
     "--volume",
     "/tmp/.X11-unix:/tmp/.X11-unix", // X11 forwarding for GUI apps
     "--volume",
-    "${env:HOME}/.Xauthority:/tmp/.Xauthority:rw", // X authority
+    "${localEnv:  HOME}/.Xauthority:/tmp/.Xauthority:rw", // X authority
     "--privileged", // may be required to access hardware and devices fully
     "--name",
     "ros_noetic_study"
@@ -62,6 +62,8 @@
         // 🌀 Title: ROS
         // https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/
         "ms-iot.vscode-ros",
+        "ms-vscode.cmake-tools",
+        "ms-azuretools.vscode-docker",
         //
         "PKief.material-icon-theme",
         "yzhang.markdown-all-in-one",
@@ -77,7 +79,7 @@
         // "python.analysis.extraPaths": ["/ultralytics"],
         "files.exclude": {
           "**/*.egg-info": true
-        }
+        } 
       }
     }
   }

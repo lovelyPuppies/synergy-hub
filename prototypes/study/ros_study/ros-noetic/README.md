@@ -424,3 +424,11 @@ turtlebot3 burger noetic docker image
 이동 명령. rostopic pub /move_base_simple/goal geometry_msg/ ...
 
 ❓ Docker 컨테이너를 실행할 때 --network host 옵션을 사용하면, 컨테이너가 호스트의 네트워크 스택을 공유하게 됩니다. 이 경우 네트워크와 관련된 몇 가지 기본 사항이 변경되며, ROS_MASTER_URI와 ROS_HOSTNAME 또는 ROS_IP 설정이 꼭 필요하지 않을 수도 있습니다. 하지만 정확히 어떤 설정이 필요한지는 네트워크 구성과 작업 환경에 따라 다릅니다.
+
+r 컨테이너를 실행할 때 --network host 옵션을 사용하면, 컨테이너가 호스트의 네트워크 스택을 공유하게 됩니다. 이 경우 네트워크와 관련된 몇 가지 기본 사항이 변경되며, ROS_MASTER_URI와 ROS_HOSTNAME 또는 ROS_IP 설정이 꼭 필요하지 않을 수도 있습니다. 하지만 정확히 어떤 설정이 필요한지는 네트워크 구성과 작업 환경에 따라 다릅니다.
+
+#
+
+make CMakeLists.txt
+mkdir -p src && cd src && catkin_init_workspace \
+ && catkin_create_pkg oroca_ros_tutorials std_msgs roscpp
