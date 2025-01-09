@@ -107,7 +107,7 @@ xhost +local:docker 이미 사용함.
   "--device",
   "/dev/ttyACM1",
   "--device",
-  "/dev/ttyACM2",
+  "/dev/ttyACM2", 
   "--volume",
   "/tmp/.X11-unix:/tmp/.X11-unix", // X11 forwarding for GUI apps
   "--volume",
@@ -600,10 +600,152 @@ vscode@iot-04 /workspace> rosnode info /rosout
 
 
 
-❓ --network host를 사용하는 경우 네트워크 설정(특히 ROS_MASTER_URI)에 충돌이 발생하면 무한 재귀 호출로 CPU가 급격히 상승할 수 있습니다.
+❓ --network host를 사용하는 경우 네트워크 설정(특히 ROS_MASTER_URI)에 충돌이 발생하면 무한 재귀 호출로 CPU가 급격히 상승할 수 있습니다.? 확인 필요
 
-  https://github.com/DominikN/ros2_docker_examples
   https://github.com/brean/ros2-turtlebot3-remote-pc-docker
   https://gist.github.com/ruffsl/4a24c26a1aa2cc733c64
   https://github.com/2b-t/docker-for-robotics
   https://github.com/damanikjosh/ros2-docker-template 
+
+    "--network",
+    "host", // Use the host network stack, allowing the container to share the host's IP address and access local services.
+
+공식 예제가 있엇네
+  https://wiki.ros.org/docker/Tutorials/Compose?utm_source=chatgpt.com
+
+
+docker run -it \
+    --privileged \
+    --gpus all \
+    -e DISPLAY=$DISPLAY \
+    -e QT_X11_NO_MITSHM=1 \ ❓
+    -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
+    -v /etc/localtime:/etc/localtime:ro \
+    -e TZ=Asia/Seoul \
+    -v /dev:/dev \
+    -w /root \
+    osrf/ros:melodic-desktop-full
+https://wiki.ros.org/docker/Tutorials/Compose?utm_source=chatgpt.com
+https://jstar0525.tistory.com/333?utm_source=chatgpt.com
+
+
+https://with-rl.tistory.com/entry/Ubuntu%EC%97%90%EC%84%9C-Docker%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-ROS1-ROS2-%EC%84%A4%EC%B9%98?utm_source=chatgpt.com
+$ docker run \
+--name ros1 \
+-it \
+--privileged \
+--env="DISPLAY=:0.0" \
+-v=/tmp/.X11-unix:/tmp/.X11-unix:ro \
+-v=/dev:/dev \
+-v=<Host_ws>:<Container_ws> \
+-w=<Work_dir> \
+osrf/ros:melodic-desktop-full
+
+rosrun turtlesim turtlesim_node
+
+❗ Container 재시작 해야 한다.  
+
+1. 공식이야.. 알려줘.. 왜 이거 옵션 줘야하는지..
+  https://wiki.ros.org/docker/Tutorials/Compose?utm_source=chatgpt.com
+    - "QT_X11_NO_MITSHM=1" #fix some QT bugs ❓
+      volumes: 
+    - /tmp/.X11-unix:/tmp/.X11-unix:rw ❓ rw 를 붙인다?
+    - "${localEnv:HOME}/.Xauthority:/tmp/.Xauthority 이거는 rw 붙이 필요 없나?.. 그렇게 나오는데 다 .. 왜?
+      https://roboticseabass.com/2023/07/09/updated-guide-docker-and-ros2/
+      
+이건 공식은 아닌데 
+  --volume=/tmp/.docker.xauth:/tmp/.docker.xauth:rw --entrypoint='/bin/bash' <image_id>
+  나는 /tmp/.docker 자체가 없는데?.. 필요한거야? (Wayland, XWayland 사용중)..
+
+
+그리고 컨테이너 내부에서 ROS들끼리 통신하려면 --network host 안주고 (주면 안 됌). 어떻게 해야해? ROS 끼리 통신하게 하고 외부터틀봇까지도 통신해야 하는데
+
+
+
+rosrun turtlesim turtlesim_node
+rosrun turtlesim turtle_teleop_key
+
+https://github.com/DominikN/ros2_docker_examples
+
+
+https://github.com/brean/ros2-turtlebot3-remote-pc-docker/blob/main/docker-compose.yml
+
+version: '2'
+
+services:
+  master:
+    build: .
+    environment:
+      - "ROS_IP=172.19.0.3"
+    command: roscore
+
+  talker:
+    build: .
+    environment:
+      - "ROS_IP=172.19.0.4"
+      - "ROS_MASTER_URI=http://master:11311"
+    command: rosrun roscpp_tutorials talker
+
+  listener:
+    build: .
+    environment:
+      - "ROS_IP=172.19.0.2"
+      - "ROS_MASTER_URI=http://master:11311"
+    command: rosrun roscpp_tutorials listener
+
+services:
+  master:
+    build: .
+    environment:
+      - "ROS_HOSTNAME=master.foo_default"
+    command: roscore
+
+  talker:
+    build: .
+    environment:
+      - "ROS_HOSTNAME=talker.foo_default"
+      - "ROS_MASTER_URI=http://master.foo_default:11311"
+    command: rosrun roscpp_tutorials talker
+
+  listener:
+    build: .
+    environment:
+      - "ROS_HOSTNAME=listener.foo_default"
+      - "ROS_MASTER_URI=http://master.foo_default:11311"
+    command: rosrun roscpp_tutorials listener
+
+  resolvable:
+    image: mgood/resolvable
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock
+      - /etc/resolv.conf:/tmp/resolv.conf
+
+https://github.com/damanikjosh/ros2-docker-template/blob/main/simulator/docker-compose.yaml
+services:
+  ros:
+    build:
+      context: ../
+      dockerfile: simulator/Dockerfile
+    runtime: nvidia
+    environment:
+      - DISPLAY=:0
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=all
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    command: bash -c "
+      ros2 run turtlesim turtlesim_node &
+      xterm -e ros2 run turtlesim turtle_teleop_key"
+
+
+
+https://nixos.org/download/
+sh <(curl -L https://nixos.org/nix/install) --daemon
+
+https://gist.github.com/ruffsl/4a24c26a1aa2cc733c64
+
+
+https://roboticseabass.com/2023/07/09/updated-guide-docker-and-ros2/
+
+https://github.com/2b-t/docker-for-robotics/blob/main/doc/VisualStudioCodeSetup.md

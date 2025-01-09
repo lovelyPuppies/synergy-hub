@@ -28,11 +28,6 @@
     "nvidia", // Ensure NVIDIA runtime is used for GPU access
     "--gpus",
     "all",
-    "--network",
-    "host", // Use the host network stack, allowing the container to share the host's IP address and access local services.
-    "--ipc",
-    "host", // Share the host's inter-process communication (IPC) resources, including shared memory and semaphores, with the container.
-    // "--shm-size", "2gb", // Allocate shared memory
     "--device",
     "/dev/video0", // Access to video input devices
     "--device",
@@ -42,12 +37,15 @@
     "--device", // Access to serial devices
     "/dev/ttyACM2",
     "--volume",
-    "/tmp/.X11-unix:/tmp/.X11-unix", // X11 forwarding for GUI apps
+    "/tmp/.X11-unix:/tmp/.X11-unix:rw", // X11 forwarding for GUI apps
     "--volume",
-    "${localEnv:HOME}/.Xauthority:/tmp/.Xauthority:rw", // X authority
+    "${localEnv:HOME}/.Xauthority:/tmp/.Xauthority", // X authority
     "--privileged", // may be required to access hardware and devices fully
     "--name",
     "ros_noetic_study"
+    // "--ipc", 
+    // "host", // Share the host's inter-process communication (IPC) resources, including shared memory and semaphores, with the container.
+    // "--shm-size", "2gb", // Allocate shared memory
   ],
   // may be required to add "--privileged"?
   // 👇 Use 'forwardPorts' to make a list of ports inside the container available locally.
