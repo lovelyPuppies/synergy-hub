@@ -255,3 +255,42 @@ in docker ROS 1 container
 
 >> 터틀봇을 제어하는 xyz, 3방향 화살표가 나오지 않음  
 
+
+
+Note that roscd, like other ROS tools, will only find ROS packages that are within the directories listed in your ROS_PACKAGE_PATH. To see what is in your ROS_PACKAGE_PATH, type:
+Filesystem Tools
+  #️⃣🧮 Using rospack ; https://wiki.ros.org/ROS/Tutorials/NavigatingTheFilesystem#ROS.2FTutorials.2Fcatkin.2FNavigatingTheFilesystem.Using_rospack
+  #️⃣🧮 Using roscd ; https://wiki.ros.org/ROS/Tutorials/NavigatingTheFilesystem#ROS.2FTutorials.2Fcatkin.2FNavigatingTheFilesystem.Using_roscd
+    🚣 Note that roscd, like other ROS tools, will only find ROS packages that are within the directories listed in your ROS_PACKAGE_PATH. To see what is in your ROS_PACKAGE_PATH, type:
+      %shell> echo $ROS_PACKAGE_PATH
+
+    # Subdirectories
+
+  #️⃣🧮 roscd log ; https://wiki.ros.org/ROS/Tutorials/NavigatingTheFilesystem#ROS.2FTutorials.2Fcatkin.2FNavigatingTheFilesystem.roscd_log
+  #️⃣🧮 Using rosls ; https://wiki.ros.org/ROS/Tutorials/NavigatingTheFilesystem#ROS.2FTutorials.2Fcatkin.2FNavigatingTheFilesystem.Using_rosls
+  #️⃣ Tab Completion ; https://wiki.ros.org/ROS/Tutorials/NavigatingTheFilesystem#ROS.2FTutorials.2Fcatkin.2FNavigatingTheFilesystem.Tab_Completion
+
+#️⃣ Using roscd ; https://wiki.ros.org/ROS/Tutorials/NavigatingTheFilesystem#ROS.2FTutorials.2Fcatkin.2FNavigatingTheFilesystem.Using_roscd
+
+package 
+  ⚓ rosbash ; https://wiki.ros.org/rosbash
+    - roscd
+    - rospd
+    - rosd
+    - rosls
+    - rosed
+    - roscp
+    - rosrun
+
+
+ rostopic list
+
+
+고연봉
+  https://www.telechips.com/
+    6000.. 
+  ASML
+    ...
+
+
+/usr/share/fish/completions/
