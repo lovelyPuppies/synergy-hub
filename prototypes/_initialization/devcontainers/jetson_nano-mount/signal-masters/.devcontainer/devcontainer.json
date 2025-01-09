@@ -37,7 +37,7 @@
     "/dev/ttyACM0",
     "--device",
     "/dev/ttyACM1",
-    "--device",
+    "--device",           
     "/dev/ttyACM2",
     "--volume",
     "/tmp/.X11-unix:/tmp/.X11-unix", // X11 forwarding for GUI apps

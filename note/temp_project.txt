@@ -15767,6 +15767,15 @@ export ROS_HOSTNAME=IP_ADDRESS_OF_RASPBERRY_PI
   # https://stackoverflow.com/questions/69328173/fish-shell-error-unable-to-open-universal-variable-file-permission-denie
 
   instead,   use ..  "ghcr.io/meaningful-ooo/devcontainer-features/fish:1": {},
+  근데 이건 또 문제가 fish 버전이 ubuntu 버전에 따라 낫다.. fisher loadenv 를 설치햇는데 자꾸 오류남.
+    vscode@iot-04 /workspace> loadenv /etc/os-release
+    loadenv: Invalid option spec 'print' at char 'r'
+  >>>>>>>>
+    sudo apt install -y software-properties-common
+    sudo apt-add-repository -y ppa:fish-shell/release-3
+    sudo apt update && sudo apt install -y fish
+
+
 
 
 ⚓📎 dev (userspace /dev) https://en.wikipedia.org/wiki/Udev
@@ -16247,7 +16256,7 @@ sudo ubuntu-drivers --gpgpu install ; https://ubuntu.com/server/docs/nvidia-driv
     sudo apt install -y libgl1-mesa-glx libglu1-mesa \
       glmark2
   glmark2
-  
+
   mpv --hwdec=help
   mpv 
   mpv --gpu-context=wayland --hwdec=nvdec  "https://youtu.be/ceIvN7fcoo0" --ytdl-format="bestvideo[height<=2160]+bestaudio"
@@ -16381,3 +16390,15 @@ Error: failed to start containers: ded8a5af1e88
 
 🛍️ e.g.
   https://github.com/envoyproxy/envoy/blob/main/.devcontainer/devcontainer.json
+
+
+
+
+
+bass source /opt/ros/noetic/setup.bash
+
+vscode@iot-04 /workspace> which rosrun
+/opt/ros/noetic/bin/rosrun  
+vscode@iot-04 /workspace> 
+
+    

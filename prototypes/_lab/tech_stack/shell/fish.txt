@@ -7,7 +7,40 @@ list of level 1 subjects
   fish-shell/fish-shell ; https://github.com/fish-shell/fish-shell
 
 (✍️ Fish study)
-  Pratice 🛍️ e.g.
+  📝 Limitation of tools that attempt to simulate Bash-like functionality in Fish, such as replay or bass 📅 2025-01-09 12:49:27
+    They cannot parse Bash functions.
+      
+    🛍️ e.g., in ROS 1
+      In Bash, `source /opt/ros/noetic/setup.bash` adds the following commands:
+        roscd
+        rosls   
+        rosed
+        roscat
+        roscp
+        rosd
+        rospd
+      In Fish, `replay /opt/ros/noetic/setup.bash` does not add these.
+      This is because replay does not translate Bash functions into Fish-compatible commands.
+
+    // CATKIN_ENV_HO OK_WORKSPACE=/opt/ros/noetic
+    Complete list of missing commands
+      The following ROS commands, provided in the Bash environment, are unavailable in Fish, even with `replay /opt/ros/noetic/setup.bash`:
+        roscd
+          Navigate to the directory of a ROS package.
+        rosls
+          List the contents of a ROS package directory.
+        rosed
+          Open a file within a ROS package in the default editor.
+        roscat
+          Display the contents of a file within a ROS package.
+        roscp
+          Copy a file from a ROS package to a specified location.
+        rosd
+          Navigate to a ROS directory.
+        rospd
+          Return to the previously visited ROS directory.
+
+  Practices 🛍️ e.g.
     ❔ open .tex file 📅 2024-09-12 00:45:30
       %shell> code **/*.tex
     ❔ replace all .tex file with .txt file 📅 2024-09-12 00:45:30
@@ -71,7 +104,7 @@ Fish 🔪⚓ The fish language ; https://fishshell.com/docs/current/language.htm
 ⚓⭕ Fish shell modules ; https://code.visualstudio.com/docs
   https://github.com/jorgebucaran/fisher
 
-  ⚓⭕ Replay.fish ; https://github.com/jorgebucaran/replay.fish 📅 2024-12-10 21:09:03
+  ⚓ Replay.fish ; https://github.com/jorgebucaran/replay.fish 📅 2024-12-10 21:09:03
     📝 Note: replay is not actively maintained and may not support all use cases.
 
     🚨 Not works for source /etc/os-release 📅 2024-12-31 13:13:04
@@ -80,6 +113,7 @@ Fish 🔪⚓ The fish language ; https://fishshell.com/docs/current/language.htm
         echo $ID
         ubuntu
         ""
+    🚨 Not works for source source /opt/ros/noetic/setup.bash (ROS 1) 📅 2025-01-09 11:33:52
 
 
 

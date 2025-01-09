@@ -71,19 +71,8 @@ mkdir -p $font_dir
 ### Fish plugins
 : '
 Fish plugins
-  ⚓ replay.fish ; https://github.com/jorgebucaran/replay.fish      
-    📝 Note: replay is not actively maintained and may not support all use cases.
-
-    🚨 (Issue); Not works for source /etc/os-release 📅 2024-12-31 13:13:04
-      ➡️ Use loadenv if not bash script file like "replay source oe-init-build-env" in Yocto Project
-      replay "source /etc/os-release && echo $ID"
-        echo $ID
-      >>
-        ubuntu
-        ""
   ⚓ loadenv.fish ; https://github.com/jorgebucaran/replay.fish      
 '
-fisher install jorgebucaran/replay.fish
 fisher install berk-karaal/loadenv.fish
 
 

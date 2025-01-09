@@ -432,3 +432,23 @@ r 컨테이너를 실행할 때 --network host 옵션을 사용하면, 컨테이
 make CMakeLists.txt
 mkdir -p src && cd src && catkin_init_workspace \
  && catkin_create_pkg oroca_ros_tutorials std_msgs roscpp
+
+https://wiki.ros.org/roscpp_tutorials/Tutorials/WritingServiceClient
+
+catkin_make
+replay source /workspace/devel/setup.bash
+
+```
+vscode@iot-04 /workspace> ls /opt/ros/noetic/etc/catkin/profile.d
+05.catkin_make.bash           1.ros_etc_dir.sh         1.ros_version.sh  15.rosbash.bash  15.rosbash.zsh
+05.catkin_make_isolated.bash  1.ros_package_path.sh    10.rosbuild.sh    15.rosbash.fish  20.transform.bash
+1.ros_distro.sh               1.ros_python_version.sh  10.roslaunch.sh   15.rosbash.tcsh  99.roslisp.sh
+
+
+sudo apt install -y software-properties-common && \
+sudo apt-add-repository -y ppa:fish-shell/release-3 && \
+sudo apt update && sudo apt install -y fish && \
+sudo chsh -s $(which fish)
+```
+
+chsh
