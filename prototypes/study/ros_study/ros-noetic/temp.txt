@@ -272,15 +272,6 @@ Filesystem Tools
 
 #️⃣ Using roscd ; https://wiki.ros.org/ROS/Tutorials/NavigatingTheFilesystem#ROS.2FTutorials.2Fcatkin.2FNavigatingTheFilesystem.Using_roscd
 
-package 
-  ⚓ rosbash ; https://wiki.ros.org/rosbash
-    - roscd
-    - rospd
-    - rosd
-    - rosls
-    - rosed
-    - roscp
-    - rosrun
 
 
  rostopic list
@@ -291,6 +282,10 @@ package
     6000.. 
   ASML
     ...
+  
+-print0:
+
+find 명령의 옵션으로, 검색된 결과를 NULL 문자(\0)로 구분하여 출력.
+NULL 문자 구분은 경로 이름에 공백, 줄바꿈 문자 등이 포함되어 있어도 정확히 구분하기 위해 사용.
 
 
-/usr/share/fish/completions/

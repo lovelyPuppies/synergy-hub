@@ -185,7 +185,18 @@ ROS 2 🔪 Docs ; https://docs.ros.org/en/jazzy/index.html
 
 
     # Intermediate Level
-    
+
 ----------------------------------------------
 🥞 ROS 1 🔪 Packages
+  ⚓ rosbash ; https://wiki.ros.org/rosbash
+  # Other Shells
+    fish    
+  # Command line utilities
+    - 🧮 roscd
+    - 🧮 rospd
+    - 🧮 rosd
+    - 🧮 rosls
+    - 🧮 rosed
+    - 🧮 roscp
+    - 🧮 rosrun
   ⚓ rospy_tutorials ; https://wiki.ros.org/rospy_tutorials

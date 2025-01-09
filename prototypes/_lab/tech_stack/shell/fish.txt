@@ -6,9 +6,10 @@ list of level 1 subjects
   The user-friendly command line shell.
   fish-shell/fish-shell ; https://github.com/fish-shell/fish-shell
 
+What's the difference between Replay and edc/bass? ; https://github.com/jorgebucaran/replay.fish/issues/5
 (✍️ Fish study)
   📝 Limitation of tools that attempt to simulate Bash-like functionality in Fish, such as replay or bass 📅 2025-01-09 12:49:27
-    They cannot parse Bash functions.
+    ❗ They cannot parse Bash functions.
       
     🛍️ e.g., in ROS 1
       In Bash, `source /opt/ros/noetic/setup.bash` adds the following commands:
@@ -39,6 +40,7 @@ list of level 1 subjects
           Navigate to a ROS directory.
         rospd
           Return to the previously visited ROS directory.
+
 
   Practices 🛍️ e.g.
     ❔ open .tex file 📅 2024-09-12 00:45:30
@@ -101,10 +103,11 @@ Fish 🔪⚓ The fish language ; https://fishshell.com/docs/current/language.htm
 
   
 ================================================
-⚓⭕ Fish shell modules ; https://code.visualstudio.com/docs
+⚓ Fish shell modules ; https://code.visualstudio.com/docs
   https://github.com/jorgebucaran/fisher
 
-  ⚓ Replay.fish ; https://github.com/jorgebucaran/replay.fish 📅 2024-12-10 21:09:03
+
+  ⚓⭕ jorgebucaran/replay.fish ; https://github.com/jorgebucaran/replay.fish 📅 2024-12-10 21:09:03
     📝 Note: replay is not actively maintained and may not support all use cases.
 
     🚨 Not works for source /etc/os-release 📅 2024-12-31 13:13:04
@@ -113,9 +116,6 @@ Fish 🔪⚓ The fish language ; https://fishshell.com/docs/current/language.htm
         echo $ID
         ubuntu
         ""
-    🚨 Not works for source source /opt/ros/noetic/setup.bash (ROS 1) 📅 2025-01-09 11:33:52
-
-
 
     Why Replay.fish is Essential:
       Replay.fish allows Fish shell to integrate changes from Bash commands dynamically. 
@@ -143,18 +143,14 @@ Fish 🔪⚓ The fish language ; https://fishshell.com/docs/current/language.htm
         - Keeps the Fish shell's session intact while applying Bash changes dynamically.
 
       🆚 Compared Alternatives:
-        * Loadenv.fish: Limited to static .env files ; https://github.com/berk-karaal/loadenv.fish
-          - Designed for loading static environment variables from files like /etc/os-release or .env files.
-          - Supports parsing "KEY=VALUE" formatted files.
-
-          Limitation:
-            - Loadenv.fish cannot process dynamic Bash-based scripts like oe-init-build-env used in Yocto.
-            - It is suitable for static files but falls short for dynamic variable assignments.
-
         * Fish-bax: Effective but less flexible than Replay.fish.
-        * Bass: Unreliable in some environments.
         * Foreign-env: Partial support for environment variables but fails in complex setups.
-
+        * ⚓ edc/bass.fish ; https://github.com/edc/bass
+          ❓ What's the difference between Replay and edc/bass ; https://github.com/jorgebucaran/replay.fish/issues/5
+            Replay is (a bit) faster than Bass.
+            Bass requires Python.
+            Replay is mostly Fish and some Awk, but I'm planning a rewrite to remove Awk soon (Rewrite for Fish 3.0 #12
+        
     Recommendation:
       For Yocto-based development or any workflow requiring dynamic Bash script sourcing,
       Replay.fish is the optimal choice to seamlessly integrate Bash capabilities into Fish.
@@ -162,4 +158,8 @@ Fish 🔪⚓ The fish language ; https://fishshell.com/docs/current/language.htm
     Reference
       https://stackoverflow.com/questions/63107468/source-env-variables-from-bitbake-made-sdk-using-fish
   
+  ⚓⭕ berk-karaal/loadenv.fish ; https://github.com/berk-karaal/loadenv.fish 📅 2024-12-10 21:09:03
+    - Functionality: Supports parsing and loading static environment variables from files formatted as "KEY=VALUE" (e.g., .env files, /etc/os-release).
+    - Limitation: Does not support processing dynamic, Bash-based scripts such as oe-init-build-env used in Yocto.
 
+  

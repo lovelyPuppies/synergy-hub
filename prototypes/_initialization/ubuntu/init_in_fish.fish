@@ -39,6 +39,7 @@ set current_user (id --user --name)
 
 # Define the Fish configuration file path. Ensure Path.
 set -Ux FISH_CONFIG_PATH "$HOME/.config/fish/config.fish"
+set -Ux FISH_CONFIG_DIR "$HOME/.config/fish/conf.d"
 set fish_config_interactive_block_start "if status --is-interactive"
 set -Ux FISH_COMPLETIONS_DIR "$HOME/.config/fish/completions"
 set -Ux BASH_PROFILE_PATH "$HOME/.bash_profile"
@@ -71,10 +72,11 @@ mkdir -p $font_dir
 ### Fish plugins
 : '
 Fish plugins
-  ⚓ loadenv.fish ; https://github.com/jorgebucaran/replay.fish      
+  ⚓ berk-karaal/loadenv.fish ; https://github.com/berk-karaal/loadenv.fish
+  ⚓ jorgebucaran/replay.fish ; https://github.com/jorgebucaran/replay.fish
 '
 fisher install berk-karaal/loadenv.fish
-
+fisher install jorgebucaran/replay.fish
 
 
 
