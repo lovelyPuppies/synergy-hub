@@ -54,3 +54,138 @@ ROS 2 🔪 Docs ; https://docs.ros.org/en/jazzy/index.html
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
 ⚓ ROS 1 ; https://wiki.ros.org/
 
+----------------------------------------------
+⚓🔰 ROS 1 🔪 Tutorials ; https://wiki.ros.org/ROS/Tutorials
+  # Core ROS Tutorials
+    # Beginner Level
+      3.🖇️⚓ Creating a ROS Package ; https://wiki.ros.org/ROS/Tutorials/CreatingPackage 📅 2025-01-09 16:17:17
+        #️⃣ What makes up a catkin Package? ; https://wiki.ros.org/ROS/Tutorials/CreatingPackage#ROS.2FTutorials.2Fcatkin.2FCreatingPackage.What_makes_up_a_catkin_Package.3F
+        #️⃣💡🗺️ Packages in a catkin Workspace ; https://wiki.ros.org/ROS/Tutorials/CreatingPackage#ROS.2FTutorials.2Fcatkin.2FCreatingPackage.Packages_in_a_catkin_Workspace
+        #️⃣ Creating a catkin Package ; https://wiki.ros.org/ROS/Tutorials/CreatingPackage#ROS.2FTutorials.2Fcatkin.2FCreatingPackage.Creating_a_catkin_Package
+          ❕ catkin_create_pkg <package_name> [depend1] [depend2] [depend3]
+          %shell>
+            mkdir -p /workspace/src && cd /workspace/src && \
+            catkin_create_pkg beginner_tutorials std_msgs rospy roscpp &&  \
+        #️⃣ Building a catkin workspace and sourcing the setup file ; https://wiki.ros.org/ROS/Tutorials/CreatingPackage#ROS.2FTutorials.2Fcatkin.2FCreatingPackage.Building_a_catkin_workspace_and_sourcing_the_setup_file
+          %shell>
+            cd /workspace && \
+            catkin_make && replay source /workspace/devel/setup.bash
+        #️⃣ package dependencies ; https://wiki.ros.org/ROS/Tutorials/CreatingPackage#ROS.2FTutorials.2Fcatkin.2FCreatingPackage.package_dependencies
+          📝 You need to run this before checking dependencies to ensure that all dependencies are resolved and up-to-date.
+            ❗ %shell> rosdep update
+          # 🪱 First-order dependencies
+            ❔ When using catkin_create_pkg earlier, a few package dependencies were provided.
+              These first-order dependencies can now be reviewed with the rospack tool.
+            %shell>
+              rospack depends1 beginner_tutorials
+              # These dependencies for a package are stored in the package.xml file:
+              #   %shell> roscd beginner_tutorials && cat package.xml
+          # 🪱 Indirect dependencies
+            In many cases, a dependency will also have its own dependencies. ...
+            %shell> rospack depends1 rospy
+            
+            🚣 A package can have quite a few indirect dependencies. Luckily rospack can recursively determine all nested dependencie
+            %shell> rospack depends rospy
+
+        #️⃣ Customizing Your Package ; https://wiki.ros.org/ROS/Tutorials/CreatingPackage#ROS.2FTutorials.2Fcatkin.2FCreatingPackage.Customizing_Your_Package
+          # Customizing the package.xml
+            # description tag
+            # maintainer tags
+            # license tags
+            # dependencies tags
+              https://wiki.ros.org/catkin/package.xml#Build.2C_Run.2C_and_Test_Dependencies
+                - 🪱 Build Dependencies
+                  Dependencies required to build this package itself.
+                - 🪱 Build Export Dependencies
+                  Dependencies required during the build process when another package depends on this package.
+                - Execution Dependencies
+                - Test Dependencies
+                - Build Tool Dependencies
+                  e.g. catkin, ament_cmake
+                - Documentation Tool Dependencies
+            # Final package.xml
+          # Customizing the CMakeLists.txt
+
+      10.🖇️⚓ Creating a ROS msg and srv ; https://wiki.ros.org/ROS/Tutorials/CreatingMsgAndSrv 📅 2025-01-09 16:18:05
+        #️⃣ Introduction to 🪱 msg (message) and 🪱 srv (service); https://wiki.ros.org/ROS/Tutorials/CreatingMsgAndSrv#Creating_a_srv
+          msg: msg files are simple text files that describe the fields of a ROS message. They are used to generate source code for messages in different languages.
+          srv: an srv file describes a service. It is composed of two parts: a 🪱 request and a response.
+        #️⃣ Using msg ; https://wiki.ros.org/ROS/Tutorials/CreatingMsgAndSrv#Using_msg
+          # Creating a msg
+            %shell:fish> roscd beginner_tutorials && mkdir -p msg && echo "int64 num" > msg/Num.msg
+
+            ⚠️ You may notice that sometimes your project builds fine even if you did not call find_package with all dependencies.
+              This is because catkin combines all your projects into one, so if an earlier project calls find_package, yours is configured with the same values.
+              But forgetting the call means your project can easily break when built in isolation.
+
+        #️⃣ Using rosmsg ; https://wiki.ros.org/ROS/Tutorials/CreatingMsgAndSrv#Using_rosmsg
+          ❕ %shell:fish> rosmsg show [message type]
+
+          %shell:fish> rosmsg show beginner_tutorials/Num
+
+          🚣 If you can't remember which Package a msg is in, you can leave out the package name. Try:
+            %shell:fish> rosmsg show Num
+        #️⃣ Using srv ; https://wiki.ros.org/ROS/Tutorials/CreatingMsgAndSrv#Using_srv
+          #️⃣ Creating a srv ; https://wiki.ros.org/ROS/Tutorials/CreatingMsgAndSrv#Creating_a_srv
+            ❕ shell:fish> roscp [package_name] [file_to_copy_path] [copy_path]
+            %shell:fish>
+              roscd beginner_tutorials && mkdir srv && \
+              roscp rospy_tutorials srv/AddTwoInts.srv srv/AddTwoInts.srv
+            
+            Unless you have done so already, open package.xml, and make sure these two lines are in it and uncommented ...
+            ❕ As before, note that at build time, we need "message_generation", while at runtime, we only need "message_runtime".
+            ❗ (Despite its name, message_generation works for both msg and srv.)
+
+          #️⃣ Using rossrv ; https://wiki.ros.org/ROS/Tutorials/CreatingMsgAndSrv#Using_rossrv
+            %shell:fish>
+              rossrv show beginner_tutorials/AddTwoInts
+              echo "========================="
+              # Here, two services are shown. The first is the one you just created in the beginner_tutorials package, and the second is the pre-existing one from the rospy_tutorials package.
+              rossrv show AddTwoInts
+        #️⃣ Common step for msg and srv ; https://wiki.ros.org/ROS/Tutorials/CreatingMsgAndSrv#Common_step_for_msg_and_srv
+          %shell:fish>
+            roscd beginner_tutorials && cd ../.. && \
+            catkin_make
+            cd -
+          Or, use catkin build (⭕ More Flexible! )
+          %shell:fish>
+            roscd beginner_tutorials && cd ../.. && \
+            catkin build
+            cd -
+
+          https://wiki.ros.org/action/show/msg
+          📍 Any .msg file in the msg directory will generate code for use in all supported languages. 
+            # c++ files
+            tree /workspacedevel/include
+            # python files
+            tree /workspace/devel/lib/python3/dist-packages
+            # lisp files
+            tree /workspace/devel/share/common-lisp
+          ⚖️ Similarly, any .srv files in the srv directory will have generated code in supported languages.
+            For C++, this will generate header files in the same directory as the message header files.
+            For Python and Lisp, there will be an 'srv' folder beside the 'msg' folders.
+        #️⃣ Getting Help ; https://wiki.ros.org/ROS/Tutorials/CreatingMsgAndSrv#Getting_Help
+          %shell>
+            rosmsg show -h
+            rosmsg list | grep beginner_tutorials
+            rospack find beginner_tutorials
+            rospack find rospy_tutorials
+        #️⃣ Review ; https://wiki.ros.org/ROS/Tutorials/CreatingMsgAndSrv#Review
+          Let's just list some of the commands we've used so far:
+            - rospack = ros+pack(age) : provides information related to ROS packages
+            - roscd = ros+cd : changes directory to a ROS package or stack
+            - rosls = ros+ls : lists files in a ROS package
+            - roscp = ros+cp : copies files from/to a ROS package
+            - rosmsg = ros+msg : provides information related to ROS message definitions
+            - rossrv = ros+srv : provides information related to ROS service definitions
+            - catkin_make : makes (compiles) a ROS package
+              rosmake = ros+make : makes (compiles) a ROS package (if you're not using a catkin workspace)
+            - ❗ catkin build: makes (compiles) a ROS package in an isolated manner while maintaining efficiency due to parallelisation
+              catkin_make + catkin_make_isolated
+
+
+    # Intermediate Level
+
+----------------------------------------------
+🥞 ROS 1 🔪 Packages
+  ⚓ rospy_tutorials ; https://wiki.ros.org/rospy_tutorials
