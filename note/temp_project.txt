@@ -15688,29 +15688,12 @@ rqt // qt 앱..? in ROS 우분투 앱에서.. check
   Plugins - Topics -  Topic Monitor 
 
 
-
-sudo apt update
-sudo apt install -y x11-xserver-utils 
-
-
-========
-# Replace IP_ADDRESS_OF_REMOTE_PC with the IP address of remote PC.
-# Bothe Remote PC and Raspberry Pi should be connected in the same >
-# e.g) export ROS_MASTER_URI=http://192.168.0.10:11311
-export ROS_MASTER_URI=http://IP_ADDRESS_OF_REMOTE_PC:11311
-
-# Replace IP_ADDRESS_OF_RASPBERRY_PI with the IP address of Raspber>
-# e.g) export ROS_HOSTNAME=192.168.0.11
-export ROS_HOSTNAME=IP_ADDRESS_OF_RASPBERRY_PI
-
-
-    export TURTLEBOT3_MODEL=burger
-    roslaunch turtlebot3_bringup turtlebot3_robot.launch
+export TURTLEBOT3_MODEL=burger
+roslaunch turtlebot3_bringup turtlebot3_robot.launch
 
 
 
 🧮 mpv --hwdec=vdpau 5640919-hd_1080_1920_30fps.mp4
-   
 
 🧮 VSCODE 좌측 하단 "Dev Container: ..." click. -> Reopen Folder Locally
   .devcontainer/Dockerfile
@@ -16394,7 +16377,6 @@ Error: failed to start containers: ded8a5af1e88
 
 
 
-
 bass source /opt/ros/noetic/setup.bash
 
       vscode@iot-04 /workspace> which rosrun
@@ -16404,3 +16386,6 @@ vscode@iot-04 /workspace>
 
 
 ss -tnlp | grep 11311
+
+Docker 컨테이너는 기본적으로 default bridge 네트워크에서 실행됩니다.
+동일한 네트워크 대역 안에 있는 컨테이너끼리는 컨테이너 이름(hostname)으로 통신이 가능합니다.

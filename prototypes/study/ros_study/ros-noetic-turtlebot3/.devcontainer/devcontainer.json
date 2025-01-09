@@ -6,24 +6,32 @@
   // Change the default source code mount ; https://code.visualstudio.com/remote/advancedcontainers/change-default-source-mount
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
   "workspaceFolder": "/workspace",
+  // ===== ⚙️ =====
+  "forwardPorts": [11311], // 🚣 format: <host:port_number>
+  "containerEnv": {
+    "ROS_MASTER_URI": "http://10.10.14.19:11311",
+    "ROS_HOSTNAME": "10.10.14.19",
+    "DISPLAY": "${localEnv:DISPLAY}",
+    "XAUTHORITY": "/tmp/.Xauthority",
+    "QT_X11_NO_MITSHM": "1" // #fix some QT bugs ; https://wiki.ros.org/docker/Tutorials/Compose
+  }, 
+  // ===============
   // 👇 Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
   "remoteUser": "vscode",
   // 👇 Features to add to the Dev Container. More info: https://containers.dev/implementors/features.
   "features": {
-    "ghcr.io/devcontainers-extra/features/fish-apt-get:1": {}
+    // "ghcr.io/devcontainers-extra/features/fish-apt-get:1": {}
     // "ghcr.io/devcontainers/features/github-cli:1": {}
-    // "ghcr.io/devcontainers/features/pyt  hon:1": {
+    // "ghcr.io/devcontainers/features/python:1": {
     //   "version": "3.11",
     //   "installTools": true,
     //   "toolsToInstall": "black,pytest",
     //   "installJupyterlab": true
     // }
   },
-  "containerEnv": {
-    "DISPLAY": "${localEnv:DISPLAY}",
-    "XAUTHORITY": "/tmp/.Xauthority"
-  },  
   "runArgs": [
+    "--name",
+    "ros_noetic_turtlebot3-node_master",
     "--runtime",
     "nvidia", // Ensure NVIDIA runtime is used for GPU access
     "--gpus",
@@ -37,12 +45,10 @@
     "--device", // Access to serial devices
     "/dev/ttyACM2",
     "--volume",
-    "/tmp/.X11-unix:/tmp/.X11-unix:rw", // X11 forwarding for GUI apps
+    "/tmp/.X11-unix:/tmp/.X11-unix:rw", // Shares the X11 Unix socket to enable GUI forwarding in the container. RW (Read, Write) is required for bidirectional communication.
     "--volume",
-    "${localEnv:HOME}/.Xauthority:/tmp/.Xauthority", // X authority
+    "${localEnv:HOME}/.Xauthority:/tmp/.Xauthority", // Provides X authority file to authenticate GUI apps with the X server. No RW (Read, Write) needed as it's typically read-only.
     "--privileged", // may be required to access hardware and devices fully
-    "--name",
-    "ros_noetic_study"
     // "--ipc", 
     // "host", // Share the host's inter-process communication (IPC) resources, including shared memory and semaphores, with the container.
     // "--shm-size", "2gb", // Allocate shared memory
