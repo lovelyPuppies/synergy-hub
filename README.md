@@ -78,8 +78,6 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
 ├── hardware_and_os  
 │&nbsp;&nbsp;&nbsp;&nbsp;├── arm  
 │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── [arm_compiler](prototypes/_lab/tech_stack/hardware_and_os/arm/arm_compiler.txt)  
-│&nbsp;&nbsp;&nbsp;&nbsp;├── hardware  
-│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── [nvidia](prototypes/_lab/tech_stack/hardware_and_os/hardware/nvidia.txt)  
 │&nbsp;&nbsp;&nbsp;&nbsp;├── [Issues.md](prototypes/_lab/tech_stack/hardware_and_os/Issues.md)  
 │&nbsp;&nbsp;&nbsp;&nbsp;├── os  
 │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;├── linux  

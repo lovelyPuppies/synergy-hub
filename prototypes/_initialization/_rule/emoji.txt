@@ -1,12 +1,17 @@
 Emoji 🔗 from VS Code Extension :emojisense: ;https://marketplace.visualstudio.com/items?itemName=bierner.emojisense
   📅 Modified at 2025-01-08 16:44:55
-  📏 Format: <emoji>   <name>    <suffix when use emoji>
+  
+  📏 Format
   -----
-  📝  :memo:            ""
-  📜  :scroll:          "(how-to) fish script: <Title>"
-  ✍️  :writing_hand:    "(✍️ <Subject> 🔪 study)"
+  <emoji>  <name>           <suffix when use emoji>             Description
+  -----
+  📝      :memo:            ""
+  📜      :scroll:          "(how-to) fish script: <Title>"
+  ✍️      :writing_hand:    "(✍️ <Subject> 🔪 study)"
 
-  🚨  :rotating_light:  "(Issue: Error); <Title>"
-  🚨  :rotating_light:  "(Issue: Bug); <Title>"
+  🚨      :rotating_light:  "(Issue: Error); <Title>"
+  🚨      :rotating_light:  "(Issue: Bug); <Title>"
  
-  🤚  :raised_hand:     "User interaction: <Title>"
+  🤚      :raised_hand:     "User interaction: <Title>"         User interaction required because it cannot be a completely automatic script
+
+  🗑️      :wastebasket:     "Deprecated: <Title>"

@@ -13,7 +13,7 @@
     # Cause
       💡 The file extensions *.s and *.S are treated differently by ARMCLANG. A file with *.s (lower case) is an assembly language file and a file with *.S (upper case) is an assembly language file which should be run through the C preprocessor first.
 
-❌ deprecated
+🗑️ deprecated
   # Arm A-profile A32/T32 Instruction Set Architecture 
     ⚓ A32 Instructions by Encoding ; https://developer.arm.com/documentation/ddi0597/2024-09/A32-Instructions-by-Encoding?lang=en
     ⚓ T32 Instructions by Encoding ; https://developer.arm.com/documentation/ddi0597/2024-09/T32-Instructions-by-Encoding/32-bit?lang=en

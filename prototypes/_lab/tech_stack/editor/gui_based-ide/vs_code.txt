@@ -14,7 +14,7 @@ VS code 🔪📦 Extensions ; https://marketplace.visualstudio.com/vscode
   ----------------------------------------------
   ⚓ Explicit Folding ; https://marketplace.visualstudio.com/items?itemName=zokugun.explicit-folding
     📝 &comment;  it solves problem of "[folding] No setting for ignoring all empty lines" from https://github.com/microsoft/vscode/issues/88151
-    ⚙️ settings for "User" Scope ❌ deprecated 📅 2024-11-30 18:32:23
+    ⚙️ settings for "User" Scope 🗑️ deprecated 📅 2024-11-30 18:32:23
       {
         // Title: Explicit Folding settings from https://marketplace.visualstudio.com/items?itemName=zokugun.explicit-folding
         "[latex]": {

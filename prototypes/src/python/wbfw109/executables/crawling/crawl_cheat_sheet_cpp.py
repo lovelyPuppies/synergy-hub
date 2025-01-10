@@ -2,34 +2,34 @@
 """
 Written in 📅 2024-09-18 22:27:18
 1. Image Processing and Crawling
-   - If `img src` and `a href` share the same extension, prioritize crawling the image from `a href`.
-   - Reason: `img src` might be cropped or resized, affecting image quality when using AI-based enlargement.
-   - Next: Implement AI-based image enlargement, but handle potential text distortion carefully.
+  - If `img src` and `a href` share the same extension, prioritize crawling the image from `a href`.
+  - Reason: `img src` might be cropped or resized, affecting image quality when using AI-based enlargement.
+  - Next: Implement AI-based image enlargement, but handle potential text distortion carefully.
 
 2. Breadcrumb Structure
-   - Modify the breadcrumb structure for better readability.
-   - Instead of using "_" or "-" characters, use one space between words and the "🔪" emoji to represent the hierarchy.
+  - Modify the breadcrumb structure for better readability.
+  - Instead of using "_" or "-" characters, use one space between words and the "🔪" emoji to represent the hierarchy.
 
 3. Bandiviewer Configuration
-   - Lock Title Bar: Press the "`" key.
-   - Settings:
-     - DPI: Set to 200%.
-     - Background Color: Black.
-     - Border Color: Black.
-   - Use "No Filter" to avoid lag from the "Sharpen" filter during zoom or movement.
+  - Lock Title Bar: Press the "`" key.
+  - Settings:
+    - DPI: Set to 200%.
+    - Background Color: Black.
+    - Border Color: Black.
+  - Use "No Filter" to avoid lag from the "Sharpen" filter during zoom or movement.
 
 4. Image Conversion and Enlargement
-   - Convert downloaded SVG files to PNG with a white background.
-   - Use waifu-2x to upscale all images (ensure height and width are at least 1920px).
-   - Add EXIF description data from JSON to the converted images.
+  - Convert downloaded SVG files to PNG with a white background.
+  - Use waifu-2x to upscale all images (ensure height and width are at least 1920px).
+  - Add EXIF description data from JSON to the converted images.
 
 
-❌ Deprecated
-There was a previous idea to create an SVG viewer that would display SVG files within a recursive folder structure.
-- The viewer would show folders hierarchically, similar to HTML tags (h1, h2, h3).
-- It would include a sidebar displaying the current location and the entire classification, similar to the ToS (Table of Sections) feature in MSDN.
-- Breadcrumb navigation was also part of the plan.
-- The goal was to automatically explore nested directories and generate the viewer without manually specifying file names, allowing zooming with + and - keys.
+🗑️ Deprecated
+  There was a previous idea to create an SVG viewer that would display SVG files within a recursive folder structure.
+    - The viewer would show folders hierarchically, similar to HTML tags (h1, h2, h3).
+    - It would include a sidebar displaying the current location and the entire classification, similar to the ToS (Table of Sections) feature in MSDN.
+    - Breadcrumb navigation was also part of the plan.
+    - The goal was to automatically explore nested directories and generate the viewer without manually specifying file names, allowing zooming with + and - keys.
 
 However, this approach was deprecated as the implementation became overly complex and drawbacks emerged.
 Instead, opening `.avif` files with Bandiviewer and utilizing its built-in features was determined to be a more efficient solution.

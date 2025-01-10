@@ -151,12 +151,13 @@ ffplay -v verbose -hwaccel cuda ~/Downloads/Polar_orbit.ogv.360p.webm
 # ./configure --help | grep prefix
 #   >> --prefix=PREFIX          install in PREFIX [/usr/local]
 
-# wget https://upload.wikimedia.org/wikipedia/commons/transcoded/6/6c/Polar_orbit.ogv/Polar_orbit.ogv.360p.webm
-~/bin/ffplay ~/Downloads/Polar_orbit.ogv.360p.webm
+ffplay ~/Downloads/Polar_orbit.ogv.360p.webm
+# webm files ;  https://commons.wikimedia.org/wiki/Category:Videos
+# 
+wget -O mp4.mp4 "https://cdn.pixabay.com/video/2016/08/22/4740-179738694_tiny.mp4?download"
+ffplay ~/Downloads/mp4.mp4
 
-~/bin/ffplay -hwaccel nvdec ~/Downloads/Polar_orbit.ogv.360p.webm
-
-~/bin/ffplay -hwaccel nvdec ~/Downloads/Polar_orbit.ogv.360p.webm
+ffplay -hwaccel nvdec ~/Downloads/Polar_orbit.ogv.360p.webm
 
 
 
