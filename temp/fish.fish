@@ -59,6 +59,8 @@ sudo apt update
 sudo apt install -y libunistring-dev libgnutls28-dev
 ## ERROR: libass >= 0.11.0 not found using pkg-config
 sudo apt install -y libass-dev
+export PKG_CONFIG_PATH=":"
+export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig:$PKG_CONFIG_PATH
 
 
 # NASM
