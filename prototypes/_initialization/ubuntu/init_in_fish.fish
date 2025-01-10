@@ -257,6 +257,7 @@ end
 
 
 
+
 # : '
 # 📦🚀 avahi ; https://github.com/avahi/avahi
 #     https://repology.org/project/avahi/versions
@@ -1562,6 +1563,54 @@ if not grep -Fxq "$unique_comment" "$FISH_CONFIG_PATH"
     " | prettify_indent_via_pipe | tee -a $FISH_CONFIG_PATH >/dev/null
     echo -e "\n" >>"$FISH_CONFIG_PATH"
 end
+
+
+
+
+#### 📦 ffmpeg ; Play, record, convert, and stream audio and video
+# Define the FFmpeg installation directory
+set FFMPEG_INSTALL_DIR /usr/local/ffmpeg
+
+# Define the unique comment to identify this block in the Fish config file
+set unique_comment "## [FFmpeg] Add FFmpeg paths and settings"
+
+# Check if the unique comment already exists in the Fish config file
+if not grep -Fxq "$unique_comment" "$FISH_CONFIG_PATH"
+    echo "
+    $unique_comment
+    # Add FFmpeg binaries to PATH
+    fish_add_path \$FFMPEG_INSTALL_DIR/bin
+
+    # Add FFmpeg libraries to linker and compiler paths
+    set -gx LDFLAGS \$LDFLAGS -L\$FFMPEG_INSTALL_DIR/lib
+    set -gx CPPFLAGS \$CPPFLAGS -I\$FFMPEG_INSTALL_DIR/include
+
+    # Add FFmpeg pkg-config files to PKG_CONFIG_PATH
+    set -gx PKG_CONFIG_PATH \$PKG_CONFIG_PATH:\$FFMPEG_INSTALL_DIR/lib/pkgconfig
+    " | tee -a "$FISH_CONFIG_PATH" >/dev/null
+    echo -e "\n" >>"$FISH_CONFIG_PATH"
+    echo "FFmpeg paths and settings added to $FISH_CONFIG_PATH"
+else
+    echo "FFmpeg paths and settings are already present in $FISH_CONFIG_PATH"
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

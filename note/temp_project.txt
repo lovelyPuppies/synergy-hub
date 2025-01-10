@@ -16493,3 +16493,22 @@ PATH="$HOME/bin:$PATH" PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig" ./conf
 PATH="$HOME/bin:$PATH" make && \
 make install && \
 hash -r
+
+
+https://ffmpeg.org/documentation.html
+✅ FFMPEG build 
+# https://trac.ffmpeg.org/wiki/CompilationGuide
+  ⚓ ​Docker image with pre-compiled ffmpeg and libraries ; https://hub.docker.com/r/jrottenberg/ffmpeg/
+  docker pull jrottenberg/ffmpeg:6.1.2-ubuntu2404
+  # https://ffmpeg.org/
+  docker run --rm -it --name ffmpeg_test --entrypoint bash jrottenberg/ffmpeg:6.1.2-ubuntu2404
+  /usr/local/bin/ffmpeg
+  docker cp ffmpeg_test:/opt/ffmpeg/bin/ffmpeg
+  //
+  6.1.2-ubuntu2404
+
+
+  which ffmpeg
+  ldd /usr/local/bin/ffmpeg
+
+

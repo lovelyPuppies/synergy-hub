@@ -16,14 +16,13 @@ trap on_interrupt SIGINT
 set script_dir /home/wbfw109v2/repos/synergy-hub/prototypes/_initialization/ubuntu
 
 
-### FFmpeg build ; https://trac.ffmpeg.org/wiki/CompilationGuide
+### FFmpeg build ; https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu
 
 
 mkdir -p $HOME/ffmpeg_sources $HOME/bin
 
 # Get the Dependencies
-sudo apt install
-autoconf \
+sudo sudo apt update && sudo apt install -y \
     automake \
     build-essential \
     cmake \
@@ -48,20 +47,11 @@ autoconf \
     yasm \
     zlib1g-dev
 
+
+
 # ⚠️ On Ubuntu 20.04 you may also need this command: (​note) ...
 
-#
 sudo add-apt-repository -y universe
-sudo apt update
-
-## ERROR: gnutls not found using pkg-config 📅 2025-01-10 17:23:08
-# https://askubuntu.com/questions/1252997/unable-to-compile-ffmpeg-on-ubuntu-20-04
-sudo apt install -y libunistring-dev libgnutls28-dev
-## ERROR: libass >= 0.11.0 not found using pkg-config
-sudo apt install -y libass-dev
-export PKG_CONFIG_PATH=":"
-export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig:$PKG_CONFIG_PATH
-
 
 # NASM
 sudo apt install -y nasm
@@ -89,6 +79,9 @@ sudo apt install -y libopus-dev
 
 ## libsvtav1: AV1 video encoder/decoder
 # ⚠️ Requires ffmpeg to be configured with --enable-libsvtav1.
+cd $HOME/ffmpeg_sources && git -C SVT-AV1 pull 2>/dev/null || git clone https://gitlab.com/AOMediaCodec/SVT-AV1.git && mkdir -p SVT-AV1/build && cd SVT-AV1/build && \
+    PATH="$HOME/bin:$PATH" cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX="$HOME/ffmpeg_build" -DCMAKE_BUILD_TYPE=Release -DBUILD_DEC=OFF -DBUILD_SHARED_LIBS=OFF .. && \
+    PATH="$HOME/bin:$PATH" make && make install
 
 ## libdav1d: AV1 decoder, much faster than the one provided by libaom
 # ⚠️ Requires ffmpeg to be configured with --enable-libdav1d.
@@ -99,16 +92,18 @@ sudo apt install -y libdav1d-dev
 #   Currently ​an issue in libvmaf also requires FFmpeg to be built with --ld="g++" for a static build to succeed.
 cd $HOME/ffmpeg_sources && wget https://github.com/Netflix/vmaf/archive/v3.0.0.tar.gz && tar xvf v3.0.0.tar.gz && mkdir -p vmaf-3.0.0/libvmaf/build && cd vmaf-3.0.0/libvmaf/build && meson setup -Denable_tests=false -Denable_docs=false --buildtype=release --default-library=static .. --prefix "$HOME/ffmpeg_build" --bindir="$HOME/bin" --libdir="$HOME/ffmpeg_build/lib" && ninja && ninja install
 
+
 ## FFmpeg 
+export INSTALL_PREFIX=/usr/local/ffmpeg
 cd $HOME/ffmpeg_sources && wget -O ffmpeg-snapshot.tar.bz2 https://ffmpeg.org/releases/ffmpeg-snapshot.tar.bz2 && tar xjvf ffmpeg-snapshot.tar.bz2 && cd ffmpeg && \
-    PATH="$HOME/bin:$PATH" PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig" ./configure \
-    --prefix="$HOME/ffmpeg_build" \
+    PATH="$HOME/bin:$PATH" PKG_CONFIG_PATH="$INSTALL_PREFIX/lib/pkgconfig:/usr/lib/x86_64-linux-gnu/pkgconfig" ./configure \
+    --prefix="$INSTALL_PREFIX" \
     --pkg-config-flags="--static" \
-    --extra-cflags="-I$HOME/ffmpeg_build/include" \
-    --extra-ldflags="-L$HOME/ffmpeg_build/lib" \
+    --extra-cflags="-I$INSTALL_PREFIX/include" \
+    --extra-ldflags="-L$INSTALL_PREFIX/lib" \
     --extra-libs="-lpthread -lm" \
     --ld="g++" \
-    --bindir="$HOME/bin" \
+    --bindir="$INSTALL_PREFIX/bin" \
     --enable-gpl \
     --enable-gnutls \
     --enable-libass \
@@ -124,9 +119,20 @@ cd $HOME/ffmpeg_sources && wget -O ffmpeg-snapshot.tar.bz2 https://ffmpeg.org/re
     --enable-libx265 \
     --enable-libvmaf \
     --enable-nonfree && \
-    PATH="$HOME/bin:$PATH" make && make install && hash -r
+    PATH="$HOME/bin:$PATH" make -j$(nproc) && make install
+echo "hash only exists in bash, not in fish. In bash shell, to reload the path cache, use the following command: 🧮 hash -r"
+
+
+## You can check required dynamic libraries using command  `ldd` (List Dynamic Dependencies)
+#   🛍️ e.g.ldd ~/bin/ffmpeg
+
 # --enable-libaom \
 
+# ./configure --help | grep prefix
+#   >> --prefix=PREFIX          install in PREFIX [/usr/local]
+
+wget https://upload.wikimedia.org/wikipedia/commons/transcoded/6/6c/Polar_orbit.ogv/Polar_orbit.ogv.360p.webm
+~/bin/ffplay ~/Downloads/Polar_orbit.ogv.360p.webm
 
 
 
