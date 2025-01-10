@@ -3,6 +3,7 @@
 
 # Load Modules
 source prototypes/_initialization/ubuntu/fish_modules/_import_all.fish
+# /home/wbfw109v2/repos/synergy-hub/prototypes/_initialization/ubuntu/fish_modules/_import_all.fish
 
 function on_interrupt
     echo -e "\nScript interrupted. Exiting..."
@@ -94,9 +95,16 @@ cd $HOME/ffmpeg_sources && wget https://github.com/Netflix/vmaf/archive/v3.0.0.t
 
 
 ## FFmpeg 
+# 🧮 ./configure --help
+#   External library support
+#     The following libraries provide various hardware acceleration features:
+#       🌳 --enable-cuda-nvcc         enable Nvidia CUDA compiler [no]
 export INSTALL_PREFIX=/usr/local/ffmpeg
+export PKG_CONFIG_PATH=$HOME/ffmpeg_build/lib/pkgconfig:/usr/lib/x86_64-linux-gnu/pkgconfig
+# export PKG_CONFIG_PATH=$HOME/ffmpeg_build/lib/pkgconfig:/usr/lib/x86_64-linux-gnu/pkgconfig:$INSTALL_PREFIX/lib/pkgconfig
+
 cd $HOME/ffmpeg_sources && wget -O ffmpeg-snapshot.tar.bz2 https://ffmpeg.org/releases/ffmpeg-snapshot.tar.bz2 && tar xjvf ffmpeg-snapshot.tar.bz2 && cd ffmpeg && \
-    PATH="$HOME/bin:$PATH" PKG_CONFIG_PATH="$INSTALL_PREFIX/lib/pkgconfig:/usr/lib/x86_64-linux-gnu/pkgconfig" ./configure \
+    PATH="$HOME/bin:$PATH" PKG_CONFIG_PATH="$PKG_CONFIG_PATH" ./configure \
     --prefix="$INSTALL_PREFIX" \
     --pkg-config-flags="--static" \
     --extra-cflags="-I$INSTALL_PREFIX/include" \
@@ -118,8 +126,9 @@ cd $HOME/ffmpeg_sources && wget -O ffmpeg-snapshot.tar.bz2 https://ffmpeg.org/re
     --enable-libx264 \
     --enable-libx265 \
     --enable-libvmaf \
-    --enable-nonfree && \
-    PATH="$HOME/bin:$PATH" make -j$(nproc) && make install
+    --enable-nonfree \
+    --enable-cuda-nvcc && \
+    PATH="$HOME/bin:$PATH" make && sudo make install
 echo "hash only exists in bash, not in fish. In bash shell, to reload the path cache, use the following command: 🧮 hash -r"
 
 
@@ -131,12 +140,40 @@ echo "hash only exists in bash, not in fish. In bash shell, to reload the path c
 # ./configure --help | grep prefix
 #   >> --prefix=PREFIX          install in PREFIX [/usr/local]
 
-wget https://upload.wikimedia.org/wikipedia/commons/transcoded/6/6c/Polar_orbit.ogv/Polar_orbit.ogv.360p.webm
-~/bin/ffplay ~/Downloads/Polar_orbit.ogv.360p.webm
+# wget https://upload.wikimedia.org/wikipedia/commons/transcoded/6/6c/Polar_orbit.ogv/Polar_orbit.ogv.360p.webm
+# ~/bin/ffplay ~/Downloads/Polar_orbit.ogv.360p.webm
+
+# ~/bin/ffplay -hwaccel nvdec ~/Downloads/Polar_orbit.ogv.360p.webm
+
+# ~/bin/ffplay -hwaccel nvdec ~/Downloads/Polar_orbit.ogv.360p.webm
 
 
 
 
+
+#### 📦 ffmpeg ; Play, record, convert, and stream audio and video
+# Define the unique comment to identify this block in the Fish config file
+set unique_comment "## [FFmpeg] Add FFmpeg paths and settings"
+
+# Check if the unique comment already exists in the Fish config file
+if not grep -Fxq "$unique_comment" "$FISH_CONFIG_PATH"
+    echo "
+    $unique_comment"'
+    # Define the FFmpeg installation directory
+    set -x FFMPEG_INSTALL_DIR /usr/local/ffmpeg
+    
+    # Add FFmpeg binaries to PATH
+    fish_add_path $FFMPEG_INSTALL_DIR/bin
+
+    # Add FFmpeg libraries to linker and compiler paths
+    set -gx LDFLAGS $LDFLAGS -L$FFMPEG_INSTALL_DIR/lib
+    set -gx CPPFLAGS $CPPFLAGS -I$FFMPEG_INSTALL_DIR/include
+
+    # Add FFmpeg pkg-config files to PKG_CONFIG_PATH
+    set -gx PKG_CONFIG_PATH $PKG_CONFIG_PATH:$FFMPEG_INSTALL_DIR/lib/pkgconfig
+    ' | prettify_indent_via_pipe | tee -a $FISH_CONFIG_PATH >/dev/null
+    echo -e "\n" >>"$FISH_CONFIG_PATH"
+end
 
 
 

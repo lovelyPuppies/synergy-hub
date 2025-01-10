@@ -16396,106 +16396,39 @@ https://netsarang.atlassian.net/wiki/spaces/KRSUP/pages/1999372381/MIT-SHM+missi
 FFmpeg build
   https://trac.ffmpeg.org/wiki/CompilationGuide
 
-
-mkdir -p $HOME/ffmpeg_sources $HOME/bin
-
-# Get the Dependencies
-sudo apt install 
-  autoconf \
-  automake \
-  build-essential \
-  cmake \
-  git-core \
-  libass-dev \
-  libfreetype6-dev \
-  libgnutls28-dev \
-  libmp3lame-dev \
-  libsdl2-dev \
-  libtool \
-  libva-dev \
-  libvdpau-dev \
-  libvorbis-dev \
-  libxcb1-dev \
-  libxcb-shm0-dev \
-  libxcb-xfixes0-dev \
-  meson \
-  ninja-build \
-  pkg-config \
-  texinfo \
-  wget \
-  yasm \
-  zlib1g-dev
-On Ubuntu 20.04 you may also need this command: (​note)
-
-# NASM
-sudo apt-get install nasm
-## libx264: H.264 video encoder ; https://trac.ffmpeg.org/wiki/Encode/H.264
-# ⚠️ Requires ffmpeg to be configured with --enable-gpl --enable-libx264.
-sudo apt-get install libx264-dev
-
-## libx265: H.265/HEVC video encoder ; https://trac.ffmpeg.org/wiki/Encode/H.265
-# ⚠️ Requires ffmpeg to be configured with --enable-gpl --enable-libx265.
-sudo apt-get install libx265-dev libnuma-dev
-
-## libvpx: VP8/VP9 video encoder/decoder ; https://trac.ffmpeg.org/wiki/Encode/VP9
-# ⚠️ Requires ffmpeg to be configured with --enable-libvpx.
-sudo apt-get install libvpx-dev
-
-# libfdk-aac: AAC audio encoder ; https://trac.ffmpeg.org/wiki/Encode/AAC
-# ⚠️ Requires ffmpeg to be configured with --enable-libfdk-aac (and --enable-nonfree if you also included --enable-gpl).
-sudo apt-get install libfdk-aac-dev
-
-## libopus: Opus audio decoder and encoder
-# ⚠️ Requires ffmpeg to be configured with --enable-libopus.
-sudo apt-get install libopus-dev
-
-# 📰 libaom: libaom does not yet appear to have a stable API, ...
-
-## libsvtav1: AV1 video encoder/decoder
-# ⚠️ Requires ffmpeg to be configured with --enable-libsvtav1.
-
-## libdav1d: AV1 decoder, much faster than the one provided by libaom
-# ⚠️ Requires ffmpeg to be configured with --enable-libdav1d.
-sudo apt-get install libdav1d-dev
-
-## libvmaf ; Library for calculating the ​VMAF video quality metric.
-# ⚠️ Requires ffmpeg to be configured with --enable-libvmaf.
-  Currently ​an issue in libvmaf also requires FFmpeg to be built with --ld="g++" for a static build to succeed.
-
-## FFmpeg 
-cd $HOME/ffmpeg_sources && \
-wget -O ffmpeg-snapshot.tar.bz2 https://ffmpeg.org/releases/ffmpeg-snapshot.tar.bz2 && \
-tar xjvf ffmpeg-snapshot.tar.bz2 && \
-cd ffmpeg && \
-PATH="$HOME/bin:$PATH" PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig" ./configure \
-  --prefix="$HOME/ffmpeg_build" \
-  --pkg-config-flags="--static" \
-  --extra-cflags="-I$HOME/ffmpeg_build/include" \
-  --extra-ldflags="-L$HOME/ffmpeg_build/lib" \
-  --extra-libs="-lpthread -lm" \
-  --ld="g++" \
-  --bindir="$HOME/bin" \
-  --enable-gpl \
-  --enable-gnutls \
-  --enable-libaom \
-  --enable-libass \
-  --enable-libfdk-aac \
-  --enable-libfreetype \
-  --enable-libmp3lame \
-  --enable-libopus \
-  --enable-libsvtav1 \
-  --enable-libdav1d \
-  --enable-libvorbis \
-  --enable-libvpx \
-  --enable-libx264 \
-  --enable-libx265 \
-  --enable-nonfree && \
-PATH="$HOME/bin:$PATH" make && \
-make install && \
-hash -r
+https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#ubuntu
 
 
 https://ffmpeg.org/documentation.html
+.8.4. Common Installation Instructions for Ubuntu
+These instructions apply to both local and network installation for Ubuntu.
+
+Update the Apt repository cache:
+
+sudo apt-get update
+Install CUDA SDK:
+
+Note
+
+These two commands must be executed separately.
+
+sudo apt-get install cuda-toolkit
+To include all GDS packages:
+
+sudo apt-get install nvidia-gds
+For native arm64-Jetson repos, install the additional packages:
+
+sudo apt-get install cuda-compat
+
+
+
+sudo apt install nvidia-cuda-toolkit
+
+
+
+
+
+
 ✅ FFMPEG build 
 # https://trac.ffmpeg.org/wiki/CompilationGuide
   ⚓ ​Docker image with pre-compiled ffmpeg and libraries ; https://hub.docker.com/r/jrottenberg/ffmpeg/
@@ -16512,3 +16445,10 @@ https://ffmpeg.org/documentation.html
   ldd /usr/local/bin/ffmpeg
 
 
+
+
+ffmpeg -i ~/Downloads/Polar_orbit.ogv.360p.webm -c:v h264_nvenc output.mp4
+ffplay -hwaccel cuda output.mp4
+
+
+ffmpeg -encoders
