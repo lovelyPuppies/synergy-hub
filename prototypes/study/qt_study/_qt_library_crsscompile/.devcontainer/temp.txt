@@ -1,0 +1,231 @@
+
+##### Update and install necessary packages
+sudo apt update && sudo apt install -y \
+  wget \
+  git \
+  build-essential \
+  make \
+  cmake \
+  rsync \
+  sed \
+  libclang-dev \
+  ninja-build \
+  gcc \
+  bison \
+  python3 \
+  gperf \
+  pkg-config \
+  libfontconfig1-dev \
+  libfreetype6-dev \
+  libx11-dev \
+  libx11-xcb-dev \
+  libxext-dev \
+  libxfixes-dev \
+  libxi-dev \
+  libxrender-dev \
+  libxcb1-dev \
+  libxcb-glx0-dev \
+  libxcb-keysyms1-dev \
+  libxcb-image0-dev \
+  libxcb-shm0-dev \
+  libxcb-icccm4-dev \
+  libxcb-sync-dev \
+  libxcb-xfixes0-dev \
+  libxcb-shape0-dev \
+  libxcb-randr0-dev \
+  libxcb-render-util0-dev \
+  libxcb-util-dev \
+  libxcb-xinerama0-dev \
+  libxcb-xkb-dev \
+  libxkbcommon-dev \
+  libxkbcommon-x11-dev \
+  libatspi2.0-dev \
+  libgl1-mesa-dev \
+  libglu1-mesa-dev \
+  freeglut3-dev \
+  libssl-dev \
+  libgmp-dev \
+  libmpfr-dev \
+  libmpc-dev \
+  flex \
+  gawk \
+  texinfo \
+  libisl-dev \
+  zlib1g-dev \
+  libtool \
+  autoconf \
+  automake \
+  libgdbm-dev \
+  libdb-dev \
+  libbz2-dev \
+  libreadline-dev \
+  libexpat1-dev \
+  liblzma-dev \
+  libffi-dev \
+  libsqlite3-dev \
+  libbsd-dev \
+  perl \
+  patch \
+  m4 \
+  libncurses5-dev \
+  gettext  \
+  gcc-arm-linux-gnueabihf \
+  g++-arm-linux-gnueabihf \
+  binutils-arm-linux-gnueabihf \
+  libc6-armhf-cross \
+  libc6-dev-armhf-cross \
+  glibc-source
+sudo apt clean && \
+sudo rm -rf /var/lib/apt/lists/*
+
+
+
+##### Set the working directory to /build
+# WORKDIR /build
+export WORKDIR=$HOME/build
+mkdir -p $WORKDIR && cd $WORKDIR
+
+
+# Create sysroot directory
+mkdir -p sysroot sysroot/usr sysroot/opt
+
+cp /workspace/rasp.tar.gz $WORKDIR/
+cp /workspace/toolchain.cmake $WORKDIR/
+
+
+
+
+##### Build and install CMake from source
+cd $WORKDIR
+echo "Building CMake from source" && \
+mkdir cmakeBuild && cd cmakeBuild && \
+git clone https://github.com/Kitware/CMake.git && \
+cd CMake && \
+./bootstrap && make -j$(nproc) && sudo make install && \
+echo "CMake build completed"
+
+
+
+
+##### Fix symbolic link and prepare directories
+cd $WORKDIR
+echo "Fix symbolic link and create directories" && \
+    wget https://raw.githubusercontent.com/riscv/riscv-poky/master/scripts/sysroot-relativelinks.py && \
+    chmod +x sysroot-relativelinks.py && \
+    python3 sysroot-relativelinks.py /build/sysroot && \
+    mkdir -p qt6 qt6/host qt6/pi qt6/host-build qt6/pi-build qt6/src;
+
+
+##### Download required submodules: 39 = 13 * 3 ; https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/
+cd $WORKDIR
+### qtbase, qtshadertools, qtwebview
+wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtbase-everywhere-src-6.8.0.tar.xz;
+wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtshadertools-everywhere-src-6.8.0.tar.xz;
+wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtwebview-everywhere-src-6.8.0.tar.xz;
+
+### qtwebsockets, qtwebengine, qtwebchannel
+wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtwebsockets-everywhere-src-6.8.0.tar.xz;
+wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtwebengine-everywhere-src-6.8.0.tar.xz;
+wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtwebchannel-everywhere-src-6.8.0.tar.xz;
+
+### qtwayland, qtvirtualkeyboard, qttranslations
+wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtwayland-everywhere-src-6.8.0.tar.xz;
+wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtvirtualkeyboard-everywhere-src-6.8.0.tar.xz;
+wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qttranslations-everywhere-src-6.8.0.tar.xz;
+
+### qttools, qtsvg, qtspeech
+wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qttools-everywhere-src-6.8.0.tar.xz;
+wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtsvg-everywhere-src-6.8.0.tar.xz;
+wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtspeech-everywhere-src-6.8.0.tar.xz;
+
+### qtserialport, qtserialbus, qtsensors
+wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtserialport-everywhere-src-6.8.0.tar.xz;
+wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtserialbus-everywhere-src-6.8.0.tar.xz;
+wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtsensors-everywhere-src-6.8.0.tar.xz;
+
+### qtscxml, qtremoteobjects, qtquicktimeline
+wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtscxml-everywhere-src-6.8.0.tar.xz;
+wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtremoteobjects-everywhere-src-6.8.0.tar.xz;
+wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtquicktimeline-everywhere-src-6.8.0.tar.xz;
+
+### qtquickeffectmaker, qtquick3dphysics, qtquick3d
+wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtquickeffectmaker-everywhere-src-6.8.0.tar.xz;
+wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtquick3dphysics-everywhere-src-6.8.0.tar.xz;
+wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtquick3d-everywhere-src-6.8.0.tar.xz;
+
+### qtpositioning, qtnetworkauth, qtmultimedia
+wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtpositioning-everywhere-src-6.8.0.tar.xz;
+wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtnetworkauth-everywhere-src-6.8.0.tar.xz;
+wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtmultimedia-everywhere-src-6.8.0.tar.xz;
+
+### qtlottie, qtlocation, qtlanguageserver
+wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtlottie-everywhere-src-6.8.0.tar.xz;
+wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtlocation-everywhere-src-6.8.0.tar.xz;
+wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtlanguageserver-everywhere-src-6.8.0.tar.xz;
+
+### qtimageformats, qthttpserver, qtgrpc
+wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtimageformats-everywhere-src-6.8.0.tar.xz;
+wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qthttpserver-everywhere-src-6.8.0.tar.xz;
+wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtgrpc-everywhere-src-6.8.0.tar.xz;
+
+### qtgraphs, qtdoc, qtdatavis3d
+wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtgraphs-everywhere-src-6.8.0.tar.xz;
+wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtdoc-everywhere-src-6.8.0.tar.xz;
+wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtdatavis3d-everywhere-src-6.8.0.tar.xz;
+
+### qtconnectivity, qtcharts, qtactiveqt
+wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtconnectivity-everywhere-src-6.8.0.tar.xz;
+wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtcharts-everywhere-src-6.8.0.tar.xz;
+wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtactiveqt-everywhere-src-6.8.0.tar.xz;
+
+### qt5compat, qt3d, qtdeclarative
+wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qt5compat-everywhere-src-6.8.0.tar.xz;
+wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qt3d-everywhere-src-6.8.0.tar.xz;
+wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtdeclarative-everywhere-src-6.8.0.tar.xz;
+
+
+
+cd $WORKDIR
+
+cd $WORKDIR
+
+cd $WORKDIR
+
+
+
+
+cd $WORKDIR
+
+cd $WORKDIR
+
+cd $WORKDIR
+
+cd $WORKDIR
+
+cd $WORKDIR
+
+
+
+
+cd $WORKDIR
+
+cd $WORKDIR
+
+cd $WORKDIR
+
+cd $WORKDIR
+
+cd $WORKDIR
+
+
+
+
+cd $WORKDIR
+
+cd $WORKDIR
+
+cd $WORKDIR
+
+cd $WORKDIR
+
+cd $WORKDIR
