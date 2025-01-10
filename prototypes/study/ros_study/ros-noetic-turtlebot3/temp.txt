@@ -665,7 +665,7 @@ rosrun turtlesim turtlesim_node
 rosrun turtlesim turtlesim_node
 rosrun turtlesim turtle_teleop_key
 
-https://github.com/DominikN/ros2_docker_examples
+🅾️ https://github.com/DominikN/ros2_docker_examples
 
 
 https://github.com/brean/ros2-turtlebot3-remote-pc-docker/blob/main/docker-compose.yml
@@ -749,3 +749,18 @@ https://gist.github.com/ruffsl/4a24c26a1aa2cc733c64
 https://roboticseabass.com/2023/07/09/updated-guide-docker-and-ros2/
 
 https://github.com/2b-t/docker-for-robotics/blob/main/doc/VisualStudioCodeSetup.md
+
+
+
+그럼 ROS_NAMESPACE 는 동적으로 설정하는거야? 보통? 내가 만든 ros 라이브러리 여러개에 각자 적용하여 사용하나?
+
+
+msg packet
+  gemotry_msgs/Twists ... packet
+  rospack find
+
+
+topic_name: cmd_vel_topic
+#deinfe TOPIC_NAMe "cmd_vel"    
+
+rostopic lits

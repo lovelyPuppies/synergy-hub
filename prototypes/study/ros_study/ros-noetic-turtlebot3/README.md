@@ -3,13 +3,37 @@
 - [Oroca](https://github.com/oroca)
   Oroca is a project group established by a Korean developer
 
+- ROS_HOSTNAME 🆚 ROS_NAMESPACE
+
+  | **Property**          | **ROS_HOSTNAME**                                | **ROS_NAMESPACE**                                                                   |
+  | --------------------- | ----------------------------------------------- | ----------------------------------------------------------------------------------- |
+  | **Purpose**           | Specifies the network address of the node       | Groups node names under a namespace to avoid conflicts and enable modularity        |
+  | **Network Related**   | Directly related to network communication       | Unrelated to network, used for logical grouping of topics, services, and parameters |
+  | **Unique Identifier** | Ensures unique network address                  | Ensures unique naming for topics, services, and parameters within a namespace       |
+  | **Typical Values**    | IP address or container name                    | `/robot1`, `/robot2`, dynamically set for each robot or instance                    |
+  | **Use Case**          | For identifying a node in network communication | For avoiding name conflicts and organizing nodes in multi-robot or modular systems  |
+  | **Dynamic Usage**     | Typically static, tied to the node's network    | Often dynamically set per robot or instance for flexible usage                      |
+  | **Example**           | `ROS_HOSTNAME=192.168.1.101`                    | `ROS_NAMESPACE=/robot1`                                                             |
+
 ### 🚧 Prerequsite
 
 - Run script in Host
+
   ```
   fish prototypes/_initialization/ubuntu/howto/general/setup_xauthority.fish
+  fish prototypes/_initialization/ubuntu/howto/general/setup_x11_docker.fish
   ```
-- set DISPLAY as HOST's DISPLAY value
+
+- **Edit `.env` File**  
+  Update the following values in the `.env` file to configure your ROS DevContainer:
+  ```env
+  ROS_MASTER_URI=http://<host_ip>:11311
+  ROS_HOSTNAME=<host_ip_or_container_name>
+  ```
+  - Replace `<host_ip>` with the IP address of your host machine.
+  - If needed, replace `<host_ip_or_container_name>` with your container name for internal communication.
+
+---
 
 ### 1️⃣ Turtlebot 3 installation in Host
 

@@ -16389,3 +16389,6 @@ ss -tnlp | grep 11311
 
 Docker 컨테이너는 기본적으로 default bridge 네트워크에서 실행됩니다.
 동일한 네트워크 대역 안에 있는 컨테이너끼리는 컨테이너 이름(hostname)으로 통신이 가능합니다.
+
+
+https://netsarang.atlassian.net/wiki/spaces/KRSUP/pages/1999372381/MIT-SHM+missing      
