@@ -562,7 +562,8 @@ brew install compiledb
 
 
 
-echo "▶️ Installing packages closedly related with Terminal-based eidtor ..."
+
+echo "▶️ Installing packages closedly related with Terminal-based editor ..."
 : '
 📦 helix (hx)   ; Terminal-based editor:
     🔗 https://docs.helix-editor.com/package-managers.html 📅 2024-11-05 15:18:43
@@ -1323,6 +1324,17 @@ brew install graphicsmagick
 
 #   watchman watch-del $fish_howto_general_dir
 # find $fish_howto_general_dir -type f -name "*.fish" -exec chmod ugo-x {} \;
+
+: '
+📦 meson ; https://github.com/mesonbuild/meson
+    https://repology.org/project/meson/versions
+    https://formulae.brew.sh/formula/meson
+
+    Fast and user friendly build system
+'
+brew install meson
+
+
 
 
 

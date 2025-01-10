@@ -948,6 +948,11 @@ export TURTLEBOT3_MODEL=burger
 source /opt/ros/$ROS_DISTRO/setup.bash
 rosrun turtlesim turtlesim_node
 
+>>
+  libGL error: MESA-LOADER: failed to retrieve device information
+  libGL error: MESA-LOADER:
+  : /usr/lib/dri/nvidia-drm_dri.so: cannot open shared object file: No such file or directory (search paths /usr/lib/x86_64-linux-gnu/dri:\$${ORIGIN}/dri:/usr/lib/dri, suffix _dri)
+  libGL error: failed to load driver: nvidia-drm
 
 1. (Remote PC) roscore
 2. (Tutlebot) roslaunch turtlebot3_bringup turtlebot3_robot.launch
@@ -998,3 +1003,149 @@ rosrun turtlesim turtlesim_node
 
   Reference
    Screen Sharing on Linux + Wayland + KDE ; https://www.reddit.com/r/chrome/comments/yblgk1/screen_sharing_on_linux_wayland_kde/?rdt=39306
+   Index» Newbie Corner» Nvidia-DRM Issue: Missing nvidia-drm_dri.so on Arch Linux ; https://bbs.archlinux.org/viewtopic.php?id=288474
+
+
+sudo nano /etc/environment
+sudo nano /etc/default/grub
+   GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
+
+  ❯ fd nvidia-drm_dri.so / --hidden --no-ignore
+  ~ via △ v
+
+
+  ❯ ubuntu-drivers devices
+
+== /sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0 ==
+modalias : pci:v000010DEd00002783sv00001458sd0000413Bbc03sc00i00
+vendor   : NVIDIA Corporation
+model    : AD104 [GeForce RTX 4070 SUPER]
+driver   : nvidia-driver-565-server-open - distro non-free
+driver   : nvidia-driver-550-server - distro non-free
+driver   : nvidia-driver-560-open - distro non-free recommended
+driver   : nvidia-driver-565-server - distro non-free
+driver   : nvidia-driver-560 - distro non-free
+driver   : nvidia-driver-550-server-open - distro non-free
+driver   : xserver-xorg-video-nouveau - distro free builtin
+
+
+❯ glxinfo | grep "OpenGL"
+OpenGL vendor string: NVIDIA Corporation
+OpenGL renderer string: NVIDIA GeForce RTX 4070 SUPER/PCIe/SSE2
+OpenGL core profile version string: 4.6.0 NVIDIA 560.35.03
+OpenGL core profile shading language version string: 4.60 NVIDIA
+OpenGL core profile context flags: (none)
+OpenGL core profile profile mask: core profile
+OpenGL core profile extensions:
+OpenGL version string: 4.6.0 NVIDIA 560.35.03
+OpenGL shading language version string: 4.60 NVIDIA
+OpenGL context flags: (none)
+OpenGL profile mask: (none)
+OpenGL extensions:
+OpenGL ES profile version string: OpenGL ES 3.2 NVIDIA 560.35.03
+OpenGL ES profile shading language version string: OpenGL ES GLSL ES 3.20
+OpenGL ES profile extensions:
+
+~ via △ v3.31.3 
+
+    sudo apt install -y libgl1-mesa-glx libglu1-mesa \
+      ❯ glmark2
+      =======================================================
+          glmark2 2023.01
+      =======================================================
+          OpenGL Information
+          GL_VENDOR:      NVIDIA Corporation
+          GL_RENDERER:    NVIDIA GeForce RTX 4070 SUPER/PCIe/SSE2
+          GL_VERSION:     4.6.0 NVIDIA 560.35.03
+          Surface Config: buf=32 r=8 g=8 b=8 a=8 depth=24 stencil=0 samples=0
+          Surface Size:   800x600 windowed
+      =======================================================
+      [build] use-vbo=false:^C⏎                                                                                                                                                                
+
+    >> OpenGL 렌더링과 nvidia-drm_dri.so 관계 없음
+        OpenGL 렌더링에는 libGL과 libnvidia-glcore 라이브러리가 사용됩니다.
+      glmark2는 X11 세션에서 동작
+        glmark2는 기본적으로 X11 기반 OpenGL 컨텍스트를 생성합니다.
+
+❯ echo $XDG_SESSION_TYPE
+  wayland
+
+❯ glxinfo | grep -i vendor
+  server glx vendor string: SGI
+  client glx vendor string: NVIDIA Corporation
+  OpenGL vendor string: NVIDIA Corporation
+
+
+export EGL_PLATFORM=gbm
+
+❯ ls /usr/lib/x86_64-linux-gnu/libvulkan_*
+
+  /usr/lib/x86_64-linux-gnu/libvulkan_intel_hasvk.so  /usr/lib/x86_64-linux-gnu/libvulkan_lvp.so      /usr/lib/x86_64-linux-gnu/libvulkan_radeon.so
+  /usr/lib/x86_64-linux-gnu/libvulkan_intel.so        /usr/lib/x86_64-linux-gnu/libvulkan_nouveau.so  /usr/lib/x86_64-linux-gnu/libvulkan_virtio.so
+vulkaninfo 출력에 따르면, NVIDIA 드라이버와 Vulkan은 설치되어 있으며, NVIDIA GeForce RTX 4070 SUPER가 올바르게 Vulkan을 지원하고 있습니다. 그러나 GBM(Generic Buffer Management)을 명시적으로 사용하는 구성에 대한 세부적인 내용은 보이지 않습니다.
+
+Wayland에서 GBM을 사용하는지 확인하려면 다음을 확인해야 합니다:
+
+❓ 
+   드라이버 설정 확인: NVIDIA 드라이버에서 GBM이 활성화되어 있는지 확인합니다. 최신 NVIDIA 드라이버에서는 nvidia-drm.modeset=1 설정을 활성화해야 GBM을 지원할 수 있습니다. 이 설정은 커널 명령줄에 추가됩니다.
+  🆗 /etc/default/grub
+    GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
+    to
+    GRUB_CMDLINE_LINUX_DEFAULT="quiet splash nvidia-drm.modeset=1"
+
+    //
+    sudo nano /etc/default/grub
+    # GRUB_CMDLINE_LINUX_DEFAULT="... nvidia-drm.modeset=1"
+    sudo update-grub
+    sudo reboot
+
+  🆗 vulkaninfo | grep VK_EXT_image_drm_format_modifier
+    >> VK_EXT_image_drm_format_modifier              : extension revision 2
+
+
+❯ eglinfo | grep -i platform_
+    EGL_EXT_platform_base, EGL_EXT_platform_device, EGL_EXT_platform_wayland, 
+    EGL_EXT_platform_x11, EGL_EXT_platform_xcb, 
+    EGL_KHR_platform_gbm, EGL_KHR_platform_wayland, EGL_KHR_platform_x11, 
+    EGL_MESA_platform_gbm, EGL_MESA_platform_surfaceless
+
+
+    libEGL warning: egl: failed to create dri2 screen
+synergy-hub on  main [!] is 📦 v0.1.0 via 🐍 v3.13.1 
+❯ ls /usr/lib/x86_64-linux-gnu/libEGL_nvidia.so*
+
+/usr/lib/x86_64-linux-gnu/libEGL_nvidia.so.0@  /usr/lib/x86_64-linux-gnu/libEGL_nvidia.so.560.35.03
+
+
+wget https://upload.wikimedia.org/wikipedia/commons/transcoded/6/6c/Polar_orbit.ogv/Polar_orbit.ogv.360p.webm
+mpv --gpu-context=gbm --vo=gpu Polar_orbit.ogv.360p.webm
+mpv --gpu-context=gbm --vo=gpu 
+
+https://github.com/mpv-player/mpv
+
+헉 내가 sudo apt 으로 설치햇거든?
+
+❯ mpv --version
+
+mpv v0.38.0-dirty Copyright © 2000-2024 mpv/MPlayer/mplayer2 projects
+ built on Aug 21 2024 19:24:58
+libplacebo version: v6.338.2
+FFmpeg version: 7.0.2
+FFmpeg library versions:
+   libavutil       59.8.100
+   libavcodec      61.3.100
+   libavformat     61.1.100
+   libswscale      8.1.100
+   libavfilter     10.1.100
+   libswresample   5.1.100
+
+
+meson setup build --enable-vulkan --enable-gbm
+
+
+# meson.build:22:13: ERROR: Dependency "libavcodec" not found, tried pkgconfig and cmake
+
+
+
+
+> 잡코리아를 보자. 사람인 말고. 
