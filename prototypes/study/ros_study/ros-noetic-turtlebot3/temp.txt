@@ -656,6 +656,10 @@ rosrun turtlesim turtlesim_node
 이건 공식은 아닌데 
   --volume=/tmp/.docker.xauth:/tmp/.docker.xauth:rw --entrypoint='/bin/bash' <image_id>
   나는 /tmp/.docker 자체가 없는데?.. 필요한거야? (Wayland, XWayland 사용중)..
+export ROS_HOSTNAME=172.17.0.2
+
+
+strcat
 
 
 그리고 컨테이너 내부에서 ROS들끼리 통신하려면 --network host 안주고 (주면 안 됌). 어떻게 해야해? ROS 끼리 통신하게 하고 외부터틀봇까지도 통신해야 하는데
@@ -764,3 +768,31 @@ topic_name: cmd_vel_topic
 #deinfe TOPIC_NAMe "cmd_vel"    
 
 rostopic lits
+
+
+
+
+
+
+
+
+>>>>>
+docker network create --subnet=192.168.0.0/16 ros_network
+  총 호스트 IP 개수: 256 - 2 = 254 (네트워크와 브로드캐스트 주소 제외)
+    192.168.0.0, 192.168.255.255
+
+docker network create --driver=bridge --subnet=172.18.0.0/16 ros_network
+
+sudo apt install -y iputils-ping iproute2
+
+1. (Remote PC) roscore
+2. (Tutlebot) roslaunch turtlebot3_bringup turtlebot3_robot.launch
+3. (Remote PC) rosrun turtlesim turtlesim_node
+  >> bringup 된 터틀봇의 동작이 (라이다 돌아가는 것) 멈추고 host pc 의 VSCode (docker dev container 포함), edge 가 종료된다..
+
+rosrun rospy_tutorials listener
+rosrun rospy_tutorials talker
+
+  [INFO] [1736476656.518417]: hello world 1736476656.5182347
+  [INFO] [1736476656.618257]: hello world 1736476656.6181748
+  [INFO] [1736476656.718228]: hello world 1736476656.718147

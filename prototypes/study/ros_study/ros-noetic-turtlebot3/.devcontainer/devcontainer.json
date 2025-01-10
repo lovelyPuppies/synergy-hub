@@ -7,10 +7,11 @@
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
   "workspaceFolder": "/workspace",
   // ===== ⚙️ =====
-  "forwardPorts": [11311], // 🚣 format: <host:port_number>
+  // "forwardPorts": ["11311:11311"], // 🚣 format: <host:port_number>
   "containerEnv": {
-    "ROS_MASTER_URI": "http://10.10.14.19:11311",
-    "ROS_HOSTNAME": "10.10.14.19",
+    "LANG": "en_US.UTF-8",
+    "LC_ALL": "en_US.UTF-8",
+    "TURTLEBOT3_MODEL": "burger",
     "DISPLAY": "${localEnv:DISPLAY}",
     "XAUTHORITY": "/tmp/.Xauthority",
     // ✔️ #fix some QT bugs ; https://wiki.ros.org/docker/Tutorials/Compose
@@ -31,8 +32,18 @@
     // }
   },
   "runArgs": [
+    "--cpus",
+    "2",
+    "--publish",
+    "11311:11311",
     "--name",
     "ros_noetic_turtlebot3-node_master",
+    // 📰
+    "--network",
+    "ros_network",
+    "--ip",
+    "172.18.0.2",
+    // ❗ ignore "WARNING: ROS_MASTER_URI [http://10.10.14.19:11311] host is not set to this machine" when run 🧮 "roscore"
     "--runtime",
     "nvidia", // Ensure NVIDIA runtime is used for GPU access
     "--gpus",
@@ -62,7 +73,7 @@
   // "forwardPorts": [],
   // 👇 Use 'postCreateCommand' to run commands after the container is created.
   // "postCreateCommand": "pip3 install --upgrade pip && pip3 install -r requirements/requirements_dev.txt && pip3 install -e .",
-  // "postCreateCommand": "source /opt/ros/noetic/setup.bash && rosdep update",
+  "postCreateCommand": "fish /workspace/init_ros_noetic.fish",
   // 👇 Configure tool-specific properties.
   "customizations": {
     "vscode": {

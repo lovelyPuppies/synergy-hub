@@ -25,9 +25,6 @@ source /opt/ros/$ROS_DISTRO/share/rosbash/rosfish
 
 # 🐢 TurtleBot3 Configuration
 set -x TURTLEBOT3_MODEL buger
-
-set -x ROS_MASTER_URI http://10.10.14.19:11311
-set -x ROS_HOSTNAME 10.10.14.19
 ' | tee $FISH_CONFIG_PATH >/dev/null
 
 
@@ -72,3 +69,4 @@ end
 
 
 source $FISH_CONFIG_PATH
+cd .
