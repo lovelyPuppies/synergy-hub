@@ -131,6 +131,17 @@ cd $HOME/ffmpeg_sources && wget -O ffmpeg-snapshot.tar.bz2 https://ffmpeg.org/re
     PATH="$HOME/bin:$PATH" make && sudo make install
 echo "hash only exists in bash, not in fish. In bash shell, to reload the path cache, use the following command: 🧮 hash -r"
 
+: '
+External libraries providing hardware acceleration:
+    cuda_llvm               libdrm                  vaapi                   vulkan
+    cuda_nvcc               v4l2_m2m                vdpau
+
+
+ffplay -v verbose -hwaccel cuda ~/Downloads/Polar_orbit.ogv.360p.webm
+
+    
+'
+
 
 ## You can check required dynamic libraries using command  `ldd` (List Dynamic Dependencies)
 #   🛍️ e.g.ldd ~/bin/ffmpeg
@@ -141,11 +152,11 @@ echo "hash only exists in bash, not in fish. In bash shell, to reload the path c
 #   >> --prefix=PREFIX          install in PREFIX [/usr/local]
 
 # wget https://upload.wikimedia.org/wikipedia/commons/transcoded/6/6c/Polar_orbit.ogv/Polar_orbit.ogv.360p.webm
-# ~/bin/ffplay ~/Downloads/Polar_orbit.ogv.360p.webm
+~/bin/ffplay ~/Downloads/Polar_orbit.ogv.360p.webm
 
-# ~/bin/ffplay -hwaccel nvdec ~/Downloads/Polar_orbit.ogv.360p.webm
+~/bin/ffplay -hwaccel nvdec ~/Downloads/Polar_orbit.ogv.360p.webm
 
-# ~/bin/ffplay -hwaccel nvdec ~/Downloads/Polar_orbit.ogv.360p.webm
+~/bin/ffplay -hwaccel nvdec ~/Downloads/Polar_orbit.ogv.360p.webm
 
 
 
