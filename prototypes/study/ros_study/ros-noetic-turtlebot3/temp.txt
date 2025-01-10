@@ -785,10 +785,6 @@ docker network create --driver=bridge --subnet=172.18.0.0/16 ros_network
 
 sudo apt install -y iputils-ping iproute2
 
-1. (Remote PC) roscore
-2. (Tutlebot) roslaunch turtlebot3_bringup turtlebot3_robot.launch
-3. (Remote PC) rosrun turtlesim turtlesim_node
-  >> bringup 된 터틀봇의 동작이 (라이다 돌아가는 것) 멈추고 host pc 의 VSCode (docker dev container 포함), edge 가 종료된다..
 
 rosrun rospy_tutorials listener
 rosrun rospy_tutorials talker
@@ -796,3 +792,209 @@ rosrun rospy_tutorials talker
   [INFO] [1736476656.518417]: hello world 1736476656.5182347
   [INFO] [1736476656.618257]: hello world 1736476656.6181748
   [INFO] [1736476656.718228]: hello world 1736476656.718147
+
+
+docker run -it \
+    --env="DISPLAY" \
+    --env="QT_X11_NO_MITSHM=1" \
+    --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
+    osrf/ros:noetic-desktop-full \
+    rqt
+export containerId=$(docker ps -l -q)
+
+
+ROS + Docker
+
+Getting started with ROS and Docker
+This tutorial walks you through installing Docker and spinning up your first ROS container on your computer
+# 
+⚓ ROS docker Turtorials ; https://wiki.ros.org/docker/Tutorials
+    # ROS + Docker
+    # ROS + Docker Network
+    # ROS + Docker Compose
+    # ROS + Docker Machine
+    # ROS + Docker Swarm
+    # Tooling with Docker
+⚓🖇️ Using GUI's with Docker ; https://wiki.ros.org/docker/Tutorials/GUI 📅 2025-01-10 14:28:22
+  # Using Rocker
+  # Using X server
+    # The simple way
+      🛍️ e.g. %shell>
+        docker run -it \
+          --env="DISPLAY" \
+          --env="QT_X11_NO_MITSHM=1" \
+          --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
+          osrf/ros:noetic-desktop-full \
+          rqt
+        export containerId=$(docker ps -l -q)
+      💡 We can then adjust the permissions the X server host. 
+        %shell> xhost +local:root # for the lazy and reckless
+      If you are concerned about this (as you should be), you have at least two options. The first is to run
+        %shell> xhost -local:root
+      after you are finished using the containerized GUI, this will return the access controls that were disabled with the previous command.
+
+      ⭕ A better option is opening up xhost only to the specific system that you want, for instance if you are running a container on the local host's docker daemon with container's ID stored to the shell variable containerId
+        %shell> 
+          xhost +local:`docker inspect --format='{{ .Config.Hostname }}' $containerId`
+          docker start $containerId
+      This will add the container's hostname to the local family's list of permitted names.
+
+    # The safer way 
+      #❌ user without a name
+        Another way is to use your own user's credentials to access the display server
+          %shell> 
+            docker run -it --rm \
+              --user=$(id -u $USER):$(id -g $USER) \
+              --env="DISPLAY" \
+              --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
+            osrf/ros:noetic-desktop-full
+        Drawbacks
+          - your user is not named - you won't be able to change anything in the container and
+          - some applications need a home directory - since you have no name you won't a have a home directory.
+      #❌ login as yourself
+        %shell> 
+        docker run -it \
+          --user=$(id -u $USER):$(id -g $USER) \
+          --env="DISPLAY" \
+          --workdir="/home/$USER" \
+          --volume="/home/$USER:/home/$USER" \
+          --volume="/etc/group:/etc/group:ro" \
+          --volume="/etc/passwd:/etc/passwd:ro" \
+          --volume="/etc/shadow:/etc/shadow:ro" \
+          --volume="/etc/sudoers.d:/etc/sudoers.d:ro" \
+          --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
+          osrf/ros:noetic-desktop-full \
+          rqt
+
+        This last bit how ever removes quite a few layers of separation between what runs in the container and the environment of the host, and is thus not as isolated.
+        So by means of convenience and security, one can lose some aspects of isolation, and other useful properties of repeatability, reducibility, and portability if not careful.
+
+      # The isolated way
+        ...
+      
+      ❌# The ssh way
+        .. and not a unix socket, rendering it unfavorable for high bandwidth imagery or user interfaces that deteriorate due to lag.
+
+    # Using VNC
+
+
+⚓🖇️ Using Hardware Acceleration with Docker ; https://wiki.ros.org/docker/Tutorials/Hardware%20Acceleration
+  ⭕ As a best practice, try to keep most of your images hardware agnostic, corralling any driver specific setup to the last layer in building the docker image.
+    For example, leave the driver install steps towards the bottom end of the Dockerfile, or the last tag added in the hierarchy.
+    Thus any rebuilding or modifications for in changes hardware/drivers when sharing with others or swapping deployed targets can be minimized
+  
+  ➡️ https://github.com/NVIDIA/nvidia-container-toolkit
+  # nvidia-docker1
+    deprecated. This project has been superseded by the NVIDIA Container Toolkit.
+  # nvidia-docker1
+    deprecated. This project has been superseded by the NVIDIA Container Toolkit.
+
+
+❓ XDG_RUNTIME_DIR은 GUI 애플리케이션이 세션별 데이터를 저장하는 데 사용하는 디렉토리입니다
+docker info | grep -i runtime
+
+
+
+As a best practice, try to keep most of your images hardware agnostic, corralling any driver specific setup to the last layer in building the docker image
+
+
+docker network create --driver=bridge --subnet=172.18.0.0/16 ros_network
+
+export ROS_MASTER_URI=http://172.17.0.3:11311
+export ROS_HOSTNAME=172.17.0.3
+export TURTLEBOT3_MODEL=burger
+source /opt/ros/$ROS_DISTRO/setup.bash
+roscore
+
+
+
+
+
+apt update && apt install -y iproute2
+docker run -it \
+    --env="DISPLAY" \
+    --workdir="/root" \
+    --volume="/home/$USER:/home/$USER" \
+    --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
+    -p 11311:11311 \
+    osrf/ros:noetic-desktop-full \
+    /bin/bash
+  
+ls /usr/lib/x86_64-linux-gnu/dri | grep nvidia
+// Terminal 1
+docker run -it \
+    --name=test \
+    --runtime=nvidia \
+    --gpus=all \
+    --env=DISPLAY=$DISPLAY \
+    --env=__GLX_VENDOR_LIBRARY_NAME=nvidia \
+    --volume=/tmp/.X11-unix:/tmp/.X11-unix:rw \
+    -p=11311:11311 \
+    osrf/ros:noetic-desktop-full \
+    bash -c "mkdir -p /tmp/runtime-user && chmod 0700 /tmp/runtime-user && export XDG_RUNTIME_DIR=/tmp/runtime-user && bash"
+
+export ROS_MASTER_URI=http://172.17.0.3:11311
+export ROS_HOSTNAME=172.17.0.3
+export TURTLEBOT3_MODEL=burger
+source /opt/ros/$ROS_DISTRO/setup.bash
+roscore
+
+// Terminal 2
+
+docker exec -it test bash
+export ROS_MASTER_URI=http://172.17.0.3:11311
+export ROS_HOSTNAME=172.17.0.3
+export TURTLEBOT3_MODEL=burger
+source /opt/ros/$ROS_DISTRO/setup.bash
+rosrun turtlesim turtlesim_node
+
+
+1. (Remote PC) roscore
+2. (Tutlebot) roslaunch turtlebot3_bringup turtlebot3_robot.launch
+3. (Remote PC)  
+  >> bringup 된 터틀봇의 동작이 (라이다 돌아가는 것) 멈추고 host pc 의 VSCode (docker dev container 포함), edge 가 종료된다..
+  // VSCODE, devcontainer 문제? 아니면 vscode 터미널에서 ssh
+    rosnode list
+
+  1426]: ---- ----------------------
+  [INFO] [1736489970.503741]: Connected to OpenCR board!
+  [INFO] [1736489970.513624]: This core(v1.2.6) is compatible with TB3 Burger
+  [INFO] [1736489970.524165]: --------------------------
+  [INFO] [1736489970.535886]: Start Calibration of Gyro
+  [INFO] [1736489972.960338]: Calibration End
+
+
+>>>>>>>>>>>>>.
+  MESA-LOADER가 nvidia-drm 및 다른 관련 드라이버 파일을 찾거나 로드하지 못함.
+  
+  NVIDIA 드라이버가 Wayland 기반의 GBM(Generic Buffer Management) 프로토콜과 제대로 통합되지 않아 하드웨어 가속이 비활성화됨.
+    NVIDIA 드라이버는 기존 X11과 잘 작동하지만, Wayland 기반의 GBM 지원에서 문제가 발생.
+
+
+
+🚨 https://webhack.dynu.net/tip/20241025.001
+
+  libGL error: MESA-LOADER: failed to retrieve device information
+  libGL error: MESA-LOADER:
+  : /usr/lib/dri/nvidia-drm_dri.so: cannot open shared object file: No such file or directory (search paths /usr/lib/x86_64-linux-gnu/dri:\$${ORIGIN}/dri:/usr/lib/dri, suffix _dri)
+  libGL error: failed to load driver: nvidia-drm
+
+  libGL은 OpenGL(그래픽 API)을 제공하는 라이브러리입니다. MESA-LOADER는 OpenGL 구현체 중 하나인 Mesa를 통해 그래픽 드라이버를 로드하는 역할을 합니다.
+
+  libGL error: MESA-LOADER 메시지는 Mesa가 드라이버를 로드하려고 시도했으나, 적절한 드라이버를 찾거나 로드하지 못한 경우 발생합니다. 이 오류는 특히 Wayland와 함께 사용될 때, NVIDIA 또는 특정 드라이버가 누락되거나 설정이 잘못된 경우 자주 발생합니다.
+
+
+
+  Ubuntu 24.04 LTS에서 X11에서 Wayland로 변경 후 nautilus, settings 등의 앱 오류
+
+  우분투 24.04 LTS에서 XWindows를 X11에서 Wayland로 변경했더니 (터치패드의 세손가락 모두가 웨이랜드에서 지원된다) 파일 관련 앱들이 실행되지 않고 세그멘테이션 폴트 발생. 웹 브라우저에서는 파일첨부 창이 뜨지 않는다. 노틸러스를 터미넝릐 명령행에서 실행해서 확인한 오류 정보는 libEGL warning: egl: failed to create dri2 screen. PC의 CPU는 인텔이고 GPU는 Nvidia RTX 4050ti이다. 구글링 했더니 간단하게 해결방법이 있었다.
+
+  $ sudo apt-get install libnvidia-egl-wayland1
+  $ reboot
+
+  ❗ wayland nvidia-drm_dri.so does not found
+    ls  /usr/lib/x86_64-linux-gnu/dri/
+  sudo ubuntu-drivers autoinstall
+
+  Reference
+   Screen Sharing on Linux + Wayland + KDE ; https://www.reddit.com/r/chrome/comments/yblgk1/screen_sharing_on_linux_wayland_kde/?rdt=39306

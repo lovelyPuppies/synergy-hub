@@ -14,7 +14,21 @@ trap on_interrupt SIGINT
 
 
 set script_dir /home/wbfw109v2/repos/synergy-hub/prototypes/_initialization/ubuntu
-        
+
+### 📦 (Verified) GIMP ; https://flathub.org/apps/com.microsoft.Edge 📅 2024-12-25 23:12:02
+#   ; Image editor, photo retouching, and graphic design tool
+flatpak install -y --user flathub com.microsoft.Edge
+# Define alias for 'gimp' in an interactive session
+set unique_comment "# Add alias for gimp from flatpak"
+set alias_function (echo "
+    function gimp
+        flatpak --user run com.microsoft.Edge \$argv
+    end
+" | prettify_indent_via_pipe | string split0)
+
+# Call the function to update the config
+update_fish_interactive_block --unique-comment="$unique_comment" --contents="$alias_function"
+
 
 
 # # 경로 설정

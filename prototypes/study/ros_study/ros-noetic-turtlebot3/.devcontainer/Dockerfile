@@ -1,6 +1,7 @@
 # ROS Noetic base image
-FROM ros:noetic-robot
-
+FROM osrf/ros:noetic-desktop-full
+# FROM ros:noetic-robot
+# 🪱 osrf (Open Source Robotics Foundation)
 ARG USER=vscode
 
 # 📍 Set environment variables for timezone and to suppress interactive prompts during package installation 📅 2025-01-09 00:34:14
@@ -14,40 +15,40 @@ RUN apt update && \
     curl nano && \
     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime
 
-    
-
-##### ROS - noetic installation https://wiki.ros.org/noetic/Installation/Ubuntu
-# Desktop-Full Install: (Recommended) : Everything in Desktop plus 2D/3D simulators and 2D/3D perception packages
-# https://askubuntu.com/questions/876240/how-to-automate-setting-up-of-keyboard-configuration-package   
-#📍 If you're using sudo be sure to put it after sudo, eg sudo DEBIAN_FRONTEND=noninteractive apt install ...
-# sudo DEBIAN_FRONTEND=noninteractive apt install -y keyboard-configuration
-RUN apt install -y ros-noetic-desktop-full
 
 
-### Dependencies for building packages
-RUN apt install -y python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
+# ##### ROS - noetic installation https://wiki.ros.org/noetic/Installation/Ubuntu
+# # Desktop-Full Install: (Recommended) : Everything in Desktop plus 2D/3D simulators and 2D/3D perception packages
+# # https://askubuntu.com/questions/876240/how-to-automate-setting-up-of-keyboard-configuration-package   
+# #📍 If you're using sudo be sure to put it after sudo, eg sudo DEBIAN_FRONTEND=noninteractive apt install ...
+# # sudo DEBIAN_FRONTEND=noninteractive apt install -y keyboard-configuration
+# RUN apt install -y ros-noetic-desktop-full
 
-## 🚣 With the following, you can initialize rosdep.
-# sudo rosdep init
-# rosdep update
 
-# 🔗 ROS 1 🔪 Noetic 🔪 Tutorial ; https://wiki.ros.org/ROS/Tutorials
+# ### Dependencies for building packages
+# RUN apt install -y python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
+
+# ## 🚣 With the following, you can initialize rosdep.
+# # sudo rosdep init
+# # rosdep update
+
+# # 🔗 ROS 1 🔪 Noetic 🔪 Tutorial ; https://wiki.ros.org/ROS/Tutorials
+
+
+# ##### Turtlebot 3 Noetic Instllation for Remote-PC ; https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/#pc-setup
+# # Install Dependent ROS Packages
+# RUN apt install -y ros-noetic-joy ros-noetic-teleop-twist-joy \
+#     ros-noetic-teleop-twist-keyboard ros-noetic-laser-proc \
+#     ros-noetic-rgbd-launch ros-noetic-rosserial-arduino \
+#     ros-noetic-rosserial-python ros-noetic-rosserial-client \
+#     ros-noetic-rosserial-msgs ros-noetic-amcl ros-noetic-map-server \
+#     ros-noetic-move-base ros-noetic-urdf ros-noetic-xacro \
+#     ros-noetic-compressed-image-transport "ros-noetic-rqt*" ros-noetic-rviz \
+#     ros-noetic-gmapping ros-noetic-navigation ros-noetic-interactive-markers
 
 
 # In order to use command 'catkin build' 📅 2025-01-09 15:12:21
 RUN apt install -y python3-catkin-tools
-
-
-##### Turtlebot 3 Noetic Instllation for Remote-PC ; https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/#pc-setup
-# Install Dependent ROS Packages
-RUN apt install -y ros-noetic-joy ros-noetic-teleop-twist-joy \
-    ros-noetic-teleop-twist-keyboard ros-noetic-laser-proc \
-    ros-noetic-rgbd-launch ros-noetic-rosserial-arduino \
-    ros-noetic-rosserial-python ros-noetic-rosserial-client \
-    ros-noetic-rosserial-msgs ros-noetic-amcl ros-noetic-map-server \
-    ros-noetic-move-base ros-noetic-urdf ros-noetic-xacro \
-    ros-noetic-compressed-image-transport "ros-noetic-rqt*" ros-noetic-rviz \
-    ros-noetic-gmapping ros-noetic-navigation ros-noetic-interactive-markers
 
 # Install TurtleBot3 Packages
 RUN apt install -y ros-noetic-dynamixel-sdk ros-noetic-turtlebot3-msgs ros-noetic-turtlebot3

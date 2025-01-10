@@ -119,6 +119,8 @@ echo bot19 | sudo tee $mount_parent/etc/hostname
   # Upload firmware to the OpenCR.
   cd ./opencr_update
   ./update.sh $OPENCR_PORT $OPENCR_MODEL.opencr
+
+  # sudo reboot
   ```
 
 - If firmware upload fails, try uploading with the recovery mode. Below sequence activates the recovery mode of OpenCR. Under the recovery mode, the STATUS led of OpenCR will blink periodically.

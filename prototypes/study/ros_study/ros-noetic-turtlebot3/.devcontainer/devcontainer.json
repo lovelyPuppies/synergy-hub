@@ -43,11 +43,11 @@
     "ros_network",
     "--ip",
     "172.18.0.2",
-    // ❗ ignore "WARNING: ROS_MASTER_URI [http://10.10.14.19:11311] host is not set to this machine" when run 🧮 "roscore"
-    "--runtime",
-    "nvidia", // Ensure NVIDIA runtime is used for GPU access
-    "--gpus",
-    "all",
+    // ❗ Error? This is root cause?
+    // "--runtime",
+    // "nvidia", // Ensure NVIDIA runtime is used for GPU access
+    // "--gpus",
+    // "all",
     "--device",
     "/dev/video0", // Access to video input devices
     "--device",
