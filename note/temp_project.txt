@@ -16391,3 +16391,13 @@ Workstation 용 CUDA 가속 앱 개발
 
   >>> sudo apt install libnvidia-egl-wayland1 libnvidia-egl-wayland-dev
 
+
+# Video Codec APIs
+  💡 DirectX and Vulkan Video, on the other hand, provide low-level, hardware-agnostic APIs, and attempt to provide more precise control over resource/memory allocation, task scheduling, and work submission to video hardware engines.
+
+
+GStreamer vs ffmpeg
+⚓📎 GStreamer ; https://en.wikipedia.org/wiki/GStreamer
+  GStreamer is a pipeline-based multimedia framework that links together a wide variety of media processing systems to complete complex workflows.
+
+  https://gstreamer.freedesktop.org/
