@@ -79,20 +79,37 @@ Efforts to cross-compile Qt libraries for Raspberry Pi or Jetson Nano revealed s
 
    - Use `git clone` for the [Qt source](https://github.com/qt/qt5) and attempt to build the modules.
 
-     🛍️ e.g.
+     🛍️ e.g. (My Attempt)
 
      ```bash
-     #!/bin/bash
+      #!/usr/bin/env fish
 
-     # ... Install many dependencies
-     git clone --single-branch --branch 6.8.1 https://github.com/qt/qt5.git
-     ./init-repository --module-subset=default --branch
-     # ... Export pkg-config
-     ./configure FEATURE_clang=ON -prefix $WORKDIR/qt6/host -- -Wno-dev
+      # copy RaspberryPi (sysroot) ...
+
+      # Ensure QEMU and ARM/v7 support is activated for Docker buildx
+      if not docker buildx inspect --bootstrap | grep -q linux/arm/v7
+         echo "linux/arm/v7 not found, performing the task..."
+         docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+         docker buildx inspect --bootstrap | grep linux/arm/v7
+      else
+         echo "linux/arm/v7 is already present."
+      end
+      # ...
+
+      # ... Install many dependencies
+      git clone --single-branch --branch 6.8.1 https://github.com/qt/qt5.git
+      ./init-repository --module-subset=default --branch
+      # ... Export pkg-config
+      ./configure FEATURE_clang=ON -prefix $WORKDIR/qt6/host -- -Wno-dev
      ```
+
+     **Reference**
+
+     - https://github.com/PhysicsX/QTonRaspberryPi
 
 2. **Manual Download:**
    - Download individual modules from [Qt Releases](https://download.qt.io/official_releases/qt/6.8/6.8.1/).
+   - ⚠️ Note: Manual downloads may take longer due to slower server response times compared to Git's cloning protocol.
 
 Due to these issues, the recommended approach is using the **Qt Online Installer**, which automates the process.
 
