@@ -29,7 +29,7 @@ sudo ubuntu-drivers install
     nvidia-driver-550-server-open, (kernel modules provided by linux-modules-nvidia-550-server-open-generic)
     nvidia-driver-565-server, (kernel modules provided by linux-modules-nvidia-565-server-generic)
 '
-
+# 🧮 vulkaninfo > /tmp/txt; code /tmp/txt
 
 ### Install CUDA Toolkit ; https://docs.nvidia.com/cuda/cuda-installation-guide-linux/
 # https://developer.nvidia.com/cuda-toolkit-archive

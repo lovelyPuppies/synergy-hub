@@ -15843,8 +15843,6 @@ FFmpeg의 정적 빌드(static build)는 설치가 간편하지만, 라이선스
 
 
 
-
-
   ❓ A hypervisor, also known as a virtual machine monitor (VMM) or virtualizer, is a type of computer software, firmware or hardware that creates and runs virtual machines. A
     https://en.wikipedia.org/wiki/Hypervisor
 
@@ -16101,7 +16099,6 @@ The layout of keyboards varies per country, with some countries having multiple 
 for the keyboard of this computer.
 '
 
-
 unzip ~/Downloads/Project_README.zip -d ~/Downloads/Project_README
 
 
@@ -16158,46 +16155,6 @@ mpv  --log-file=mpv.log --hwdec=cuda-copy --gpu-context=wayland /dev/video0
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-sudo apt install v4l-utils
-v4l2-ctl --list-formats-ext -d /dev/video0
-
-ioctl: VIDIOC_ENUM_FMT
-        Type: Video Capture
-
-        [0]: 'YUYV' (YUYV 4:2:2)
-                Size: Discrete 640x480
-                        Interval: Discrete 0.033s (30.000 fps)
-                        Interval: Discrete 0.067s (15.000 fps)
-                Size: Discrete 352x288
-                        Interval: Discrete 0.033s (30.000 fps)
-                        Interval: Discrete 0.067s (15.000 fps)
-                Size: Discrete 320x240
-                        Interval: Discrete 0.033s (30.000 fps)
-                        Interval: Discrete 0.067s (15.000 fps)
-                Size: Discrete 176x144
-                        Interval: Discrete 0.033s (30.000 fps)
-                        Interval: Discrete 0.067s (15.000 fps)
-                Size: Discrete 160x120
-                        Interval: Discrete 0.033s (30.000 fps)
-                        Interval: Discrete 0.067s (15.000 fps)
 
 VLC 는 지연이 MPV 보다 훨씬 적은데 아직도 지연이 잇다. 하드웨어 GPU 가속 0% 인건 동일함
 vlc v4l2:///dev/video0 --avcodec-hw=vaapi
@@ -16295,34 +16252,8 @@ https://netsarang.atlassian.net/wiki/spaces/KRSUP/pages/1999372381/MIT-SHM+missi
 
 FFmpeg build
   https://trac.ffmpeg.org/wiki/CompilationGuide
-
-https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#ubuntu
-
-
 https://ffmpeg.org/documentation.html
-.8.4. Common Installation Instructions for Ubuntu
-These instructions apply to both local and network installation for Ubuntu.
 
-Update the Apt repository cache:
-
-sudo apt-get update
-Install CUDA SDK:
-
-Note
-
-These two commands must be executed separately.
-
-sudo apt-get install cuda-toolkit
-To include all GDS packages:
-
-sudo apt-get install nvidia-gds
-For native arm64-Jetson repos, install the additional packages:
-
-sudo apt-get install cuda-compat
-
-
-
-sudo apt install nvidia-cuda-toolkit
 
 
 
@@ -16358,7 +16289,6 @@ ffplay -hwaccel cuda output.mp4
 ffmpeg -encoders
 
 ⚓ NVIDIA Video Technologies ; https://docs.nvidia.com/video-technologies/index.html
-
 
 
 Workstation 용 CUDA 가속 앱 개발
@@ -16421,7 +16351,6 @@ MJPEG (Motion JPEG) 방식은
       실시간 전송에 부적합:
     프레임을 인코딩하지 않고 원본 데이터로 전송하므로 네트워크 부하가 커질 수 있음.
 
-  
 
 ⚠️ WebRTC는 멀티미디어(오디오, 비디오) 스트리밍과 P2P 통신을 위해 설계되었습니다.
   WebRTC는 기본적으로 P2P에 최적화되어 있어, 1:N 구조를 위해 추가적인 **서버 구성(SFU)**이 필요합니다.
@@ -16435,46 +16364,126 @@ MJPEG (Motion JPEG) 방식은
     비디오 스트리밍은 지원하지 않으므로, RTSP/RTMP와 함께 사용해야 함
   RTSP, RTMP, MQTT 등은 중앙 집중식 제어 시스템을 쉽게 구성할 수 있어 이런 요구에 적합합니다.
 
-### temp
-if not docker buildx inspect --bootstrap | grep -q linux/arm/v7
-    echo "linux/arm/v7 not found, performing the task..."
-    docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
-    docker buildx inspect --bootstrap | grep linux/arm/v7
-else
-    echo "linux/arm/v7 is already present."
-end
 
 
-./configure 명령어는 cmake 명령어에 대한 래퍼로 동작하며, 옵션을 CMake로 전달합니다. 예를 들어:
-  ./configure VAR=value -- -DVAR=value
-  다음과 같이 동작합니다:
-    VAR=value: Qt 빌드에 영향을 주는 옵션 (e.g., FEATURE_clang=ON)
-    --: 이후는 CMake 옵션 (e.g., -DCMAKE_BUILD_TYPE=Release)
-
-
-./configure -- -Wno-dev
+TODO 내일: 
+  iniialiation.. about 문서 README 에 쓰기 -
+  라즈베리파이 64비트 설치.
+  ROS 문제 해결
+    codec.. nvidia 사용못하는거같음.. gpu driver..
+  
 
 
 
+list of level 1 subjects
+  - redaer
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⭕ pdf reader 🔪 Okular
+  https://github.com/KDE/okular
+  🔏 License: GPL-2.0-or-later
+  Support OS: Linux, Windows, macOS
+  Suuport Highlihting, Annotation
+  Easy Shortcut keys
+    * Menu - Bookmarks
+      - Add/Remove Bookmarks; ⌨️ Ctrl + B
+    * Browse; ⌨️ Ctrl + 1
+    * Area Selection; ⌨️ Ctrl + 3
+    * Text Selection; ⌨️ Ctrl + 4
+    * Table Selection; ⌨️ Ctrl + 5
+    * ...; ⌨️ 1 ~ 6 ...
+
+
+
+ffmpeg -hwaccels
+  * VDPAU (Video Decode and Presentation API for Unix)
+    Linux에서 NVIDIA 또는 AMD GPU를 활용한 하드웨어 가속 디코딩 방식입니다. NVIDIA 드라이버가 설치되어 있으면 작동할 가능성이 높습니다.
+    하지만 VDPAU는 구식 기술로, 최신 NVENC/NVDEC 대신 사용되는 경우가 드뭅니다.
+  * VAAPI (Video Acceleration API)
+    Intel과 AMD GPU에서 작동하는 Linux 기반 하드웨어 가속 방식입니다. NVIDIA GPU에서는 일반적으로 지원되지 않습니다.
+  * DRM (Direct Rendering Manager)
+    주로 Linux의 저수준 그래픽 API를 사용하여 하드웨어 가속을 지원합니다. 특정 환경에서만 사용됩니다.
+  * Vulkan
+    GPU를 사용하는 범용 하드웨어 가속 기술입니다. 그래픽 처리와 함께 하드웨어 가속 비디오 처리를 지원합니다.
+    ❓ NVIDIA Vulkan 드라이버가 설치된 경우 사용할 수 있습니다.
+
+
+ffmpeg -init_hw_device vulkan=vk -filter_hw_device vk -hwaccel vulkan -i mp4.mp4 -vf 'format=nv12,hwupload' -c:v h264_vulkan output.mp4
 
 
 
 
+❯ ffmpeg -init_hw_device vulkan=vk -filter_hw_device vk -hwaccel vulkan -i 
+>>
+  Stream mapping:
+    Stream #0:0 -> #0:0 (h264 (native) -> h264 (h264_vulkan))
+  Output #0, mp4, to 'output.mp4':
+    Stream #0:0(und): Video: h264 (High) (avc1 / 0x31637661), vulkan(tv, bt470bg/smpte170m/bt470bg, progressive), 640x360 [SAR 1:1 DAR 16:9], q=2-31, 25 fps, 12800 tbn (default)
+      Metadata:
+        encoder         : Lavc61.31.100 h264_vulkan    
+
+wbfw109v2 in
+
+
+ffplay output.mp4
+ffplay -hwaccel vulkan -vcodec h264_vulkan output.mp4
+
+echo $WAYLAND_DISPLAY
+
+export LIBVA_DRIVER_NAME=nvidia
+export VDPAU_DRIVER=nvidia
+
+
+ffplay -loglevel warning -hwaccel vdpau -vcodec h264 output.mp4
+ffplay -loglevel warning -hwaccel cuda -vcodec h264_cuvid output.mp4
 
 
 
+SDL2는 Simple DirectMedia Layer 2의 약자입니다.
+  SDL2는 멀티미디어 응용 프로그램(게임, 비디오 플레이어 등)을 개발하기 위해 사용되는 크로스 플랫폼 개발 라이브러리로, 다음과 같은 기능을 제공합니다:
 
+  SDL은 C로 짜여진 크로스플랫폼 멀티미디어 라이브러리입니다. 비디오,오디오,사용자 입력등을 추상화하여 API로 제공하며 리눅스, 윈도우, 안드로이드, iOS, 타이젠에서 사용가능하게 지원
+  sdl2-config --libs
+    -lSDL2
 
+    FFplay는 FFmpeg 라이브러리를 활용하면서 비디오 렌더링은 SDL2를 통해 수행합니다.
 
+OpenGL(Open Graphics Library) 는 실리콘 그래픽스사에서 만든 2차원/3차원 그래픽스 표준 API 규격
 
+🧮 nvtop
+  vkcube
+  >>
+    Selected WSI platform: xcb
+    Selected GPU 0: NVIDIA GeForce RTX 4070 SUPER, type: DiscreteGpu
+  // WSI(Windows System Integration): Vulkan이 사용하는 창 관리 시스템(Windowing System Integration)
+  glmark2
+  =======================================================
+      OpenGL Information
+      GL_VENDOR:      Mesa
+      GL_RENDERER:    llvmpipe (LLVM 19.1.0, 256 bits)
 
+glxinfo | grep "OpenGL renderer"
+  >> OpenGL renderer string: llvmpipe (LLVM 19.1.0, 256 bits)
 
+export LIBGL_ALWAYS_INDIRECT=1
+glxinfo | grep "OpenGL renderer"
+  glxinfo | grep "OpenGL renderer"
+  >> 
+  OpenGL renderer string: NVIDIA GeForce GTX 1080 Ti/PCIe/SSE2
+  X Error of failed request:  GLXBadCurrentWindow
+    Major opcode of failed request:  149 (GLX)
+    Minor opcode of failed request:  5 (X_GLXMakeCurrent)
+    Serial number of failed request:  56
+    Current serial number in output stream:  56
 
-;; 음.. 이거 qt 라이브러리 크로스컴파일하는거 거의 불가능한 수준같아. 
-정확히 말하면 기본 qtbase 만은 설치가 가능하지만 adds-on 을 설치하려면 명확하게 qt 공식 홈페이지에 필요한 패키지들이 쓰여있지도 않아서.. 공식 홈페이지 뿐 아니라 다른 블로그나 위키에도 없어.  계속 빌드오류나고 configure 에도 실패하고, 라즈베리파이 젯슨 나노 등으로 qt 라이브러리를 크로스컴파일하는것은 심지어 더 어렵고 (해당 타겟 디바이스에 뭘 설치해야하는지 다 나오지도 않음. adds-on 까지 활성화하려면 그냥 불가능에 가까운듯.)
+    
 
-그냥 online installer 를 사용하는 것이 좋을까? 
-https://download.qt.io/official_releases/online_installers/
+❓ SSH로 접속 중인 경우, 기본적으로 X11 포워딩은 원격 GPU 가속을 지원하지 않습니다. 이 때문에 glxinfo나 GPU 관련 프로그램 실행 시 llvmpipe(CPU 기반 소프트웨어 렌더러)가 사용됩니다. 원격 GPU 가속을 활성화하려면 몇 가지 설정을 추가해야 합니다.
+  OpenGL GPU 렌더링 강제 설정: 환경 변수 LIBGL_ALWAYS_INDIRECT를 설정합니다:
+  export LIBGL_ALWAYS_INDIRECT=0
+  export LLVM_ENABLE_ASSERTIONS=0
+  
+  GLX는 OpenGL과 X11 사이의 통신을 담당하는 계층입니다. SSH X11 포워딩 환경에서는 GLX가 GPU 하드웨어 가속을 제대로 활용하지 못할 수 있습니다.
 
-
-
+LLVM은 **"Low Level Virtual Machine"**의 약자입니다. 처음에는 컴파일러를 위한 저수준 가상 머신을 목표로 설계되었지만, 현재는 다양한 컴파일러 및 언어 지원 도구를 포함하는 유연하고 강력한 컴파일러 인프라 및 툴체인으로 발전했습니다
+**LLVM IR(Intermediate Representation)**은 하드웨어 독립적인 중간 코드 형식으로, 최적화 및 분석에 매우 효율적입니다.

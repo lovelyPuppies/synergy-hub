@@ -98,12 +98,14 @@ cd $HOME/ffmpeg_sources && wget https://github.com/Netflix/vmaf/archive/v3.0.0.t
 # 🧮 ./configure --help
 #   External library support
 #     The following libraries provide various hardware acceleration features:
-#       🌳 --enable-cuda-nvcc         enable Nvidia CUDA compiler [no]
+#      🌳 --enable-cuda-nvcc        enable Nvidia CUDA compiler [no]
+#       --enable-vulkan-static      statically link to libvulkan [no]
+
 export INSTALL_PREFIX=/usr/local/ffmpeg
 export PKG_CONFIG_PATH=$HOME/ffmpeg_build/lib/pkgconfig:/usr/lib/x86_64-linux-gnu/pkgconfig
 # export PKG_CONFIG_PATH=$HOME/ffmpeg_build/lib/pkgconfig:/usr/lib/x86_64-linux-gnu/pkgconfig:$INSTALL_PREFIX/lib/pkgconfig
 
-cd $HOME/ffmpeg_sources && wget -O ffmpeg-snapshot.tar.bz2 https://ffmpeg.org/releases/ffmpeg-snapshot.tar.bz2 && tar xjvf ffmpeg-snapshot.tar.bz2 && cd ffmpeg && \
+cd $HOME/ffmpeg_sources && wget -O ffmpeg-snapshot.tar.bz2 https://ffmpeg.org/releases/ffmpeg-snapshot.tar.bz2 && tar xjvf ffmpeg-snapshot.tar.bz2 && cd $HOME/ffmpeg_sources/ffmpeg && \
     PATH="$HOME/bin:$PATH" PKG_CONFIG_PATH="$PKG_CONFIG_PATH" ./configure \
     --prefix="$INSTALL_PREFIX" \
     --pkg-config-flags="--static" \
@@ -127,7 +129,8 @@ cd $HOME/ffmpeg_sources && wget -O ffmpeg-snapshot.tar.bz2 https://ffmpeg.org/re
     --enable-libx265 \
     --enable-libvmaf \
     --enable-nonfree \
-    --enable-cuda-nvcc && \
+    --enable-cuda-nvcc \
+    --enable-vulkan-static && \
     PATH="$HOME/bin:$PATH" make && sudo make install
 echo "hash only exists in bash, not in fish. In bash shell, to reload the path cache, use the following command: 🧮 hash -r"
 
@@ -142,6 +145,7 @@ ffplay -v verbose -hwaccel cuda ~/Downloads/Polar_orbit.ogv.360p.webm
     
 '
 
+### https://docs.nvidia.com/video-technologies/video-codec-sdk/11.1/ffmpeg-with-nvidia-gpu/index.html#hardware-setup
 
 ## You can check required dynamic libraries using command  `ldd` (List Dynamic Dependencies)
 #   🛍️ e.g.ldd ~/bin/ffmpeg
