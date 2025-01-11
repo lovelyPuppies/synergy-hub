@@ -4,7 +4,7 @@
 
 ## Overview
 
-This document provides insights and instructions for transitioning to a 64-bit environment on Raspberry Pi, highlighting the trends in software and hardware compatibility as of 2025. It includes comparisons, historical data, and step-by-step guidelines for achieving optimal development setups with tools like Qt.
+This document provides insights and instructions for transitioning to a 64-bit environment on Raspberry Pi, highlighting the trends in software and hardware compatibility as of 2025. Transitioning ensures compatibility, improved performance, and access to the latest features in the software ecosystem, particularly when using frameworks like Qt. It includes comparisons, historical data, and step-by-step guidelines for achieving optimal development setups.
 
 ### Why 64-bit?
 
@@ -76,7 +76,21 @@ Efforts to cross-compile Qt libraries for Raspberry Pi or Jetson Nano revealed s
 #### Options for Building:
 
 1. **Cloning Qt Repository:**
+
    - Use `git clone` for the [Qt source](https://github.com/qt/qt5) and attempt to build the modules.
+
+     🛍️ e.g.
+
+     ```bash
+     #!/bin/bash
+
+     # ... Install many dependencies
+     git clone --single-branch --branch 6.8.1 https://github.com/qt/qt5.git
+     ./init-repository --module-subset=default --branch
+     # ... Export pkg-config
+     ./configure FEATURE_clang=ON -prefix $WORKDIR/qt6/host -- -Wno-dev
+     ```
+
 2. **Manual Download:**
    - Download individual modules from [Qt Releases](https://download.qt.io/official_releases/qt/6.8/6.8.1/).
 
@@ -86,9 +100,12 @@ Due to these issues, the recommended approach is using the **Qt Online Installer
 
 - Installation size often includes GUI tools like Qt Creator. These can be excluded during installation.
 - By selecting only required modules (e.g., `QtBase`, `QtMultimedia`), the installation can be reduced to match the size of manually compiled binaries.
-- For deploying to target devices, avoid installing development headers and tools (`-dev` packages).
+- ⚠️ For deploying to target devices, avoid installing development headers and tools (`-dev` packages).
 
-Refer to the [Qt CLI Documentation](https://doc.qt.io/qt-6/get-and-install-qt-cli.html#installing-with-user-interaction) for details on minimizing installation size. Below is a breakdown of package contents:
+⭕ Refer to
+
+1.  [**Qt Online Installer (64-bit)**](https://download.qt.io/official_releases/online_installers/)
+2.  [**Get and Install Qt with Command Line Interface**](https://doc.qt.io/qt-6/get-and-install-qt-cli.html#installing-with-user-interaction) for details on minimizing installation size. Below is a breakdown of package contents:
 
 | Alias Package Name       | Contents                                                            |
 | ------------------------ | ------------------------------------------------------------------- |
@@ -101,17 +118,19 @@ Refer to the [Qt CLI Documentation](https://doc.qt.io/qt-6/get-and-install-qt-cl
 
 ## Transition Guide to 64-bit Environment
 
-### Step 1: Prepare 64-bit Raspberry Pi OS
+### Prepare 64-bit Raspberry Pi OS
 
 1. **Download the OS:**
    - [Raspberry Pi OS (64-bit)](https://www.raspberrypi.com/software/).
 2. **Install:**
    - Use Raspberry Pi Imager to flash the OS onto an SD card.
 
-### Step 2: Configure the Kernel for 64-bit
+### Configure the Kernel Driver for 64-bit
 
 1. **Set Kernel Parameters:**
-   - Ensure `/boot/config.txt` includes `arm_64bit=1` for enabling 64-bit mode.
+
+   - (⚖️ default) Ensure `/boot/config.txt` includes `arm_64bit=1` for enabling 64-bit mode.
+
 2. **Build Kernel Drivers:**
    - Use the `aarch64-linux-gnu-` toolchain.
    - Update the Makefile:
@@ -121,38 +140,3 @@ Refer to the [Qt CLI Documentation](https://doc.qt.io/qt-6/get-and-install-qt-cl
      KERNEL_ARCHITECTURE := arm64
      CPU_ARCH_FLAGS := -march=armv8-a
      ```
-
-### Step 3: Install Qt with Online Installer
-
-1. **Download the Installer:**
-   - Use `qt-unified-linux-arm64-online.run` for ARM64 systems.
-2. **Run Installer:**
-   ```bash
-   chmod +x qt-unified-linux-arm64-online.run
-   ./qt-unified-linux-arm64-online.run
-   ```
-3. **Select Components:**
-   - Add QtBase, QtMultimedia, or other required modules.
-
-### Step 4: Test Qt Applications
-
-1. **Deploy to Target:**
-   - Use Qt Creator’s deployment tools for ARM64.
-2. **Verify Performance:**
-   - Test add-ons and custom builds.
-
-## Appendix: Troubleshooting
-
-### Issue: Installer Fails on 32-bit Systems
-
-- **Cause:** Qt Online Installer requires a 64-bit kernel and user space.
-- **Solution:** Transition the system to full 64-bit as described above.
-
-### Issue: Kernel Drivers Not Loading
-
-- **Cause:** Bitness mismatch between kernel and user space.
-- **Solution:** Rebuild the kernel drivers using the correct toolchain (`aarch64-linux-gnu`).
-
----
-
-This document underscores the importance of moving to a 64-bit environment for modern development needs, particularly when using frameworks like Qt. Transitioning ensures compatibility, improved performance, and access to the latest features in the software ecosystem.
