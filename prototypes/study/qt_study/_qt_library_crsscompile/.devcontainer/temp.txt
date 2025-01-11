@@ -74,9 +74,40 @@ sudo apt update && sudo apt install -y \
   binutils-arm-linux-gnueabihf \
   libc6-armhf-cross \
   libc6-dev-armhf-cross \
-  glibc-source
+  glibc-source \
+  python3-pip \
+  nodejs
 sudo apt clean && \
 sudo rm -rf /var/lib/apt/lists/*
+
+
+
+
+' ❓ perl: warning: Setting locale failed.
+    Whenever `sudo apt install ..` or `perl -e exit`, it prints:
+    >> 
+      perl: warning: Please check that your locale settings:
+              LANGUAGE = (unset),
+              LC_ALL = (unset),
+              LANG = "en_US.UTF-8"
+          are supported and installed on your system.
+      perl: warning: Falling back to the standard locale ("C").
+    %shell> apt-cache policy locales
+      locales:
+        Installed: (none)
+        Candidate: 2.36-9+deb12u9
+        Version table:
+          2.36-9+deb12u9 500
+              500 http://deb.debian.org/debian bookworm/main amd64 Packages
+          2.36-9+deb12u7 500
+              500 http://deb.debian.org/debian-security bookworm-security/main amd64 Packages
+    ❔ command `localedef`
+      Input Files:
+        -f, --charmap=FILE         Symbolic character names defined in FILE
+        -i, --inputfile=FILE       Source definitions are found in FILE
+    ➡️ sudo apt install -y locales && localedef -i en_US -f UTF-8 en_US.UTF-8 
+'
+sudo apt install -y locales && localedef -i en_US -f UTF-8 en_US.UTF-8
 
 
 
@@ -147,10 +178,9 @@ git clone --single-branch --branch 6.8.1 https://github.com/qt/qt5.git
 #   instead of the same branch version (e.g., 6.8.1) selected for the parent Qt5 repository.
 cd qt5
 
-: '❓ WARNING: QtWebEngine won't be built. node.js version 14 or later is required.
-      WARNING: QtPdf won't be built. node.js version 14 or later is required.
-  nodejs ; https://nodejs.org/en/download
-    vscode@637a4c831d2d ~/b/q/s/qt5 (6.8.1)> apt-cache policy nodejs
+: '❓ WARNING: QtWebEngine won\'t be built. node.js version 14 or later is required.
+      WARNING: QtPdf won\'t be built. node.js version 14 or later is required.
+    %shell> apt-cache policy nodejs
     >> nodejs:
         Installed: 18.19.0+dfsg-6~deb12u2
         Candidate: 18.19.0+dfsg-6~deb12u2
@@ -160,8 +190,43 @@ cd qt5
               100 /var/lib/dpkg/status
           18.19.0+dfsg-6~deb12u1 500
               500 http://deb.debian.org/debian-security bookworm-security/main amd64 Packages
+    ➡️ sudo apt install -y nodejs
+
+  ❓ WARNING: QtWebEngine won\'t be built. Python3 html5lib is missing.
+    WARNING: QtPdf won\'t be built. Python3 html5lib is missing.
+
+    ➡️ sudo apt install -y python3-pip
+      python3 -m pip install html5lib --break-system-packages
+      
+  ❓ WARNING: QtWebEngine won\'t be built. Build requires nss >= 3.26.
+    %shell>apt-cache policy libnss3-dev
+    >> libnss3-dev:
+        Installed: (none)
+        Candidate: 2:3.87.1-1+deb12u1
+        Version table:
+          2:3.87.1-1+deb12u1 500
+              500 http://deb.debian.org/debian-security bookworm-security/main amd64 Packages
+          2:3.87.1-1 500
+              500 http://deb.debian.org/debian bookworm/main amd64 Packages
+    ➡️ sudo apt install -y libnss3-dev
 '
-sudo apt install -y nodejs
+sudo apt install -y nodejs python3-pip libnss3-dev
+python3 -m pip install html5lib --break-system-packages
+
+
+: '❓ WARNING: System GBM is disabled. The bundled minigbm supports Intel only, you might need to install libgbm to avoid rendering issues.
+    %shell> apt-cache policy libgbm-dev
+    >> libgbm-dev:
+        Installed: (none)
+        Candidate: 22.3.6-1+deb12u1
+        Version table:
+          22.3.6-1+deb12u1 500
+              500 http://deb.debian.org/debian bookworm/main amd64 Packages
+      ➡️ sudo apt install -y libgbm-dev
+'
+sudo apt install -y libgbm-dev
+
+
 
 ## ./init-repository --help 
 #   Module options:
@@ -182,6 +247,9 @@ sudo apt install -y nodejs
 
 # ❓ Note: Hunspell in Qt Virtual Keyboard is not enabled. Spelling correction will not be available.
 : ' ❓ QDoc will not be compiled, probably because clang's C and C++ libraries could not be located.
+  https://stackoverflow.com/questions/76498987/cannot-configure-qdoc-when-configuring-qt-6-2-4-because-of-missing-libclang
+
+
   NOTE: You WILL also need to set the FEATURE_clang CMake variable to ON to re-try finding the
   dependencies.
   On Debian / Ubuntu run `sudo apt install libclang-dev`.
@@ -205,8 +273,6 @@ sudo apt install -y nodejs
     find /usr/lib -name "libclangBasic.a"
     >> /usr/lib/llvm-14/lib/libclangBasic.a
 '
-
-
 sudo apt install libclang-dev
 
 
@@ -279,3 +345,14 @@ cd qt6/pi-build/qtshadertools-everywhere-src-6.8.0 && \
 cmake --build . --parallel 4 && \
 cmake --install .; 
 
+
+
+
+
+sudo apt update
+sudo apt install -y locales
+sudo update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
+sudo locale-gen en_US.UTF-8
+apt-get install language-pack-en-base
+
+sudo update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8

@@ -6892,17 +6892,6 @@ apache
       Active: failed (Result: exit-code) since Mon 2024-12-02 04:28:59 KST; 34s ago
   Dec 02 04:28:59 home httpd[82950]: AH00543: httpd: bad user name _www
 
-
-
-❓ 근데 이렇게 일일이 크로스컴파일 명령으로 실행하는거는 굉장히 불편한거같아.
-  clang --target=aarch64-linux-gnu \
-    --sysroot=/path/to/sysroot \
-    -o hello main.c
-
-  STM32용 프로젝트는 따로 구성해서 사용하고는있는데 그 외에 VSCode 에서 여러 c, cpp 독립적인 파일들이 있는데 (공부 용도로) 이를 프로젝트로 구성하기에는 너무 범위가 좁고), 개별적으로 명령어를 실행하기에는 너무 번거로워. 
-
-  어떻게 해야할까? conan + profile 설정으로 크로스컴파일을 구성해야 하나?
-
   
 
 Conan:/// 여기서 target_link_libraries(cpp_study PRIVATE ${CONAN_LIBS} opencv::opencv fmt::fmt)
@@ -11459,6 +11448,9 @@ synergy-hub on  main [!] is 📦 v0.1.0 via 🐍 v3.13.1 took 33m26s
 ❯                    
 
 ❓
+
+https://download.qt.io/official_releases/online_installers/
+
 TODO: Qt
   brew 로 설치한 opencv 부터 가속 테스트.
   이후.. 
@@ -16431,9 +16423,17 @@ MJPEG (Motion JPEG) 방식은
 
   
 
-⚠️ WebRTC는 P2P 방식으로 작동하며, 라즈베리파이 4B 또는 PC 웹 브라우저가 클라이언트로 연결됩니다.
+⚠️ WebRTC는 멀티미디어(오디오, 비디오) 스트리밍과 P2P 통신을 위해 설계되었습니다.
+  WebRTC는 기본적으로 P2P에 최적화되어 있어, 1:N 구조를 위해 추가적인 **서버 구성(SFU)**이 필요합니다.
+  WebRTC는 브라우저 간 실시간 화상 통화나 데이터 전송과 같은 애플리케이션에서 주로 사용됩니다.
+  브라우저 기반 애플리케이션에서는 저지연 비디오/오디오 데이터 스트리밍이 중요한 요구 사항입니다.
+  !!! 그러나 WebRTC는 드론/로봇 관제 시스템이 필요로 하는 센서 데이터, 제어 명령 처리에 특화되어 있지 않습니다.
 
-
+  센서 데이터 처리에는 MAVLink 같은 프로토콜이 더 적합합니다.
+    드론 통신에 특화: 센서 데이터와 제어 명령의 효율적 처리.
+    비디오 스트림과는 별개로, 센서 데이터와 명령 전송을 처리하는 데 적합.
+    비디오 스트리밍은 지원하지 않으므로, RTSP/RTMP와 함께 사용해야 함
+  RTSP, RTMP, MQTT 등은 중앙 집중식 제어 시스템을 쉽게 구성할 수 있어 이런 요구에 적합합니다.
 
 ### temp
 if not docker buildx inspect --bootstrap | grep -q linux/arm/v7
@@ -16443,3 +16443,38 @@ if not docker buildx inspect --bootstrap | grep -q linux/arm/v7
 else
     echo "linux/arm/v7 is already present."
 end
+
+
+./configure 명령어는 cmake 명령어에 대한 래퍼로 동작하며, 옵션을 CMake로 전달합니다. 예를 들어:
+  ./configure VAR=value -- -DVAR=value
+  다음과 같이 동작합니다:
+    VAR=value: Qt 빌드에 영향을 주는 옵션 (e.g., FEATURE_clang=ON)
+    --: 이후는 CMake 옵션 (e.g., -DCMAKE_BUILD_TYPE=Release)
+
+
+./configure -- -Wno-dev
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+;; 음.. 이거 qt 라이브러리 크로스컴파일하는거 거의 불가능한 수준같아. 
+정확히 말하면 기본 qtbase 만은 설치가 가능하지만 adds-on 을 설치하려면 명확하게 qt 공식 홈페이지에 필요한 패키지들이 쓰여있지도 않아서.. 공식 홈페이지 뿐 아니라 다른 블로그나 위키에도 없어.  계속 빌드오류나고 configure 에도 실패하고, 라즈베리파이 젯슨 나노 등으로 qt 라이브러리를 크로스컴파일하는것은 심지어 더 어렵고 (해당 타겟 디바이스에 뭘 설치해야하는지 다 나오지도 않음. adds-on 까지 활성화하려면 그냥 불가능에 가까운듯.)
+
+그냥 online installer 를 사용하는 것이 좋을까? 
+https://download.qt.io/official_releases/online_installers/
+
+
+

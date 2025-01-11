@@ -192,7 +192,7 @@ Handles framebuffer allocation and management for display output.
 
 🛍️ e.g.
 
-- **GBM (Generic Buffer Manager)**: Allocates and manages GPU buffers for rendering and display.
+- **GBM (Generic Buffer Management)**: Allocates and manages GPU buffers for rendering and display.
 - **EGLFS (EGL Full-Screen)**: Direct GPU access to manage buffers.
 - **LinuxFB (Linux Framebuffer)**: Manages CPU-rendered framebuffer devices.
 
