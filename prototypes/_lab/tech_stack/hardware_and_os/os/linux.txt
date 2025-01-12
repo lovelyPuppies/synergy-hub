@@ -72,7 +72,6 @@ list of level 1 subjects
 
 ----------------------------------------------
 Linux 🔪🪶 Glossary (still not grouped)
-
   ⚓ Launchpad ; https://en.wikipedia.org/wiki/Launchpad_(website)
     Laucnhpad is a web application and website that allows users to develop and maintain software, particularly open-source software.
 

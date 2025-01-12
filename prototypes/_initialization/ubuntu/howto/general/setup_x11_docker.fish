@@ -1,5 +1,13 @@
 #!/usr/bin/env fish
 # Written at 📅 2025-01-07 20:37:06
+function on_interrupt
+    echo -e "\nScript interrupted. Exiting..."
+    # Kill all child processes in the same process group
+    kill -- -$fish_pid
+    exit 1
+end
+trap on_interrupt SIGINT
+
 # Ensures x11-utils is installed and sets up X11 access for Docker.
 
 # Check if x11-utils is installed

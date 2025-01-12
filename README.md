@@ -152,9 +152,15 @@ tree [**prototypes/\_initialization/ubuntu**](prototypes/_initialization/ubuntu)
 │&nbsp;&nbsp;&nbsp;&nbsp;├── beta  
 │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;├── [qcnet.fish](prototypes/_initialization/ubuntu/howto/beta/qcnet.fish)  
 │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── [template-netplan_static_ip_setup.fish](prototypes/_initialization/ubuntu/howto/beta/template-netplan_static_ip_setup.fish)  
+│&nbsp;&nbsp;&nbsp;&nbsp;├── config-jetson_nano  
+│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── [setup_jetson_nano_vnc.fish](prototypes/_initialization/ubuntu/howto/config-jetson_nano/setup_jetson_nano_vnc.fish)  
+│&nbsp;&nbsp;&nbsp;&nbsp;├── config-raspberry_pi  
+│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── [\_setup_fish_shell_via_ppa.fish](prototypes/_initialization/ubuntu/howto/config-raspberry_pi/_setup_fish_shell_via_ppa.sh)  
+│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── [set_raspberry_pi_kernel_bitness.fish](prototypes/_initialization/ubuntu/howto/config-raspberry_pi/set_raspberry_pi_kernel_bitness.fish)  
 │&nbsp;&nbsp;&nbsp;&nbsp;├── general  
 │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;├── [generate_clangdb.fish](prototypes/_initialization/ubuntu/howto/general/generate_clangdb.fish)  
 │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;├── [init_nfs-client_to_server.fish](prototypes/_initialization/ubuntu/howto/general/init_nfs-client_to_server.fish)  
+│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;├── [init_resolv_conf.fish](prototypes/_initialization/ubuntu/howto/general/init_resolv_conf.fish)  
 │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;├── [init_samba-client_to_server.fish](prototypes/_initialization/ubuntu/howto/general/init_samba-client_to_server.fish)  
 │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;├── [setup_x11_docker.fish](prototypes/_initialization/ubuntu/howto/general/setup_x11_docker.fish)  
 │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── [setup_xauthority.fish](prototypes/_initialization/ubuntu/howto/general/setup_xauthority.fish)  
@@ -164,10 +170,6 @@ tree [**prototypes/\_initialization/ubuntu**](prototypes/_initialization/ubuntu)
 │&nbsp;&nbsp;&nbsp;&nbsp;├── \_internal  
 │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── file_supervisor  
 │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [inotify-make_fish_utilities_executable.fish](prototypes/_initialization/ubuntu/howto/_internal/file_supervisor/inotify-make_fish_utilities_executable.fish)  
-│&nbsp;&nbsp;&nbsp;&nbsp;├── jetson_config  
-│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── [setup_jetson_nano_vnc.fish](prototypes/_initialization/ubuntu/howto/jetson_config/setup_jetson_nano_vnc.fish)  
-│&nbsp;&nbsp;&nbsp;&nbsp;├── raspberry_pi_config  
-│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── [set_raspberry_pi_kernel_bitness.fish](prototypes/_initialization/ubuntu/howto/raspberry_pi_config/set_raspberry_pi_kernel_bitness.fish)  
 │&nbsp;&nbsp;&nbsp;&nbsp;├── [snippet.fish](prototypes/_initialization/ubuntu/howto/snippet.fish)  
 │&nbsp;&nbsp;&nbsp;&nbsp;└── template  
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [README.md](prototypes/_initialization/ubuntu/howto/template/README.md)  
@@ -176,8 +178,7 @@ tree [**prototypes/\_initialization/ubuntu**](prototypes/_initialization/ubuntu)
 ├── [init_in_fish_semi_automatic.fish](prototypes/_initialization/ubuntu/init_in_fish_semi_automatic.fish)  
 ├── [init_in_fish_semi_automatic-vision.fish](prototypes/_initialization/ubuntu/init_in_fish_semi_automatic-vision.fish)  
 └── recipes  
-&nbsp;&nbsp;&nbsp;&nbsp;├── [fix_locale_warning.recipe.fish](prototypes/_initialization/ubuntu/recipes/fix_locale_fallback_warning.fish)  
-&nbsp;&nbsp;&nbsp;&nbsp;└── [setup_fish_shell_via_ppa.fish](prototypes/_initialization/ubuntu/recipes/setup_fish_shell_via_ppa.sh)
+&nbsp;&nbsp;&nbsp;&nbsp;└── [fix_locale_warning.recipe.fish](prototypes/_initialization/ubuntu/recipes/fix_locale_fallback_warning.fish)
 
 ## ❓ Issues tracking
 

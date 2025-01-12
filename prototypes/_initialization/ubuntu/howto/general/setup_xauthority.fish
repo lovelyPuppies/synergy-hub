@@ -1,5 +1,13 @@
 #!/usr/bin/env fish
 # Written at 📅 2024-12-29 06:21:53
+function on_interrupt
+    echo -e "\nScript interrupted. Exiting..."
+    # Kill all child processes in the same process group
+    kill -- -$fish_pid
+    exit 1
+end
+trap on_interrupt SIGINT
+
 
 sudo -v
 # Prompt for sudo password to ensure the script has necessary privileges

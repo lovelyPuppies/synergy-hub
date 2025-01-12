@@ -1,4 +1,12 @@
 #!/usr/bin/env fish
+function on_interrupt
+    echo -e "\nScript interrupted. Exiting..."
+    # Kill all child processes in the same process group
+    kill -- -$fish_pid
+    exit 1
+end
+trap on_interrupt SIGINT
+
 
 ##### init_nfs-client_to_server.fish
 # 🪱 NFS (Network File System) allows for file sharing between Unix/Linux systems.

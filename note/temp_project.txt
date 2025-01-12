@@ -10451,7 +10451,6 @@ https://zephyrproject.org/
   CAN 네트워크에서 신호 전압의 낮은 상태를 나타내는 라인.
 
 
-
   자동차 산업에서는 CAN 부트로더를 통해 차량 ECU 펌웨어를 업데이트하는 경우가 많습니다
 
   다중 태스크 처리:
@@ -11314,69 +11313,12 @@ sudo apt update
 
 qt-unified-linux-x64-[Qt Online Installer version]-online.run --root /home/<username>/installation_dir --accept-licenses --default-answer --confirm-command install qt.qt6.680.gcc_64
 
-: '
-📦 qt
-the Hassle-Free JavaScript Tool Manager
-  Cross-platform application and UI framework
-
-https://repology.org/project/qt/versions
-  Homebrew: Outdated version
-➡️ >>> :brew install qt --HEAD
-
-https://doc.qt.io/qt-6/linux.html 
-sudo apt-get install build-essential libgl1-mesa-dev
-
-sudo add-apt-repository ppa:qtapp-devel/ppa
-sudo apt update
-sudo apt install qt6-base-dev
-
 
 '
 ➡️ https://doc.qt.io/qt-6/get-and-install-qt-cli.html
   ⚓ Installing Without User Interaction ; https://doc.qt.io/qt-6/get-and-install-qt-cli.html#installing-without-user-interaction
 
-
-==> Installing qt --HEAD
- ==> python3.13 -m venv --system-site-packages --without-pip /tmp/qt-20241220-1909829-gevkct/venv
-==> python3.13 -m pip --python=/tmp/qt-20241220-1909829-gevkct/venv/bin/python install /tmp/qt--html5lib-20241220-1909829-uieubp/html5lib-1.1
-==> python3.13 -m pip --python=/tmp/qt-20241220-1909829-gevkct/venv/bin/python install /tmp/qt--six-20241220-1909829-zuevuz/six-1.16.0
-==> python3.13 -m pip --python=/tmp/qt-20241220-1909829-gevkct/venv/bin/python install /tmp/qt--webencodings-20241220-1909829-jfyj0e/webencodings-0.5.1
-==> ./configure -release -prefix /home/linuxbrew/.linuxbrew -extprefix /home/linuxbrew/.linuxbrew/Cellar/qt/HEAD-ae8395a -archdatadir share/qt -datadir share/qt -e
- ==> cmake --build .
-Last 15 lines from /home/wbfw109v2/.cache/Homebrew/Logs/qt/06.cmake:
-[196/200] CXX src/gn/xcode_object.o
-[197/200] CXX src/gn/visual_studio_writer.o
-[198/200] CXX src/gn/xcode_writer.o
-[199/200] AR gn_lib.a
-[200/200] LINK gn
-[561/12728] : && /home/linuxbrew/.linuxbrew/Homebrew/Library/Homebrew/shims/linux/super/g++-14 -DNDEBUG -O3 -fexceptions -Wl,-z,relro,-z,now -Wl,--enable-new-dtags -fPIE -pie qtbase/src/tools/syncqt/CMakeFiles/syncqt.dir/main.cpp.o -o qtbase/share/qt/libexec/syncqt  -Wl,-rpath,:::::::::::::::::::: && :
-FAILED: qtbase/share/qt/libexec/syncqt 
-: && /home/linuxbrew/.linuxbrew/Homebrew/Library/Homebrew/shims/linux/super/g++-14 -DNDEBUG -O3 -fexceptions -Wl,-z,relro,-z,now -Wl,--enable-new-dtags -fPIE -pie qtbase/src/tools/syncqt/CMakeFiles/syncqt.dir/main.cpp.o -o qtbase/share/qt/libexec/syncqt  -Wl,-rpath,:::::::::::::::::::: && :
-/home/linuxbrew/.linuxbrew/opt/binutils/bin/ld: qtbase/src/tools/syncqt/CMakeFiles/syncqt.dir/main.cpp.o: in function `utils::parseVersion(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, int&, int&)':
-main.cpp:(.text+0x1308): undefined reference to `__isoc23_strtol'
-/home/linuxbrew/.linuxbrew/opt/binutils/bin/ld: main.cpp:(.text+0x136f): undefined reference to `__isoc23_strtol'
-collect2: error: ld returned 1 exit status
-[570/12728] /home/linuxbrew/.linuxbrew/Homebrew/Library/Homebrew/shims/linux/super/g++-14 -DPROTOBUF_USE_DLLS -DQT_EXPLICIT_QFILE_CONSTRUCTION_FROM_PATH -DQT_LEAN_HEADERS=1 -DQT_NO_AS_CONST=1 -DQT_NO_CONTEXTLESS_CONNECT=1 -DQT_NO_DEBUG -DQT_NO_FOREACH -DQT_NO_FOREACH=1 -DQT_NO_JAVA_STYLE_ITERATORS -DQT_NO_NARROWING_CONVERSIONS_IN_CONNECT -DQT_NO_QASCONST -DQT_NO_QEXCHANGE -DQT_NO_QSNPRINTF -DQT_NO_STD_FORMAT_SUPPORT -DQT_USE_QSTRINGBUILDER -D_GLIBCXX_ASSERTIONS -D_LARGEFILE64_SOURCE -D_LARGEFILE_SOURCE -I/tmp/qt-20241220-1909829-gevkct/qtgrpc/src/tools/qtgrpcgen -I/tmp/qt-20241220-1909829-gevkct/qtgrpc/src/tools/qtprotoccommon -I/tmp/qt-20241220-1909829-gevkct/qtbase/mkspecs/linux-g++ -I/tmp/qt-20241220-1909829-gevkct/qtbase/include -DNDEBUG -O2 -std=gnu++17 -fPIE -fvisibility=hidden -fvisibility-inlines-hidden -Wall -Wextra -U_FORTIFY_SOURCE -Wsuggest-override -fcf-protection=full -D_FORTIFY_SOURCE=2 -ftrivial-auto-var-init=pattern -fstack-protector-strong -fstack-clash-protection -fexceptions -MD -MT qtgrpc/src/tools/qtgrpcgen/CMakeFiles/qtgrpcgen.dir/qgrpcgenerator.cpp.o -MF qtgrpc/src/tools/qtgrpcgen/CMakeFiles/qtgrpcgen.dir/qgrpcgenerator.cpp.o.d -o qtgrpc/src/tools/qtgrpcgen/CMakeFiles/qtgrpcgen.dir/qgrpcgenerator.cpp.o -c /tmp/qt-20241220-1909829-gevkct/qtgrpc/src/tools/qtgrpcgen/qgrpcgenerator.cpp
-ninja: build stopped: subcommand failed.
-
-
 READ THIS: https://docs.brew.sh/Troubleshooting
-
-These open issues may also help:
-qt@5.rb looks in a wrong place for gl.h on newer systems https://github.com/Homebrew/homebrew-core/issues/201472
-qt's formula was built from an unstable upstream --HEAD.
-This build failure is expected behaviour.
-Do not create issues about this on Homebrew's GitHub repositories.
-Any opened issues will be immediately closed without response.
-Do not ask for help from Homebrew or its maintainers on social media.
-You may ask for help in Homebrew's discussions but are unlikely to receive a response.
-Try to figure out the problem yourself and submit a fix as a pull request.
-We will review it but may or may not accept it.
-
-synergy-hub on  main [!] is 📦 v0.1.0 via 🐍 v3.13.1 took 33m26s 
-❯                    
-
-❓
 
 https://download.qt.io/official_releases/online_installers/
 
@@ -11415,7 +11357,8 @@ TODO: Qt
     
     
     #!/usr/bin/env fish
-    wget -O ~/Downloads/qt-unified https://download.qt.io/official_releases/online_installers/qt-unified-linux-x64-online.run
+    # wget -O ~/Downloads/qt-unified https://download.qt.io/official_releases/online_installers/qt-unified-linux-x64-online.run
+    
     chmod 700 ~/Downloads/qt-unified
     ## if in ARM
     # wget https://download.qt.io/official_releases/online_installers/qt-unified-linux-arm64-online.run

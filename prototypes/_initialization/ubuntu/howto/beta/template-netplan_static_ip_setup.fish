@@ -9,7 +9,6 @@
 set renderer_choice networkd
 
 
-
 # Detect Ethernet and Wireless interface names
 set ethernet_name (find /sys/class/net -mindepth 1 -maxdepth 1 -lname '*virtual*' -prune -o -printf '%f\n' | grep '^e')
 set wireless_name (find /sys/class/net -mindepth 1 -maxdepth 1 -lname '*virtual*' -prune -o -printf '%f\n' | grep '^w')

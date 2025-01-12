@@ -1362,6 +1362,15 @@ end
     🚨 (issue: Error); Failed to create client object: Daemon not running 📅 2025-01-12 14:24:10
       When
         %shell> avahi-browse -at
+
+📦 qt
+  https://repology.org/project/qt/versions
+  https://formulae.brew.sh/qt/avahi
+
+  the Hassle-Free JavaScript Tool Manager
+  Homebrew: Outdated version
+
+  ➡️ use online installer
 '
 
 
