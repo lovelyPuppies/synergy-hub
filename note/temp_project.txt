@@ -16367,3 +16367,40 @@ jsnano @ nano123
 
 
 git log --oneline --graph --all
+
+
+마크다운 문서
+.. 미디어파이프.. overview 작성
+
+    ## Reference
+    (**Mediapipe** [Face Detection](https://ai.google.dev/edge/mediapipe/solutions/vision/face_detector), [Face landmark detection](https://ai.google.dev/edge/mediapipe/solutions/vision/face_landmarker))
+
+선풍기ㅣ.. FSM 을 앞으로 가져오기..
+
+Project 구조.. 맞나?
+
+  - [Kernel Timer Mini Project](#kernel-timer-mini-project)
+    - [Project Introduction](#project-introduction)
+      - [Features](#features)
+  - [LED Timer and Button Interaction](#led-timer-and-button-interaction)
+    - [동작 흐름](#동작-흐름)
+      - [1. 초기 LED 반전 시작](#1-초기-led-반전-시작)
+      - [2. 버튼 동작에 따른 LED/타이머 제어](#2-버튼-동작에-따른-led타이머-제어)
+      - [3. 애플리케이션 종료](#3-애플리케이션-종료)
+    - [🎯 Project Purposes](#-project-purposes)
+    - [🖼️ Hardware Setup](#️-hardware-setup)
+      - [Notes](#notes)
+      - [Using Devices](#using-devices)
+      - [GPIO Pinout Table](#gpio-pinout-table)
+    - [🎥 Kernel Timer Demo](#-kernel-timer-demo)
+    - [🖼️ Software Setup](#️-software-setup)
+    - [🌐 Project Overview](#-project-overview)
+      - [🛠️ Tools](#️-tools)
+        - [\[🧑‍💻 Software\]](#-software)
+        - [\[🖥️ Hardware\]](#️-hardware)
+      - [📁 Directory Structure](#-directory-structure)
+      - [FSM (Finite State Machine)](#fsm-finite-state-machine)
+        - [🎛️ Inputs (Button Definitions)](#️-inputs-button-definitions)
+        - [📊 Diagram](#-diagram)
+    - [Retrospective](#retrospective)
+      - [📌 Key Learnings and Improvements](#-key-learnings-and-improvements)

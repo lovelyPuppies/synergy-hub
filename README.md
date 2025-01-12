@@ -5,9 +5,11 @@
 - [Synergy Hub Documentation](#synergy-hub-documentation)
   - [🗂 Directory Structure](#-directory-structure)
   - [📌 Project Shortcuts](#-project-shortcuts)
-  - [�️ Scripts](#️-scripts)
+  - [🌐 Open Source Contributions](#-open-source-contributions)
+    - [Issues Overview](#issues-overview)
+  - [🖋️ Scripts](#️-scripts)
   - [🔧 Tech Stack](#-tech-stack)
-  - [❓ Issues tracking](#-issues-tracking)
+  - [📈 Trend](#-trend)
   - [🚀 Project Setup Instructions (Ubuntu)](#-project-setup-instructions-ubuntu)
   - [📏 Rule](#-rule)
 
@@ -24,21 +26,22 @@
 
 - [**ATmega128 기반 선풍기 제어 시스템**](https://github.com/lovelyPuppies/fanProject) (External Link)
 
-  🏷️ Tag: ATmega128, AVR, Peripherals (UART, I2C, PWM, Timer), Design Pattern (MVP), Finite State Machine
+  🏷️ Tag: C, ATmega128, AVR, Peripherals (UART, I2C, PWM, Timer), Design Pattern (MVP), Finite State Machine
 
 - [**Jetson Nano와 Edge AI를 활용한 실시간 수신호 인식 자율주행 RC카 개발 프로젝트**](https://github.com/opmaksim/Signal-Project) (External Link)
 
-  🏷️ Tag: Edge AI, On-Device, Yolo v11, JetSon Nano
+  🏷️ Tag: Python, C, Edge AI, On-Device, Yolo v11, JetSon Nano
 
 - [**Raspberry Pi 4 B 기반 커널 모듈 및 디바이스 드라이버 구현 (LED 제어)**](prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/README.md)
-  🏷️ Tag: ...
 
-- **STM32 Nucleo F411RE 기반 디지털 시계 및 알람 시스템 구현**: TODO
+  🏷️ Tag: C, Make, clang
+
 - [**Opencv 및 MediaPipe 기반 카메라 필터 애플리케이션 개발**](prototypes/study/python_study/camera_filter_app)
-  🏷️ Tag: Python3, OpenCV, MediaPipe, ...
+
+  🏷️ Tag: Python3, OpenCV, MediaPipe
 
 - [**환경 및 네트워크 초기화 자동화 스크립트 작성**](prototypes/_initialization)
-  🏷️ Tag: Fish script, ...
+  🏷️ Tag: Fish script
 
 - [synergy-hub **LFS using docker**](prototypes/_initialization/lfs/README.md)
   🏷️ Tag: Docker, LFS
@@ -50,6 +53,38 @@
 - [**Turtlebot 3**](prototypes/study/ros_study/ros-noetic-turtlebot3)
 
   📰 Doing ...
+
+- **STM32 Nucleo F411RE 기반 디지털 시계 및 알람 시스템 구현**: TODO
+
+## 🌐 Open Source Contributions
+
+### Issues Overview
+
+- [⏳ Pending Issues](issues_tracking/pending_issues.md)
+
+  - 📅 2024-08-26: prefix-dev/pixi 🔪 [in VS Code, manifest PIXI_PROJECT_MANIFEST is not changed when open by command "code <path>](https://github.com/prefix-dev/pixi/issues/1907)
+  - 📅 2024-08-29: conan-io/conan 🔪 [[bug] in Ubuntu, clang, Ninja enviornment. ERROR: pulseaudio/14.2: Error in build() method, line 131 (external link)](https://github.com/conan-io/conan/issues/16905)
+  - 📅 2024-08-29: conan-io/conan-center-index [\[package\] pulseaudio/14.2 : I'm using clang 18 but error; Compiler does not support -std=gnu11](https://github.com/conan-io/conan-center-index/issues/25075)
+
+- [✅ Resolved Issues](issues_tracking/resolved_issues.md)
+
+  - 📅 2024-10-17: opmaksim/Project_SignalMaster 🔪 [Python Jupyter Interactive Kernel crashed when use cv2.imshow()](https://github.com/opmaksim/Project_SignalMaster/issues/14)
+
+    ➡️ On Jetson Nano and VS Code, avoid using `cv2.imshow()`. Instead, use the following workaround:
+
+    ```python
+    from IPython.display import clear_output, display
+    ```
+
+    The issue appears to stem from a combination of:
+
+    - Accessing Jetson Nano via **VS Code's Remote-SSH**.
+    - Running **Jupyter Notebook (IPython)**.
+    - Using OpenCV without hardware acceleration.
+
+    These factors likely led to increased CPU usage and memory shortage, resulting in a kernel crash in Jupyter Notebook.
+
+  - 📅 2024-08-29: conan-io/conan-center-index [\[package\] pulseaudio/14.2 : I'm using clang 18 but error; Compiler does not support -std=gnu11](https://github.com/conan-io/conan-center-index/issues/25075)
 
 ## 🖋️ Scripts
 
@@ -68,7 +103,7 @@ tree [**prototypes/\_initialization/ubuntu**](prototypes/_initialization/ubuntu)
 │&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 config-jetson_nano  
 │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── [setup_jetson_nano_vnc.fish](prototypes/_initialization/ubuntu/howto/config-jetson_nano/setup_jetson_nano_vnc.fish)  
 │&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 config-raspberry_pi  
-│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── [\_setup_fish_shell_via_ppa.fish](prototypes/_initialization/ubuntu/howto/config-raspberry_pi/_setup_fish_shell_via_ppa.sh)  
+│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── [\_setup_fish_shell.fish](prototypes/_initialization/ubuntu/howto/config-raspberry_pi/_setup_fish_shell.sh)  
 │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── [set_raspberry_pi_kernel_bitness.fish](prototypes/_initialization/ubuntu/howto/config-raspberry_pi/set_raspberry_pi_kernel_bitness.fish)  
 │&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 general  
 │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;├── [generate_clangdb.fish](prototypes/_initialization/ubuntu/howto/general/generate_clangdb.fish)  
@@ -87,7 +122,7 @@ tree [**prototypes/\_initialization/ubuntu**](prototypes/_initialization/ubuntu)
 │&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 template  
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [README.md](prototypes/_initialization/ubuntu/howto/template/README.md)  
 ├── [init_in_bash.sh](prototypes/_initialization/ubuntu/init_in_bash.sh)  
-├── [init_in_fish.fish](prototypes/_initialization/ubuntu/init_in_fish.fish)  
+├── **[init_in_fish.fish](prototypes/_initialization/ubuntu/init_in_fish.fish)**  
 ├── [init_in_fish_semi_automatic.fish](prototypes/_initialization/ubuntu/init_in_fish_semi_automatic.fish)  
 ├── [init_in_fish_semi_automatic-vision.fish](prototypes/_initialization/ubuntu/init_in_fish_semi_automatic-vision.fish)  
 └── 📂 recipes  
@@ -141,7 +176,7 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
  │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [openmmlab](prototypes/_lab/tech_stack/mathmatics/ml/openmmlab.txt)  
  ├── 📂 monitoring_tools  
  │&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 file_system_monitoring  
- │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [watchman](prototypes/_lab/tech_stack/monitoring_tools/file_system_monitoring/watchman.txt)  
+ │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── **[inotify-tools](prototypes/_lab/tech_stack/monitoring_tools/file_system_monitoring/inotify-tools.txt)**  
  ├── 📂 package_manager  
  │&nbsp;&nbsp;&nbsp;&nbsp;├── [env-nix](prototypes/_lab/tech_stack/package_manager/env-nix.txt)  
  │&nbsp;&nbsp;&nbsp;&nbsp;├── [env-volta](prototypes/_lab/tech_stack/package_manager/env-volta.txt)  
@@ -173,16 +208,29 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
  │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── **[timg](prototypes/_lab/tech_stack/terminal/graphics_tools/timg.txt)**  
  ├── 📂 virtualization  
  │&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 os_level_virtualization  
- │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [container-dev_container](prototypes/_lab/tech_stack/virtualization/os_level_virtualization/container-dev_container.txt)  
+ │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── **[dev_env-devcontainer](prototypes/_lab/tech_stack/virtualization/os_level_virtualization/dev_env-devcontainer.txt)**  
+ │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── **[runtime-docker](prototypes/_lab/tech_stack/virtualization/os_level_virtualization/runtime-docker.txt)**  
  └── 📂 web  
  ├── 📂 web_browser  
  │&nbsp;&nbsp;&nbsp;&nbsp;└── [edge](prototypes/_lab/tech_stack/web/web_browser/edge.txt)  
  └── 📂 web_server  
  &nbsp;&nbsp;&nbsp;&nbsp;└── [nginx](prototypes/_lab/tech_stack/web/web_server/nginx.txt)
 
-## ❓ Issues tracking
+## 📈 Trend
 
-- conan 🔪 [\[package\] pulseaudio/14.2 : I'm using clang 18 but error; Compiler does not support -std=gnu11](https://github.com/conan-io/conan-center-index/issues/25075)
+tree [**prototypes/\_initialization/\_about**](prototypes/_initialization/_about)  
+├── [about-intellisense_for_c_cpp.md](prototypes/_initialization/_about/about-intellisense_for_c_cpp.md)  
+├── 📂 compare_similar_functinalities  
+│&nbsp;&nbsp;&nbsp;&nbsp;├── [kmsg_vs_journalctl.md](prototypes/_initialization/_about/compare_similar_functinalities/kmsg_vs_journalctl.md)  
+│&nbsp;&nbsp;&nbsp;&nbsp;└── [video_streaming-seraizliation_vs_compression.md](prototypes/_initialization/_about/compare_similar_functinalities/video_streaming-seraizliation_vs_compression.md)  
+└── 📂 compare_trend  
+&nbsp;&nbsp;&nbsp;&nbsp;├── [git_switch_and_restore_instead_of_git_checkout.md](prototypes/_initialization/_about/compare_trend/git_switch_and_restore_instead_of_git_checkout.md)  
+&nbsp;&nbsp;&nbsp;&nbsp;├── [netplan-efficient-usage.md](prototypes/_initialization/_about/compare_trend/netplan-efficient-usage.md)  
+&nbsp;&nbsp;&nbsp;&nbsp;├── [netplan-vs-etc_network_interfaces.md](prototypes/_initialization/_about/compare_trend/netplan-vs-etc_network_interfaces.md)  
+&nbsp;&nbsp;&nbsp;&nbsp;├── [raspberry_pi_64bit_environment_with_qt.md](prototypes/_initialization/_about/compare_trend/raspberry_pi_64bit_environment_with_qt.md)  
+&nbsp;&nbsp;&nbsp;&nbsp;└── [why_thread_became_the_standard_in_matter.md](prototypes/_initialization/_about/compare_trend/why_thread_became_the_standard_in_matter.md)
+
+---
 
 ## 🚀 Project Setup Instructions (Ubuntu)
 

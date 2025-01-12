@@ -1,5 +1,5 @@
 #!/usr/bin/env fish
-# Updated at 📅 2025-01-12 21:52:37
+# Updated at 📅 2025-01-13 01:12:29
 : '
 💡 Note: Use `set -l` to declare `script_dir` as a local variable. 📅 2024-11-25 00:22:29
     This ensures that the variable is scoped only to this script and does not interfere with other scripts or overwrite global variables when using `source`.
@@ -12,18 +12,16 @@
 
 
 # Define script_dir
-set -l script_dir (dirname (realpath (status filename)))
-set -g script_file_name (realpath (status filename))
+set -g script_file_path (realpath (status filename))
+set -l script_dir (dirname $script_file_path)
+
 
 # Define a function to source each module and check if it exists
 function safe_source --argument-name file_path
     # Skip sourcing this fish file itself
-    # echo (basename $script_file_name)
-    # echo $file_path
-    if test $file_path = $script_file_name
+    if test $file_path = $script_file_path
         return
     end
-
 
     # Check if the file exists
     if not test -e $file_path

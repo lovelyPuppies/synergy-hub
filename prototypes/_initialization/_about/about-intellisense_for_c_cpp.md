@@ -8,7 +8,7 @@ Written at 📅 2024-12-18 04:33:15
 
 - The `c_cpp_properties.json` file is specific to Microsoft's C/C++ extension for VSCode.
 - It requires **manual configuration** of paths for IntelliSense.
-- Even with proper configuration, the **IntelliSense and autocompletion** provided are **subpar**.
+- Even with proper configuration, the **IntelliSense and autocompletion** provided are **poor** when cross-compiling kernel modules.
 
 🚨 I personally encountered this issue when setting up cross-compilation for ARM kernel drivers. Even for regular local variables, name autocompletion does not work. Switching to `clangd` resulted in a much better experience for both IntelliSense and autocompletion.
 
