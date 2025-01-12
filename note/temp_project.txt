@@ -14703,7 +14703,7 @@ sudo apt-get install libegl1-mesa-dev libgles2-mesa-dev
 
 perl init-repository --module-subset=qtbase,qttools
 
-
+!!!!!!!!! qt6.8.0-sdk 설치햇어야햇ㅇㅁ
 
 
 perl init-repository --module-subset=qtbase,qttools
