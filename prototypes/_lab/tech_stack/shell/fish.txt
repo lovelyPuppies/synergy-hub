@@ -76,7 +76,12 @@ Fish 🔪⚓ Commands ; https://fishshell.com/docs/current/commands.html
   ⚓ string-match - match substrings ; https://fishshell.com/docs/current/cmds/string-match.html
     If 🪱 --groups-only or -g is given, only the capturing groups will be reported - meaning the full match will be skipped. 
     If 🪱 --regex or -r is given, PATTERN is interpreted as a Perl-compatible regular expression, which does not have to match the entire STRING.
-    
+  ⚓ string-split - split strings by delimiter ; https://fishshell.com/docs/current/cmds/string-split.html
+    If 🪱 -r or --right is given, splitting is performed right-to-left.
+    This is useful in combination with 🪱 -m or --max. 
+    Use 🪱 -f or --fields to print out specific fields.
+      FIELDS is a comma-separated string of field numbers and/or spans.
+        
 ----------------------------------------------
 Fish 🔪⚓ The fish language ; https://fishshell.com/docs/current/language.html
 

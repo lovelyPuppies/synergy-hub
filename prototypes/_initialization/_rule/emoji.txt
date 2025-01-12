@@ -3,15 +3,20 @@ Emoji 🔗 from VS Code Extension :emojisense: ;https://marketplace.visualstudio
   
   📏 Format
   -----
-  <emoji>  <name>           <suffix when use emoji>             Description
+  <emoji>  <name>             <suffix when use emoji>             Description
   -----
-  📝      :memo:            ""
-  📜      :scroll:          "(how-to) fish script: <Title>"
-  ✍️      :writing_hand:    "(✍️ <Subject> 🔪 study)"
+  📝      :memo:              ""
+  📜      :scroll:            "(how-to) fish script: <Title>"
+  ✍️      :writing_hand:      "(✍️ <Subject> 🔪 study)"
 
-  🚨      :rotating_light:  "(Issue: Error); <Title>"
-  🚨      :rotating_light:  "(Issue: Bug); <Title>"
+  🚨      :rotating_light:    "(Issue: Error); <Title>"
+  🚨      :rotating_light:    "(Issue: Bug); <Title>"
  
-  🤚      :raised_hand:     "User interaction: <Title>"         User interaction required because it cannot be a completely automatic script
+  🤚      :raised_hand:       "User interaction: <Title>"         User interaction required because it cannot be a completely automatic script
 
-  🗑️      :wastebasket:     "Deprecated: <Title>"
+  🪶      :feather:           ""                                  Glossary
+  ⚖️      :balance_scale:     ""                                  Description for Default value
+  🗑️      :wastebasket:       "Deprecated: <Title>"
+
+  🆗      :ok:                ""                                  Attempt: Fail
+  📵      :no_mobile_phones:  ""                                  Attempt: Fail

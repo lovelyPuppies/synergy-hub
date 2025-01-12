@@ -1,0 +1,37 @@
+list of level 1 subjects
+  - Windows
+  
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ Windows ; https://windows.com/
+  https://en.wikipedia.org/wiki/Microsoft_Windows
+
+
+
+==============================================
+Windows 🔪 DNS
+  ⚓ Microsoft-Windows-DNS-Client ; https://learn.microsoft.com/en-us/windows-hardware/customize/desktop/unattend/microsoft-windows-dns-client
+
+
+  ⚓📎 Link-Local Multicast Name Resolution (LLMNR) ; https://en.wikipedia.org/wiki/Link-Local_Multicast_Name_Resolution
+    ❔ The Link-Local Multicast Name Resolution (LLMNR) is a protocol based on the Domain Name System (DNS) packet format that allows both IPv4 and IPv6 hosts to perform name resolution for hosts on the same local link.
+    
+    LLMNR is defined in RFC 4795 but was not adopted as an IETF standard.
+      As of April 2022, Microsoft has begun the process of phasing out both LLMNR and NetBIOS name resolution in favour of mDNS. 🔗 https://en.wikipedia.org/wiki/Link-Local_Multicast_Name_Resolution#cite_note-4
+    📝🧪 Testing Whether mDNS is Used: Windows 11 vs. Ubuntu 📅 2025-01-12 15:36:18
+      Raspberry pi Information
+        - Hostname: pi
+        - Username: pi19
+        - Ipv4: 10.10.14.200
+
+      In Windows 11, 
+        🆗 ssh pi19@pi
+        🆗 ssh pi19@10.10.14.200
+        📵 ssh pi19@pi.local
+          >> "" (Pending...)
+      In Ubuntu, 
+        📵 ssh pi19@pi
+          >> ssh: Could not resolve hostname pi: Temporary failure in name resolution
+        🆗 ssh pi19@pi.local
+        🆗 ssh pi19@10.10.14.200
+

@@ -14,63 +14,63 @@
 			"path": "prototypes/_lab/tech_stack/hardware_and_os/os/linux.txt",
 			"bookmarks": [
 				{
-					"line": 93,
+					"line": 108,
 					"column": 11,
 					"label": ""
 				},
 				{
-					"line": 433,
+					"line": 447,
 					"column": 13,
 					"label": ""
 				},
 				{
-					"line": 451,
+					"line": 465,
 					"column": 12,
 					"label": ""
 				},
 				{
-					"line": 461,
+					"line": 475,
 					"column": 12,
 					"label": ""
 				},
 				{
-					"line": 471,
+					"line": 485,
 					"column": 17,
 					"label": ""
 				},
 				{
-					"line": 479,
+					"line": 493,
 					"column": 16,
 					"label": ""
 				},
 				{
-					"line": 487,
+					"line": 501,
 					"column": 17,
 					"label": ""
 				},
 				{
-					"line": 498,
+					"line": 512,
 					"column": 15,
 					"label": ""
 				},
 				{
-					"line": 517,
+					"line": 531,
 					"column": 15,
 					"label": ""
 				},
 				{
-					"line": 552,
+					"line": 586,
 					"column": 18,
 					"label": ""
 				},
 				{
-					"line": 568,
-					"column": 18,
-					"label": ""
-				},
-				{
-					"line": 579,
+					"line": 596,
 					"column": 14,
+					"label": ""
+				},
+				{
+					"line": 566,
+					"column": 1,
 					"label": ""
 				}
 			]
@@ -79,12 +79,12 @@
 			"path": "note/temp_project.txt",
 			"bookmarks": [
 				{
-					"line": 6238,
+					"line": 6210,
 					"column": 0,
 					"label": ""
 				},
 				{
-					"line": 16122,
+					"line": 15994,
 					"column": 12,
 					"label": ""
 				}

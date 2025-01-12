@@ -258,46 +258,35 @@ end
 
 
 
-# : '
-# 📦🚀 avahi ; https://github.com/avahi/avahi
-#     https://repology.org/project/avahi/versions
-#     https://formulae.brew.sh/formula/avahi
-
-#     Service Discovery for Linux using mDNS/DNS-SD
-# '
-# brew install avahi
-
-
-
-
-
-
-
 
 
 echo "▶️  Installing improved tools for speed and usability ..."
 
 : '
-📦🚀 bat ; https://github.com/sharkdp/bat
-    https://repology.org/project/bat/versions
-    https://formulae.brew.sh/formula/bat#default
-    
-    alternative of "cat".
-    Developed in Rust.
+📦🚀 bat
+https://github.com/sharkdp/bat
+https://repology.org/project/bat/versions
+https://formulae.brew.sh/formula/bat#default
+
+alternative of "cat".
+Developed in Rust.
 '
 brew install bat
 
 
 
 : '
-📦🚀 fd-find (fd); https://github.com/sharkdp/fd
-    https://repology.org/project/fd-find/versions
-    https://formulae.brew.sh/formula/fd#default
-    
-    alternative of "find".
-    Developed in Rust.
+📦🚀 fd-find (fd)
+https://github.com/sharkdp/fd
+https://repology.org/project/fd-find/versions
+https://formulae.brew.sh/formula/fd#default
 
-    🛍️ Usage e.g. %shell>
+alternative of "find".
+Developed in Rust.
+
+🛍️ Usage e.g. %shell >
+
+
         fd --extension fish
 '
 brew install fd
@@ -305,14 +294,14 @@ brew install fd
 
 : '
 📦🚀 lsd: https://github.com/lsd-rs/lsd
-    https://repology.org/project/lsd/versions
-    https://formulae.brew.sh/formula/lsd#default
-    
-    alternative of "ls". lsd: ls Deluxe
-    Developed in Rust.
+https://repology.org/project/lsd/versions
+https://formulae.brew.sh/formula/lsd#default
 
-    config file location: $HOME/.config/lsd/config.yaml
-        You may require 🧮 mkdir -p ~/.config/lsd
+alternative of "ls". lsd: ls Deluxe
+Developed in Rust.
+
+config file location: $HOME/.config/lsd/config.yaml
+You may require 🧮 mkdir -p ~/.config/lsd
 '
 brew install lsd
 
@@ -330,46 +319,53 @@ update_fish_interactive_block --unique-comment="$unique_comment" --contents="$ll
 
 
 : '
-📦🚀 ripgrep (rg) ; https://github.com/BurntSushi/ripgrep
-    https://repology.org/project/ripgrep/versions
-    https://formulae.brew.sh/formula/ripgrep#default
-    
-    alternative of "grep".
-    Developed in Rust.
+📦🚀 ripgrep (rg)
+https://github.com/BurntSushi/ripgrep
+https://repology.org/project/ripgrep/versions
+https://formulae.brew.sh/formula/ripgrep#default
 
-    🛍️ Usage e.g. %shell>
-        procs | rg "kworker"
-        rg --type-list
+alternative of "grep".
+Developed in Rust.
+
+🛍️ Usage e.g. %shell >
+
+
+        procs | rg kworker
+rg --type-list
 '
 brew install ripgrep
 
 
 : '
-📦🚀 procs ; https://github.com/dalance/procs
-    https://repology.org/project/procs/versions
-    https://formulae.brew.sh/formula/procs#default
-    
-    alternative of "ps".
-    Developed in Rust.
+📦🚀 procs
+https://github.com/dalance/procs
+https://repology.org/project/procs/versions
+https://formulae.brew.sh/formula/procs#default
 
-    🛍️ Usage e.g. %shell>
+alternative of "ps".
+Developed in Rust.
+
+🛍️ Usage e.g. %shell >
+
+
         # Search by non-numeric keyword
         #    If you add any keyword as argument, it is matched to USER, Command by default.
         procs $USER --watch
-        procs --tree
+procs --tree
 '
 brew install procs
 
 
 : '
-📦🚀 jaq (Just Another Query) ; https://github.com/01mf02/jaq
-    https://repology.org/project/jaq/versions
-    https://formulae.brew.sh/formula/jaq#default
-    
-    alternative of "jq" (JSON Query).
-    Developed in Rust.
+📦🚀 jaq (Just Another Query)
+https://github.com/01mf02/jaq
+https://repology.org/project/jaq/versions
+https://formulae.brew.sh/formula/jaq#default
 
-    JQ clone focussed on correctness, speed, and simplicity
+alternative of jq (JSON Query).
+Developed in Rust.
+
+JQ clone focussed on correctness, speed, and simplicity
 '
 brew install jaq
 
@@ -379,19 +375,21 @@ brew install jaq
 
 : '
 📦 timg (Terminal image and video viewer)
-    https://repology.org/project/timg/versions
-    https://formulae.brew.sh/formula/timg#default
+https://repology.org/project/timg/versions
+https://formulae.brew.sh/formula/timg#default
 
-    🛍️ Usage e.g. in Wezterm, %shell>
+🛍️ Usage e.g. in Wezterm, %shell >
+
+
         # download 2400 * 1600 resolution image
         wget -O ~/Downloads/puppy.jpg "https://images.unsplash.com/photo-1507146426996-ef05306b995a?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=berkay-gumustekin-ngqyo2AYYnE-unsplash.jpg&w=2400"
-        timg ~/Downloads/puppy.jpg
+timg ~/Downloads/puppy.jpg
 
-        wget -O ~/Downloads/test_svg.svg "https://www.svgrepo.com/show/765/library.svg"
-        timg ~/Downloads/test_svg.svg
+wget -O ~/Downloads/test_svg.svg "https://www.svgrepo.com/show/765/library.svg"
+timg ~/Downloads/test_svg.svg
 
-        wget -O ~/Downloads/test_gif.gif "https://upload.wikimedia.org/wikipedia/commons/c/c8/132C_trans.gif"
-        timg ~/Downloads/test_gif.gif
+wget -O ~/Downloads/test_gif.gif "https://upload.wikimedia.org/wikipedia/commons/c/c8/132C_trans.gif"
+timg ~/Downloads/test_gif.gif
 '
 # brew install timg
 
@@ -403,10 +401,10 @@ brew install jaq
 
 : '
 📦 prettier
-    https://repology.org/project/prettier/versions
-    https://formulae.brew.sh/formula/prettier#default
+https://repology.org/project/prettier/versions
+https://formulae.brew.sh/formula/prettier#default
 
-    Code formatter for JavaScript, CSS, JSON, GraphQL, Markdown, YAML
+Code formatter for JavaScript, CSS, JSON, GraphQL, Markdown, YAML
 '
 brew install prettier
 
@@ -414,13 +412,15 @@ brew install prettier
 
 : '
 📦 viu: A small command-line application to view images from the terminal written in Rust.
-    https://github.com/atanunq/viu
-    https://repology.org/project/viu/versions
-    https://formulae.brew.sh/formula/viu#default
+https://github.com/atanunq/viu
+https://repology.org/project/viu/versions
+https://formulae.brew.sh/formula/viu#default
 
-    Developed in Rust.
+Developed in Rust.
 
-    🛍️ Usage e.g. %shell> 
+🛍️ Usage e.g. %shell >
+
+ 
         viu image.png
 '
 brew install viu
@@ -432,14 +432,14 @@ brew install viu
 echo "▶️ Installing C/++ tools ..."
 : '
 📦 cmake
-    https://repology.org/project/cmake/versions
-    https://formulae.brew.sh/formula/cmake#default
-    ==> Caveats
-    To install the CMake documentation, run:
-        brew install cmake-docs
+https://repology.org/project/cmake/versions
+https://formulae.brew.sh/formula/cmake#default
+== >Caveats
+To install the CMake documentation, run:
+brew install cmake-docs
 📦 ninja
-    https://repology.org/project/ninja/versions
-    https://formulae.brew.sh/formula/ninja#default
+https://repology.org/project/ninja/versions
+https://formulae.brew.sh/formula/ninja#default
 '
 brew install cmake ninja
 
@@ -447,76 +447,76 @@ brew install cmake ninja
 
 : '
 📦 gcc
-    https://repology.org/project/gcc/versions
-    https://formulae.brew.sh/formula/gcc#default
-    
-    🚣 To ensure compatibility across projects, install GCC alongside LLVM.
-    
-    %shell> brew deps gcc
-      binutils
-      glibc
-      gmp
-      isl
-      libmpc
-      lz4
-      mpfr
-      xz
-      zlib
-      zstd
-    
+https://repology.org/project/gcc/versions
+https://formulae.brew.sh/formula/gcc#default
 
-      ❔⚠️ about glibc
-        glibc
-          https://repology.org/project/glibc/versions
-          https://formulae.brew.sh/formula/glibc#default
+🚣 To ensure compatibility across projects, install GCC alongside LLVM.
 
-        The GNU C Library
-        ==> Caveats
-        The Homebrew\'s Glibc has been installed with the following executables:
-          /home/linuxbrew/.linuxbrew/opt/glibc/bin/ldd
-          /home/linuxbrew/.linuxbrew/opt/glibc/bin/ld.so
-          /home/linuxbrew/.linuxbrew/opt/glibc/sbin/ldconfig
-    
-        By default, Homebrew\'s linker will not search for the system\'s libraries. If you
-        want Homebrew to do so, run:
-    
-          cp "/home/linuxbrew/.linuxbrew/etc/ld.so.conf.d/99-system-ld.so.conf.example" "/home/linuxbrew/.linuxbrew/etc/ld.so.conf.d/99-system-ld.so.conf"
-          brew postinstall glibc
-    
-        to append the system libraries to Homebrew\'s ld search paths. This is risky and
-        **highly not recommended**, because it may cause linkage to Homebrew libraries
-        mixed with system libraries.
-    
-        glibc is keg-only, which means it was not symlinked into /home/linuxbrew/.linuxbrew,
-        because it can shadow system glibc if linked.
-    
-        If you need to have glibc first in your PATH, run:
-          echo \'export PATH="/home/linuxbrew/.linuxbrew/opt/glibc/bin:$PATH"\' >> /home/wbfw109v2/.bash_profile
-          echo \'export PATH="/home/linuxbrew/.linuxbrew/opt/glibc/sbin:$PATH"\' >> /home/wbfw109v2/.bash_profile
-    
-        For compilers to find glibc you may need to set:
-          export LDFLAGS="-L/home/linuxbrew/.linuxbrew/opt/glibc/lib"
-          export CPPFLAGS="-I/home/linuxbrew/.linuxbrew/opt/glibc/include"
-
-      
-        📝 glibc version by Homebrew is lower than the Ubuntu default libc6 package 📅 2024-12-23 14:28:10
-          ➡️ It is better to use the default libc6 (glibc) installed by Ubuntu.
-
-          %shell> dpkg -s libc6 | grep -e "Version" -e "Priority"
-            Priority: required
-            Version: 2.39-0ubuntu8.3
-            
-          %shell> brew info glibc | grep glibc:
-            ==> glibc: stable 2.35 (bottled) | gr
+%shell >brew deps gcc
+binutils
+glibc
+gmp
+isl
+libmpc
+lz4
+mpfr
+xz
+zlib
+zstd
 
 
-          Additionally, even if you export the Homebrew glibc, ⚠️ do not register it in FISH_CONFIG_PATH.
-          If you do, it may cause errors.
-            🛍️ Example error:
-              When building (make command) the Raspberry Pi kernel source (https://github.com/raspberrypi/linux) with any options,
-                collect2: error: ld returned 1 exit status 
-                make[2]: *** [scripts/Makefile.host:114: scripts/sorttable] Error 1
-                /home/linuxbrew/.linuxbrew/opt/binutils/bin/ld: /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so: error loading plugin: /home/linuxbrew/.linuxbrew/opt/glibc/lib/libc.so.6: version \`GLIBC_2.38\' not found (required by /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so)
+❔⚠️ about glibc
+glibc
+https://repology.org/project/glibc/versions
+https://formulae.brew.sh/formula/glibc#default
+
+The GNU C Library
+== >Caveats
+The Homebrew\'s Glibc has been installed with the following executables:
+/home/linuxbrew/.linuxbrew/opt/glibc/bin/ldd
+/home/linuxbrew/.linuxbrew/opt/glibc/bin/ld.so
+/home/linuxbrew/.linuxbrew/opt/glibc/sbin/ldconfig
+
+By default, Homebrew\'s linker will not search for the system\'s libraries. If you
+want Homebrew to do so, run:
+
+cp "/home/linuxbrew/.linuxbrew/etc/ld.so.conf.d/99-system-ld.so.conf.example" "/home/linuxbrew/.linuxbrew/etc/ld.so.conf.d/99-system-ld.so.conf"
+brew postinstall glibc
+
+to append the system libraries to Homebrew\'s ld search paths. This is risky and
+**highly not recommended**, because it may cause linkage to Homebrew libraries
+mixed with system libraries.
+
+glibc is keg-only, which means it was not symlinked into /home/linuxbrew/.linuxbrew,
+because it can shadow system glibc if linked.
+
+If you need to have glibc first in your PATH, run:
+echo \'export PATH="/home/linuxbrew/.linuxbrew/opt/glibc/bin:$PATH"\' >>/home/wbfw109v2/.bash_profile
+echo \'export PATH="/home/linuxbrew/.linuxbrew/opt/glibc/sbin:$PATH"\' >>/home/wbfw109v2/.bash_profile
+
+For compilers to find glibc you may need to set:
+export LDFLAGS="-L/home/linuxbrew/.linuxbrew/opt/glibc/lib"
+export CPPFLAGS="-I/home/linuxbrew/.linuxbrew/opt/glibc/include"
+
+
+📝 glibc version by Homebrew is lower than the Ubuntu default libc6 package 📅 2024-12-23 14:28:10
+➡️ It is better to use the default libc6 (glibc) installed by Ubuntu.
+
+%shell >dpkg -s libc6 | grep -e Version -e Priority
+Priority: required
+Version: 2.39-0ubuntu8.3
+
+%shell >brew info glibc | grep glibc:
+== >glibc: stable 2.35 (bottled) | gr
+
+
+Additionally, even if you export the Homebrew glibc, ⚠️ do not register it in FISH_CONFIG_PATH.
+If you do, it may cause errors.
+🛍️ Example error:
+When building (make command) the Raspberry Pi kernel source (https://github.com/raspberrypi/linux) with any options,
+collect2: error: ld returned 1 exit status
+make[2]: *** [scripts/Makefile.host:114: scripts/sorttable] Error 1
+/home/linuxbrew/.linuxbrew/opt/binutils/bin/ld: /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so: error loading plugin: /home/linuxbrew/.linuxbrew/opt/glibc/lib/libc.so.6: version \`GLIBC_2.38\' not found (required by /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so)
 '
 brew install gcc
 
@@ -526,12 +526,12 @@ brew install gcc
 
 : '
 📦 llvm, lld
-    https://repology.org/project/llvm/versions
-    https://formulae.brew.sh/formula/llvm#default
-    https://formulae.brew.sh/formula/lld#default
-    lld
-    
-    a fast and lightweight linker for building projects efficiently
+https://repology.org/project/llvm/versions
+https://formulae.brew.sh/formula/llvm#default
+https://formulae.brew.sh/formula/lld#default
+lld
+
+a fast and lightweight linker for building projects efficiently
 '
 brew install llvm lld
 # It includes clang, lld, lldb, and various LLVM tools for building, linking, and debugging software.
@@ -546,15 +546,15 @@ echo "❔ You can check the list of binaries with the command 🧮 'ls /home/lin
 
 : '
 📦 compiledb
-    https://github.com/nickdiego/compiledb
-    https://repology.org/project/compiledb/versions
-    https://formulae.brew.sh/formula/compiledb#default
+https://github.com/nickdiego/compiledb
+https://repology.org/project/compiledb/versions
+https://formulae.brew.sh/formula/compiledb#default
 
-    Generate a Clang compilation database for Make-based build systems
+Generate a Clang compilation database for Make-based build systems
 
-    Refer to 🔗 _about/about-intellisense_for_c_cpp.md
+Refer to 🔗 _about/about-intellisense_for_c_cpp.md
 
-    🛍️ e.g. It is used for IntelliSense in the kernel build by the Makefile.
+🛍️ e.g. It is used for IntelliSense in the kernel build by the Makefile.
 '
 brew install compiledb
 
@@ -566,13 +566,14 @@ brew install compiledb
 
 echo "▶️ Installing packages closedly related with Terminal-based editor ..."
 : '
-📦 helix (hx)   ; Terminal-based editor:
-    🔗 https://docs.helix-editor.com/package-managers.html 📅 2024-11-05 15:18:43
+📦 helix (hx)
+Terminal-based editor:
+🔗 https://docs.helix-editor.com/package-managers.html 📅 2024-11-05 15:18:43
 
-    https://repology.org/project/helix-editor/versions
-    https://formulae.brew.sh/formula/helix#default
+https://repology.org/project/helix-editor/versions
+https://formulae.brew.sh/formula/helix#default
 
-    ⌨️ https://docs.helix-editor.com/keymap.html
+⌨️ https://docs.helix-editor.com/keymap.html
 '
 brew install helix
 
@@ -580,49 +581,49 @@ brew install helix
 mkdir -p $HOME/.config/helix/themes
 
 echo '
-  # My private Theme
-  inherits = "dark_high_contrast"
+# My private Theme
+inherits = dark_high_contrast
 
-  ## Override the theming for "keyword"s:
-  "ui.virtual.inlay-hint" = { fg = "light-gray" }
-  "ui.virtual.inlay-hint.parameter" = { fg = "light-gray" }
-  "ui.virtual.inlay-hint.type" = { fg = "light-gray" }
-  "ui.virtual.wrap" = "light-gray"
+## Override the theming for "keyword"s:
+"ui.virtual.inlay-hint" = { fg = "light-gray" }
+"ui.virtual.inlay-hint.parameter" = { fg = "light-gray" }
+"ui.virtual.inlay-hint.type" = { fg = "light-gray" }
+"ui.virtual.wrap" = light-gray
 
-  # 🛍️ e.g. "keyword" = { fg = "gold" }
+# 🛍️ e.g. "keyword" = { fg = "gold" }
 
-  ## Override colors in the palette:
-  # [palette]
-  # 🛍️ e.g. berry = "#2A2A4D"
+## Override colors in the palette:
+# [palette]
+# 🛍️ e.g. berry = "#2A2A4D"
 ' | prettify_indent_via_pipe | tee $HOME/.config/helix/themes/dark_high_contrast_modified.toml >/dev/null
 
 # Helix settings 🔪 Languages
 echo '
-  ## https://docs.helix-editor.com/languages.html#languagestoml-files
-  # C/C++ settings
-  [[language]]
-  name = "c"
-  auto-format = true
-  formatter = { command = "clang-format" }
+## https://docs.helix-editor.com/languages.html#languagestoml-files
+# C/C++ settings
+[[language]]
+name = c
+auto-format = true
+formatter = { command = "clang-format" }
 
-  [[language]]
-  name = "cpp"
-  auto-format = true
-  formatter = { command = "clang-format" }
+[[language]]
+name = cpp
+auto-format = true
+formatter = { command = "clang-format" }
 ' | prettify_indent_via_pipe | tee $HOME/.config/helix/languages.toml >/dev/null
 
 # Helix settings 🔪 Configuration
 echo '
-  # https://docs.helix-editor.com/configuration.html
-  ## Theme settings
-  # ⚓ Helix Theme index ; https://github.com/helix-editor/helix/wiki/Themes
-  # https://docs.helix-editor.com/themes.html
-  # https://github.com/helix-editor/helix/tree/master/runtime/themes
-  theme = "dark_high_contrast_modified"
+# https://docs.helix-editor.com/configuration.html
+## Theme settings
+# ⚓ Helix Theme index ; https://github.com/helix-editor/helix/wiki/Themes
+# https://docs.helix-editor.com/themes.html
+# https://github.com/helix-editor/helix/tree/master/runtime/themes
+theme = dark_high_contrast_modified
 
-  ## Editors
-  [editor]
-  lsp.display-inlay-hints = true
+## Editors
+[editor]
+lsp.display-inlay-hints = true
 ' | prettify_indent_via_pipe | tee $HOME/.config/helix/config.toml >/dev/null
 
 echo "❔ hx --health c"
@@ -637,8 +638,8 @@ hx --health cpp
 echo "▶️ Installing tools for version management and dependency resolution"
 : '
 📦 pipx
-    https://repology.org/project/pipx/versions
-    https://formulae.brew.sh/formula/pipx#default
+https://repology.org/project/pipx/versions
+https://formulae.brew.sh/formula/pipx#default
 '
 brew install pipx
 pipx ensurepath
@@ -654,8 +655,8 @@ register-python-argcomplete --shell fish pipx >$FISH_COMPLETIONS_DIR/pipx.fish
 
 : '
 📦 pyenv
-    https://repology.org/project/pyenv/versions
-    https://formulae.brew.sh/formula/pyenv#default
+https://repology.org/project/pyenv/versions
+https://formulae.brew.sh/formula/pyenv#default
 '
 brew install pyenv
 set -Ux PYENV_ROOT $HOME/.pyenv
@@ -673,8 +674,8 @@ end
 
 : '
 📦 pyenv
-    https://repology.org/project/poetry/versions
-    https://formulae.brew.sh/formula/poetry#default
+https://repology.org/project/poetry/versions
+https://formulae.brew.sh/formula/poetry#default
 '
 brew install poetry
 
@@ -683,8 +684,8 @@ brew install poetry
 
 : '
 📦 conan
-    https://repology.org/project/conan/versions
-    https://formulae.brew.sh/formula/conan#default
+https://repology.org/project/conan/versions
+https://formulae.brew.sh/formula/conan#default
 '
 brew install conan
 
@@ -692,8 +693,8 @@ brew install conan
 
 : '
 📦 rustup
-    https://repology.org/project/rustup/versions
-    https://formulae.brew.sh/formula/rustup#default
+https://repology.org/project/rustup/versions
+https://formulae.brew.sh/formula/rustup#default
 '
 # It install cargo (Rust package manager), clippy (Rust linter), rust-docs, rust-std, rustc, rustfmt (Source code formatter)
 brew install rustup
@@ -708,24 +709,24 @@ set -U fish_user_paths /home/linuxbrew/.linuxbrew/opt/rustup/bin $fish_user_path
 echo "▶️ Installing Web-related tools ..."
 : '
 📦 mariadb
-    https://repology.org/project/mariadb/versions
-    https://formulae.brew.sh/formula/mariadb#default
-    == >Caveats
-    A "/etc/my.cnf" from another install may interfere with a Homebrew-built
-    server starting up correctly.
+https://repology.org/project/mariadb/versions
+https://formulae.brew.sh/formula/mariadb#default
+== >Caveats
+A "/etc/my.cnf" from another install may interfere with a Homebrew-built
+server starting up correctly.
 
-    MySQL is configured to only allow connections from localhost by default
+MySQL is configured to only allow connections from localhost by default
 
-    To start mariadb now and restart at login:
-    brew services start mariadb
-    Or, if you dont want/need a background service you can just run:
-    /home/linuxbrew/.linuxbrew/opt/mariadb/bin/mariadbd-safe --datadir=/home/linuxbrew/.linuxbrew/var/mysql
+To start mariadb now and restart at login:
+brew services start mariadb
+Or, if you dont want/need a background service you can just run:
+/home/linuxbrew/.linuxbrew/opt/mariadb/bin/mariadbd-safe --datadir=/home/linuxbrew/.linuxbrew/var/mysql
 
-    ❔ mariadb conf file path: mariadb --help | grep my.cnf
+❔ mariadb conf file path: mariadb --help | grep my.cnf
           >> /home/linuxbrew/.linuxbrew/etc/my.cnf
-    ❔ MariaDB uses the default character set of a database as utf8mb4 (UTF-8 multi-byte 4) when created.
-    This means it supports the full range of Unicode characters, including emojis and special symbols.
-    You can check the default character set using: 🧮 SHOW VARIABLES LIKE character_set_server
+❔ MariaDB uses the default character set of a database as utf8mb4 (UTF-8 multi-byte 4) when created.
+This means it supports the full range of Unicode characters, including emojis and special symbols.
+You can check the default character set using: 🧮 SHOW VARIABLES LIKE character_set_server
 '
 
 brew install mariadb
@@ -733,10 +734,10 @@ set homebrew_maraidb_service_name homebrew.mariadb.service
 set homebrew_maraidb_service_file_path $USER_SYSTEMD_DIR/$homebrew_maraidb_service_name
 
 echo '
-  [Unit]
-  Description=Homebrew generated unit for mariadb
+[Unit]
+Description=Homebrew generated unit for mariadb
 
-  [Install]
+[Install]
   WantedBy=default.target
 
   [Service]
@@ -778,18 +779,18 @@ SELECT User, Host, plugin FROM mysql.user
 
 : '
 📦 mariadb-connector-c
-    https://repology.org/project/mariadb-connector-c/versions
-    https://formulae.brew.sh/formula/mariadb-connector-c#default
-    == >mariadb-connector-c
-    mariadb-connector-c is keg-only, which means it was not symlinked into /home/linuxbrew/.linuxbrew,
-    because it conflicts with mariadb.
+https://repology.org/project/mariadb-connector-c/versions
+https://formulae.brew.sh/formula/mariadb-connector-c#default
+== >mariadb-connector-c
+mariadb-connector-c is keg-only, which means it was not symlinked into /home/linuxbrew/.linuxbrew,
+because it conflicts with mariadb.
 
-    If you need to have mariadb-connector-c first in your PATH, run:
-    echo \'export PATH="/home/linuxbrew/.linuxbrew/opt/mariadb-connector-c/bin:$PATH"\' >>/home/wbfw109/.bash_profile
+If you need to have mariadb-connector-c first in your PATH, run:
+echo \'export PATH="/home/linuxbrew/.linuxbrew/opt/mariadb-connector-c/bin:$PATH"\' >>/home/wbfw109/.bash_profile
 
-    For compilers to find mariadb-connector-c you may need to set:
-    export LDFLAGS="-L/home/linuxbrew/.linuxbrew/opt/mariadb-connector-c/lib"
-    export CPPFLAGS="-I/home/linuxbrew/.linuxbrew/opt/mariadb-connector-c/include"
+For compilers to find mariadb-connector-c you may need to set:
+export LDFLAGS="-L/home/linuxbrew/.linuxbrew/opt/mariadb-connector-c/lib"
+export CPPFLAGS="-I/home/linuxbrew/.linuxbrew/opt/mariadb-connector-c/include"
 '
 brew install mariadb-connector-c
 # Define and add settings for mariadb-connector-c
@@ -811,20 +812,20 @@ end
 
 : '
 📦 httpd (apache)
-    https://repology.org/project/httpd/versions
-    https://formulae.brew.sh/formula/httpd#default
-    == >Caveats
-    DocumentRoot is /home/linuxbrew/.linuxbrew/var/www.
+https://repology.org/project/httpd/versions
+https://formulae.brew.sh/formula/httpd#default
+== >Caveats
+DocumentRoot is /home/linuxbrew/.linuxbrew/var/www.
 
-    The default ports have been set in /home/linuxbrew/.linuxbrew/etc/httpd/httpd.conf to 8080 and in
-    /home/linuxbrew/.linuxbrew/etc/httpd/extra/httpd-ssl.conf to 8443 so that httpd can run without sudo.
+The default ports have been set in /home/linuxbrew/.linuxbrew/etc/httpd/httpd.conf to 8080 and in
+/home/linuxbrew/.linuxbrew/etc/httpd/extra/httpd-ssl.conf to 8443 so that httpd can run without sudo.
 
-    To start httpd now and restart at login:
-    brew services start httpd
-    Or, if you don\'t want/need a background service you can just run:
-    /home/linuxbrew/.linuxbrew/opt/httpd/bin/httpd -D FOREGROUND
+To start httpd now and restart at login:
+brew services start httpd
+Or, if you don\'t want/need a background service you can just run:
+/home/linuxbrew/.linuxbrew/opt/httpd/bin/httpd -D FOREGROUND
 
-    ❔ Error log location: /home/linuxbrew/.linuxbrew/var/log/httpd/error_log
+❔ Error log location: /home/linuxbrew/.linuxbrew/var/log/httpd/error_log
 '
 brew install httpd
 set homebrew_httpd_service_name homebrew.httpd.service
@@ -888,30 +889,34 @@ mv $tmp_file $apache_config_file_path
 
 : '
 📦 php
-    https://repology.org/project/php/versions
-    https://formulae.brew.sh/formula/php#default
-    == >Caveats
-    == >php
-    To enable PHP in Apache add the following to httpd.conf and restart Apache:
-    LoadModule php_module /home/linuxbrew/.linuxbrew/opt/php/lib/httpd/modules/libphp.so
+https://repology.org/project/php/versions
+https://formulae.brew.sh/formula/php#default
+== >Caveats
+== >php
+To enable PHP in Apache add the following to httpd.conf and restart Apache:
+LoadModule php_module /home/linuxbrew/.linuxbrew/opt/php/lib/httpd/modules/libphp.so
 
             < FilesMatch \.php$ >
+
+
 
                 SetHandler application/x-httpd-php
             < /FilesMatch >
 
 
+
+
         Finally, check DirectoryIndex includes index.php
-    DirectoryIndex index.php index.html
+DirectoryIndex index.php index.html
 
-    The php.ini and php-fpm.ini file can be found in:
-    /home/linuxbrew/.linuxbrew/etc/php/8.4/
+The php.ini and php-fpm.ini file can be found in:
+/home/linuxbrew/.linuxbrew/etc/php/8.4/
 
-    To start php now and restart at login:
-    brew services start php
-    Or, if you don\'t want/need a background service you can just run:
-    /home/linuxbrew/.linuxbrew/opt/php/sbin/php-fpm --nodaemoniz
-    🪱 php-fpm: Hypertext Preprocessor FastCGI (Common Gateway Interface) Process Manager
+To start php now and restart at login:
+brew services start php
+Or, if you don\'t want/need a background service you can just run:
+/home/linuxbrew/.linuxbrew/opt/php/sbin/php-fpm --nodaemoniz
+🪱 php-fpm: Hypertext Preprocessor FastCGI (Common Gateway Interface) Process Manager
 '
 brew install php
 set homebrew_php_service_name homebrew.php.service
@@ -985,7 +990,7 @@ mv $tmp_file $apache_config_file_path
 
 
 # Define the unique comments and settings for FilesMatch block
-set filesmatch_block '<FilesMatch .php$>\n    SetHandler application/x-httpd-php\n</FilesMatch>\n'
+set filesmatch_block ' <FilesMatch .php$ >\n SetHandler application/x-httpd-php\n </FilesMatch >\n'
 set filesmatch_unique_comment "## FilesMatch block for PHP"
 
 # Create a temporary file
@@ -1023,34 +1028,46 @@ mv $tmp_file $apache_config_file_path
 
 : '
 📦 phpmyadmin
-    https://repology.org/project/phpmyadmin/versions
-    https://formulae.brew.sh/formula/phpmyadmin#default
+https://repology.org/project/phpmyadmin/versions
+https://formulae.brew.sh/formula/phpmyadmin#default
 
-    == >Caveats
-    To enable phpMyAdmin in Apache, add the following to httpd.conf and
-    restart Apache:
-    Alias /phpmyadmin /home/linuxbrew/.linuxbrew/share/phpmyadmin
+== >Caveats
+To enable phpMyAdmin in Apache, add the following to httpd.conf and
+restart Apache:
+Alias /phpmyadmin /home/linuxbrew/.linuxbrew/share/phpmyadmin
             < Directory /home/linuxbrew/.linuxbrew/share/phpmyadmin/ >
 
+
+
                 Options Indexes FollowSymLinks MultiViews
-    AllowOverride All
+AllowOverride All
                 < IfModule mod_authz_core.c >
+
+
 
                     Require all granted
                 < /IfModule >
 
+
+
                 < IfModule !mod_authz_core.c >
 
+
+
                     Order allow,deny
-    Allow from all
+Allow from all
                 < /IfModule >
+
+
 
             < /Directory >
 
-        Then open http://localhost/phpmyadmin
-    The configuration file is /home/linuxbrew/.linuxbrew/etc/phpmyadmin.config.inc.php
 
-    👁️ Check url "localhost:8080/phpmyadmin"
+
+        Then open http://localhost/phpmyadmin
+The configuration file is /home/linuxbrew/.linuxbrew/etc/phpmyadmin.config.inc.php
+
+👁️ Check url "localhost:8080/phpmyadmin"
 '
 brew install phpmyadmin
 
@@ -1112,12 +1129,12 @@ brew services restart httpd
 
 : '
 📦 volta
-    the Hassle-Free JavaScript Tool Manager
-    https://volta.sh/
-    https://repology.org/project/volta-launcher/versions
-    https://formulae.brew.sh/formula/volta#default
+the Hassle-Free JavaScript Tool Manager
+https://volta.sh/
+https://repology.org/project/volta-launcher/versions
+https://formulae.brew.sh/formula/volta#default
 
-    Developed in Rust.
+Developed in Rust.
 '
 brew instal volta
 
@@ -1145,8 +1162,8 @@ end
 echo "▶️  Installing tools related to VM emulation and communication with connected external devices to the host ..."
 : '
 📦 qemu
-    https://repology.org/project/qemu/versions
-    https://formulae.brew.sh/formula/qemu#default
+https://repology.org/project/qemu/versions
+https://formulae.brew.sh/formula/qemu#default
 '
 brew install qemu
 echo "Check available commands using 🧮 brew list qemu"
@@ -1171,13 +1188,13 @@ end
 
 : '
 📦 tio (Terminal Input/Output)
-    A serial device I/O tool
-    https://github.com/tio/tio (2018) 📅 2024-12-04 13:32:00
-    https://repology.org/project/tio/versions
-    https://formulae.brew.sh/formula/tio#default
-    https://api.github.com/repos/tio/tio
+A serial device I/O tool
+https://github.com/tio/tio (2018) 📅 2024-12-04 13:32:00
+https://repology.org/project/tio/versions
+https://formulae.brew.sh/formula/tio#default
+https://api.github.com/repos/tio/tio
 
-    🚣 This tool supports color output for serial connections, similar to PuTTY.
+🚣 This tool supports color output for serial connections, similar to PuTTY.
 '
 brew install tio
 # 🛍️ e.g. %shell> tio /dev/ttyUSB0    # Default baud rate is 115200. Use this with a Raspberry Pi and a USB-to-TTL adapter.
@@ -1190,18 +1207,18 @@ brew install tio
 echo "▶️  Installing tools related to Image processing ..."
 : '
 📦 gm (graphicsmagick)
-    https://repology.org/project/graphicsmagick/versions
-    https://formulae.brew.sh/formula/graphicsmagick#default
+https://repology.org/project/graphicsmagick/versions
+https://formulae.brew.sh/formula/graphicsmagick#default
 
-    Image processing tools collection.
-    GM is more efficient than ImageMagick so it gets the job done faster using fewer resources.
+Image processing tools collection.
+GM is more efficient than ImageMagick so it gets the job done faster using fewer resources.
 
-    🛍️ e.g. Updating the Custom Boot Image on Raspberry Pi 4B
-    # Reduce the color palette of the image to 224 colors and save it as "puppies_logo_clut224.ppm"
-    gm convert -colors 224 puppies_840x480.ppm puppies_logo_clut224.ppm
+🛍️ e.g. Updating the Custom Boot Image on Raspberry Pi 4B
+# Reduce the color palette of the image to 224 colors and save it as "puppies_logo_clut224.ppm"
+gm convert -colors 224 puppies_840x480.ppm puppies_logo_clut224.ppm
 
-    # Convert the color-reduced image to ASCII PPM format and save it as "puppies_logo_clut224_ascii.ppm"
-    gm convert -compress none puppies_logo_clut224.ppm puppies_logo_clut224_ascii.ppm
+# Convert the color-reduced image to ASCII PPM format and save it as "puppies_logo_clut224_ascii.ppm"
+gm convert -compress none puppies_logo_clut224.ppm puppies_logo_clut224_ascii.ppm
 '
 brew install graphicsmagick
 
@@ -1213,118 +1230,52 @@ brew install graphicsmagick
 
 
 # echo "▶️  Installing Others ..."
-# : '
-# 📦 watchman
-# A file watching service
-# https://facebook.github.io/watchman/
-# https://repology.org/project/watchman/versions
-# https://formulae.brew.sh/formula/watchman#default
+: '
+📦 inotify-tools
+    https://repology.org/project/inotify-tools/versions
+    https://formulae.brew.sh/formula/inotify-tools
 
-# '
-# brew install watchman
+    C library and command-line programs providing a simple interface to inotify
+'
+brew install inotify-tools
 
-# set watchman_bin (which watchman)
-# set fish_howto_general_dir $script_dir/howto/general
+function create_inotify_service
+    ### Inotify Service Script to Make Fish Utilities Executable 📅 2025-01-12 17:05:52
+    set inotify_make_fish_executable_script_path "$HOME/repos/synergy-hub/prototypes/_initialization/ubuntu/howto/_internal/file_supervisor/inotify-make_fish_utilities_executable.fish"
+    set inotify_make_fish_executable_service_stem (string split --right "." --max 1 --fields 1 (basename $inotify_make_fish_executable_script_path))
+    set inotify_make_fish_executable_service_name $inotify_make_fish_executable_service_stem".service"
+    set inotify_make_fish_executable_service_path $USER_SYSTEMD_DIR"/"$inotify_make_fish_executable_service_name
 
-# ## add user service: watchman_file_make_fish_utilities_executable_name.json
-# set watchman_service_name "watchman-fish.service"
-# set watchman_json_dir $script_dir/watchman
-# set watchman_file_make_fish_utilities_executable_name "watchman-make_fish_utilities_executable.json"
+    echo "
+      [Unit]
+      Description=Inotify service for Fish utilities (User Scope)
+      After=network.target
 
-# # Original JSON file path
-# set watchman_json_path $watchman_json_dir/$watchman_file_make_fish_utilities_executable_name
-# ##💡 Adaptive Watch Directory Updater for Watchman 📅 2024-12-18 03:10:54
+      [Service]
+      ExecStart=/usr/bin/env fish $inotify_make_fish_executable_script_path
+      Restart=always
+      RestartSec=5
 
-# # New path to replace the second element
-# set new_watch_dir $fish_howto_general_dir
+      [Install]
+      WantedBy=default.target
+    " | prettify_indent_via_pipe | tee "$inotify_make_fish_executable_service_path"
 
-# # Temporary file to store the updated JSON
-# set temp_json "/tmp/watchman-trigger-updated.json"
+    # Register the service and start it
+    systemctl --user daemon-reload
+    systemctl --user enable $inotify_make_fish_executable_service_name
+    systemctl --user start $inotify_make_fish_executable_service_name
 
-# # Replace the second element of the JSON array using jaq
-# cat $watchman_json_path | jaq --arg new_watch_dir "$new_watch_dir" '.[1] = $new_watch_dir' >$temp_json
+    # Check service status
+    systemctl --user status $inotify_make_fish_executable_service_name --no-pager
 
-# # Display the updated JSON content
-# echo "Updated JSON content:"
-# cat $temp_json
-
-# prettier --write $temp_json
-# mv $temp_json $watchman_json_path
-
-
-# ## Add watchman trigger services
-# : '❔ Reason for Creating a Service for Watchman
-# - Watchman loses its watch list after a computer restart.
-# Creating a system service ensures that Watchman automatically restores its watch list and trigger configurations upon system boot.
-# '
-# : '❔ Reason for Using a JSON File in Watchman
-# - Improved readability and cleanliness:
-# Using a JSON file prevents the command from being polluted with escape characters
-# , making the configuration easier to read and maintain.
-# - Service execution issue with escape characters:
-# Even though a command with escape characters works when copied directly into the terminal
-# , it fails when registered as a service.
-# 📝 Watchman expects JSON input through standard input, so it\'s crucial to use double quotes (") to comply with JSON formatting. 📅 2024-12-18 03:16:04
-#     By referencing a JSON file instead, this issue is avoided
-#     , and the configuration remains consistent and functional across environments.
-# '
-# echo "
-# [Unit]
-# Description=Watchman service for Fish utilities (User Scope)
-# After=network.target
-
-# [Service]
-# Type=oneshot
-
-# # Watch directory
-# ExecStartPre=$watchman_bin watch \"$fish_howto_general_dir\"
-
-# # Trigger configuration loaded from file
-# ExecStart=/bin/bash -c '$watchman_bin watch $fish_howto_general_dir && \\
-#   cat $watchman_json_path | $watchman_bin -j \\
-# '
-
-# ExecStop=/bin/bash -c '$watchman_bin watch-del \"$fish_howto_general_dir\"'
-
-# RemainAfterExit=yes
-
-# [Install]
-# WantedBy=default.target
-# " | tee $USER_SYSTEMD_DIR/$watchman_service_name
-
-# systemctl --user daemon-reload
-# systemctl --user enable $watchman_service_name
-# systemctl --user start $watchman_service_name
-# systemctl --user status $watchman_service_name --no-pager
+    ## Disable and stop the service
+    # systemctl --user disable $inotify_make_fish_executable_service_name
+    # systemctl --user stop $inotify_make_fish_executable_service_name
+end
+create_inotify_service
 
 
-# echo "Currently set triggers for the directory: "
-# watchman -- trigger-list $fish_howto_general_dir
-# echo ""
-# echo "Directories currently watched by Watchman:"
-# watchman watch-list
 
-# set replaced_path (string replace "$HOME" "" $fish_howto_general_dir)
-# # Define the unique comment line to identify the settings.
-# set unique_comment "## fish_howto_general_dir settings"
-# # Check if the unique comment line exists in the configuration file.
-# if not grep -Fxq "$unique_comment" "$FISH_CONFIG_PATH"
-#     # Append the new configuration block only if the unique line is not found.
-#     echo "
-#     $unique_comment
-#     set -x fish_howto_general_dir \$HOME$replaced_path
-#     fish_add_path \$fish_howto_general_dir
-#     " | prettify_indent_via_pipe | tee -a $FISH_CONFIG_PATH >/dev/null
-#     echo -e "\n" >>"$FISH_CONFIG_PATH"
-# end
-
-
-# ❔ You can check permissions later after install lsd
-# 🧮 %shell >find . -type f -name "*.fish" -exec lsd -l {} \;
-# ❔ How to recovery: 🧮 %shell >
-
-#   watchman watch-del $fish_howto_general_dir
-# find $fish_howto_general_dir -type f -name "*.fish" -exec chmod ugo-x {} \;
 
 : '
 📦 meson ; https://github.com/mesonbuild/meson
@@ -1396,6 +1347,22 @@ for service in (brew services list | awk 'NR > 1 {print $1}')
     # list open files
     lsof -iTCP -sTCP:LISTEN | grep $service | awk '{printf "%-10s %-6s %-10s %-4s %-6s %-8s %-8s %-6s %s\n", $1, $2, $3, $4, $5, $6, $7, $8, $9}'
 end
+
+
+
+
+
+: ' ❌🥞 Packages that should not be installed via Linux Homebrew
+📦 avahi ; https://github.com/avahi/avahi
+    https://repology.org/project/avahi/versions
+    https://formulae.brew.sh/formula/avahi
+
+    Service Discovery for Linux using mDNS/DNS-SD
+
+    🚨 (issue: Error); Failed to create client object: Daemon not running 📅 2025-01-12 14:24:10
+      When
+        %shell> avahi-browse -at
+'
 
 
 
@@ -2253,7 +2220,3 @@ end
 # # git config --global user.name "wbfw109v2"
 # # git config --global user.email "wbfw109v2@gmail.com"
 # # git remote add origin https://github.com/lovelyPuppies/synergy-hub.git
-
-
-#### 📰⚓ Windows Default Keybindings
-# https://marketplace.visualstudio.com/items?itemName=smcpeak.default-keys-windows

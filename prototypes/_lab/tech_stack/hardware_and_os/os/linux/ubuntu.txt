@@ -12,6 +12,10 @@ list of level 1 subjects
 ⚓ Ubuntu ; https://ubuntu.com/
   https://github.com/ubuntu
   https://en.wikipedia.org/wiki/Ubuntu
+    # Contents
+      # Package classification and support
+        #️⃣ Package Archives ; https://en.wikipedia.org/wiki/Ubuntu#Package_Archives
+          A 🪱 Personal Package Archive (PPA) is a software repository for uploading source packages to be built and published as an 🪱 Advanced Packaging Tool (APT) repository by Launchpad
 
 (✍️ Ubuntu 🔪 study)
   🚨 (Issue: Error); Problems using Wayland 🪱 graphic display server protocol in Ubuntu 📅 2024-12-31 20:37:32
