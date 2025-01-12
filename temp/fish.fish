@@ -142,7 +142,7 @@ External libraries providing hardware acceleration:
 
 ffplay -v verbose -hwaccel cuda ~/Downloads/Polar_orbit.ogv.360p.webm
 
-    
+
 '
 
 ### https://docs.nvidia.com/video-technologies/video-codec-sdk/11.1/ffmpeg-with-nvidia-gpu/index.html#hardware-setup
@@ -177,7 +177,7 @@ if not grep -Fxq "$unique_comment" "$FISH_CONFIG_PATH"
     $unique_comment"'
     # Define the FFmpeg installation directory
     set -x FFMPEG_INSTALL_DIR /usr/local/ffmpeg
-    
+
     # Add FFmpeg binaries to PATH
     fish_add_path $FFMPEG_INSTALL_DIR/bin
 
@@ -190,25 +190,3 @@ if not grep -Fxq "$unique_comment" "$FISH_CONFIG_PATH"
     ' | prettify_indent_via_pipe | tee -a $FISH_CONFIG_PATH >/dev/null
     echo -e "\n" >>"$FISH_CONFIG_PATH"
 end
-
-
-
-
-
-# echo "⌨️  Enter your Qt account password: "
-# read -s qt_pw
-# echo "" # 줄 바꿈 (입력 후 줄바꿈이 필요)
-
-# wget -O ~/Downloads/qt-unified https://download.qt.io/official_releases/online_installers/qt-unified-linux-x64-online.run
-# chmod 700 ~/Downloads/qt-unified
-
-# set qt_installer "$HOME/Downloads/qt-unified"
-# set install_dir "$HOME/Qt"
-# set qt_email "wbfw109v2@gmail.com"
-
-# echo Accept | $qt_installer \
-#     --root $install_dir \
-#     --email $qt_email \
-#     --pw $qt_pw \
-#     --accept-licenses --default-answer --confirm-command \
-#     install qt6.8.0-full-dev

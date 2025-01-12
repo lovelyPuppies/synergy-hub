@@ -14703,7 +14703,7 @@ sudo apt-get install libegl1-mesa-dev libgles2-mesa-dev
 
 perl init-repository --module-subset=qtbase,qttools
 
-!!!!!!!!! qt6.8.0-sdk 설치햇어야햇ㅇㅁ
+!!!!!!!!! qt6.8.0-sdk 설치햇어야햇ㅇㅁ  
 
 
 perl init-repository --module-subset=qtbase,qttools
@@ -16337,7 +16337,7 @@ Project
     정문 수취점  /  터틀봇  /  엘레베이터 / 월패드/핸드폰
 
     핸드폰 - "택배 배송받기" 를 눌러야 함.
-    정문 쉬취점 -> 터틀봇 -> 엘레베이터와 통신 -
+    정문 쉬취점 -> 터틀봇 -> 엘레베이터와 통신 -        
     터틀봇: 사진 찍어야지.
 
 
@@ -16346,7 +16346,24 @@ Project
       AGv (터틀봇)
       문&엘베 (2)
 
-    
 
 
-  
+namp  
+Nmap scan report for 10.10.14.185
+Host is up (0.00046s latency).
+MAC Address: ... (Nvidia)
+
+
+git log --graph --oneline --decorate --all
+git remote add upstream https://github.com/opmaksim/Project_SignalMaster.git
+git fetch upstream
+git merge upstream/main
+
+sudo apt install iftop
+sudo iftop -i eno1 -n -F 10.10.14.0/24
+
+
+jsnano @ nano123
+
+
+git log --oneline --graph --all
