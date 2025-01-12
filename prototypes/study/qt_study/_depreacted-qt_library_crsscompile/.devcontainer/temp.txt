@@ -342,56 +342,13 @@ Call Stack (most recent call first):
 
 
 
-
-
 cd qt5
-
-cd $WORKDIR
-
-cd $WORKDIR
 
 cd $WORKDIR
 
 
 export WORKDIR=$HOME/build
 export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig
-
-cd $WORKDIR
-
-cd $WORKDIR
-
-cd $WORKDIR
-
-cd $WORKDIR
-
-cd $WORKDIR
-
-
-
-
-cd $WORKDIR
-
-cd $WORKDIR
-
-cd $WORKDIR
-
-cd $WORKDIR
-
-cd $WORKDIR
-
-
-
-
-cd $WORKDIR
-
-cd $WORKDIR
-
-cd $WORKDIR
-
-cd $WORKDIR
-
-cd $WORKDIR
-
 
 
 cd $WORKDIR
@@ -440,7 +397,6 @@ mkdir -p $WORKDIR/qt6/host $WORKDIR/qt6/pi
             -sysroot $WORKDIR/rpi-sysroot/ \
             -- \
             -DCMAKE_TOOLCHAIN_FILE=$WORKDIR/toolchain.cmake
-
 
 
 Top-level installation directories:

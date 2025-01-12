@@ -2,8 +2,8 @@
 # Written at 📅 2024-10-30 15:39:12
 # ❗📰 TODO: Migrate to virsh.
 # QEMU 에 명령어 인수 대신 줘서 사용하는것..
-#   사용하기 매우 복잡하며, 특히 장기적으로 유지보수가 어렵습니다.
-#   사용자가 QEMU 내부 동작과 명령어 인수에 대해 높은 이해를 요구합니다.
+#   사용하기 매우 복잡하며, 특히 장기적으로 유지보수가 어려움..
+#   사용자가 QEMU 내부 동작과 명령어 인수에 대해 높은 이해를 요구..
 # - Previous files must be managed with version suffixes (e.g., 1.0).
 # - Use virsh (libvirt library) for declarative management.
 # - cloud-init and virsh .xml integration: The qcnet script should update the MAC address

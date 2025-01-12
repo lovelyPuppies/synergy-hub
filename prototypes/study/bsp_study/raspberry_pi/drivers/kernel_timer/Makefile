@@ -19,7 +19,7 @@ LINKER := ld.lld
 
 # Clang flags for the kernel module
 TARGET_TOOLCHAIN := arm-linux-gnueabihf  	# Target toolchain prefix
-CPU_ARCH_FLAGS := -march=armv7-a  				# Specify ARMv8-A architecture
+CPU_ARCH_FLAGS := -march=armv7-a  				# Specify ARMv7-A architecture
 
 # Flags for kernel module compilation
 CLANG_FLAGS := --target=$(TARGET_TOOLCHAIN) $(CPU_ARCH_FLAGS) \

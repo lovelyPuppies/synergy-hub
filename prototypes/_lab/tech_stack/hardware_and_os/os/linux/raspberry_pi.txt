@@ -1,0 +1,24 @@
+list of level 1 subjects
+  - Raspberry Pi
+
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ Raspberry Pi ; https://www.raspberrypi.com/
+  https://github.com/raspberrypi
+  https://en.wikipedia.org/wiki/Raspberry_Pi
+
+
+----------------------------------------------
+Raspberry Pi 🔪⚓ Docs ; https://fishshell.com/docs/current/index.html
+  # Computers
+    # Remote access
+      #️⃣ Enable the SSH server ; https://www.raspberrypi.com/documentation/computers/remote-access.html#enable-the-ssh-server
+        # Enable the SSH server
+          # Manually
+            📝 It works well because Raspberry Pi has a mechanism that detects specific files during boot and automatically applies the corresponding settings. 📅 2025-01-12 18:24:01
+            ```
+            # Create an empty file named ssh in the boot partition:
+            sudo touch /boot/firmware/ssh
+            # Reboot the machine:
+            sudo reboot
+            ```

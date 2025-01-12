@@ -14,7 +14,7 @@ Emoji 🔗 from VS Code Extension :emojisense: ;https://marketplace.visualstudio
  
   🤚      :raised_hand:       "User interaction: <Title>"         User interaction required because it cannot be a completely automatic script
 
-  🪶      :feather:           ""                                  Glossary
+  🪶      :feather:           "<Title> 🔪 Glossary"               Glossary
   ⚖️      :balance_scale:     ""                                  Description for Default value
   🗑️      :wastebasket:       "Deprecated: <Title>"
 
