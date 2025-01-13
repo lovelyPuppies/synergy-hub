@@ -1154,7 +1154,6 @@ meson setup build --enable-vulkan --enable-gbm
 
 
 
-
 > 잡코리아를 보자. 사람인 말고. 
 향후 전망이 "수치"적으로 어떻게 될 건지도 언급해야 한다.. 자기소개서.. ?
 
@@ -1180,11 +1179,11 @@ void setup()
   nh.initNode();
  // nh.getHardware()->setBaud(57600);
   nh.subscribe(sub);z
-}
+} 
 
 void loop()
 {  
-  nh.spinOnce();
+  nh.spinOnce();  
   delay(1);
 }
 
@@ -1195,3 +1194,7 @@ workspace-ros-noetic-turtlebot3.code.code-workspace
 
 rosrun bot3_kccistic_service gpio_client 10 20
 
+
+
+workspaces.. ?였나 ? 기본경로?.. 젯슨 나노 프로젝트에서는 이렇게햇는데.. ㅇㅁ..
+workspace

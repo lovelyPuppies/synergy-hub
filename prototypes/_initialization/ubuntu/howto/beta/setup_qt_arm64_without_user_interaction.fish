@@ -33,13 +33,14 @@ function check_libxcb_cursor0
       Error while running QT installer,
         [8478] XCBError : The required XCB cursor platform library was not found! : The required XCB cursor platform library was not found!
       https://github.com/nomic-ai/gpt4all-chat/issues/3
-      
+        Please use your distribution\'s package manager to install it.
+          Ubuntu/Debian-based: apt install libxcb-cursor0 libxcb-cursor-dev
     '
     if dpkg -s libxcb-cursor0 >/dev/null 2>&1
         echo "libxcb-cursor0 is already installed."
     else
         echo "libxcb-cursor0 is not installed. Installing..."
-        sudo apt update && sudo apt install -y libxcb-cursor0
+        sudo apt update && sudo apt install -y libxcb-cursor0 libxcb-cursor-dev
         echo "libxcb-cursor0 installation complete."
     end
 end
@@ -72,10 +73,26 @@ echo ""
 set qt_installer_file_path "$HOME/Downloads/qt-unified"
 set install_dir "$HOME/Qt"
 
-echo Accept | $qt_installer_file_path \
+
+#! Error 로 인해 자동화 불가능. 오류 발생 시 자동으로 취소되서 처음부터 다시 설치해야 함.
+# echo Accept | $qt_installer_file_path \
+#     --root $install_dir \
+#     --email $qt_email \
+#     --pw $qt_pw \
+#     --accept-licenses --default-answer --confirm-command \
+#     --verbose \
+#     --mirror "https://ftp.jaist.ac.jp/pub/qtproject/" \
+#     install $qt_installation_package
+$qt_installer_file_path \
     --root $install_dir \
     --email $qt_email \
     --pw $qt_pw \
-    --accept-licenses --default-answer --confirm-command \
+    --accept-licenses --confirm-command \
+    --verbose \
     --mirror "https://ftp.jaist.ac.jp/pub/qtproject/" \
     install $qt_installation_package
+# --default-answer --confirm-command \
+# qt.qt6.681.linux_gcc_arm64
+## https://forum.qt.io/topic/159579/installation-qt-qt6-680-linux_gcc_arm64-on-rpi5-failed-with-qt-6-8-0-gcc_arm64-bin-qmake-process-crashed/2
+## https://www.qt-dev.com/board.php?board=qnaboard&command=body&no=1019
+## https://forum.qt.io/topic/159564/qt-creator-installer-setup-fails-on-linux-arm-process-crashed
