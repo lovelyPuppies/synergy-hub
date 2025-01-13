@@ -16662,3 +16662,6 @@ pi19@pi ~> ldd ~/Qt/6.8.1/gcc_arm64/bin/qmake
     libQt6Core.so.6 => /home/pi19/Qt/6.8.1/gcc_arm64/bin/../lib/libQt6Core.so.6 (0x0000007f99050000)
 
 ❓ 면접: Meta Package..
+
+
+Vcsrv vs x410? 이엇나.. 정리 필요.
