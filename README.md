@@ -3,7 +3,6 @@
 📅 Modified at 2024-12-31 19:44:10
 
 - [Synergy Hub Documentation](#synergy-hub-documentation)
-  - [🗂 Directory Structure](#-directory-structure)
   - [📌 Project Shortcuts](#-project-shortcuts)
   - [🌐 Open Source Contributions](#-open-source-contributions)
     - [Issues Overview](#issues-overview)
@@ -12,15 +11,6 @@
   - [📈 Trend](#-trend)
   - [🚀 Project Setup Instructions (Ubuntu)](#-project-setup-instructions-ubuntu)
   - [📏 Rule](#-rule)
-
-## 🗂 Directory Structure
-
-```
-📁 projects (📰 TODO)
-└── 📂 embedded
-├── 📁 project_alarm_clock
-└── 📁 smart_trash_bin
-```
 
 ## 📌 Project Shortcuts
 
@@ -41,9 +31,8 @@
   🏷️ Tag: Python3, OpenCV, MediaPipe
 
 - [**환경 및 네트워크 초기화 자동화 스크립트 작성**](#️-scripts)
-  🏷️ Tag: Fish script, PowerShell
 
-  - **[Full files](prototypes/_initialization)**
+  🏷️ Tag: Fish script, PowerShell
 
 - [synergy-hub **LFS using docker**](prototypes/_initialization/lfs/README.md)
   🏷️ Tag: Docker, LFS
@@ -85,8 +74,6 @@
     - Using OpenCV without hardware acceleration.
 
     These factors likely led to increased CPU usage and memory shortage, resulting in a kernel crash in Jupyter Notebook.
-
-  - 📅 2024-08-29: conan-io/conan-center-index [\[package\] pulseaudio/14.2 : I'm using clang 18 but error; Compiler does not support -std=gnu11](https://github.com/conan-io/conan-center-index/issues/25075)
 
 ## 🖋️ Scripts
 
