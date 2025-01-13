@@ -46,9 +46,10 @@ nvidia-smi
   https://download.qt.io/official_releases/online_installers
   https://doc.qt.io/qt-6/get-and-install-qt-cli.html#installing-with-user-interaction
 
-  ☑️ (Issue: Bug); Qt Online Installer taking too long ; https://stackoverflow.com/questions/48956637/qt-online-installer-taking-too-long 📅 2025-01-13 11:24:15
+  ☑️ (Issue: Bug); Download/Run Qt Online Installer taking too long ; https://stackoverflow.com/questions/48956637/qt-online-installer-taking-too-long 📅 2025-01-13 11:24:15
     ➡️ Set Mirror arguments when run installer ; https://download.qt.io/static/mirrorlist/
       Online Installer uses random mirrors which can be slow to download.
+
     # In Korea, the Japan servers are the most suitable due to proximity and stability.
 
     When install first time, you can set the mirror by command line.
@@ -59,12 +60,13 @@ nvidia-smi
 
 set qt_installation_package "qt6.8.1-full-dev"
 set qt_installer_name "qt-unified-linux-x64-online.run"
+set qt_mirror_url "https://ftp.jaist.ac.jp/pub/qtproject/official_releases/online_installers/"$qt_installer_name
 
 if test -e ~/Downloads/qt-unified
     echo "Qt installer already exists."
 else
     echo "Downloading Qt installer..."
-    wget -O ~/Downloads/qt-unified "https://download.qt.io/official_releases/online_installers/"$qt_installer_name
+    wget -O ~/Downloads/qt-unified $qt_mirror_url
     chmod 700 ~/Downloads/qt-unified
 end
 

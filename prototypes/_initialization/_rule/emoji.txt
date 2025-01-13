@@ -20,3 +20,5 @@ Emoji 🔗 from VS Code Extension :emojisense: ;https://marketplace.visualstudio
 
   🆗      :ok:                ""                                  Attempt: Fail
   📵      :no_mobile_phones:  ""                                  Attempt: Fail
+
+  🌳      :deciduous_tree:    ""                                  Branch. Selection.

@@ -16365,4 +16365,11 @@ pi19@pi ~> sudo apt update && sudo apt upgrade -y
 사용자 공간이 64비트인지 32비트인지 // 그리고 현재 커널 모드가 32비트인지 64비트인지 어떻게 확인하더라? 명령어로
 dpkg --archiecture ? 어떻게 보더라 명령어로..
 
-  
+
+
+
+http://www.yz.yamagata-u.ac.jp/ 
+http://jaist.ac.jp/
+
+systemctl status systemd-resolved
+sudo systemctl restart systemd-resolved

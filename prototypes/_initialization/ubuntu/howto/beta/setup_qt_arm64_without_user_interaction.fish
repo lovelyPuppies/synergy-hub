@@ -24,9 +24,16 @@ trap on_interrupt SIGINT
 # Check if libxcb-cursor0 is installed
 function check_libxcb_cursor0
     : '
+
+    ldd ~/Downloads/qt-unified 
+    
     ☑️ (Issue: Error) When run QT installer, 📅 2025-01-13 11:56:35
-        >> error while loading shared libraries: libxcb-cursor.so.0: cannot open shared object file: No such file or directory
-        # https://github.com/nomic-ai/gpt4all-chat/issues/3
+      Error while loading shared libraries
+        >> libxcb-cursor.so.0: cannot open shared object file: No such file or directory
+      Error while running QT installer,
+        [8478] XCBError : The required XCB cursor platform library was not found! : The required XCB cursor platform library was not found!
+      https://github.com/nomic-ai/gpt4all-chat/issues/3
+      
     '
     if dpkg -s libxcb-cursor0 >/dev/null 2>&1
         echo "libxcb-cursor0 is already installed."
@@ -42,12 +49,14 @@ check_libxcb_cursor0
 
 set qt_installation_package "qt6.8.1-full"
 set qt_installer_name "qt-unified-linux-arm64-online.run"
+set qt_mirror_url "https://ftp.jaist.ac.jp/pub/qtproject/official_releases/online_installers/"$qt_installer_name
+
 
 if test -e ~/Downloads/qt-unified
     echo "Qt installer already exists."
 else
     echo "Downloading Qt installer..."
-    wget -O ~/Downloads/qt-unified "https://download.qt.io/official_releases/online_installers/"$qt_installer_name
+    wget -O ~/Downloads/qt-unified $qt_mirror_url
     chmod 700 ~/Downloads/qt-unified
 end
 
