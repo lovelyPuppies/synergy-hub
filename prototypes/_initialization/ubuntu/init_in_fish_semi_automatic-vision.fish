@@ -41,8 +41,44 @@ sudo apt install -y nvidia-cuda-toolkit
 nvidia-smi
 
 
+#####
+: '📦 Qt
+  https://download.qt.io/official_releases/online_installers
+  https://doc.qt.io/qt-6/get-and-install-qt-cli.html#installing-with-user-interaction
 
-# cd ~/ffmpeg_sources/ffmpeg && ./configure --help
-# cd -
+  ☑️ (Issue: Bug); Qt Online Installer taking too long ; https://stackoverflow.com/questions/48956637/qt-online-installer-taking-too-long 📅 2025-01-13 11:24:15
+    ➡️ Set Mirror arguments when run installer ; https://download.qt.io/static/mirrorlist/
+      Online Installer uses random mirrors which can be slow to download.
+    # In Korea, the Japan servers are the most suitable due to proximity and stability.
 
-# ❌
+    When install first time, you can set the mirror by command line.
+      %shell> $HOME/qt-unified --mirror https://ftp.jaist.ac.jp/pub/qtproject/
+    or, If you want to use the MaintenanceTool.
+      %shell> $HOME/Qt/MaintenanceTool --mirror https://ftp.jaist.ac.jp/pub/qtproject/
+'
+
+set qt_installation_package "qt6.8.1-full-dev"
+set qt_installer_name "qt-unified-linux-x64-online.run"
+
+echo "📝  It will install `$qt_installer_name` installer, `$qt_installation_package` package."
+echo "⌨️  Enter your Qt account email: "
+read qt_email
+echo ""
+
+echo "⌨️  Enter your Qt account password: "
+read -s qt_pw
+echo ""
+
+wget -O ~/Downloads/qt-unified "https://download.qt.io/official_releases/online_installers/"$qt_installer_name
+chmod 700 ~/Downloads/qt-unified
+
+set qt_installer_file_path "$HOME/Downloads/qt-unified"
+set install_dir "$HOME/Qt"
+
+echo Accept | $qt_installer_file_path \
+    --root $install_dir \
+    --email $qt_email \
+    --pw $qt_pw \
+    --accept-licenses --default-answer --confirm-command \
+    --mirror "https://ftp.jaist.ac.jp/pub/qtproject/" \
+    install $qt_installation_package

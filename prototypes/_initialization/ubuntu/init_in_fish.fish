@@ -1371,6 +1371,16 @@ end
   Homebrew: Outdated version
 
   ➡️ use online installer
+
+📦 opencv ; 
+    https://repology.org/project/opencv/versions
+    https://formulae.brew.sh/formula/opencv
+
+    opencv_version --verbose
+    >> 
+      OpenCV modules:
+        Unavailable:                 cannops cudaarithm cudabgsegm cudacodec cudafeatures2d cudafilters cudaimgproc cudalegacy cudaobjdetect cudaoptflow cudastereo cudawarping cudev cvv java julia matlab ovis python2 ts
+      OpenCL:                        YES (INTELVA)
 '
 
 

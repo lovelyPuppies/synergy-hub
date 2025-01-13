@@ -11324,93 +11324,20 @@ https://download.qt.io/official_releases/online_installers/
 
 TODO: Qt
   brew 로 설치한 opencv 부터 가속 테스트.
-  이후.. 
-  ➡️ Oneline installer ; https://download.qt.io/official_releases/online_installers/
-    wget -O ~/Downloads/qt-unified https://download.qt.io/official_releases/online_installers/qt-unified-linux-x64-online.run
-    chmod 700 ~/Downloads/qt-unified
-    ## if in ARM
-    # wget https://download.qt.io/official_releases/online_installers/qt-unified-linux-arm64-online.run
-    ~/Downloads/qt-unified-linux-x64-online.run
-  - With user interaction install 부터 시작.
-    https://doc.qt.io/qt-6/get-and-install-qt-cli.html#installing-with-user-interaction
-    ~/Downloads/qt-unified
-    ### User Interaction
-    # username: wbfw109v2@gmail.com
-    # password: ...
-    ...
-    ## License agreement
-
-    ## Instllation Folder
-    $HOME/Qt # (default)
-    # 
-    Custom Installation   
-    ✔️ Qt 6.8 for Desktop Development
-    ✔️ Qt 6.8 for Mobile Development
-    ✔️ Qt Design Studio
-  - without user interaction install
-    https://doc.qt.io/qt-6/get-and-install-qt-cli.html#installing-without-user-interaction
-
-  # linux: update installation with Qt Maintenance Tool
-    MaintenanceTool.run --accept-licenses --default-answer --confirm-command install qt.qt6.680.gcc_64
-    # linux: new installation with Qt Online Installer
-    qt-unified-linux-x64-[Qt Online Installer version]-online.run --root /home/<username>/installation_dir --accept-licenses --default-answer --confirm-command install qt.qt6.680.gcc_64
-    
-    
-    #!/usr/bin/env fish
-    # wget -O ~/Downloads/qt-unified https://download.qt.io/official_releases/online_installers/qt-unified-linux-x64-online.run
-    
-    chmod 700 ~/Downloads/qt-unified
-    ## if in ARM
-    # wget https://download.qt.io/official_releases/online_installers/qt-unified-linux-arm64-online.run
-    ~/Downloads/qt-unified-linux-x64-online.run
-
-
-    echo "⌨️  Enter your Qt account password: "
-    read -s qt_pw
-    echo "" # 줄 바꿈 (입력 후 줄바꿈이 필요)
-
-    wget -O ~/Downloads/qt-unified https://download.qt.io/official_releases/online_installers/qt-unified-linux-x64-online.run
-    chmod 700 ~/Downloads/qt-unified  
-
-    set qt_installer "$HOME/Downloads/qt-unified"
-    set install_dir "$HOME/Qt"
-    set qt_email "wbfw109v2@gmail.com"
-
-    echo Accept | $qt_installer \
-        --root $install_dir \
-        --email $qt_email \
-        --pw $qt_pw \
-        --accept-licenses --default-answer --confirm-command \
-        install qt6.8.0-full
-        # qt6.8.0-full-dev
-
+ 
 
   유지보수 및 업데이트
     설치 후 패키지 업데이트를 원하면 아래 명령을 사용합니다:
-      ~/Qt/MaintenanceTool \
+      ~/Qt/  \
         --accept-licenses \
         --default-answer \
         --confirm-command \
         install qt6.8.0-full-dev
+
+        
 ---------------------------------
-qt ...
-  brew info qt
-
-  📦 brew install opencv
-    opencv_version --verbose
-    
-    OpenCV modules:
-      Unavailable:                 cannops cudaarithm cudabgsegm cudacodec cudafeatures2d cudafilters cudaimgproc cudalegacy cudaobjdetect cudaoptflow cudastereo cudawarping cudev cvv java julia matlab ovis python2 ts
-    OpenCL:                        YES (INTELVA)
-
-
-  지금 설치가 어려운게..
-    qt, opencv 이 두개야.
-
-    버전이 업데이트되면 패키지 관리자에 의해 자동으로 함께 업데이트도되록 하고 싶은데.. GPU 가속도 활성화 가능상태여야하고,, 그리고 최신 버전이어야 하고...
-    우분투에서 어떻게 해야하지..
-
-  crontab
+  지금 설치가 어려운게.. opencv 
+    crontab
     cron은 그리스어 "χρόνος (chronos)"에서 유래된 것으로, **시간(time)**을 의미합니다.
     리눅스/유닉스에서 cron은 시간 기반 작업 스케줄러 데몬으로, 사용자가 설정한 작업을 지정된 시간에 자동으로 실행하는 역할을 합니다.
 
@@ -11421,15 +11348,6 @@ qt ...
   .. https://docs.opencv.org/4.x/d7/d9f/tutorial_linux_install.html#tutorial_linux_install_detailed_basic_download
 
   gpu 가속을 사용하기 위해서 직접 빌드해서 사용해야 하는것은 자동업데이트를 사람들은 어떻게 받도록 해놓지 실제로? 실무자들 말이야. 2024년 추세.
-
-    brew install qt
-      ==> Caveats
-      You can add Homebrew's Qt to QtCreator's "Qt Versions" in:
-        Preferences > Qt Versions > Link with Qt...
-      pressing "Choose..." and selecting as the Qt installation path:
-        /home/linuxbrew/.linuxbrew
-
-
     ==> Caveats
     You can add Homebrew's Qt to QtCreator's "Qt Versions" in:
       Preferences > Qt Versions > Link with Qt...
@@ -11443,6 +11361,8 @@ qt ...
     ## 📰 TODO in grpahic interface
     # qtdiag
     # glxinfo | grep "OpenGL"
+
+
 ---------------------------------
 TODO: OpenCV
   official guide ;
@@ -16435,3 +16355,5 @@ Project 구조.. 맞나?
     - [📌 Key Learnings and Improvements](#-key-learnings-and-improvements)
 
 ## Project Introduction
+
+https://m.blog.naver.com/pareko/223026064543    

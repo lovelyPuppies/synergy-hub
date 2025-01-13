@@ -58,7 +58,7 @@ read local_mount_dir_name
 set local_mount_dir /mnt/{$local_mount_dir_name}
 
 # Create the local directory
-mkdir --parents $local_mount_dir
+sudo mkdir --parents $local_mount_dir
 echo "Your local mount folder is $local_mount_dir."
 
 ### 3. Mount the NFS share
