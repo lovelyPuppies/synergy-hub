@@ -771,23 +771,30 @@ rostopic lits
 
 
 
+https://wireless.docs.kernel.org/en/latest/en/developers/documentation/cfg80211/api.html#
+
+ rosserial
+  ☞ rosserial 단점 : 퍼블리셔, 서브스크라이버의 개수 및 송, 수신 버퍼 크기를 미리 정해야 함
+  ☞ float64 : MCU는 64비트 실수 연산 지원 X  ->  32비트
+  ☞ 통신속도 : UART의 115200 bps와 같은 속도로는 메시지의 개 수가 많아지면 느림
 
 
 
+rosrun rosserial_arduino make_libraries.py 
 
 
 >>>>>
-docker network create --subnet=192.168.0.0/16 ros_network
-  총 호스트 IP 개수: 256 - 2 = 254 (네트워크와 브로드캐스트 주소 제외)
-    192.168.0.0, 192.168.255.255
+    docker network create --subnet=192.168.0.0/16 ros_network
+      총 호스트 IP 개수: 256 - 2 = 254 (네트워크와 브로드캐스트 주소 제외)
+        192.168.0.0, 192.168.255.255
 
-docker network create --driver=bridge --subnet=172.18.0.0/16 ros_network
+    docker network create --driver=bridge --subnet=172.18.0.0/16 ros_network
 
-sudo apt install -y iputils-ping iproute2
+    sudo apt install -y iputils-ping iproute2
 
 
-rosrun rospy_tutorials listener
-rosrun rospy_tutorials talker
+    rosrun rospy_tutorials listener
+    rosrun rospy_tutorials talker
 
   [INFO] [1736476656.518417]: hello world 1736476656.5182347
   [INFO] [1736476656.618257]: hello world 1736476656.6181748
@@ -1149,3 +1156,38 @@ meson setup build --enable-vulkan --enable-gbm
 
 
 > 잡코리아를 보자. 사람인 말고. 
+향후 전망이 "수치"적으로 어떻게 될 건지도 언급해야 한다.. 자기소개서.. ?
+
+
+
+1.ros_serial_arduino.ino 작성 및 빌드 / 업로드
+----------------------------------
+#include <ros.h>
+#include <std_msgs/Int16.h>
+ros::NodeHandle  nh;
+void messageCb( const std_msgs::Int16& toggle_msg){
+  int ledVal = toggle_msg.data;
+  if(ledVal)
+    digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
+  else                                // wait for a second
+    digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
+  delay(1000);                       // wait for a second  
+}
+ros::Subscriber<std_msgs::Int16> sub("toggle_led", &messageCb );
+void setup()
+{ 
+  pinMode(LED_BUILTIN, OUTPUT);
+  nh.initNode();
+ // nh.getHardware()->setBaud(57600);
+  nh.subscribe(sub);z
+}
+
+void loop()
+{  
+  nh.spinOnce();
+  delay(1);
+}
+
+
+
+  workspace-ros-noetic-turtlebot3.code.code-workspace

@@ -1393,7 +1393,6 @@ end
 
 
 
-
 echo "🥞 Installing available stable versions from apt in fish shell ..."
 ## ☑️ Issue: Bug; Ubuntu VScode PlatformIO extension messages 'PlatformIO: Can not find working Python 3.6+ Interpreter' 📅 2024-11-22 14:12:31
 #   https://community.platformio.org/t/ubuntu-vscode-pio-extension-install-platformio-can-not-find-working-python-3-6-interpreter/27853

@@ -51,7 +51,7 @@ end
 
 # Trigger catkinSource function when the Fish prompt is first rendered (when opening a new terminal)
 function __catkin_initial_source --on-event fish_prompt
-    # Run catkinSource only if the terminal is in a Catkin workspace
+    # Run catkinSource only if the termi        nal is in a Catkin workspace
     catkinSource
     # Unregister the function after the first execution
     functions -e __catkin_initial_source
@@ -70,3 +70,23 @@ end
 
 source $FISH_CONFIG_PATH
 cd .
+
+
+#### Temp .. 
+# in ordre to use git installation from platformio
+sudo apt install -y curl git
+##
+sudo apt install -y python3-venv
+
+sudo apt install -y ros-noetic-rosserial ros-noetic-rosserial-server ros-noetic-rosserial-arduino
+
+# It create `/workspace/ros_serial_uno3/lib/ros_lib` foldre
+rosrun rosserial_arduino make_libraries.py /workspace/ros_serial_uno3/lib
+
+
+# ros-noetic-rosserial
+# # Depends       ros-noetic-rosserial-client, ros-noetic-rosserial-msgs, ros-noetic-rosserial-python
+# ros-noetic-rosserial-server
+# # Depends       ros-noetic-roscpp, ros-noetic-rosserial-msgs, ros-noetic-std-msgs, ros-noetic-topic-tools
+# ros-noetic-rosserial-arduino
+# # Depends       arduino-core, ros-noetic-message-runtime, ros-noetic-rospy, ros-noetic-rosserial-client, ros-noetic-rosserial-msgs, ros-noetic-rosserial-python

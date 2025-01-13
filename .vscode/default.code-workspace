@@ -2,16 +2,7 @@
   "folders": [
     {
       "path": ".."
-    },
-    {
-      "path": "../prototypes/study/qt_study/testQt"
     }
-    // {
-    //   "path": "../../yocto_project/poky"
-    // },
-    // {
-    //   "path": "../../kernels/raspberry-pi"
-    // }
   ],
   "settings": {
     "python.analysis.logLevel": "Trace",
