@@ -40,8 +40,10 @@
 
   🏷️ Tag: Python3, OpenCV, MediaPipe
 
-- [**환경 및 네트워크 초기화 자동화 스크립트 작성**](prototypes/_initialization)
-  🏷️ Tag: Fish script
+- [**환경 및 네트워크 초기화 자동화 스크립트 작성**](#️-scripts)
+  🏷️ Tag: Fish script, PowerShell
+
+  - **[Full files](prototypes/_initialization)**
 
 - [synergy-hub **LFS using docker**](prototypes/_initialization/lfs/README.md)
   🏷️ Tag: Docker, LFS
