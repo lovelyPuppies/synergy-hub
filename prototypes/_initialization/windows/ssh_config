@@ -35,10 +35,10 @@ Host tailscale-machine-to-intel-server
 #   ForwardX11Trusted yes
 # 
 # 
-# # %shell> ssh pi@pi19.local
+# # %shell> ssh pi19@pi.local
 # Host r-pi.local
-#   HostName pi19.local
-#   User pi
+#   HostName pi.local
+#   User pi19
 #   ForwardX11 yes
 #   ForwardX11Trusted yes
 # # %shell> ssh jetson@nano19.local

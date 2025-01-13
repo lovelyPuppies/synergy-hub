@@ -60,6 +60,15 @@ nvidia-smi
 set qt_installation_package "qt6.8.1-full-dev"
 set qt_installer_name "qt-unified-linux-x64-online.run"
 
+if test -e ~/Downloads/qt-unified
+    echo "Qt installer already exists."
+else
+    echo "Downloading Qt installer..."
+    wget -O ~/Downloads/qt-unified "https://download.qt.io/official_releases/online_installers/"$qt_installer_name
+    chmod 700 ~/Downloads/qt-unified
+end
+
+
 echo "📝  It will install `$qt_installer_name` installer, `$qt_installation_package` package."
 echo "⌨️  Enter your Qt account email: "
 read qt_email
@@ -69,8 +78,6 @@ echo "⌨️  Enter your Qt account password: "
 read -s qt_pw
 echo ""
 
-wget -O ~/Downloads/qt-unified "https://download.qt.io/official_releases/online_installers/"$qt_installer_name
-chmod 700 ~/Downloads/qt-unified
 
 set qt_installer_file_path "$HOME/Downloads/qt-unified"
 set install_dir "$HOME/Qt"

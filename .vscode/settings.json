@@ -12,8 +12,8 @@
   // "python.defaultInterpreterPath": "C:/Python312/python.exe",
   "terminal.integrated.defaultProfile.windows": "PowerShell",
   "files.associations": {
-    "*.S": "arm",
     ".clangd": "ini",
+    "*.S": "arm",
     "*.txt": "plaintext",
     "iostream": "cpp",
     "vector": "cpp",

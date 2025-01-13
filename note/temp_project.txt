@@ -14172,8 +14172,6 @@ pi@pi19:/mnt/host $ echo $LD_LIBRARY_PATH
 
 
 
-
-
 ldd ./HelloQt6
 
 
@@ -14223,9 +14221,9 @@ fish shell 문제?
 
   [Requesting program interpreter: /lib/ld-linux-aarch64.so.1]
     sudo apt install -y libc6
-libc6
 
 📅 2025-01-01 20:34:38
+
 in Ubuntu
   apt-cache show libc6 | grep Priority: 
   Priority: required
@@ -16357,3 +16355,12 @@ Project 구조.. 맞나?
 ## Project Introduction
 
 https://m.blog.naver.com/pareko/223026064543    
+
+
+https://download.qt.io/static/mirrorlist/
+
+pi19@pi ~> sudo apt update && sudo apt upgrade -y
+
+
+  사용자 공간이 64비트인지 32비트인지 // 그리고 현재 커널 모드가 32비트인지 64비트인지 어떻게 확인하더라? 명령어로
+  dpkg --archiecture ? 어떻게 보더라 명령어로..
