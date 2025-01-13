@@ -8027,8 +8027,6 @@ Failed to execute /home/linuxbrew/.linuxbrew/Cellar/systemd/256.9/bin/pkttyagent
 
 
 라즈베리파이에 설치하는데.. (라즈베리에 설치할 필요는 없지만..) 📅 2024-12-03 11:40:09
-  ubuntu
-  ~/pi_bsp$ sudo apt install crossbuild-essential-armhf 	//arm 32bit 툴체인 설치
 
   /etc/resolv.conf
     nameserver 10.0.0.17
@@ -10076,7 +10074,6 @@ vmalloc(), vfree()
 
 🧮 cat /proc/devices
   번호 확인할떄에는 lsmod 보다는 이거 써야
-🧮 crossbuild-essential-armhf
 
 
 #include <mach/irqs.h>
@@ -16558,8 +16555,25 @@ Have you another idea ?
 sudo apt install qmake6
 
 
+\=======================
+❗❗❗❗ qmake 심볼릭링크로 바꿔봣는데 안됫다 이거 설치하고 혹시몰라서 재부팅하고 나서 다시설치하니까 저 솔루션이 통햇음. 
+# https://wiki.qt.io/Cross-Compile_Qt_6_for_Raspberry_Pi
+🧪 오류 뜨는이유가.. 디펜던시.. 나오지 않아서 알 수 없지만.. 설치를 안해줘서 그런건가
+set -U fish_greeting "✈️  [Raspberry Pi]"
+sudo apt install -y libboost-all-dev libudev-dev libinput-dev libts-dev libmtdev-dev libjpeg-dev libfontconfig1-dev libssl-dev libdbus-1-dev libglib2.0-dev libxkbcommon-dev libegl1-mesa-dev libgbm-dev libgles2-mesa-dev mesa-common-dev libasound2-dev libpulse-dev gstreamer1.0-omx-generic libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev  gstreamer1.0-alsa libvpx-dev libsrtp2-dev libsnappy-dev libnss3-dev "^libxcb.*" flex bison libxslt-dev ruby gperf libbz2-dev libcups2-dev libatkmm-1.6-dev libxi6 libxcomposite1 libfreetype6-dev libicu-dev libsqlite3-dev libxslt1-dev
+sudo apt install -y libavcodec-dev libavformat-dev libswscale-dev libx11-dev freetds-dev libpq-dev libiodbc2-dev firebird-dev libxext-dev libxcb1 libxcb1-dev libx11-xcb1 libx11-xcb-dev libxcb-keysyms1 libxcb-keysyms1-dev libxcb-image0 libxcb-image0-dev libxcb-shm0 libxcb-shm0-dev libxcb-icccm4 libxcb-icccm4-dev libxcb-sync1 libxcb-sync-dev libxcb-render-util0 libxcb-render-util0-dev libxcb-xfixes0-dev libxrender-dev libxcb-shape0-dev libxcb-randr0-dev libxcb-glx0-dev libxi-dev libdrm-dev libxcb-xinerama0 libxcb-xinerama0-dev libatspi2.0-dev libxcursor-dev libxcomposite-dev libxdamage-dev libxss-dev libxtst-dev libpci-dev libcap-dev libxrandr-dev libdirectfb-dev libaudio-dev libxkbcommon-x11-dev
+☑️ The package name should be gstreamer1.0-tools instead of gstreamer-1.0-tools
+  https://forums.developer.nvidia.com/t/gstreamer-installation-error/277826
+☑️ E: Unable to locate package gstreamer1.0-omx
+  > apt-cache policy gstreamer1.0-omx
+    gstreamer1.0-omx-generic: ...
+    gstreamer1.0-omx-generic-config: ...
+    gstreamer1.0-omx-bellagio-config: ...
 
-🆗 
+☑️ E: Unable to locate package gstreamer1.0-omx
+  The libgst-dev package was only in bullseye.
+  https://forums.raspberrypi.com/viewtopic.php?t=361663
+🆗 📅 2025-01-14 02:27:59
   SOLVED:
   After getting the dialog error Error during installation process (qt.qt6.680.linux_gcc_arm64): Failed to run command: "/home/user/Qt/6.8.0/gcc_arm64/bin/qmake"
   : Process crashed in the QT Creator installer setup, 1️2️⃣ remove the file under "Qt/6.8.0/gcc_arm64/bin/qmake" (❗ without closing the dialog)
@@ -16567,11 +16581,18 @@ sudo apt install qmake6
   It should complete the installation. Hope this is fixed.
 
 
-  sudo apt install -y qmake6
-  sudo ln -sf /usr/bin/qmake6 /usr/bin/qmake
+  When output during installation process
+    >> 
+      2499023] Operation \"ConsumeOutput\" with arguments \"qt.qt6.681.linux_gcc_arm64_qmakeoutput; /home/pi19/Qt/6.8.1/gcc_arm64/bin/qmake; -query\" failed: Failed to run command: \"/home/pi19/Qt/6.8.1/gcc_arm64/bin/qmake\": Process crashed
+      [2499023] installationErrorWithCancel : Installer Error : Error during installation process (qt.qt6.681.linux_gcc_arm64):
+      Failed to run command: "/home/pi19/Qt/6.8.1/gcc_arm64/bin/qmake": Process crashed Retry|Ignore|Cancel
+      ldd ~/Qt/6.8.1/gcc_arm64/bin/qmake
+  in other terminal, 🧮 %shell>
+    sudo apt install -y qmake6
+    sudo ln -sf /usr/bin/qmake6 /usr/bin/qmake
 
-  rm ~/Qt/6.8.1/gcc_arm64/bin/qmake
-  ln -s /usr/bin/qmake ~/Qt/6.8.1/gcc_arm64/bin/qmake
+    rm ~/Qt/6.8.1/gcc_arm64/bin/qmake
+    ln -s /usr/bin/qmake ~/Qt/6.8.1/gcc_arm64/bin/qmake
 
   [2182788] Operation \"QtPatch\" with arguments \"linux; /home/pi19/Qt/6.8.1/gcc_arm64; qt5-no-bin-patch; QmakeOutputInstallerKey=qt.qt6.681.linux_gcc_arm64_qmakeoutput\" failed: Could not find the required QmakeOutputInstallerKey(qt.qt6.681.linux_gcc_arm64_qmakeoutput) value on the installer object. The ConsumeOutput operation on the valid qmake needs to be called first.
   [2182788] installationErrorWithCancel : Installer Error : Error during installation process (qt.qt6.681.linux_gcc_arm64):
@@ -16606,25 +16627,7 @@ Target Triplets describe a platform on which code runs and are a core concept in
   소프트 플로트는 하드웨어 FPU가 없거나 사용하지 않는 환경에서, 소프트웨어로 부동소수점 연산을 수행하는 방식입니다.
     부동소수점 연산은 CPU가 소프트웨어 루틴을 통해 처리합니다.
 
-🧮 crossbuild-essential-armhf
-🧮 sudo apt-get install gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf
 
-# https://wiki.qt.io/Cross-Compile_Qt_6_for_Raspberry_Pi
-🧪 오류 뜨는이유가.. 디펜던시.. 나오지 않아서 알 수 없지만.. 설치를 안해줘서 그런건가
-set -U fish_greeting "✈️  [Raspberry Pi]"
-sudo apt install -y libboost-all-dev libudev-dev libinput-dev libts-dev libmtdev-dev libjpeg-dev libfontconfig1-dev libssl-dev libdbus-1-dev libglib2.0-dev libxkbcommon-dev libegl1-mesa-dev libgbm-dev libgles2-mesa-dev mesa-common-dev libasound2-dev libpulse-dev gstreamer1.0-omx-generic libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev  gstreamer1.0-alsa libvpx-dev libsrtp2-dev libsnappy-dev libnss3-dev "^libxcb.*" flex bison libxslt-dev ruby gperf libbz2-dev libcups2-dev libatkmm-1.6-dev libxi6 libxcomposite1 libfreetype6-dev libicu-dev libsqlite3-dev libxslt1-dev
-sudo apt install -y libavcodec-dev libavformat-dev libswscale-dev libx11-dev freetds-dev libpq-dev libiodbc2-dev firebird-dev libxext-dev libxcb1 libxcb1-dev libx11-xcb1 libx11-xcb-dev libxcb-keysyms1 libxcb-keysyms1-dev libxcb-image0 libxcb-image0-dev libxcb-shm0 libxcb-shm0-dev libxcb-icccm4 libxcb-icccm4-dev libxcb-sync1 libxcb-sync-dev libxcb-render-util0 libxcb-render-util0-dev libxcb-xfixes0-dev libxrender-dev libxcb-shape0-dev libxcb-randr0-dev libxcb-glx0-dev libxi-dev libdrm-dev libxcb-xinerama0 libxcb-xinerama0-dev libatspi2.0-dev libxcursor-dev libxcomposite-dev libxdamage-dev libxss-dev libxtst-dev libpci-dev libcap-dev libxrandr-dev libdirectfb-dev libaudio-dev libxkbcommon-x11-dev
-☑️ The package name should be gstreamer1.0-tools instead of gstreamer-1.0-tools
-  https://forums.developer.nvidia.com/t/gstreamer-installation-error/277826
-☑️ E: Unable to locate package gstreamer1.0-omx
-  > apt-cache policy gstreamer1.0-omx
-    gstreamer1.0-omx-generic: ...
-    gstreamer1.0-omx-generic-config: ...
-    gstreamer1.0-omx-bellagio-config: ...
-
-☑️ E: Unable to locate package gstreamer1.0-omx
-  The libgst-dev package was only in bullseye.
-  https://forums.raspberrypi.com/viewtopic.php?t=361663
   
 
 OpenMAX(Open Media Acceleration)는 Khronos Group에서 개발한 표준 API로, 비디오, 오디오 및 이미지 처리와 같은 멀티미디어 작업의 하드웨어 가속을 지원하기 위한 플랫폼 간 인터페이스입니다. 이를 통해  개발자는 다양한 하드웨어 플랫폼에서 멀티미디어 애플리케이션을 효율적으로 실행할 수 있습니다.
@@ -16652,13 +16655,10 @@ GUI 용 Qt Creator 가 같이 설치되긴 한다.
 >>>>>>>>>> qt 파일에 대한 validatino 기능은 없다.. 재설치해야함.
 
 
-2499023] Operation \"ConsumeOutput\" with arguments \"qt.qt6.681.linux_gcc_arm64_qmakeoutput; /home/pi19/Qt/6.8.1/gcc_arm64/bin/qmake; -query\" failed: Failed to run command: \"/home/pi19/Qt/6.8.1/gcc_arm64/bin/qmake\": Process crashed
-[2499023] installationErrorWithCancel : Installer Error : Error during installation process (qt.qt6.681.linux_gcc_arm64):
-Failed to run command: "/home/pi19/Qt/6.8.1/gcc_arm64/bin/qmake": Process crashed Retry|Ignore|Cancel
-ldd ~/Qt/6.8.1/gcc_arm64/bin/qmake
-
 
 ??????? 
 pi19@pi ~> ldd ~/Qt/6.8.1/gcc_arm64/bin/qmake
     linux-vdso.so.1 (0x0000007f998ec000)
     libQt6Core.so.6 => /home/pi19/Qt/6.8.1/gcc_arm64/bin/../lib/libQt6Core.so.6 (0x0000007f99050000)
+
+❓ 면접: Meta Package..

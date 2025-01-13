@@ -17,8 +17,12 @@ while true
     read --local architecture
     switch $architecture
         case arm64
-            echo "Installing AARCH64 (arm64) cross-compilation tools..."
-            sudo apt install gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
+
+            echo "Installing AARCH64 (arm64) cross-compilation tools...: 🥞 Meta Package: crossbuild-essential-arm64"
+            sudo apt install -y crossbuild-essential-arm64
+            # ❔ %shell> apt-cache show crossbuild-essential-arm64 | grep Depends:
+            #   >> Depends: gcc-aarch64-linux-gnu (>= 4:10.2) | gcc:arm64, g++-aarch64-linux-gnu (>= 4:10.2) | g++:arm64, dpkg-cross
+
             : '
             These tools install the cross-compilation toolchain for 64-bit ARM (AArch64) targets.
               - Adds binaries like `aarch64-linux-gnu-gcc`, `aarch64-linux-gnu-g++`, and related tools.
@@ -31,17 +35,23 @@ while true
             break
 
         case arm32
-            echo "Installing ARM (arm32) cross-compilation tools..."
-            sudo apt install gcc-arm-linux-gnueabi g++-arm-linux-gnueabi \
-                gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf
+            echo "Installing ARM (arm32) cross-compilation tools...: 🥞 Meta Package: crossbuild-essential-armhf"
+            echo "  📝 Note: Soft Float (gnueabi) packages will not be installed because modern ARM devices typically support Hard Float (gnueabihf) for better performance with hardware FPU."
+            # gcc-arm-linux-gnueabi g++-arm-linux-gnueabi
+            #   - Supports soft-float ABI (via `arm-linux-gnueabi-*` binaries).
+            # To verify the installation:
+            #   - Type 🧮 `arm-linux-gnueabi-*` and press the Tab key in Fish shell.
+
+            sudo apt install -y crossbuild-essential-armhf
+            # ❔ %shell> apt-cache show crossbuild-essential-armhf | grep Depends:
+            #   >> Depends: gcc-arm-linux-gnueabihf (>= 4:10.2) | gcc:armhf, g++-arm-linux-gnueabihf (>= 4:10.2) | g++:armhf, dpkg-cross
 
             : '
             These tools install the cross-compilation toolchain for 32-bit ARM targets.
               - Adds binaries like `arm-linux-gnueabi-gcc`, `arm-linux-gnueabi-g++`, and related tools.
-              - Supports soft-float ABI (via `arm-linux-gnueabi-*` binaries).
               - For hard-float ABI, consider using the `arm-linux-gnueabihf-*` binaries.
             To verify the installation:
-              - Type 🧮 `arm-linux-gnueabi-*` or 🧮 `arm-linux-gnueabihf-*` and press the Tab key in Fish shell.
+              - Type 🧮 `arm-linux-gnueabihf-*` and press the Tab key in Fish shell.
             '
             echo "ARM (arm32) cross-compilation tools installed successfully!"
             break
