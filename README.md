@@ -6,6 +6,7 @@
   - [📌 Project Shortcuts](#-project-shortcuts)
   - [🌐 Open Source Contributions](#-open-source-contributions)
     - [Issues Overview](#issues-overview)
+    - [Steam Workshop Contributions](#steam-workshop-contributions)
   - [🖋️ Scripts](#️-scripts)
   - [🔧 Tech Stack](#-tech-stack)
   - [📈 Trend](#-trend)
@@ -35,6 +36,7 @@
   🏷️ Tag: Fish script, PowerShell
 
 - [synergy-hub **LFS using docker**](prototypes/_initialization/lfs/README.md)
+
   🏷️ Tag: Docker, LFS
 
 - [**IoT의 안전한 운영을 위한 Docker 기반 시스템 환경 설 계 및 구현**](https://github.com/wbfw109/safe_iot_architecture) \(External Link\)
@@ -53,9 +55,9 @@
 
 - [⏳ Pending Issues](issues_tracking/pending_issues.md)
 
-  - 📅 2024-08-26: prefix-dev/pixi 🔪 [in VS Code, manifest PIXI_PROJECT_MANIFEST is not changed when open by command "code <path>](https://github.com/prefix-dev/pixi/issues/1907)
   - 📅 2024-08-29: conan-io/conan 🔪 [[bug] in Ubuntu, clang, Ninja enviornment. ERROR: pulseaudio/14.2: Error in build() method, line 131 (external link)](https://github.com/conan-io/conan/issues/16905)
-  - 📅 2024-08-29: conan-io/conan-center-index [\[package\] pulseaudio/14.2 : I'm using clang 18 but error; Compiler does not support -std=gnu11](https://github.com/conan-io/conan-center-index/issues/25075)
+  - 📅 2024-08-29: conan-io/conan-center-index 🔪 [\[package\] pulseaudio/14.2 : I'm using clang 18 but error; Compiler does not support -std=gnu11](https://github.com/conan-io/conan-center-index/issues/25075)
+  - 📅 2024-08-26: prefix-dev/pixi 🔪 [in VS Code, manifest PIXI_PROJECT_MANIFEST is not changed when open by command "code <path>](https://github.com/prefix-dev/pixi/issues/1907)
 
 - [✅ Resolved Issues](issues_tracking/resolved_issues.md)
 
@@ -74,6 +76,27 @@
     - Using OpenCV without hardware acceleration.
 
     These factors likely led to increased CPU usage and memory shortage, resulting in a kernel crash in Jupyter Notebook.
+
+### Steam Workshop Contributions
+
+- 📅 2024-10-15: Choro Ark 🔪 Workshop Mod KR Localization 🔪 [Automation Scripts](https://steamcommunity.com/sharedfiles/filedetails/?id=3343188695&searchtext=)
+
+  It identifies the Steam installation path, updates the `config.ini` file with the correct paths, and runs the localization application without manual intervention.
+
+  ```powershell
+  # 🐚 %shell> Powershell
+  # 🚧 Prerequisite
+  #   - Windows OS
+  #   - Donet Installation: https://dotnet.microsoft.com/en-us/download/dotnet/8.0/runtime?cid=getdotnetcore&amp;os=windows&amp;arch=x64
+
+  $steamInstallPath = (Get-ItemProperty -Path "HKCU:\Software\Valve\Steam").SteamPath
+  $basePath = "$steamInstallPath\steamapps\workshop\content\1188930\3343188695\LocailzationAutoCopy"
+  $configPath = "$basePath\config.ini"
+  (Get-Content $configPath) | ForEach-Object {
+  ($_ -match '^steampath\s*=') ? "steampath = $($steamInstallPath -replace '\\', '/')/steamapps" : $_
+  } | Set-Content $configPath
+  pushd $basePath; $env:DOTNET_ROOT = "C:\Program Files\dotnet"; & "$basePath\LocailzationAutoCopy.exe"; popd
+  ```
 
 ## 🖋️ Scripts
 
