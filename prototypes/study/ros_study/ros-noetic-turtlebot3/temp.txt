@@ -1190,4 +1190,30 @@ void loop()
 
 
 
-  workspace-ros-noetic-turtlebot3.code.code-workspace
+workspace-ros-noetic-turtlebot3.code.code-workspace 
+
+
+rosrun bot3_kccistic_service gpio_client 10 20
+
+
+
+frankjoshua/Rosserial Arduino Library는 AVR 환경(예: Arduino Uno)뿐만 아니라 ARM 환경(예: STM32, ESP32 등)에서도 사용할 수 있도록 설계되었습니다. 그러나:
+
+AVR-GCC는 표준 C++ 라이브러리의 일부 기능(<cstring>, std::memcpy, <cstdlib> 등)을 완전히 지원하지 않습니다.
+이 라이브러리는 AVR 플랫폼을 타겟으로 최적화되지 않아 일부 코드가 AVR 환경에서 제대로 작동하지 않습니다.
+
+. ARM-GCC vs AVR-GCC
+ARM-GCC(예: STM32, ESP32) 환경에서는 최신 C++ 표준을 지원하고 메모리 제약이 적습니다. 따라서 frankjoshua/Rosserial Arduino Library가 잘 작동할 가능성이 높습니다.
+AVR-GCC는 오래된 컴파일러로, 메모리 제약이 크고 최신 C++ 표준 지원이 제한적입니다. 따라서 AVR 환경에서 호환성 문제가 더 자주 발생합니다.
+
+
+>>>> platformio AVR-GCC does not have standard library
+
+
+비교: frankjoshua/Rosserial Arduino Library vs make_libraries.py
+특징	frankjoshua 라이브러리	make_libraries.py로 생성
+업데이트 상태	4년간 미갱신	ROS 최신 버전에 맞게 생성
+메모리 최적화	제한적	AVR 보드에 맞게 경량화
+ROS 메시지 타입 선택 가능	불가능	가능 (사용자 정의 메시지 포함)
+AVR-GCC 호환성	불완전할 가능성 있음	더 높은 호환성
+ROS 도구와의 연동	없음	공식 ROS 도구와 직접 연동

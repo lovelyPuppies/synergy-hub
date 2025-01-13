@@ -1,19 +1,11 @@
 {
-  "folders": [
-	{
-		"path": "."
-	},
-	{
-		"path": "ros_serial_uno3"
-	}
-],
-  "settings": {
-    "files.associations": {
-      ".clangd": "yaml",
-      "array": "cpp",
-      "string": "cpp",
-      "string_view": "cpp",
-      "iostream": "cpp"
-    }
-  }
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "ros_serial_uno3"
+		}
+	],
+	"settings": {}
 }

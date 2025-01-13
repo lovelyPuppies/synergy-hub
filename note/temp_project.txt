@@ -16338,7 +16338,7 @@ Project 구조.. 맞나?
       - [Breadboard Setup](#breadboard-setup)
     - [🎥 Fan Machine Demo](#-fan-machine-demo)
   - [🌐 Project Overview](#-project-overview)
-    - [🛠️ Tools](#️-tools)
+    - [🛠️ Tools](#️-tools) 
       - [\[🧑‍💻 Software\]](#-software)
       - [\[🖥️ Hardware\]](#️-hardware)
     - [📁 Directory Structure](#-directory-structure)

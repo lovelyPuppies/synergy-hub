@@ -9,8 +9,8 @@
     "workbench.colorTheme": "Default High Contrast",
     "terminal.integrated.defaultProfile.windows": "PowerShell",
     "files.associations": {
-      "*.S": "arm",
       ".clangd": "yaml",
+      "*.S": "arm",
       "*.txt": "plaintext",
       "iostream": "cpp",
       "vector": "cpp",

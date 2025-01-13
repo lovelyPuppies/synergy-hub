@@ -73,20 +73,20 @@ cd .
 
 
 #### Temp .. 
-# in ordre to use git installation from platformio
+# In order to use curl-based, git-based instllation
 sudo apt install -y curl git
-##
+
+## In order to use VSCode extension: platform-io
 sudo apt install -y python3-venv
 
 sudo apt install -y ros-noetic-rosserial ros-noetic-rosserial-server ros-noetic-rosserial-arduino
-
-# It create `/workspace/ros_serial_uno3/lib/ros_lib` foldre
+# 📦 It create `/workspace/ros_serial_uno3/lib/ros_lib` folder
 rosrun rosserial_arduino make_libraries.py /workspace/ros_serial_uno3/lib
 
 
 # ros-noetic-rosserial
-# # Depends       ros-noetic-rosserial-client, ros-noetic-rosserial-msgs, ros-noetic-rosserial-python
+#   Depends       ros-noetic-rosserial-client, ros-noetic-rosserial-msgs, ros-noetic-rosserial-python
 # ros-noetic-rosserial-server
-# # Depends       ros-noetic-roscpp, ros-noetic-rosserial-msgs, ros-noetic-std-msgs, ros-noetic-topic-tools
+#   Depends       ros-noetic-roscpp, ros-noetic-rosserial-msgs, ros-noetic-std-msgs, ros-noetic-topic-tools
 # ros-noetic-rosserial-arduino
-# # Depends       arduino-core, ros-noetic-message-runtime, ros-noetic-rospy, ros-noetic-rosserial-client, ros-noetic-rosserial-msgs, ros-noetic-rosserial-python
+#   Depends       arduino-core, ros-noetic-message-runtime, ros-noetic-rospy, ros-noetic-rosserial-client, ros-noetic-rosserial-msgs, ros-noetic-rosserial-python
