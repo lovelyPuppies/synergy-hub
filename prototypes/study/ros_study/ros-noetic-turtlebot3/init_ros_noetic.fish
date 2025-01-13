@@ -79,6 +79,41 @@ sudo apt install -y curl git
 ## In order to use VSCode extension: platform-io
 sudo apt install -y python3-venv
 
+
+: '
+❌ Do not use frankjoshua/Rosserial. Instead, use the following: 📅 2025-01-13 16:43:04
+  ```
+  ros-noetic-rosserial-arduino
+  # 📦 It creates `/workspace/ros_serial_uno3/lib/ros_lib` folder
+  rosrun rosserial_arduino make_libraries.py /workspace/ros_serial_uno3/lib
+  ```
+
+Issues:
+  When using frankjoshua/Rosserial Arduino Library@^0.9.1 with PlatformIO\'s lib_deps configuration, the following problems were encountered:
+
+    1. AVR-GCC does not fully support the standard C++ library, which includes features like <cstring>, std::memcpy, and <cstdlib>. 
+       - This limitation caused the library to fail on AVR platforms, such as Arduino Uno.
+    2. The library is not optimized for AVR environments. Some code within the library does not function properly due to these platform limitations.
+
+    PlatformIO\'s AVR-GCC does not have a complete standard library, which makes it incompatible with some parts of the frankjoshua library.
+
+  ```ini
+  ; paltformio.ini
+
+  lib_deps =  
+    ; The GitHub source also does not work because it does not comply with the PlatformIO compatibility format: https://github.com/ros-drivers/rosserial.git#noetic-devel
+    ; https://registry.platformio.org/libraries/frankjoshua/Rosserial%20Arduino%20Library
+    ; https://github.com/frankjoshua/rosserial_arduino_lib
+    frankjoshua/Rosserial Arduino Library@^0.9.1
+
+Comparison: frankjoshua/Rosserial Arduino Library vs make_libraries.py
+  Features                  frankjoshua Library             make_libraries.py
+  Update Status             Not updated for 4 years         Regularly updated to match ROS versions
+  Memory Optimization       Limited                         Optimized for AVR boards
+  ROS Message Type Support  Not possible                    Custom message types supported
+  AVR-GCC Compatibility     Likely incomplete               Higher compatibility
+  ROS Tool Integration      None                            Direct integration with official ROS tools
+'
 sudo apt install -y ros-noetic-rosserial ros-noetic-rosserial-server ros-noetic-rosserial-arduino
 # 📦 It create `/workspace/ros_serial_uno3/lib/ros_lib` folder
 rosrun rosserial_arduino make_libraries.py /workspace/ros_serial_uno3/lib
