@@ -1,15 +1,15 @@
 ## System and Architecture Settings
 # Specify the target system and architecture
 set(CMAKE_SYSTEM_NAME Linux)              # Target operating system
-set(CMAKE_SYSTEM_PROCESSOR arm)           # Target architecture
+set(CMAKE_SYSTEM_PROCESSOR aarch64)           # Target architecture
 
 ## Clang Cross-Compile Target and Sysroot
 # Path to the sysroot for cross-compilation
 set(SYSROOT_PATH "$ENV{HOME}/rpi-sysroot")
 
 ## Add sysroot to C and C++ compiler flags
-# set(CMAKE_C_FLAGS "--target=arm-linux-gnueabihf --sysroot=${SYSROOT_PATH}")
-set(CMAKE_CXX_FLAGS "--target=arm-linux-gnueabihf --sysroot=${SYSROOT_PATH}")
+# set(CMAKE_C_FLAGS "--target=aarch64-linux-gnu --sysroot=${SYSROOT_PATH}")
+set(CMAKE_CXX_FLAGS "--target=aarch64-linux-gnu --sysroot=${SYSROOT_PATH}")
 
 ## Library and Header Search Settings for Cross-Compilation
 # Configure paths for finding libraries and headers in the cross-compilation environment
@@ -22,7 +22,7 @@ set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)       # Only search for headers in t
 
 ##### Include Path Settings for Cross-Compilation 📅 2025-01-06 07:30:00
 # Automatically detect and configure include paths for the standard library
-file(GLOB STANDARD_LIB_PATHS "/usr/arm-linux-gnueabihf/include/c++/*")
+file(GLOB STANDARD_LIB_PATHS "/usr/aarch64-linux-gnu/include/c++/*")
 list(SORT STANDARD_LIB_PATHS)
 list(REVERSE STANDARD_LIB_PATHS)
 list(GET STANDARD_LIB_PATHS 0 SELECTED_CPP_PATH)  # Select the latest detected standard library path
@@ -32,8 +32,8 @@ message(STATUS "Detected C++ standard library path: ${SELECTED_CPP_PATH}")
 # Define additional include paths
 set(CROSS_COMPILE_INCLUDE_PATHS
     "${SELECTED_CPP_PATH}"
-    "${SELECTED_CPP_PATH}/arm-linux-gnueabihf"
-    "/usr/arm-linux-gnueabihf/include"
+    "${SELECTED_CPP_PATH}/aarch64-linux-gnu"
+    "/usr/aarch64-linux-gnu/include"
 )
 
 # Append include paths to C++ compiler flags

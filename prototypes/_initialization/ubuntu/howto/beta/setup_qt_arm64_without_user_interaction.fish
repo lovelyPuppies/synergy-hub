@@ -22,7 +22,7 @@ trap on_interrupt SIGINT
 
 ##### 📦 Qt
 # Check if libxcb-cursor0 is installed
-function check_libxcb_cursor0
+function check_libxcb
     : '
 
     ldd ~/Downloads/qt-unified 
@@ -44,7 +44,7 @@ function check_libxcb_cursor0
         echo "libxcb-cursor0 installation complete."
     end
 end
-check_libxcb_cursor0
+check_libxcb
 
 
 
