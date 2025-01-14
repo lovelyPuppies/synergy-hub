@@ -15,6 +15,9 @@ RUN apt update && \
     curl nano && \
     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime
 
+# 🔗 init_in_fish_semi_automatic-vision.fish
+RUN sudo apt install -y locales && sudo localedef -i en_US -f UTF-8 en_US.UTF-8
+
 
 # `python3-venv`: In order to use VSCode extension: platform-io
 # `curl git`: In order to use curl-based, git-based instllation

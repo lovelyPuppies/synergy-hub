@@ -19,9 +19,9 @@ services:
     volumes:
       - .:/workspace
       # Shares the X11 Unix socket to enable GUI forwarding in the container. RW (Read, Write) is required for bidirectional communication.
-      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      # - /tmp/.X11-unix:/tmp/.X11-unix:rw
       # Provides X authority file to authenticate GUI apps with the X server. No RW (Read, Write) needed as it's typically read-only.
-      - ${HOME}/.Xauthority:/tmp/.Xauthority:ro
+      # - ${HOME}/.Xauthority:/tmp/.Xauthority:ro
     devices:
       - /dev/video0     # Access to video input devices
       - /dev/ttyACM0    # Access to serial devices
@@ -29,14 +29,18 @@ services:
     networks:
       ros_network:
         ipv4_address: 172.18.0.2
-    # 🧪: may be required to access hardware and devices fully
+      # 🧪: may be required to access hardware and devices fully
     privileged: true
+    # 🔰 Allocate a pseudo-TTY for development
+    tty: true
     deploy:
       resources:
         limits:
-          cpus: "2"
-          memory: "4g"
+          cpus: "0.25"
+          memory: 4gb
         reservations:
+          cpus: "0.20"
+          memory: 2gb
           devices:
             - capabilities:
                 - gpu

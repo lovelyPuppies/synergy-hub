@@ -48,7 +48,10 @@ docker 🔪⚓ Reference ; https://docs.docker.com/reference/
   ⚓ Compose file reference ; https://docs.docker.com/reference/compose-file/
     ⚓ Networks top-level elements ; https://docs.docker.com/reference/compose-file/networks
       - 🪱 ipam
-
+    ⚓ Services top-level elements ; https://docs.docker.com/reference/compose-file/services/
+      #️⃣📍 tty ; https://docs.docker.com/reference/compose-file/services/#tty
+        Supported values are true or false
+    
     
 ==============================================
 Docker Docs 🔪 Open Source

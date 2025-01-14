@@ -1257,3 +1257,32 @@ Turtlebot User LED:
   A- > 24번, 
   A- > 25번, 
 
+
+🔢 >>>>>>>>>> docker builder prune
+
+
+
+iot_server/iot_socket
+
+
+socket client 프로토콜을 .. ROS 로 넘기기. 
+
+linux_c/iot_server/iot_socket$ ./iot_server 5000
+KSH_ROS..
+
+>>>> 통 신
+  roscore, bringup, iot_server
+rosrun bot3_kccistc_service gpio_socketToRos 127.0.0.1 5000 KSH_ROS
+rosrun ./navi.sh >> Naivgation; ?
+
+
+docker ps --no-trunc
+
+
+#️⃣ deploy ; https://docs.docker.com/reference/compose-file/services/#deploy
+  🔗 Compose Deploy Specification
+
+⚓ Compose Deploy Specification ; https://docs.docker.com/reference/compose-file/deploy/
+  #️⃣ Resources ; https://docs.docker.com/reference/compose-file/deploy/#resources
+    - 🪱 cpus
+    - 🪱 memory

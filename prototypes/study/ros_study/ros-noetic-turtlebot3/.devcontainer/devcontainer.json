@@ -4,7 +4,7 @@
   "dockerComposeFile": "../docker-compose.yml",
   "service": "app",
   // ⚖️ Change the default source code mount ; https://code.visualstudio.com/remote/advancedcontainers/change-default-source-mount
-  //    "workspaceMount": "source=${localWorkspaceFolder}, target=/workspace,type=bind",
+  // "workspaceMount": "source=${localWorkspaceFolder}, target=/workspace,type=bind",
   // ❔ `workspaceFolder`: Defines the working directory inside the container that VS Code will open.
   "workspaceFolder": "/workspace",
   // 👇 Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
@@ -25,7 +25,7 @@
   // "forwardPorts": [],
   // 👇 Use 'postCreateCommand' to run commands  after the container is created.
   // "postCreateCommand": "pip3 install --upgrade pip && pip3 install -r requirements/requirements_dev.txt && pip3 install -e .",
-  "postCreateCommand": "fish /workspace/init_ros_noetic.fish",
+  // "postCreateCommand": "fish /workspace/init_ros_noetic.fish",
   // 👇 Configure tool-specific properties.
   "customizations": {
     "vscode": {
