@@ -33,7 +33,32 @@ sudo ubuntu-drivers install
 
 ### Install CUDA Toolkit ; https://docs.nvidia.com/cuda/cuda-installation-guide-linux/
 # https://developer.nvidia.com/cuda-toolkit-archive
-sudo apt install -y nvidia-cuda-toolkit
+
+### Installing the NVIDIA Container Toolkit ; https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html
+# Configure the production repository:
+curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --batch --yes --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg
+and curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
+
+
+## Optionally, configure the repository to use experimental packages:
+# sed -i -e '/experimental/ s/^#//g' /etc/apt/sources.list.d/nvidia-container-toolkit.list
+
+## Update the packages list from the repository and Install the NVIDIA Container Toolkit packages:
+sudo apt-get update
+and sudo apt-get install -y nvidia-container-toolkit
+
+# 패키지 업데이트 및 Toolkit 설치
+sudo apt update
+sudo apt-get install -y nvidia-container-toolkit
+
+# Docker 설정 업데이트
+sudo nvidia-ctk runtime configure --runtime=docker
+
+# Docker 서비스 재시작
+sudo systemctl restart docker
+
+# Check!!! 
+docker run --rm --gpus all nvidia/cuda:12.6.3-base-ubuntu24.04 nvidia-smi
 
 
 
