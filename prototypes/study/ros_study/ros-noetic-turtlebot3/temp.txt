@@ -1178,13 +1178,13 @@ void setup()
   pinMode(LED_BUILTIN, OUTPUT);
   nh.initNode();
  // nh.getHardware()->setBaud(57600);
-  nh.subscribe(sub);z
+  nh.subscribe(sub);z 
 } 
 
 void loop()
-{  
+{   
   nh.spinOnce();  
-  delay(1);
+  delay(1);           
 }
 
 
@@ -1197,4 +1197,11 @@ rosrun bot3_kccistic_service gpio_client 10 20
 
 
 workspaces.. ?였나 ? 기본경로?.. 젯슨 나노 프로젝트에서는 이렇게햇는데.. ㅇㅁ..
-workspace
+workspace 
+
+
+
+
+  
+
+

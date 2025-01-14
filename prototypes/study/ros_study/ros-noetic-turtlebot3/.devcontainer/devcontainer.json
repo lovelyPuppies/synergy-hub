@@ -7,7 +7,7 @@
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
   "workspaceFolder": "/workspace",
   // ===== ⚙️ =====
-  // "forwardPorts": ["11311:11311"], // 🚣 format: <host:port_number>
+  "forwardPorts": [11311], // 🚣 format: <host:port_number>
   "containerEnv": {
     "LANG": "en_US.UTF-8",
     "LC_ALL": "en_US.UTF-8",

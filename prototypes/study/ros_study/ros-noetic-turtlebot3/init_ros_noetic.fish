@@ -68,10 +68,6 @@ end
 
 
 
-source $FISH_CONFIG_PATH
-cd .
-
-
 #### Temp .. 
 # In order to use curl-based, git-based instllation
 sudo apt install -y curl git
@@ -116,6 +112,10 @@ Comparison: frankjoshua/Rosserial Arduino Library vs make_libraries.py
 '
 sudo apt install -y ros-noetic-rosserial ros-noetic-rosserial-server ros-noetic-rosserial-arduino
 # 📦 It create `/workspace/ros_serial_uno3/lib/ros_lib` folder
+
+source $FISH_CONFIG_PATH
+cd .
+
 rosrun rosserial_arduino make_libraries.py /workspace/ros_serial_uno3/lib
 
 

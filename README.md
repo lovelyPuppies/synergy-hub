@@ -21,7 +21,7 @@
 
 - [**Jetson Nano와 Edge AI를 활용한 실시간 수신호 인식 자율주행 RC카 개발 프로젝트**](https://github.com/opmaksim/Signal-Project) (External Link)
 
-  🏷️ Tag: Python, C, Edge AI, On-Device, Yolo v11, JetSon Nano
+  🏷️ Tag: Python 3, C, Edge AI, On-Device, Yolo v11, JetSon Nano
 
 - [**Raspberry Pi 4 B 기반 커널 모듈 및 디바이스 드라이버 구현 (LED 제어)**](prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/README.md)
 
@@ -29,7 +29,7 @@
 
 - [**Opencv 및 MediaPipe 기반 카메라 필터 애플리케이션 개발**](prototypes/study/python_study/camera_filter_app)
 
-  🏷️ Tag: Python3, OpenCV, MediaPipe
+  🏷️ Tag: Python 3, OpenCV, MediaPipe
 
 - [**환경 및 네트워크 초기화 자동화 스크립트 작성**](#️-scripts)
 
@@ -39,15 +39,29 @@
 
   🏷️ Tag: Docker, LFS
 
-- [**IoT의 안전한 운영을 위한 Docker 기반 시스템 환경 설 계 및 구현**](https://github.com/wbfw109/safe_iot_architecture) \(External Link\)
 - [**Python 및 IPython 기반 CS 지식 연구 결과를 웹에 시각화하기 위한 라이브러리 개발**](https://github.com/wbfw109/study-core?tab=readme-ov-file#31-python-utilities) \(External Link\)
-- [**Pynecone를 활용한 CS 용어 사전 웹 애플리케이션 개발**](https://github.com/wbfw109/study-core?tab=readme-ov-file#41-glossary-service) \(External Link\)
+
+  &nbsp;&nbsp; ➡️ [Web Hosting](https://wbfw109.github.io/visualization_manager/ipython_central_control.html)
+
+  🏷️ Tag: Python 3, GitHub Pages, Jupyter
 
 - [**Turtlebot 3**](prototypes/study/ros_study/ros-noetic-turtlebot3)
 
   📰 Doing ...
 
-- **STM32 Nucleo F411RE 기반 디지털 시계 및 알람 시스템 구현**: TODO
+- **STM32 Nucleo F411RE 기반 디지털 시계 및 알람 시스템 구현**
+
+  📰 Doing ...
+
+- [**Pynecone (현재 Reflex) 를 활용한 CS 용어 사전 웹 애플리케이션 개발**](https://github.com/wbfw109/study-core?tab=readme-ov-file#41-glossary-service) \(External Link\)
+
+  🏷️ Tag: Python 3, [Pynecone](https://github.com/reflex-dev) (Full-stack framework)
+
+- [**IoT의 안전한 운영을 위한 Docker 기반 시스템 환경 설계 및 구현**](https://github.com/wbfw109/safe_iot_architecture) \(External Link\)
+
+  🏷️ Tag: Java, Gradle, Docker, Docker Swarm
+
+  ❗ **Broken:** The original README.md file is missing because a team member deleted the repository.
 
 ## 🌐 Open Source Contributions
 

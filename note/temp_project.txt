@@ -16634,14 +16634,12 @@ OpenMAX(Open Media Acceleration)는 Khronos Group에서 개발한 표준 API로,
 
 
 
-
-
 1. Qt WebEngine이란?
 Qt WebEngine은 Qt 애플리케이션에 웹 콘텐츠를 표시할 수 있는 기능을 제공합니다. Chromium 기반 엔진으로, 브라우저나 HTML 콘텐츠를 내장할 필요가 있을 때 사용됩니다.
 
 Qt WebEngine의 특징
 웹 콘텐츠 렌더링: 브라우저처럼 HTML, CSS, JavaScript 콘텐츠를 표시.
-멀티미디어 재생: 동영상/오디오 재생 기능 제공.
+멀티미디어 재생: 동영상/오디오 재생 기능 제공.  
 Chromium 기반: Chromium 프로젝트를 기반으로 만들어져 용량이 큼.
 왜 용량이 큰가?
 Chromium 엔진 전체와 관련 라이브러리 및 데이터(HTML 파서, 자바스크립트 엔진 등)가 포함되어 있기 때문에, 설치 용량이 크며 3.5GB 정도가 됩니다.
@@ -16665,3 +16663,38 @@ pi19@pi ~> ldd ~/Qt/6.8.1/gcc_arm64/bin/qmake
 
 
 Vcsrv vs x410? 이엇나.. 정리 필요.
+
+ros 1 wiki twist
+
+
+
+지금 해야 하는 것.
+  Ubuntu host 안에 있는 docker container 내의 ROS 노드와, 실제 터틀봇3 가 통신하게 하기.
+
+한 것
+  xhost +local:docker
+  sudo cp $xauth_path ~/.Xauthority
+  
+  Ubuntu Host
+    ip -c a
+      >> eno1: 10.10.14.19/24
+
+  ROS master (docker container in Ubuntu Host) 를 VSCOde Devcontainer 로 열기.
+    - Forfoward (11311 port)
+    echo $ROS_MASTER_URI 
+      >> http://172.18.0.2:11311
+    echo $ROS_HOSTNAME 
+      >> 172.18.0.2
+  
+
+  터틀봇    
+    ubuntu@bot19 ~> echo $ROS_MASTER_URI
+      http://10.10.14.19:11311
+    ubuntu@bot19 ~> echo $ROS_HOSTNAME 
+      10.10.14.119
+
+물어볼 것:
+  이거 왜 사진에서 포워딩이 저렇게 많이나와?.. 해석해줘.. 
+
+rosservice list
+rosservice info /bot3_gpio
