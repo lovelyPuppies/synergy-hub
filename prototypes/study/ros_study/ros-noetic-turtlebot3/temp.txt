@@ -1275,3 +1275,5 @@ KSH_ROS..
 rosrun bot3_kccistc_service gpio_socketToRos 127.0.0.1 5000 KSH_ROS
 rosrun ./navi.sh >> Naivgation; ?
 
+
+

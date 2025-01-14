@@ -16779,7 +16779,9 @@ RUN echo 'export LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libgomp.so.1:$LD_PRELOAD'
   
 
   docker ps --no-trunc
-
+  https://docs.docker.com/reference/compose-file/deploy/#resources
+    cpus
+    ❗ cpus configures a limit or reservation for how much of the available CPU resources, as number of cores, a container can use.
 
   #️⃣ deploy ; https://docs.docker.com/reference/compose-file/services/#deploy
     🔗 Compose Deploy Specification
@@ -16799,3 +16801,4 @@ RUN echo 'export LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libgomp.so.1:$LD_PRELOAD'
     비대화형 컨테이너:
 
     대화형 작업이 필요 없는 컨테이너에서는 tty: true가 불필요할 수 있음. 예를 들어, 백그라운드에서 단순히 작업을 실행하는 컨테이너에서는 tty를 생략 가능.
+
