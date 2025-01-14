@@ -1201,7 +1201,18 @@ workspace
 
 
 
+apt-cache search gmapping
+
+
 
   
+    
 
 
+
+
+http://wiki.ros.org/gmapping
+  https://github.com/ros-perception/slam_gmapping
+
+
+rosrun rviz rviz -d (rospack find turtlebot3_description)/rviz/model.rviz

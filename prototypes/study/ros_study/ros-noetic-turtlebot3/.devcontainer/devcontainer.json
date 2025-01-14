@@ -4,8 +4,8 @@
     "dockerfile": "Dockerfile"
   },
   // Change the default source code mount ; https://code.visualstudio.com/remote/advancedcontainers/change-default-source-mount
-  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
-  "workspaceFolder": "/workspace",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces,type=bind",
+  "workspaceFolder": "/workspaces",
   // ===== ⚙️ =====
   "forwardPorts": [11311], // 🚣 format: <host:port_number>
   "containerEnv": {
