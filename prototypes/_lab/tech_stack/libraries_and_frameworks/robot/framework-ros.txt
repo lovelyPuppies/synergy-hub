@@ -52,6 +52,10 @@ ROS 2 🔪 Docs ; https://docs.ros.org/en/jazzy/index.html
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
 ⚓ ROS 1 ; https://wiki.ros.org/
 
+
+(✍️ ROS 1 🔪 study)
+🚨 (Issue: Error);
+
 ----------------------------------------------
 ⚓🔰 ROS 1 🔪 Tutorials ; https://wiki.ros.org/ROS/Tutorials
   # Core ROS Tutorials
@@ -223,3 +227,13 @@ ROS 2 🔪 Docs ; https://docs.ros.org/en/jazzy/index.html
         run executables of a ros package
         rosrun <package> <executable>
   ⚓ rospy_tutorials ; https://wiki.ros.org/rospy_tutorials
+
+
+bat /proc/cpuinfo
+sudo dmidecode -t processor
+sudo dmidecode -t memory
+
+
+메모리 사용량: free -h
+
+top, htop 

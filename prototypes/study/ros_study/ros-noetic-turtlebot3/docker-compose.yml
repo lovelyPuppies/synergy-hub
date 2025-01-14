@@ -28,7 +28,7 @@ services:
     networks:
       ros_network:
         ipv4_address: 172.18.0.2
-      # 🧪: may be required to access hardware and devices fully
+    # 🧪: may be required to access hardware and devices fully
     privileged: true
     # 🔰 Allocate a pseudo-TTY for development
     tty: true

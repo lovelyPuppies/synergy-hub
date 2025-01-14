@@ -271,12 +271,12 @@ echo "▶️  Installing improved tools for speed and usability ..."
 
 : '
 📦🚀 bat
-https://github.com/sharkdp/bat
-https://repology.org/project/bat/versions
-https://formulae.brew.sh/formula/bat#default
+  https://github.com/sharkdp/bat
+  https://repology.org/project/bat/versions
+  https://formulae.brew.sh/formula/bat#default
 
-alternative of "cat".
-Developed in Rust.
+  alternative of "cat".
+  Developed in Rust.
 '
 brew install bat
 
@@ -284,31 +284,29 @@ brew install bat
 
 : '
 📦🚀 fd-find (fd)
-https://github.com/sharkdp/fd
-https://repology.org/project/fd-find/versions
-https://formulae.brew.sh/formula/fd#default
+  https://github.com/sharkdp/fd
+  https://repology.org/project/fd-find/versions
+  https://formulae.brew.sh/formula/fd#default
 
-alternative of "find".
-Developed in Rust.
+  alternative of "find".
+  Developed in Rust.
 
-🛍️ Usage e.g. %shell >
-
-
-        fd --extension fish
+  🛍️ Usage e.g. %shell> 
+    fd --extension fish
 '
 brew install fd
 
 
 : '
 📦🚀 lsd: https://github.com/lsd-rs/lsd
-https://repology.org/project/lsd/versions
-https://formulae.brew.sh/formula/lsd#default
+  https://repology.org/project/lsd/versions
+  https://formulae.brew.sh/formula/lsd#default
 
-alternative of "ls". lsd: ls Deluxe
-Developed in Rust.
+  alternative of "ls". lsd: ls Deluxe
+  Developed in Rust.
 
-config file location: $HOME/.config/lsd/config.yaml
-You may require 🧮 mkdir -p ~/.config/lsd
+  config file location: $HOME/.config/lsd/config.yaml
+  You may require 🧮 mkdir -p ~/.config/lsd
 '
 brew install lsd
 
@@ -327,78 +325,69 @@ update_fish_interactive_block --unique-comment="$unique_comment" --contents="$ll
 
 : '
 📦🚀 ripgrep (rg)
-https://github.com/BurntSushi/ripgrep
-https://repology.org/project/ripgrep/versions
-https://formulae.brew.sh/formula/ripgrep#default
+  https://github.com/BurntSushi/ripgrep
+  https://repology.org/project/ripgrep/versions
+  https://formulae.brew.sh/formula/ripgrep#default
 
-alternative of "grep".
-Developed in Rust.
+  alternative of "grep".
+  Developed in Rust.
 
-🛍️ Usage e.g. %shell >
-
-
-        procs | rg kworker
-rg --type-list
+  🛍️ Usage e.g. %shell> 
+    procs | rg kworker
+  rg --type-list
 '
 brew install ripgrep
 
 
 : '
 📦🚀 procs
-https://github.com/dalance/procs
-https://repology.org/project/procs/versions
-https://formulae.brew.sh/formula/procs#default
+  https://github.com/dalance/procs
+  https://repology.org/project/procs/versions
+  https://formulae.brew.sh/formula/procs#default
 
-alternative of "ps".
-Developed in Rust.
+  alternative of "ps".
+  Developed in Rust.
 
-🛍️ Usage e.g. %shell >
+  🛍️ Usage e.g. %shell> 
 
 
-        # Search by non-numeric keyword
-        #    If you add any keyword as argument, it is matched to USER, Command by default.
-        procs $USER --watch
-procs --tree
+          # Search by non-numeric keyword
+          #    If you add any keyword as argument, it is matched to USER, Command by default.
+          procs $USER --watch
+  procs --tree
 '
 brew install procs
 
 
 : '
 📦🚀 jaq (Just Another Query)
-https://github.com/01mf02/jaq
-https://repology.org/project/jaq/versions
-https://formulae.brew.sh/formula/jaq#default
+  https://github.com/01mf02/jaq
+  https://repology.org/project/jaq/versions
+  https://formulae.brew.sh/formula/jaq#default
 
-alternative of jq (JSON Query).
-Developed in Rust.
+  alternative of jq (JSON Query).
+  Developed in Rust.
 
-JQ clone focussed on correctness, speed, and simplicity
+  JQ clone focussed on correctness, speed, and simplicity
 '
 brew install jaq
 
 
 
-
-
 : '
-📦 timg (Terminal image and video viewer)
-https://repology.org/project/timg/versions
-https://formulae.brew.sh/formula/timg#default
+📦🚀 bottom
+  https://github.com/ClementTsang/bottom
+  https://repology.org/project/bottom/versions
+  https://formulae.brew.sh/formula/bottom#default
 
-🛍️ Usage e.g. in Wezterm, %shell >
+  alternative of top. Inspired by gtop, gotop, and htop.
+  Developed in Rust.
 
-
-        # download 2400 * 1600 resolution image
-        wget -O ~/Downloads/puppy.jpg "https://images.unsplash.com/photo-1507146426996-ef05306b995a?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=berkay-gumustekin-ngqyo2AYYnE-unsplash.jpg&w=2400"
-timg ~/Downloads/puppy.jpg
-
-wget -O ~/Downloads/test_svg.svg "https://www.svgrepo.com/show/765/library.svg"
-timg ~/Downloads/test_svg.svg
-
-wget -O ~/Downloads/test_gif.gif "https://upload.wikimedia.org/wikipedia/commons/c/c8/132C_trans.gif"
-timg ~/Downloads/test_gif.gif
+  Yet another cross-platform graphical process/system monitor
 '
-# brew install timg
+brew install bottom
+
+
 
 
 
@@ -408,29 +397,14 @@ timg ~/Downloads/test_gif.gif
 
 : '
 📦 prettier
-https://repology.org/project/prettier/versions
-https://formulae.brew.sh/formula/prettier#default
+  https://repology.org/project/prettier/versions
+  https://formulae.brew.sh/formula/prettier#default
 
-Code formatter for JavaScript, CSS, JSON, GraphQL, Markdown, YAML
+  Code formatter for JavaScript, CSS, JSON, GraphQL, Markdown, YAML
 '
 brew install prettier
 
 
-
-: '
-📦 viu: A small command-line application to view images from the terminal written in Rust.
-https://github.com/atanunq/viu
-https://repology.org/project/viu/versions
-https://formulae.brew.sh/formula/viu#default
-
-Developed in Rust.
-
-🛍️ Usage e.g. %shell >
-
- 
-        viu image.png
-'
-brew install viu
 
 
 
@@ -439,14 +413,16 @@ brew install viu
 echo "▶️ Installing C/++ tools ..."
 : '
 📦 cmake
-https://repology.org/project/cmake/versions
-https://formulae.brew.sh/formula/cmake#default
-== >Caveats
-To install the CMake documentation, run:
-brew install cmake-docs
+  https://repology.org/project/cmake/versions
+  https://formulae.brew.sh/formula/cmake#default
+  
+  ==> Caveats
+    To install the CMake documentation, run:
+    brew install cmake-docs
+
 📦 ninja
-https://repology.org/project/ninja/versions
-https://formulae.brew.sh/formula/ninja#default
+  https://repology.org/project/ninja/versions
+  https://formulae.brew.sh/formula/ninja#default
 '
 brew install cmake ninja
 
@@ -454,76 +430,75 @@ brew install cmake ninja
 
 : '
 📦 gcc
-https://repology.org/project/gcc/versions
-https://formulae.brew.sh/formula/gcc#default
+  https://repology.org/project/gcc/versions
+  https://formulae.brew.sh/formula/gcc#default
 
-🚣 To ensure compatibility across projects, install GCC alongside LLVM.
+  🚣 To ensure compatibility across projects, install GCC alongside LLVM.
 
-%shell >brew deps gcc
-binutils
-glibc
-gmp
-isl
-libmpc
-lz4
-mpfr
-xz
-zlib
-zstd
-
-
-❔⚠️ about glibc
-glibc
-https://repology.org/project/glibc/versions
-https://formulae.brew.sh/formula/glibc#default
-
-The GNU C Library
-== >Caveats
-The Homebrew\'s Glibc has been installed with the following executables:
-/home/linuxbrew/.linuxbrew/opt/glibc/bin/ldd
-/home/linuxbrew/.linuxbrew/opt/glibc/bin/ld.so
-/home/linuxbrew/.linuxbrew/opt/glibc/sbin/ldconfig
-
-By default, Homebrew\'s linker will not search for the system\'s libraries. If you
-want Homebrew to do so, run:
-
-cp "/home/linuxbrew/.linuxbrew/etc/ld.so.conf.d/99-system-ld.so.conf.example" "/home/linuxbrew/.linuxbrew/etc/ld.so.conf.d/99-system-ld.so.conf"
-brew postinstall glibc
-
-to append the system libraries to Homebrew\'s ld search paths. This is risky and
-**highly not recommended**, because it may cause linkage to Homebrew libraries
-mixed with system libraries.
-
-glibc is keg-only, which means it was not symlinked into /home/linuxbrew/.linuxbrew,
-because it can shadow system glibc if linked.
-
-If you need to have glibc first in your PATH, run:
-echo \'export PATH="/home/linuxbrew/.linuxbrew/opt/glibc/bin:$PATH"\' >>/home/wbfw109v2/.bash_profile
-echo \'export PATH="/home/linuxbrew/.linuxbrew/opt/glibc/sbin:$PATH"\' >>/home/wbfw109v2/.bash_profile
-
-For compilers to find glibc you may need to set:
-export LDFLAGS="-L/home/linuxbrew/.linuxbrew/opt/glibc/lib"
-export CPPFLAGS="-I/home/linuxbrew/.linuxbrew/opt/glibc/include"
+  %shell> brew deps gcc
+    binutils
+    glibc
+    gmp
+    isl
+    libmpc
+    lz4
+    mpfr
+    xz
+    zlib
+    zstd
 
 
-📝 glibc version by Homebrew is lower than the Ubuntu default libc6 package 📅 2024-12-23 14:28:10
-➡️ It is better to use the default libc6 (glibc) installed by Ubuntu.
+  ❔⚠️ about glibc
+    https://repology.org/project/glibc/versions
+    https://formulae.brew.sh/formula/glibc#default
 
-%shell >dpkg -s libc6 | grep -e Version -e Priority
-Priority: required
-Version: 2.39-0ubuntu8.3
+    The GNU C Library
+    ==> Caveats
+      The Homebrew\'s Glibc has been installed with the following executables:
+      /home/linuxbrew/.linuxbrew/opt/glibc/bin/ldd
+      /home/linuxbrew/.linuxbrew/opt/glibc/bin/ld.so
+      /home/linuxbrew/.linuxbrew/opt/glibc/sbin/ldconfig
 
-%shell >brew info glibc | grep glibc:
-== >glibc: stable 2.35 (bottled) | gr
+      By default, Homebrew\'s linker will not search for the system\'s libraries. If you
+      want Homebrew to do so, run:
+
+      cp "/home/linuxbrew/.linuxbrew/etc/ld.so.conf.d/99-system-ld.so.conf.example" "/home/linuxbrew/.linuxbrew/etc/ld.so.conf.d/99-system-ld.so.conf"
+      brew postinstall glibc
+
+      to append the system libraries to Homebrew\'s ld search paths. This is risky and
+      **highly not recommended**, because it may cause linkage to Homebrew libraries
+      mixed with system libraries.
+
+      glibc is keg-only, which means it was not symlinked into /home/linuxbrew/.linuxbrew,
+      because it can shadow system glibc if linked.
+
+      If you need to have glibc first in your PATH, run:
+      echo \'export PATH="/home/linuxbrew/.linuxbrew/opt/glibc/bin:$PATH"\' >>/home/wbfw109v2/.bash_profile
+      echo \'export PATH="/home/linuxbrew/.linuxbrew/opt/glibc/sbin:$PATH"\' >>/home/wbfw109v2/.bash_profile
+
+      For compilers to find glibc you may need to set:
+      export LDFLAGS="-L/home/linuxbrew/.linuxbrew/opt/glibc/lib"
+      export CPPFLAGS="-I/home/linuxbrew/.linuxbrew/opt/glibc/include"
 
 
-Additionally, even if you export the Homebrew glibc, ⚠️ do not register it in FISH_CONFIG_PATH.
-If you do, it may cause errors.
-🛍️ Example error:
-When building (make command) the Raspberry Pi kernel source (https://github.com/raspberrypi/linux) with any options,
-collect2: error: ld returned 1 exit status
-make[2]: *** [scripts/Makefile.host:114: scripts/sorttable] Error 1
-/home/linuxbrew/.linuxbrew/opt/binutils/bin/ld: /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so: error loading plugin: /home/linuxbrew/.linuxbrew/opt/glibc/lib/libc.so.6: version \`GLIBC_2.38\' not found (required by /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so)
+  📝 glibc version by Homebrew is lower than the Ubuntu default libc6 package 📅 2024-12-23 14:28:10
+  ➡️ It is better to use the default libc6 (glibc) installed by Ubuntu.
+
+  %shell> dpkg -s libc6 | grep -e Version -e Priority
+  ==> Priority: required
+    Version: 2.39-0ubuntu8.3
+
+  %shell> brew info glibc | grep glibc:
+    ==> glibc: stable 2.35 (bottled) | gr
+
+
+  Additionally, even if you export the Homebrew glibc, ⚠️ do not register it in FISH_CONFIG_PATH.
+    If you do, it may cause errors.
+  🛍️ Example error:
+    When building (make command) the Raspberry Pi kernel source (https://github.com/raspberrypi/linux) with any options,
+    collect2: error: ld returned 1 exit status
+    make[2]: *** [scripts/Makefile.host:114: scripts/sorttable] Error 1
+    /home/linuxbrew/.linuxbrew/opt/binutils/bin/ld: /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so: error loading plugin: /home/linuxbrew/.linuxbrew/opt/glibc/lib/libc.so.6: version \`GLIBC_2.38\' not found (required by /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so)
 '
 brew install gcc
 
@@ -533,12 +508,11 @@ brew install gcc
 
 : '
 📦 llvm, lld
-https://repology.org/project/llvm/versions
-https://formulae.brew.sh/formula/llvm#default
-https://formulae.brew.sh/formula/lld#default
-lld
+  https://repology.org/project/llvm/versions
+  https://formulae.brew.sh/formula/llvm#default
+  https://formulae.brew.sh/formula/lld#default
 
-a fast and lightweight linker for building projects efficiently
+  lld; a fast and lightweight linker for building projects efficiently
 '
 brew install llvm lld
 # It includes clang, lld, lldb, and various LLVM tools for building, linking, and debugging software.
@@ -553,15 +527,15 @@ echo "❔ You can check the list of binaries with the command 🧮 'ls /home/lin
 
 : '
 📦 compiledb
-https://github.com/nickdiego/compiledb
-https://repology.org/project/compiledb/versions
-https://formulae.brew.sh/formula/compiledb#default
+  https://github.com/nickdiego/compiledb
+  https://repology.org/project/compiledb/versions
+  https://formulae.brew.sh/formula/compiledb#default
 
-Generate a Clang compilation database for Make-based build systems
+  Generate a Clang compilation database for Make-based build systems
 
-Refer to 🔗 _about/about-intellisense_for_c_cpp.md
+  Refer to 🔗 _about/about-intellisense_for_c_cpp.md
 
-🛍️ e.g. It is used for IntelliSense in the kernel build by the Makefile.
+  🛍️ e.g. It is used for IntelliSense in the kernel build by the Makefile.
 '
 brew install compiledb
 
@@ -574,13 +548,13 @@ brew install compiledb
 echo "▶️ Installing packages closedly related with Terminal-based editor ..."
 : '
 📦 helix (hx)
-Terminal-based editor:
-🔗 https://docs.helix-editor.com/package-managers.html 📅 2024-11-05 15:18:43
+  Terminal-based editor:
+  🔗 https://docs.helix-editor.com/package-managers.html 📅 2024-11-05 15:18:43
 
-https://repology.org/project/helix-editor/versions
-https://formulae.brew.sh/formula/helix#default
+  https://repology.org/project/helix-editor/versions
+  https://formulae.brew.sh/formula/helix#default
 
-⌨️ https://docs.helix-editor.com/keymap.html
+  ⌨️ https://docs.helix-editor.com/keymap.html
 '
 brew install helix
 
@@ -645,8 +619,8 @@ hx --health cpp
 echo "▶️ Installing tools for version management and dependency resolution"
 : '
 📦 pipx
-https://repology.org/project/pipx/versions
-https://formulae.brew.sh/formula/pipx#default
+  https://repology.org/project/pipx/versions
+  https://formulae.brew.sh/formula/pipx#default
 '
 brew install pipx
 pipx ensurepath
@@ -662,8 +636,8 @@ register-python-argcomplete --shell fish pipx >$FISH_COMPLETIONS_DIR/pipx.fish
 
 : '
 📦 pyenv
-https://repology.org/project/pyenv/versions
-https://formulae.brew.sh/formula/pyenv#default
+  https://repology.org/project/pyenv/versions
+  https://formulae.brew.sh/formula/pyenv#default
 '
 brew install pyenv
 set -Ux PYENV_ROOT $HOME/.pyenv
@@ -680,9 +654,9 @@ end
 
 
 : '
-📦 pyenv
-https://repology.org/project/poetry/versions
-https://formulae.brew.sh/formula/poetry#default
+📦 poetry
+  https://repology.org/project/poetry/versions
+  https://formulae.brew.sh/formula/poetry#default
 '
 brew install poetry
 
@@ -691,8 +665,8 @@ brew install poetry
 
 : '
 📦 conan
-https://repology.org/project/conan/versions
-https://formulae.brew.sh/formula/conan#default
+  https://repology.org/project/conan/versions
+  https://formulae.brew.sh/formula/conan#default
 '
 brew install conan
 
@@ -700,8 +674,8 @@ brew install conan
 
 : '
 📦 rustup
-https://repology.org/project/rustup/versions
-https://formulae.brew.sh/formula/rustup#default
+  https://repology.org/project/rustup/versions
+  https://formulae.brew.sh/formula/rustup#default
 '
 # It install cargo (Rust package manager), clippy (Rust linter), rust-docs, rust-std, rustc, rustfmt (Source code formatter)
 brew install rustup
@@ -716,24 +690,26 @@ set -U fish_user_paths /home/linuxbrew/.linuxbrew/opt/rustup/bin $fish_user_path
 echo "▶️ Installing Web-related tools ..."
 : '
 📦 mariadb
-https://repology.org/project/mariadb/versions
-https://formulae.brew.sh/formula/mariadb#default
-== >Caveats
-A "/etc/my.cnf" from another install may interfere with a Homebrew-built
-server starting up correctly.
+  https://repology.org/project/mariadb/versions
+  https://formulae.brew.sh/formula/mariadb#default
 
-MySQL is configured to only allow connections from localhost by default
+  ==> Caveats
+    A "/etc/my.cnf" from another install may interfere with a Homebrew-built
+    server starting up correctly.
 
-To start mariadb now and restart at login:
-brew services start mariadb
-Or, if you dont want/need a background service you can just run:
-/home/linuxbrew/.linuxbrew/opt/mariadb/bin/mariadbd-safe --datadir=/home/linuxbrew/.linuxbrew/var/mysql
+    MySQL is configured to only allow connections from localhost by default
 
-❔ mariadb conf file path: mariadb --help | grep my.cnf
-          >> /home/linuxbrew/.linuxbrew/etc/my.cnf
-❔ MariaDB uses the default character set of a database as utf8mb4 (UTF-8 multi-byte 4) when created.
-This means it supports the full range of Unicode characters, including emojis and special symbols.
-You can check the default character set using: 🧮 SHOW VARIABLES LIKE character_set_server
+    To start mariadb now and restart at login:
+    brew services start mariadb
+    Or, if you dont want/need a background service you can just run:
+    /home/linuxbrew/.linuxbrew/opt/mariadb/bin/mariadbd-safe --datadir=/home/linuxbrew/.linuxbrew/var/mysql
+
+  ❔ mariadb conf file path: mariadb --help | grep my.cnf
+            >> /home/linuxbrew/.linuxbrew/etc/my.cnf
+  ❔ MariaDB uses the default character set of a database as utf8mb4 (UTF-8 multi-byte 4) when created.
+
+  This means it supports the full range of Unicode characters, including emojis and special symbols.
+  You can check the default character set using: 🧮 SHOW VARIABLES LIKE character_set_server
 '
 
 brew install mariadb
@@ -741,10 +717,10 @@ set homebrew_maraidb_service_name homebrew.mariadb.service
 set homebrew_maraidb_service_file_path $USER_SYSTEMD_DIR/$homebrew_maraidb_service_name
 
 echo '
-[Unit]
-Description=Homebrew generated unit for mariadb
+  [Unit]
+  Description=Homebrew generated unit for mariadb
 
-[Install]
+  [Install]
   WantedBy=default.target
 
   [Service]
@@ -786,18 +762,19 @@ SELECT User, Host, plugin FROM mysql.user
 
 : '
 📦 mariadb-connector-c
-https://repology.org/project/mariadb-connector-c/versions
-https://formulae.brew.sh/formula/mariadb-connector-c#default
-== >mariadb-connector-c
-mariadb-connector-c is keg-only, which means it was not symlinked into /home/linuxbrew/.linuxbrew,
-because it conflicts with mariadb.
+  https://repology.org/project/mariadb-connector-c/versions
+  https://formulae.brew.sh/formula/mariadb-connector-c#default
+  
+  ==> mariadb-connector-c
+    mariadb-connector-c is keg-only, which means it was not symlinked into /home/linuxbrew/.linuxbrew,
+    because it conflicts with mariadb.
 
-If you need to have mariadb-connector-c first in your PATH, run:
-echo \'export PATH="/home/linuxbrew/.linuxbrew/opt/mariadb-connector-c/bin:$PATH"\' >>/home/wbfw109/.bash_profile
+    If you need to have mariadb-connector-c first in your PATH, run:
+    echo \'export PATH="/home/linuxbrew/.linuxbrew/opt/mariadb-connector-c/bin:$PATH"\' >>/home/wbfw109/.bash_profile
 
-For compilers to find mariadb-connector-c you may need to set:
-export LDFLAGS="-L/home/linuxbrew/.linuxbrew/opt/mariadb-connector-c/lib"
-export CPPFLAGS="-I/home/linuxbrew/.linuxbrew/opt/mariadb-connector-c/include"
+    For compilers to find mariadb-connector-c you may need to set:
+    export LDFLAGS="-L/home/linuxbrew/.linuxbrew/opt/mariadb-connector-c/lib"
+    export CPPFLAGS="-I/home/linuxbrew/.linuxbrew/opt/mariadb-connector-c/include"
 '
 brew install mariadb-connector-c
 # Define and add settings for mariadb-connector-c
@@ -819,20 +796,21 @@ end
 
 : '
 📦 httpd (apache)
-https://repology.org/project/httpd/versions
-https://formulae.brew.sh/formula/httpd#default
-== >Caveats
-DocumentRoot is /home/linuxbrew/.linuxbrew/var/www.
+  https://repology.org/project/httpd/versions
+  https://formulae.brew.sh/formula/httpd#default
 
-The default ports have been set in /home/linuxbrew/.linuxbrew/etc/httpd/httpd.conf to 8080 and in
-/home/linuxbrew/.linuxbrew/etc/httpd/extra/httpd-ssl.conf to 8443 so that httpd can run without sudo.
+  ==> Caveats
+    DocumentRoot is /home/linuxbrew/.linuxbrew/var/www.
 
-To start httpd now and restart at login:
-brew services start httpd
-Or, if you don\'t want/need a background service you can just run:
-/home/linuxbrew/.linuxbrew/opt/httpd/bin/httpd -D FOREGROUND
+    The default ports have been set in /home/linuxbrew/.linuxbrew/etc/httpd/httpd.conf to 8080 and in
+    /home/linuxbrew/.linuxbrew/etc/httpd/extra/httpd-ssl.conf to 8443 so that httpd can run without sudo.
 
-❔ Error log location: /home/linuxbrew/.linuxbrew/var/log/httpd/error_log
+    To start httpd now and restart at login:
+    brew services start httpd
+    Or, if you don\'t want/need a background service you can just run:
+    /home/linuxbrew/.linuxbrew/opt/httpd/bin/httpd -D FOREGROUND
+
+  ❔ Error log location: /home/linuxbrew/.linuxbrew/var/log/httpd/error_log
 '
 brew install httpd
 set homebrew_httpd_service_name homebrew.httpd.service
@@ -896,33 +874,27 @@ mv $tmp_file $apache_config_file_path
 
 : '
 📦 php
-https://repology.org/project/php/versions
-https://formulae.brew.sh/formula/php#default
-== >Caveats
-== >php
-To enable PHP in Apache add the following to httpd.conf and restart Apache:
-LoadModule php_module /home/linuxbrew/.linuxbrew/opt/php/lib/httpd/modules/libphp.so
+  https://repology.org/project/php/versions
+  https://formulae.brew.sh/formula/php#default
 
-            < FilesMatch \.php$ >
+  ==> Caveats
+    To enable PHP in Apache add the following to httpd.conf and restart Apache:
+      LoadModule php_module $HOMEBREW_PREFIX/opt/php/lib/httpd/modules/libphp.so
 
+      <FilesMatch \.php$>
+      SetHandler application/x-httpd-php
+      </FilesMatch>
 
+    Finally, check DirectoryIndex includes index.php
+      DirectoryIndex index.php index.html
 
-                SetHandler application/x-httpd-php
-            < /FilesMatch >
+    The php.ini and php-fpm.ini file can be found in:
+      $HOMEBREW_PREFIX/etc/php/8.4/
 
-
-
-
-        Finally, check DirectoryIndex includes index.php
-DirectoryIndex index.php index.html
-
-The php.ini and php-fpm.ini file can be found in:
-/home/linuxbrew/.linuxbrew/etc/php/8.4/
-
-To start php now and restart at login:
-brew services start php
-Or, if you don\'t want/need a background service you can just run:
-/home/linuxbrew/.linuxbrew/opt/php/sbin/php-fpm --nodaemoniz
+  To start php now and restart at login:
+    brew services start php
+  Or, if you don\'t want/need a background service you can just run:
+    /home/linuxbrew/.linuxbrew/opt/php/sbin/php-fpm --nodaemoniz
 🪱 php-fpm: Hypertext Preprocessor FastCGI (Common Gateway Interface) Process Manager
 '
 brew install php
@@ -1035,46 +1007,28 @@ mv $tmp_file $apache_config_file_path
 
 : '
 📦 phpmyadmin
-https://repology.org/project/phpmyadmin/versions
-https://formulae.brew.sh/formula/phpmyadmin#default
+  https://repology.org/project/phpmyadmin/versions
+  https://formulae.brew.sh/formula/phpmyadmin#default
 
-== >Caveats
-To enable phpMyAdmin in Apache, add the following to httpd.conf and
-restart Apache:
-Alias /phpmyadmin /home/linuxbrew/.linuxbrew/share/phpmyadmin
-            < Directory /home/linuxbrew/.linuxbrew/share/phpmyadmin/ >
+  ==> Caveats
+    To enable phpMyAdmin in Apache, add the following to httpd.conf and
+    restart Apache:
+        Alias /phpmyadmin $HOMEBREW_PREFIX/share/phpmyadmin
+      <Directory $HOMEBREW_PREFIX/share/phpmyadmin/>
+      Options Indexes FollowSymLinks MultiViews
+      AllowOverride All
+      <IfModule mod_authz_core.c>
+      Require all granted
+      </IfModule>
+      <IfModule !mod_authz_core.c>
+      Order allow,deny
+      Allow from all
+      </IfModule>
+      </Directory>
+    Then open http://localhost/phpmyadmin
+    The configuration file is $HOMEBREW_PREFIX/etc/phpmyadmin.config.inc.php
 
-
-
-                Options Indexes FollowSymLinks MultiViews
-AllowOverride All
-                < IfModule mod_authz_core.c >
-
-
-
-                    Require all granted
-                < /IfModule >
-
-
-
-                < IfModule !mod_authz_core.c >
-
-
-
-                    Order allow,deny
-Allow from all
-                < /IfModule >
-
-
-
-            < /Directory >
-
-
-
-        Then open http://localhost/phpmyadmin
-The configuration file is /home/linuxbrew/.linuxbrew/etc/phpmyadmin.config.inc.php
-
-👁️ Check url "localhost:8080/phpmyadmin"
+  👁️ Check url "localhost:8080/phpmyadmin"
 '
 brew install phpmyadmin
 
@@ -1136,12 +1090,12 @@ brew services restart httpd
 
 : '
 📦 volta
-the Hassle-Free JavaScript Tool Manager
-https://volta.sh/
-https://repology.org/project/volta-launcher/versions
-https://formulae.brew.sh/formula/volta#default
+  the Hassle-Free JavaScript Tool Manager
+  https://volta.sh/
+  https://repology.org/project/volta-launcher/versions
+  https://formulae.brew.sh/formula/volta#default
 
-Developed in Rust.
+  Developed in Rust.
 '
 brew instal volta
 
@@ -1169,8 +1123,8 @@ end
 echo "▶️  Installing tools related to VM emulation and communication with connected external devices to the host ..."
 : '
 📦 qemu
-https://repology.org/project/qemu/versions
-https://formulae.brew.sh/formula/qemu#default
+  https://repology.org/project/qemu/versions
+  https://formulae.brew.sh/formula/qemu#default
 '
 brew install qemu
 echo "Check available commands using 🧮 brew list qemu"
@@ -1195,13 +1149,13 @@ end
 
 : '
 📦 tio (Terminal Input/Output)
-A serial device I/O tool
-https://github.com/tio/tio (2018) 📅 2024-12-04 13:32:00
-https://repology.org/project/tio/versions
-https://formulae.brew.sh/formula/tio#default
-https://api.github.com/repos/tio/tio
+  A serial device I/O tool
+  https://github.com/tio/tio (2018) 📅 2024-12-04 13:32:00
+  https://repology.org/project/tio/versions
+  https://formulae.brew.sh/formula/tio#default
+  https://api.github.com/repos/tio/tio
 
-🚣 This tool supports color output for serial connections, similar to PuTTY.
+  🚣 This tool supports color output for serial connections, similar to PuTTY.
 '
 brew install tio
 # 🛍️ e.g. %shell> tio /dev/ttyUSB0    # Default baud rate is 115200. Use this with a Raspberry Pi and a USB-to-TTL adapter.
@@ -1214,18 +1168,18 @@ brew install tio
 echo "▶️  Installing tools related to Image processing ..."
 : '
 📦 gm (graphicsmagick)
-https://repology.org/project/graphicsmagick/versions
-https://formulae.brew.sh/formula/graphicsmagick#default
+  https://repology.org/project/graphicsmagick/versions
+  https://formulae.brew.sh/formula/graphicsmagick#default
 
-Image processing tools collection.
-GM is more efficient than ImageMagick so it gets the job done faster using fewer resources.
+  Image processing tools collection.
+  GM is more efficient than ImageMagick so it gets the job done faster using fewer resources.
 
-🛍️ e.g. Updating the Custom Boot Image on Raspberry Pi 4B
-# Reduce the color palette of the image to 224 colors and save it as "puppies_logo_clut224.ppm"
-gm convert -colors 224 puppies_840x480.ppm puppies_logo_clut224.ppm
+  🛍️ e.g. Updating the Custom Boot Image on Raspberry Pi 4B
+    # Reduce the color palette of the image to 224 colors and save it as "puppies_logo_clut224.ppm"
+    gm convert -colors 224 puppies_840x480.ppm puppies_logo_clut224.ppm
 
-# Convert the color-reduced image to ASCII PPM format and save it as "puppies_logo_clut224_ascii.ppm"
-gm convert -compress none puppies_logo_clut224.ppm puppies_logo_clut224_ascii.ppm
+    # Convert the color-reduced image to ASCII PPM format and save it as "puppies_logo_clut224_ascii.ppm"
+    gm convert -compress none puppies_logo_clut224.ppm puppies_logo_clut224_ascii.ppm
 '
 brew install graphicsmagick
 
@@ -1239,10 +1193,10 @@ brew install graphicsmagick
 # echo "▶️  Installing Others ..."
 : '
 📦 inotify-tools
-    https://repology.org/project/inotify-tools/versions
-    https://formulae.brew.sh/formula/inotify-tools
+  https://repology.org/project/inotify-tools/versions
+  https://formulae.brew.sh/formula/inotify-tools
 
-    C library and command-line programs providing a simple interface to inotify
+  C library and command-line programs providing a simple interface to inotify
 '
 brew install inotify-tools
 
@@ -1286,10 +1240,10 @@ create_inotify_service
 
 : '
 📦 meson ; https://github.com/mesonbuild/meson
-    https://repology.org/project/meson/versions
-    https://formulae.brew.sh/formula/meson
+  https://repology.org/project/meson/versions
+  https://formulae.brew.sh/formula/meson
 
-    Fast and user friendly build system
+  Fast and user friendly build system
 '
 brew install meson
 
@@ -1299,19 +1253,19 @@ brew install meson
 
 : '
 📦 starship ; https://github.com/starship/starship
-    https://repology.org/project/starship/versions
-    https://formulae.brew.sh/formula/starship#default
-    
-    Developed in Rust.
-    Cross-Shell Prompt. The minimal, blazing-fast, and infinitely customizable prompt for any shell!.
+  https://repology.org/project/starship/versions
+  https://formulae.brew.sh/formula/starship#default
+  
+  Developed in Rust.
+  Cross-Shell Prompt. The minimal, blazing-fast, and infinitely customizable prompt for any shell!.
 
-    https://starship.rs/
-    https://starship.rs/guide/#%F0%9F%9A%80-installation
-      🚧 Prerequsites
-        Nerd Font ; Nerd Fonts ; https://www.nerdfonts.com/
-    https://starship.rs/config/
-      # Conditional Format Strings ; https://starship.rs/config/#conditional-format-strings
-        #️⃣ status ; https://starship.rs/config/#status
+  https://starship.rs/
+  https://starship.rs/guide/#%F0%9F%9A%80-installation
+    🚧 Prerequsites
+      Nerd Font ; Nerd Fonts ; https://www.nerdfonts.com/
+  https://starship.rs/config/
+    # Conditional Format Strings ; https://starship.rs/config/#conditional-format-strings
+      #️⃣ status ; https://starship.rs/config/#status
 '
 brew install starship
 
@@ -1361,14 +1315,55 @@ end
 
 : ' ❌🥞 Packages that should not be installed via Linux Homebrew
 📦 avahi ; https://github.com/avahi/avahi
-    https://repology.org/project/avahi/versions
-    https://formulae.brew.sh/formula/avahi
+  https://repology.org/project/avahi/versions
+  https://formulae.brew.sh/formula/avahi
 
-    Service Discovery for Linux using mDNS/DNS-SD
+  Service Discovery for Linux using mDNS/DNS-SD
 
-    🚨 (issue: Error); Failed to create client object: Daemon not running 📅 2025-01-12 14:24:10
-      When
-        %shell> avahi-browse -at
+  🚨 (issue: Error); Failed to create client object: Daemon not running 📅 2025-01-12 14:24:10
+    When
+      %shell> avahi-browse -at
+
+📦 libvirt
+  https://repology.org/project/libvirt/versions
+  https://formulae.brew.sh/formula/libvirt
+
+  If in Homebrew
+    ==> Caveats
+      To start libvirt now and restart at login:
+        brew services start libvirt
+      Or, if you don\'t want/need a background service you can just run:
+        /home/linuxbrew/.linuxbrew/opt/libvirt/sbin/libvirtd -f /home/linuxbrew/.linuxbrew/etc/libvirt/libvirtd.conf
+
+  ❗ Do not install by homebrew because homebrew libvirt can not be integrated with the system. 📅 2024-12-31 12:52:54
+    brew install libvirt
+    brew services start libvirt
+    # 
+    virsh list
+      >>
+        error: failed to connect to the hypervisor
+        error: Failed to connect socket to \'/home/linuxbrew/.linuxbrew/var/run/libvirt/virtqemud-sock\': No such file or directory
+
+
+  ☑️ Note: You may encounter errors if libvirt is already installed via "apt". 📅 2024-12-31 12:11:27
+    ❗ These errors may persist unless you reboot your computer even after running the following command:
+      sudo apt remove libvirt-daemon-system virt-manager
+
+    🛍️ e.g.
+      If you installed Kubuntu with optional packages, libvirt-related packages might already exist.
+      You can check this with the following command:
+        dpkg -l | grep libvirt
+
+      systemctl --user status homebrew.libvirt.service -l --no-pager
+        >> 
+          Dec 31 11:49:13 iot-04 libvirtd[63559]: Unable to find \'dnsmasq\' binary in $PATH: No such file or directory
+          Dec 31 11:49:13 iot-04 libvirtd[63559]: internal error: Unable to get system bus connection: Could not connect: No such file or directory
+          Dec 31 11:49:13 iot-04 libvirtd[63559]: DBus not available, disabling firewalld support in bridge_network_driver: internal error: Unable to get system bus connection: Could not connect: No such file or directory
+          Dec 31 11:49:13 iot-04 libvirtd[63559]: internal error: Unable to get system bus connection: Could not connect: No such file or directory
+      brew dnsmasq
+      brew services start dnsmasq
+        >> Warning: dnsmasq must be run as root to start at system startup!
+
 
 📦 qt
   https://repology.org/project/qt/versions
@@ -1380,14 +1375,14 @@ end
   ➡️ use online installer
 
 📦 opencv ; 
-    https://repology.org/project/opencv/versions
-    https://formulae.brew.sh/formula/opencv
+  https://repology.org/project/opencv/versions
+  https://formulae.brew.sh/formula/opencv
 
-    opencv_version --verbose
-    >> 
-      OpenCV modules:
-        Unavailable:                 cannops cudaarithm cudabgsegm cudacodec cudafeatures2d cudafilters cudaimgproc cudalegacy cudaobjdetect cudaoptflow cudastereo cudawarping cudev cvv java julia matlab ovis python2 ts
-      OpenCL:                        YES (INTELVA)
+  opencv_version --verbose
+  >> 
+    OpenCV modules:
+      Unavailable:                 cannops cudaarithm cudabgsegm cudacodec cudafeatures2d cudafilters cudaimgproc cudalegacy cudaobjdetect cudaoptflow cudastereo cudawarping cudev cvv java julia matlab ovis python2 ts
+    OpenCL:                        YES (INTELVA)
 '
 
 
@@ -1407,17 +1402,37 @@ sudo apt install -y python3-venv
 
 
 
+: '
+📦 timg (Terminal image and video viewer)
+  https://repology.org/project/timg/versions
+  https://formulae.brew.sh/formula/timg#default
+
+  🛍️ Usage e.g. in Wezterm, %shell> 
+    # download 2400 * 1600 resolution image
+    wget -O ~/Downloads/puppy.jpg "https://images.unsplash.com/photo-1507146426996-ef05306b995a?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=berkay-gumustekin-ngqyo2AYYnE-unsplash.jpg&w=2400"
+
+    timg ~/Downloads/puppy.jpg
+
+    wget -O ~/Downloads/test_svg.svg "https://www.svgrepo.com/show/765/library.svg"
+    timg ~/Downloads/test_svg.svg
+
+    wget -O ~/Downloads/test_gif.gif "https://upload.wikimedia.org/wikipedia/commons/c/c8/132C_trans.gif"
+    timg ~/Downloads/test_gif.gif
+'
+# brew install timg
+
+
 
 
 #### Setting locale to en_US.UTF-8
 : '
 ☑️ Issue: Error; Potential Locale Issue Causing Build/Installation Freeze 📅 2024-12-11 00:08:48
-During the build or installation process like, it may freeze:
-  This can happen when a specific library or script uses the locale settings to convert strings.
-  If the locale is improperly configured or missing, it can result in an infinite loop.
-  🛍️ e.g. This issue was specifically encountered while building OpenCV.
-  
-  To prevent this, set the locale to en_US.UTF-8.
+  During the build or installation process like, it may freeze:
+    This can happen when a specific library or script uses the locale settings to convert strings.
+    If the locale is improperly configured or missing, it can result in an infinite loop.
+    🛍️ e.g. This issue was specifically encountered while building OpenCV.
+    
+    To prevent this, set the locale to en_US.UTF-8.
 '
 ## Define the target file
 set locale_file /etc/locale.gen
@@ -1603,42 +1618,7 @@ docker completion fish >~/.config/fish/completions/docker.fish
 
 : '
 📦 libvirt
-    If in Homebrew
-      ==> Caveats
-        To start libvirt now and restart at login:
-          brew services start libvirt
-        Or, if you don\'t want/need a background service you can just run:
-          /home/linuxbrew/.linuxbrew/opt/libvirt/sbin/libvirtd -f /home/linuxbrew/.linuxbrew/etc/libvirt/libvirtd.conf
-
-      ☑️ Note: You may encounter errors if libvirt is already installed via "apt". 📅 2024-12-31 12:11:27
-        ❗ These errors may persist unless you reboot your computer even after running the following command:
-          sudo apt remove libvirt-daemon-system virt-manager
-
-        🛍️ e.g.
-          If you installed Kubuntu with optional packages, libvirt-related packages might already exist.
-          You can check this with the following command:
-            dpkg -l | grep libvirt
-
-          systemctl --user status homebrew.libvirt.service -l --no-pager
-            >> 
-              Dec 31 11:49:13 iot-04 libvirtd[63559]: Unable to find 'dnsmasq' binary in $PATH: No such file or directory
-              Dec 31 11:49:13 iot-04 libvirtd[63559]: internal error: Unable to get system bus connection: Could not connect: No such file or directory
-              Dec 31 11:49:13 iot-04 libvirtd[63559]: DBus not available, disabling firewalld support in bridge_network_driver: internal error: Unable to get system bus connection: Could not connect: No such file or directory
-              Dec 31 11:49:13 iot-04 libvirtd[63559]: internal error: Unable to get system bus connection: Could not connect: No such file or directory
-          brew dnsmasq
-          brew services start dnsmasq
-            >> Warning: dnsmasq must be run as root to start at system startup!
-
-      ☑️ ❗ Do not install by homebrew because homebrew libvirt can not be integrated with the system. 📅 2024-12-31 12:52:54
-        brew install libvirt
-        brew services start libvirt
-        # 
-        virsh list
-          >>
-            error: failed to connect to the hypervisor
-            error: Failed to connect socket to \'/home/linuxbrew/.linuxbrew/var/run/libvirt/virtqemud-sock\': No such file or directory
-
-            '
+'
 # Ubuntu - Install libvirt ; https://ubuntu.com/server/docs/libvirt
 sudo apt install -y libvirt-daemon-system libvirt-clients
 

@@ -87,7 +87,7 @@ set temp_dir /tmp
 set deb_file "$temp_dir/cuda-keyring_1.1-1_all.deb"
 
 # Download the CUDA keyring package to /tmp
-echo "⚠️ It not supports Version which is not LTS. but that may be compatible with previous LTS version."
+echo "⚠️😠 It does not supports Version which is not LTS. but that may be compatible with previous LTS version."
 echo "  🛍️ e.g. Ubuntu 24.10 can use 24.04 deb package."
 echo "Downloading CUDA keyring package for $distribution/$arch..."
 and wget "https://developer.download.nvidia.com/compute/cuda/repos/$distribution/$arch/cuda-keyring_1.1-1_all.deb" -O $deb_file

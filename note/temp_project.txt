@@ -16776,7 +16776,6 @@ RUN echo 'export LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libgomp.so.1:$LD_PRELOAD'
 ⚓ Cuda Compaitilbity
   https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html
 
-  
 
   docker ps --no-trunc
   https://docs.docker.com/reference/compose-file/deploy/#resources
@@ -16802,3 +16801,85 @@ RUN echo 'export LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libgomp.so.1:$LD_PRELOAD'
 
     대화형 작업이 필요 없는 컨테이너에서는 tty: true가 불필요할 수 있음. 예를 들어, 백그라운드에서 단순히 작업을 실행하는 컨테이너에서는 tty를 생략 가능.
 
+
+
+
+roslaunch turtlebot3_slam turtlebot3_slam.launch 
+
+vscode@fdfa631cfcb5 /workspace [SIGKILL]> ./test.fish
+... logging to /home/vscode/.ros/log/a631a2c4-d257-11ef-8d09-0242ac120002/roslaunch-fdfa631cfcb5-15974.log
+Checking log directory for disk usage. This may take a while.
+Press Ctrl-C to interrupt
+Done checking log file disk usage. Usage is <1GB.
+
+xacro: in-order processing became default in ROS Melodic. You can drop the option.
+started roslaunch server http://172.18.0.2:42907/
+
+SUMMARY
+========
+
+PARAMETERS
+ * /robot_description: <?xml version="1....
+ * /robot_state_publisher/publish_frequency: 50.0
+ * /robot_state_publisher/tf_prefix: 
+ * /rosdistro: noetic
+ * /rosversion: 1.17.0
+ * /turtlebot3_slam_gmapping/angularUpdate: 0.2
+ * /turtlebot3_slam_gmapping/astep: 0.05
+ * /turtlebot3_slam_gmapping/base_frame: base_footprint
+ * /turtlebot3_slam_gmapping/delta: 0.05
+ * /turtlebot3_slam_gmapping/iterations: 5
+ * /turtlebot3_slam_gmapping/kernelSize: 1
+ * /turtlebot3_slam_gmapping/lasamplerange: 0.005
+ * /turtlebot3_slam_gmapping/lasamplestep: 0.005
+ * /turtlebot3_slam_gmapping/linearUpdate: 1.0
+ * /turtlebot3_slam_gmapping/llsamplerange: 0.01
+ * /turtlebot3_slam_gmapping/llsamplestep: 0.01
+ * /turtlebot3_slam_gmapping/lsigma: 0.075
+ * /turtlebot3_slam_gmapping/lskip: 0
+ * /turtlebot3_slam_gmapping/lstep: 0.05
+ * /turtlebot3_slam_gmapping/map_frame: map
+ * /turtlebot3_slam_gmapping/map_update_interval: 2.0
+ * /turtlebot3_slam_gmapping/maxUrange: 3.0
+ * /turtlebot3_slam_gmapping/minimumScore: 50
+ * /turtlebot3_slam_gmapping/odom_frame: odom
+ * /turtlebot3_slam_gmapping/ogain: 3.0
+ * /turtlebot3_slam_gmapping/particles: 100
+ * /turtlebot3_slam_gmapping/resampleThreshold: 0.5
+ * /turtlebot3_slam_gmapping/sigma: 0.05
+ * /turtlebot3_slam_gmapping/srr: 0.1
+ * /turtlebot3_slam_gmapping/srt: 0.2
+ * /turtlebot3_slam_gmapping/str: 0.1
+ * /turtlebot3_slam_gmapping/stt: 0.2
+ * /turtlebot3_slam_gmapping/temporalUpdate: 0.5
+ * /turtlebot3_slam_gmapping/xmax: 10.0
+ * /turtlebot3_slam_gmapping/xmin: -10.0
+ * /turtlebot3_slam_gmapping/ymax: 10.0
+ * /turtlebot3_slam_gmapping/ymin: -10.0
+
+NODES
+  /
+    robot_state_publisher (robot_state_publisher/robot_state_publisher)
+    rviz (rviz/rviz)
+    turtlebot3_slam_gmapping (gmapping/slam_gmapping)
+
+ROS_MASTER_URI=http://172.18.0.2:11311
+
+process[robot_state_publisher-1]: started with pid [15990]
+process[turtlebot3_slam_gmapping-2]: started with pid [15991]
+process[rviz-3]: started with pid [15992]
+[turtlebot3_slam_gmapping-2] process has died [pid 15991, exit code -9, cmd /opt/ros/noetic/lib/gmapping/slam_gmapping __name:=turtlebot3_slam_gmapping __log:=/home/vscode/.ros/log/a631a2c4-d257-11ef-8d09-0242ac120002/turtlebot3_slam_gmapping-2.log].
+log file: /home/vscode/.ros/log/a631a2c4-d257-11ef-8d09-0242ac120002/turtlebot3_slam_gmapping-2*.log
+[robot_state_publisher-1] process has died [pid 15990, exit code -9, cmd /opt/ros/noetic/lib/robot_state_publisher/robot_state_publisher __name:=robot_state_publisher __log:=/home/vscode/.ros/log/a631a2c4-d257-11ef-8d09-0242ac120002/robot_state_publisher-1.log].
+log file: /home/vscode/.ros/log/a631a2c4-d257-11ef-8d09-0242ac120002/robot_state_publisher-1*.log
+^C[rviz-3] killing on exit
+shutting down processing monitor...
+... shutting down processing monitor complete
+done
+vscode@fdfa631cfcb5 /workspace> 
+
+
+
+Reference
+  https://answers.ros.org/question/416357/
+  https://robotics.stackexchange.com/questions/93752/rosout-high-memory-usage

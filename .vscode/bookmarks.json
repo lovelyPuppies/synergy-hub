@@ -89,6 +89,21 @@
 					"label": ""
 				}
 			]
+		},
+		{
+			"path": "prototypes/_lab/tech_stack/libraries_and_frameworks/robot/framework-ros.txt",
+			"bookmarks": [
+				{
+					"line": 18,
+					"column": 0,
+					"label": ""
+				},
+				{
+					"line": 52,
+					"column": 11,
+					"label": ""
+				}
+			]
 		}
 	]
 }
