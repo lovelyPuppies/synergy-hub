@@ -270,7 +270,7 @@ end
 echo "▶️  Installing improved tools for speed and usability ..."
 
 : '
-📦🚀 bat
+📦🚀 🧮 bat
   https://github.com/sharkdp/bat
   https://repology.org/project/bat/versions
   https://formulae.brew.sh/formula/bat#default
@@ -283,7 +283,7 @@ brew install bat
 
 
 : '
-📦🚀 fd-find (fd)
+📦🚀 fd-find (🧮 fd)
   https://github.com/sharkdp/fd
   https://repology.org/project/fd-find/versions
   https://formulae.brew.sh/formula/fd#default
@@ -298,7 +298,7 @@ brew install fd
 
 
 : '
-📦🚀 lsd: https://github.com/lsd-rs/lsd
+📦🚀 🧮 lsd: https://github.com/lsd-rs/lsd
   https://repology.org/project/lsd/versions
   https://formulae.brew.sh/formula/lsd#default
 
@@ -324,7 +324,7 @@ update_fish_interactive_block --unique-comment="$unique_comment" --contents="$ll
 
 
 : '
-📦🚀 ripgrep (rg)
+📦🚀 ripgrep (🧮 rg)
   https://github.com/BurntSushi/ripgrep
   https://repology.org/project/ripgrep/versions
   https://formulae.brew.sh/formula/ripgrep#default
@@ -340,7 +340,7 @@ brew install ripgrep
 
 
 : '
-📦🚀 procs
+📦🚀 🧮 procs
   https://github.com/dalance/procs
   https://repology.org/project/procs/versions
   https://formulae.brew.sh/formula/procs#default
@@ -360,7 +360,7 @@ brew install procs
 
 
 : '
-📦🚀 jaq (Just Another Query)
+📦🚀 🧮 jaq (Just Another Query)
   https://github.com/01mf02/jaq
   https://repology.org/project/jaq/versions
   https://formulae.brew.sh/formula/jaq#default
@@ -375,7 +375,7 @@ brew install jaq
 
 
 : '
-📦🚀 bottom
+📦🚀 bottom (🧮 btm)
   https://github.com/ClementTsang/bottom
   https://repology.org/project/bottom/versions
   https://formulae.brew.sh/formula/bottom#default
@@ -388,6 +388,17 @@ brew install jaq
 brew install bottom
 
 
+
+: '
+📦 🧮 nvtop
+  https://github.com/Syllo/nvtop
+  https://repology.org/project/nvtop/versions
+  https://formulae.brew.sh/formula/nvtop#default
+
+  Interactive GPU process monitor.
+  🚣 Currently supported vendors are AMD (Linux amdgpu driver), Apple (limited M1 & M2 support), Huawei (Ascend), Intel (Linux i915/Xe drivers), NVIDIA (Linux proprietary divers), Qualcomm Adreno (Linux MSM driver), Broadcom VideoCore (Linux v3d driver). 📅 2025-01-14 20:50:04
+'
+brew install nvtop
 
 
 
