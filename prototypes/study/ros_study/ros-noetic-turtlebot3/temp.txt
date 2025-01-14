@@ -1275,14 +1275,3 @@ KSH_ROS..
 rosrun bot3_kccistc_service gpio_socketToRos 127.0.0.1 5000 KSH_ROS
 rosrun ./navi.sh >> Naivgation; ?
 
-
-docker ps --no-trunc
-
-
-#️⃣ deploy ; https://docs.docker.com/reference/compose-file/services/#deploy
-  🔗 Compose Deploy Specification
-
-⚓ Compose Deploy Specification ; https://docs.docker.com/reference/compose-file/deploy/
-  #️⃣ Resources ; https://docs.docker.com/reference/compose-file/deploy/#resources
-    - 🪱 cpus
-    - 🪱 memory

@@ -36,11 +36,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.25"
-          memory: 4gb
+          cpus: "0.6"
+          memory: 8gb
         reservations:
-          cpus: "0.20"
-          memory: 2gb
+          cpus: "0.4"
+          memory: 4gb
           devices:
             - capabilities:
                 - gpu

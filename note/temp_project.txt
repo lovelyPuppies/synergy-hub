@@ -16777,3 +16777,25 @@ RUN echo 'export LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libgomp.so.1:$LD_PRELOAD'
   https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html
 
   
+
+  docker ps --no-trunc
+
+
+  #️⃣ deploy ; https://docs.docker.com/reference/compose-file/services/#deploy
+    🔗 Compose Deploy Specification
+
+  ⚓ Compose Deploy Specification ; https://docs.docker.com/reference/compose-file/deploy/
+    #️⃣ Resources ; https://docs.docker.com/reference/compose-file/deploy/#resources
+      - 🪱 cpus
+      - 🪱 memory
+
+  ❗ 
+  tty 옵션은 Docker에서 컨테이너 실행 시 **가상 터미널(TTY, Teletypewriter)**을 할당할지 여부를 결정하는 설정입니다. 이 옵션은 대화형 세션을 지원하거나, 터미널 기반 애플리케이션과 상호 작용할 때 유용합니다.
+    tty 옵션을 사용할 때의 주의점
+    컨테이너 유지:
+
+    tty: true는 컨테이너가 계속 실행 중인 상태를 유지하도록 도움.
+    기본 명령이 없거나 종료되면 컨테이너도 종료되므로, 이를 방지하려면 command: tail -f /dev/null처럼 무한 대기 명령을 사용해야 할 수 있음.
+    비대화형 컨테이너:
+
+    대화형 작업이 필요 없는 컨테이너에서는 tty: true가 불필요할 수 있음. 예를 들어, 백그라운드에서 단순히 작업을 실행하는 컨테이너에서는 tty를 생략 가능.
