@@ -16731,3 +16731,12 @@ RUN echo 'export LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libgomp.so.1:$LD_PRELOAD'
   How to automatically overwrite the output file when running `gpg` (i.e. without being prompted)? [closed]
   https://stackoverflow.com/questions/7519375/how-to-automatically-overwrite-the-output-file-when-running-gpg-i-e-without
     Adding --batch --yes
+
+
+
+📰 Docker Rootless mode...
+  https://docs.docker.com/engine/security/rootless/
+    GPU를 효율적으로 사용해야 하거나, 단일 사용자 환경에서 루트 권한 사용이 허용되는 경우.
+  https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html#rootless-mode
+    보안이 중요한 다중 사용자 환경에서 Docker를 실행해야 하는 경우
+    

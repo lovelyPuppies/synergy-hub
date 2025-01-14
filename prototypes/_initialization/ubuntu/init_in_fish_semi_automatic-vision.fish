@@ -1,9 +1,6 @@
 #!/usr/bin/env fish
 
-##### 📦 GPU 🔪 NVIDIA Driver
-sudo apt update && sudo apt upgrade -y
-
-### Install NVIDIA Driver
+##### 📦 Install GPU driver 🔪 NVIDIA Driver
 # 🗑️ ubuntu-drivers autoinstall          🗑️ Deprecated: please use "install" instead
 sudo ubuntu-drivers install
 : '🧮 ubuntu-drivers devices
@@ -31,39 +28,59 @@ sudo ubuntu-drivers install
 '
 # 🧮 vulkaninfo > /tmp/txt; code /tmp/txt
 
-### Install CUDA Toolkit ; https://docs.nvidia.com/cuda/cuda-installation-guide-linux/
-# https://developer.nvidia.com/cuda-toolkit-archive
 
-### Installing the NVIDIA Container Toolkit ; https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html
+
+
+
+##### 📦 Install GPU driver 🔪 NVIDIA CUDA Toolkit ; https://docs.nvidia.com/cuda/cuda-installation-guide-linux/#common-installation-instructions-for-ubuntu
+# https://developer.nvidia.com/cuda-toolkit-archive
+## 3.8.4. Common Installation Instructions for Ubuntu
+# These instructions apply to both local and network installation for Ubuntu.
+# Update the Apt repository cache:
+# Install CUDA SDK:
+# ⚠️ Note These two commands must be executed separately.
+sudo apt install cuda-toolkit
+To include all GDS packages:
+
+sudo apt install nvidia-gds
+## For native arm64-Jetson repos, install the additional packages:
+# sudo apt install cuda-compat
+
+# 😠
+echo "❗  Reboot the system. Installation of cuda-toolkit is complete."
+
+## Perform the Post-installation Actions ; https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#post-installation-actions
+
+
+## 📰📰📰📰📰📰📰📰📰
+
+
+
+
+##### 📦 Install GPU driver 🔪 NVIDIA NVIDIA Container Toolkit ; https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html
+### Installation
 # Configure the production repository:
 curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --batch --yes --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg
 and curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
-
 
 ## Optionally, configure the repository to use experimental packages:
 # sed -i -e '/experimental/ s/^#//g' /etc/apt/sources.list.d/nvidia-container-toolkit.list
 
 ## Update the packages list from the repository and Install the NVIDIA Container Toolkit packages:
-sudo apt-get update
+and sudo apt-get update
 and sudo apt-get install -y nvidia-container-toolkit
 
-# 패키지 업데이트 및 Toolkit 설치
-sudo apt update
-sudo apt-get install -y nvidia-container-toolkit
+### Configuration (❗ in Case of Root Mode)
+# Configure the container runtime by using the nvidia-ctk command:
+#   The nvidia-ctk command modifies the /etc/docker/daemon.json file on the host. The file is updated so that Docker can use the NVIDIA Container Runtime.
+and sudo nvidia-ctk runtime configure --runtime=docker
+# Restart the Docker daemon:
+and sudo systemctl restart docker
 
-# Docker 설정 업데이트
-sudo nvidia-ctk runtime configure --runtime=docker
-
-# Docker 서비스 재시작
-sudo systemctl restart docker
-
-# Check!!! 
-docker run --rm --gpus all nvidia/cuda:12.6.3-base-ubuntu24.04 nvidia-smi
-
-
-
+## Check available:
+# docker run --rm --gpus all nvidia/cuda:12.6.3-base-ubuntu24.04 nvidia-smi
 # 🪱 NVIDIA SMI (System Management Interface)
-nvidia-smi
+and nvidia-smi
 
 
 #####
