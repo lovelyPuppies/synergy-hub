@@ -16,6 +16,11 @@ RUN apt update && \
     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime
 
 
+# `python3-venv`: In order to use VSCode extension: platform-io
+# `curl git`: In order to use curl-based, git-based instllation
+RUN apt install -y curl git \
+    python3-venv
+
 
 ##### ROS - noetic installation https://wiki.ros.org/noetic/Installation/Ubuntu
 # Desktop-Full Install: (Recommended) : Everything in Desktop plus 2D/3D simulators and 2D/3D perception packages

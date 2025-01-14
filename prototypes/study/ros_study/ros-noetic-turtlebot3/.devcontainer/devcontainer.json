@@ -3,11 +3,6 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
-  // Change the default source code mount ; https://code.visualstudio.com/remote/advancedcontainers/change-default-source-mount
-  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces,type=bind",
-  "workspaceFolder": "/workspaces",
-  // ===== ⚙️ =====
-  "forwardPorts": [11311], // 🚣 format: <host:port_number>
   "containerEnv": {
     "LANG": "en_US.UTF-8",
     "LC_ALL": "en_US.UTF-8",
@@ -15,8 +10,15 @@
     "DISPLAY": "${localEnv:DISPLAY}",
     "XAUTHORITY": "/tmp/.Xauthority",
     // ✔️ #fix some QT bugs ; https://wiki.ros.org/docker/Tutorials/Compose
-    "QT_X11_NO_MITSHM": "1"
+    "QT_X11_NO_MITSHM": "1",
+    "WORKSPACE_DIR": "/workspace" // ❗
   },
+  // ⚖️ Change the default source code mount ; https://code.visualstudio.com/remote/advancedcontainers/change-default-source-mount
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+  "workspaceFolder": "/workspace",
+  // ===== ⚙️ =====
+  "forwardPorts": [11311], // 🚣 format: <host:port_number>
+
   // ===============
   // 👇 Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
   "remoteUser": "vscode",

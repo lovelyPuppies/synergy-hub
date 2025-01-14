@@ -69,19 +69,12 @@ end
 
 
 #### Temp .. 
-# In order to use curl-based, git-based instllation
-sudo apt install -y curl git
-
-## In order to use VSCode extension: platform-io
-sudo apt install -y python3-venv
-
-
 : '
 ❌ Do not use frankjoshua/Rosserial. Instead, use the following: 📅 2025-01-13 16:43:04
   ```
   ros-noetic-rosserial-arduino
-  # 📦 It creates `/workspace/ros_serial_uno3/lib/ros_lib` folder
-  rosrun rosserial_arduino make_libraries.py /workspace/ros_serial_uno3/lib
+  # 📦 It creates `$WORKSPACE_DIR/ros_serial_uno3/lib/ros_lib` folder
+  rosrun rosserial_arduino make_libraries.py $WORKSPACE_DIR/ros_serial_uno3/lib
   ```
 
 Issues:
@@ -111,12 +104,12 @@ Comparison: frankjoshua/Rosserial Arduino Library vs make_libraries.py
   ROS Tool Integration      None                            Direct integration with official ROS tools
 '
 sudo apt install -y ros-noetic-rosserial ros-noetic-rosserial-server ros-noetic-rosserial-arduino
-# 📦 It create `/workspace/ros_serial_uno3/lib/ros_lib` folder
+# 📦 It create `$WORKSPACE_DIR/ros_serial_uno3/lib/ros_lib` folder
 
 source $FISH_CONFIG_PATH
 cd .
 
-rosrun rosserial_arduino make_libraries.py /workspace/ros_serial_uno3/lib
+rosrun rosserial_arduino make_libraries.py $WORKSPACE_DIR/ros_serial_uno3/lib
 
 
 # ros-noetic-rosserial
