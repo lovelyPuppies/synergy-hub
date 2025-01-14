@@ -30,7 +30,13 @@ services:
         ipv4_address: 172.18.0.2
     # 🧪: may be required to access hardware and devices fully
     privileged: true
-    # 🔰 Allocate a pseudo-TTY for development
+    # 💡 Allocate a pseudo-TTY for development
+    ulimits:
+      nproc: 65535
+      nofile:
+        # Error: services.app.ulimits.nofile soft is required 📅 2025-01-14 21:55:00
+        soft: 1024
+        hard: 524288
     tty: true
     deploy:
       resources:
