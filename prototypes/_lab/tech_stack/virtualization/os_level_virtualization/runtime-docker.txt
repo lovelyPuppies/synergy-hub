@@ -42,11 +42,31 @@ list of level 1 subjects
       It is a method for allocating IP addresses and routing Internet Protocol (IP) packets.
       📍 CIDR replaced the older system of IP address classes (Class A, B, C, etc.) and introduced a more flexible and efficient way of managing IP addresses.
 
-  
 
 ----------------------------------------------
 docker 🔪⚓ Reference ; https://docs.docker.com/reference/
   ⚓ Compose file reference ; https://docs.docker.com/reference/compose-file/
     ⚓ Networks top-level elements ; https://docs.docker.com/reference/compose-file/networks
+      - 🪱 ipam
 
-  
+    
+==============================================
+Docker Docs 🔪 Open Source
+  ⚓ Docker Engine ; https://docs.docker.com/engine/
+    ⚓ Networking ; https://docs.docker.com/engine/network/
+      # Contents
+      ⚓ Network drivers ; https://docs.docker.com/engine/network/drivers/
+        - 🪱⚖️ bridge
+          The default network driver. ...
+          
+----------------------------------------------
+
+
+==============================================
+Docker Docs 🔪 Products
+
+
+
+
+==============================================
+Docker Docs 🔪 Platform

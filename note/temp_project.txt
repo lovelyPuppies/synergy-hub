@@ -15592,7 +15592,7 @@ FFmpeg의 정적 빌드(static build)는 설치가 간편하지만, 라이선스
   ## 1. Docker's Basic Working Principle
   - Docker utilizes **Linux kernel features** (e.g., cgroups, namespaces) to provide virtualization.
   - This means Docker runs **natively on Linux** without needing a hypervisor.
-  
+
   ---
 
   ## 2. Why Docker Needs Hypervisors on Windows and macOS
@@ -16718,8 +16718,36 @@ resolvectl
 
 Out of Memory, OOM
 
-Out of Memory, OOM    
+  
 
+🪱 IPAM은 IP Address Management의 약자입니다 ; https://docs.docker.com/reference/compose-file/networks/#ipam
+  https://en.wikipedia.org/wiki/IP_address_management
+  
 
-containerEnv
-remoteEnv
+devcontainer 에 추가.. (정리 문서)
+  containerEnv
+  remoteENv
+
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+
+  Docker..
+    https://docs.docker.com/compose/how-tos/environment-variables/set-environment-variables/
+
+    https://docs.docker.com/get-started/docker-concepts/running-containers/publishing-ports/
+
+    https://docs.docker.com/reference/compose-file/services/#ipv4_address-ipv6_address
+    https://docs.docker.com/get-started/docker-concepts/running-containers/publishing-ports/#publishing-all-ports
+      When creating a container image, the EXPOSE instruction is used to indicate the packaged application will use the specified port. These ports aren't published by default.
+      📝 Meta Info..
+
+    https://docs.docker.com/compose/how-tos/environment-variables/set-environment-variables/#use-the-env_file-attribute
+      env file
+    https://containers.dev/implementors/json_reference/#compose-specific
+      dockerComposeFile
+
+    // https://code.visualstudio.com/remote/advancedcontainers/environment-variables#_option-2-use-an-env-file
+
+    containerEnv
+    remoteEnv     

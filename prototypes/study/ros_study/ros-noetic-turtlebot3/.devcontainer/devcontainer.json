@@ -1,26 +1,12 @@
 {
-  // ❔ Defines the name displayed in the VS Code Devcontainer UI.
+  // ❔ `name`: Defines the name displayed in the VS Code Devcontainer UI.
   "name": "ros-noetic-turtlebot3-node_master",
-  "build": {
-    "dockerfile": "Dockerfile"
-  },
-  "containerEnv": {
-    "LANG": "en_US.UTF-8",
-    "LC_ALL": "en_US.UTF-8",
-    "TURTLEBOT3_MODEL": "burger",
-    "DISPLAY": "${localEnv:DISPLAY}",
-    "XAUTHORITY": "/tmp/.Xauthority",
-    // ✔️ #fix some QT bugs ; https://wiki.ros.org/docker/Tutorials/Compose
-    "QT_X11_NO_MITSHM": "1",
-    "WORKSPACE_DIR": "/workspace" // ❗
-  },
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "app",
   // ⚖️ Change the default source code mount ; https://code.visualstudio.com/remote/advancedcontainers/change-default-source-mount
-  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+  //    "workspaceMount": "source=${localWorkspaceFolder}, target=/workspace,type=bind",
+  // ❔ `workspaceFolder`: Defines the working directory inside the container that VS Code will open.
   "workspaceFolder": "/workspace",
-  // ===== ⚙️ =====
-  "forwardPorts": [11311], // 🚣 format: <host:port_number>
-
-  // ===============
   // 👇 Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
   "remoteUser": "vscode",
   // 👇 Features to add to the Dev Container. More info: https://containers.dev/implementors/features.
@@ -34,45 +20,7 @@
     //   "installJupyterlab": true
     // }
   },
-  "runArgs": [
-    "--cpus",
-    "2",
-    "--publish",
-    "11311:11311",
-    // ❔ Sets the explicit name of the Docker container for easier identification and management.
-    "--name",
-    "ros_noetic_turtlebot3-node_master",
-    // 📰
-    "--network",
-    "ros_network",
-    "--ip",
-    "172.18.0.2",
-    // ❗ Error? This is root cause?
-    // "--runtime",
-    // "nvidia", // Ensure NVIDIA runtime is used for GPU access
-    // "--gpus",
-    // "all",
-    "--device",
-    "/dev/video0", // Access to video input devices
-    "--device",
-    "/dev/ttyACM0",
-    "--device",
-    "/dev/ttyACM1",
-    "--device", // Access to serial devices
-    "/dev/ttyACM2",
-    "--volume",
-    "/tmp/.X11-unix:/tmp/.X11-unix:rw", // Shares the X11 Unix socket to enable GUI forwarding in the container. RW (Read, Write) is required for bidirectional communication.
-    "--volume",
-    "${localEnv:HOME}/.Xauthority:/tmp/.Xauthority", // Provides X authority file to authenticate GUI apps with the X server. No RW (Read, Write) needed as it's typically read-only.
-    "--privileged", // may be required to access hardware and devices fully
-    // https://code.visualstudio.com/remote/advancedcontainers/environment-variables#_option-2-use-an-env-file
-    "--env-file",
-    ".devcontainer/devcontainer.env"
-    // "--ipc",
-    // "host", // Share the host's inter-process communication (IPC) resources, including shared memory and semaphores, with the container.
-    // "--shm-size", "2gb", // Allocate shared memory
-  ],
-  // may be required to add "--privileged"?
+  // "runArgs": [],
   // 👇 Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
   // 👇 Use 'postCreateCommand' to run commands  after the container is created.
