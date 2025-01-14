@@ -1277,3 +1277,7 @@ rosrun ./navi.sh >> Naivgation; ?
 
 
 
+
+
+🚨 (Issue : Error; roscore using up all available memory ; https://answers.ros.org/question/416357/
+ulimit -Sn 524288 && ulimit -Hn 524288

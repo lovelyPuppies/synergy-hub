@@ -12,16 +12,15 @@ services:
       - LC_ALL=en_US.UTF-8
       - TURTLEBOT3_MODEL=burger
       - DISPLAY=${DISPLAY}
-      - XAUTHORITY=/tmp/.Xauthority
       # ✔️ fix some QT bugs ; https://wiki.ros.org/docker/Tutorials/Compose
       - QT_X11_NO_MITSHM=1
       - WORKSPACE_DIR=/workspace # ❗
     volumes:
       - .:/workspace
       # Shares the X11 Unix socket to enable GUI forwarding in the container. RW (Read, Write) is required for bidirectional communication.
-      # - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
       # Provides X authority file to authenticate GUI apps with the X server. No RW (Read, Write) needed as it's typically read-only.
-      # - ${HOME}/.Xauthority:/tmp/.Xauthority:ro
+      - ${HOME}/.Xauthority:/tmp/.Xauthority:ro
     devices:
       - /dev/video0     # Access to video input devices
       - /dev/ttyACM0    # Access to serial devices
@@ -39,7 +38,7 @@ services:
           cpus: "4"
           memory: 8gb
         reservations:
-          cpus: "2"
+          cpus: "2" 
           memory: 4gb
           devices:
             - capabilities:

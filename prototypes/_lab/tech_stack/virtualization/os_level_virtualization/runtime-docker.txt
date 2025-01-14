@@ -43,7 +43,7 @@ list of level 1 subjects
       📍 CIDR replaced the older system of IP address classes (Class A, B, C, etc.) and introduced a more flexible and efficient way of managing IP addresses.
 
 
-------------------------- ---------------------
+----------------------------------------------
 docker 🔪⚓ Reference ; https://docs.docker.com/reference/
   ⚓ Compose file reference ; https://docs.docker.com/reference/compose-file/
     ⚓ Networks top-level elements ; https://docs.docker.com/reference/compose-file/networks
