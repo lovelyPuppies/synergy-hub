@@ -1,5 +1,6 @@
 {
-  "name": "ros-noetic-robot",
+  // ❔ Defines the name displayed in the VS Code Devcontainer UI.
+  "name": "ros-noetic-turtlebot3-node_master",
   "build": {
     "dockerfile": "Dockerfile"
   },
@@ -38,6 +39,7 @@
     "2",
     "--publish",
     "11311:11311",
+    // ❔ Sets the explicit name of the Docker container for easier identification and management.
     "--name",
     "ros_noetic_turtlebot3-node_master",
     // 📰
@@ -73,7 +75,7 @@
   // may be required to add "--privileged"?
   // 👇 Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
-  // 👇 Use 'postCreateCommand' to run commands after the container is created.
+  // 👇 Use 'postCreateCommand' to run commands  after the container is created.
   // "postCreateCommand": "pip3 install --upgrade pip && pip3 install -r requirements/requirements_dev.txt && pip3 install -e .",
   "postCreateCommand": "fish /workspace/init_ros_noetic.fish",
   // 👇 Configure tool-specific properties.

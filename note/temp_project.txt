@@ -15587,12 +15587,12 @@ FFmpeg의 정적 빌드(static build)는 설치가 간편하지만, 라이선스
     macOS에서는 VirtualBox 또는 Apple의 하이퍼바이저를 사용.
 
 
-  # Docker and its Dependency on Hypervisors in Windows/macOS
+  # Docker and its De pendency on Hypervisors in Windows/macOS
 
   ## 1. Docker's Basic Working Principle
   - Docker utilizes **Linux kernel features** (e.g., cgroups, namespaces) to provide virtualization.
   - This means Docker runs **natively on Linux** without needing a hypervisor.
-
+  
   ---
 
   ## 2. Why Docker Needs Hypervisors on Windows and macOS

@@ -1,0 +1,37 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: .devcontainer/Dockerfile
+    ports:
+      - "11311:11311" # ROS master - Port mapping
+    environment:
+      - LANG=en_US.UTF-8
+      - LC_ALL=en_US.UTF-8
+      - TURTLEBOT3_MODEL=burger
+      - DISPLAY=${DISPLAY}
+      - XAUTHORITY=/tmp/.Xauthority
+      - QT_X11_NO_MITSHM=1
+    volumes:
+      - .:/workspace
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - ${HOME}/.Xauthority:/tmp/.Xauthority:ro
+    devices:
+      - /dev/video0
+      - /dev/ttyACM0
+      - /dev/ttyACM1
+    networks:
+      ros_network:
+        ipv4_address: 172.18.0.2
+    privileged: true
+
+# https://docs.docker.com/reference/compose-file/networks
+networks:
+  # It will create name '<project_name>_<network_name>'
+  ros_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.18.0.0/16
+    # ❔ Allows standalone containers to dynamically attach to this network.
+    attachable: true

@@ -118,3 +118,5 @@ rosrun rosserial_arduino make_libraries.py $WORKSPACE_DIR/ros_serial_uno3/lib
 #   Depends       ros-noetic-roscpp, ros-noetic-rosserial-msgs, ros-noetic-std-msgs, ros-noetic-topic-tools
 # ros-noetic-rosserial-arduino
 #   Depends       arduino-core, ros-noetic-message-runtime, ros-noetic-rospy, ros-noetic-rosserial-client, ros-noetic-rosserial-msgs, ros-noetic-rosserial-python
+
+sudo apt install -y tree
