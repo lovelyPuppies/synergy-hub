@@ -1,4 +1,17 @@
 #!/usr/bin/env fish
+# Handle SIGINT (Ctrl+C) to exit the script and terminate any child processes
+function on_interrupt
+    echo -e "\nScript interrupted. Exiting..."
+    # Kill all child processes in the same process group
+    kill -- -$fish_pid
+    exit 1
+end
+trap on_interrupt SIGINT
+
+### Load Modules
+set -l script_dir (dirname (realpath (status filename)))
+source $script_dir/fish_modules/_import_all.fish
+
 
 #####
 echo "📦 Install GPU driver 🔪 NVIDIA Driver"
@@ -74,7 +87,8 @@ set temp_dir /tmp
 set deb_file "$temp_dir/cuda-keyring_1.1-1_all.deb"
 
 # Download the CUDA keyring package to /tmp
-echo "⚠️ It not supports Version which is not LTS. 🛍️ e.g. Ubuntu 24.10 Does not have "
+echo "⚠️ It not supports Version which is not LTS. but that may be compatible with previous LTS version."
+echo "  🛍️ e.g. Ubuntu 24.10 can use 24.04 deb package."
 echo "Downloading CUDA keyring package for $distribution/$arch..."
 and wget "https://developer.download.nvidia.com/compute/cuda/repos/$distribution/$arch/cuda-keyring_1.1-1_all.deb" -O $deb_file
 and echo "Installing CUDA keyring package..."
@@ -101,10 +115,20 @@ and echo "❗  Reboot the system. Installation of cuda-toolkit is complete."
 
 
 
-
-
 ### Perform the Post-installation Actions ; https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#post-installation-actions
+# Define and add settings for CUDA
+set unique_comment "## [CUDA] add binary and library paths (🚣 for 64bit)"
+set fish_config_path "$HOME/.config/fish/config.fish"
 
+if not grep -Fxq "$unique_comment" "$fish_config_path"
+    echo "
+    $unique_comment"'
+    fish_add_path /usr/local/cuda/bin
+    set --query LD_LIBRARY_PATH; or set LD_LIBRARY_PATH ""
+    set -gx LD_LIBRARY_PATH $LD_LIBRARY_PATH:/usr/local/cuda/lib64
+    ' | prettify_indent_via_pipe | tee -a $fish_config_path >/dev/null
+    echo -e "\n" >>"$fish_config_path"
+end
 
 
 

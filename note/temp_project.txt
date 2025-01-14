@@ -16740,3 +16740,49 @@ RUN echo 'export LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libgomp.so.1:$LD_PRELOAD'
   https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html#rootless-mode
     보안이 중요한 다중 사용자 환경에서 Docker를 실행해야 하는 경우
     
+📅 2025-01-14 15:15:03 HOwto
+  이거 fish shell 에서 띄어쓰기로 하면 잘 등록되는데, ":" 으로 하면 변수값이 없는 경우 등록이 안 돼. 사람들으 ㄴ어떻게 이 문제를 해결하고 잇지?
+
+  set -gx LDFLAGS $LDFLAGS -L/home/linuxbrew/.linuxbrew/opt/e2fsprogs/lib
+  set -gx CPPFLAGS $CPPFLAGS -I/home/linuxbrew/.linuxbrew/opt/e2fsprogs/include
+  set -gx PKG_CONFIG_PATH $PKG_CONFIG_PATH:/home/linuxbrew/.linuxbrew/opt/e2fsprogs/lib/pkgconfig
+
+  ChatGPT said:
+  ChatGPT
+  Fish shell에서 set 명령어는 Bash와 다르게 빈 변수의 경우 동작 방식이 조금 다릅니다. 특히 :으로 경로를 구분할 때 문제가 생길 수 있습니다. 이 문제를 해결하는 방법은 변수 값이 비어 있는 경우를 명시적으로 처리하는 것입니다.
+
+  문제의 원인
+  set 명령어에서 기존 변수($LDFLAGS, $PKG_CONFIG_PATH 등)가 비어 있으면, Fish는 결과적으로 잘못된 값이나 구문 오류를 만들 수 있습니다.
+  예: set -gx PKG_CONFIG_PATH $PKG_CONFIG_PATH:/new/path에서 $PKG_CONFIG_PATH가 비어 있으면 :/new/path만 남게 됩니다.
+  해결 방법
+  1. 빈 변수 처리
+  빈 변수를 처리하기 위해 조건부 설정을 추가합니다:
+
+  fish
+  Copy code
+  # Ensure the variable is not empty before appending
+  set -q LDFLAGS; or set LDFLAGS ""
+  set -gx LDFLAGS $LDFLAGS -L/home/linuxbrew/.linuxbrew/opt/e2fsprogs/lib
+
+  set -q CPPFLAGS; or set CPPFLAGS ""
+  set -gx CPPFLAGS $CPPFLAGS -I/home/linuxbrew/.linuxbrew/opt/e2fsprogs/include
+
+  set -q PKG_CONFIG_PATH; or set PKG_CONFIG_PATH ""
+  set -gx PKG_CONFIG_PATH $PKG_CONFIG_PATH:/home/linuxbrew/.linuxbrew/opt/e2fsprogs/lib/pkgconfig
+  set -q <변수>: 변수가 이미 존재하는지 확인합니다.
+
+
+
+CUDA Samples
+%shell>
+  git clone https://github.com/nvidia/cuda-samples
+  cd cuda-samples
+  # CUDA Samples does not support gcc-13 >=
+  make NVCCFLAGS="--compiler-bindir=/usr/bin/gcc-12" LDFLAGS="-lstdc++" TARGET_ARCH=x86_64
+
+
+make NVCCFLAGS="--compiler-bindir=/usr/bin/gcc-12" LDFLAGS="-lstdc++ -lm"
+
+
+⚓ Cuda Compaitilbity
+  https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html

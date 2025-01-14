@@ -18,7 +18,19 @@
 └── 📂 projects
     └── <A team_project>
 '
+# Handle SIGINT (Ctrl+C) to exit the script and terminate any child processes
+function on_interrupt
+    echo -e "\nScript interrupted. Exiting..."
+    # Kill all child processes in the same process group
+    kill -- -$fish_pid
+    exit 1
+end
+trap on_interrupt SIGINT
+
+
+### Load Modules
 set -l script_dir (dirname (realpath (status filename)))
+source $script_dir/fish_modules/_import_all.fish
 
 # Create the main directories if it doesn't exist
 set repos_dir $HOME/repos
@@ -78,11 +90,6 @@ Fish plugins
 fisher install berk-karaal/loadenv.fish
 fisher install jorgebucaran/replay.fish
 
-
-
-##### ...
-### Load Modules
-source $script_dir/fish_modules/_import_all.fish
 
 
 
@@ -249,11 +256,11 @@ if not grep -Fxq "$unique_comment" "$FISH_CONFIG_PATH"
     fish_add_path /home/linuxbrew/.linuxbrew/opt/e2fsprogs/sbin
     set -gx LDFLAGS \$LDFLAGS -L/home/linuxbrew/.linuxbrew/opt/e2fsprogs/lib
     set -gx CPPFLAGS \$CPPFLAGS -I/home/linuxbrew/.linuxbrew/opt/e2fsprogs/include
+    set --query PKG_CONFIG_PATH; or set PKG_CONFIG_PATH ""
     set -gx PKG_CONFIG_PATH \$PKG_CONFIG_PATH:/home/linuxbrew/.linuxbrew/opt/e2fsprogs/lib/pkgconfig
     " | prettify_indent_via_pipe | tee -a $FISH_CONFIG_PATH >/dev/null
     echo -e "\n" >>"$FISH_CONFIG_PATH"
 end
-
 
 
 
@@ -665,9 +672,9 @@ fish_add_path $PYENV_ROOT/bin
 set unique_comment '## [pyenv] settings'
 if not grep -Fxq "$unique_comment" "$FISH_CONFIG_PATH"
     echo "
-$unique_comment"'
-pyenv init - | source
-' | prettify_indent_via_pipe | tee -a $FISH_CONFIG_PATH >/dev/null
+      $unique_comment"'
+      pyenv init - | source
+      ' | prettify_indent_via_pipe | tee -a $FISH_CONFIG_PATH >/dev/null
     echo -e "\n" >>"$FISH_CONFIG_PATH"
 end
 
