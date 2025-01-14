@@ -1,6 +1,8 @@
 #!/usr/bin/env fish
 
-##### 📦 Install GPU driver 🔪 NVIDIA Driver
+#####
+echo "📦 Install GPU driver 🔪 NVIDIA Driver"
+
 # 🗑️ ubuntu-drivers autoinstall          🗑️ Deprecated: please use "install" instead
 sudo ubuntu-drivers install
 : '🧮 ubuntu-drivers devices
@@ -32,32 +34,88 @@ sudo ubuntu-drivers install
 
 
 
-##### 📦 Install GPU driver 🔪 NVIDIA CUDA Toolkit ; https://docs.nvidia.com/cuda/cuda-installation-guide-linux/#common-installation-instructions-for-ubuntu
+##### https://docs.nvidia.com/cuda/cuda-installation-guide-linux/#common-installation-instructions-for-ubuntu
 # https://developer.nvidia.com/cuda-toolkit-archive
-## 3.8.4. Common Installation Instructions for Ubuntu
+echo "📦 Install GPU driver 🔪 NVIDIA CUDA Toolkit
+
+  🚧 Prerequisite
+    - Refer to `Pre-installation Actions` ; https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#pre-installation-actions
+      Install NVIDIA Driver
+"
+
+
+### 3.8.3. Network Repo Installation for Ubuntu ; https://docs.nvidia.com/cuda/cuda-installation-guide-linux/#network-repo-installation-for-ubuntu
+# Remove Outdated Signing Key:
+sudo apt-key del 7fa2af80
+
+
+# Load system release info
+loadenv /etc/os-release
+
+# Determine the distribution and architecture
+# string lower $NAME
+# string replace "." "" $VERSION_ID
+
+set distribution (string lower $NAME)(string replace "." "" $VERSION_ID)
+set arch (uname -m)
+if test $arch = x86_64
+    set arch x86_64
+else if test $arch = aarch64
+    set arch arm64
+else
+    echo "Unsupported architecture: $arch"
+    exit 1
+end
+
+# Temporary directory for the .deb file
+set temp_dir /tmp
+
+# Specify version at 📅 2025-01-14 14:32:53
+set deb_file "$temp_dir/cuda-keyring_1.1-1_all.deb"
+
+# Download the CUDA keyring package to /tmp
+echo "⚠️ It not supports Version which is not LTS. 🛍️ e.g. Ubuntu 24.10 Does not have "
+echo "Downloading CUDA keyring package for $distribution/$arch..."
+and wget "https://developer.download.nvidia.com/compute/cuda/repos/$distribution/$arch/cuda-keyring_1.1-1_all.deb" -O $deb_file
+and echo "Installing CUDA keyring package..."
+and sudo dpkg -i $deb_file
+and echo "CUDA installation completed successfully!"
+
+
+
+### 3.8.4. Common Installation Instructions for Ubuntu
 # These instructions apply to both local and network installation for Ubuntu.
 # Update the Apt repository cache:
 # Install CUDA SDK:
 # ⚠️ Note These two commands must be executed separately.
-sudo apt install cuda-toolkit
-To include all GDS packages:
+sudo apt-get update
+and sudo apt install -y cuda-toolkit
 
-sudo apt install nvidia-gds
+# To include all GDS packages:
+and sudo apt install -y nvidia-gds
 ## For native arm64-Jetson repos, install the additional packages:
-# sudo apt install cuda-compat
+# sudo apt install cuda-compat  
 
 # 😠
-echo "❗  Reboot the system. Installation of cuda-toolkit is complete."
-
-## Perform the Post-installation Actions ; https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#post-installation-actions
-
-
-## 📰📰📰📰📰📰📰📰📰
+and echo "❗  Reboot the system. Installation of cuda-toolkit is complete."
 
 
 
 
-##### 📦 Install GPU driver 🔪 NVIDIA NVIDIA Container Toolkit ; https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html
+
+### Perform the Post-installation Actions ; https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#post-installation-actions
+
+
+
+
+
+##### https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html
+echo "📦 Install GPU driver 🔪 NVIDIA NVIDIA Container Toolkit
+
+  🚧 Prerequisite
+    - Install the NVIDIA GPU driver for your Linux distribution.
+"
+
 ### Installation
 # Configure the production repository:
 curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --batch --yes --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg

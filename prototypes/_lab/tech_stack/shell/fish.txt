@@ -73,6 +73,8 @@ Fish 🔪⚓ Commands ; https://fishshell.com/docs/current/commands.html
     💡 If a component already exists, it is not added again and stays in the same place unless the --move switch is given.
 
 
+  ⚓ string-lower - convert strings to lowercase ; https://fishshell.com/docs/current/cmds/string-lower.html
+
   ⚓ string-match - match substrings ; https://fishshell.com/docs/current/cmds/string-match.html
     If 🪱 --groups-only or -g is given, only the capturing groups will be reported - meaning the full match will be skipped. 
     If 🪱 --regex or -r is given, PATTERN is interpreted as a Perl-compatible regular expression, which does not have to match the entire STRING.
