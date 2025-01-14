@@ -130,6 +130,30 @@ if not grep -Fxq "$unique_comment" "$fish_config_path"
     echo -e "\n" >>"$fish_config_path"
 end
 
+## Recommended Actions - CUDA Samples ; https://github.com/nvidia/cuda-samples
+: '
+%shell>
+  git clone https://github.com/nvidia/cuda-samples
+  cd cuda-samples
+  # CUDA Samples does not support gcc-13 >=
+  make NVCCFLAGS="--compiler-bindir=/usr/bin/gcc-12" LDFLAGS="-lstdc++ -lm" TARGET_ARCH=x86_64
+  fd --type executable
+
+  🛍️ e.g. x86_64/linux/release on  master via 🐍 v3.13.1 
+    %shell> ./matrixMul
+    >>
+      [Matrix Multiply Using CUDA] - Starting...
+      GPU Device 0: "Ada" with compute capability 8.9
+
+      MatrixA(320,320), MatrixB(640,320)
+      Computing result using CUDA Kernel...
+      done
+      Performance= 2411.00 GFlop/s, Time= 0.054 msec, Size= 131072000 Ops, WorkgroupSize= 1024 threads/block
+      Checking computed result for correctness: Result = PASS
+
+      NOTE: The CUDA Samples are not meant for performance measurements. Results may vary when GPU Boost is enabled.
+'
+
 
 
 

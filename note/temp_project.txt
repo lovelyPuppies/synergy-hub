@@ -16773,16 +16773,7 @@ RUN echo 'export LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libgomp.so.1:$LD_PRELOAD'
 
 
 
-CUDA Samples
-%shell>
-  git clone https://github.com/nvidia/cuda-samples
-  cd cuda-samples
-  # CUDA Samples does not support gcc-13 >=
-  make NVCCFLAGS="--compiler-bindir=/usr/bin/gcc-12" LDFLAGS="-lstdc++" TARGET_ARCH=x86_64
-
-
-make NVCCFLAGS="--compiler-bindir=/usr/bin/gcc-12" LDFLAGS="-lstdc++ -lm"
-
-
 ⚓ Cuda Compaitilbity
   https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html
+
+  
