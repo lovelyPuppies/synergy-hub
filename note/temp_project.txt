@@ -16681,26 +16681,30 @@ resolvectl
   resolvectl status
 
 
-[roslaunch][ERROR] 2025-01-14 10:20:53,352: ================================================================================REQUIRED process [rviz-3] has died!
-  process has died [pid 1328, exit code -9, cmd /opt/ros/noetic/lib/rviz/rviz -d /opt/ros/noetic/share/turtlebot3_slam/rviz/turtlebot3_gmapping.rviz __name:=rviz __log:=/home/vscode/.ros/log/ae21d00e-d215-11ef-93ce-0242ac120002/rviz-3.log].
-  log file: /home/vscode/.ros/log/ae21d00e-d215-11ef-93ce-0242ac120002/rviz-3*.log
-  Initiating shutdown!    
-
-
+code -9
 Out of Memory, OOM
 
-  
+%shell> roslaunch turtlebot3_slam turtlebot3_slam.launch 
+>> 
+  [turtlebot3_slam_gmapping-2] process has died [pid 15991, exit code -9, cmd /opt/ros/noetic/lib/gmapping/slam_gmapping __name:=turtlebot3_slam_gmapping __log:=/home/vscode/.ros/log/a631a2c4-d257-11ef-8d09-0242ac120002/turtlebot3_slam_gmapping-2.log].
+  [robot_state_publisher-1] process has died [pid 15990, exit code -9, cmd /opt/ros/noetic/lib/robot_state_publisher/robot_state_publisher __name:=robot_state_publisher __log:=/home/vscode/.ros/log/a631a2c4-d257-11ef-8d09-0242ac120002/robot_state_publisher-1.log].
+  ...
+
+%shell:fish> rosrun rviz rviz -d (rospack find turtlebot3_description)/rviz/model.rviz
+>> 
+  [roslaunch][ERROR] 2025-01-14 10:20:53,352: ================================================================================REQUIRED process [rviz-3] has died!
+    process has died [pid 1328, exit code -9, cmd /opt/ros/noetic/lib/rviz/rviz -d /opt/ros/noetic/share/turtlebot3_slam/rviz/turtlebot3_gmapping.rviz __name:=rviz __log:=/home/vscode/.ros/log/ae21d00e-d215-11ef-93ce-0242ac120002/rviz-3.log].
+
+
+
+https://docs.docker.com/get-started/docker-concepts/running-containers/publishing-ports/#publishing-all-ports
+When creating a container image, the EXPOSE instruction is used to indicate the packaged application will use the specified port. These ports aren't published by default.
+📝 Meta Info
 
 🪱 IPAM은 IP Address Management의 약자입니다 ; https://docs.docker.com/reference/compose-file/networks/#ipam
   https://en.wikipedia.org/wiki/IP_address_management
   
 
-
-%shell> roslaunch turtlebot3_slam turtlebot3_slam.launch 
->> 
-[turtlebot3_slam_gmapping-2] process has died [pid 15991, exit code -9, cmd /opt/ros/noetic/lib/gmapping/slam_gmapping __name:=turtlebot3_slam_gmapping __log:=/home/vscode/.ros/log/a631a2c4-d257-11ef-8d09-0242ac120002/turtlebot3_slam_gmapping-2.log].
-[robot_state_publisher-1] process has died [pid 15990, exit code -9, cmd /opt/ros/noetic/lib/robot_state_publisher/robot_state_publisher __name:=robot_state_publisher __log:=/home/vscode/.ros/log/a631a2c4-d257-11ef-8d09-0242ac120002/robot_state_publisher-1.log].
-...
 
 
 # 7. Export LD_PRELOAD for dynamic linking

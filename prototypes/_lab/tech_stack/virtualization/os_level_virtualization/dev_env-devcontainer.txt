@@ -14,7 +14,15 @@ dev container 🔪⚓ Overview ; https://containers.dev/overview
 ----------------------------------------------
 dev container 🔪⚓ Reference ; https://containers.dev/implementors/json_reference
 
+  #️⃣ General devcontainer.json properties ;  https://containers.dev/implementors/json_reference/#general-properties
+    # containerEnv
+    # remoteENv
+      📝📰 개발 도구나 클라이언트 환경에서만 필요한 환경 변수를 설정하고자 할 때 사용?
 
+  #️⃣ Docker Compose specific properties ; https://containers.dev/implementors/json_reference/#compose-specific
+    - dockerComposeFile
+    - service
+    
 ----------------------------------------------
 dev container 🔪⚓ Specification ; https://containers.dev/implementors/spec/
 
@@ -42,5 +50,4 @@ dev container 🔪⚓ Available Templates ; https://containers.dev/templates
 
 ----------------------------------------------
 dev container 🔪⚓ Collections ; https://containers.dev/collections
-
 
