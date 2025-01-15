@@ -45,16 +45,110 @@ ROS 2 🔪 Docs ; https://docs.ros.org/en/jazzy/index.html
 
 
 
-
-
-
-
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
 ⚓ ROS 1 ; https://wiki.ros.org/
 
 
 (✍️ ROS 1 🔪 study)
-🚨 (Issue: Error);
+  🚨 (Issue: Error); Running ROS commands in Container exhausts memory 📅 2025-01-15 11:28:59
+    ❔➡️ Workaround:
+        - Set Hard limit to docker-compose.yml, and fluidly adjust Soft limit in a shell session.
+          🛍️ e.g. 
+
+            ```yaml
+            # 🗄️ docker-compose.yml
+            services:
+              app:
+                ulimits:
+                  # Maximum number of processes a single node or process can create in multi-process systems like ROS.
+                  nproc: 65535
+                  nofile:
+                    ## Error: services.app.ulimits.nofile soft is required 📅 2025-01-14 21:55:00
+                    # 🚨 (Issue: Bug): ulimit soft not working in devcontainer from docker-compose.yml. 📅 2025-01-15 09:27:03
+                    #   However, when using `docker compose up` and `exec` to access the container, soft settings are applied as expected.
+
+                    # Maximum number of file descriptors a process can use at a time, including files, sockets, pipes, and other resources.
+                    soft: 1024
+                    hard: 524288
+            ```
+            Or, Or, set the same limits for each terminal session.
+            ```bash
+            #!/usr/bin/bash
+            ulimit -Hn 524288   # 4 MiB
+            ulimit -Sn 1024     # 1 KiB
+            ```
+
+          📝 Explanation of memory calculation:
+            - Each `pollfd` structure consumes 8 bytes.
+            - For 524,288 file descriptors:
+              - Memory consumption = 524,288 file descriptors × 8 bytes = 4,194,304 bytes.
+              - 4,194,304 bytes = 4 MiB (Mebibytes).
+
+        - Check value using command 🧮 %shell> ulimit -Sn && ulimit -Hn
+
+    ❔ When
+        in Docker ROS 1 noetic container,
+
+        1. in ROS master
+          %shell> roscore
+        2. in turtlebot 3, bring up 
+          %shell> roslaunch turtlebot3_bringup turtlebot3_robot.launch
+        3. in ROS master
+          %shell:fish> 
+            rosrun rviz rviz -d (rospack find turtlebot3_description)/rviz/model.rviz
+            # or 
+            roslaunch turtlebot3_slam turtlebot3_slam.launch
+
+    ❔ Symptom
+      The container consumes all available memory, often exceeding 8GB, causing the computer to freeze or crash
+      , with all other programs exiting except the desktop environment.
+
+    ❔🤔 Deduction
+      %shell> top
+      
+      Swap memory usage increases significantly, with some processes consuming up to 512 MiB per process.
+      It seems that there is a memory leak in ROS 1.
+      
+    ❔ Root Cause
+      The core issue stems from the design of the XmlRpcServer in ROS, which handles asynchronous socket communication using the pollfd structure. This structure, defined in /usr/include/poll.h, is used to monitor file descriptors. The excessive memory consumption occurs due to the following reasons:
+
+      - pollfd Structure and Memory Usage:
+        The pollfd structure is defined as:
+        ```c
+        struct pollfd {
+            int fd;           /* File descriptor to poll. */
+            short int events; /* Requested events to watch. */
+            short int revents; /* Returned events. */
+        };
+        ```
+
+        Each pollfd occupies 8 bytes:
+          - 4 bytes for the int field.
+          - 2 bytes each for the short int fields.
+          - Includes alignment padding for memory efficiency on 64-bit systems.
+
+      - The XmlRpcServer initializes a 🚣 std::vector<pollfd> with a size equal to the system's file descriptor limit (ulimit -n).
+        This design results in significant memory allocation.
+        In many Docker container environments, this limit is often set to an extremely high value (same with Host system's value), such as 1,073,741,816.
+        
+        This leads to excessive memory allocation: ❗ 1,073,741,816 × 8 bytes = 8GB per ROS node.
+
+        However, even in sufficient RAM environments, excessive pollfd allocation and communication overhead lead to memory exhaustion
+          XML-RPC-Based Communication Overhead:
+            - Node-to-node communication:
+              Each rosrun or roslaunch instance establishes multiple network socket connections, increasing memory usage for sockets.
+            - Message queues and buffers:
+              Topic caches, data buffers, and message queues add additional memory overhead.
+            - High swap memory usage:
+              ❗ Observations show that even running roscore alone can result in processes consuming up to 512 MiB of swap memory per process.
+              Swap memory usage spikes, further degrading system performance.
+
+    ❔ References
+      - roscore using up all available memory ; https://answers.ros.org/question/416357/
+      - rosout high memory usage ; https://robotics.stackexchange.com/questions/93752/rosout-high-memory-usage
+      - XmlRpcServer.cpp ; https://github.com/ros/ros_comm/blob/noetic-devel/utilities/xmlrpcpp/src/XmlRpcServer.cpp
+
+
 
 ----------------------------------------------
 ⚓🔰 ROS 1 🔪 Tutorials ; https://wiki.ros.org/ROS/Tutorials
@@ -228,12 +322,3 @@ ROS 2 🔪 Docs ; https://docs.ros.org/en/jazzy/index.html
         rosrun <package> <executable>
   ⚓ rospy_tutorials ; https://wiki.ros.org/rospy_tutorials
 
-
-bat /proc/cpuinfo
-sudo dmidecode -t processor
-sudo dmidecode -t memory
-
-
-메모리 사용량: free -h
-
-top, htop 

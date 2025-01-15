@@ -25,6 +25,9 @@ source /opt/ros/$ROS_DISTRO/share/rosbash/rosfish
 
 # 🐢 TurtleBot3 Configuration
 set -x TURTLEBOT3_MODEL burger
+
+## ☑️ from Bug that is not applied for soft uimit from docker-compose.yml
+ulimit -Sn 1024
 ' | tee $FISH_CONFIG_PATH >/dev/null
 
 

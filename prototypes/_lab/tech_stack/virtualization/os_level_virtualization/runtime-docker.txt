@@ -49,10 +49,47 @@ docker 🔪⚓ Reference ; https://docs.docker.com/reference/
     ⚓ Networks top-level elements ; https://docs.docker.com/reference/compose-file/networks
       - 🪱 ipam
     ⚓ Services top-level elements ; https://docs.docker.com/reference/compose-file/services/
-      #️⃣📍 tty ; https://docs.docker.com/reference/compose-file/services/#tty
+      #️⃣🔰 tty ; https://docs.docker.com/reference/compose-file/services/#tty
         Supported values are true or false
     
-    
+      #️⃣ ulimits ; https://docs.docker.com/reference/compose-file/services/#ulimits
+        ulimits overrides the default ulimits for a container.
+        It's specified either as an integer for a single limit or as mapping for soft/hard limits.
+
+      #️⃣ deploy ; https://docs.docker.com/reference/compose-file/services/#deploy
+        🔗⚓ Compose Deploy Specification ; https://docs.docker.com/reference/compose-file/deploy/
+          # Resources
+            - 🪱 cpus
+              ❗ cpus configures a limit or reservation for how much of the available CPU resources, as number of cores, a container can use.
+            - 🪱 memory
+
+devcontainer 에 추가.. (정리 문서)
+  containerEnv
+  remoteENv
+
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+
+  Docker..
+    https://docs.docker.com/compose/how-tos/environment-variables/set-environment-variables/
+
+    https://docs.docker.com/get-started/docker-concepts/running-containers/publishing-ports/
+
+    https://docs.docker.com/reference/compose-file/services/#ipv4_address-ipv6_address
+    https://docs.docker.com/get-started/docker-concepts/running-containers/publishing-ports/#publishing-all-ports
+      When creating a container image, the EXPOSE instruction is used to indicate the packaged application will use the specified port. These ports aren't published by default.
+      📝 Meta Info..
+
+    https://docs.docker.com/compose/how-tos/environment-variables/set-environment-variables/#use-the-env_file-attribute
+      env file
+    https://containers.dev/implementors/json_reference/#compose-specific
+      dockerComposeFile
+
+    // https://code.visualstudio.com/remote/advancedcontainers/environment-variables#_option-2-use-an-env-file
+
+    containerEnv
+    remoteEnv     
 ==============================================
 Docker Docs 🔪 Open Source
   ⚓ Docker Engine ; https://docs.docker.com/engine/
@@ -62,8 +99,6 @@ Docker Docs 🔪 Open Source
         - 🪱⚖️ bridge
           The default network driver. ...
           
-----------------------------------------------
-
 
 ==============================================
 Docker Docs 🔪 Products 
@@ -72,4 +107,4 @@ Docker Docs 🔪 Products
 
 
 ==============================================
-Docker Docs 🔪 Platform
+Docker Docs 🔪 Platform   

@@ -4459,6 +4459,12 @@ VNC ?
 CMOS 세팅?
 
 
+
+⚓ Cuda Compaitilbity
+  https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html
+
+
+
 https://www.ros.org/reps/rep-2000.html#jazzy-jalisco-may-2024-may-2029
 🆚 
   flatpak install flathub com.usebottles.bottles
@@ -16113,7 +16119,7 @@ export LIBVA_DRIVER_NAME=nvidia
 export VDPAU_DRIVER=nvidia
 
 
-ffplay -loglevel warning -hwaccel vdpau -vcodec h264 output.mp4
+ffplay -loglevel warning -hwaccel vdpau -vcodec h264 output.mp4   
 ffplay -loglevel warning -hwaccel cuda -vcodec h264_cuvid output.mp4
 
 
@@ -16129,17 +16135,16 @@ SDL2는 Simple DirectMedia Layer 2의 약자입니다.
 
 OpenGL(Open Graphics Library) 는 실리콘 그래픽스사에서 만든 2차원/3차원 그래픽스 표준 API 규격
 
-🧮 nvtop
-  vkcube
-  >>
-    Selected WSI platform: xcb
-    Selected GPU 0: NVIDIA GeForce RTX 4070 SUPER, type: DiscreteGpu
-  // WSI(Windows System Integration): Vulkan이 사용하는 창 관리 시스템(Windowing System Integration)
-  glmark2
-  =======================================================
-      OpenGL Information
-      GL_VENDOR:      Mesa
-      GL_RENDERER:    llvmpipe (LLVM 19.1.0, 256 bits)
+vkcube
+>>
+  Selected WSI platform: xcb
+  Selected GPU 0: NVIDIA GeForce RTX 4070 SUPER, type: DiscreteGpu
+// WSI(Windows System Integration): Vulkan이 사용하는 창 관리 시스템(Windowing System Integration)
+glmark2
+=======================================================
+    OpenGL Information
+    GL_VENDOR:      Mesa
+    GL_RENDERER:    llvmpipe (LLVM 19.1.0, 256 bits)
 
 glxinfo | grep "OpenGL renderer"
   >> OpenGL renderer string: llvmpipe (LLVM 19.1.0, 256 bits)
@@ -16690,45 +16695,24 @@ Out of Memory, OOM
   https://en.wikipedia.org/wiki/IP_address_management
   
 
-devcontainer 에 추가.. (정리 문서)
-  containerEnv
-  remoteENv
 
-  "build": {
-    "dockerfile": "Dockerfile"
-  },
-
-  Docker..
-    https://docs.docker.com/compose/how-tos/environment-variables/set-environment-variables/
-
-    https://docs.docker.com/get-started/docker-concepts/running-containers/publishing-ports/
-
-    https://docs.docker.com/reference/compose-file/services/#ipv4_address-ipv6_address
-    https://docs.docker.com/get-started/docker-concepts/running-containers/publishing-ports/#publishing-all-ports
-      When creating a container image, the EXPOSE instruction is used to indicate the packaged application will use the specified port. These ports aren't published by default.
-      📝 Meta Info..
-
-    https://docs.docker.com/compose/how-tos/environment-variables/set-environment-variables/#use-the-env_file-attribute
-      env file
-    https://containers.dev/implementors/json_reference/#compose-specific
-      dockerComposeFile
-
-    // https://code.visualstudio.com/remote/advancedcontainers/environment-variables#_option-2-use-an-env-file
-
-    containerEnv
-    remoteEnv     
+%shell> roslaunch turtlebot3_slam turtlebot3_slam.launch 
+>> 
+[turtlebot3_slam_gmapping-2] process has died [pid 15991, exit code -9, cmd /opt/ros/noetic/lib/gmapping/slam_gmapping __name:=turtlebot3_slam_gmapping __log:=/home/vscode/.ros/log/a631a2c4-d257-11ef-8d09-0242ac120002/turtlebot3_slam_gmapping-2.log].
+[robot_state_publisher-1] process has died [pid 15990, exit code -9, cmd /opt/ros/noetic/lib/robot_state_publisher/robot_state_publisher __name:=robot_state_publisher __log:=/home/vscode/.ros/log/a631a2c4-d257-11ef-8d09-0242ac120002/robot_state_publisher-1.log].
+...
 
 
 # 7. Export LD_PRELOAD for dynamic linking
 RUN echo 'export LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libgomp.so.1:$LD_PRELOAD' >> ~/.bashrc
   libgomp는 **GNU OpenMP(Runtime)**의 공유 라이브러리입니다. OpenMP는 다중 스레드 병렬 프로그래밍을 위한 API 표준으로, libgomp는 OpenMP 명령어를 처리하고 실행하는 데 필요한 런타임 지원을 제공합니다.
 
-📦
-  How to automatically overwrite the output file when running `gpg` (i.e. without being prompted)? [closed]
+
+
+📦 How to automatically overwrite the output file when running `gpg` (i.e. without being prompted)? [closed]
   https://stackoverflow.com/questions/7519375/how-to-automatically-overwrite-the-output-file-when-running-gpg-i-e-without
     Adding --batch --yes
-
-
+  ?? 어디에너 ㅎ어야.. 
 
 📰 Docker Rootless mode...
   https://docs.docker.com/engine/security/rootless/
@@ -16736,7 +16720,8 @@ RUN echo 'export LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libgomp.so.1:$LD_PRELOAD'
   https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html#rootless-mode
     보안이 중요한 다중 사용자 환경에서 Docker를 실행해야 하는 경우
     
-📅 2025-01-14 15:15:03 HOwto
+  ✅ (how-to); set ":"when empty in Fish shell
+  ..  ?근데 이거 띄어쓰기로 선언하나, 그냥 선언하나 같은건가 그럼? echo 해보면 애초에 ":" 가 안나오는데.. 나중에 해보고...
   이거 fish shell 에서 띄어쓰기로 하면 잘 등록되는데, ":" 으로 하면 변수값이 없는 경우 등록이 안 돼. 사람들으 ㄴ어떻게 이 문제를 해결하고 잇지?
 
   set -gx LDFLAGS $LDFLAGS -L/home/linuxbrew/.linuxbrew/opt/e2fsprogs/lib
@@ -16744,8 +16729,8 @@ RUN echo 'export LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libgomp.so.1:$LD_PRELOAD'
   set -gx PKG_CONFIG_PATH $PKG_CONFIG_PATH:/home/linuxbrew/.linuxbrew/opt/e2fsprogs/lib/pkgconfig
 
   ChatGPT said:
-  ChatGPT
-  Fish shell에서 set 명령어는 Bash와 다르게 빈 변수의 경우 동작 방식이 조금 다릅니다. 특히 :으로 경로를 구분할 때 문제가 생길 수 있습니다. 이 문제를 해결하는 방법은 변수 값이 비어 있는 경우를 명시적으로 처리하는 것입니다.
+    ChatGPT
+    Fish shell에서 set 명령어는 Bash와 다르게 빈 변수의 경우 동작 방식이 조금 다릅니다. 특히 :으로 경로를 구분할 때 문제가 생길 수 있습니다. 이 문제를 해결하는 방법은 변수 값이 비어 있는 경우를 명시적으로 처리하는 것입니다.
 
   문제의 원인
   set 명령어에서 기존 변수($LDFLAGS, $PKG_CONFIG_PATH 등)가 비어 있으면, Fish는 결과적으로 잘못된 값이나 구문 오류를 만들 수 있습니다.
@@ -16768,25 +16753,7 @@ RUN echo 'export LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libgomp.so.1:$LD_PRELOAD'
   set -q <변수>: 변수가 이미 존재하는지 확인합니다.
 
 
-
-⚓ Cuda Compaitilbity
-  https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html
-
-
-  docker ps --no-trunc
-  https://docs.docker.com/reference/compose-file/deploy/#resources
-    cpus
-    ❗ cpus configures a limit or reservation for how much of the available CPU resources, as number of cores, a container can use.
-
-  #️⃣ deploy ; https://docs.docker.com/reference/compose-file/services/#deploy
-    🔗 Compose Deploy Specification
-
-  ⚓ Compose Deploy Specification ; https://docs.docker.com/reference/compose-file/deploy/
-    #️⃣ Resources ; https://docs.docker.com/reference/compose-file/deploy/#resources
-      - 🪱 cpus
-      - 🪱 memory
-
-  ❗ 
+❗ 
   tty 옵션은 Docker에서 컨테이너 실행 시 **가상 터미널(TTY, Teletypewriter)**을 할당할지 여부를 결정하는 설정입니다. 이 옵션은 대화형 세션을 지원하거나, 터미널 기반 애플리케이션과 상호 작용할 때 유용합니다.
     tty 옵션을 사용할 때의 주의점
     컨테이너 유지:
@@ -16799,101 +16766,29 @@ RUN echo 'export LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libgomp.so.1:$LD_PRELOAD'
 
 
 
-
-roslaunch turtlebot3_slam turtlebot3_slam.launch 
-
-vscode@fdfa631cfcb5 /workspace [SIGKILL]> ./test.fish
-... logging to /home/vscode/.ros/log/a631a2c4-d257-11ef-8d09-0242ac120002/roslaunch-fdfa631cfcb5-15974.log
-Checking log directory for disk usage. This may take a while.
-Press Ctrl-C to interrupt
-Done checking log file disk usage. Usage is <1GB.
-
-xacro: in-order processing became default in ROS Melodic. You can drop the option.
-started roslaunch server http://172.18.0.2:42907/
-
-SUMMARY
-========
-
-PARAMETERS
- * /robot_description: <?xml version="1....
- * /robot_state_publisher/publish_frequency: 50.0
- * /robot_state_publisher/tf_prefix: 
- * /rosdistro: noetic
- * /rosversion: 1.17.0
- * /turtlebot3_slam_gmapping/angularUpdate: 0.2
- * /turtlebot3_slam_gmapping/astep: 0.05
- * /turtlebot3_slam_gmapping/base_frame: base_footprint
- * /turtlebot3_slam_gmapping/delta: 0.05
- * /turtlebot3_slam_gmapping/iterations: 5
- * /turtlebot3_slam_gmapping/kernelSize: 1
- * /turtlebot3_slam_gmapping/lasamplerange: 0.005
- * /turtlebot3_slam_gmapping/lasamplestep: 0.005
- * /turtlebot3_slam_gmapping/linearUpdate: 1.0
- * /turtlebot3_slam_gmapping/llsamplerange: 0.01
- * /turtlebot3_slam_gmapping/llsamplestep: 0.01
- * /turtlebot3_slam_gmapping/lsigma: 0.075
- * /turtlebot3_slam_gmapping/lskip: 0
- * /turtlebot3_slam_gmapping/lstep: 0.05
- * /turtlebot3_slam_gmapping/map_frame: map
- * /turtlebot3_slam_gmapping/map_update_interval: 2.0
- * /turtlebot3_slam_gmapping/maxUrange: 3.0
- * /turtlebot3_slam_gmapping/minimumScore: 50
- * /turtlebot3_slam_gmapping/odom_frame: odom
- * /turtlebot3_slam_gmapping/ogain: 3.0
- * /turtlebot3_slam_gmapping/particles: 100
- * /turtlebot3_slam_gmapping/resampleThreshold: 0.5
- * /turtlebot3_slam_gmapping/sigma: 0.05
- * /turtlebot3_slam_gmapping/srr: 0.1
- * /turtlebot3_slam_gmapping/srt: 0.2
- * /turtlebot3_slam_gmapping/str: 0.1
- * /turtlebot3_slam_gmapping/stt: 0.2
- * /turtlebot3_slam_gmapping/temporalUpdate: 0.5
- * /turtlebot3_slam_gmapping/xmax: 10.0
- * /turtlebot3_slam_gmapping/xmin: -10.0
- * /turtlebot3_slam_gmapping/ymax: 10.0
- * /turtlebot3_slam_gmapping/ymin: -10.0
-
-NODES
-  /
-    robot_state_publisher (robot_state_publisher/robot_state_publisher)
-    rviz (rviz/rviz)
-    turtlebot3_slam_gmapping (gmapping/slam_gmapping)
-
-ROS_MASTER_URI=http://172.18.0.2:11311
-
-process[robot_state_publisher-1]: started with pid [15990]
-process[turtlebot3_slam_gmapping-2]: started with pid [15991]
-process[rviz-3]: started with pid [15992]
-[turtlebot3_slam_gmapping-2] process has died [pid 15991, exit code -9, cmd /opt/ros/noetic/lib/gmapping/slam_gmapping __name:=turtlebot3_slam_gmapping __log:=/home/vscode/.ros/log/a631a2c4-d257-11ef-8d09-0242ac120002/turtlebot3_slam_gmapping-2.log].
-log file: /home/vscode/.ros/log/a631a2c4-d257-11ef-8d09-0242ac120002/turtlebot3_slam_gmapping-2*.log
-[robot_state_publisher-1] process has died [pid 15990, exit code -9, cmd /opt/ros/noetic/lib/robot_state_publisher/robot_state_publisher __name:=robot_state_publisher __log:=/home/vscode/.ros/log/a631a2c4-d257-11ef-8d09-0242ac120002/robot_state_publisher-1.log].
-log file: /home/vscode/.ros/log/a631a2c4-d257-11ef-8d09-0242ac120002/robot_state_publisher-1*.log
-^C[rviz-3] killing on exit
-shutting down processing monitor...
-... shutting down processing monitor complete
-done
-vscode@fdfa631cfcb5 /workspace> 
-
-
-
-Reference
-  https://answers.ros.org/question/416357/
-  https://robotics.stackexchange.com/questions/93752/rosout-high-memory-usage
-
-
-synergy-hub on  main is 📦 v0.1.0 via 🐍 v3.13.1 
-  ❯ ulimit -Hn
-  1073741816
-
-synergy-hub on  main is 📦 v0.1.0 via 🐍 v3.13.1 
-  ❯ ulimit -Sn
-  1073741816
-
-
-524,288 * 8 byte ≈ 4.19MB
-
+❓ 면접.. 파일 디스크립터.  ulimit -Sn, -Hn,..
+  xml rpc(Remote Procedure call) server?
   파일 디스크립터는 프로세스의 파일 테이블에서 파일 핸들을 가리키는 정수 값입니다.
-  자체적으로는 4바이트(32비트 시스템) 또는 **8바이트(64비트 시스템)**를 차지합니다.
+    자체적으로는 4바이트(32비트 시스템) 또는 **8바이트(64비트 시스템)**를 차지합니다.
+  네, 장치 간 통신에서 **ioctl(Input/Output Control)**은 파일 디스크립터를 통해 이루어집니다.
 
-ROS의 XmlRpcServer는 std::vector<pollfd>를 사용합니다.
-  ROS와 pollfd 구조체 
+  파일 디스크립터가 적용되는 대상
+    표준 입출력: stdin, stdout, stderr와 같은 표준 스트림도 디스크립터를 사용.
+    파이프: 익명 파이프 및 명명된 파이프(named pipe).
+
+    파일: 일반 파일, 로그 파일 등.
+    소켓: 네트워크 소켓(TCP/UDP).
+    기타 IPC(프로세스 간 통신) 리소스: 공유 메모리, 메시지 큐 등.
+
+ls l /mnt/lect_nfs/bot3_kccistc_service
+
+터틀봇 패키지 설치하기!!!
+  근데 터틀봇3 <----> ROS node 
+  통신할 때 터틀봇3에서 실제 프로그램을 "빌드"해야해? 
+  아니면 ROS node 에서 크로스컴파일해서 실행파일만 터틀봇에 올려?
+  실제 업무 2024년 에서는 추세가 어떻게 되나?
+자기소개서 쓰기 !!
+
+
+OpenCR1.0 ; https://emanual.robotis.com/docs/en/platform/turtlebot3/appendix_opencr1_0/
+LDS-01; https://emanual.robotis.com/docs/en/platform/turtlebot3/appendix_lds_01/

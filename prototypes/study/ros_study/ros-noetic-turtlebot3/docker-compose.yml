@@ -30,13 +30,16 @@ services:
         ipv4_address: 172.18.0.2
     # 🧪: may be required to access hardware and devices fully
     privileged: true
-    # 💡 Allocate a pseudo-TTY for development
     ulimits:
       nproc: 65535
+      # ➡️🔗 (Issue: Error); Running ROS commands in Container exhausts memory
       nofile:
         # Error: services.app.ulimits.nofile soft is required 📅 2025-01-14 21:55:00
+        # 🚨 (Issue: Bug): ulimit soft not working in devcontainer from docker-compose.yml. 📅 2025-01-15 09:27:03
+        #   However, when using `docker compose up` and `exec` to access the container, soft settings are applied as expected.
         soft: 1024
         hard: 524288
+    # 💡 Allocate a pseudo-TTY for development
     tty: true
     deploy:
       resources:
