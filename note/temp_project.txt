@@ -3209,7 +3209,6 @@ EfficientGCN, SGN 은 모두 .skeleton 데이터를 가지고 학습시켰다고
 
 1. Mediapipe Pose detection, Mediapipe Hand landmark detection 으로부터 탐지한 
 
-https://github.com/open-mmlab/mmaction2
 
 https://github.com/MVIG-SJTU/AlphaPose
 
@@ -3227,7 +3226,7 @@ https://github.com/kennymckormick/    /tree/main?tab=readme-ov-file
 ⚓ SOTA (State of the Art) ; ...
   특정 분야나 문제에 대한 최고 수준의 성능을 달성한 모델 또는 기술
 Customizing  ; https://github.com/open-mmlab/mmaction2/blob/main/configs/skeleton/posec3d/custom_dataset_training.md
-  https://github.com/kennymckormick/    /blob/main/configs/posec3d/x3d_shallow_ntu60_xsub/joint.py
+  https://github.com/kennymckormick/      /blob/main/configs/posec3d/x3d_shallow_ntu60_xsub/joint.py
     model = dict(
         type='Recognizer3D',
         backbone=dict(
@@ -6213,7 +6212,6 @@ nix homemanager 에서 brew 를 설치는 불가능한 것으로 보임. activat
 
 sudo iwlist wlan0 scan은 무선 네트워크 스캔 명령으로, 현재 라즈베리파이가 감지할 수 있는 Wi-Fi 네트워크의 목록을 출력합니다. 이
 nmap -sn 10.10.14.0/24
-
 
 
 >>>>>>>>>>>>>>>>>>>
@@ -16580,44 +16578,130 @@ sudo apt install -y libavcodec-dev libavformat-dev libswscale-dev libx11-dev fre
   Could not find the required QmakeOutputInstallerKey(qt.qt6.681.linux_gcc_arm64_qmakeoutput) value on the installer object. The ConsumeO
   >>>>>>>>> // Ingore;;; 한 줄 복사 붙여넣기 반복..
 
+
+
+
+
+
+
+
+
+
+
+
+============
+  Joint, Velocity, Bone의 의미:
+    Joint (관절 정보):
+
+    인체의 주요 관절(예: 어깨, 팔꿈치, 무릎 등)의 절대적인 위치 좌표를 사용합니다. 이는 특정 순간의 신체 상태를 나타냅니다.
+    Velocity (속도 정보):
+
+    관절의 시간에 따른 변화량을 측정하며, 움직임의 속도를 의미합니다.
+    이는 동작의 빠르기나 가속도를 포착해 특정 활동의 다이내믹을 구별하는 데 유용합니다.
+    Bone (뼈 정보):
+
+    인접한 두 관절 사이의 벡터를 나타내며, 신체의 포즈나 관절 간 관계를 파악합니다.
+    이는 움직임의 구조적 특징을 추출하는 데 사용됩니다
+
+  PoseC3D는 3D-CNN 기반으로, 기존 GCN 기반 접근과 달리 그래프 구조 대신 3D 히트맵 볼륨을 사용해 스켈레톤 데이터를 처리합니다​
+    - GCN과 차별화된 점:
+      - 노이즈 강인성: 포즈 추정 시 발생하는 오류에 덜 민감하며, 다중 인물 추적에서도 추가 비용 없이 동작합니다.
+      - 확장성: RGB 데이터와 쉽게 통합할 수 있어 다양한 모달리티 결합에 유리합니다.
+      - 스켈레톤 행동 인식의 효율성 개선: 시간적, 공간적 패턴 학습에 유리한 구조를 가집니다​
+    - 한 줄 요약:
+      - PoseC3D는 3D-CNN을 활용하여 GCN의 한계를 극복하고, 더 높은 정확도와 유연성을 제공하는 최신 스켈레톤 행동 인식 모델입니다.
+
+
+  - X3D는 경량화된 3D-CNN 아키텍처로, 동작 인식에서 높은 성능과 효율성을 제공하기 위해 설계되었습니다.
+    - 채널 수와 네트워크 깊이를 최소화하여, FLOPs(연산량)과 파라미터 수를 크게 줄이는 것이 특징입니다.
+    - 이러한 특성 덕분에, 임베디드 시스템과 같은 제한된 자원 환경에서도 실시간 성능을 제공합니다.
+    - PoseC3D와 같은 스켈레톤 기반 모델의 백본으로 활용되어, 동작 인식의 정확도를 높이는 데 기여합니다
+
+  3D-CNN(3D Convolutional Neural Network)은 시간과 공간 축을 함께 처리하는 합성곱 계층을 통해, 동영상이나 시계열 데이터에서 시간적 및 공간적 패턴을 동시에 학습하는 네트워크입니다.
+
+
+  >> 전체 파이프라인 필요할듯
+
+  골격 기반(Skeleton-based) 모델: 관절 포인트(keypoints) 데이터를 활용한 액션 인식에 최적화됨.
+  경량화된 아키텍처: X3D-s 백본은 총 241K 파라미터와 0.6GFLOPs만 사용하여 높은 효율성 제공.
+  노이즈 강인성(Noise Robustness): 다양한 자세 변형과 외부 환경 노이즈에도 안정적인 성능 제공.
+  실시간 처리 가능성: FLOPs가 낮아 임베디드 시스템이나 제한된 자원에서의 실시간 처리에 유리.
+  정확도: NTU60-XSub 데이터셋에서 92.3% 정확도를 달성, 최적의 경량 모델로 인정.
+  확장성: 다른 X3D 변형들과 마찬가지로 더 깊고 넓은 네트워크로 확장 가능하지만, 이 경우 성능과 자원 간의 균형 고려 필요.
+
+  
+  # PoseC3D와 GCN의 문제점 및 해결 방안 정리
+
+  ## 1. GCN(Graph Convolutional Network)의 문제점
+  GCN 기반 접근법은 스켈레톤 데이터를 그래프로 처리하며 액션 인식을 수행하지만 여러 단점이 존재합니다:
+
+  - **포즈 추정 모델 의존성**:  
+    GCN은 관절 데이터를 그래프 노드로 사용하므로, 정확한 포즈 추정이 중요합니다. 그러나 포즈 추정 과정에서 발생하는 작은 오류나 노이즈에 매우 민감해 인식 성능이 저하될 수 있습니다.
+
+  - **시공간적 정보 처리의 한계**:  
+    GCN은 그래프의 공간적 구조에는 강하지만 시간적 변화(temporal dynamics)를 효과적으로 처리하는 데 제한이 있습니다. 이로 인해 복잡한 움직임 인식에 어려움이 있습니다.
+
+  - **연산 복잡도의 선형 증가**:  
+    GCN에서는 스켈레톤의 각 관절이 노드로 표현되며, 관절의 수와 프레임이 증가함에 따라 연산 복잡도가 선형적으로 늘어납니다. 이는 특히 실시간 처리 시스템에서 성능 저하를 초래할 수 있습니다.
+
+  - **확장성 문제**:  
+    GCN 기반 모델은 주로 스켈레톤 데이터에 최적화되어 있어, RGB와 같은 다중 모달리티 데이터를 함께 처리하기 어렵습니다.
+
+  ## 2. PoseC3D와 X3D 백본의 해결 방안
+  PoseC3D는 위의 문제를 해결하기 위해 **3D-CNN** 기반의 접근을 도입합니다. 이 모델은 **3D 열 지도(heatmap volume)**로 스켈레톤 데이터를 처리해 보다 강인한 시공간 정보 학습을 가능하게 합니다:
+
+  - **노이즈 강인성(Noise Robustness)**:  
+    3D-CNN은 포즈 추정 과정에서 발생하는 작은 오류에 더 강하며, 스켈레톤 시퀀스의 시공간적 변화를 잘 포착합니다.
+
+  - **효율적인 연산 및 경량화**:  
+    X3D와 같은 백본을 사용해 경량화된 네트워크로 설계되어, 241K 파라미터와 0.6GFLOPs로 실시간 처리가 가능합니다. 이는 Jetson Nano와 같은 임베디드 시스템에서도 높은 효율을 제공합니다.
+
+  - **다양한 모달리티와의 호환성**:  
+    PoseC3D는 스켈레톤뿐 아니라 RGB 데이터와의 결합도 가능하여 확장성과 유연성을 제공합니다.
+
+  ## 3. 결론
+  PoseC3D는 GCN의 단점을 해결하면서도 효율성을 극대화한 모델로, **임베디드 시스템 및 실시간 액션 인식**에 적합한 솔루션입니다. X3D 백본을 활용한 가벼운 설계는 연산 자원을 줄이면서도 높은 성능을 제공합니다. 이 모델은 특히 **교통 신호 인식**과 같은 정확한 동작 인식이 필요한 응용에 유리합니다.
+  더 깊이 있는 내용은 논문의 [원문](https://arxiv.org/pdf/2104.13586)에서 확인할 수 있습니다.
+
+  
+
 https://doc.qt.io/qt-6/supported-platforms.html
-- pyskl PoseC3D (X3D) 에 대해서 구체적으로 읽어봐
-- 원래 이 pyskl 프레임워크는 이미 어노테이션된된 데이터셋 바탕으로 학습하는데, 내가 원하는 것은 실시간 비디오 피드로부터 행동인식을 판단하는거야.
-  그래서 다음 파이썬 파이썬 파일들을 읽어 일단 ("***A***")
-- 그리고나서 현재 나의 비디오피드로부터 posec3d 를 쓰는 코드가 오류가 발생하지 않게 수정해줘. (***C***)
-  특히나, 기존에 발생했던 오류가 발생하지 않게 꼼꼼히 너가 작선하 코드가 해당 오류를 발생시키는지 검토하고 신중하게 작성해줘. (***B***)
-
-내 방향성을 잡기 위한 생각의 흐름을 README.md 에 사람들에게 소개하려고 하는데. (한글 마크다운 파일로, 격식체로 (~입니다, 이런 종결말투 제외하고 명사형으로.) 작성해야 함)
-  결론은 다음과 같이 나와야 해.
-    "젯슨 나노에서 행동인식 모델을 작동시키기에는 무리 (해당 하드웨어 사양에서)가 있을 것이다. 
-    -> 행동인식 모델에는 RGB 기반 모델은 어울리지 않는다. (왜 ?~ 이유 도 함게)
-    -> Optical Flow 모델은? (모든 프레임의 픽셀 이동 정보를 계산하지 않기 때문에 계산량이 상대적으로 많다.)
-    -> 스켈레톤 좌표 기반 모델을 사용하자. skeleton-based
-    -> 그래프 기반을 사용하자. (GCN) 관절 간 관계를 명시적으로 학습 가능
-      -> 학습시키고 이를 연동하는 데 무리가 있다. GCN 의 한계/제한점... (내가 준 3개의 파일을 모두 읽고, 그대로 인용해줘)
-        (나의 경험) GCN 을 사용하기 위해서는 각 사진 별 관절 데이터를 포즈 인식 모델로 추출하고, 키포인트에 맞게 매핑을 추가적으로 해주어야 한다.
-          젯슨나노에 무리없이 잘 작동 가능한 (모델에서 필요한 FLOPS 확인 + 젯슨 나노 하드웨어 스펙 확인. (젯슨 나노가 0.5FLOPS 였나?)) 모델 EfficientGCN 을 사용하려 했음.
-          그러나 내가 원하는 행동인식 모데 학습을 위한 커스텀 라벨링 방법을 알 수가 없고, 키포인트 매핑을 해줘야 하는 복잡성도 있었음.
-    -> 그래서 스켈레톤 기반 + CNN 기반인 가벼운 행동 인식 모델을 사용하자.: PoseC3D
-      1. MMACtion2 (toolbox)
-        - Posec3D 모델 사용 예정
-          Backbone X3D s (FLOPS: 0.6G) ; https://arxiv.org/pdf/2104.13586
-          이를 사용하기 위한 방법 찾야아 함.
-        ㅛ녜ㅣ
-        
-      [**pyskl_skeleton_dataset_downloader_and_keypoint_checker.py**](scripts/pyskl_skeleton_dataset_downloader_and_keypoint_checker.py)
 
 
-Customizing  ; https://github.com/open-mmlab/mmaction2/blob/main/configs/skeleton/posec3d/custom_dataset_training.md
-  https://github.com/kennymckormick/    /blob/main/configs/posec3d/x3d_shallow_ntu60_xsub/joint.py
-1. MMACtion2 (toolbox)
-  - Posec3D 모델 사용 예정
-    Backbone X3D s (FLOPS: 0.6G) ; https://arxiv.org/pdf/2104.13586
-    이를 사용하기 위한 방법 찾야아 함.
-  - 파일로 카메라 실시간 프레임으로 테스트
-  - 포즈 모델을 따로 써야하는지?
+다음 세 개의 논문을 꼼꼼히 읽고 
 
-        
+  - 원래 이 pyskl 프레임워크는 이미 어노테이션된된 데이터셋 바탕으로 학습하는데, 내가 원하는 것은 실시간 비디오 피드로부터 행동인식을 판단하는거야.
+    그래서 다음 파이썬 파이썬 파일들을 읽어 일단 ("***A***")
+  - 그리고나서 현재 나의 비디오피드로부터 posec3d 를 쓰는 코드가 오류가 발생하지 않게 수정해줘. (***C***)
+    특히나, 기존에 발생했던 오류가 발생하지 않게 꼼꼼히 너가 작선하 코드가 해당 오류를 발생시키는지 검토하고 신중하게 작성해줘. (***B***)
+
+        pyskl PoseC3D (X3D) 에 대해서 구체적으로 모두 꼼꼼하게 읽고 다음 나의 "교통 수신호 행동인식모델 방향성 설정" 에 대한 생각의 흐름을 정리하려고 해. (마크다운 파일. README.md 에 기록해놓을거야)
+          (한글 마크다운 파일로, 격식체로 (~입니다, 이런 종결말투 제외하고 명사형으로.) 작성해야 함)
+          다음 세 개의 논문을 꼼꼼히 읽어줘.(!!! 인용해야 하므로 문자 그대로 잘 기억해 놓을 것)
+          결론은 다음과 같이 나와야 해.
+            "젯슨 나노에서 행동인식 모델을 작동시키기에는 무리 (해당 하드웨어 사양에서)가 있을 것이다. 
+            -> 행동인식 모델에는 RGB 기반 모델은 어울리지 않는다. (왜 ?~ 이유 도 함게)
+            -> Optical Flow 모델은? (모든 프레임의 픽셀 이동 정보를 계산하지 않기 때문에 계산량이 상대적으로 많다.)
+            -> 스켈레톤 좌표 기반 모델을 사용하자. skeleton-based
+            -> 그래프 기반을 사용하자. (GCN) 관절 간 관계를 명시적으로 학습 가능
+              -> 학습시키고 이를 연동하는 데 무리가 있다. GCN 의 한계/제한점... (내가 준 3개의 파일을 모두 읽고, 그대로 인용해줘)
+                (나의 경험) GCN 을 사용하기 위해서는 각 사진 별 관절 데이터를 포즈 인식 모델로 추출하고, 키포인트에 맞게 매핑을 추가적으로 해주어야 한다.
+                  젯슨나노에 무리없이 잘 작동 가능한 (모델에서 필요한 FLOPS 확인 + 젯슨 나노 하드웨어 스펙 확인. (젯슨 나노가 0.5FLOPS 였나?)) 모델 EfficientGCN 을 사용하려 했음.
+                  그러나 내가 원하는 행동인식 모데 학습을 위한 커스텀 라벨링 방법을 알 수가 없고, 키포인트 매핑을 해줘야 하는 복잡성도 있었음.
+            -> 그래서 스켈레톤 기반 + CNN 기반인 가벼운 행동 인식 모델을 사용하자.: PoseC3D
+              MMACtion2 (toolbox)
+                - Posec3D 모델 사용 예정
+              Backbone X3D s (FLOPS: 0.6G) ; https://arxiv.org/pdf/2104.13586
+              X3D MMACtion2 (https://github.com/open-mmlab/mmaction2) 는 최근 알고리즘을 제공하지 않음.(PYSKL.pdf 파일 업로드한 것에서 이 부분 그대로 인용하기. PYSKL 이 어떤 장점이 있는지)
+            
+            -> Skeleton-based 에 특화된 https://github.com/kennymckormick/pyskl 사용.
+            -> 포즈 데이터 추출 후 이것으 기반으로 동작인식모델을 사용해야 하는데, 복잡성을 최소화하기위한 동일한 keypoint 를 사용하는 데이터셋을 사용하자!
+              [**pyskl_skeleton_dataset_downloader_and_keypoint_checker.py**](scripts/pyskl_skeleton_dataset_downloader_and_keypoint_checker.py)
+              🔗 [🪶 Script 🔪 **pyskl_skeleton_dataset_downloader_and_keypoint_checker.py**](#-script--pyskl_skeleton_dataset_downloader_and_keypoint_checkerpy)
+            -> 이미 라벨링된 데이터셋을 가지고 우선 학습/테스트해보자 - OK
+            -> (Doing).. //  시간 관계상...
+              - 카메라 실시간 프레임 데이터를 가지고 테   스트하기
+              - 커스텀 데이터셋으로 학습 및 테스트.
 
 
 EfficientGCNv1
@@ -16634,6 +16718,17 @@ https://rose1.ntu.edu.sg/challenge/ActionRecognitionChallenge/
   .skeleton 파일 구조 ; https://github.com/shahroudy/NTURGB-D/tree/master/Python
   https://github.com/shahroudy/NTURGB-D/tree/master
 
+
+Customizing  ; https://github.com/open-mmlab/mmaction2/blob/main/configs/skeleton/posec3d/custom_dataset_training.md
+  https://github.com/kennymckormick/    /blob/main/configs/posec3d/x3d_shallow_ntu60_xsub/joint.py
+1. MMACtion2 (toolbox)
+  - Posec3D 모델 사용 예정
+    Backbone X3D s (FLOPS: 0.6G) ; https://arxiv.org/pdf/2104.13586
+    이를 사용하기 위한 방법 찾야아 함.
+  - 파일로 카메라 실시간 프레임으로 테스트
+  - 포즈 모델을 따로 써야하는지?
+
+        
 
 
 OpenMAX(Open Media Acceleration)는 Khronos Group에서 개발한 표준 API로, 비디오, 오디오 및 이미지 처리와 같은 멀티미디어 작업의 하드웨어 가속을 지원하기 위한 플랫폼 간 인터페이스입니다. 이를 통해  개발자는 다양한 하드웨어 플랫폼에서 멀티미디어 애플리케이션을 효율적으로 실행할 수 있습니다.
@@ -16850,3 +16945,4 @@ ubuntu@bot19:~$ cat ~/.profile
       *i*) ;;
         *) return;;
   esac
+
