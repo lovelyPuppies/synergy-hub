@@ -1235,22 +1235,79 @@ https://github.com/ROBOTIS-GIT/hls_lfcd_lds_driver/blob/noetic-devel/application
 
 rospack find sensor_msgs
 
-
 rosrun turtlesim turtlesim_node
 rosrun turtlesim turtle_teleop_key
 
-이거 Configured the folder as a workspace
-vscode@e3d17472a026 /workspace> rosrun turtlesim turtles
-im_node
-[ INFO] [1736915884.645711618]: Starting turtlesim with node name /turtlesim
-[ INFO] [1736915884.647556532]: Spawning turtle [turtle1] at x=[5.544445], y=[5.544445], theta=[0.000000]
-libGL error: failed to create dri screen
-libGL error: failed to load driver: nouveau
-^C⏎                                                     
-vscode@e3d17472a026 /workspace [SIGINT]> rosrun turtlesi
-m turtlesim_node
-[ INFO] [1736915887.896740113]: Starting turtlesim with node name /turtlesim
-[ INFO] [1736915887.898580110]: Spawning turtle [turtle1] at x=[5.544445], y=[5.544445], theta=[0.000000]
-libGL error: failed to create dri screen
-libGL error: failed to load driver: nouveau
-^C⏎                                             
+
+
+
+1.터틀봇 소스 패키지 설치(필요시) - rasberry pi
+------------------------------------
+# workspace의 src 폴더로 이동
+$ cd:~/catkin_ws/src
+빌드 필요 패키지 설치
+$sudo apt install ros-noetic-urdf-geometry-parser  ros-noetic-interactive-markers ros-noetic-xacro
+소스 다운로드
+기존 turtlebot3 디렉토리 삭제 후 다운로드
+$ git clone -b noetic https://github.com/ROBOTIS-GIT/turtlebot3.git
+빌드
+$ cm
+$roslaunch turtlebot3_bringup turtlebot3_robot.launch
+
+
+2.LDS driver 설치
+$ 다운로드 https://github.com/ROBOTIS-GIT/hls_lfcd_lds_driver/tree/noetic-devel
+$ git clone -b noetic --single-branch https://github.com/ROBOTIS-GIT/hls_lfcd_lds_driver.git
+$ cd ~/catkin_ws/src/hls_lfcd_lds_driver/applications/lds_driver
+lds_driver$ make
+lds_driver$ ./lds_driver
+
+LDS publisher 실행
+$ roslaunch hls_lfcd_lds_driver hlds_laser.launch
+
+
+git clone -b noetic --single-branch https://github.com/ROBOTIS-GIT/hls_lfcd_lds_driver.git ~/hls_lfcd_lds_driver
+
+
+
+////////////////// 터틀봇에서 
+>>> roslaunch hls_lfcd_lds_driver hlds_laser.launch
+
+
+
+git clone -b noetic --single-branch https://github.com/ROBOTIS-GIT/hls_lfcd_lds_driver.git ~/hls_lfcd_lds_driver
+cd ~/hls_lfcd_lds_driver
+
+
+cd applications/lds_driver
+make
+// 테스트
+./lds_driver
+
+
+퍼블리셔 용도와
+레이더 돌리는 용도
+
+
+
+src/hls_lfcd_lds_driver/src/hlds_laser_publisher.cpp
+
+https://docs.ros.org/en/noetic/api/sensor_msgs/html/msg/LaserScan.html
+https://github.com/ROBOTIS-GIT/hls_lfcd_lds_driver
+
+catkin build hls_lfcd_lds_driver
+
+  find_package(catkin REQUIRED COMPONENTS
+    roscpp
+    std_msgs
+    sensor_msgs
+    # ⚙️
+    oroca_ros_tutorials
+  )
+
+  catkin_package(
+    INCLUDE_DIRS include
+    # ⚙️ oroca_ros_tutorials
+    CATKIN_DEPENDS roscpp std_msgs sensor_msgs oroca_ros_tutorials
+    DEPENDS Boost
+  )
