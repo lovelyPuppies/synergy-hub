@@ -3191,11 +3191,13 @@ OTX example
   otx 설치 된다음에도 오류가 뜨면 mmcv full 재설치?
 
 ⚓ Action Recognition Datasets: "NTU RGB+D" Dataset and "NTU RGB+D 120" Dataset ; https://rose1.ntu.edu.sg/dataset/actionRecognition/
+
 https://rose1.ntu.edu.sg/challenge/ActionRecognitionChallenge/
   .skeleton 파일 구조 ; https://github.com/shahroudy/NTURGB-D/tree/master/Python
   https://github.com/shahroudy/NTURGB-D/tree/master
 
 우분투 클립보드
+
 
 
 EfficientGCN, SGN 은 모두 .skeleton 데이터를 가지고 학습시켰다고 했잖아. 맞아?
@@ -16570,7 +16572,7 @@ sudo apt install -y libavcodec-dev libavformat-dev libswscale-dev libx11-dev fre
   [2182788] installationErrorWithCancel : Installer Error : Error during installation process (qt.qt6.681.linux_gcc_arm64):
   Could not find the required QmakeOutputInstallerKey(qt.qt6.681.linux_gcc_arm64_qmakeoutput) value on the installer object. The ConsumeOutput operation on the valid qmake needs to be called first. Retry|Ignore|Cancel
   Retry
-  [2201353] perform qt.qt6.681.linux_gcc_arm64 operation: QtPatch
+  [2201353] perform qt  .qt6.681.linux_gcc_arm64 operation: QtPatch
   [2201353]       - arguments: linux, /home/pi19/Qt/6.8.1/gcc_arm64, qt5-no-bin-patch, QmakeOutputInstallerKey=qt.qt6.681.linux_gcc_arm64_qmakeoutput
   [2201419] Done
   [2201420] Operation \"QtPatch\" with arguments \"linux; /home/pi19/Qt/6.8.1/gcc_arm64; qt5-no-bin-patch; QmakeOutputInstallerKey=qt.qt6.681.linux_gcc_arm64_qmakeoutput\" failed: Could not find the required QmakeOutputInstallerKey(qt.qt6.681.linux_gcc_arm64_qmakeoutput) value on the installer object. The ConsumeOutput operation on the valid qmake needs to be called first.
@@ -16579,12 +16581,58 @@ sudo apt install -y libavcodec-dev libavformat-dev libswscale-dev libx11-dev fre
   >>>>>>>>> // Ingore;;; 한 줄 복사 붙여넣기 반복..
 
 https://doc.qt.io/qt-6/supported-platforms.html
+- pyskl PoseC3D (X3D) 에 대해서 구체적으로 읽어봐
+- 원래 이 pyskl 프레임워크는 이미 어노테이션된된 데이터셋 바탕으로 학습하는데, 내가 원하는 것은 실시간 비디오 피드로부터 행동인식을 판단하는거야.
+  그래서 다음 파이썬 파이썬 파일들을 읽어 일단 ("***A***")
+- 그리고나서 현재 나의 비디오피드로부터 posec3d 를 쓰는 코드가 오류가 발생하지 않게 수정해줘. (***C***)
+  특히나, 기존에 발생했던 오류가 발생하지 않게 꼼꼼히 너가 작선하 코드가 해당 오류를 발생시키는지 검토하고 신중하게 작성해줘. (***B***)
+
+내 방향성을 잡기 위한 생각의 흐름을 README.md 에 사람들에게 소개하려고 하는데. (한글 마크다운 파일로, 격식체로 (~입니다, 이런 종결말투 제외하고 명사형으로.) 작성해야 함)
+  결론은 다음과 같이 나와야 해.
+    "젯슨 나노에서 행동인식 모델을 작동시키기에는 무리 (해당 하드웨어 사양에서)가 있을 것이다. 
+    -> 행동인식 모델에는 RGB 기반 모델은 어울리지 않는다. (왜 ?~ 이유 도 함게)
+    -> Optical Flow 모델은? (모든 프레임의 픽셀 이동 정보를 계산하지 않기 때문에 계산량이 상대적으로 많다.)
+    -> 스켈레톤 좌표 기반 모델을 사용하자. skeleton-based
+    -> 그래프 기반을 사용하자. (GCN) 관절 간 관계를 명시적으로 학습 가능
+      -> 학습시키고 이를 연동하는 데 무리가 있다. GCN 의 한계/제한점... (내가 준 3개의 파일을 모두 읽고, 그대로 인용해줘)
+        (나의 경험) GCN 을 사용하기 위해서는 각 사진 별 관절 데이터를 포즈 인식 모델로 추출하고, 키포인트에 맞게 매핑을 추가적으로 해주어야 한다.
+          젯슨나노에 무리없이 잘 작동 가능한 (모델에서 필요한 FLOPS 확인 + 젯슨 나노 하드웨어 스펙 확인. (젯슨 나노가 0.5FLOPS 였나?)) 모델 EfficientGCN 을 사용하려 했음.
+          그러나 내가 원하는 행동인식 모데 학습을 위한 커스텀 라벨링 방법을 알 수가 없고, 키포인트 매핑을 해줘야 하는 복잡성도 있었음.
+    -> 그래서 스켈레톤 기반 + CNN 기반인 가벼운 행동 인식 모델을 사용하자.: PoseC3D
+      1. MMACtion2 (toolbox)
+        - Posec3D 모델 사용 예정
+          Backbone X3D s (FLOPS: 0.6G) ; https://arxiv.org/pdf/2104.13586
+          이를 사용하기 위한 방법 찾야아 함.
+        ㅛ녜ㅣ
+        
+      [**pyskl_skeleton_dataset_downloader_and_keypoint_checker.py**](scripts/pyskl_skeleton_dataset_downloader_and_keypoint_checker.py)
 
 
-혹시 다음 세개의 논문들 정리해줄 수 있어?
-정확히는 내 방향성을 잡기 위한거엿는데, 
-"젯슨 나노에서 행동인식 모델을 작동시키기에는 무리가 있을 것이다, 때문에 ???  방식의 행동 인식 모델보다는 관절기반 행동인식 모델을 알아보자. --> GCN. -> 학습시키고 이를 연동하는 데 무리가 있다.
+Customizing  ; https://github.com/open-mmlab/mmaction2/blob/main/configs/skeleton/posec3d/custom_dataset_training.md
+  https://github.com/kennymckormick/    /blob/main/configs/posec3d/x3d_shallow_ntu60_xsub/joint.py
+1. MMACtion2 (toolbox)
+  - Posec3D 모델 사용 예정
+    Backbone X3D s (FLOPS: 0.6G) ; https://arxiv.org/pdf/2104.13586
+    이를 사용하기 위한 방법 찾야아 함.
+  - 파일로 카메라 실시간 프레임으로 테스트
+  - 포즈 모델을 따로 써야하는지?
 
+        
+
+
+EfficientGCNv1
+  https://github.com/zyxjtu/EfficientGCNv1
+  ACMMM 2020 ; https://dl.acm.org/doi/abs/10.1145/3394171.3413802
+  Arxiv Preprint ; https://arxiv.org/pdf/2010.09978.pdf
+
+EfficientGCN 2
+  https://github.com/attention-eq-everything/effgcn_cam
+  IEEE T-PAMI; https://ieeexplore.ieee.org/abstract/document/9729609
+  Arxiv Preprint ; https://arxiv.org/pdf/2106.15125
+
+https://rose1.ntu.edu.sg/challenge/ActionRecognitionChallenge/
+  .skeleton 파일 구조 ; https://github.com/shahroudy/NTURGB-D/tree/master/Python
+  https://github.com/shahroudy/NTURGB-D/tree/master
 
 
 
