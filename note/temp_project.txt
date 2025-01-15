@@ -15320,6 +15320,7 @@ echo "All runtime dependencies for Qt applications have been installed!"
   --------------------
   ERROR: failed to solve: failed to prepare np9c857wt6h685v9glzj8set8 as znjnloair8q16228a41z7urjq: max depth exceeded
 
+sshpass -p turtlebot ssh ubuntu@10.10.14.119 "bash -c 'source ~/.bashrc && source /opt/ros/noetic/setup.bash && roslaunch turtlebot3_bringup turtlebot3_robot.launch'"
 
 
 rostopic lits
@@ -15334,7 +15335,7 @@ roslaunch turtlebot3_bringup turtlebot3_robot.launch
 
 🧮 mpv --hwdec=vdpau 5640919-hd_1080_1920_30fps.mp4
 
-🧮 VSCODE 좌측 하단 "Dev Container: ..." click. -> Reopen Folder Locally
+🧮 VSCODE 좌측 하단 "Dev Container: ..." click  . -> Reopen Folder Locally
   .devcontainer/Dockerfile
     # ROS Noetic base image
     FROM ros:noetic-robot
@@ -16577,7 +16578,6 @@ sudo apt install -y libavcodec-dev libavformat-dev libswscale-dev libx11-dev fre
   Could not find the required QmakeOutputInstallerKey(qt.qt6.681.linux_gcc_arm64_qmakeoutput) value on the installer object. The ConsumeO
   >>>>>>>>> // Ingore;;; 한 줄 복사 붙여넣기 반복..
 
-
 https://doc.qt.io/qt-6/supported-platforms.html
 
 
@@ -16586,86 +16586,26 @@ https://doc.qt.io/qt-6/supported-platforms.html
 "젯슨 나노에서 행동인식 모델을 작동시키기에는 무리가 있을 것이다, 때문에 ???  방식의 행동 인식 모델보다는 관절기반 행동인식 모델을 알아보자. --> GCN. -> 학습시키고 이를 연동하는 데 무리가 있다.
 
 
-arm-linux-gnueabihf는 패키지 이름이라기보다는 컴파일러와 링커가 지원하는 트리플(target triple)
-Target Triplets describe a platform on which code runs and are a core concept in the GNU build system
 
-면접: 🆚
-  Hard float, Soft float
-
-  하드 플로트는 **하드웨어의 부동소수점 연산기(FPU, Floating Point Unit)**를 사용해 부동소수점 연산을 처리합니다.
-    CPU에 내장된 전용 FPU가 부동소수점 계산을 수행하므로, 속도가 빠르고 효율적입니다.
-
-  소프트 플로트는 하드웨어 FPU가 없거나 사용하지 않는 환경에서, 소프트웨어로 부동소수점 연산을 수행하는 방식입니다.
-    부동소수점 연산은 CPU가 소프트웨어 루틴을 통해 처리합니다.
-
-
-  
 
 OpenMAX(Open Media Acceleration)는 Khronos Group에서 개발한 표준 API로, 비디오, 오디오 및 이미지 처리와 같은 멀티미디어 작업의 하드웨어 가속을 지원하기 위한 플랫폼 간 인터페이스입니다. 이를 통해  개발자는 다양한 하드웨어 플랫폼에서 멀티미디어 애플리케이션을 효율적으로 실행할 수 있습니다.
 
 
 
-1. Qt WebEngine이란?
-Qt WebEngine은 Qt 애플리케이션에 웹 콘텐츠를 표시할 수 있는 기능을 제공합니다. Chromium 기반 엔진으로, 브라우저나 HTML 콘텐츠를 내장할 필요가 있을 때 사용됩니다.
-
-Qt WebEngine의 특징
-웹 콘텐츠 렌더링: 브라우저처럼 HTML, CSS, JavaScript 콘텐츠를 표시.
-멀티미디어 재생: 동영상/오디오 재생 기능 제공.  
-Chromium 기반: Chromium 프로젝트를 기반으로 만들어져 용량이 큼.
-왜 용량이 큰가?
-Chromium 엔진 전체와 관련 라이브러리 및 데이터(HTML 파서, 자바스크립트 엔진 등)가 포함되어 있기 때문에, 설치 용량이 크며 3.5GB 정도가 됩니다.
-
-
-Qt Full 설치 시 용량 문제와 최소 용량에 대한 고려
-Qt를 Full로 설치하고 Add-on 모듈까지 모두 포함하면, 8GB 정도의 디스크 용량이 소요되는 것은 정상입니다. 이는 Qt의 설계 철학과 모듈화된 구조에서 비롯된 것입니다.
-GUI 용 Qt Creator 가 같이 설치되긴 한다. 
-
-
 >>>>>>>>>> qt 파일에 대한 validatino 기능은 없다.. 재설치해야함.
-
-
-
-??????? 
 pi19@pi ~> ldd ~/Qt/6.8.1/gcc_arm64/bin/qmake
     linux-vdso.so.1 (0x0000007f998ec000)
     libQt6Core.so.6 => /home/pi19/Qt/6.8.1/gcc_arm64/bin/../lib/libQt6Core.so.6 (0x0000007f99050000)
 
-❓ 면접: Meta Package..
+
+🆚 Vcsrv vs x410? 이엇나.. 정리 필요.
+  x410 은 유료.
+  Vcsrv 무료. 고급 옵션 지원. 단, 명령어 옵션 구성을 잘 알아야 함.
 
 
-Vcsrv vs x410? 이엇나.. 정리 필요.
 
 ros 1 wiki twist
 
-
-
-지금 해야 하는 것.
-  Ubuntu host 안에 있는 docker container 내의 ROS 노드와, 실제 터틀봇3 가 통신하게 하기.
-
-한 것
-    xhost +local:docker
-    sudo cp $xauth_path ~/.Xauthority
-    
-  Ubuntu Host
-    ip -c a
-      >> eno1: 10.10.14.19/24
-
-  ROS master (docker container in Ubuntu Host) 를 VSCOde Devcontainer 로 열기.
-    - Forfoward (11311 port)
-    echo $ROS_MASTER_URI 
-      >> http://172.18.0.2:11311
-    echo $ROS_HOSTNAME 
-      >> 172.18.0.2
-  
-
-  터틀봇    
-    ubuntu@bot19 ~> echo $ROS_MASTER_URI
-      http://10.10.14.19:11311  
-    ubuntu@bot19 ~> echo $ROS_HOSTNAME  
-      10.10.14.119
-
-물어볼 것:
-  이거 왜 사진에서 포워딩이 저렇게 많이나와?.. 해석해줘.. 
 
 rosservice list
 rosservice info /bot3_gpio
@@ -16674,36 +16614,20 @@ resolvectl
 
 ❗ rqt - Service -> Service -> Service name settnigs. Request에 메시지를 써서 디버깅을 쉽게 할 수 있다. > Response  
 
-
-
 ❓      
   cat /etc/systemd/resolved.conf
   resolvectl status
 
 
-code -9
-Out of Memory, OOM
-
-%shell> roslaunch turtlebot3_slam turtlebot3_slam.launch 
->> 
-  [turtlebot3_slam_gmapping-2] process has died [pid 15991, exit code -9, cmd /opt/ros/noetic/lib/gmapping/slam_gmapping __name:=turtlebot3_slam_gmapping __log:=/home/vscode/.ros/log/a631a2c4-d257-11ef-8d09-0242ac120002/turtlebot3_slam_gmapping-2.log].
-  [robot_state_publisher-1] process has died [pid 15990, exit code -9, cmd /opt/ros/noetic/lib/robot_state_publisher/robot_state_publisher __name:=robot_state_publisher __log:=/home/vscode/.ros/log/a631a2c4-d257-11ef-8d09-0242ac120002/robot_state_publisher-1.log].
-  ...
-
-%shell:fish> rosrun rviz rviz -d (rospack find turtlebot3_description)/rviz/model.rviz
->> 
-  [roslaunch][ERROR] 2025-01-14 10:20:53,352: ================================================================================REQUIRED process [rviz-3] has died!
-    process has died [pid 1328, exit code -9, cmd /opt/ros/noetic/lib/rviz/rviz -d /opt/ros/noetic/share/turtlebot3_slam/rviz/turtlebot3_gmapping.rviz __name:=rviz __log:=/home/vscode/.ros/log/ae21d00e-d215-11ef-93ce-0242ac120002/rviz-3.log].
-
 
 
 https://docs.docker.com/get-started/docker-concepts/running-containers/publishing-ports/#publishing-all-ports
-When creating a container image, the EXPOSE instruction is used to indicate the packaged application will use the specified port. These ports aren't published by default.
-📝 Meta Info
+  When creating a container image, the EXPOSE instruction is used to indicate the packaged application will use the specified port. These ports aren't published by default.
+  📝 Meta Info
 
-🪱 IPAM은 IP Address Management의 약자입니다 ; https://docs.docker.com/reference/compose-file/networks/#ipam
-  https://en.wikipedia.org/wiki/IP_address_management
-  
+  🪱 IPAM은 IP Address Management의 약자입니다 ; https://docs.docker.com/reference/compose-file/networks/#ipam
+    https://en.wikipedia.org/wiki/IP_address_management
+    
 
 
 
@@ -16724,7 +16648,7 @@ RUN echo 'export LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libgomp.so.1:$LD_PRELOAD'
   https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html#rootless-mode
     보안이 중요한 다중 사용자 환경에서 Docker를 실행해야 하는 경우
     
-  ✅ (how-to); set ":"when empty in Fish shell
+✅ (how-to); set ":"when empty in Fish shell
   ..  ?근데 이거 띄어쓰기로 선언하나, 그냥 선언하나 같은건가 그럼? echo 해보면 애초에 ":" 가 안나오는데.. 나중에 해보고...
   이거 fish shell 에서 띄어쓰기로 하면 잘 등록되는데, ":" 으로 하면 변수값이 없는 경우 등록이 안 돼. 사람들으 ㄴ어떻게 이 문제를 해결하고 잇지?
 
@@ -16768,12 +16692,19 @@ RUN echo 'export LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libgomp.so.1:$LD_PRELOAD'
 
     대화형 작업이 필요 없는 컨테이너에서는 tty: true가 불필요할 수 있음. 예를 들어, 백그라운드에서 단순히 작업을 실행하는 컨테이너에서는 tty를 생략 가능.
 
+면접: 🆚
+  Hard float, Soft float
 
+  하드 플로트는 **하드웨어의 부동소수점 연산기(FPU, Floating Point Unit)**를 사용해 부동소수점 연산을 처리합니다.
+    CPU에 내장된 전용 FPU가 부동소수점 계산을 수행하므로, 속도가 빠르고 효율적입니다.
 
+  소프트 플로트는 하드웨어 FPU가 없거나 사용하지 않는 환경에서, 소프트웨어로 부동소수점 연산을 수행하는 방식입니다.
+    부동소수점 연산은 CPU가 소프트웨어 루틴을 통해 처리합니다.
+❓ 면접: Meta Package..
 ❓ 면접.. 파일 디스크립터.  ulimit -Sn, -Hn,..
   xml rpc(Remote Procedure call) server?
   파일 디스크립터는 프로세스의 파일 테이블에서 파일 핸들을 가리키는 정수 값입니다.
-    자체적으로는 4바이트(32비트 시스템) 또는 **8바이트(64비트 시스템)**를 차지합니다.
+    자체적으로는 4바이트(32비트 시스템) 또는 **8바이  트(64비트 시스템)**를 차지합니다.
   네, 장치 간 통신에서 **ioctl(Input/Output Control)**은 파일 디스크립터를 통해 이루어집니다.
 
   파일 디스크립터가 적용되는 대상
@@ -16796,3 +16727,78 @@ ls l /mnt/lect_nfs/bot3_kccistc_service
 
 OpenCR1.0 ; https://emanual.robotis.com/docs/en/platform/turtlebot3/appendix_opencr1_0/
 LDS-01; https://emanual.robotis.com/docs/en/platform/turtlebot3/appendix_lds_01/
+
+https://wiki.ros.org/hls_lfcd_lds_driver
+
+rostopic info /scan
+
+
+
+ROS 메시지 통신 방식중 Publisher 와 Subscriber 의 노드의 Topic 메시지를 사용하여 Lidar 센서의 데이터를 송/수신 하는 ROS 프로그램을 작성하시오.
+Publisher 코드: hlds_laser_ublisher.cppmsg type: sensor_msgs/LaserScan message
+catkin_ws$ rosrun ros_topic_lidar lidar_subscriber
+
+
+touch hlds_laser_subscriber.cpp 작성하기
+
+
+ubuntu@bot19:~$ cat ~/.profile
+  # ~/.profile: executed by the command interpreter for login shells.
+  # This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
+  # exists.
+  # see /usr/share/doc/bash/examples/startup-files for examples.
+  # the files are located in the bash-doc package.
+
+  # the default umask is set in /etc/profile; for setting the umask
+  # for ssh logins, install and configure the libpam-umask package.
+  #umask 022
+
+  # if running bash
+  if [ -n "$BASH_VERSION" ]; then
+      # include .bashrc if it exists
+      if [ -f "$HOME/.bashrc" ]; then
+          . "$HOME/.bashrc"
+      fi
+  fi    
+
+  # set PATH so it includes user's private bin if it exists
+  if [ -d "$HOME/bin" ] ; then
+      PATH="$HOME/bin:$PATH"
+  fi
+
+  # set PATH so it includes user's private bin if it exists
+  if [ -d "$HOME/.local/bin" ] ; then
+      PATH="$HOME/.local/bin:$PATH"
+  fi
+
+  비로그인 설정.
+
+  /etc/profile	  ✅	  ❌	시스템 전체 설정. 로그인 셸에서 항상 실행됨.
+  ~/.bash_profile	✅	  ❌	사용자별 설정. ~/.bashrc 호출용으로 많이 사용.
+  ~/.bash_login	  ✅	  ❌	~/.bash_profile 대체용. 잘 사용되지 않음.
+  ~/.profile	    ✅	  ❌	기본 설정 파일. 다른 셸에서도 사용 가능.
+  ~/.bashrc	      ❌	  ✅	비로그인 셸 설정. 상호작용 셸에서 alias, 프롬프트 등 정의.
+
+  /etc/profile:
+    시스템 전역 설정 파일.
+    항상 로드됩니다.
+  ~/.bash_profile:
+    사용자의 로그인 셸 초기화 설정.
+    존재하면 로드하고, 이후 파일은 무시합니다.
+  ~/.bash_login:
+    ~/.bash_profile이 없을 경우 대신 로드됩니다.
+    존재하면 로드하고, 이후 파일은 무시합니다.
+  ~/.profile:
+    ~/.bash_profile과 ~/.bash_login이 모두 없을 경우 로드됩니다.
+
+
+.... 🚨 not works: ssh ubuntu@10.10.14.119 'source $HOME/.bashrc && which roslaunch'
+  ....
+  # ~/.bashrc: executed by bash(1) for non-login shells. see /usr/share/doc/bash/examples/startup-files (in the package bash-doc) 
+  # for examples
+
+  # If not running interactively, don't do anything
+  case $- in
+      *i*) ;;
+        *) return;;
+  esac

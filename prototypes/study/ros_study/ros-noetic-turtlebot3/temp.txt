@@ -1054,7 +1054,6 @@ OpenGL ES profile shading language version string: OpenGL ES GLSL ES 3.20
 OpenGL ES profile extensions:
 
 ~ via △ v3.31.3 
-
     sudo apt install -y libgl1-mesa-glx libglu1-mesa \
       ❯ glmark2
       =======================================================
@@ -1146,59 +1145,10 @@ FFmpeg library versions:
    libavfilter     10.1.100
    libswresample   5.1.100
 
-
 meson setup build --enable-vulkan --enable-gbm
-
-
 # meson.build:22:13: ERROR: Dependency "libavcodec" not found, tried pkgconfig and cmake
 
-
-
-> 잡코리아를 보자. 사람인 말고. 
-향후 전망이 "수치"적으로 어떻게 될 건지도 언급해야 한다.. 자기소개서.. ?
-
-
-
-1.ros_serial_arduino.ino 작성 및 빌드 / 업로드
-----------------------------------
-#include <ros.h>
-#include <std_msgs/Int16.h>
-ros::NodeHandle  nh;
-void messageCb( const std_msgs::Int16& toggle_msg){
-  int ledVal = toggle_msg.data;
-  if(ledVal)
-    digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
-  else                                // wait for a second
-    digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
-  delay(1000);                       // wait for a second  
-}
-ros::Subscriber<std_msgs::Int16> sub("toggle_led", &messageCb );
-void setup()
-{ 
-  pinMode(LED_BUILTIN, OUTPUT);
-  nh.initNode();
- // nh.getHardware()->setBaud(57600);
-  nh.subscribe(sub);z 
-} 
-
-void loop()
-{   
-  nh.spinOnce();  
-  delay(1);           
-}
-
-
-
-workspace-ros-noetic-turtlebot3.code.code-workspace 
-
-
 rosrun bot3_kccistic_service gpio_client 10 20
-
-
-
-workspaces.. ?였나 ? 기본경로?.. 젯슨 나노 프로젝트에서는 이렇게햇는데.. ㅇㅁ..
-workspace 
-
 
 
 apt-cache search gmapping
@@ -1257,11 +1207,6 @@ Turtlebot User LED:
   A- > 24번, 
   A- > 25번, 
 
-
-🔢 >>>>>>>>>> docker builder prune
-
-
-
 iot_server/iot_socket
 
 
@@ -1270,7 +1215,7 @@ socket client 프로토콜을 .. ROS 로 넘기기.
 linux_c/iot_server/iot_socket$ ./iot_server 5000
 KSH_ROS..
 
->>>> 통 신
+>>>> 통신
   roscore, bringup, iot_server
 rosrun bot3_kccistc_service gpio_socketToRos 127.0.0.1 5000 KSH_ROS
 rosrun ./navi.sh >> Naivgation; ?
@@ -1280,4 +1225,32 @@ https://emanual.robotis.com/assets/docs/LDS_Basic_Specification.pdf
   Angle offset?..
     1,, 2. 3.. 4.. ?
     hls/lfcd_lds_driver/application/lds_driver
-      
+
+
+> 잡코리아를 보자. 사람인 말고. 
+향후 전망이 "수치"적으로 어떻게 될 건지도 언급해야 한다.. 자기소개서.. ?
+
+
+https://github.com/ROBOTIS-GIT/hls_lfcd_lds_driver/blob/noetic-devel/applications/lds_polar_graph/lds_polar_graph.pro
+
+rospack find sensor_msgs
+
+
+rosrun turtlesim turtlesim_node
+rosrun turtlesim turtle_teleop_key
+
+이거 Configured the folder as a workspace
+vscode@e3d17472a026 /workspace> rosrun turtlesim turtles
+im_node
+[ INFO] [1736915884.645711618]: Starting turtlesim with node name /turtlesim
+[ INFO] [1736915884.647556532]: Spawning turtle [turtle1] at x=[5.544445], y=[5.544445], theta=[0.000000]
+libGL error: failed to create dri screen
+libGL error: failed to load driver: nouveau
+^C⏎                                                     
+vscode@e3d17472a026 /workspace [SIGINT]> rosrun turtlesi
+m turtlesim_node
+[ INFO] [1736915887.896740113]: Starting turtlesim with node name /turtlesim
+[ INFO] [1736915887.898580110]: Spawning turtle [turtle1] at x=[5.544445], y=[5.544445], theta=[0.000000]
+libGL error: failed to create dri screen
+libGL error: failed to load driver: nouveau
+^C⏎                                             

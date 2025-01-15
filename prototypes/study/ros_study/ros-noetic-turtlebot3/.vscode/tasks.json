@@ -1,0 +1,30 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Bring up Turtlebot3",
+      "type": "shell",
+      "command": "sshpass",
+      "args": [
+        "-p",
+        "${input:ssh_password}",
+        "ssh",
+        "${env:ros_turtlebot_username}@${env:ros_turtlebot_hostname}",
+        "bash --login -c 'roslaunch turtlebot3_bringup turtlebot3_robot.launch'"
+      ],
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ],
+  "inputs": [
+    {
+      "id": "ssh_password",
+      "type": "promptString",
+      "description": "Enter the SSH password for the Turtlebot",
+      "password": true
+    }
+  ]
+}

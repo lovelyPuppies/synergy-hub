@@ -40,8 +40,6 @@ ROS 2 🔪 Docs ; https://docs.ros.org/en/jazzy/index.html
 
 
 
-  
-
 
 
 
@@ -103,11 +101,27 @@ ROS 2 🔪 Docs ; https://docs.ros.org/en/jazzy/index.html
       The container consumes all available memory, often exceeding 8GB, causing the computer to freeze or crash
       , with all other programs exiting except the desktop environment.
 
+      >> 
+        [turtlebot3_slam_gmapping-2] process has died [pid 15991, exit code -9, cmd /opt/ros/noetic/lib/gmapping/slam_gmapping __name:=turtlebot3_slam_gmapping __log:=/home/vscode/.ros/log/a631a2c4-d257-11ef-8d09-0242ac120002/turtlebot3_slam_gmapping-2.log].
+        [robot_state_publisher-1] process has died [pid 15990, exit code -9, cmd /opt/ros/noetic/lib/robot_state_publisher/robot_state_publisher __name:=robot_state_publisher __log:=/home/vscode/.ros/log/a631a2c4-d257-11ef-8d09-0242ac120002/robot_state_publisher-1.log].
+        ...
+      >>
+        [roslaunch][ERROR] 2025-01-14 10:20:53,352: ================================================================================REQUIRED process [rviz-3] has died!
+          process has died [pid 1328, exit code -9, cmd /opt/ros/noetic/lib/rviz/rviz -d /opt/ros/noetic/share/turtlebot3_slam/rviz/turtlebot3_gmapping.rviz __name:=rviz __log:=/home/vscode/.ros/log/ae21d00e-d215-11ef-93ce-0242ac120002/rviz-3.log].
+        ...
+
     ❔🤔 Deduction
       %shell> top
       
       Swap memory usage increases significantly, with some processes consuming up to 512 MiB per process.
       It seems that there is a memory leak in ROS 1.
+
+      🚣 OOM Killer in action
+        %shell> sudo dmesg | grep -i "out of memory"
+        >> 
+          [ 5143.550034] Memory cgroup out of memory: Killed process 85970 (rosout) total-vm:8434156kB, anon-rss:7290240kB, file-rss:9788kB, shmem-rss:0kB, UID:1000 pgtables:14360kB oom_score_adj:0
+          [ 5145.739000] Memory cgroup out of memory: Killed process 86022 (rosout) total-vm:8434156kB, anon-rss:7283072kB, file-rss:9836kB, shmem-rss:0kB, UID:1000 pgtables:14344kB oom_score_adj:0
+
       
     ❔ Root Cause
       The core issue stems from the design of the XmlRpcServer in ROS, which handles asynchronous socket communication using the pollfd structure. This structure, defined in /usr/include/poll.h, is used to monitor file descriptors. The excessive memory consumption occurs due to the following reasons:

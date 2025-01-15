@@ -155,7 +155,7 @@ set unique_comment '### When SSH connection is active, switch to Fish shell'
 if not grep -Fxq "$unique_comment" "$BASH_PROFILE_PATH"
     echo "
     $unique_comment"'
-    # "$HOME/.bash_profile" is the last file loaded when starting a login shell in Bash.
+    # Switch to Fish shell when an SSH connection is active (executed before ~/.profile)
     if [ -n "$SSH_CONNECTION" ]; then
       exec fish
     fi
