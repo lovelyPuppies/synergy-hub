@@ -7,8 +7,8 @@
   - [🌐 Open Source Contributions](#-open-source-contributions)
     - [Issues Overview](#issues-overview)
     - [Steam Workshop Contributions](#steam-workshop-contributions)
-  - [🖋️ Scripts](#️-scripts)
   - [🔧 Tech Stack](#-tech-stack)
+  - [🖋️ Scripts](#️-scripts)
   - [📈 Trend](#-trend)
   - [🚀 Project Setup Instructions (Ubuntu)](#-project-setup-instructions-ubuntu)
   - [📏 Rule](#-rule)
@@ -75,13 +75,13 @@
 
 ### Issues Overview
 
-- [⏳ Pending Issues](issues_tracking/pending_issues.md)
+- ⏳ **Pending Issues**
 
   - 📅 2024-08-29: conan-io/conan 🔪 [[bug] in Ubuntu, clang, Ninja enviornment. ERROR: pulseaudio/14.2: Error in build() method, line 131 (external link)](https://github.com/conan-io/conan/issues/16905)
   - 📅 2024-08-29: conan-io/conan-center-index 🔪 [\[package\] pulseaudio/14.2 : I'm using clang 18 but error; Compiler does not support -std=gnu11](https://github.com/conan-io/conan-center-index/issues/25075)
   - 📅 2024-08-26: prefix-dev/pixi 🔪 [in VS Code, manifest PIXI_PROJECT_MANIFEST is not changed when open by command "code <path>](https://github.com/prefix-dev/pixi/issues/1907)
 
-- [✅ Resolved Issues](issues_tracking/resolved_issues.md)
+- ✅ **Resolved Issues**
 
   - 📅 2024-10-17: opmaksim/Project_SignalMaster 🔪 [Python Jupyter Interactive Kernel crashed when use cv2.imshow()](https://github.com/opmaksim/Project_SignalMaster/issues/14)
 
@@ -119,6 +119,94 @@
   } | Set-Content $configPath
   pushd $basePath; $env:DOTNET_ROOT = "C:\Program Files\dotnet"; & "$basePath\LocailzationAutoCopy.exe"; popd
   ```
+
+## 🔧 Tech Stack
+
+tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)  
+ ├── 📂 build_tool  
+ │&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 build_system  
+ │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 meta_build_system  
+ │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 yocto_project  
+ │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── <a href="prototypes/_lab/tech_stack/build_tool/build_system/meta_build_system/yocto_project/bitbake.txt"><img src="https://img.shields.io/badge/-Bitbake-00599C?logo=yocto&logoColor=white" alt="bitbake" /></a>  
+ │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── <a href="prototypes/_lab/tech_stack/build_tool/build_system/meta_build_system/yocto_project/yocto.txt"><img src="https://img.shields.io/badge/-Yocto-00599C?logo=yocto&logoColor=white" alt="yocto" /></a>  
+ │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── <a href="prototypes/_lab/tech_stack/build_tool/build_system/ninja.txt"><img src="https://img.shields.io/badge/-Ninja-013243?logo=ninja&logoColor=white" alt="ninja" /></a>  
+ │&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 build_system_generator  
+ │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── <a href="prototypes/_lab/tech_stack/build_tool/build_system_generator/cmake.txt"><img src="https://img.shields.io/badge/-CMake-064F8C?logo=cmake&logoColor=white" alt="cmake" /></a>  
+ ├── 📂 code_quality_tool  
+ │&nbsp;&nbsp;&nbsp;&nbsp;└── <a href="prototypes/_lab/tech_stack/code_quality_tool/ruff.txt"><img src="https://img.shields.io/badge/-Ruff-000000?logo=python&logoColor=white" alt="ruff" /></a>  
+ ├── 📂 design_pattern_and_uml  
+ │&nbsp;&nbsp;&nbsp;&nbsp;├── [d2](prototypes/_lab/tech_stack/design_pattern_and_uml/d2.txt)  
+ │&nbsp;&nbsp;&nbsp;&nbsp;├── [design_pattern](prototypes/_lab/tech_stack/design_pattern_and_uml/design_pattern.txt)  
+ ├── 📂 editor  
+ │&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 gui_based-ide  
+ │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;├── [microchip_studio](prototypes/_lab/tech_stack/editor/gui_based-ide/microchip_studio.txt)  
+ │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;├── [visual_studio](prototypes/_lab/tech_stack/editor/gui_based-ide/visual_studio.txt)  
+ │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── <a href="prototypes/_lab/tech_stack/editor/gui_based-ide/vs_code.txt"><img src="https://img.shields.io/badge/-VS%20Code-007ACC?logo=visualstudiocode&logoColor=white" alt="vs_code" /></a>  
+ │&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 terminal_based  
+ │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── <a href="prototypes/_lab/tech_stack/editor/terminal_based/helix.txt"><img src="https://img.shields.io/badge/-Helix-4A4A4A?logo=helix&logoColor=white" alt="helix" /></a>  
+ ├── [fonts](prototypes/_lab/tech_stack/fonts.txt)  
+ ├── 📂 hardware_and_os  
+ │&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 arm  
+ │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── [arm_compiler](prototypes/_lab/tech_stack/hardware_and_os/arm/arm_compiler.txt)  
+ │&nbsp;&nbsp;&nbsp;&nbsp;├── [Issues.md](prototypes/_lab/tech_stack/hardware_and_os/Issues.md)  
+ │&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 os  
+ │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 linux  
+ │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── <a href="prototypes/_lab/tech_stack/hardware_and_os/os/linux/ubuntu.txt"><img src="https://img.shields.io/badge/-Ubuntu-E95420?logo=ubuntu&logoColor=white" alt="ubuntu" /></a>  
+ │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── <a href="prototypes/_lab/tech_stack/hardware_and_os/os/linux/raspberry_pi.txt"><img src="https://img.shields.io/badge/-Raspberry%20Pi-A22846?style=flat-square&logo=raspberrypi&logoColor=white" alt="Raspberry Pi" /></a>  
+ │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── <a href="prototypes/_lab/tech_stack/hardware_and_os/os/linux.txt"><img src="https://img.shields.io/badge/-Linux-FCC624?logo=linux&logoColor=black" alt="linux" /></a>  
+ │&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 serial_tools  
+ │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [tio](prototypes/_lab/tech_stack/hardware_and_os/serial_tools/tio.txt)  
+ ├── 📂 libraries_and_frameworks  
+ │&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 robot  
+ │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── <a href="prototypes/_lab/tech_stack/libraries_and_frameworks/robot/framework-ros.txt"><img src="https://img.shields.io/badge/-ROS-22314E?logo=ros&logoColor=white" alt="ros" /></a>  
+ ├── 📂 llvm_stack  
+ │&nbsp;&nbsp;&nbsp;&nbsp;└── <a href="prototypes/_lab/tech_stack/llvm_stack/clang.txt"><img src="https://img.shields.io/badge/-Clang-F34B7D?logo=llvm&logoColor=white" alt="clang" /></a>  
+ ├── 📂 mathmatics  
+ │&nbsp;&nbsp;&nbsp;&nbsp;├── [mathmatics_symbols](prototypes/_lab/tech_stack/mathmatics/mathmatics_symbols.txt)  
+ │&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 ml  
+ │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [ml-glossary.md](prototypes/_lab/tech_stack/mathmatics/ml/ml-glossary.md)  
+ │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [openmmlab](prototypes/_lab/tech_stack/mathmatics/ml/openmmlab.txt)  
+ ├── 📂 monitoring_tools  
+ │&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 file_system_monitoring  
+ │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── <a href="prototypes/_lab/tech_stack/monitoring_tools/file_system_monitoring/inotify-tools.txt"><img src="https://img.shields.io/badge/-Inotify--Tools-0C91A1" alt="inotify-tools" /></a>  
+ ├── 📂 package_manager  
+ │&nbsp;&nbsp;&nbsp;&nbsp;├── [env-nix](prototypes/_lab/tech_stack/package_manager/env-nix.txt)  
+ │&nbsp;&nbsp;&nbsp;&nbsp;├── [env-volta](prototypes/_lab/tech_stack/package_manager/env-volta.txt)  
+ │&nbsp;&nbsp;&nbsp;&nbsp;├── [lang-cargo](prototypes/_lab/tech_stack/package_manager/lang-cargo.txt)  
+ │&nbsp;&nbsp;&nbsp;&nbsp;├── <a href="prototypes/_lab/tech_stack/package_manager/lang-conan.txt"><img src="https://img.shields.io/badge/-Conan-004080?logo=conan&logoColor=white" alt="lang-conan" /></a>  
+ │&nbsp;&nbsp;&nbsp;&nbsp;├── [lang-pipx](prototypes/_lab/tech_stack/package_manager/lang-pipx.txt)  
+ │&nbsp;&nbsp;&nbsp;&nbsp;├── <a href="prototypes/_lab/tech_stack/package_manager/lang-poetry.txt"><img src="https://img.shields.io/badge/-Poetry-60A5FA?logo=python&logoColor=white" alt="lang-poetry" /></a>  
+ │&nbsp;&nbsp;&nbsp;&nbsp;├── [sys-choco](prototypes/_lab/tech_stack/package_manager/sys-choco.txt)  
+ │&nbsp;&nbsp;&nbsp;&nbsp;├── [sys-homebrew](prototypes/_lab/tech_stack/package_manager/sys-homebrew.txt)  
+ │&nbsp;&nbsp;&nbsp;&nbsp;├── [sys-pacman](prototypes/_lab/tech_stack/package_manager/sys-pacman.txt)  
+ │&nbsp;&nbsp;&nbsp;&nbsp;├── [sys-pixi](prototypes/_lab/tech_stack/package_manager/sys-pixi.txt)  
+ │&nbsp;&nbsp;&nbsp;&nbsp;└── [sys-scoop](prototypes/_lab/tech_stack/package_manager/sys-scoop.txt)  
+ ├── 📂 programming_languages  
+ │&nbsp;&nbsp;&nbsp;&nbsp;├── <a href="prototypes/_lab/tech_stack/programming_languages/c+cpp.txt"><img src="https://img.shields.io/badge/-C-00599C?logo=c&logoColor=white" alt="C" /></a><a href="prototypes/_lab/tech_stack/programming_languages/c+cpp.txt"><img src="https://img.shields.io/badge/-C++-00599C?logo=cplusplus&logoColor=white" alt="C++" /></a>  
+ │&nbsp;&nbsp;&nbsp;&nbsp;├── <a href="prototypes/_lab/tech_stack/programming_languages/java.txt"><img src="https://img.shields.io/badge/-Java-007396?logo=java&logoColor=white" alt="Java" /></a>  
+ │&nbsp;&nbsp;&nbsp;&nbsp;├── <a href="prototypes/_lab/tech_stack/programming_languages/python.txt"><img src="https://img.shields.io/badge/-Python-3776AB?logo=python&logoColor=white" alt="python" /></a>  
+ │&nbsp;&nbsp;&nbsp;&nbsp;└── <a href="prototypes/_lab/tech_stack/programming_languages/rust.txt"><img src="https://img.shields.io/badge/-Rust-000000?logo=rust&logoColor=white" alt="rust" /></a>  
+ ├── 📂 remote_access_tools  
+ │&nbsp;&nbsp;&nbsp;&nbsp;└── [tailscale](prototypes/_lab/tech_stack/remote_access_tools/tailscale.txt)  
+ ├── 📂 scm  
+ │&nbsp;&nbsp;&nbsp;&nbsp;└── <a href="prototypes/_lab/tech_stack/scm/git.txt"><img src="https://img.shields.io/badge/-Git-F05032?logo=git&logoColor=white" alt="Git" /></a>  
+ ├── 📂 shell  
+ │&nbsp;&nbsp;&nbsp;&nbsp;├── <a href="prototypes/_lab/tech_stack/shell/fish.txt"><img src="https://img.shields.io/badge/-Fish%20Shell-FFCB2F?logo=fish&logoColor=white" alt="fish" /></a>  
+ │&nbsp;&nbsp;&nbsp;&nbsp;└── <a href="prototypes/_lab/tech_stack/shell/powershell.txt"><img src="https://img.shields.io/badge/-PowerShell-5391FE?logo=powershell&logoColor=white" alt="PowerShell" /></a>  
+ ├── 📂 terminal  
+ │&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 emulator  
+ │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── <a href="prototypes/_lab/tech_stack/terminal/emulator/wezterm.txt"><img src="https://img.shields.io/badge/-WezTerm-4D4D4D" alt="wezterm" /></a>  
+ │&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 graphics_tools  
+ │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── <a href="prototypes/_lab/tech_stack/terminal/graphics_tools/timg.txt"><img src="https://img.shields.io/badge/-Timg-0099CC" alt="timg" /></a>  
+ ├── 📂 virtualization  
+ │&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 os_level_virtualization  
+ │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── <a href="prototypes/_lab/tech_stack/virtualization/os_level_virtualization/dev_env-devcontainer.txt"><img src="https://img.shields.io/badge/-DevContainer-0078D7?logo=visualstudiocode&logoColor=white" alt="dev_env-devcontainer" /></a>  
+ │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── <a href="prototypes/_lab/tech_stack/virtualization/os_level_virtualization/runtime-docker.txt"><img src="https://img.shields.io/badge/-Docker-2496ED?logo=docker&logoColor=white" alt="runtime-docker" /></a>  
+ └── 📂 web  
+ ├── 📂 web_browser  
+ │&nbsp;&nbsp;&nbsp;&nbsp;└── [edge](prototypes/_lab/tech_stack/web/web_browser/edge.txt)  
+ └── 📂 web_server  
+ &nbsp;&nbsp;&nbsp;&nbsp;└── <a href="prototypes/_lab/tech_stack/web/web_server/nginx.txt"><img src="https://img.shields.io/badge/-Nginx-269539?logo=nginx&logoColor=white" alt="nginx" /></a>
 
 ## 🖋️ Scripts
 
@@ -161,94 +249,6 @@ tree [**prototypes/\_initialization/ubuntu**](prototypes/_initialization/ubuntu)
 ├── [init_in_fish_semi_automatic-vision.fish](prototypes/_initialization/ubuntu/init_in_fish_semi_automatic-vision.fish)  
 └── 📂 recipes  
 &nbsp;&nbsp;&nbsp;&nbsp;└── [fix_locale_warning.recipe.fish](prototypes/_initialization/ubuntu/recipes/fix_locale_fallback_warning.fish)
-
-## 🔧 Tech Stack
-
-tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)  
- ├── 📂 build_tool  
- │&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 build_system  
- │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 meta_build_system  
- │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 yocto_project  
- │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [bitbake](prototypes/_lab/tech_stack/build_tool/build_system/meta_build_system/yocto_project/bitbake.txt)  
- │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [yocto](prototypes/_lab/tech_stack/build_tool/build_system/meta_build_system/yocto_project/yocto.txt)  
- │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── [ninja](prototypes/_lab/tech_stack/build_tool/build_system/ninja.txt)  
- │&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 build_system_generator  
- │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── **[cmake](prototypes/_lab/tech_stack/build_tool/build_system_generator/cmake.txt)**  
- ├── 📂 code_quality_tool  
- │&nbsp;&nbsp;&nbsp;&nbsp;└── [ruff](prototypes/_lab/tech_stack/code_quality_tool/ruff.txt)  
- ├── 📂 design_pattern_and_uml  
- │&nbsp;&nbsp;&nbsp;&nbsp;├── [d2](prototypes/_lab/tech_stack/design_pattern_and_uml/d2.txt)  
- │&nbsp;&nbsp;&nbsp;&nbsp;├── [design_pattern](prototypes/_lab/tech_stack/design_pattern_and_uml/design_pattern.txt)  
- ├── 📂 editor  
- │&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 gui_based-ide  
- │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;├── [microchip_studio](prototypes/_lab/tech_stack/editor/gui_based-ide/microchip_studio.txt)  
- │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;├── [visual_studio](prototypes/_lab/tech_stack/editor/gui_based-ide/visual_studio.txt)  
- │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── **[vs_code](prototypes/_lab/tech_stack/editor/gui_based-ide/vs_code.txt)**  
- │&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 terminal_based  
- │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [helix](prototypes/_lab/tech_stack/editor/terminal_based/helix.txt)  
- ├── [fonts](prototypes/_lab/tech_stack/fonts.txt)  
- ├── 📂 hardware_and_os  
- │&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 arm  
- │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── [arm_compiler](prototypes/_lab/tech_stack/hardware_and_os/arm/arm_compiler.txt)  
- │&nbsp;&nbsp;&nbsp;&nbsp;├── [Issues.md](prototypes/_lab/tech_stack/hardware_and_os/Issues.md)  
- │&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 os  
- │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 linux  
- │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── **[ubuntu](prototypes/_lab/tech_stack/hardware_and_os/os/linux/ubuntu.txt)**  
- │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── [raspberry_pi](prototypes/_lab/tech_stack/hardware_and_os/os/linux/raspberry_pi.txt)  
- │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── **[linux](prototypes/_lab/tech_stack/hardware_and_os/os/linux.txt)**  
- │&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 serial_tools  
- │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [tio](prototypes/_lab/tech_stack/hardware_and_os/serial_tools/tio.txt)  
- ├── 📂 libraries_and_frameworks  
- │&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 framework  
- │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── **[ros](prototypes/_lab/tech_stack/libraries_and_frameworks/framework/ros.txt)**  
- ├── 📂 llvm_stack  
- │&nbsp;&nbsp;&nbsp;&nbsp;└── **[clang](prototypes/_lab/tech_stack/llvm_stack/clang.txt)**  
- ├── 📂 mathmatics  
- │&nbsp;&nbsp;&nbsp;&nbsp;├── [mathmatics_symbols](prototypes/_lab/tech_stack/mathmatics/mathmatics_symbols.txt)  
- │&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 ml  
- │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [ml-glossary.md](prototypes/_lab/tech_stack/mathmatics/ml/ml-glossary.md)  
- │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [openmmlab](prototypes/_lab/tech_stack/mathmatics/ml/openmmlab.txt)  
- ├── 📂 monitoring_tools  
- │&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 file_system_monitoring  
- │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── **[inotify-tools](prototypes/_lab/tech_stack/monitoring_tools/file_system_monitoring/inotify-tools.txt)**  
- ├── 📂 package_manager  
- │&nbsp;&nbsp;&nbsp;&nbsp;├── [env-nix](prototypes/_lab/tech_stack/package_manager/env-nix.txt)  
- │&nbsp;&nbsp;&nbsp;&nbsp;├── [env-volta](prototypes/_lab/tech_stack/package_manager/env-volta.txt)  
- │&nbsp;&nbsp;&nbsp;&nbsp;├── [lang-cargo](prototypes/_lab/tech_stack/package_manager/lang-cargo.txt)  
- │&nbsp;&nbsp;&nbsp;&nbsp;├── **[lang-conan](prototypes/_lab/tech_stack/package_manager/lang-conan.txt)**  
- │&nbsp;&nbsp;&nbsp;&nbsp;├── [lang-pipx](prototypes/_lab/tech_stack/package_manager/lang-pipx.txt)  
- │&nbsp;&nbsp;&nbsp;&nbsp;├── **[lang-poetry](prototypes/_lab/tech_stack/package_manager/lang-poetry.txt)**  
- │&nbsp;&nbsp;&nbsp;&nbsp;├── [sys-choco](prototypes/_lab/tech_stack/package_manager/sys-choco.txt)  
- │&nbsp;&nbsp;&nbsp;&nbsp;├── [sys-homebrew](prototypes/_lab/tech_stack/package_manager/sys-homebrew.txt)  
- │&nbsp;&nbsp;&nbsp;&nbsp;├── [sys-pacman](prototypes/_lab/tech_stack/package_manager/sys-pacman.txt)  
- │&nbsp;&nbsp;&nbsp;&nbsp;├── [sys-pixi](prototypes/_lab/tech_stack/package_manager/sys-pixi.txt)  
- │&nbsp;&nbsp;&nbsp;&nbsp;└── [sys-scoop](prototypes/_lab/tech_stack/package_manager/sys-scoop.txt)  
- ├── 📂 programming_languages  
- │&nbsp;&nbsp;&nbsp;&nbsp;├── [c+cpp](prototypes/_lab/tech_stack/programming_languages/c+cpp.txt)  
- │&nbsp;&nbsp;&nbsp;&nbsp;├── [java](prototypes/_lab/tech_stack/programming_languages/java.txt)  
- │&nbsp;&nbsp;&nbsp;&nbsp;├── [python](prototypes/_lab/tech_stack/programming_languages/python.txt)  
- │&nbsp;&nbsp;&nbsp;&nbsp;└── [rust](prototypes/_lab/tech_stack/programming_languages/rust.txt)  
- ├── 📂 remote_access_tools  
- │&nbsp;&nbsp;&nbsp;&nbsp;└── [tailscale](prototypes/_lab/tech_stack/remote_access_tools/tailscale.txt)  
- ├── 📂 scm  
- │&nbsp;&nbsp;&nbsp;&nbsp;└── [git](prototypes/_lab/tech_stack/scm/git.txt)  
- ├── 📂 shell  
- │&nbsp;&nbsp;&nbsp;&nbsp;├── **[fish](prototypes/_lab/tech_stack/shell/fish.txt)**  
- │&nbsp;&nbsp;&nbsp;&nbsp;└── [powershell](prototypes/_lab/tech_stack/shell/powershell.txt)  
- ├── 📂 terminal  
- │&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 emulator  
- │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── **[wezterm](prototypes/_lab/tech_stack/terminal/emulator/wezterm.txt)**  
- │&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 graphics_tools  
- │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── **[timg](prototypes/_lab/tech_stack/terminal/graphics_tools/timg.txt)**  
- ├── 📂 virtualization  
- │&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 os_level_virtualization  
- │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── **[dev_env-devcontainer](prototypes/_lab/tech_stack/virtualization/os_level_virtualization/dev_env-devcontainer.txt)**  
- │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── **[runtime-docker](prototypes/_lab/tech_stack/virtualization/os_level_virtualization/runtime-docker.txt)**  
- └── 📂 web  
- ├── 📂 web_browser  
- │&nbsp;&nbsp;&nbsp;&nbsp;└── [edge](prototypes/_lab/tech_stack/web/web_browser/edge.txt)  
- └── 📂 web_server  
- &nbsp;&nbsp;&nbsp;&nbsp;└── [nginx](prototypes/_lab/tech_stack/web/web_server/nginx.txt)
 
 ## 📈 Trend
 

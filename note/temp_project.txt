@@ -16935,7 +16935,7 @@ ubuntu@bot19:~$ cat ~/.profile
     ~/.bash_profile과 ~/.bash_login이 모두 없을 경우 로드됩니다.
 
 
-.... 🚨 not works: ssh ubuntu@10.10.14.119 'source $HOME/.bashrc && which roslaunch'
+.... 🚨 not works: ssh ubuntu@10.10.14.119 'source $HOME/.bashrc && wbitbakehich roslaunch'
   ....
   # ~/.bashrc: executed by bash(1) for non-login shells. see /usr/share/doc/bash/examples/startup-files (in the package bash-doc) 
   # for examples
@@ -16946,3 +16946,15 @@ ubuntu@bot19:~$ cat ~/.profile
         *) return;;
   esac
 
+
+
+EtherCAT.... jepg
+오피전력기술
+
+https://www.aidinrobotics.co.kr/robotic-picking-solution-for-logistics
+  https://aidinrobotics.oopy.io/
+
+  
+https://shields.io/
+  https://simpleicons.org/
+lickable Badges
