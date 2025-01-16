@@ -7,7 +7,7 @@ list of level 1 subjects
 
 
 (✍️ Make 🔪 study)
-  🚨( Issue): Bug; rm -rf directory/*.ko Deletes the Entire Folder 📅 2025-01-16 15:52:59
+  🚨(Issue: Bug); rm -rf directory/*.ko Deletes the Entire Folder 📅 2025-01-16 15:52:59
     When:
       - Executed `make clean` in a Makefile where the `clean` rule includes:
           rm -rf $(MODULE_DIR)/*.ko
@@ -66,11 +66,14 @@ list of level 1 subjects
     #️⃣ 8.3 Functions for File Names ; https://www.gnu.org/software/make/manual/make.html#File-Name-Functions
       #️⃣🪱 $(dir names…) ; https://www.gnu.org/software/make/manual/make.html#index-dir
       #️⃣🪱 $(abspath names…) ; https://www.gnu.org/software/make/manual/make.html#index-abspath-1
-  
+      #️⃣🪱 $(basename names…) ; https://www.gnu.org/software/make/manual/make.html#index-basename-1
+
+  #️⃣🗺️ 9.8 Summary of Options
+    #📎 -C dir, --directory=dir
+      Change to directory dir before reading the makefiles.
+       If multiple ‘-C’ options are specified, ...
   #️⃣ 10 Using Implicit Rules ; https://www.gnu.org/software/make/manual/make.html#Implicit-Rules
     #️⃣ 10.3 Variables Used by Implicit Rules ; https://www.gnu.org/software/make/manual/make.html#Implicit-Variables
       #🪱 CC
         Program for compiling C programs; default ‘cc’.
 
-
-$(patsubst pattern,replacement,text) 

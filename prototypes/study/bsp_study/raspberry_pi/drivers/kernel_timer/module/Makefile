@@ -1,27 +1,33 @@
 # ☑️ Note that $(PWD) always indicates the directory of the first Makefile invoked, even if new Makefiles are called. 📅 2025-01-17 01:25:33
 #	📝 Note that $(dir ...) always retains the trailing "/" in the returned directory path.
+PWD := $(basename $(dir $(realpath $(lastword $(MAKEFILE_LIST)))))
+
 
 # Module-specific variables
 MODULE_NAME := $(MODULE_NAME)
-SRC_DIR := $(dir $(realpath $(lastword $(MAKEFILE_LIST))))src
+SRC_DIR := $(PWD)/src
 BUILD_DIR := $(BUILD_DIR)
 COMPILER := $(COMPILER)
 LINKER := $(LINKER)
+COMMON_INCLUDE_DIR := $(COMMON_INCLUDE_DIR)
 
 # Kernel build settings
 KERNEL_DIR := $(HOME)/repos/kernels/raspberry-pi
 
 # Include directories and compiler flags
-INCLUDE_DIRS := -fno-pic -Wall -Wextra -Wno-unused-parameter -Wno-sign-compare -Iinclude -I../include
-CFLAGS := $(INCLUDE_DIRS)
+INCLUDE_DIRS := -I$(COMMON_INCLUDE_DIR) -Iinclude
+CFLAGS := -fno-pic -Wall -Wextra -Wno-unused-parameter -Wno-sign-compare $(INCLUDE_DIRS)
 
 # Kernel build module variables
-obj-m := $(SRC_DIR)/$(MODULE_NAME).o
 KERNEL_ARCHITECTURE := arm64
 CLANG_FLAGS := --target=$(TARGET_TOOLCHAIN) $(CPU_ARCH_FLAGS) $(CFLAGS)
 
 # Add source files to the module
-$(MODULE_NAME)-y := $(patsubst $(SRC_DIR)/%.c, %.o, $(wildcard $(SRC_DIR)/*.c))
+obj-m := $(MODULE_NAME).o
+# ❓
+# $(MODULE_NAME)-y := $(patsubst $(SRC_DIR)/%.c, %.o, $(wildcard $(SRC_DIR)/*.c))
+$(MODULE_NAME)-y := $(patsubst $(SRC_DIR)/%.c, src/%.o, $(wildcard $(SRC_DIR)/*.c))
+
 
 # Default target
 default: build
