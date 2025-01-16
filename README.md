@@ -27,17 +27,17 @@
 
   🏷️ Tag: C, ATmega128, AVR, Peripherals (UART, I2C, PWM, Timer), Design Pattern (MVP), Finite State Machine
 
-- [**Raspberry Pi 4 B 기반 커널 모듈 및 디바이스 드라이버 구현 (LED 제어)**](prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/README.md)
-
-  🏷️ Tag: C, Make, clang
-
 - [**Opencv 및 MediaPipe 기반 카메라 필터 애플리케이션 개발**](prototypes/study/python_study/camera_filter_app)
 
-  🏷️ Tag: Python 3, OpenCV, MediaPipe
+  🏷️ Tag: Python 3, OpenCV, MediaPipe, PySide6, Face Detection, Landmark Processing, Alpha Blending, Real-time Filters
 
   - 팀원: 4
 
-    📜 **역할**: 토끼 귀 필터 구현 및 리팩터링
+    📜 **역할**: [🌟 팀장] 토끼 귀 필터 구현 및 리팩터링, 프로젝트 다이어그램 작성.
+
+- [**Raspberry Pi 4 B 기반 커널 모듈 및 디바이스 드라이버 구현 (LED 제어)**](prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/README.md)
+
+  🏷️ Tag: C, Make, clang
 
 - [**환경 및 네트워크 초기화 자동화 스크립트 작성**](#️-scripts)
 
