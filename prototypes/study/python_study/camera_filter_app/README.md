@@ -1,41 +1,63 @@
-# Face Books
+# Face Books (인생 네컷)
 
-📅 Written at 2025-01-13 02:37:36
+📅 수행 기간: 2024.09.02 ~ 2024.09.06
+
+- [Face Books (인생 네컷)](#face-books-인생-네컷)
+  - [Project Introduction](#project-introduction)
+    - [Features](#features)
+    - [🎯 Purposes](#-purposes)
+    - [Showcase](#showcase)
+  - [🌐 Project Overview](#-project-overview)
+  - [🚧 Prerequisite](#-prerequisite)
+    - [📊 System Workflow](#-system-workflow)
+      - [Use Case diagram](#use-case-diagram)
+      - [Activity diagram](#activity-diagram)
+      - [Sequence diagram](#sequence-diagram)
+      - [State diagram](#state-diagram)
+      - [Class diagram](#class-diagram)
+    - [🛠️ Tools](#️-tools)
+      - [\[🧑‍💻 Software\]](#-software)
+      - [\[🖥️ Hardware\]](#️-hardware)
+    - [📁 Directory Structure](#-directory-structure)
+    - [📖 Key Components and Implementation](#-key-components-and-implementation)
+      - [Library Investigation](#library-investigation)
+      - [MediaPipe Solutions](#mediapipe-solutions)
+      - [Rabbit Ear Filter Implementation](#rabbit-ear-filter-implementation)
+      - [Code Refactoring](#code-refactoring)
+  - [Retrospective](#retrospective)
+    - [📌 Key Learnings and Improvements](#-key-learnings-and-improvements)
+
+---
+
+## Project Introduction
+
+### Features
+
+- 실시간 얼굴 랜드마크 감지를 통한 가상 필터 오버레이.
+- 토끼 귀, 선글라스, 블러쉬 등의 창의적 필터 제공.
+- 카메라 화면 캡처 및 촬영된 사진 카카오톡 공유 기능.
+
+### 🎯 Purposes
+
+- 사용자에게 재미있고 창의적인 사진 촬영 경험 제공.
+- 카카오톡 연동으로 간편한 사진 공유 가능.
+
+### Showcase
+
+- **[📑 PPT](https://docs.google.com/presentation/d/1GJQGkIuFstN4N1v1FjryqKZ_iLx4-1nZ/edit?usp=sharing&ouid=106474024514069876567&rtpof=true&sd=true)**
+- **[📽️ Demo Video](https://drive.google.com/file/d/1CWQXUoqDJuuieDAonLfz1mzXtQSG5oGm/view?usp=sharing)**
+
+---
+
+## 🌐 Project Overview
 
 ## 🚧 Prerequisite
 
 - Download **[resource files](https://drive.google.com/file/d/1H4TsQumP04nv-h8B9Yzaibd0h4C2CMC7/view)** and locate in `camera_filter_app/rsrc` directory
 
-## Showcase
+### 📊 System Workflow
 
-- **[📑 PPT](https://docs.google.com/presentation/d/1GJQGkIuFstN4N1v1FjryqKZ_iLx4-1nZ/edit?usp=sharing&ouid=106474024514069876567&rtpof=true&sd=true)**
-- **[📽️ Demo Video](https://drive.google.com/file/d/1CWQXUoqDJuuieDAonLfz1mzXtQSG5oGm/view?usp=sharing)**
-
-## 📂 Directory Structure
-
-tree camera_filter_app  
-├── 📂 diagrams  
-│&nbsp;&nbsp;&nbsp;&nbsp;├── [1-use_case_diagram.md](diagrams/1-use_case_diagram.md)  
-│&nbsp;&nbsp;&nbsp;&nbsp;├── [2-activity_diagram.md](diagrams/2-activity_diagram.md)  
-│&nbsp;&nbsp;&nbsp;&nbsp;├── [3-sequence-diagram.md](diagrams/3-sequence-diagram.md)  
-│&nbsp;&nbsp;&nbsp;&nbsp;├── [4-state_diagram.md](diagrams/4-state_diagram.md)  
-│&nbsp;&nbsp;&nbsp;&nbsp;└── [5-class_diagram.md](diagrams/5-class_diagram.md)  
-├── 📂 config  
-│&nbsp;&nbsp;&nbsp;&nbsp;├── [app_config.py](config/app_config.py)  
-│&nbsp;&nbsp;&nbsp;&nbsp;├── [**init**.py](config/__init__.py)  
-│&nbsp;&nbsp;&nbsp;&nbsp;└── [paths.py](config/paths.py)  
-├── [filters.py](filters.py)  
-├── [**init**.py](__init__.py)  
-├── [sendver.py](sendver.py)  
-└── 📂 tests  
-&nbsp;&nbsp;&nbsp;&nbsp;├── [test_face_detection.ipynb](tests/test_face_detection.ipynb)  
-&nbsp;&nbsp;&nbsp;&nbsp;└── [test_face_detection_with_camera.py](tests/test_face_detection_with_camera.py)
-
-## diagrams
-
----
-
-### Use Case diagram
+#### Use Case diagram
 
 ```mermaid
 graph TD
@@ -60,11 +82,11 @@ graph TD
 
 ```
 
----
+&nbsp;
 
 ---
 
-### Activity diagram
+#### Activity diagram
 
 ```mermaid
 %% Activity Diagram for Camera Filter Application in Mermaid format
@@ -97,11 +119,11 @@ flowchart TD
     O --> P[Exit Application]
 ```
 
----
+&nbsp;
 
 ---
 
-### Sequence diagram
+#### Sequence diagram
 
 ```mermaid
 sequenceDiagram
@@ -146,11 +168,11 @@ sequenceDiagram
 
 ```
 
----
+&nbsp;
 
 ---
 
-### State diagram
+#### State diagram
 
 ```mermaid
 stateDiagram
@@ -180,11 +202,11 @@ stateDiagram
 
 ```
 
----
+&nbsp;
 
 ---
 
-### Class diagram
+#### Class diagram
 
 ```mermaid
 classDiagram
@@ -256,6 +278,62 @@ classDiagram
 
 ```
 
+### 🛠️ Tools
+
+#### [🧑‍💻 Software]
+
+- **OpenCV**: 얼굴 인식 및 랜드마크 추적 구현.
+- **MediaPipe**: 얼굴 메쉬 생성 및 탐지.
+- **PySide6**: GUI 설계 및 사용자 인터페이스 구현.
+- **Flask**: 로컬 서버 구축 및 카카오톡 연동.
+
+#### [🖥️ Hardware]
+
+- **웹캠**: 얼굴 탐지 및 영상 처리.
+
+### 📁 Directory Structure
+
+tree camera_filter_app  
+├── 📂 diagrams  
+│&nbsp;&nbsp;&nbsp;&nbsp;├── [1-use_case_diagram.md](diagrams/1-use_case_diagram.md)  
+│&nbsp;&nbsp;&nbsp;&nbsp;├── [2-activity_diagram.md](diagrams/2-activity_diagram.md)  
+│&nbsp;&nbsp;&nbsp;&nbsp;├── [3-sequence-diagram.md](diagrams/3-sequence-diagram.md)  
+│&nbsp;&nbsp;&nbsp;&nbsp;├── [4-state_diagram.md](diagrams/4-state_diagram.md)  
+│&nbsp;&nbsp;&nbsp;&nbsp;└── [5-class_diagram.md](diagrams/5-class_diagram.md)  
+├── 📂 config  
+│&nbsp;&nbsp;&nbsp;&nbsp;├── [app_config.py](config/app_config.py)  
+│&nbsp;&nbsp;&nbsp;&nbsp;└── [paths.py](config/paths.py)  
+├── [filters.py](filters.py)  
+├── [sendver.py](sendver.py)  
+└── 📂 tests  
+&nbsp;&nbsp;&nbsp;&nbsp;├── [test_face_detection.ipynb](tests/test_face_detection.ipynb)  
+&nbsp;&nbsp;&nbsp;&nbsp;└── [test_face_detection_with_camera.py](tests/test_face_detection_with_camera.py)
+
+### 📖 Key Components and Implementation
+
+#### Library Investigation
+
+- PySide6, OpenCV, MediaPipe Solutions 등 프로젝트에 필요한 라이브러리 조사.
+
+#### MediaPipe Solutions
+
+- MediaPipe BlazeFace 및 Face Mesh V2 모델 조사 및 활용.
+- 얼굴 탐지와 랜드마크 데이터 활용 최적화.
+
+#### Rabbit Ear Filter Implementation
+
+- 얼굴 랜드마크 기반 필터 오버레이.
+- 알파 블렌딩을 적용하여 자연스러운 결과 구현.
+
+#### Code Refactoring
+
+- 모듈화와 함수화로 코드 가독성 개선.
+- 중복 코드 제거 및 데이터 처리 최적화.
+
+---
+
 ## Retrospective
 
-- Unable to write better code due to the use of outdated APIs in the Mediapipe solutions library
+### 📌 Key Learnings and Improvements
+
+- MediaPipe solutions 를 사용할 때 구 버전의 API 를 사용하여, VS Code 의 Intellisense 의 도움을 받지 못하여 좀 더 나은 코드를 작성하지 못함.
