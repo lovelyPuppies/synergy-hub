@@ -30,12 +30,12 @@ APP_CFLAGS := --target=$(TARGET_TOOLCHAIN) $(CPU_ARCH_FLAGS) \
     -Wall -Wextra $(APP_INC)
 
 # Default target: build everything
-default: build
+default: build deploy
 
 # Build both the application and kernel module
 build: build-app build-module
 
-# Build the application
+#🤝 Build the application (Delegate application build to the Makefile in the app folder)
 build-app:
 	$(MAKE) -C $(APP_DIR)
 
@@ -61,7 +61,7 @@ deploy-module: build-module
 # Clean build artifacts
 clean: clean-app clean-module
 
-# Clean only app
+#🤝 Clean only app (Delegate application build to the Makefile in the app folder)
 clean-app:
 	$(MAKE) -C $(APP_DIR) clean
 

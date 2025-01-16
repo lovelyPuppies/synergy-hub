@@ -17022,3 +17022,158 @@ cp arch/arm64/boot/Image.gz /nfs//boot/firmware/kernel8.img
 
   modules_install은 커널 모듈을 시스템 디렉토리(예: /lib/modules/<kernel_version>)로 설치하는 과정으로, 수동으로 insmod를 사용해 모듈을 올리는 경우에는 반드시 필요하지 않습니다.
 
+
+
+라즈베리파이 공식디스플레이
+  DISPLAY=:0 xrandr --output DSI-1 --rotate left
+
+
+cat /boot/config.txt | grep -E 'dtoverlay=vc4'
+
+  현재 dtoverlay=vc4-kms-v3d가 활성화되어 있는 상태입니다. 이는 Raspberry Pi의 "Full KMS" 그래픽 드라이버를 사용 중임을 의미합니다. 이 경우:
+
+  display_rotate 옵션은 작동하지 않습니다.
+  dtoverlay=vc4-kms-v3d가 활성화된 상태에서는 구형 display_rotate 설정이 지원되지 않으므로, 이를 통해 화면 회전을 수행할 수 없습니다.
+
+  권장 회전 방법은 xrandr 명령 또는 커널 커맨드라인 옵션을 사용하는 것입니다.
+  다만, SSH를 통해 연결하는 경우에는 X11 디스플레이 세션을 명확히 지정하거나, SSH 세션이 아닌 물리적 키보드/마우스를 통해 직접 Raspberry Pi에서 명령을 실행해야 할 수 있습니다.
+
+  pi19@pi ~>  xrandr
+
+Screen 0: minimum 16 x 16, current 1920 x 1080, maximum 32767 x 32767
+HDMI-A-1 connected primary 1920x1080+0+0 (normal left inverted right x axis y axis) 521mm x 293mm
+   1920x1080     59.96*+
+   1440x1080     59.99  
+   1400x1050     59.98  
+   1280x1024     59.89  
+   1280x960      59.94  
+   1152x864      59.96  
+   1024x768      59.92  
+   800x600       59.86  
+   640x480       59.38  
+   320x240       59.52  
+   1680x1050     59.95  
+   1440x900      59.89  
+   1280x800      59.81  
+   1152x720      59.97  
+   960x600       59.63  
+   928x580       59.88  
+   800x500       59.50  
+   768x480       59.90  
+   720x480       59.71  
+   640x400       59.95  
+   320x200       58.96  
+   1600x900      59.95  
+   1368x768      59.88  
+   1280x720      59.86  
+   1024x576      59.90  
+   864x486       59.92  
+   720x400       59.55  
+   640x350       59.77  
+
+   xrandr --output HDMI-A-1 --rotate inverted
+
+
+이투비비 지원자 확인바랍니다
+
+
+Re: Raspberry Pi 4 - screen rotation
+Mon Sep 21, 2020 11:35 am
+
+Yes, the config.txt rotations are deprecated when using FKMS - they are incompatible.
+
+You can set rotation on the kernel command line.
+
+https://www.raspberrypi.org/documentati ... ine-txt.md
+
+
+https://www.raspberrypi.com/documentation/computers/configuration.html#displays
+
+
+video=HDMI-A-1:1920x1080M@60,rotate=90  
+
+🧮 xrandr --listmonitors
+
+HDMI-A-1 connected primary 1920x1080+0+0 (normal left inverted right x axis y axis) 521mm x 293mm
+   1920x1080     59.96*+
+   1440x1080     59.99  
+   1400x1050     59.98  
+   1280x1024     59.89  
+   1280x960      59.94  
+   1152x864      59.96  
+   1024x768      59.92  
+   800x600       59.86  
+   640x480       59.38  
+   320x240       59.52  
+   1680x1050     59.95  
+   1440x900      59.89  
+   1280x800      59.81  
+   1152x720      59.97  
+   960x600       59.63  
+   928x580       59.88  
+   800x500       59.50  
+   768x480       59.90  
+   720x480       59.71  
+   640x400       59.95  
+   320x200       58.96  
+   1600x900      59.95  
+   1368x768      59.88  
+   1280x720      59.86  
+   1024x576      59.90  
+   864x486       59.92  
+   720x400       59.55  
+   640x350       59.77  
+
+
+[    1.937844] [drm] Initialized v3d 1.0.0 20180419 for fec00000.v3d on minor 0
+[    3.791642] systemd[1]: Starting modprobe@drm.service - Load Kernel Module drm...
+[    3.843971] systemd[1]: modprobe@drm.service: Deactivated successfully.
+[    3.844405] systemd[1]: Finished modprobe@drm.service - Load Kernel Module drm.
+[    5.728356] vc4-drm gpu: bound fe400000.hvs (ops vc4_hvs_ops [vc4])
+[    5.738361] vc4-drm gpu: bound fef00700.hdmi (ops vc4_hdmi_ops [vc4])
+[    5.748582] vc4-drm gpu: bound fef05700.hdmi (ops vc4_hdmi_ops [vc4])
+[    5.749090] vc4-drm gpu: bound fe700000.dsi (ops vc4_dsi_ops [vc4])
+[    5.749264] vc4-drm gpu: bound fe004000.txp (ops vc4_txp_ops [vc4])
+[    5.749377] vc4-drm gpu: bound fe206000.pixelvalve (ops vc4_crtc_ops [vc4])
+[    5.749486] vc4-drm gpu: bound fe207000.pixelvalve (ops vc4_crtc_ops [vc4])
+[    5.749593] vc4-drm gpu: bound fe20a000.pixelvalve (ops vc4_crtc_ops [vc4])
+[    5.749667] vc4-drm gpu: bound fe216000.pixelvalve (ops vc4_crtc_ops [vc4])
+[    5.749780] vc4-drm gpu: bound fec12000.pixelvalve (ops vc4_crtc_ops [vc4])
+[    5.752102] [drm] Initialized vc4 0.0.0 20140616 for gpu on minor 1
+[    6.171880] vc4-drm gpu: [drm] fb0: vc4drmfb frame buffer devices
+
+
+[cm5]
+dtoverlay=dwc2,dr_mode=host
+
+[all]
+
+
+dtoverlay=dwc2
+to
+vc4-fkms-v3d
+vc4-kms-v3d
+
+lcd_rotate=2
+
+
+
+
+
+display_auto_detect=1
+lcd_rotate=2
+display_rotate=2
+auto_initramfs=1
+
+
+[all]
+lcd_rotate=2
+enable_uart=1
+
+
+
+  GNU nano 7.2                                    /boot/firmware/cmdline.txt *                                            
+console=serial0,115200 console=tty1 root=PARTUUID=7560c0b2-02 rootfstype=ext4 fsck.repair=yes rootwait quiet splash plymouth.ignore-serial-consoles cfg80211.ieee80211_regdom=GB
+
+console=serial0,115200 console=tty0 root=PARTUUID=7560c0b2-02 rootfstype=ext4 fsck.repair=yes rootwait
+

@@ -36,6 +36,20 @@ list of level 1 subjects
 
 ----------------------------------------------
 ⚓ Make 🔪 Docs ; https://www.gnu.org/software/make/manual/make.html
+  #️⃣ 4 Writing Rules ; https://www.gnu.org/software/make/manual/make.html#Rules
+    #️⃣ 4.4 Using Wildcard Characters in File Names ; https://www.gnu.org/software/make/manual/make.html#Wildcards
+      #️⃣ 4.4.3 The Function 🪱 wildcard ; https://www.gnu.org/software/make/manual/make.html#index-wildcard-1
+        $(wildcard pattern…)
+        ⚖️ Wildcard expansion happens automatically in rules.
+          📍 But wildcard expansion does not normally take place when a variable is set, or inside the arguments of a function.
+            If you want to do wildcard expansion in such places, you need to use the wildcard function, like this:
+          📝🛍️ e.g.
+            # It automatically expands the wildcard *.c to match all .c files in the directory.
+            build: *.c
+            # It does not expand *.c; instead, it stores the literal string '*.c' in the FILES variable.
+            FILES = *.c
+
+
   #️⃣ 6 How to Use Variables ; https://www.gnu.org/software/make/manual/make.html#Using-Variables
     #️⃣ 6.14 Other Special Variables ; https://www.gnu.org/software/make/manual/make.html#Special-Variables
       #🪱 MAKEFILE_LIST
@@ -45,6 +59,10 @@ list of level 1 subjects
   #️⃣ 8 Functions for Transforming Text ; https://www.gnu.org/software/make/manual/make.html#Functions
     #️⃣ 8.2 Functions for String Substitution and Analysis 
       #️⃣🪱 $(lastword names…) ; https://www.gnu.org/software/make/manual/make.html#index-lastword
+      #️⃣🪱 $(patsubst pattern,replacement,text) ; https://www.gnu.org/software/make/manual/make.html#index-patsubst-1
+        ; pattern substitution
+        Finds whitespace-separated words in text that match pattern and replaces them with replacement.
+  
     #️⃣ 8.3 Functions for File Names ; https://www.gnu.org/software/make/manual/make.html#File-Name-Functions
       #️⃣🪱 $(dir names…) ; https://www.gnu.org/software/make/manual/make.html#index-dir
       #️⃣🪱 $(abspath names…) ; https://www.gnu.org/software/make/manual/make.html#index-abspath-1
@@ -55,4 +73,4 @@ list of level 1 subjects
         Program for compiling C programs; default ‘cc’.
 
 
-
+$(patsubst pattern,replacement,text) 
