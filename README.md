@@ -35,7 +35,7 @@
 
     📜 **역할**: [🌟 팀장] 토끼 귀 필터 구현 및 리팩터링, 프로젝트 다이어그램 작성.
 
-- [**Raspberry Pi 4 B 기반 커널 모듈 및 디바이스 드라이버 구현 (LED 제어)**](prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/README.md)
+- [**Raspberry Pi 4 B 기반 커널 모듈 및 디바이스 드라이버 구현 (LED 제어)**](prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer)
 
   🏷️ Tag: C, Make, clang
 
@@ -43,7 +43,7 @@
 
   🏷️ Tag: Fish script, PowerShell
 
-- [synergy-hub **LFS using docker**](prototypes/_initialization/lfs/README.md)
+- [synergy-hub **LFS using docker**](prototypes/_initialization/lfs)
 
   🏷️ Tag: Docker, LFS
 
