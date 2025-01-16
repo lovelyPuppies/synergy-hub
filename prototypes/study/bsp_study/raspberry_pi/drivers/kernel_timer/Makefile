@@ -4,8 +4,10 @@ MODULE_NAME := kernel_timer_dev
 
 # Paths
 KERNEL_DIR := $(HOME)/repos/kernels/raspberry-pi
-APP_DIR := app  # Updated to point to app directory
-MODULE_DIR := $(PWD)/module  # Use absolute path for the module directory
+# Updated to point to app directory
+APP_DIR := app
+# Use absolute path for the module directory
+MODULE_DIR := $(PWD)/module
 APP_INC := -Iapp/include -Iinclude
 MODULE_INC := -Imodule/include -Iinclude
 BUILD_DIR := build
@@ -55,13 +57,9 @@ deploy-module: build-module
 	@mkdir -p $(DEPLOY_DIR)/module
 	cp $(MODULE_DIR)/*.ko $(DEPLOY_DIR)/module/$(MODULE_NAME).ko
 
+
 # Clean build artifacts
-clean:
-	rm -rf $(BUILD_DIR)
-	$(MAKE) -C $(KERNEL_DIR) M=$(MODULE_DIR) clean
-	rm -rf $(MODULE_DIR)/*.ko $(MODULE_DIR)/*.mod.* $(MODULE_DIR)/modules.order \
-	    $(MODULE_DIR)/Module.symvers $(MODULE_DIR)/.tmp_versions
-	$(MAKE) -C $(APP_DIR) clean
+clean: clean-app clean-module
 
 # Clean only app
 clean-app:
@@ -70,4 +68,4 @@ clean-app:
 # Clean only module
 clean-module:
 	$(MAKE) -C $(KERNEL_DIR) M=$(MODULE_DIR) clean
-	rm -rf $(BUILD_DIR)/module
+	find "$(MODULE_DIR)/src" -type f \( -name '*.o' -o -name '*.o.cmd' \) -delete

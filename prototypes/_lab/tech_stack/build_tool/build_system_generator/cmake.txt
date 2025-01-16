@@ -7,7 +7,7 @@ list of level 1 subjects
 
 
 
-(✍️ CMake code study)
+(✍️ CMake 🔪 study)
   ✅ (how-to); to integrate CMake (with | without package manager) and VS Code 📅 2024-08-20 07:37:16
     ➡️
       1. add these (add includePath of external libraries)

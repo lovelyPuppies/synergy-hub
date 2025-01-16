@@ -129,7 +129,8 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
  │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 yocto_project  
  │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── <a href="prototypes/_lab/tech_stack/build_tool/build_system/meta_build_system/yocto_project/bitbake.txt"><img src="https://img.shields.io/badge/-Bitbake-00599C?logo=yocto&logoColor=white" alt="bitbake" /></a>  
  │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── <a href="prototypes/_lab/tech_stack/build_tool/build_system/meta_build_system/yocto_project/yocto.txt"><img src="https://img.shields.io/badge/-Yocto-00599C?logo=yocto&logoColor=white" alt="yocto" /></a>  
- │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── <a href="prototypes/_lab/tech_stack/build_tool/build_system/ninja.txt"><img src="https://img.shields.io/badge/-Ninja-013243?logo=ninja&logoColor=white" alt="ninja" /></a>  
+ │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;├── <a href="prototypes/_lab/tech_stack/build_tool/build_system/ninja.txt"><img src="https://img.shields.io/badge/-Ninja-013243?logo=ninja&logoColor=white" alt="ninja" /></a>  
+ │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── <a href="prototypes/_lab/tech_stack/build_tool/build_system/make.txt"><img src="https://img.shields.io/badge/-Make-940E1B?logo=gnu&logoColor=white" alt="make" /></a>  
  │&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 build_system_generator  
  │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── <a href="prototypes/_lab/tech_stack/build_tool/build_system_generator/cmake.txt"><img src="https://img.shields.io/badge/-CMake-064F8C?logo=cmake&logoColor=white" alt="cmake" /></a>  
  ├── 📂 code_quality_tool  

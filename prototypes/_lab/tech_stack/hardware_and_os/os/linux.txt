@@ -659,27 +659,3 @@ Linux 🔪 library only
             ; Special Inode Read Write eXecute for Others
             This is equivalent to ‘(S_IROTH | S_IWOTH | S_IXOTH)’.
 
-
-----------------------------------------------
-Linux 🔪 Build Tools
-
-⚓ Make ; https://www.gnu.org/software/make/manual/make.html
-  #️⃣ 6 How to Use Variables ; https://www.gnu.org/software/make/manual/make.html#Using-Variables
-    #️⃣ 6.14 Other Special Variables ; https://www.gnu.org/software/make/manual/make.html#Special-Variables
-      #🪱 MAKEFILE_LIST
-        Contains the name of each makefile that is parsed by make, in the order in which it was parsed.
-        🚣 Thus, if the first thing a makefile does is examine the last word in this variable, it will be the name of the current makefile.
-
-  #️⃣ 8 Functions for Transforming Text ; https://www.gnu.org/software/make/manual/make.html#Functions
-    #️⃣ 8.2 Functions for String Substitution and Analysis 
-      #️⃣🪱 $(lastword names…) ; https://www.gnu.org/software/make/manual/make.html#index-lastword
-    #️⃣ 8.3 Functions for File Names ; https://www.gnu.org/software/make/manual/make.html#File-Name-Functions
-      #️⃣🪱 $(dir names…) ; https://www.gnu.org/software/make/manual/make.html#index-dir
-      #️⃣🪱 $(abspath names…) ; https://www.gnu.org/software/make/manual/make.html#index-abspath-1
-  
-  #️⃣ 10 Using Implicit Rules ; https://www.gnu.org/software/make/manual/make.html#Implicit-Rules
-    #️⃣ 10.3 Variables Used by Implicit Rules ; https://www.gnu.org/software/make/manual/make.html#Implicit-Variables
-      #🪱 CC
-        Program for compiling C programs; default ‘cc’.
-
-
