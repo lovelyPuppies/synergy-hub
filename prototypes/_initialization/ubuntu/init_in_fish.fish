@@ -1280,13 +1280,16 @@ brew install meson
 '
 brew install starship
 
-echo '[status]
-style = \'bg:blue\'
-symbol = \'🔴\'
-format = \'[\[$symbol( $status)$maybe_int(; $common_meaning$signal_name)\]]($style) \'
-map_symbol = true
-disabled = false
-' | tee $HOME/.config/starship.toml >/dev/null
+echo '
+  command_timeout = 1000
+
+  [status]
+  style = \'bg:blue\'
+  symbol = \'🔴\'
+  format = \'[\[$symbol( $status)$maybe_int(; $common_meaning$signal_name)\]]($style) \'
+  map_symbol = true
+  disabled = false
+' | prettify_indent_via_pipe | tee $HOME/.config/starship.toml >/dev/null
 
 set unique_comment "## [starship] prompt initialization settings"
 if not grep -Fxq "$unique_comment" "$FISH_CONFIG_PATH"

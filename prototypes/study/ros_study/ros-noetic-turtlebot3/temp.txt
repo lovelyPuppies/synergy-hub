@@ -1299,10 +1299,10 @@ catkin build hls_lfcd_lds_driver
 
   find_package(catkin REQUIRED COMPONENTS
     roscpp
-    std_msgs
+    std_msgs  
     sensor_msgs
     # ⚙️
-    oroca_ros_tutorials
+    oroca_ros_tutorials 
   )
 
   catkin_package(
