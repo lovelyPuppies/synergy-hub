@@ -3,14 +3,19 @@ APP_NAME := kernel_timer_app
 MODULE_NAME := kernel_timer_dev
 
 # Paths
-APP_DIR := app
-MODULE_DIR := module
-BUILD_DIR := build
+BUILD_DIR := $(PWD)/build
 DEPLOY_DIR := /nfs/drivers
-KERNEL_DIR := $(HOME)/repos/kernels/raspberry-pi
+
+APP_DIR_NAME := app
+APP_DIR := $(PWD)/$(APP_DIR_NAME)
+APP_BUILD_DIR := $(BUILD_DIR)/$(APP_DIR_NAME)
+MODULE_DIR_NAME := module
+MODULE_DIR := $(PWD)/$(MODULE_DIR_NAME)
+MODULE_BUILD_DIR := $(BUILD_DIR)/$(MODULE_DIR_NAME)
 
 # Target architecture and compiler settings
 COMPILER := clang
+LINKER := ld.lld
 TARGET_TOOLCHAIN := aarch64-linux-gnu
 CPU_ARCH_FLAGS := -march=armv8-a
 
@@ -22,31 +27,37 @@ build: build-app build-module
 
 # Delegate to app Makefile
 build-app:
-	$(MAKE) -C $(APP_DIR) BUILD_DIR=$(BUILD_DIR)/$(APP_DIR) COMPILER=$(COMPILER) TARGET_TOOLCHAIN=$(TARGET_TOOLCHAIN) CPU_ARCH_FLAGS=$(CPU_ARCH_FLAGS) APP_NAME=$(APP_NAME)
+	@mkdir -p $(APP_BUILD_DIR)
+	$(MAKE) -C $(APP_DIR) BUILD_DIR=$(APP_BUILD_DIR) COMPILER=$(COMPILER) LINKER=$(LINKER) TARGET_TOOLCHAIN=$(TARGET_TOOLCHAIN) CPU_ARCH_FLAGS=$(CPU_ARCH_FLAGS) APP_NAME=$(APP_NAME)
 
 # Delegate to module Makefile
 build-module:
-	$(MAKE) -C $(MODULE_DIR) BUILD_DIR=$(BUILD_DIR)/$(MODULE_DIR) COMPILER=$(COMPILER) TARGET_TOOLCHAIN=$(TARGET_TOOLCHAIN) CPU_ARCH_FLAGS=$(CPU_ARCH_FLAGS) MODULE_NAME=$(MODULE_NAME) KERNEL_DIR=$(KERNEL_DIR)
+	@mkdir -p $(MODULE_BUILD_DIR)
+	$(MAKE) -C $(MODULE_DIR) BUILD_DIR=$(MODULE_BUILD_DIR) COMPILER=$(COMPILER) LINKER=$(LINKER) TARGET_TOOLCHAIN=$(TARGET_TOOLCHAIN) CPU_ARCH_FLAGS=$(CPU_ARCH_FLAGS) MODULE_NAME=$(MODULE_NAME)
 
 # Deploy artifacts
 deploy: deploy-app deploy-module
 
+
+
 deploy-app:
-	@mkdir -p $(DEPLOY_DIR)/$(APP_DIR)
-	cp $(BUILD_DIR)/$(APP_DIR)/$(APP_NAME).out $(DEPLOY_DIR)/$(APP_DIR)/
+	@mkdir -p $(DEPLOY_DIR)/$(APP_DIR_NAME)
+	cp $(BUILD_DIR)/$(APP_DIR_NAME)/$(APP_NAME).out $(DEPLOY_DIR)/$(APP_DIR_NAME)/
 
 deploy-module:
-	@mkdir -p $(DEPLOY_DIR)/$(MODULE_DIR)
-	cp $(BUILD_DIR)/$(MODULE_DIR)/$(MODULE_NAME).ko $(DEPLOY_DIR)/$(MODULE_DIR)/
+	@mkdir -p $(DEPLOY_DIR)/$(MODULE_DIR_NAME)
+	cp $(BUILD_DIR)/$(MODULE_DIR_NAME)/$(MODULE_NAME).ko $(DEPLOY_DIR)/$(MODULE_DIR_NAME)/
+
+
 
 # Clean build artifacts
 clean: clean-app clean-module
 
 clean-app:
-	$(MAKE) -C $(APP_DIR) clean BUILD_DIR=$(BUILD_DIR)/app
+	$(MAKE) -C $(APP_DIR_NAME) clean BUILD_DIR=$(BUILD_DIR)/app
 
 clean-module:
-	$(MAKE) -C $(MODULE_DIR) clean BUILD_DIR=$(BUILD_DIR)/$(MODULE_DIR)
+	$(MAKE) -C $(MODULE_DIR_NAME) clean BUILD_DIR=$(BUILD_DIR)/$(MODULE_DIR_NAME)
 
 
 

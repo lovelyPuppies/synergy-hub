@@ -1,39 +1,45 @@
-# # Module-specific variables
-# MODULE_NAME := $(MODULE_NAME)
-# SRC_DIR := src
-# BUILD_DIR := $(BUILD_DIR)
-# INCLUDE_DIRS := -Iinclude -I../include -fno-pic -Wno-unused-parameter -Wno-sign-compare
-# COMPILER := $(COMPILER)
-# LINKER := $(LINKER)
-# CFLAGS := $(COMMON_CFLAGS) $(INCLUDE_DIRS)
+# ☑️ Note that $(PWD) always indicates the directory of the first Makefile invoked, even if new Makefiles are called. 📅 2025-01-17 01:25:33
+#	📝 Note that $(dir ...) always retains the trailing "/" in the returned directory path.
 
-# # Kernel build settings
-# KERNEL_DIR := $(KERNEL_DIR)
+# Module-specific variables
+MODULE_NAME := $(MODULE_NAME)
+SRC_DIR := $(dir $(realpath $(lastword $(MAKEFILE_LIST))))src
+BUILD_DIR := $(BUILD_DIR)
+COMPILER := $(COMPILER)
+LINKER := $(LINKER)
 
-# # Source files and object files
-# SRCS := $(wildcard $(SRC_DIR)/*.c)
-# OBJS := $(patsubst $(SRC_DIR)/%.c, $(BUILD_DIR)/%.o, $(SRCS))
+# Kernel build settings
+KERNEL_DIR := $(HOME)/repos/kernels/raspberry-pi
 
-# # Default target
-# default: $(BUILD_DIR)/$(MODULE_NAME).ko
+# Include directories and compiler flags
+INCLUDE_DIRS := -fno-pic -Wall -Wextra -Wno-unused-parameter -Wno-sign-compare -Iinclude -I../include
+CFLAGS := $(INCLUDE_DIRS)
 
-# # Build kernel module
-# $(BUILD_DIR)/$(MODULE_NAME).ko: $(OBJS)
-# 	@mkdir -p $(BUILD_DIR)
-# 	$(MAKE) -C $(KERNEL_DIR) M=$(PWD) O=$(BUILD_DIR) modules ARCH=arm64 \
-# 		CC=$(COMPILER) LD=$(LINKER) CFLAGS_MODULE="$(CFLAGS)"
+# Kernel build module variables
+obj-m := $(SRC_DIR)/$(MODULE_NAME).o
+KERNEL_ARCHITECTURE := arm64
+CLANG_FLAGS := --target=$(TARGET_TOOLCHAIN) $(CPU_ARCH_FLAGS) $(CFLAGS)
 
-# # Compile source files to object files
-# $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
-# 	@mkdir -p $(BUILD_DIR)
-# 	$(COMPILER) $(CFLAGS) -c -o $@ $<
+# Add source files to the module
+$(MODULE_NAME)-y := $(patsubst $(SRC_DIR)/%.c, %.o, $(wildcard $(SRC_DIR)/*.c))
 
-# # Clean
-# clean:
-# 	rm -rf $(BUILD_DIR)
-# 	$(MAKE) -C $(KERNEL_DIR) M=$(PWD) clean
+# Default target
+default: build
+
+# Build kernel module
+build:
+	$(MAKE) -C $(KERNEL_DIR) M=$(PWD) modules ARCH=$(KERNEL_ARCHITECTURE) CC=$(COMPILER) LD=$(LINKER) KBUILD_CFLAGS="$(CLANG_FLAGS)"
 
 
+# Clean build artifacts
+clean:
+	$(MAKE) -C $(KERNEL_DIR) M=$(PWD) O=$(BUILD_DIR) clean
+
+#⚠️ build 플래그에  O=$(BUILD_DIR) ? 이걸 넣으면 KERNEL_DIR 에서 상대경로로 BUILD_DIR 을 찾아버린다. .
+#⚠️  M=$(PWD)$(SRC_DIR) 이 기준으로 Makefile 을 찾는다..
+## 커널 모듈 Makefile에 일반 애플리케이션과 비슷한 구조를 일부 활용하는 것은 가능합니다. 다만, 커널 모듈 빌드는 커널 빌드 시스템 (KBUILD)에 의해 관리되므로 obj-m 방식으로 동작해야 하며, 객체 파일(OBJS)을 수동으로 관리하는 방식은 기본적으로 커널 모듈 빌드의 규칙과 맞지 않습니다.
+## ❗ !!ㅣMakefile 에도 값을 전달해도 유효하도록.. 변수를 처음부터 절대경로를 지정.. $(PWD)
+# 	modinfo $(MODULE_NAME).ko
 
 
 # # Kernel module name
@@ -55,5 +61,6 @@
 # # Clean artifacts
 # clean:
 # 	$(MAKE) -C $(KERNEL_DIR) M=$(PWD) O=$(BUILD_DIR) clean
+
 
 

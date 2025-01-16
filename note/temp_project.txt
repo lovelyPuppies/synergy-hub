@@ -17008,7 +17008,7 @@ cp arch/arm64/boot/Image.gz /nfs//boot/firmware/kernel8.img
 
 커널 타이머
   make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- bcm2711_defconfig
-  make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j$(nproc) Image.gz modules dtbs
+  make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j$(nproc) Image.gz modules
 
 
 
@@ -17180,3 +17180,24 @@ console=serial0,115200 console=tty0 root=PARTUUID=7560c0b2-02 rootfstype=ext4 fs
 
 
 🤝 Delegate application
+
+되는 경우:
+
+wbfw109v2 in 🌐 iot-04 in raspberry_pi/drivers/kernel_timer on  main [!] via C v14.2.0-gcc 
+❯ make build-module
+make -C /home/wbfw109v2/repos/kernels/raspberry-pi M=/home/wbfw109v2/repos/synergy-hub/prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/module modules ARCH=arm64 \
+    CC=clang LD=ld.lld KBUILD_CFLAGS="--target=aarch64-linux-gnu -march=armv8-a -fno-pic -Wall -Wextra -Wno-unused-parameter -Wno-sign-compare -Imodule/include -Iinclude"
+make[1]: Entering directory '/home/wbfw109v2/repos/kernels/raspberry-pi'
+warning: the compiler differs from the one used to build the kernel
+  The kernel was built by: aarch64-linux-gnu-gcc (Ubuntu 14.2.0-4ubuntu2) 14.2.0
+  You are using:           Homebrew clang version 19.1.6
+  CC [M]  /home/wbfw109v2/repos/synergy-hub/prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/module/src/kernel_timer_dev.o
+  LD [M]  /home/wbfw109v2/repos/synergy-hub/prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/module/kernel_timer_dev.o
+  MODPOST /home/wbfw109v2/repos/synergy-hub/prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/module/Module.symvers
+  CC [M]  /home/wbfw109v2/repos/synergy-hub/prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/module/kernel_timer_dev.mod.o
+  LD [M]  /home/wbfw109v2/repos/synergy-hub/prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/module/kernel_timer_dev.ko
+make[1]: Leaving directory '/home/wbfw109v2/repos/kernels/raspberry-pi'
+
+❗
+  $(PWD)의 동작은 GNU Make와 관련된 중요한 점을 이해해야 합니다. $(PWD)는 Makefile이 실행되는 현재 디렉터리를 기준으로 해석됩니다. 하지만, $(MAKE) 명령을 통해 다른 디렉터리로 작업 디렉터리를 전환(-C)하면, 그곳의 Makefile이 실행되더라도 $(PWD)는 여전히 상위 디렉터리에서 호출된 디렉터리를 기준으로 해석됩니다.
+  
