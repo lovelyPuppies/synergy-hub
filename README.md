@@ -21,7 +21,7 @@
 
   - 팀원: 3
 
-    📜 **역할**: [젯슨 나노 통합 및 머신러닝 모델 파이프라인 구현](https://github.com/lovelyPuppies/Project_SignalMaster/tree/main/src/jetson-nano-mount)
+    📜 **역할**: [젯슨 나노 통합 및 머신러닝 모델 파이프라인 구현](https://github.com/lovelyPuppies/Project_SignalMaster/tree/main/src/jetson-nano-mount/README.md)
 
 - [**ATmega128 기반 선풍기 제어 시스템**](https://github.com/lovelyPuppies/fanProject) (External Link)
 

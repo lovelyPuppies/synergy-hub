@@ -110,6 +110,11 @@
     "editor.defaultFormatter": "rust-lang.rust-analyzer",
     "editor.tabSize": 4
   },
+  // 🌀 Title: Python
+  "[python]": {
+    // ruff (Extremely fast Python linter, written in Rust); https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff
+    "editor.defaultFormatter": "charliermarsh.ruff"
+  },
   // 🌀 Title: C/Cpp
   // cmake ; https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools
   "cmake.showOptionsMovedNotification": false,
