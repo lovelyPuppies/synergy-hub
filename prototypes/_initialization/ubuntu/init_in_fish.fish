@@ -1415,6 +1415,8 @@ echo "🥞 Installing available stable versions from apt in fish shell ..."
 sudo apt install -y python3-venv
 
 
+# Install Packages for Cross Compilation 🔗 install_packages_for_cross_compilation.fish
+sudo apt install -y crossbuild-essential-arm64 crossbuild-essential-armhf
 
 : '
 📦 timg (Terminal image and video viewer)
@@ -1584,49 +1586,6 @@ if not grep -Fxq "$unique_comment" "$FISH_CONFIG_PATH"
     " | prettify_indent_via_pipe | tee -a $FISH_CONFIG_PATH >/dev/null
     echo -e "\n" >>"$FISH_CONFIG_PATH"
 end
-
-
-
-
-
-
-#### 📦 docker ; for development
-: '
-❗ Do not install the Docker series using Homebrew. 📅 2024-12-31 09:51:13
-  Homebrew does not include the Docker daemon or containerd (the container runtime): docker, docker-compose, or docker-buildx.
-    and docker-completion not required because it is officially supported by Docker.
-    docker-clean also not required bcause it is natively supported by Docker like "prune" command.
-'
-## Install using the apt repository ; https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
-# Add Docker's official GPG key:
-sudo apt update
-sudo apt install -y ca-certificates curl
-sudo install -m 0755 -d /etc/apt/keyrings
-sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-sudo chmod a+r /etc/apt/keyrings/docker.asc
-
-
-# Add the repository to Apt sources:
-bash -c 'echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
-  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
-  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-'
-sudo apt update
-sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-
-## Manage Docker as a non-root user ; https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user
-# 🚣 Create the docker group.
-sudo groupadd docker
-# Add your user to the docker group.
-sudo usermod -aG docker $USER
-echo "❗ You must log out and log back in for your group membership changes to take effect."
-# Alternatively, you can test the changes immediately by running the following command:
-#   %shell> newgrp docker
-
-## Docker Completion ; https://docs.docker.com/engine/cli/completion/#fish
-mkdir -p ~/.config/fish/completions
-docker completion fish >~/.config/fish/completions/docker.fish
 
 
 
@@ -1958,6 +1917,49 @@ else
 
     echo "▶️  Snap packages (Most are installed with '--classic')"
 
+
+
+
+
+
+
+    #### 📦 docker ; for development
+    : '
+    ❗ Do not install the Docker series using Homebrew. 📅 2024-12-31 09:51:13
+      Homebrew does not include the Docker daemon or containerd (the container runtime): docker, docker-compose, or docker-buildx.
+        and docker-completion not required because it is officially supported by Docker.
+        docker-clean also not required bcause it is natively supported by Docker like "prune" command.
+    '
+    ## Install using the apt repository ; https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
+    # Add Docker's official GPG key:
+    sudo apt update
+    sudo apt install -y ca-certificates curl
+    sudo install -m 0755 -d /etc/apt/keyrings
+    sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+    sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+
+    # Add the repository to Apt sources:
+    bash -c 'echo \
+      "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+      $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+      sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    '
+    sudo apt update
+    sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+    ## Manage Docker as a non-root user ; https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user
+    # 🚣 Create the docker group.
+    sudo groupadd docker
+    # Add your user to the docker group.
+    sudo usermod -aG docker $USER
+    echo "❗ You must log out and log back in for your group membership changes to take effect."
+    # Alternatively, you can test the changes immediately by running the following command:
+    #   %shell> newgrp docker
+
+    ## Docker Completion ; https://docs.docker.com/engine/cli/completion/#fish
+    mkdir -p ~/.config/fish/completions
+    docker completion fish >~/.config/fish/completions/docker.fish
 
 
 

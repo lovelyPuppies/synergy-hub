@@ -7,14 +7,14 @@ InlayHints:
   TypeNameLimit: 24
 
 ---
-# Add ARM cross-compilation flags for files under "drivers/"
+# Add ARM cross-compilation flags for files under "drivers/" (For 🚣 64bit)
 If:
   PathMatch: "prototypes/study/bsp_study/raspberry_pi/drivers/.*\\.(c|h)$"
 CompileFlags:
   Add:
-    - "--target=arm-linux-gnueabihf"
-    - "-I/usr/arm-linux-gnueabihf/include"
-    - "-L/usr/arm-linux-gnueabihf/lib"
+    - "--target=aarch64-linux-gnu"
+    - "-I/usr/aarch64-linux-gnu/include"
+    - "-L/usr/aarch64-linux-gnu/lib"
 ---
 # Common settings for both C and C++ files
 If:

@@ -1,67 +1,73 @@
 # Application and kernel module names
 APP_NAME := kernel_timer_app
 MODULE_NAME := kernel_timer_dev
-obj-m := $(MODULE_NAME).o
-
 
 # Paths
 KERNEL_DIR := $(HOME)/repos/kernels/raspberry-pi
-MODULE_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
-APP_SRC := src/$(APP_NAME).c
-MODULE_SRC := src/$(MODULE_NAME).c
+APP_DIR := app  # Updated to point to app directory
+MODULE_DIR := $(PWD)/module  # Use absolute path for the module directory
+APP_INC := -Iapp/include -Iinclude
+MODULE_INC := -Imodule/include -Iinclude
+BUILD_DIR := build
+DEPLOY_DIR := /nfs/drivers
 
 # Target architecture and compiler settings
-KERNEL_ARCHITECTURE := arm  # Target architecture (ARM)
 COMPILER := clang
 LINKER := ld.lld
-
-
-
-# Clang flags for the kernel module
-TARGET_TOOLCHAIN := arm-linux-gnueabihf  	# Target toolchain prefix
-CPU_ARCH_FLAGS := -march=armv7-a  				# Specify ARMv7-A architecture
+TARGET_TOOLCHAIN := aarch64-linux-gnu
+CPU_ARCH_FLAGS := -march=armv8-a
 
 # Flags for kernel module compilation
 CLANG_FLAGS := --target=$(TARGET_TOOLCHAIN) $(CPU_ARCH_FLAGS) \
-	-fno-pic \
-	-Wall -Wextra \
-	-Wno-unused-parameter -Wno-sign-compare
+    -fno-pic \
+    -Wall -Wextra \
+    -Wno-unused-parameter -Wno-sign-compare $(MODULE_INC)
 
-# Clang flags for the application
+# Flags for application compilation
 APP_CFLAGS := --target=$(TARGET_TOOLCHAIN) $(CPU_ARCH_FLAGS) \
-  -Wall -Wextra
+    -Wall -Wextra $(APP_INC)
 
-
-
-# Default target: build both the application and kernel module
-default: build deploy
+# Default target: build everything
+default: build
 
 # Build both the application and kernel module
-build: $(APP_NAME).out
-	$(MAKE) -C $(KERNEL_DIR) M=$(MODULE_DIR) modules ARCH=$(KERNEL_ARCHITECTURE) \
-	CC=$(COMPILER) LD=$(LINKER) KBUILD_CFLAGS="$(CLANG_FLAGS)"
-	modinfo $(MODULE_NAME).ko
-
-
-# Deploy built artifacts
-deploy:
-	mkdir -p /nfs/drivers
-	cp $(MODULE_NAME).ko /nfs/drivers/  						# Copy the kernel module
-	cp $(APP_NAME).out /nfs/drivers/$(APP_NAME)  							# Copy the app without extension
+build: build-app build-module
 
 # Build the application
-$(APP_NAME).out:
-	$(COMPILER) $(APP_CFLAGS) $(APP_SRC) -o $(APP_NAME).out  	# Generate app with .out extension
+build-app:
+	$(MAKE) -C $(APP_DIR)
 
-# Clean up build artifacts
+# Build the kernel module
+build-module:
+	$(MAKE) -C $(KERNEL_DIR) M=$(MODULE_DIR) modules ARCH=arm64 \
+	    CC=$(COMPILER) LD=$(LINKER) KBUILD_CFLAGS="$(CLANG_FLAGS)"
+
+# Deploy artifacts
+deploy: deploy-app deploy-module
+
+# Deploy the application
+deploy-app: build-app
+	@mkdir -p $(DEPLOY_DIR)/app
+	cp $(BUILD_DIR)/app/$(APP_NAME).out $(DEPLOY_DIR)/app/
+
+# Deploy the kernel module
+deploy-module: build-module
+	@mkdir -p $(DEPLOY_DIR)/module
+	cp $(MODULE_DIR)/*.ko $(DEPLOY_DIR)/module/$(MODULE_NAME).ko
+
+# Clean build artifacts
 clean:
-	rm -rf *.ko                   # Remove kernel object files
-	rm -rf *.mod.*                # Remove module-related files
-	rm -rf .*.cmd                 # Remove temporary build files
-	rm -rf src/*.o                    # Remove object files
-	rm -rf modules.order          # Remove module order file
-	rm -rf Module.symvers         # Remove symbol versioning file
-	rm -rf .tmp_versions          # Remove temporary versioning files
-	rm -rf $(MODULE_NAME).mod     # Remove module metadata
-	rm -rf $(APP_NAME).out        # Remove the application binary with .out extension
+	rm -rf $(BUILD_DIR)
+	$(MAKE) -C $(KERNEL_DIR) M=$(MODULE_DIR) clean
+	rm -rf $(MODULE_DIR)/*.ko $(MODULE_DIR)/*.mod.* $(MODULE_DIR)/modules.order \
+	    $(MODULE_DIR)/Module.symvers $(MODULE_DIR)/.tmp_versions
+	$(MAKE) -C $(APP_DIR) clean
 
+# Clean only app
+clean-app:
+	$(MAKE) -C $(APP_DIR) clean
+
+# Clean only module
+clean-module:
+	$(MAKE) -C $(KERNEL_DIR) M=$(MODULE_DIR) clean
+	rm -rf $(BUILD_DIR)/module

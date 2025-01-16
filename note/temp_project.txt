@@ -12357,6 +12357,8 @@ TODO:
   //// ?? 확실하지 않음... zImage 만 빌드하는거 맞나? dts, modules 는 빌드 안해도 되나? 이거 할떄에는?
     # one time.. 맞나?
     make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- bcm2711_defconfig
+    make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- bcm2711_defconfig
+    make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- bcm2711_defconfig
 
     # 위치가 여기 맞나? 
     make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- menuconfig
@@ -16958,3 +16960,65 @@ https://www.aidinrobotics.co.kr/robotic-picking-solution-for-logistics
 https://shields.io/
   https://simpleicons.org/
 lickable Badges
+
+
+💯 마지막 정리. 
+**** 사용자 공간 비트 수 확인: dpkg-architecture --query DEB_HOST_ARCH
+pi19@pi ~> dpkg-architecture --query DEB_HOST_ARCH
+arm64
+**** 커널 비트 확인: uname -m
+
+**** check booting partition
+df -h | grep boot
+pi19@pi ~> df -h | grep boot
+
+/dev/mmcblk0p1    510M   67M  444M  14% /boot/firmware
+
+pi19@pi ~> uname -m
+aarch64
+
+Image.gz
+
+mkdir -p /nfs/kernel/raspberry_pi
+cp arch/arm64/boot/Image.gz /nfs/kernel/raspberry_pi/kernel8.img
+ssh r-pi.local "cp /nfs/host/kernel8.img /boot/firmware/kernel8.img"
+
+
+
+cp arch/arm/boot/zImage /nfs/kernels/pi/kernel7l.img
+
+cp arch/arm64/boot/Image.gz /nfs//boot/firmware/kernel8.img
+
+라즈베리파이의 부팅 동작은 /boot/firmware 내의 파일 구성과 config.txt 설정에 따라 달라집니다. 기본적으로, 64비트 커널은 기본값으로 활성화되어 있으며, kernel8.img가 존재하면 이를 사용합니다.
+
+  1. 기본 동작
+  32비트 모드 (arm_64bit=0):
+  기본적으로 kernel7l.img 파일을 로드.
+  arm_64bit=0으로 설정되면 32비트 커널만 사용.
+  64비트 모드 (arm_64bit=1):
+  기본적으로 kernel8.img 파일을 로드.
+  arm_64bit=1이거나, kernel8.img가 존재하면 이를 자동으로 사용.
+
+  // 혹은 수동으로 명시할 수 있다.
+    /boot/firmware/config.txt
+      kernel=kernel8.img
+
+
+
+
+커널 타이머
+  make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- bcm2711_defconfig
+  make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j$(nproc) Image.gz modules dtbs
+
+
+
+  Image와 Image.gz의 차이
+    특성	zImage	Image.gz
+    압축 방식	gzip 포함 + 부트스트랩 코드	단순 gzip
+    사용 환경	32비트 ARM	64비트 ARM
+    부트로더 필요	부트스트랩이 필요함	부트로더에서 gzip 처리 지원 필요
+    크기	더 작음	약간 더 큼 (압축 효율은 유사)
+
+
+  modules_install은 커널 모듈을 시스템 디렉토리(예: /lib/modules/<kernel_version>)로 설치하는 과정으로, 수동으로 insmod를 사용해 모듈을 올리는 경우에는 반드시 필요하지 않습니다.
+
