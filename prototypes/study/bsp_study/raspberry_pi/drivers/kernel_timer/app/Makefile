@@ -1,17 +1,46 @@
-# Application-specific variables
+PWD := $(shell pwd)
+
+
+### ❔ Configuration: Module Name, Build Directory 🔗 from Caller Makefile
 APP_NAME := $(APP_NAME)
-SRC_DIR := src
 BUILD_DIR := $(BUILD_DIR)
+
+### ❔ Common Configuration: Toolchain, compiler, directories, and module settings 🔗 from Caller Makefile
+## Toolchain and architecture settings
+# Define the cross-compiler toolchain for ARM 64-bit architecture
+TARGET_TOOLCHAIN := $(TARGET_TOOLCHAIN)
+# Set the compiler flags for optimizing code for ARMv8-A architecture
+CPU_ARCH_FLAGS := $(CPU_ARCH_FLAGS)
+# Specify the target architecture for the kernel build (ARM 64-bit)
+KERNEL_ARCHITECTURE := $(CPU_ARCH_FLAGS)
+
+## Compiler and linker settings
 COMPILER := $(COMPILER)
 LINKER := $(LINKER)
 
-INCLUDE_DIRS := -Iinclude -I../include
-CFLAGS := $(INCLUDE_DIRS)
+## Common include directory
+COMMON_INCLUDE_DIR := $(COMMON_INCLUDE_DIR)
+
+
+
+### ❔ Application-specific settings
+# Application-specific variables
+SRC_NAME := src
+SRC_DIR := $(PWD)/src
+
+#⚙️ Include directories and compiler flags
+INCLUDE_DIRS := -I$(COMMON_INCLUDE_DIR) -Iinclude
+CFLAGS := -Wall -Wextra $(INCLUDE_DIRS)
+
+CLANG_FLAGS := --target=$(TARGET_TOOLCHAIN) $(CPU_ARCH_FLAGS) $(CFLAGS)
+
 
 # Source files and object files
 SRCS := $(wildcard $(SRC_DIR)/*.c)
 OBJS := $(patsubst $(SRC_DIR)/%.c, $(BUILD_DIR)/%.o, $(SRCS))
 
+
+### ❔ Targets and Rules: Define build steps and dependencies
 # Default target
 default: $(BUILD_DIR)/$(APP_NAME).out
 
@@ -42,48 +71,3 @@ clean:
 
 
 
-
-
-
-
-
-# # Application-specific variables
-# APP_NAME := $(APP_NAME)
-# SRC_DIR := src
-# BUILD_DIR := $(BUILD_DIR)
-# INCLUDE_DIRS := -Iinclude -I../include
-# COMPILER := $(COMPILER)
-# LINKER := $(LINKER)
-# CFLAGS := $(COMMON_CFLAGS) $(INCLUDE_DIRS)
-
-# # Source files and object files
-# SRCS := $(wildcard $(SRC_DIR)/*.c)
-# OBJS := $(patsubst $(SRC_DIR)/%.c, $(BUILD_DIR)/%.o, $(SRCS))
-
-# # Default target
-# default: $(BUILD_DIR)/$(APP_NAME).out
-
-# ## Build the application
-# # The target '$(BUILD_DIR)/$(APP_NAME).out' depends on all object files in 'OBJS'.
-# # 	🚣 If any object file changes, this rule is triggered to rebuild the application.
-# # Rule:
-# #		Create the build directory if it doesn't already exist.
-# # 	Use the compiler to link all object files in 'OBJS' into the final application executable.
-# # 		'$@' refers to the target file (application output), and '$<' would refer to the first prerequisite if needed.
-# $(BUILD_DIR)/$(APP_NAME).out: $(OBJS)
-# 	@mkdir -p $(BUILD_DIR)
-# 	$(COMPILER) $(CFLAGS) -o $@ $(OBJS)
-
-# ## Compile source files to object files
-# # This is a pattern rule for converting individual .c files to .o files.
-# # Rule:
-# #		Ensure the build directory exists before generating the .o file.
-# # 		Compile the source file ('$<') into an object file ('$@') using the compiler and flags.
-# $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
-# 	@mkdir -p $(BUILD_DIR)
-# 	$(COMPILER) $(CFLAGS) -c -o $@ $<
-
-
-# # Clean
-# clean:
-# 	rm -rf $(BUILD_DIR)

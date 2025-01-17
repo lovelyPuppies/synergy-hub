@@ -7,6 +7,51 @@ list of level 1 subjects
 
 
 (✍️ Make 🔪 study)
+  🚨 Issue: Dynamic Object File Assignment in Kernel Module Makefile 📅 2025-01-17 11:22:18
+    ➡️ Result
+      For compatibility and simplicity, it's recommended to continue using hardcoded object files or apply manual transformations for paths that fit the kernel build system's structure.
+      🛍️ e.g.
+        ```Makefile
+          obj-m := $(MODULE_NAME).o
+          $(MODULE_NAME)-y := src/kernel_timer_dev.o
+        ```
+    When
+      This issue occurs when attempting to dynamically assign object files to $(MODULE_NAME)-y using patsubst and find to locate .c files, and then transform those paths into .o files. The dynamic approach fails to build correctly while hardcoded paths work without issues.
+
+    Symptom
+      $shell> make build-module
+      >> 
+        find: ‘/home/wbfw109v2/repos/kernels/raspberry-pi/src’: No such file or directory
+        make[4]: *** No rule to make target '/home/wbfw109v2/repos/synergy-hub/prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/module/kernel_timer_dev.o', needed by '/home/wbfw109v2/repos/synergy-hub/prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/module/'.  Stop.
+        make[3]: *** [/home/wbfw109v2/repos/kernels/raspberry-pi/Makefile:1921: /home/wbfw109v2/repos/synergy-hub/prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/module] Error 2
+        make[2]: *** [Makefile:234: __sub-make] Error 2
+        make[2]: Leaving directory '/home/wbfw109v2/repos/kernels/raspberry-pi'
+        make[1]: *** [Makefile:79: build] Error 2
+        make[1]: Leaving directory '/home/wbfw109v2/repos/synergy-hub/prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/module'
+        make: *** [Makefile:52: build-module] Error 2
+
+    Root Cause
+      🧪 It seems that the kernel build system expects module object files to be explicitly defined in obj-m or $(MODULE_NAME)-y.
+      Dynamic paths, such as those generated through transformations or external variables, might conflict with kernel-specific path expectations
+      , which causes issues when attempting to use them in the Makefile.
+
+    Attempts
+      ```Makefile
+        SRC_FILES := $(shell find $(SRC_DIR) -name '*.c')
+        MAKEFILE_DIR := $(dir $(realpath $(lastword $(MAKEFILE_LIST))))
+        # Convert to relative paths by stripping the path of the Makefile from the SRC_DIR
+        OBJ_FILES := $(strip $(patsubst $(MAKEFILE_DIR)%.c, %.o, $(SRC_FILES)))
+        # Add source files to the module
+        obj-m := $(MODULE_NAME).o
+
+        ## Case 1️⃣: 🆗 Works for hard-corded
+        # 	$(MODULE_NAME)-y := src/kernel_timer_dev.o
+        ## Case 2️⃣: 📵 Not works for dynamically adding object files. 
+        #		# Even if the `OBJ_FILES` value sames with "src/kernel_timer_dev.o" 
+        # 	$(MODULE_NAME)-y := $(OBJ_FILES)
+      ```
+
+
   🚨 (Issue:) Issue: Managing Build Artifacts in Kernel Module Development with Custom Build Directories 📅 2025-01-17 05:16:43
     ➡️ Workaround
       To address the clutter in source directories, the following workarounds are suggested:
