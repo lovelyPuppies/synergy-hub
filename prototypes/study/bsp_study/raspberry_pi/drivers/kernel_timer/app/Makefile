@@ -40,6 +40,11 @@ SRCS := $(wildcard $(SRC_DIR)/*.c)
 OBJS := $(patsubst $(SRC_DIR)/%.c, $(BUILD_DIR)/%.o, $(SRCS))
 
 
+
+
+
+
+
 ### ❔ Targets and Rules: Define build steps and dependencies
 # Default target
 default: $(BUILD_DIR)/$(APP_NAME).out

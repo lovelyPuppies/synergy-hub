@@ -45,7 +45,7 @@ build: build-app build-module
 #🤝 Delegate to app Makefile
 build-app:
 	@mkdir -p $(APP_BUILD_DIR)
-	$(MAKE) -C $(APP_DIR) MODULE_NAME=$(APP_NAME) BUILD_DIR=$(APP_BUILD_DIR) \
+	$(MAKE) -C $(APP_DIR) APP_NAME=$(APP_NAME) BUILD_DIR=$(APP_BUILD_DIR) \
 	\
 	TARGET_TOOLCHAIN=$(TARGET_TOOLCHAIN) \
 	CPU_ARCH_FLAGS=$(CPU_ARCH_FLAGS) \
@@ -54,7 +54,7 @@ build-app:
 	COMPILER=$(COMPILER) \
 	LINKER=$(LINKER) \
 	\
-	COMMON_INCLUDE_DIR=$(COMMON_INCLUDE_DI
+	COMMON_INCLUDE_DIR=$(COMMON_INCLUDE_DIR)
 
 
 #🤝 Delegate to module Makefile
