@@ -17005,10 +17005,6 @@ cp arch/arm64/boot/Image.gz /nfs//boot/firmware/kernel8.img
   그림 넣기는 1개씩 만 삽입 가능. 동시 드래그 업로드 불가능
 
 커널 타이머
-  make ARCH=arm64 mrproper
-
-  make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- bcm2711_defconfig
-  make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j$(nproc) Image.gz
 
 
 
@@ -17223,3 +17219,99 @@ make[1]: Leaving directory '/home/wbfw109v2/repos/kernels/raspberry-pi'
     src/kernel_timer_dev.c는 module/src/ 디렉토리에 있지만, *.c 패턴은 현재 탐색중인 디렉토리 내의 파일만 검색합니다.
     결과: kernel_timer_de
     
+
+
+
+If you're seeing a blank screen on your Raspberry Pi 64-bit with a connected LCD when using "dtoverlay=vc4-kms-v3d" in your /boot/config.txt, it likely means the KMS (Kernel Mode Setting) overlay isn't working properly with your setup, and you might need to switch to "dtoverlay=vc4-fkms-v3d" instead, which uses a "fake KMS" that can often resolve display issues on 64-bit systems with LCDs. 
+Key points to understand:
+KMS vs. Fake KMS: "vc4-kms-v3d" utilizes the full KMS functionality, while "vc4-fkms-v3d" uses a simplified version that might be more compatible with certain LCD setups, especially on 64-bit Raspberry Pi OS. 
+How to fix:
+Edit config.txt: Open the /boot/config.txt file on your Raspberry Pi using a text editor. 
+Change the overlay: Replace the line "dtoverlay=vc4-kms-v3d" with "dtoverlay=vc4-fkms-v3d". 
+Reboot: Save the changes and reboot your Raspberry Pi. 
+Other things to check:
+LCD wiring: Double-check that your LCD is correctly wired to the Raspberry Pi GPIO pins according to the LCD's documentation.
+LCD compatibility: Ensure your LCD is compatible with the Raspberry Pi and that you are using the correct driver settings. 
+Power supply: Make sure your Raspberry Pi is powered with a sufficient power supply. 
+
+https://github.com/raspberrypi/linux/issues/5195#:~:text=Describe%20the%20bug,fkms%2Dv3d%20works%20as%20intended.
+https://forums.raspberrypi.com/viewtopic.php?t=367734#:~:text=txt%20(to%20enable%20cgroups)%20are,real%20HDMI%20monitor%2C%20same%20thing.&text=Tried%20all%20the%20usual%20things,for%20all%20Pis%20again%20identical.&text=dtoverlay=vc4%2Dfkms%2Dv3d,Thanks!
+https://forum.argon40.com/t/argon-one-doesnt-work-with-ubuntu/846#:~:text=Booted%20the%20raspi%20with%20Manjaro,sd%20card%20into%20the%20raspi
+
+dtoverlay
+>>
+  arm_64bit=1
+  kernel=kernel8.img.
+
+  kernel=kernel8.img
+  arm_64bit=1
+  enable_gic=1  
+
+  hdmi_force_hotplug=1
+
+make ARCH=arm64 mrproper
+
+make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- bcm2711_defconfig
+make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j$(nproc) Image.gz
+
+Image.gz
+  mkdir -p /nfs/kernel/raspberry_pi
+  cp arch/arm64/boot/Image.gz /nfs/kernel/raspberry_pi/kernel8.img
+  ssh r-pi.local "sudo cp /mnt/host/kernel/raspberry_pi/kernel8.img /boot/firmware/kernel8.img"
+  sudo reboot
+
+
+
+
+pi19@pi ~> cat /boot/firmware/config.txt
+# For more options and information see
+# http://rptl.io/configtxt
+# Some settings may impact device functionality. See link above for details
+
+# Uncomment some or all of these to enable the optional hardware interfaces
+#dtparam=i2c_arm=on
+#dtparam=i2s=on
+#dtparam=spi=on
+
+# Enable audio (loads snd_bcm2835)
+dtparam=audio=on
+
+# Additional overlays and parameters are documented
+# /boot/firmware/overlays/README
+
+# Automatically load overlays for detected cameras
+camera_auto_detect=1
+
+# Automatically load overlays for detected DSI displays
+display_auto_detect=1
+
+# Automatically load initramfs files, if found
+auto_initramfs=1
+
+# Enable DRM VC4 V3D driver
+dtoverlay=vc4-kms-v3d
+max_framebuffers=2
+
+# Don't have the firmware create an initial video= setting in cmdline.txt.
+# Use the kernel's default instead. ⚙️ 1->0
+disable_fw_kms_setup=1
+
+# Run in 64-bit mode
+arm_64bit=1
+
+# Disable compensation for displays with overscan
+disable_overscan=1
+
+# Run as fast as firmware / board allows
+arm_boost=1
+
+[cm4]
+# Enable host mode on the 2711 built-in XHCI USB controller.
+# This line should be removed if the legacy DWC2 controller is required
+# (e.g. for USB device mode) or if USB support is not required.
+otg_mode=1
+
+[cm5]
+dtoverlay=dwc2,dr_mode=host
+
+[all]
