@@ -17315,3 +17315,12 @@ otg_mode=1
 dtoverlay=dwc2,dr_mode=host
 
 [all]
+
+======================
+Project
+  
+
+
+
+⚓ https://www.raspberrypi.com/documentation/computers/linux_kernel.html
+  
