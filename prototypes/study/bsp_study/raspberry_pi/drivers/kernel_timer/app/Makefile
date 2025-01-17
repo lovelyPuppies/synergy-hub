@@ -18,7 +18,7 @@ KERNEL_ARCHITECTURE := $(CPU_ARCH_FLAGS)
 COMPILER := $(COMPILER)
 LINKER := $(LINKER)
 
-## Common include directory
+## Common xinclude directory
 COMMON_INCLUDE_DIR := $(COMMON_INCLUDE_DIR)
 
 

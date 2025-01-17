@@ -13488,10 +13488,6 @@ ADAS 자율주행차 시스템 반도체SW 개발
 이력서, 포트폴리오 30일에 fix.
 
 
-brew install kotlin
-  📦 brew install openjdk
-  snap d
-
 넵
 cp /mnt/lect_nfs/QtExamples/Chapter10/
 
@@ -16979,14 +16975,15 @@ aarch64
 
 Image.gz
 
-mkdir -p /nfs/kernel/raspberry_pi
-cp arch/arm64/boot/Image.gz /nfs/kernel/raspberry_pi/kernel8.img
-ssh r-pi.local "cp /nfs/host/kernel8.img /boot/firmware/kernel8.img"
+  mkdir -p /nfs/kernel/raspberry_pi
+  cp arch/arm64/boot/Image.gz /nfs/kernel/raspberry_pi/kernel8.img
+  ssh r-pi.local "sudo cp /mnt/host/kernel/raspberry_pi/kernel8.img /boot/firmware/kernel8.img"
+  sudo reboot
 
-
+cd /sys/class/
+  .. d
 
 cp arch/arm/boot/zImage /nfs/kernels/pi/kernel7l.img
-
 cp arch/arm64/boot/Image.gz /nfs//boot/firmware/kernel8.img
 
 라즈베리파이의 부팅 동작은 /boot/firmware 내의 파일 구성과 config.txt 설정에 따라 달라집니다. 기본적으로, 64비트 커널은 기본값으로 활성화되어 있으며, kernel8.img가 존재하면 이를 사용합니다.
@@ -17004,11 +17001,14 @@ cp arch/arm64/boot/Image.gz /nfs//boot/firmware/kernel8.img
       kernel=kernel8.img
 
 
-
+한글파일. png, jpg, jpeg, gif, bmp 만 삽입 가능..
+  그림 넣기는 1개씩 만 삽입 가능. 동시 드래그 업로드 불가능
 
 커널 타이머
+  make ARCH=arm64 mrproper
+
   make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- bcm2711_defconfig
-  make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j$(nproc) Image.gz modules
+  make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j$(nproc) Image.gz
 
 
 
@@ -17147,6 +17147,14 @@ HDMI-A-1 connected primary 1920x1080+0+0 (normal left inverted right x axis y ax
 dtoverlay=dwc2,dr_mode=host
 
 [all]
+
+
+
+vc4-fkms-v3d (Fake KMS):
+  이 설정은 Fake KMS 모드로, 프레임버퍼를 사용하여 그래픽을 처리합니다. 이 모드는 더 낮은 레벨에서 그래픽을 처리하지만, 일부 그래픽 하드웨어나 구형 모니터에서 호환성이 좋을 수 있습니다.
+vc4-kms-v3d (KMS):
+  이 설정은 Kernel Mode Setting (KMS) 모드로, 그래픽 하드웨어가 커널 차원에서 직접 관리됩니다. 이 모드는 더 현대적인 방식이지만, 일부 드라이버나 설정에 따라 호환성 문제가 발생할 수 있습니다.
+
 
 
 dtoverlay=dwc2

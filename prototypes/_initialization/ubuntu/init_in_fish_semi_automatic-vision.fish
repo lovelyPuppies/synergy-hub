@@ -66,10 +66,10 @@ sudo apt-key del 7fa2af80
 loadenv /etc/os-release
 
 # Determine the distribution and architecture
-# string lower $NAME
-# string replace "." "" $VERSION_ID
 
-set distribution (string lower $NAME)(string replace "." "" $VERSION_ID)
+
+set distribution ubuntu2404
+# set distribution (string lower $NAME)(string replace "." "" $VERSION_ID)
 set arch (uname -m)
 if test $arch = x86_64
     set arch x86_64

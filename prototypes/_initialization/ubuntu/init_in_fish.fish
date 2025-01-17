@@ -699,6 +699,22 @@ set -U fish_user_paths /home/linuxbrew/.linuxbrew/opt/rustup/bin $fish_user_path
 
 
 echo "▶️ Installing Web-related tools ..."
+
+: '
+📦 openjdk
+  https://repology.org/project/openjdk/versions
+  https://formulae.brew.sh/formula/openjdk#default
+
+📦 kotlin
+  https://repology.org/project/kotlin/versions
+  https://formulae.brew.sh/formula/kotlin#default
+'
+📦 brew install openjdk kotlin
+
+
+
+
+
 : '
 📦 mariadb
   https://repology.org/project/mariadb/versions

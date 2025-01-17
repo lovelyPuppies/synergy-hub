@@ -103,10 +103,7 @@ echo "network:
 # Correct file permissions for the Netplan configuration file
 sudo chmod 600 $netplan_config_file
 
-# Apply the Netplan configuration
-echo "Applying Netplan configuration..."
-# You can test the configuration by running: 🧮 sudo netplan try
-sudo netplan apply
+
 
 # Verify the changes
 echo "Verifying network configuration..."
@@ -116,13 +113,21 @@ ip addr show $wireless_name
 : ' ⚠️ If both systemd-networkd and NetworkManager are enabled, they are likely to conflict with each other.
     By default, only one network management tool should be active, and it must match the renderer specified in Netplan to ensure stable network functionality.
 '
+
 # After applying Netplan, handle service management
 echo "Stopping $service_to_stop..."
-sudo systemctl stop $service _to_stop
+sudo systemctl stop $service_to_stop
 sudo systemctl disable $service_to_stop
+systemctl status $service_to_stop
 
+
+# Apply the Netplan configuration
 echo "Starting $service_to_start..."
 sudo systemctl start $service_to_start
 sudo systemctl enable $service_to_start
+systemctl status $service_to_start
 
+# echo "Applying Netplan configuration..."
+## You can test the configuration by running: 🧮 sudo netplan try
+# sudo netplan apply
 echo "Netplan configuration applied successfully, and services have been updated."
