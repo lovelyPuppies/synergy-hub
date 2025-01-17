@@ -1,5 +1,6 @@
 // 📝 Note that the original file of "settigns.json "must be .json file. not jsonc.
 {
+  // 🌀 Title: Common settings for all cases
   "editor.inlayHints.enabled": "on",
   // 🌀 Title: Theme
   "workbench.colorTheme": "Default High Contrast",
@@ -19,7 +20,13 @@
     "**/.pixi": true,
     "**/.pytest_cache": true,
     //
-    "build/note/**": true
+    "build/note/**": true,
+    // kernel module development
+    "**/*.cmd": true,
+    "**/*.mod": true,
+    "**/*.mod.*": true,
+    "**/modules.order": true,
+    "**/Module.symvers": true
   },
   "search.exclude": {
     "**/.git": true,

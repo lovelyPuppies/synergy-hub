@@ -17200,4 +17200,18 @@ make[1]: Leaving directory '/home/wbfw109v2/repos/kernels/raspberry-pi'
 
 ❗
   $(PWD)의 동작은 GNU Make와 관련된 중요한 점을 이해해야 합니다. $(PWD)는 Makefile이 실행되는 현재 디렉터리를 기준으로 해석됩니다. 하지만, $(MAKE) 명령을 통해 다른 디렉터리로 작업 디렉터리를 전환(-C)하면, 그곳의 Makefile이 실행되더라도 $(PWD)는 여전히 상위 디렉터리에서 호출된 디렉터리를 기준으로 해석됩니다.
-  
+
+
+# https://stackoverflow.com/questions/12244979/build-kernel-module-into-a-specific-directory
+
+
+  $(wildcard)의 반환 동작
+  1. 현재 디렉토리에서 실행
+    makefile
+    Copy
+    Edit
+    SOURCES := $(wildcard *.c)
+    *.c는 현재 디렉토리(module/)에서 .c 파일을 검색합니다.
+    src/kernel_timer_dev.c는 module/src/ 디렉토리에 있지만, *.c 패턴은 현재 탐색중인 디렉토리 내의 파일만 검색합니다.
+    결과: kernel_timer_de
+    
