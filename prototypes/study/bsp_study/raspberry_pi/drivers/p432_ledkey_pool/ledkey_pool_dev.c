@@ -6,7 +6,7 @@ Device Drivers (d)
 bat drivers/char/Kconfig
 
 mkdir kcci_ledkey; and cd kcci_ledkey
-cp /home/wbfw109v2/repos/synergy-hub/prototypes/study/bsp_study/raspberry_pi/drivers/p432_ledkey_pool/ledkey_pool_dev.c /home/wbfw109v2/repos/kernels/raspberry-pi/drivers/char/kcci_ledkey/ledkey_dev.c
+cp /home/wbfw109v2/repos/synergy-hub/prototypes/study/bsp_study/raspberry_pi/drivers/p432_ledkey_pool/ledkey_pool_dev.c /home/wbfw109v2/repos/kernels/raspberry_pi/drivers/char/kcci_ledkey/ledkey_dev.c
 
 
 */

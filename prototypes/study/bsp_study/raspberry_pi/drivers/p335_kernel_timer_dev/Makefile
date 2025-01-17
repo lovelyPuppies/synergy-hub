@@ -6,7 +6,7 @@ obj-m := $(KERNEL_MODULE).o  # ❗ Don't change this reserved name
 
 CROSS_COMPILE_OPTIONS = ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
 COMPILER := arm-linux-gnueabihf-gcc
-KERNEL_DIRECTORY := $(HOME)/repos/kernels/raspberry-pi
+KERNEL_DIRECTORY := $(HOME)/repos/kernels/raspberry_pi
 CURRENT_DIRECTORY := $(shell pwd)
 
 default: $(OBJECT_FILES)

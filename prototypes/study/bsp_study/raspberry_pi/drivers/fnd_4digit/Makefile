@@ -7,7 +7,7 @@ CROSS = ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
 
 #KDIR := /lib/modules/$(shell uname -r)/build
 #CC := gcc
-KDIR := $(HOME)/repos/kernels/raspberry-pi
+KDIR := $(HOME)/repos/kernels/raspberry_pi
 CC := arm-linux-gnueabihf-gcc
 
 APPLDFLAGS := -D_REENTRANT -pthread

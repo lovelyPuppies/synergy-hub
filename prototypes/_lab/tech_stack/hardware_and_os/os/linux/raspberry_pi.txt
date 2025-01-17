@@ -22,3 +22,118 @@ Raspberry Pi 🔪⚓ Docs ; https://fishshell.com/docs/current/index.html
             # Reboot the machine:
             sudo reboot
             ```
+    
+    # The Linux Kernel
+      #️⃣ Build the kernel ; https://www.raspberrypi.com/documentation/computers/linux_kernel.html#building
+        🚣 you can cross-compile a 32-bit or 64-bit Raspberry Pi kernel from a device other than a Raspberry Pi.
+
+        # Download kernel source
+          %shell> git clone --depth=1 --single-branch https://github.com/raspberrypi/linux raspberry_pi
+          TIP: 💡 The git clone command above downloads the current active branch, which we build Raspberry Pi OS images from, without any history. Omit --depth=1 to download the entire repository, including the full history of all branches. T
+        
+        
+        #️⃣ Natively build a kernel ; https://www.raspberrypi.com/documentation/computers/linux_kernel.html#natively-build-a-kernel
+          %shell> sudo apt install bc bison flex libssl-dev make
+          
+          #📍 Build configuration
+            To prepare the default configuration, run the appropriate commands from the table below for your Raspberry Pi model.
+
+            #💡⚖️ Note
+              The 32-bit distribution of Raspberry Pi OS on 4-series devices uses a 32-bit userland, but a 64-bit kernel.
+              To build a 32-bit kernel, set ARCH=arm. To boot a 32-bit kernel, set arm_64bit=0 in config.txt.
+
+          #⭕ Customise the kernel version using LOCALVERSION
+            To prevent the kernel from overwriting existing modules in /lib/modules and to clarify that you run your own kernel in uname output, adjust LOCALVERSION.
+
+            #⚖️ You can also change this setting graphically with menuconfig at General setup > Local version - append to kernel release.
+              For more information about menuconfig
+
+          # Build
+            Run the following commands to build a 64-bit kernel:
+              %shell> make -j6 Image.gz modules dtbs
+            Run the following command to build a 32-bit kernel:
+              %shell>  make -j6 zImage modules dtbs
+
+            #💡 Tip
+              On multi-core Raspberry Pi models, the make -j<n> option distributes work between cores.
+              This can speed up compilation significantly. Run nproc to see how many processors you have
+              ; ⭕ we recommend passing a number 1.5x your number of processors.
+
+            # Install the kernel
+              %shell> sudo make -j6 modules_install
+              Then, install the kernel and Device Tree blobs into the boot partition, backing up your original kernel.
+
+              #❗ Tip
+                If you don’t want to install the freshly-compiled kernel onto the Raspberry Pi where you run this command
+                , copy the compiled kernel to the boot partition of a separate boot media instead of /boot/firmware/.
+            
+              To install the 64-bit kernel:
+                Run the following commands to create a backup image of the current kernel, install the fresh kernel image, overlays, README, and unmount the partitions:
+                %shell> 
+                  sudo cp /boot/firmware/$KERNEL.img /boot/firmware/$KERNEL-backup.img
+                  sudo cp arch/arm64/boot/Image.gz /boot/firmware/$KERNEL.img
+                  sudo cp arch/arm64/boot/dts/broadcom/*.dtb /boot/firmware/
+                  sudo cp arch/arm64/boot/dts/overlays/*.dtb* /boot/firmware/overlays/
+                  sudo cp arch/arm64/boot/dts/overlays/README /boot/firmware/overlays/
+
+              #⭕ Tip
+                Alternatively, copy the kernel with a different filename (e.g. kernel-myconfig.img) instead of overwriting the kernel.img file.
+                  Then, edit config.txt in the boot partition to select your kernel:
+                    kernel=kernel-myconfig.img
+                Combine this approach with a custom LOCALVERSION to keep your custom kernel separate from the stock kernel image managed by the system. With this arrangement, you can quickly revert to a stock kernel in the event that your kernel cannot boot.
+        #️⃣ Cross-compile the kernel ; https://www.raspberrypi.com/documentation/computers/linux_kernel.html#cross-compile-the-kernel
+
+
+README.md
+  In Host and `$HOME/repos/kernels` directory,
+  ```
+  # Download kernel source
+  git clone --depth=1 --single-branch https://github.com/raspberrypi/linux raspberry_pi
+
+  # Install the build dependencies
+  sudo apt -y install bc bison flex libssl-dev make
+  
+  # 🖥️ In the case of Raspberry Pi 4, 64-bit
+  cd raspberry_pi
+  KERNEL=kernel8 make bcm2711_defconfig
+
+  ```
+
+cd raspberry_pi
+export KERNEL=kernel8
+make bcm2711_defconfig
+
+
+🪱 userland ; https://en.wiktionary.org/wiki/userland
+
+
+Run the following commands to build a 64-bit kernel:
+
+make -j6 Image.gz modules dtbs
+
+
+
+# Customise the kernel version using LOCALVERSIO
+  To adjust LOCALVERSION, change the following line in .config:
+
+  CONFIG_LOCALVERSION="-v7l-MY_CUSTOM_KERNEL"
+# Build
+  Run the following commands to build a 64-bit kernel:
+    %shell> make -j(math (nproc) \* 1.5) Image.gz modules dtbs
+
+  > we recommend passing a number 1.5x your number of processors.
+
+# Install the kernel
+  Create a backup image of the current kernel, install the fresh kernel image, overlays, README, and unmount the partitions:
+  %shell> 
+    sudo cp /boot/firmware/$KERNEL.img /boot/firmware/$KERNEL-backup.img
+    sudo cp arch/arm64/boot/Image.gz /boot/firmware/$KERNEL.img
+    sudo cp arch/arm64/boot/dts/broadcom/*.dtb /boot/firmware/
+    sudo cp arch/arm64/boot/dts/overlays/*.dtb* /boot/firmware/overlays/
+    sudo cp arch/arm64/boot/dts/overlays/README /boot/firmware/overlays/
+
+    #⭕ Tip
+      Alternatively, copy the kernel with a different filename (e.g. kernel-myconfig.img) instead of overwriting the kernel.img file.
+        Then, edit config.txt in the boot partition to select your kernel:
+          kernel=kernel-myconfig.img
+      Combine this approach with a custom LOCALVERSION to keep your custom kernel separate from the stock kernel image managed by the system. With this arrangement, you can quickly revert to a stock kernel in the event that your kernel cannot boot.

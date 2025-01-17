@@ -5,7 +5,7 @@ obj-m := $(MODULE_NAME).o
 
 
 # Paths
-KERNEL_DIR := $(HOME)/repos/kernels/raspberry-pi
+KERNEL_DIR := $(HOME)/repos/kernels/raspberry_pi
 MODULE_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 APP_SRC := $(APP_NAME).c
 

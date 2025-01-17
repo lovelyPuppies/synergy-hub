@@ -26,7 +26,7 @@ COMMON_INCLUDE_DIR := $(COMMON_INCLUDE_DIR)
 ### ❔ Application-specific settings
 # Application-specific variables
 SRC_NAME := src
-SRC_DIR := $(PWD)/src
+SRC_DIR := $(PWD)/$(SRC_NAME)
 
 #⚙️ Include directories and compiler flags
 INCLUDE_DIRS := -I$(COMMON_INCLUDE_DIR) -Iinclude

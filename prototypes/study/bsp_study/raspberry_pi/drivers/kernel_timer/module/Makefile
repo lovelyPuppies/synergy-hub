@@ -27,8 +27,8 @@ COMMON_INCLUDE_DIR := $(COMMON_INCLUDE_DIR)
 ### ❔ Module-specific settings
 ## Module specific settings
 SRC_NAME := src
-SRC_DIR := $(PWD)/src
-KERNEL_DIR := $(HOME)/repos/kernels/raspberry-pi
+SRC_DIR := $(PWD)/$(SRC_NAME)
+KERNEL_DIR := $(HOME)/repos/kernels/raspberry_pi
 #⚙️ Include directories and compiler flags
 INCLUDE_DIRS := -I$(COMMON_INCLUDE_DIR) -Iinclude
 CFLAGS := -fno-pic -Wall -Wextra -Wno-unused-parameter -Wno-sign-compare $(INCLUDE_DIRS)

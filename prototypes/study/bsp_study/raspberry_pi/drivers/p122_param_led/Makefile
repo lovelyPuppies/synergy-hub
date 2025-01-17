@@ -3,7 +3,7 @@ obj-m := $(MOD).o
 
 CROSS = ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
 # KDIR := /lib/modules/$(shell uname -r)/build
-KDIR := $(HOME)/repos/kernels/raspberry-pi
+KDIR := $(HOME)/repos/kernels/raspberry_pi
 
 PWD := $(shell pwd)
 

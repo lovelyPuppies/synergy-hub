@@ -6,17 +6,17 @@
   - [Project Introduction](#project-introduction)
     - [Features](#features)
 - [LED Timer and Button Interaction](#led-timer-and-button-interaction)
-  - [동작 흐름](#동작-흐름)
-    - [1. 초기 LED 반전 시작](#1-초기-led-반전-시작)
-    - [2. 버튼 동작에 따른 LED/타이머 제어](#2-버튼-동작에-따른-led타이머-제어)
-    - [3. 애플리케이션 종료](#3-애플리케이션-종료)
-  - [🎯 Project Purposes](#-project-purposes)
-  - [🖼️ Hardware Setup](#️-hardware-setup)
-    - [Notes](#notes)
-    - [Using Devices](#using-devices)
-    - [GPIO Pinout Table](#gpio-pinout-table)
-  - [🎥 Kernel Timer Demo](#-kernel-timer-demo)
-  - [🖼️ Software Setup](#️-software-setup)
+    - [동작 흐름](#동작-흐름)
+      - [1. 초기 LED 반전 시작](#1-초기-led-반전-시작)
+      - [2. 버튼 동작에 따른 LED/타이머 제어](#2-버튼-동작에-따른-led타이머-제어)
+      - [3. 애플리케이션 종료](#3-애플리케이션-종료)
+    - [🎯 Project Purposes](#-project-purposes)
+    - [🖼️ Hardware Setup](#️-hardware-setup)
+      - [Notes](#notes)
+      - [Using Devices](#using-devices)
+      - [GPIO Pinout Table](#gpio-pinout-table)
+    - [🎥 Kernel Timer Demo](#-kernel-timer-demo)
+    - [🖼️ Software Setup](#️-software-setup)
   - [🌐 Project Overview](#-project-overview)
     - [🛠️ Tools](#️-tools)
       - [\[🧑‍💻 Software\]](#-software)
@@ -166,15 +166,15 @@ cd $HOME/repos/kernels
 
 # Clone Raspberry Pi kernel source repository
 
-if not test -d raspberry-pi
-git clone --depth=1 --branch rpi-6.6.y https://github.com/raspberrypi/linux.git raspberry-pi
+if not test -d raspberry_pi
+git clone --depth=1 --branch rpi-6.6.y https://github.com/raspberrypi/linux.git raspberry_pi
 else
 echo "Kernel repository already exists, skipping clone."
 end
 
 # Navigate to the kernel source directory
 
-cd raspberry-pi
+cd raspberry_pi
 
 # Get the default kernel configuration for Raspberry Pi 4
 

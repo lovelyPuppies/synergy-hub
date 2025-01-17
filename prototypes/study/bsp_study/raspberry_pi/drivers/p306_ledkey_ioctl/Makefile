@@ -5,7 +5,7 @@ obj-m := $(MOD).o
 
 CROSS = ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
 CC := arm-linux-gnueabihf-gcc
-KDIR := $(HOME)/repos/kernels/raspberry-pi
+KDIR := $(HOME)/repos/kernels/raspberry_pi
 PWD := $(shell pwd)
 
 default:$(OBJ)

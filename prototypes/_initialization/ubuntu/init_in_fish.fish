@@ -7,12 +7,12 @@
 │   <path_for_custom_driver_source_according_to_kernel_version>
 ├── 📂 bootloaders/
 │   ├── grub/
-│   ├── u-boot/
-│   ├── u-boot-raspberry-pi/
+│   ├── u_boot/
+│   ├── u_boot-raspberry_pi/
 ├── 📂 kernels/
 │   ├── linux-5.10
 │   ├── linux
-│   └── raspberry-pi        // https://github.com/raspberrypi/linux
+│   └── raspberry_pi        // https://github.com/raspberrypi/linux
 ├── 📂 yocto_project/
 │   └── poky
 └── 📂 projects
