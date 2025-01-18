@@ -20,10 +20,11 @@
 void print_usage(const char *prog_name);
 int open_device();
 void configure_timer(int dev, ledKey_data *info, int timer_val);
-void configure_led(int dev, char led_no);
+void configure_led(int dev, unsigned char led_value);
 void start_timer(int dev);
 void stop_device(int dev);
-void initialize_device(int dev, ledKey_data *info, char led_no, int timer_val);
+void initialize_device(int dev, ledKey_data *info, unsigned char led_value,
+                       int timer_val);
 void handle_polling(int dev);
 
 /* =========================
@@ -36,8 +37,8 @@ int main(int argc, char *argv[]) {
     return 1;
   }
 
-  char led_no = (char)strtoul(argv[1], NULL, 16);
-  if (!(0 <= led_no && led_no <= 255)) {
+  unsigned char led_value = (char)strtoul(argv[1], NULL, 16);
+  if (!(0 <= led_value && led_value <= 255)) {
     print_usage(argv[0]);
     return 2;
   }
@@ -52,7 +53,7 @@ int main(int argc, char *argv[]) {
     return 2;
   }
 
-  initialize_device(dev, &info, led_no, timer_val);
+  initialize_device(dev, &info, led_value, timer_val);
   handle_polling(dev);
 
   close(dev);
@@ -64,7 +65,7 @@ int main(int argc, char *argv[]) {
  * ========================= */
 
 void print_usage(const char *prog_name) {
-  printf("Usage : %s [led_val(0x00~0xff)] [timer_val(1/100)]\n", prog_name);
+  printf("Usage : %s [led_value(0x00~0xff)] [timer_value(1/100)]\n", prog_name);
 }
 
 int open_device() {
@@ -81,16 +82,17 @@ void configure_timer(int dev, ledKey_data *info, int timer_val) {
   ioctl(dev, TIMER_VALUE, info);
 }
 
-void configure_led(int dev, char led_no) {
-  write(dev, &led_no, sizeof(led_no));
+void configure_led(int dev, unsigned char led_value) {
+  write(dev, &led_value, sizeof(led_value));
 }
 
 void start_timer(int dev) { ioctl(dev, TIMER_START); }
 void stop_device(int dev) { ioctl(dev, TIMER_STOP); }
 
-void initialize_device(int dev, ledKey_data *info, char led_no, int timer_val) {
+void initialize_device(int dev, ledKey_data *info, unsigned char led_value,
+                       int timer_val) {
   configure_timer(dev, info, timer_val);
-  configure_led(dev, led_no);
+  configure_led(dev, led_value);
   start_timer(dev);
 }
 
@@ -155,9 +157,9 @@ void handle_polling(int dev) {
 
         fgets(inputString, sizeof(inputString), stdin);
         inputString[strlen(inputString) - 1] = '\0';
-        char led_no = (char)strtoul(inputString, NULL, 16);
+        unsigned char led_value = (char)strtoul(inputString, NULL, 16);
 
-        configure_led(dev, led_no);
+        configure_led(dev, led_value);
         start_timer(dev);
         break;
       case 4:
