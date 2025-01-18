@@ -18,8 +18,8 @@ KERNEL_ARCHITECTURE := $(CPU_ARCH_FLAGS)
 COMPILER := $(COMPILER)
 LINKER := $(LINKER)
 
-## Common xinclude directory
-COMMON_INCLUDE_DIR := $(COMMON_INCLUDE_DIR)
+## Common include flags
+COMMON_INCLUDE_FLAGS := $(COMMON_INCLUDE_FLAGS)
 
 
 
@@ -29,7 +29,7 @@ SRC_NAME := src
 SRC_DIR := $(PWD)/$(SRC_NAME)
 
 #⚙️ Include directories and compiler flags
-INCLUDE_DIRS := -I$(COMMON_INCLUDE_DIR) -Iinclude
+INCLUDE_DIRS := $(COMMON_INCLUDE_FLAGS) -Iinclude
 CFLAGS := -Wall -Wextra $(INCLUDE_DIRS)
 
 CLANG_FLAGS := --target=$(TARGET_TOOLCHAIN) $(CPU_ARCH_FLAGS) $(CFLAGS)

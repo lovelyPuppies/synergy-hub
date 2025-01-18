@@ -28,7 +28,9 @@ COMPILER := clang
 LINKER := ld.lld
 
 ## Common include directory
-COMMON_INCLUDE_DIR := $(PWD)/include
+COMMON_INCLUDE_ROOT_DIR := $(PWD)/include
+FOUND_INCLUDE_DIRS := $(shell find $(COMMON_INCLUDE_ROOT_DIR) -type d)
+COMMON_INCLUDE_FLAGS := $(addprefix -I, $(FOUND_INCLUDE_DIRS))
 
 
 
@@ -54,7 +56,7 @@ build-app:
 	COMPILER=$(COMPILER) \
 	LINKER=$(LINKER) \
 	\
-	COMMON_INCLUDE_DIR=$(COMMON_INCLUDE_DIR)
+	COMMON_INCLUDE_FLAGS=$(COMMON_INCLUDE_FLAGS)
 
 
 #🤝 Delegate to module Makefile
@@ -68,7 +70,7 @@ build-module:
 	COMPILER=$(COMPILER) \
 	LINKER=$(LINKER) \
 	\
-	COMMON_INCLUDE_DIR=$(COMMON_INCLUDE_DIR)
+	COMMON_INCLUDE_FLAGS=$(COMMON_INCLUDE_FLAGS)
 
 
 

@@ -19,8 +19,8 @@ KERNEL_ARCHITECTURE := $(CPU_ARCH_FLAGS)
 COMPILER := $(COMPILER)
 LINKER := $(LINKER)
 
-## Common include directory
-COMMON_INCLUDE_DIR := $(COMMON_INCLUDE_DIR)
+## Common include flags
+COMMON_INCLUDE_FLAGS := $(COMMON_INCLUDE_FLAGS)
 
 
 
@@ -30,7 +30,7 @@ SRC_NAME := src
 SRC_DIR := $(PWD)/$(SRC_NAME)
 KERNEL_DIR := $(HOME)/repos/kernels/raspberry_pi
 #⚙️ Include directories and compiler flags
-INCLUDE_DIRS := -I$(COMMON_INCLUDE_DIR) -Iinclude
+INCLUDE_DIRS := $(COMMON_INCLUDE_FLAGS) -Iinclude
 CFLAGS := -fno-pic -Wall -Wextra -Wno-unused-parameter -Wno-sign-compare $(INCLUDE_DIRS)
 
 # Kernel build module variables
