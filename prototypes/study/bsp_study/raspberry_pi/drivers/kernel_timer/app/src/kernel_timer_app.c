@@ -1,3 +1,6 @@
+/* =========================
+ *  Includes and Definitions
+ * ========================= */
 #include "ioctl_test.h"
 #include <fcntl.h>
 #include <poll.h>
@@ -11,106 +14,168 @@
 
 #define DEVICE_FILENAME "/dev/ledKey_dev"
 
-int main(int argc, char *argv[]) {
-  int dev;
-  char key_no;
-  char led_no;
-  char timer_val;
-  int ret;
-  int loopFlag = 1;
-  struct pollfd Events[2];
-  char inputString[80];
-  ledKey_data info;
+/* =========================
+ *  Function Prototypes
+ * ========================= */
+void print_usage(const char *prog_name);
+int open_device();
+void configure_timer(int dev, ledKey_data *info, int timer_val);
+void configure_led(int dev, char led_no);
+void start_timer(int dev);
+void stop_device(int dev);
+void initialize_device(int dev, ledKey_data *info, char led_no, int timer_val);
+void handle_polling(int dev);
 
+/* =========================
+ *  Main Function
+ * ========================= */
+
+int main(int argc, char *argv[]) {
   if (argc != 3) {
-    printf("Usage : %s [led_val(0x00~0xff)] [timer_val(1/100)]\n", argv[0]);
+    print_usage(argv[0]);
     return 1;
   }
-  led_no = (char)strtoul(argv[1], NULL, 16);
-  if (!((0 <= led_no) && (led_no <= 255))) {
-    printf("Usage : %s [led_data(0x00~0xff)]\n", argv[0]);
+
+  char led_no = (char)strtoul(argv[1], NULL, 16);
+  if (!(0 <= led_no && led_no <= 255)) {
+    print_usage(argv[0]);
     return 2;
   }
-  printf("Author: PJS\n");
-  timer_val = atoi(argv[2]);
-  info.timer_val = timer_val;
 
-  //	dev = open(DEVICE_FILENAME, O_RDWR | O_NONBLOCK);
-  dev = open(DEVICE_FILENAME, O_RDWR);
+  int timer_val = atoi(argv[2]);
+  ledKey_data info;
+
+  printf("Author: PJS\n");
+
+  int dev = open_device();
+  if (dev < 0) {
+    return 2;
+  }
+
+  initialize_device(dev, &info, led_no, timer_val);
+  handle_polling(dev);
+
+  close(dev);
+  return 0;
+}
+
+/* =========================
+ *  Helper Functions
+ * ========================= */
+
+void print_usage(const char *prog_name) {
+  printf("Usage : %s [led_val(0x00~0xff)] [timer_val(1/100)]\n", prog_name);
+}
+
+int open_device() {
+  // dev = open(DEVICE_FILENAME, O_RDWR | O_NONBLOCK);
+  int dev = open(DEVICE_FILENAME, O_RDWR);
   if (dev < 0) {
     perror("open");
-    return 2;
   }
+  return dev;
+}
 
-  ioctl(dev, TIMER_VALUE, &info);
+void configure_timer(int dev, ledKey_data *info, int timer_val) {
+  info->timer_val = timer_val;
+  ioctl(dev, TIMER_VALUE, info);
+}
+
+void configure_led(int dev, char led_no) {
   write(dev, &led_no, sizeof(led_no));
-  ioctl(dev, TIMER_START);
+}
 
+void start_timer(int dev) { ioctl(dev, TIMER_START); }
+void stop_device(int dev) { ioctl(dev, TIMER_STOP); }
+
+void initialize_device(int dev, ledKey_data *info, char led_no, int timer_val) {
+  configure_timer(dev, info, timer_val);
+  configure_led(dev, led_no);
+  start_timer(dev);
+}
+
+void handle_polling(int dev) {
+  /*
+    struct pollfd
+      {
+        int fd;			        // File descriptor to poll.
+        short int events;		// Types of events poller 🚣 cares about.
+        short int revents;	// Types of events that 🚣 actually occurred.
+  */
+  struct pollfd Events[2];
+
+  // Next line initializes the `Events` array to zero.
+  //  This ensures no residual data is present before setting specific pollfd attributes.
   memset(Events, 0, sizeof(Events));
 
+  // Associates the first pollfd entry with the device file descriptor `dev`. (🚣 not fixed)
   Events[0].fd = dev;
+  // Sets the event type to POLLIN, indicating interest in data readiness for reading.
   Events[0].events = POLLIN;
+
+  // Associates the second pollfd entry with the standard input file descriptor. (🚣 reserved)
   Events[1].fd = fileno(stdin);
   Events[1].events = POLLIN;
 
-  while (loopFlag) {
+  int loopFlag = 1;
+  char key_no;
+  char inputString[80];
+  ledKey_data info;
 
-    ret = poll(Events, 2, 1000);
+  while (loopFlag) {
+    int ret = poll(Events, 2, 1000);
     if (ret == 0) {
-      //	  		printf("poll time out : %d\n",cnt++);
       continue;
     }
-    if (Events[0].revents & POLLIN) //dev : keyled
-    {
+
+    if (Events[0].revents & POLLIN) {
       read(dev, &key_no, sizeof(key_no));
       printf("key_no : %d\n", key_no);
+
       switch (key_no) {
       case 1:
         printf("TIMER STOP! \n");
-        ioctl(dev, TIMER_STOP);
+        stop_device(dev);
         break;
       case 2:
-        ioctl(dev, TIMER_STOP);
+        stop_device(dev);
         printf("Enter timer value! \n");
+
+        fgets(inputString, sizeof(inputString), stdin);
+        // Next line replaces the newline character at the end of the user input (from fgets) with a null terminator (`\0`).
+        // Ensures the string is properly terminated and avoids issues when processing the input.
+        inputString[strlen(inputString) - 1] = '\0';
+
+        configure_timer(dev, &info, atoi(inputString));
+        start_timer(dev);
         break;
       case 3:
-        ioctl(dev, TIMER_STOP);
+        stop_device(dev);
         printf("Enter led value! \n");
+
+        fgets(inputString, sizeof(inputString), stdin);
+        inputString[strlen(inputString) - 1] = '\0';
+        char led_no = (char)strtoul(inputString, NULL, 16);
+
+        configure_led(dev, led_no);
+        start_timer(dev);
         break;
       case 4:
         printf("TIMER START! \n");
-        ioctl(dev, TIMER_START);
+        start_timer(dev);
         break;
       case 8:
         printf("APP CLOSE ! \n");
-        ioctl(dev, TIMER_STOP);
+        stop_device(dev);
         loopFlag = 0;
         break;
       }
-    } else if (Events[1].revents & POLLIN) //keyboard
-    {
-      fflush(stdin);
+    } else if (Events[1].revents & POLLIN) {
       fgets(inputString, sizeof(inputString), stdin);
-      if ((inputString[0] == 'q') || (inputString[0] == 'Q'))
+      if ((inputString[0] == 'q') || (inputString[0] == 'Q')) {
         break;
-      inputString[strlen(inputString) - 1] = '\0';
-
-      if (key_no == 2) //timer value
-      {
-        timer_val = atoi(inputString);
-        info.timer_val = timer_val;
-        ioctl(dev, TIMER_VALUE, &info);
-        ioctl(dev, TIMER_START);
-
-      } else if (key_no == 3) //led value
-      {
-        led_no = (char)strtoul(inputString, NULL, 16);
-        write(dev, &led_no, sizeof(led_no));
-        ioctl(dev, TIMER_START);
       }
-      key_no = 0;
+      // inputString[strlen(inputString) - 1] = '\0';
     }
   }
-  close(dev);
-  return 0;
 }
