@@ -295,22 +295,21 @@ stateDiagram-v2
 ### 📁 Directory Structure
 
 ├── 📂 **app**  
-│&nbsp;&nbsp;&nbsp;&nbsp;├── [Makcefile](prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/app/Makefile)  
+│&nbsp;&nbsp;&nbsp;&nbsp;├── [Makefile](app/Makefile)  
 │&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 **src**  
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 **include**  
-│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [kernel_timer_app.c](prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/app/src/kernel_timer_app.c)  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [kernel_timer_app.c](app/src/kernel_timer_app.c)  
 ├── 📂 **build**  
 ├── 📂 **include**  
-│&nbsp;&nbsp;&nbsp;&nbsp;└── [ioctl_test.h](prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/include/ioctl_test.h)  
-├── [kernel_timer_app copy.c](prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/kernel_timer_app%20copy.c)  
-├── [Makefile](prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/Makefile)  
+│&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 **uapi**  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [ledkey_ioctl.h](include/uapi/ledkey_ioctl.h)  
+├── [Makefile](Makefile)  
 ├── 📂 **module**  
-│&nbsp;&nbsp;&nbsp;&nbsp;├── [Makefile](prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/module/Makefile)  
+│&nbsp;&nbsp;&nbsp;&nbsp;├── [Makefile](module/Makefile)  
 │&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 **src**  
 │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 **include**  
-│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [kernel_timer_dev.c](prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/module/src/kernel_timer_dev.c)  
-├── [pipeline.fish](prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/pipeline.fish)  
-└── 📂 **test**
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [kernel_timer_dev.c](module/src/kernel_timer_dev.c)  
+└── [pipeline.fish](pipeline.fish)
 
 &nbsp;
 

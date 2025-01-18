@@ -17217,11 +17217,19 @@ Fish shell Built-in : math
 
 
 🪱 userland ; https://en.wiktionary.org/wiki/userland
-
-
+🪱 Device tree ; https://en.wikipedia.org/wiki/Devicetree
+https://www.devicetree.org/
 
 TODO: 내일 해볼 것
   ## Run nohup with multiple commands in background process 📅 2025-01-19 00:47:43
   
   Netlink ???
     ledkey_netlink 같은 Netlink 기반 인터페이스는 다수의 사용자 애플리케이션과 커널 모듈이 데이터를 주고받아야 하는 상황 또는 비동기적 이벤트 통지가 필요한 경우에 유용합니다. 이를 활용하는 상황과 프로젝트의 예시는 아래와 같습니다.
+
+Misc 기반
+
+❯ brew uses --installed dtc
+qemu
+
+
+⚓ https://git.kernel.org/pub/scm/utils/dtc/dtc.git

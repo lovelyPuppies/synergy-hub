@@ -13,6 +13,9 @@
 #include <unistd.h>
 
 #define DEVICE_FILENAME "/dev/ledKey_dev"
+/* =========================
+ *  Global Variables
+ * ========================= */
 
 /* =========================
  *  Function Prototypes
@@ -102,7 +105,7 @@ void handle_polling(int dev) {
       {
         int fd;			        // File descriptor to poll.
         short int events;		// Types of events poller 🚣 cares about.
-        short int revents;	// Types of events that 🚣 actually occurred.
+        short int revents;	// revents (Returned Events). Types of events that 🚣 actually occurred.
   */
   struct pollfd Events[2];
 
