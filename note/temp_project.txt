@@ -17233,3 +17233,6 @@ qemu
 
 
 ⚓ https://git.kernel.org/pub/scm/utils/dtc/dtc.git
+
+
+🌟 아 커널 모듈중에서 장치를 제어하면 그게 디바이스 드라이버인가?

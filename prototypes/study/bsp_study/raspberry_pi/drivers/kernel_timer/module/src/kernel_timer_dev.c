@@ -157,6 +157,7 @@ static void gpioKeyFree(void) {
 
 static int irqKeyInit(keyDataStruct *pKeyData) {
   for (int i = 0; i < GPIO_COUNT; i++) {
+    // 🚣 Converts a GPIO pin to its corresponding IRQ number.
     pKeyData->irqKey[i] = gpio_to_irq(gpioKey[i]);
     if (pKeyData->irqKey[i] < 0) {
       DEBUG_LOG("Failed gpio_to_irq() gpio%d error\n", gpioKey[i]);
@@ -174,6 +175,7 @@ static void irqKeyFree(keyDataStruct *pKeyData) {
   }
 }
 
+// 🚣 Interrupt Service Routine (ISR) that handles GPIO key presses.
 irqreturn_t keyIsr(int irq, void *data) {
   int i;
   keyDataStruct *pKeyData = (keyDataStruct *)data;
@@ -217,6 +219,7 @@ static int ledkey_open(struct inode *inode, struct file *filp) {
     return result;
 
   for (int i = 0; i < GPIO_COUNT; i++) {
+    // 🚣 Registers an interrupt handler (ISR) for the specified IRQ number.
     result = request_irq(pKeyData->irqKey[i], keyIsr, IRQF_TRIGGER_RISING,
                          irqName[i], pKeyData);
     if (result < 0)

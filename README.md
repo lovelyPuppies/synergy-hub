@@ -263,6 +263,7 @@ tree [**prototypes/\_initialization/\_about**](prototypes/_initialization/_about
 &nbsp;&nbsp;&nbsp;&nbsp;├── [git_switch_and_restore_instead_of_git_checkout.md](prototypes/_initialization/_about/compare_trend/git_switch_and_restore_instead_of_git_checkout.md)  
 &nbsp;&nbsp;&nbsp;&nbsp;├── [netplan-efficient-usage.md](prototypes/_initialization/_about/compare_trend/netplan-efficient-usage.md)  
 &nbsp;&nbsp;&nbsp;&nbsp;├── [netplan-vs-etc_network_interfaces.md](prototypes/_initialization/_about/compare_trend/netplan-vs-etc_network_interfaces.md)  
+&nbsp;&nbsp;&nbsp;&nbsp;├── [preferring_gpiod_and_other_control_methods_over_sysfs_and_ioctl_for_device_control.md](prototypes/_initialization/_about/compare_trend/preferring_gpiod_and_other_control_methods_over_sysfs_and_ioctl_for_device_control.md)  
 &nbsp;&nbsp;&nbsp;&nbsp;├── [raspberry_pi_64bit_environment_with_qt.md](prototypes/_initialization/_about/compare_trend/raspberry_pi_64bit_environment_with_qt.md)  
 &nbsp;&nbsp;&nbsp;&nbsp;└── [why_thread_became_the_standard_in_matter.md](prototypes/_initialization/_about/compare_trend/why_thread_became_the_standard_in_matter.md)
 
