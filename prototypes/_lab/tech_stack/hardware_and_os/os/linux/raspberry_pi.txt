@@ -36,12 +36,44 @@ Raspberry Pi 🔪⚓ Docs ; https://fishshell.com/docs/current/index.html
           %shell> sudo apt install bc bison flex libssl-dev make
           
           #📍 Build configuration
-            To prepare the default configuration, run the appropriate commands from the table below for your Raspberry Pi model.
-
             #💡⚖️ Note
               The 32-bit distribution of Raspberry Pi OS on 4-series devices uses a 32-bit userland, but a 64-bit kernel.
               To build a 32-bit kernel, set ARCH=arm. To boot a 32-bit kernel, set arm_64bit=0 in config.txt.
 
+          # Build
+            Run the following commands to build a 64-bit kernel:
+              %shell> make -j6 Image.gz modules dtbs
+            Run the following command to build a 32-bit kernel:
+              %shell> make -j6 zImage modules dtbs
+
+            #💡 Tip
+              On multi-core Raspberry Pi models, the make -j<n> option distributes work between cores.
+              This can speed up compilation significantly. Run nproc to see how many processors you have
+              ; ⭕ we recommend passing a number 1.5x your number of processors.
+
+          # Install the kernel
+            %shell> sudo make -j6 modules_install
+            Then, install the kernel and Device Tree blobs into the boot partition, backing up your original kernel.
+
+            #⭕ Tip
+              Alternatively, copy the kernel with a different filename (e.g. kernel-myconfig.img) instead of overwriting the kernel.img file.
+                Then, edit config.txt in the boot partition to select your kernel:
+                  kernel=kernel-myconfig.img
+              Combine this approach with a custom LOCALVERSION to keep your custom kernel separate from the stock kernel image managed by the system. With this arrangement, you can quickly revert to a stock kernel in the event that your kernel cannot boot.
+      
+        #️⃣⭕ Cross-compile the kernel ; https://www.raspberrypi.com/documentation/computers/linux_kernel.html#cross-compile-the-kernel
+          # Install required dependencies and toolchain
+            %shell> 
+              ```
+                # Install the build dependencies
+                sudo apt install -y bc bison flex libssl-dev make
+                # Install the build dependencies for Cross-compiling the kernel
+                sudo apt install -y libc6-dev libncurses5-dev
+                # Install the 64-bit toolchain for Cross-compiling the kernel
+                sudo apt install -y crossbuild-essential-arm64
+              ```
+              
+          # Build configuration
           #⭕ Customise the kernel version using LOCALVERSION
             To prevent the kernel from overwriting existing modules in /lib/modules and to clarify that you run your own kernel in uname output, adjust LOCALVERSION.
 
@@ -49,95 +81,109 @@ Raspberry Pi 🔪⚓ Docs ; https://fishshell.com/docs/current/index.html
               For more information about menuconfig
 
           # Build
-            Run the following commands to build a 64-bit kernel:
-              %shell> make -j6 Image.gz modules dtbs
-            Run the following command to build a 32-bit kernel:
-              %shell>  make -j6 zImage modules dtbs
 
-            #💡 Tip
-              On multi-core Raspberry Pi models, the make -j<n> option distributes work between cores.
-              This can speed up compilation significantly. Run nproc to see how many processors you have
-              ; ⭕ we recommend passing a number 1.5x your number of processors.
+          # Install the kernel
+            # Find your boot media
+              %shell> lsblk
+              ⚖️ If sdb represents your boot media
+                , sdb1 represents the the 🚣‍♀️ FAT32-formatted boot partition
+                and sdb2 represents the (likely 🚣‍♀️ ext4-formatted) root partition.
 
-            # Install the kernel
-              %shell> sudo make -j6 modules_install
-              Then, install the kernel and Device Tree blobs into the boot partition, backing up your original kernel.
-
-              #❗ Tip
-                If you don’t want to install the freshly-compiled kernel onto the Raspberry Pi where you run this command
-                , copy the compiled kernel to the boot partition of a separate boot media instead of /boot/firmware/.
-            
-              To install the 64-bit kernel:
-                Run the following commands to create a backup image of the current kernel, install the fresh kernel image, overlays, README, and unmount the partitions:
-                %shell> 
-                  sudo cp /boot/firmware/$KERNEL.img /boot/firmware/$KERNEL-backup.img
-                  sudo cp arch/arm64/boot/Image.gz /boot/firmware/$KERNEL.img
-                  sudo cp arch/arm64/boot/dts/broadcom/*.dtb /boot/firmware/
-                  sudo cp arch/arm64/boot/dts/overlays/*.dtb* /boot/firmware/overlays/
-                  sudo cp arch/arm64/boot/dts/overlays/README /boot/firmware/overlays/
-
-              #⭕ Tip
-                Alternatively, copy the kernel with a different filename (e.g. kernel-myconfig.img) instead of overwriting the kernel.img file.
-                  Then, edit config.txt in the boot partition to select your kernel:
-                    kernel=kernel-myconfig.img
-                Combine this approach with a custom LOCALVERSION to keep your custom kernel separate from the stock kernel image managed by the system. With this arrangement, you can quickly revert to a stock kernel in the event that your kernel cannot boot.
-        
-        #️⃣⭕ Cross-compile the kernel ; https://www.raspberrypi.com/documentation/computers/linux_kernel.html#cross-compile-the-kernel
+            # Install
+            install the kernel modules onto the boot media:
+              📰 sudo env PATH=$PATH make -j12 ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- INSTALL_MOD_PATH=mnt/root modules_install
+      #️⃣📰 Patch the kernel
+      #️⃣ Kernel headers ; https://www.raspberrypi.com/documentation/computers/linux_kernel.html#kernel-headers
+        To compile a kernel module, you need the Linux kernel headers. These provide the function and structure definitions required to compile code that interfaces with the kernel.
+        ⚖️ If you cloned the entire kernel from GitHub, the headers are already included in the source tree. If you don’t need all the extra files, you can instead install only the kernel headers with apt.
+          sudo apt install linux-headers-rpi-v8
 
 
 README.md
+  ```User-specific settings
+  function prettify_indent_via_pipe
+    awk '
+      NR == 2 { indent = match($0, /[^ ]/) - 1 }
+      NR > 1 { sub("^ {" indent "}", "") }
+      NR == 1 { next }
+      { gsub(/[[:blank:]]*$/, ""); print }
+    '
+  end
+
+  # Set Path of Raspberry Pi kernel source
+  mkdir -p $HOME/repos/kernels
+  cd $HOME/repos/kernels
+
+  # ⭕ we recommend passing a number 1.5x your number of processors. 🔗 https://www.raspberrypi.com/documentation/computers/linux_kernel.html#native-build
+  set jobs_core_n (math (nproc) \* 1.5)
+  ```
+
   In Host and `$HOME/repos/kernels` directory,
   ```
-  # Download kernel source
-  git clone --depth=1 --single-branch https://github.com/raspberrypi/linux raspberry_pi
-
-  # Install the build dependencies
-  sudo apt -y install bc bison flex libssl-dev make
-  # Install the build dependencies for Cross-compiling the kernel
-  sudo apt install libc6-dev libncurses5-dev
-  
   # 🖥️ In the case of Raspberry Pi 4, 64-bit
-  cd raspberry_pi
-  KERNEL=kernel8 make bcm2711_defconfig
 
+  ### Download kernel source
+  git clone --depth=1 --single-branch https://github.com/raspberrypi/linux raspberry_pi
+  cd raspberry_pi
+
+
+  ### Install the build dependencies
+  sudo apt install -y bc bison flex libssl-dev make
+  # Install the build dependencies for Cross-compiling the kernel
+  sudo apt install -y libc6-dev libncurses5-dev
+  # Install the 64-bit toolchain for Cross-compiling the kernel
+  sudo apt install -y crossbuild-essential-arm64
+
+  
+
+  
+
+  ### Build configuration
+  set -gx KERNEL kernel8
+  make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- bcm2711_defconfig
+
+  ##🏷️ Customize the kernel version using LOCALVERSION
+
+  set config_file ".config"
+  set unique_comment '## ⚙️ Customize the kernel version (Override)'
+
+  if not grep -Fxq "$unique_comment" "$config_file"
+      echo "
+      $unique_comment"'
+      CONFIG_LOCALVERSION="-v8-synergy_hub"
+      ' | prettify_indent_via_pipe | tee -a "$config_file" >/dev/null
+      echo -e "\n" >> "$config_file"
+  end
+
+
+
+  ### Build
+  make -j{$jobs_core_n} ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- Image modules dtbs
+
+  ## If boot media is mounted
+  # sudo env PATH=$PATH make -j{$jobs_core_n} ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- INSTALL_MOD_PATH=mnt/root modules_install
   ```
 
-cd raspberry_pi
-export KERNEL=kernel8
-make bcm2711_defconfig
+  Deploy
+  ```
+  cp arch/arm64/boot/Image /nfs/host/$KERNEL.img
+  ```
+
+  
+  # CAN USB interfaces
 
 
 🪱 userland ; https://en.wiktionary.org/wiki/userland
 
+# 라즈베리파이에서 커널 소스 빌드하는 경우
+make Image.gz modules dtbs
 
-Run the following commands to build a 64-bit kernel:
-
-make -j6 Image.gz modules dtbs
-
+# 우분투에서 라즈베리파이 커널 소스 크로스컴파일하는 경우
+make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- Image modules dtbs
 
 
-# Customise the kernel version using LOCALVERSIO
-  To adjust LOCALVERSION, change the following line in .config:
+// 위가 공식문서인데 내가 
+make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- Image.gz
+내가 이렇게 Image.gz 을 kernel8.img 로 바꿔서 부팅한 경우에는, 라즈베리파이 디스플레이가 작동이 안됬거든. (검은색화면) (다시 이미지 삭제한 경우에도 복구가 안됫음)
 
-  CONFIG_LOCALVERSION="-v7l-MY_CUSTOM_KERNEL"
-# Build
-  Run the following commands to build a 64-bit kernel:
-    %shell> make -j(math (nproc) \* 1.5) Image.gz modules dtbs
-
-  > we recommend passing a number 1.5x your number of processors.
-
-# Install the kernel
-  Create a backup image of the current kernel, install the fresh kernel image, overlays, README, and unmount the partitions:
-  %shell> 
-    sudo cp /boot/firmware/$KERNEL.img /boot/firmware/$KERNEL-backup.img
-    sudo cp arch/arm64/boot/Image.gz /boot/firmware/$KERNEL.img
-    sudo cp arch/arm64/boot/dts/broadcom/*.dtb /boot/firmware/
-    sudo cp arch/arm64/boot/dts/overlays/*.dtb* /boot/firmware/overlays/
-    sudo cp arch/arm64/boot/dts/overlays/README /boot/firmware/overlays/
-
-    #⭕ Tip
-      Alternatively, copy the kernel with a different filename (e.g. kernel-myconfig.img) instead of overwriting the kernel.img file.
-        Then, edit config.txt in the boot partition to select your kernel:
-          kernel=kernel-myconfig.img
-      Combine this approach with a custom LOCALVERSION to keep your custom kernel separate from the stock kernel image managed by the system. With this arrangement, you can quickly revert to a stock kernel in the event that your kernel cannot boot.
-
+이게 Image.gz 랑, Image 는 Makefile 에 정의되어있는대로 동작하는거야? 

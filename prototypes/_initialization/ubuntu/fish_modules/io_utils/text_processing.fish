@@ -68,6 +68,8 @@ function prettify_indent_via_pipe
     '
 
     : '❓ About awk ~ statements ...
+    ❔ Format: awk \'PATTERN { ACTION }\' input_file
+
     ❔ NR == 2 { indent = match($0, /[^ ]/) - 1 }
       NR == 2 checks if the current line is the second line.
       { indent = match($0, /[^ ]/) - 1 } defines the action to take when NR == 2 is true.
@@ -84,15 +86,33 @@ function prettify_indent_via_pipe
     ❔ NR > 1 { sub("^ {" indent "}", "") }
       NR > 1 applies the action { ... } to all lines except the first one.
       { sub("^ {" indent "}", "") } removes leading spaces from each line based on the indent level calculated on the second line.
-    
-      Breaking down sub("^ {" indent "}", ""):
+
+      🚣 Breaking down sub("^ {" indent "}", ""):
         sub(...): Performs a substitution on the current line.
-        "^ {" indent "}": This is the pattern we are substituting out (removing), constructed as follows:
-          - "^ ": ^ denotes the start of the line, so ^  means "start of the line followed by spaces."
-          - {" indent "}: The braces around indent insert the value of the indent variable, which contains the number of spaces to remove.
-            - For example, if indent is 4, this pattern becomes "^ {4}", meaning "start of the line followed by exactly 4 spaces."
+        Format: sub(regex, replacement, target)
+          - regex: The regular expression pattern to match.
+          - replacement: The string to replace the matched pattern.
+          - target: The string to operate on (⚖️ default is $0, the entire current line).
+
+        "^ {" indent "}":
+          - "^ ": Anchors the pattern to the start of the line, so ^ means "start of the line."
+          - {" indent "}: Dynamically inserts the value of the variable `indent`, representing the number of spaces to remove.
+            - For example, if indent = 8, this pattern becomes "^ {8}", meaning "start of the line followed by exactly 8 spaces."
+
         "": The empty string "" is the replacement, meaning we are removing the matched spaces from the start of each line.
-    
+
+      🛍️ e.g. when indent = 8:
+        Input:
+          "        Line 1"
+          "        Line 2"
+          "        Line 3"
+        Steps:
+          - On Line 2: sub("^ {8}", "") removes 8 spaces, resulting in "Line 2".
+          - On Line 3: sub("^ {8}", "") removes 8 spaces, resulting in "Line 3".
+        Output:
+          "Line 2"
+          "Line 3"
+
     ❔ NR == 1 { next }
       NR == 1 checks if the current line is the first line.
       { next } tells awk to skip any further processing for the current line and move directly to the next line.
