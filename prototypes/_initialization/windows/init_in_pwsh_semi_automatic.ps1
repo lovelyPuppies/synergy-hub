@@ -98,7 +98,8 @@ View
     
 #>
 
-<# 📦⚓ Tartube ; https://github.com/axcore/tartube/releases
+<#
+📦⚓ Tartube ; https://github.com/axcore/tartube/releases
   https://github.com/axcore/tartube
   GUI front-end for youtube-dl, yt-dlp and other compatible video downloaders
   ❌ Do not install from Scoop (extras/tartube) 📅 2025-01-18 13:03:20
@@ -142,6 +143,14 @@ View
                   - ✔️ Post-process vidoe files to convert them to audio-only files
         - Destination
           - ✔️ E:\Tartube\downloads
+
+📦⚓ Musicbee ; https://getmusicbee.com/downloads/
+  ❌ Do not install from Scoop (extras/musicbee) 📅 2025-01-18 13:03:20
+    >>
+      Installing 'musicbee' (3.5.8698) [64bit] from 'extras' bucket
+      The remote server returned an error: (404) Not Found.
+      URL https://files1.majorgeeks.com/6c3bcf93d7e4ff1a87bb079e23abeadb594ed026/multimedia/MusicBeePortable_3_5.zip is not valid
+
 #>
 
 
