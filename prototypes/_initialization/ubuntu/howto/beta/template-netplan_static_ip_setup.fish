@@ -115,19 +115,25 @@ ip addr show $wireless_name
 '
 
 # After applying Netplan, handle service management
-echo "Stopping $service_to_stop..."
-sudo systemctl stop $service_to_stop
-sudo systemctl disable $service_to_stop
-systemctl status $service_to_stop
+echo "Stopping $service_to_stop... and Starting $service_to_start..."
 
 
-# Apply the Netplan configuration
-echo "Starting $service_to_start..."
-sudo systemctl start $service_to_start
-sudo systemctl enable $service_to_start
-systemctl status $service_to_start
+## Run nohup with multiple commands in background process 📅 2025-01-19 00:47:43
+systemd-run --user --unit=custom-task --scope nohup sh -c "
+  sudo systemctl stop $service_to_stop && \
+  sudo systemctl disable $service_to_stop && \
+  sudo systemctl start $service_to_start && \
+  sudo systemctl enable $service_to_start
+" >log.log 2>&1 &
 
-# echo "Applying Netplan configuration..."
+
 ## You can test the configuration by running: 🧮 sudo netplan try
-# sudo netplan apply
-echo "Netplan configuration applied successfully, and services have been updated."
+#   %shell>
+#     systemctl status $service_to_stop
+#     systemctl status $service_to_start
+# If already Netpaln service activated and configuration is changed,
+#   %shell> sudo netplan apply
+
+
+# Update sudo cache in order to use sudo in fish subprocess
+sudo -v

@@ -1297,8 +1297,6 @@ brew install meson
 brew install starship
 
 echo '
-  command_timeout = 1000
-
   [status]
   style = \'bg:blue\'
   symbol = \'🔴\'

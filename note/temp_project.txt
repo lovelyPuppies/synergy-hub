@@ -16233,9 +16233,7 @@ git merge upstream/main
 sudo apt install iftop
 sudo iftop -i eno1 -n -F 10.10.14.0/24
 
-
 jsnano @ nano123
-
 
 git log --oneline --graph --all
 
@@ -16660,74 +16658,11 @@ sudo apt install -y libavcodec-dev libavformat-dev libswscale-dev libx11-dev fre
 
   
 
+
 https://doc.qt.io/qt-6/supported-platforms.html
 
 
-다음 세 개의 논문을 꼼꼼히 읽고 
-
-  - 원래 이 pyskl 프레임워크는 이미 어노테이션된된 데이터셋 바탕으로 학습하는데, 내가 원하는 것은 실시간 비디오 피드로부터 행동인식을 판단하는거야.
-    그래서 다음 파이썬 파이썬 파일들을 읽어 일단 ("***A***")
-  - 그리고나서 현재 나의 비디오피드로부터 posec3d 를 쓰는 코드가 오류가 발생하지 않게 수정해줘. (***C***)
-    특히나, 기존에 발생했던 오류가 발생하지 않게 꼼꼼히 너가 작선하 코드가 해당 오류를 발생시키는지 검토하고 신중하게 작성해줘. (***B***)
-
-        pyskl PoseC3D (X3D) 에 대해서 구체적으로 모두 꼼꼼하게 읽고 다음 나의 "교통 수신호 행동인식모델 방향성 설정" 에 대한 생각의 흐름을 정리하려고 해. (마크다운 파일. README.md 에 기록해놓을거야)
-          (한글 마크다운 파일로, 격식체로 (~입니다, 이런 종결말투 제외하고 명사형으로.) 작성해야 함)
-          다음 세 개의 논문을 꼼꼼히 읽어줘.(!!! 인용해야 하므로 문자 그대로 잘 기억해 놓을 것)
-          결론은 다음과 같이 나와야 해.
-            "젯슨 나노에서 행동인식 모델을 작동시키기에는 무리 (해당 하드웨어 사양에서)가 있을 것이다. 
-            -> 행동인식 모델에는 RGB 기반 모델은 어울리지 않는다. (왜 ?~ 이유 도 함게)
-            -> Optical Flow 모델은? (모든 프레임의 픽셀 이동 정보를 계산하지 않기 때문에 계산량이 상대적으로 많다.)
-            -> 스켈레톤 좌표 기반 모델을 사용하자. skeleton-based
-            -> 그래프 기반을 사용하자. (GCN) 관절 간 관계를 명시적으로 학습 가능
-              -> 학습시키고 이를 연동하는 데 무리가 있다. GCN 의 한계/제한점... (내가 준 3개의 파일을 모두 읽고, 그대로 인용해줘)
-                (나의 경험) GCN 을 사용하기 위해서는 각 사진 별 관절 데이터를 포즈 인식 모델로 추출하고, 키포인트에 맞게 매핑을 추가적으로 해주어야 한다.
-                  젯슨나노에 무리없이 잘 작동 가능한 (모델에서 필요한 FLOPS 확인 + 젯슨 나노 하드웨어 스펙 확인. (젯슨 나노가 0.5FLOPS 였나?)) 모델 EfficientGCN 을 사용하려 했음.
-                  그러나 내가 원하는 행동인식 모데 학습을 위한 커스텀 라벨링 방법을 알 수가 없고, 키포인트 매핑을 해줘야 하는 복잡성도 있었음.
-            -> 그래서 스켈레톤 기반 + CNN 기반인 가벼운 행동 인식 모델을 사용하자.: PoseC3D
-              MMACtion2 (toolbox)
-                - Posec3D 모델 사용 예정
-              Backbone X3D s (FLOPS: 0.6G) ; https://arxiv.org/pdf/2104.13586
-              X3D MMACtion2 (https://github.com/open-mmlab/mmaction2) 는 최근 알고리즘을 제공하지 않음.(PYSKL.pdf 파일 업로드한 것에서 이 부분 그대로 인용하기. PYSKL 이 어떤 장점이 있는지)
-            
-            -> Skeleton-based 에 특화된 https://github.com/kennymckormick/pyskl 사용.
-            -> 포즈 데이터 추출 후 이것으 기반으로 동작인식모델을 사용해야 하는데, 복잡성을 최소화하기위한 동일한 keypoint 를 사용하는 데이터셋을 사용하자!
-              [**pyskl_skeleton_dataset_downloader_and_keypoint_checker.py**](scripts/pyskl_skeleton_dataset_downloader_and_keypoint_checker.py)
-              🔗 [🪶 Script 🔪 **pyskl_skeleton_dataset_downloader_and_keypoint_checker.py**](#-script--pyskl_skeleton_dataset_downloader_and_keypoint_checkerpy)
-            -> 이미 라벨링된 데이터셋을 가지고 우선 학습/테스트해보자 - OK
-            -> (Doing).. //  시간 관계상...
-              - 카메라 실시간 프레임 데이터를 가지고 테   스트하기
-              - 커스텀 데이터셋으로 학습 및 테스트.
-
-
-EfficientGCNv1
-  https://github.com/zyxjtu/EfficientGCNv1
-  ACMMM 2020 ; https://dl.acm.org/doi/abs/10.1145/3394171.3413802
-  Arxiv Preprint ; https://arxiv.org/pdf/2010.09978.pdf
-
-EfficientGCN 2
-  https://github.com/attention-eq-everything/effgcn_cam
-  IEEE T-PAMI; https://ieeexplore.ieee.org/abstract/document/9729609
-  Arxiv Preprint ; https://arxiv.org/pdf/2106.15125
-
-https://rose1.ntu.edu.sg/challenge/ActionRecognitionChallenge/
-  .skeleton 파일 구조 ; https://github.com/shahroudy/NTURGB-D/tree/master/Python
-  https://github.com/shahroudy/NTURGB-D/tree/master
-
-
-Customizing  ; https://github.com/open-mmlab/mmaction2/blob/main/configs/skeleton/posec3d/custom_dataset_training.md
-  https://github.com/kennymckormick/    /blob/main/configs/posec3d/x3d_shallow_ntu60_xsub/joint.py
-1. MMACtion2 (toolbox)
-  - Posec3D 모델 사용 예정
-    Backbone X3D s (FLOPS: 0.6G) ; https://arxiv.org/pdf/2104.13586
-    이를 사용하기 위한 방법 찾야아 함.
-  - 파일로 카메라 실시간 프레임으로 테스트
-  - 포즈 모델을 따로 써야하는지?
-
-        
-
-
 OpenMAX(Open Media Acceleration)는 Khronos Group에서 개발한 표준 API로, 비디오, 오디오 및 이미지 처리와 같은 멀티미디어 작업의 하드웨어 가속을 지원하기 위한 플랫폼 간 인터페이스입니다. 이를 통해  개발자는 다양한 하드웨어 플랫폼에서 멀티미디어 애플리케이션을 효율적으로 실행할 수 있습니다.
-
 
 
 >>>>>>>>>> qt 파일에 대한 validatino 기능은 없다.. 재설치해야함.
@@ -16941,8 +16876,6 @@ ubuntu@bot19:~$ cat ~/.profile
         *) return;;
   esac
 
-
-
 EtherCAT.... jepg
 오피전력기술
 
@@ -16956,10 +16889,6 @@ lickable Badges
 
 
 💯 마지막 정리. 
-**** 사용자 공간 비트 수 확인: dpkg-architecture --query DEB_HOST_ARCH
-pi19@pi ~> dpkg-architecture --query DEB_HOST_ARCH
-arm64
-**** 커널 비트 확인: uname -m
 
 **** check booting partition
 df -h | grep boot
@@ -17149,14 +17078,12 @@ vc4-kms-v3d (KMS):
   이 설정은 Kernel Mode Setting (KMS) 모드로, 그래픽 하드웨어가 커널 차원에서 직접 관리됩니다. 이 모드는 더 현대적인 방식이지만, 일부 드라이버나 설정에 따라 호환성 문제가 발생할 수 있습니다.
 
 
-
 dtoverlay=dwc2
 to
 vc4-fkms-v3d
 vc4-kms-v3d
 
 lcd_rotate=2
-
 
 
 
@@ -17180,29 +17107,6 @@ console=serial0,115200 console=tty0 root=PARTUUID=7560c0b2-02 rootfstype=ext4 fs
 
 
 
-🤝 Delegate application
-
-되는 경우:
-
-wbfw109v2 in 🌐 iot-04 in raspberry_pi/drivers/kernel_timer on  main [!] via C v14.2.0-gcc 
-❯ make build-module
-make -C /home/wbfw109v2/repos/kernels/raspberry_pi M=/home/wbfw109v2/repos/synergy-hub/prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/module modules ARCH=arm64 \
-    CC=clang LD=ld.lld KBUILD_CFLAGS="--target=aarch64-linux-gnu -march=armv8-a -fno-pic -Wall -Wextra -Wno-unused-parameter -Wno-sign-compare -Imodule/include -Iinclude"
-make[1]: Entering directory '/home/wbfw109v2/repos/kernels/raspberry_pi'
-warning: the compiler differs from the one used to build the kernel
-  The kernel was built by: aarch64-linux-gnu-gcc (Ubuntu 14.2.0-4ubuntu2) 14.2.0
-  You are using:           Homebrew clang version 19.1.6
-  CC [M]  /home/wbfw109v2/repos/synergy-hub/prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/module/src/kernel_timer_dev.o
-  LD [M]  /home/wbfw109v2/repos/synergy-hub/prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/module/kernel_timer_dev.o
-  MODPOST /home/wbfw109v2/repos/synergy-hub/prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/module/Module.symvers
-  CC [M]  /home/wbfw109v2/repos/synergy-hub/prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/module/kernel_timer_dev.mod.o
-  LD [M]  /home/wbfw109v2/repos/synergy-hub/prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/module/kernel_timer_dev.ko
-make[1]: Leaving directory '/home/wbfw109v2/repos/kernels/raspberry_pi'
-
-❗
-  $(PWD)의 동작은 GNU Make와 관련된 중요한 점을 이해해야 합니다. $(PWD)는 Makefile이 실행되는 현재 디렉터리를 기준으로 해석됩니다. 하지만, $(MAKE) 명령을 통해 다른 디렉터리로 작업 디렉터리를 전환(-C)하면, 그곳의 Makefile이 실행되더라도 $(PWD)는 여전히 상위 디렉터리에서 호출된 디렉터리를 기준으로 해석됩니다.
-
-
 # https://stackoverflow.com/questions/12244979/build-kernel-module-into-a-specific-directory
 
 
@@ -17216,8 +17120,6 @@ make[1]: Leaving directory '/home/wbfw109v2/repos/kernels/raspberry_pi'
     src/kernel_timer_dev.c는 module/src/ 디렉토리에 있지만, *.c 패턴은 현재 탐색중인 디렉토리 내의 파일만 검색합니다.
     결과: kernel_timer_de
     
-
-
 
 If you're seeing a blank screen on your Raspberry Pi 64-bit with a connected LCD when using "dtoverlay=vc4-kms-v3d" in your /boot/config.txt, it likely means the KMS (Kernel Mode Setting) overlay isn't working properly with your setup, and you might need to switch to "dtoverlay=vc4-fkms-v3d" instead, which uses a "fake KMS" that can often resolve display issues on 64-bit systems with LCDs. 
 Key points to understand:
@@ -17248,19 +17150,9 @@ dtoverlay
 
 make ARCH=arm64 mrproper
 
-make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- bcm2711_defconfig
-make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j$(nproc) Image.gz
-
-Image.gz
-  mkdir -p /nfs/kernel/raspberry_pi
-  cp arch/arm64/boot/Image.gz /nfs/kernel/raspberry_pi/kernel8.img
-  ssh r-pi.local "sudo cp /mnt/host/kernel/raspberry_pi/kernel8.img /boot/firmware/kernel8.img"
-  sudo reboot
-
-
-
 
 pi19@pi ~> cat /boot/firmware/config.txt
+
 # For more options and information see
 # http://rptl.io/configtxt
 # Some settings may impact device functionality. See link above for details
@@ -17317,9 +17209,16 @@ dtoverlay=dwc2,dr_mode=host
 Project
 
 
-
 Fish shell Built-in : math
 
 
 📰 근데 AI 처리를 위한 고성능 임베디드 기기 <-> PC 로 영상 전송할떄, 보통 어떻게 전송해? 데이터를? 방법이 아니라, 어떤 형식? 형태로 데이터를 전달하는지 모르겟어
 
+
+
+🪱 userland ; https://en.wiktionary.org/wiki/userland
+
+
+
+TODO: 내일 해볼 것
+  ## Run nohup with multiple commands in background process 📅 2025-01-19 00:47:43

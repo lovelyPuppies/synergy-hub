@@ -6,21 +6,17 @@
   - [Project Introduction](#project-introduction)
     - [Features](#features)
     - [🎯 Purposes](#-purposes)
-    - [🖼️ Hardware Setup](#️-hardware-setup)
-      - [Breadboard Setup](#breadboard-setup)
-    - [🎥 Fan Machine Demo](#-fan-machine-demo)
+    - [🎥 Kernel Timer Demo](#-kernel-timer-demo)
   - [🌐 Project Overview](#-project-overview)
     - [FSM (Finite State Machine)](#fsm-finite-state-machine)
-      - [🎛️ Inputs](#️-inputs)
+      - [🕹️ Inputs](#️-inputs)
       - [📊 Diagram](#-diagram)
     - [🛠️ Tools](#️-tools)
       - [🧑‍💻 Software](#-software)
+        - [Setup](#setup)
       - [🖥️ Hardware](#️-hardware)
+        - [GPIO Pinout Table](#gpio-pinout-table)
     - [📁 Directory Structure](#-directory-structure)
-    - [📖 Design Patterns and Benefits](#-design-patterns-and-benefits)
-      - [Layer Overview](#layer-overview)
-      - [Applied Design Pattern](#applied-design-pattern)
-      - [❗ Advantages of MVP + Service Pattern](#-advantages-of-mvp--service-pattern)
   - [Retrospective](#retrospective)
     - [📌 Key Learnings and Improvements](#-key-learnings-and-improvements)
 
@@ -61,19 +57,15 @@
 - **데이터시트 분석 능력 향상**
   - 데이터시트를 기반으로 장치 특성을 파악하고 이를 구현에 반영하는 기술 강화
 
-### 🖼️ Hardware Setup
-
-#### Breadboard Setup
-
-![Breadboard Setup](resource/fan_machine-breadboard_setup.jpg "Fan Machine - Breadboard Setup")
+&nbsp;
 
 ---
 
-### 🎥 Fan Machine Demo
+### 🎥 Kernel Timer Demo
 
-[![Fan Machine Demo](resource/fan_machine-demo-gif.gif)](https://youtu.be/hGNbbrZe-AM "Watch on YouTube")
+- [**Watch on Google Drive**](https://drive.google.com/file/d/1WEi8hI9JJjn31yUDXZswBzpSHwIObNlA/view)
 
-_Click on the image above to watch the full demo on [YouTube](https://youtu.be/hGNbbrZe-AM)._
+&nbsp;
 
 ---
 
@@ -83,7 +75,7 @@ _Click on the image above to watch the full demo on [YouTube](https://youtu.be/h
 
 📝 **참고**: 명시적인 전환이 정의되지 않는 한 상태는 변경되지 않음.
 
-#### 🎛️ Inputs
+#### 🕹️ Inputs
 
 - Button: B1, B2, B3, B4
 
@@ -142,154 +134,185 @@ stateDiagram-v2
 
 #### 🧑‍💻 Software
 
-- **IDE**: Microchip Studio
+- **IDE**: Visual Studio Code (VS Code)
 - **Programming Language**: C
+- Compiler: **clang**
+- NFS Server (Host), NFS Client (Raspberry Pi)
+
+##### Setup
+
+- Ensure the kernel architecture is ARM 64-bit.
+
+  ```bash
+  #!/usr/bin/fish
+  ## Kernel architecture
+  uname -m
+  # >> arm64
+
+  ## Userland architecture
+  # dpkg-architecture --query DEB_HOST_ARCH
+  #   >> arm64
+  ```
+
+- Setup Automation script
+
+  ```bash
+    #!/usr/bin/env fish
+
+    ##### 👆 User-specific settings
+
+    function prettify_indent_via_pipe
+      awk '
+        NR == 2 { indent = match($0, /[^ ]/) - 1 }
+        NR > 1 { sub("^ {" indent "}", "") }
+        NR == 1 { next }
+        { gsub(/[[:blank:]]*$/, ""); print }
+      '
+    end
+
+    # Set Path of Raspberry Pi kernel source
+    mkdir -p $HOME/repos/kernels
+    cd $HOME/repos/kernels
+
+    # ⭕ we recommend passing a number 1.5x your number of processors. 🔗 https://www.raspberrypi.com/documentation/computers/linux_kernel.html#native-build
+    set jobs_core_n (math (nproc)" * 1.5")
+
+    # Set variables for Deploy (Host is NFS server, RasBerry pi is NFS Client)
+    set nfs_host_pi_kernel "/nfs/kernels/raspberry_pi"
+    mkdir -p $nfs_host_pi_kernel
+    set nfs_client_pi_kernel "/mnt/host/kernels/raspberry_pi"
+
+
+
+
+
+    ##### 👆 In Host and `$HOME/repos/kernels` directory (🖥️ in the case of Raspberry Pi 4, 64-bit)
+
+    ### Download kernel source
+    git clone --depth=1 --single-branch https://github.com/raspberrypi/linux raspberry_pi
+    cd raspberry_pi
+
+
+    ### Install the build dependencies
+    sudo apt install -y bc bison flex libssl-dev make
+    # Install the build dependencies for Cross-compiling the kernel
+    sudo apt install -y libc6-dev libncurses5-dev
+    # Install the 64-bit toolchain for Cross-compiling the kernel
+    sudo apt install -y crossbuild-essential-arm64
+
+
+
+    ### Build configuration
+    set -gx KERNEL kernel8
+    make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- bcm2711_defconfig
+
+    ##🏷️ Customize the kernel version using LOCALVERSION
+
+    set config_file ".config"
+    set unique_comment '## ⚙️ Customize the kernel version (Override)'
+
+    if not grep -Fxq "$unique_comment" "$config_file"
+        echo "
+        $unique_comment"'
+        CONFIG_LOCALVERSION="-v8-synergy_hub"
+        ' | prettify_indent_via_pipe | tee -a "$config_file" >/dev/null
+        echo -e "\n" >> "$config_file"
+    end
+
+
+
+    ### Build
+    # 📝 In this project the device tree is not modified so only Image and modules need to be built
+    make -j{$jobs_core_n} ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- Image modules
+    # make -j{$jobs_core_n} ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- Image modules dtbs
+
+    ## If boot media is mounted
+    # sudo env PATH=$PATH make -j{$jobs_core_n} ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- INSTALL_MOD_PATH=mnt/root modules_install
+
+
+
+
+
+    ##### 👆 Deploy Image
+
+    cp arch/arm64/boot/Image /nfs/$KERNEL.img
+  ```
+
+&nbsp;
+
+---
 
 #### 🖥️ Hardware
 
-- **Processor**: AVR Atmega128/A (RISC) (1 EM)
-- **LCD Module**: TC1602A-01T (1 EM)
-- **Button (Pull-up Circuit)**: CL5642AH30 (4 EM)
-- **FND (Common-Cathode Type)**: - (1 EM)
-- **Buzzer**: - (1 EM)
-- **Motor**: - (1 EM)
+- **Raspberry Pi 4B**
+
+- [**RPi GPIO Breakout Expansion Board** + **Ribbon Cable** + **Assembled T Type GPIO Adapter FC40 40pin Flat Ribbon Cable** (for Raspberry Pi B+ Kit)](https://www.amazon.com/dp/B08D3S6FGH?ref_=cm_sw_r_cp_ud_dp_J1TGSNSHCBW76PJJ9VF3&newOGT=1)
+
+- [NEWTC 🔪 LEDs 🔪 **AM-TL8**](https://www.devicemart.co.kr/goods/view?no=6772)
+
+  - [Manual](https://www.newtc.co.kr/dpshop/bbs/board.php?bo_table=m45&wr_id=41&sfl=&stx=&sst=wr_hit&sod=desc&sop=and&page=8)
+    - 5V
+
+- [NEWTC 🔪 Buttons 🔪 **AM-TS8**](https://www.devicemart.co.kr/goods/view?no=11701)
+  - [Manual](https://newtc.co.kr/dpshop/bbs/board.php?bo_table=m41&wr_id=48&page=11)
+    - 5V
+
+&nbsp;
+
+##### GPIO Pinout Table
+
+- ⚪: Available (Not Configured)
+- 🟢: Assigned with Configuration
+- 🎛️: Assigned with Configuration but Not physically connected
+
+| GPIO Pins             | GPIO Pins Status | GPIO Pins Status | GPIO Pins            |
+| --------------------- | ---------------- | ---------------- | -------------------- |
+| 01-3.3V               | ⚪               | 🟢               | 02-5V                |
+| 03-GPIO02 (SDA1)      | ⚪               | ⚪               | 04-5V                |
+| 05-GPIO03 (SCL1)      | ⚪               | 🟢               | 06-GND               |
+| 07-GPIO04             | ⚪               | 🟢 (USB to TTL)  | 08-GPIO14 (TXD)      |
+| 09-GND                | ⚪               | 🟢 (USB to TTL)  | 10-GPIO15 (RXD)      |
+| 11-GPIO17 (PWM0)      | 🟢 (Button 2)    | 🟢 (Button 3)    | 12-GPIO18 (PCM_CLK)  |
+| 13-GPIO27 (PWM1)      | ⚪               | ⚪               | 14-GND               |
+| 15-GPIO22             | 🟢 (Button 7)    | 🟢 (Button 8)    | 16-GPIO23            |
+| 17-3.3V               | ⚪               | ⚪               | 18-GPIO24            |
+| 19-GPIO10 (SPI0 MOSI) | 🟢 (LED 5)       | ⚪               | 20-GND               |
+| 21-GPIO09 (SPI0 MISO) | 🟢 (LED 4)       | ⚪               | 22-GPIO25            |
+| 23-GPIO11 (SPI0 SCLK) | 🟢 (LED 6)       | 🟢 (LED 3)       | 24-GPIO08 (CE0)      |
+| 25-GND                | ⚪               | 🟢 (LED 2)       | 26-GPIO07 (CE1)      |
+| 27-GPIO00 (I2C0 SDA)  | ⚪               | ⚪               | 28-GPIO01 (I2C0 SCL) |
+| 29-GPIO05             | ⚪               | ⚪               | 30-GND               |
+| 31-GPIO06             | 🟢 (LED 1)       | 🟢 (LED 7)       | 32-GPIO12            |
+| 33-GPIO13             | 🟢 (LED 8)       | ⚪               | 34-GND               |
+| 35-GPIO19             | 🟢 (Button 4)    | 🟢 (Button 1)    | 36-GPIO16            |
+| 37-GPIO26             | ⚪               | 🟢 (Button 5)    | 38-GPIO20            |
+| 39-GND                | ⚪               | 🟢 (Button 6)    | 40-GPIO21            |
+
+&nbsp;
 
 ---
 
 ### 📁 Directory Structure
 
 ├── 📂 **app**  
-│&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 **fanMachine**  
-│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [fanMachinApp.c](app/fanMachine/fanMachinApp.c)  
-│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 listener  
-│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── [fanListener.c](app/fanMachine/listener/fanListener.c)  
-│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 model  
-│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── [fanModel.c](app/fanMachine/model/fanModel.c)  
-│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 presenter  
-│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── [fanPresenter.c](app/fanMachine/presenter/fanPresenter.c)  
-│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 service  
-│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [fanService.c](app/fanMachine/service/fanService.c)  
-├── 📂 **driver**  
-│&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 [gpio](driver/gpio/gpio.h)  
-│&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 [pwm](driver/pwm/pwm.h)  
-│&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 [timer](driver/timer/timer.h)  
-│&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 [uart](driver/uart/uart.h)  
-├── [main.c](main.c)  
-├── 📂 **peripheral**  
-│&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 [button](peripheral/button/button.h)  
-│&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 [buzzer](peripheral/buzzer/buzzer.h)  
-│&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 [fnd](peripheral/fnd/fnd.h)  
-│&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 [lcd](peripheral/lcd/lcd.h)  
-│&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 [motor](peripheral/motor/motor.h)  
-├── 📂 **resource**  
-│&nbsp;&nbsp;&nbsp;&nbsp;├── [fan_machine-breadboard_setup.jpg](resource/fan_machine-breadboard_setup.jpg)  
-└── 📂 **utility**  
-&nbsp;&nbsp;&nbsp;&nbsp;├── [bitmask.h](utility/bitmask.h)  
-&nbsp;&nbsp;&nbsp;&nbsp;├── [boolean.h](utility/boolean.h)  
-&nbsp;&nbsp;&nbsp;&nbsp;└── [clockTimer.h](utility/clockTimer.h)
+│&nbsp;&nbsp;&nbsp;&nbsp;├── [Makcefile](prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/app/Makefile)  
+│&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 **src**  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 **include**  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [kernel_timer_app.c](prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/app/src/kernel_timer_app.c)  
+├── 📂 **build**  
+├── 📂 **include**  
+│&nbsp;&nbsp;&nbsp;&nbsp;└── [ioctl_test.h](prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/include/ioctl_test.h)  
+├── [kernel_timer_app copy.c](prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/kernel_timer_app%20copy.c)  
+├── [Makefile](prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/Makefile)  
+├── 📂 **module**  
+│&nbsp;&nbsp;&nbsp;&nbsp;├── [Makefile](prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/module/Makefile)  
+│&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 **src**  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 **include**  
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [kernel_timer_dev.c](prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/module/src/kernel_timer_dev.c)  
+├── [pipeline.fish](prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/pipeline.fish)  
+└── 📂 **test**
 
----
-
-### 📖 Design Patterns and Benefits
-
-#### Layer Overview
-
-| Layer             | Description                                                   | Matching Directory                              |
-| ----------------- | ------------------------------------------------------------- | ----------------------------------------------- |
-| Application Layer | 사용자 어플리케이션 로직. 장치와 시스템 흐름 제어             | `app/`                                          |
-| OS/RTOS           | 운영 체제 또는 실시간 OS (Optional).                          | `<None>`                                        |
-| Devices Layer     | 외부 장치 관리 (모터, 버저, 버튼, LCD, FND)                   | `peripheral/` (motor, buzzer, button, lcd, fnd) |
-| HAL/Drivers       | 하드웨어 초기화 및 MCU 주변 장치 제어 (GPIO, 타이머, UART 등) | `driver/` (gpio, timer, uart, pwm)              |
-| Hardware          | 물리적 하드웨어 (MCU, 센서 등)                                | AVR Atmega128/A, TC1602A-01T, etc.              |
-
-#### Applied Design Pattern
-
-`app/fanMachine` 디렉터리에서 **모델-뷰-프레젠터(MVP) + 서비스** 패턴을 사용하여 애플리케이션 로직을 구조화하고 조직화.
-
-1. **모델 (`model/`)**:
-
-   - 팬의 상태와 데이터(예: 속도, 제어 모드, 종료 타이머)를 캡슐화.
-   - 내부 상태를 관리하기 위한 getter 및 setter 메서드를 제공.
-   - 예:
-     ```c
-     uint8_t getFanSpeedState() {
-         return _fanSpeedState;
-     }
-     void setFanSpeedState(uint8_t fanSpeedState) {
-         _fanSpeedState = fanSpeedState;
-     }
-     ```
-   - **책임**: 중앙 집중식 상태 관리.
-
-2. **뷰 (`listener/`)**:
-
-   - 사용자 입력(예: 버튼 누름, UART 명령)을 모니터링하고 `Presenter`에 변경 사항을 알림.
-   - 외부 상호작용을 위한 이벤트 리스너 역할.
-   - 예:
-     ```c
-     static void _fanListener_checkButtonEvent() {
-         switch (releasedBtnPinNum) {
-             case BUTTON_FAN_SPEED_PIN_NUM:
-                 setFanSpeedStateToNext();
-                 break;
-             case BUTTON_FAN_CONTROL_MODE_PIN_NUM:
-                 setFanControlModeStateNext();
-                 break;
-         }
-     }
-     ```
-   - **책임**: 사용자 입력을 감지하고 모델의 상태값을 업데이트.
-
-3. **프레젠터 (`presenter/`)**:
-
-   - `모델`과 `뷰` 간의 통신을 조정.
-   - 사용자 입력 또는 시스템 이벤트에 따라 `모델`을 업데이트하고 표시할 데이터를 준비.
-   - 예:
-     ```c
-     void fanPresenter_displaytoLcd(uint8_t minute, uint8_t second) {
-         char buff[30];
-         sprintf(buff, "%02d:%02d", minute, second);
-         lcd.writeLcdStringToXy(&lcd, buff, 1, 2);
-     }
-     ```
-   - **책임**: 서비스로부터 받은 데이터를 뷰에 전달하여 사용자에게 표시.
-
-4. **서비스 (`service/`)**:
-   - 타이머 관리, 모터 속도 제어, UART 통신 등의 재사용 가능한 로직을 캡슐화.
-   - 자동 모드 순환 및 종료 타이머 처리와 같은 고급 기능을 제공.
-   - 예:
-     ```c
-     void _fanService_updateByCurrentState() {
-         if (fanControlModeState == FAN_CONTROL_MODE_AUTO && fanControlAutoModeTimer.second >= fanControlModeAutoCycleSecond) {
-             uint16_t randomDutyCycle = (rand() % 10 + 1) * 10;
-             motor.setFanSpeed(&motor, randomDutyCycle);
-         }
-     }
-     ```
-   - **책임**: 핵심 재사용 로직 및 고급 기능. 모델의 상태값을 주기적으로 확인하고 로직을 처리하여 프레젠터로 전달
-
----
-
-#### ❗ Advantages of MVP + Service Pattern
-
-1. **관심사의 분리**:
-
-   - 각 구성 요소(모델, 뷰, 프레젠터, 서비스)는 명확한 책임을 가지며 복잡성을 줄임.
-
-2. **모듈성**:
-
-   - 독립적인 구성 요소는 새로운 기능 추가 또는 개별 계층 교체를 쉽게 만듦.
-
-3. **테스트 가능성**:
-
-   - `서비스` 계층의 핵심 로직과 `모델` 계층의 상태 관리는 독립적으로 테스트 가능.
-
-4. **재사용성**:
-
-   - `fanService`와 같은 서비스는 유사한 애플리케이션 또는 기계에서 재사용 가능.
-
-5. **확장성**:
-   - 추가 팬 모드 또는 고급 타이머와 같은 새로운 기능 추가가 계층형 아키텍처 덕분에 간단.
+&nbsp;
 
 ---
 

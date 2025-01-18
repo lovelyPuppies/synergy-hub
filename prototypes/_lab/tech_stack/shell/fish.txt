@@ -8,6 +8,59 @@ list of level 1 subjects
 
 What's the difference between Replay and edc/bass? ; https://github.com/jorgebucaran/replay.fish/issues/5
 (✍️ Fish study)
+  🚨 (Issue: Bug) fish Shell Sudo Cache Issue; Whenever run fish -c "sudo -v", it requires password every time in same terminal session 📅 2025-01-19 00:26:23
+    https://github.com/fish-shell/fish-shell/issues/11064
+
+    Issue Description
+      In **bash** shell, the **sudo cache** is shared between the current terminal session and any subprocesses (e.g., using `bash -c`). This behavior allows the reuse of cached credentials across subprocesses within the same terminal session.
+
+        🛍️ e.g. in Bash
+          ```bash
+          $ bash -c "sudo -v"
+          [sudo] password for wbfw109v2: 
+
+          $ bash -c "sudo -v"
+
+          $ sudo -v
+          ```
+
+        In this scenario:
+          - After the initial `sudo -v`, subsequent `sudo -v` calls (even in subprocesses) do not require re-entering the password.
+
+        🆗 It is Expected Result.
+
+
+      📵 In **fish** shell, however, the **sudo cache** is not shared with subprocesses created within the same terminal session. Each subprocess (e.g., `fish -c`) requires the password to be re-entered, even if the cache is valid in the parent session. This behavior can create inconvenience, particularly when writing automation scripts.
+
+        🛍️ e.g. in Fish
+          ```fish
+          sudo -v
+          [sudo] password for wbfw109v2: 
+
+          # Create a subprocess
+          $ fish -c "sudo -v"
+          [sudo] password for wbfw109v2: 
+
+          $ fish -c "sudo -v"
+          [sudo] password for wbfw109v2: 
+
+          $ sudo -v
+          ```
+
+        In this scenario:
+          - Each subprocess (`fish -c`) prompts for the password again, even though the parent session already has a valid `sudo` cache.
+
+    Workaround
+      One workaround is to use `sh -c` or `bash -c` instead of `fish -c`. However, this forces the script to be written in **bash** syntax, which might not be desirable for users working primarily with fish.
+
+      🛍️ e.g.
+        ```bash
+        sh -c "sudo -v"
+        ```
+
+      This workaround bypasses the fish-specific behavior but requires adapting scripts to bash or sh syntax.
+
+
   📝 Limitation of tools that attempt to simulate Bash-like functionality in Fish, such as replay or bass 📅 2025-01-09 12:49:27
     ❗ They cannot parse Bash functions.
       
@@ -42,11 +95,6 @@ What's the difference between Replay and edc/bass? ; https://github.com/jorgebuc
           Return to the previously visited ROS directory.
 
 
-  Practices 🛍️ e.g.
-    ❔ open .tex file 📅 2024-09-12 00:45:30
-      %shell> code **/*.tex
-    ❔ replace all .tex file with .txt file 📅 2024-09-12 00:45:30
-      %shell> for file in **/*.tex; mv $file (string replace .tex .txt $file); end
 
 ----------------------------------------------
 Fish 🔪⚓ Introduction ; https://fishshell.com/docs/current/index.html
@@ -68,11 +116,20 @@ Fish 🔪⚓ Commands ; https://fishshell.com/docs/current/commands.html
     # -U or --universal
     # -export or -x
       Causes the specified shell variable to be exported to child processes (making it an 💡 “environment variable”).
+  ⚓ begin - start a new block of code ; https://fishshell.com/docs/current/cmds/begin.html
+    📝 Note that: The entire block can be redirected or piped, allowing grouped I/O operations. 📅 2025-01-19 00:43:22
+      ⚖️ However, it cannot be executed in the background directly.
   
+
   ⚓ fish_add_path - add to the path ; https://fishshell.com/docs/current/cmds/fish_add_path.html5lib
     💡 If a component already exists, it is not added again and stays in the same place unless the --move switch is given.
 
   ⚓🔰 type - locate a command and describe its type ; https://fishshell.com/docs/current/cmds/type.html
+
+  
+  
+  
+  ⚓ math - perform mathematics calculations ; https://fishshell.com/docs/current/cmds/math.html
 
 
 
@@ -192,3 +249,4 @@ Fish 🔪⚓ The fish language ; https://fishshell.com/docs/current/language.htm
     - Limitation: Does not support processing dynamic, Bash-based scripts such as oe-init-build-env used in Yocto.
 
   
+

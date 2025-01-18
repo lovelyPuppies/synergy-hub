@@ -40,7 +40,7 @@ CLANG_FLAGS := --target=$(TARGET_TOOLCHAIN) $(CPU_ARCH_FLAGS) $(CFLAGS)
 ## ❗ Kernel module builds are managed by the kernel build system (KBUILD) and must operate using the obj-m system, unlike app builds.
 obj-m := $(MODULE_NAME).o
 #⚙️ Add source files to the module
-$(MODULE_NAME)-y := src/kernel_timer_dev.o
+$(MODULE_NAME)-y := $(SRC_NAME)/kernel_timer_dev.o
 
 
 

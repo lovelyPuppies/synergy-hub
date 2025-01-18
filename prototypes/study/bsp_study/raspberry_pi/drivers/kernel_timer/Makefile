@@ -77,7 +77,7 @@ deploy: deploy-app deploy-module
 
 deploy-app:
 	@mkdir -p $(DEPLOY_DIR)/$(APP_DIR_NAME)
-	cp $(APP_BUILD_DIR)/$(APP_NAME).out $(DEPLOY_DIR)/$(APP_DIR_NAME)/
+	cp $(APP_BUILD_DIR)/$(APP_NAME).out $(DEPLOY_DIR)/$(APP_DIR_NAME)/$(APP_NAME)
 
 deploy-module:
 	@mkdir -p $(DEPLOY_DIR)/$(MODULE_DIR_NAME)

@@ -151,27 +151,30 @@ View
       The remote server returned an error: (404) Not Found.
       URL https://files1.majorgeeks.com/6c3bcf93d7e4ff1a87bb079e23abeadb594ed026/multimedia/MusicBeePortable_3_5.zip is not valid
 
+  Settings
+    Menu - Select Skin - Dark
+      - ✔️ Kandinsky dark
 #>
 
 
 #### 📦🌱 NVIDIA App ; https://us.download.nvidia.com/nvapp/client/11.0.1.163/NVIDIA_app_v11.0.1.163.exe
 <# 🚧 In a NVIDIA Overaly (⌨️ Alt + Z),
-Settings 
-  - Shortcut controls
-    - General
-      - Open/close the in-game overaly
-        - ✔️ Ctrl + Alt + Shift + Z (default: Alt + Z)
-    - Statistics monitor
-      - Toggle statistics overlay on/off
-        - ✔️ None (default: Alt + R)
-      - Cycle through metrics shown
-        - ✔️ None (default: Alt + Shift + R)
-      - Toggle visibility
-        - ✔️ None (default: Alt + Ctrl + R)
+  Settings 
+    - Shortcut controls
+      - General
+        - Open/close the in-game overaly
+          - ✔️ Ctrl + Alt + Shift + Z (default: Alt + Z)
+      - Statistics monitor
+        - Toggle statistics overlay on/off
+          - ✔️ None (default: Alt + R)
+        - Cycle through metrics shown
+          - ✔️ None (default: Alt + Shift + R)
+        - Toggle visibility
+          - ✔️ None (default: Alt + Ctrl + R)
 #>
 <# 🚧 In a NVIDIA App,
-System
-  - ✔️ set GSYNC, Monitors' Refresh Rate you want
+  System
+    - ✔️ set GSYNC, Monitors' Refresh Rate you want
 #>
 
 

@@ -18,10 +18,8 @@ Notes
     # Add the Fish shell PPA
     sudo apt install -y software-properties-common python3-launchpadlib
     sudo apt-add-repository -y ppa:fish-shell/release-3
-    sudo apt update
+    sudo apt update && sudo apt install fish
 COMMENT
-
-
 
 
 
