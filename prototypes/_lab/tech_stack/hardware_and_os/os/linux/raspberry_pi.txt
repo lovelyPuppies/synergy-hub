@@ -32,7 +32,7 @@ Raspberry Pi 🔪⚓ Docs ; https://fishshell.com/docs/current/index.html
           TIP: 💡 The git clone command above downloads the current active branch, which we build Raspberry Pi OS images from, without any history. Omit --depth=1 to download the entire repository, including the full history of all branches. T
         
         
-        #️⃣ Natively build a kernel ; https://www.raspberrypi.com/documentation/computers/linux_kernel.html#natively-build-a-kernel
+        #️⃣❌ Natively build a kernel ; https://www.raspberrypi.com/documentation/computers/linux_kernel.html#natively-build-a-kernel
           %shell> sudo apt install bc bison flex libssl-dev make
           
           #📍 Build configuration
@@ -81,7 +81,8 @@ Raspberry Pi 🔪⚓ Docs ; https://fishshell.com/docs/current/index.html
                   Then, edit config.txt in the boot partition to select your kernel:
                     kernel=kernel-myconfig.img
                 Combine this approach with a custom LOCALVERSION to keep your custom kernel separate from the stock kernel image managed by the system. With this arrangement, you can quickly revert to a stock kernel in the event that your kernel cannot boot.
-        #️⃣ Cross-compile the kernel ; https://www.raspberrypi.com/documentation/computers/linux_kernel.html#cross-compile-the-kernel
+        
+        #️⃣⭕ Cross-compile the kernel ; https://www.raspberrypi.com/documentation/computers/linux_kernel.html#cross-compile-the-kernel
 
 
 README.md
@@ -92,6 +93,8 @@ README.md
 
   # Install the build dependencies
   sudo apt -y install bc bison flex libssl-dev make
+  # Install the build dependencies for Cross-compiling the kernel
+  sudo apt install libc6-dev libncurses5-dev
   
   # 🖥️ In the case of Raspberry Pi 4, 64-bit
   cd raspberry_pi
@@ -137,3 +140,4 @@ make -j6 Image.gz modules dtbs
         Then, edit config.txt in the boot partition to select your kernel:
           kernel=kernel-myconfig.img
       Combine this approach with a custom LOCALVERSION to keep your custom kernel separate from the stock kernel image managed by the system. With this arrangement, you can quickly revert to a stock kernel in the event that your kernel cannot boot.
+

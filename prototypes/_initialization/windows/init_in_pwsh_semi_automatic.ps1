@@ -243,12 +243,8 @@ if (-not (Get-Content $profilePath | Select-String -SimpleMatch $gsudoUniqueComm
 }
 
 ##### 🌱 ... 
-scoop install main/ffmpeg
-<# ...
-  Creating shim for 'ffmpeg'.
-  Creating shim for 'ffplay'.
-  Creating shim for 'ffprobe'.
-#>
+
+
 
 scoop install main/gdrive
 scoop install extras/vcxsrv
@@ -260,14 +256,6 @@ scoop install extras/rufus
 scoop install extras/digikam # https://www.digikam.org/
 scoop install extras/kakaotalk
 
-scoop install extras/tartube  # https://github.com/axcore/tartube
-<#
-❌ Do not use "4K YouTube to MP3 Converter" ; https://www.4kdownload.com 📅 2024-12-31 11:04:59
-  https://www.4kdownload.com/troubleshooting/troubleshooting-cant-activate-with-license-key/2
-  * Activation limit reached problem
-    Licenses are tied to the current OS setup. If you format or reinstall the OS, the license is lost and cannot be renewed easily.
-    License renewal is cumbersome and may require purchasing a new key after exceeding activation limits.
-#>
 
 scoop install extras/powertoys
 <#
@@ -289,6 +277,30 @@ scoop install versions/steam
   -----
   ❔ Changing Steam library folder is HIGHLY recommended.
 #>
+
+
+
+#### 🌱 Video, Audio
+
+scoop install main/yt-dlp
+scoop install versions/ffmpeg-yt-dlp
+<# ...
+  Creating shim for 'ffmpeg'.
+  Creating shim for 'ffplay'.
+  Creating shim for 'ffprobe'.
+  #>
+scoop install extras/tartube  # https://github.com/axcore/tartube
+<#
+❌ Do not use "4K YouTube to MP3 Converter" ; https://www.4kdownload.com 📅 2024-12-31 11:04:59
+  https://www.4kdownload.com/troubleshooting/troubleshooting-cant-activate-with-license-key/2
+  * Activation limit reached problem
+    Licenses are tied to the current OS setup. If you format or reinstall the OS, the license is lost and cannot be renewed easily.
+    License renewal is cumbersome and may require purchasing a new key after exceeding activation limits.
+#>
+
+
+
+
 
 #### 🌱 Nerd Font
 scoop install nerd-fonts/JetBrainsMono-NF-Mono
