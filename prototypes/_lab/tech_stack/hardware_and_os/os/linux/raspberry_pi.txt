@@ -81,7 +81,14 @@ Raspberry Pi 🔪⚓ Docs ; https://fishshell.com/docs/current/index.html
               For more information about menuconfig
 
           # Build
+            📝⚠️ When cross-compiling, build `Image` instead of `Image.gz` to ensure compatibility with the Raspberry Pi bootloader 📅 2025-01-18 16:37:00
+              , which does not natively support compressed kernel images.
+              If `Image.gz` is moved to `/boot/firmware/kernel8l`, the system may fail to boot, resulting in a black screen with no display output.
 
+            Run the following command to build a 64-bit kernel:
+              make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- Image modules dtbs
+            Run the following command to build a 32-bit kernel:
+              make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- zImage modules dtbs
           # Install the kernel
             # Find your boot media
               %shell> lsblk
@@ -92,8 +99,8 @@ Raspberry Pi 🔪⚓ Docs ; https://fishshell.com/docs/current/index.html
             # Install
             install the kernel modules onto the boot media:
               📰 sudo env PATH=$PATH make -j12 ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- INSTALL_MOD_PATH=mnt/root modules_install
-      #️⃣📰 Patch the kernel
-      #️⃣ Kernel headers ; https://www.raspberrypi.com/documentation/computers/linux_kernel.html#kernel-headers
+      #️⃣📰 Patch the kernel ; https://www.raspberrypi.com/documentation/computers/linux_kernel.html#patch-the-kernel
+      #️⃣📰 Kernel headers ; https://www.raspberrypi.com/documentation/computers/linux_kernel.html#kernel-headers
         To compile a kernel module, you need the Linux kernel headers. These provide the function and structure definitions required to compile code that interfaces with the kernel.
         ⚖️ If you cloned the entire kernel from GitHub, the headers are already included in the source tree. If you don’t need all the extra files, you can instead install only the kernel headers with apt.
           sudo apt install linux-headers-rpi-v8
@@ -187,3 +194,5 @@ make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- Image.gz
 내가 이렇게 Image.gz 을 kernel8.img 로 바꿔서 부팅한 경우에는, 라즈베리파이 디스플레이가 작동이 안됬거든. (검은색화면) (다시 이미지 삭제한 경우에도 복구가 안됫음)
 
 이게 Image.gz 랑, Image 는 Makefile 에 정의되어있는대로 동작하는거야? 
+
+
