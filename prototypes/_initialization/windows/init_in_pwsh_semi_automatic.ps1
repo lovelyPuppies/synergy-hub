@@ -80,26 +80,72 @@ View
 
 
 
-##### ▶️ Windows Packages not supported by Scoop package manaegr, that work well.
+##### ▶️ Windows Packages not supported by Scoop package manager, that work well.
 
 <#
-  ⚓ Bandiview ; https://en.bandisoft.com/bandiview/dl.php?web
-  ⚓ Logitech G Hub ; https://download01.logi.com/web/ftp/pub/techsupport/gaming/lghub_installer.exe
-  ⚓ Docker Desktop ; https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=docs-driven-download-win-amd64
-  ⚓ Office 365 ; https://go.microsoft.com/fwlink/?linkid=2264705&clcid=0x409&culture=en-us&country=us
-  ⚓ Tailsacle ; https://pkgs.tailscale.com/stable/tailscale-setup-latest.exe
+  📦⚓ Bandiview ; https://en.bandisoft.com/bandiview/dl.php?web
+  📦⚓ Logitech G Hub ; https://download01.logi.com/web/ftp/pub/techsupport/gaming/lghub_installer.exe
+  📦⚓ Docker Desktop ; https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=docs-driven-download-win-amd64
+  📦⚓ Office 365 ; https://go.microsoft.com/fwlink/?linkid=2264705&clcid=0x409&culture=en-us&country=us
+  📦⚓ Tailsacle ; https://pkgs.tailscale.com/stable/tailscale-setup-latest.exe
     Notes
     -----
     Start Tailscale with Windows by running:
     reg import "$HOME\scoop\apps\tailscale\current\add-startup.reg"
   # Discord 55691
-  ⚓ Discord ; https://stable.dl2.discordapp.net/distro/app/stable/win/x64/1.0.9173/DiscordSetup.exe
+  📦⚓ Discord ; https://stable.dl2.discordapp.net/distro/app/stable/win/x64/1.0.9173/DiscordSetup.exe
     If I install it using the command "scoop install extras/discord", a new instance is initiated every time I run the Discord app. 📅 2024-12-07 15:54:23
     
 #>
 
+<# 📦⚓ Tartube ; https://github.com/axcore/tartube/releases
+  https://github.com/axcore/tartube
+  GUI front-end for youtube-dl, yt-dlp and other compatible video downloaders
+  ❌ Do not install from Scoop (extras/tartube) 📅 2025-01-18 13:03:20
+    Tartube installed from Scoop cannot use FFmpeg, even if FFmpeg is installed via Scoop.
+    Additionally, the built-in FFmpeg installer in Tartube fails.
+  ❌ Do not use "4K YouTube to MP3 Converter" ; https://www.4kdownload.com 📅 2024-12-31 11:04:59
+    https://www.4kdownload.com/troubleshooting/troubleshooting-cant-activate-with-license-key/2
+    * Activation limit reached problem
+      Licenses are tied to the current OS setup. If you format or reinstall the OS, the license is lost and cannot be renewed easily.
+      License renewal is cumbersome and may require purchasing a new key after exceeding activation limits.
+        
+  Settings      
+    Tartube setup
+      Tartube stores all of its downloads in one place
+        - ✔️ E:\Tartube
+      When saving in the database, Tartube makes a backup copy of its databse file (in case seomthing gose wrong)
+        - ✔️ Make a new backup file every time the database is saverd
+      Choose which downloader to use
+        - ✔️ yt-dlp
+      📰 Install and update downloader
+        📝 Not works
+      ✔️ Install FFmpeg
+      Tartube adds vidoe to a database. If you don't need a database, you can use Classic Mode.
+        ✔️ Always open Tartube at this tab
 
-#### 🌱 NVIDIA App ; https://us.download.nvidia.com/nvapp/client/11.0.1.163/NVIDIA_app_v11.0.1.163.exe
+    Tartube
+      # Settings for Video to Audio ; https://github.com/axcore/tartube/issues/38#issuecomment-573664336
+      [Tab] Classic Mode
+        - Open in Classic Mode menu
+          - Edit downlod options...
+            - [Tab] Name
+              - ✔️ Show advanced download options
+            - [Tab] Format
+              - ✔️ List of preferred formats
+                mp4
+                m4a
+                m4a 128k (DASH Audio)
+            - [Tab] Post-processing
+              - [Tab] General
+                - Post processing options
+                  - ✔️ Post-process vidoe files to convert them to audio-only files
+        - Destination
+          - ✔️ E:\Tartube\downloads
+#>
+
+
+#### 📦🌱 NVIDIA App ; https://us.download.nvidia.com/nvapp/client/11.0.1.163/NVIDIA_app_v11.0.1.163.exe
 <# 🚧 In a NVIDIA Overaly (⌨️ Alt + Z),
 Settings 
   - Shortcut controls
@@ -281,7 +327,6 @@ scoop install versions/steam
 
 
 #### 🌱 Video, Audio
-
 scoop install main/yt-dlp
 scoop install versions/ffmpeg-yt-dlp
 <# ...
@@ -289,15 +334,6 @@ scoop install versions/ffmpeg-yt-dlp
   Creating shim for 'ffplay'.
   Creating shim for 'ffprobe'.
   #>
-scoop install extras/tartube  # https://github.com/axcore/tartube
-<#
-❌ Do not use "4K YouTube to MP3 Converter" ; https://www.4kdownload.com 📅 2024-12-31 11:04:59
-  https://www.4kdownload.com/troubleshooting/troubleshooting-cant-activate-with-license-key/2
-  * Activation limit reached problem
-    Licenses are tied to the current OS setup. If you format or reinstall the OS, the license is lost and cannot be renewed easily.
-    License renewal is cumbersome and may require purchasing a new key after exceeding activation limits.
-#>
-
 
 
 
