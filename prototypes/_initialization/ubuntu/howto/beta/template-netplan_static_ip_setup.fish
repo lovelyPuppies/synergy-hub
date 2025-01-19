@@ -9,6 +9,9 @@
     or
     🧮 set renderer_choice NetworkManager
 '
+sudo -v
+
+
 set renderer_choice networkd
 
 

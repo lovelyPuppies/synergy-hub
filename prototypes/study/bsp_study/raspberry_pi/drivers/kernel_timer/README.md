@@ -224,6 +224,8 @@ stateDiagram-v2
   # ⭕ we recommend passing a number 1.5x your number of processors. 🔗 https://www.raspberrypi.com/documentation/computers/linux_kernel.html#native-build
   set jobs_core_n (math (nproc)" * 1.5")
 
+  set -gx KERNEL kernel8-kernel_timer_config
+
   # Set variables for Deploy (Host is NFS server, RasBerry pi is NFS Client)
   set nfs_host_pi_kernel "/nfs/kernels/raspberry_pi"
   mkdir -p $nfs_host_pi_kernel
@@ -250,7 +252,7 @@ stateDiagram-v2
 
 
   ### Build configuration
-  set -gx KERNEL kernel8-kernel_timer_config
+
   make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- bcm2711_defconfig
 
   ##🏷️ Customize the kernel version using LOCALVERSION
@@ -270,11 +272,11 @@ stateDiagram-v2
 
   ### Build
   # 📝 In this project the device tree is not modified so only Image and modules need to be built
-  make -j{$jobs_core_n} ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- Image modules
-  # make -j{$jobs_core_n} ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- Image modules dtbs
+  make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- Image modules -j{$jobs_core_n}
+  # make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- Image modules dtbs -j{$jobs_core_n}
 
   ## If boot media is mounted
-  # sudo env PATH=$PATH make -j{$jobs_core_n} ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- INSTALL_MOD_PATH=mnt/root modules_install
+  # sudo env PATH=$PATH make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- INSTALL_MOD_PATH=mnt/root modules_install -j{$jobs_core_n}
 
 
 
@@ -282,11 +284,12 @@ stateDiagram-v2
 
   ##### 👆 Deploy Image
 
-  cp arch/arm64/boot/Image /nfs/$KERNEL.img
-  ssh r-pi.local "sudo cp /mnt/host/kernels/raspberry_pi/$KERNEL.img /boot/firmware/"
+  cp arch/arm64/boot/Image /nfs/kernels/raspberry_pi/$KERNEL.img
+  ssh r-pi.local "sudo cp /mnt/host/kernels/raspberry_pi/$KERNEL.img /boot/firmware"
 
-  # 📰 Doing... (Automation script) echo "kernel=$KERNEL.img" | sudo tee /boot/firmware/config.txt
-  # ..   set -gx KERNEL kernel8-kernel_timer_config .. 위에 사용자 설정으로 옮기기.. [all] 발견한 뒤에서..
+  # echo "kernel=$KERNEL.img" | sudo tee -a /boot/firmware/config.txt
+  # 📰 Doing... (Automation script)
+  # ..    .. 위에 사용자 설정으로 옮기기.. [all] 발견한 뒤에서..
   # kernel=kernel8-kernel_timer_config.img
   ```
 

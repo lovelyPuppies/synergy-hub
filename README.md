@@ -21,7 +21,7 @@
 
   - 팀원: 3
 
-    📜 **역할**: [젯슨 나노 통합 및 머신러닝 모델 파이프라인 구현](https://github.com/lovelyPuppies/Project_SignalMaster/tree/main/src/jetson-nano-mount/README.md) (External Link)
+    📜 역할: [**젯슨 나노 통합 및 머신러닝 모델 파이프라인 구현**](https://github.com/lovelyPuppies/Project_SignalMaster/tree/main/src/jetson-nano-mount/README.md) (External Link)
 
 - [**선풍기 제어 시스템**](https://github.com/lovelyPuppies/fanProject) (External Link)
 
@@ -33,7 +33,7 @@
 
   - 팀원: 4
 
-    📜 **역할**: [🌟 팀장] 토끼 귀 필터 구현 및 리팩터링, 프로젝트 다이어그램 작성.
+    📜 역할: **[🌟 팀장] 토끼 귀 필터 구현 및 리팩터링, 프로젝트 다이어그램 작성.**
 
 - [**타이머 기반 LED 제어 시스템 (디바이스 드라이버, 애플리케이션)**](prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/README.md)
 
