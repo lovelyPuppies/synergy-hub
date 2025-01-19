@@ -8,7 +8,7 @@
     - [🎯 Purposes](#-purposes)
     - [Showcase](#showcase)
   - [🌐 Project Overview](#-project-overview)
-  - [🚧 Prerequisite](#-prerequisite)
+    - [🚧 Prerequisite](#-prerequisite)
     - [📊 System Workflow](#-system-workflow)
       - [Use Case diagram](#use-case-diagram)
       - [Activity diagram](#activity-diagram)
@@ -22,7 +22,7 @@
     - [📖 Key Components and Implementation](#-key-components-and-implementation)
   - [📁 Python Files](#-python-files)
     - [🗄️ **filter.py**](#️-filterpy)
-      - [function: overlay_rabbit_ears(frame, landmarks)](#function-overlay_rabbit_earsframe-landmarks)
+      - [function: overlay\_rabbit\_ears(frame, landmarks)](#function-overlay_rabbit_earsframe-landmarks)
   - [❔ 참고사항](#-참고사항)
   - [Retrospective](#retrospective)
     - [📌 Key Learnings and Improvements](#-key-learnings-and-improvements)
@@ -51,7 +51,7 @@
 
 ## 🌐 Project Overview
 
-## 🚧 Prerequisite
+### 🚧 Prerequisite
 
 - Download **[resource files](https://drive.google.com/file/d/1H4TsQumP04nv-h8B9Yzaibd0h4C2CMC7/view)** and locate in `camera_filter_app/rsrc` directory
 
