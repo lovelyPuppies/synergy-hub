@@ -1,7 +1,5 @@
 # Synergy Hub Documentation
 
-📅 Modified at 2024-12-31 19:44:10
-
 - [Synergy Hub Documentation](#synergy-hub-documentation)
   - [📌 Project Shortcuts](#-project-shortcuts)
   - [🔧 Tech Stack](#-tech-stack)
@@ -19,7 +17,7 @@
 
   📅 2025-01-18 ~
 
-  🏷️ Tag: Turtlebot 3, ROS 1 Noetic, STM32 Nucleo F411RE, CMake, Cross-Compilation (Qt), Qt, APM stack
+  🏷️ Tag: Turtlebot 3, ROS 1 Noetic, STM32 Nucleo F411RE, CMake, Cross-Compilation (Qt), Qt, APM stack, TCP/IP
 
   - 팀원: 6
 
@@ -31,7 +29,7 @@
 
 - [**실시간 수신호 기반 자율주행 RC카**](https://github.com/lovelyPuppies/Project_SignalMaster) (External Link)
 
-  🏷️ Tag: C, Python 3, Edge AI, On-Device, Yolo v11, JetSon Nano, Multi-Threading
+  🏷️ Tag: C, Python 3, Edge AI, On-Device, **Machine Learning** (Yolo v11), JetSon Nano, Multi-Threading
 
   - 팀원: 3
 
@@ -39,7 +37,7 @@
 
 - [**카메라 필터 애플리케이션**](prototypes/study/python_study/camera_filter_app/README.md)
 
-  🏷️ Tag: Python 3, OpenCV, MediaPipe, PySide6, Face Detection, Landmark Processing, Alpha Blending, Real-time Filters
+  🏷️ Tag: Python 3, OpenCV, PySide6, **Machine Learning** (MediaPipe, Face Detection, Landmark Processing), Alpha Blending, Real-time Filters
 
   - 팀원: 4
 
