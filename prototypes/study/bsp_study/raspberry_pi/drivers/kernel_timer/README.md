@@ -250,7 +250,7 @@ stateDiagram-v2
 
 
   ### Build configuration
-  set -gx KERNEL kernel8
+  set -gx KERNEL kernel8-kernel_timer_config
   make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- bcm2711_defconfig
 
   ##🏷️ Customize the kernel version using LOCALVERSION
@@ -283,6 +283,11 @@ stateDiagram-v2
   ##### 👆 Deploy Image
 
   cp arch/arm64/boot/Image /nfs/$KERNEL.img
+  ssh r-pi.local "sudo cp /mnt/host/kernels/raspberry_pi/$KERNEL.img /boot/firmware/"
+
+  # 📰 Doing... (Automation script) echo "kernel=$KERNEL.img" | sudo tee /boot/firmware/config.txt
+  # ..   set -gx KERNEL kernel8-kernel_timer_config .. 위에 사용자 설정으로 옮기기.. [all] 발견한 뒤에서..
+  # kernel=kernel8-kernel_timer_config.img
   ```
 
 &nbsp;
