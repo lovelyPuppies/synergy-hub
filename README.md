@@ -168,12 +168,15 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
 
 - ⏳ **Pending Issues**
 
-  - 📅 2025-01-19: fish-shell/fish-shell 🔪 [whenever run `fish -c "sudo -v"`, it requires password every time in same terminal session](https://github.com/fish-shell/fish-shell/issues/11064)
   - 📅 2024-08-29: conan-io/conan 🔪 [[bug] in Ubuntu, clang, Ninja enviornment. ERROR: pulseaudio/14.2: Error in build() method, line 131 (external link)](https://github.com/conan-io/conan/issues/16905)
   - 📅 2024-08-29: conan-io/conan-center-index 🔪 [\[package\] pulseaudio/14.2 : I'm using clang 18 but error; Compiler does not support -std=gnu11](https://github.com/conan-io/conan-center-index/issues/25075)
   - 📅 2024-08-26: prefix-dev/pixi 🔪 [in VS Code, manifest PIXI_PROJECT_MANIFEST is not changed when open by command "code <path>](https://github.com/prefix-dev/pixi/issues/1907)
 
 - ✅ **Resolved Issues**
+
+  - 📅 2025-01-19: fish-shell/fish-shell 🔪 [whenever run `fish -c "sudo -v"`, it requires password every time in same terminal session](https://github.com/fish-shell/fish-shell/issues/11064)
+
+    ➡️ Execute the raw output of eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" directly in your shell configuration in order to avoid **sudo cache invalidation** caused by **Homebrew policy changes**.
 
   - 📅 2024-10-17: opmaksim/Project_SignalMaster 🔪 [Python Jupyter Interactive Kernel crashed when use cv2.imshow()](https://github.com/opmaksim/Project_SignalMaster/issues/14)
 
