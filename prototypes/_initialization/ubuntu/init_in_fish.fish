@@ -80,7 +80,7 @@ set font_dir ~/.local/share/fonts
 mkdir -p $font_dir
 
 
-
+### FISH_CONFIG_PATH Order - 1️⃣
 set unique_comment '## [homebrew] Environment variable settings for Linuxbrew in Fish shell'
 if not grep -Fxq "$unique_comment" "$FISH_CONFIG_PATH"
     echo "
@@ -124,27 +124,8 @@ end
 
 
 
-
-
-
-
-
-
-##########
-### Fish plugins
-: '
-Fish plugins
-  ⚓ berk-karaal/loadenv.fish ; https://github.com/berk-karaal/loadenv.fish
-  ⚓ jorgebucaran/replay.fish ; https://github.com/jorgebucaran/replay.fish
-'
-fisher install berk-karaal/loadenv.fish
-fisher install jorgebucaran/replay.fish
-
-
-
-
-### prepend "interactive block" to FISH_CONFIG_PATH
-# Define the unique comment and interactive block start
+### FISH_CONFIG_PATH Order - 2️⃣
+## Define the unique comment and interactive block start
 set unique_comment "# Add interactive block"
 
 # Check if the 'if status --is-interactive' block exists
@@ -167,6 +148,24 @@ if not grep -q "$unique_comment" $FISH_CONFIG_PATH
     # Overwrite the original file
     mv $tmp_file $FISH_CONFIG_PATH
 end
+
+
+
+
+
+##########
+### Fish plugins
+: '
+Fish plugins
+  ⚓ berk-karaal/loadenv.fish ; https://github.com/berk-karaal/loadenv.fish
+  ⚓ jorgebucaran/replay.fish ; https://github.com/jorgebucaran/replay.fish
+'
+fisher install berk-karaal/loadenv.fish
+fisher install jorgebucaran/replay.fish
+
+
+
+
 
 
 
