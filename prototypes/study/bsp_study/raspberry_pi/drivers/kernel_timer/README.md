@@ -1,8 +1,8 @@
-# Fan Project
+# Kernel Timer Project
 
 📅 Written at 2025-01-03 09:44:20
 
-- [Fan Project](#fan-project)
+- [Kernel Timer Project](#kernel-timer-project)
   - [Project Introduction](#project-introduction)
     - [Features](#features)
     - [🎯 Purposes](#-purposes)
@@ -18,6 +18,8 @@
         - [GPIO Pinout Table](#gpio-pinout-table)
     - [📁 Directory Structure](#-directory-structure)
   - [Retrospective](#retrospective)
+    - [gpio\_ Legacy API의 한계와 개선점](#gpio_-legacy-api의-한계와-개선점)
+    - [디바이스 트리 오버레이(DTS Overlay)의 활용과 가능성](#디바이스-트리-오버레이dts-overlay의-활용과-가능성)
 
 ## Project Introduction
 
@@ -202,85 +204,85 @@ stateDiagram-v2
 - Setup Automation script
 
   ```bash
-    #!/usr/bin/env fish
+  #!/usr/bin/env fish
 
-    ##### 👆 User-specific settings
+  ##### 👆 User-specific settings
 
-    function prettify_indent_via_pipe
-      awk '
-        NR == 2 { indent = match($0, /[^ ]/) - 1 }
-        NR > 1 { sub("^ {" indent "}", "") }
-        NR == 1 { next }
-        { gsub(/[[:blank:]]*$/, ""); print }
-      '
-    end
+  function prettify_indent_via_pipe
+    awk '
+      NR == 2 { indent = match($0, /[^ ]/) - 1 }
+      NR > 1 { sub("^ {" indent "}", "") }
+      NR == 1 { next }
+      { gsub(/[[:blank:]]*$/, ""); print }
+    '
+  end
 
-    # Set Path of Raspberry Pi kernel source
-    mkdir -p $HOME/repos/kernels
-    cd $HOME/repos/kernels
+  # Set Path of Raspberry Pi kernel source
+  mkdir -p $HOME/repos/kernels
+  cd $HOME/repos/kernels
 
-    # ⭕ we recommend passing a number 1.5x your number of processors. 🔗 https://www.raspberrypi.com/documentation/computers/linux_kernel.html#native-build
-    set jobs_core_n (math (nproc)" * 1.5")
+  # ⭕ we recommend passing a number 1.5x your number of processors. 🔗 https://www.raspberrypi.com/documentation/computers/linux_kernel.html#native-build
+  set jobs_core_n (math (nproc)" * 1.5")
 
-    # Set variables for Deploy (Host is NFS server, RasBerry pi is NFS Client)
-    set nfs_host_pi_kernel "/nfs/kernels/raspberry_pi"
-    mkdir -p $nfs_host_pi_kernel
-    set nfs_client_pi_kernel "/mnt/host/kernels/raspberry_pi"
-
-
-
-
-
-    ##### 👆 In Host and `$HOME/repos/kernels` directory (🖥️ in the case of Raspberry Pi 4, 64-bit)
-
-    ### Download kernel source
-    git clone --depth=1 --single-branch https://github.com/raspberrypi/linux raspberry_pi
-    cd raspberry_pi
-
-
-    ### Install the build dependencies
-    sudo apt install -y bc bison flex libssl-dev make
-    # Install the build dependencies for Cross-compiling the kernel
-    sudo apt install -y libc6-dev libncurses5-dev
-    # Install the 64-bit toolchain for Cross-compiling the kernel
-    sudo apt install -y crossbuild-essential-arm64
-
-
-
-    ### Build configuration
-    set -gx KERNEL kernel8
-    make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- bcm2711_defconfig
-
-    ##🏷️ Customize the kernel version using LOCALVERSION
-
-    set config_file ".config"
-    set unique_comment '## ⚙️ Customize the kernel version (Override)'
-
-    if not grep -Fxq "$unique_comment" "$config_file"
-        echo "
-        $unique_comment"'
-        CONFIG_LOCALVERSION="-v8-synergy_hub"
-        ' | prettify_indent_via_pipe | tee -a "$config_file" >/dev/null
-        echo -e "\n" >> "$config_file"
-    end
-
-
-
-    ### Build
-    # 📝 In this project the device tree is not modified so only Image and modules need to be built
-    make -j{$jobs_core_n} ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- Image modules
-    # make -j{$jobs_core_n} ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- Image modules dtbs
-
-    ## If boot media is mounted
-    # sudo env PATH=$PATH make -j{$jobs_core_n} ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- INSTALL_MOD_PATH=mnt/root modules_install
+  # Set variables for Deploy (Host is NFS server, RasBerry pi is NFS Client)
+  set nfs_host_pi_kernel "/nfs/kernels/raspberry_pi"
+  mkdir -p $nfs_host_pi_kernel
+  set nfs_client_pi_kernel "/mnt/host/kernels/raspberry_pi"
 
 
 
 
 
-    ##### 👆 Deploy Image
+  ##### 👆 In Host and `$HOME/repos/kernels` directory (🖥️ in the case of Raspberry Pi 4, 64-bit)
 
-    cp arch/arm64/boot/Image /nfs/$KERNEL.img
+  ### Download kernel source
+  git clone --depth=1 --single-branch https://github.com/raspberrypi/linux raspberry_pi
+  cd raspberry_pi
+
+
+  ### Install the build dependencies
+  sudo apt install -y bc bison flex libssl-dev make
+  # Install the build dependencies for Cross-compiling the kernel
+  sudo apt install -y libc6-dev libncurses5-dev
+  # Install the 64-bit toolchain for Cross-compiling the kernel
+  sudo apt install -y crossbuild-essential-arm64
+
+
+
+  ### Build configuration
+  set -gx KERNEL kernel8
+  make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- bcm2711_defconfig
+
+  ##🏷️ Customize the kernel version using LOCALVERSION
+
+  set config_file ".config"
+  set unique_comment '## ⚙️ Customize the kernel version (Override)'
+
+  if not grep -Fxq "$unique_comment" "$config_file"
+      echo "
+      $unique_comment"'
+      CONFIG_LOCALVERSION="-v8-synergy_hub"
+      ' | prettify_indent_via_pipe | tee -a "$config_file" >/dev/null
+      echo -e "\n" >> "$config_file"
+  end
+
+
+
+  ### Build
+  # 📝 In this project the device tree is not modified so only Image and modules need to be built
+  make -j{$jobs_core_n} ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- Image modules
+  # make -j{$jobs_core_n} ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- Image modules dtbs
+
+  ## If boot media is mounted
+  # sudo env PATH=$PATH make -j{$jobs_core_n} ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- INSTALL_MOD_PATH=mnt/root modules_install
+
+
+
+
+
+  ##### 👆 Deploy Image
+
+  cp arch/arm64/boot/Image /nfs/$KERNEL.img
   ```
 
 &nbsp;
@@ -362,16 +364,91 @@ stateDiagram-v2
 
 ## Retrospective
 
-1. gpio\_ prefix
+### gpio\_ Legacy API의 한계와 개선점
 
-gpio\_ 접두사 함수는 비효율적이며, GPIO 핀을 명시적으로 관리하지 않아 핀 충돌이나 불필요한 요청 해제가 발생할 수 있습니다.
+- ❔ 현재 프로젝트에서 사용한 GPIO API의 평가와 대안 탐색
+
+  - **기존 방식: gpio\_ 접두사 함수 사용**:
+
+    - 프로젝트에서 기존에 `gpio_` 접두사를 사용하는 레거시 API를 활용.
+    - GPIO 핀 번호를 직접 관리하며, 코드가 복잡해지고 유지보수에 어려움 발생.
+    - 핀 사용 추적이 어려워 충돌 및 불필요한 요청 해제 문제가 발생.
+
+  - **Legacy style 설계의 문제점**:
+
+    - GPIO 핀 번호를 직접 관리해야 하는 구조.
+    - 코드 가독성과 유지보수성에 대한 부담 증가.
+
+  - **소비자(Consumer) 개념 부재**:
+
+    - 특정 GPIO 핀을 누가 사용 중인지 명확히 알 수 없는 구조.
+    - 핀 충돌 및 불필요한 요청 해제 발생 가능.
+
+  - **멀티스레드 환경에서의 안정성 부족**:
+
+    - 동시 접근 시 충돌 가능성 증가.
+
+&nbsp;
+
+➡️ **향후 개선 방향: gpiod\_ API 도입**
+
+- **디스크립터 기반 설계**:
+
+  - GPIO 핀과 소비자 간 명시적 연결 제공.
+  - 핀 사용 추적 및 충돌 방지 가능.
+
+- **코드 추상화 및 간결화**:
+
+  - 핀 번호 대신 디스크립터 사용으로 코드 가독성 향상.
+  - 하드웨어 독립적 설계로 유지보수성 강화.
+
+- **멀티스레드 환경에서의 안정성 보장**:
+
+  - 시스템 신뢰성 향상을 위한 기반 제공.
+
+&nbsp;
+
+❔ **Reference**
 
 - 🔗 [GPIO Descriptor Consumer Interface](https://www.kernel.org/doc/html/latest/driver-api/gpio/consumer.html)
 
   > The gpio\_ prefix is used for the legacy interface. No other function in the kernel should use these prefixes. The use of the legacy functions is **strongly discouraged**, new code should use <linux/gpio/consumer.h> and descriptors exclusively.
 
--
+&nbsp;
 
-2. ***
-   Gpiod.. gpiod 에 대해서만
-   디바이스 트리 오버레이(DTS Overlay)
+---
+
+### 디바이스 트리 오버레이(DTS Overlay)의 활용과 가능성
+
+- ❔ 디바이스 트리 오버레이의 실무 적용과 향후 방향성
+
+  - **기존 방식: 디바이스 트리 미사용**:
+
+    - 현재 프로젝트에서 디바이스 트리를 사용하지 않고, LED와 버튼 제어를 Legacy API(`gpio_` 접두사)를 통해 구현.
+    - GPIO 핀 번호를 직접 관리하며, 디바이스 트리의 설정 변경 없이 단순 제어 작업 수행.
+
+  - **디바이스 트리 오버레이 사용 시 기대되는 장점**:
+
+    - **동적 하드웨어 설정 가능**:
+      - 커널 전체를 재빌드하지 않고 오버레이를 통해 설정 변경 가능.
+    - **프로토타이핑과 테스트의 효율성**:
+      - 반복적으로 하드웨어 구성을 변경하는 초기 개발 단계에서 시간을 절약 가능.
+    - **모듈형 설계 지원**:
+      - 하드웨어가 모듈화된 경우 디바이스 트리 오버레이를 통해 확장 가능한 하드웨어 구성을 지원 가능.
+
+&nbsp;
+
+➡️ **향후 개선 방향: 디바이스 트리 오버레이 도입 가능성**
+
+- **테스트 환경에서의 유연성 확보**:
+
+  - 다양한 하드웨어 설정을 테스트해야 하는 경우 효율적인 대안 제공.
+
+- **장기적으로 모듈화된 시스템 설계 지원**:
+  - 향후 프로젝트에서 모듈형 하드웨어 확장을 염두에 두고 디바이스 트리 오버레이의 도입 가능성 검토.
+
+&nbsp;
+
+❔ **Reference**
+
+- 🔗 [Device Tree Overlays Documentation](https://docs.kernel.org/devicetree/overlay-notes.html)
