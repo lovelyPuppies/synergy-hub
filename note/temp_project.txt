@@ -6293,23 +6293,6 @@ wbfw109v2@iot4-computer ~/r/synergy-hub (main)>  apt-cache show curl
 
 
 ========== 모듈화 필요
-LINE='eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"'
-# Ensures Homebrew commands and installed software are available in Bash shell
-# -F: Fixed Strings. -x: Match Whole Line. -q: Quiet (Silent Mode)
-if ! grep -Fxq "$LINE" "$BASH_CONFIG_PATH"; then
-    echo '## Configure Homebrew environment' >> $BASH_CONFIG_PATH
-    echo "$LINE" >> "$BASH_CONFIG_PATH"
-    echo -e "\n" >> "$BASH_CONFIG_PATH"
-fi
-# Ensures Homebrew commands and installed software are available in Fish shell
-if ! grep -Fxq "$LINE" "$FISH_CONFIG_PATH"; then
-  echo '## Configure Homebrew environment' >> $FISH_CONFIG_PATH
-  echo "$LINE" >> "$FISH_CONFIG_PATH"
-  echo -e "\n" >> "$FISH_CONFIG_PATH"
-fi
-
-
-
   ## 🚣 cat $HOME/.nix-profile/bin
   home.activation.testCurlHelp = ''
     echo "Testing curl command after installation:"
@@ -17263,3 +17246,6 @@ dev-dri-renderD128
 
 # sudo cp kernel8-kernel_timer_config.img
  /boot/firmware/kernel8-kernel_timer_config.img
+
+
+ https://github.com/orgs/Homebrew/discussions/5672?utm_source=chatgpt.com

@@ -10,7 +10,7 @@ mkdir -p $LOCAL_BIN_DIR
 
 
 
-### Minimum packages in roder to install homebrew 🔗 https://docs.brew.sh/Homebrew-on-Linux#requirements
+### Minimum packages in order to install homebrew 🔗 https://docs.brew.sh/Homebrew-on-Linux#requirements
 sudo apt install -y curl git
 git config --global init.defaultBranch main
 
@@ -23,27 +23,13 @@ sudo apt install -y build-essential
 
 
 
-#### Install Package Manager in ordre to install latest and stable version for Development evnrionment.
+#### Install Package Manager in order to install latest and stable version for Development environment.
 # 🚧 Requirements in Debian or Ubuntu ; https://docs.brew.sh/Homebrew-on-Linux#requirements
 #   sudo apt-get install build-essential
 echo | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-LINE='eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"'
-# Ensures Homebrew commands and installed software are available in Bash shell
-# -F: Fixed Strings. -x: Match Whole Line. -q: Quiet (Silent Mode)
-if ! grep -Fxq "$LINE" "$BASH_CONFIG_PATH"; then
-    echo '## Configure Homebrew environment' >> $BASH_CONFIG_PATH
-    echo "$LINE" >> "$BASH_CONFIG_PATH"
-    echo -e "\n" >> "$BASH_CONFIG_PATH"
-fi
-# Ensures Homebrew commands and installed software are available in Fish shell
-if ! grep -Fxq "$LINE" "$FISH_CONFIG_PATH"; then
-  echo '## Configure Homebrew environment' >> $FISH_CONFIG_PATH
-  echo "$LINE" >> "$FISH_CONFIG_PATH"
-  echo -e "\n" >> "$FISH_CONFIG_PATH"
-fi
-## check by '/home/linuxbrew/.linuxbrew/bin/brew shellenv'
+# Settings for homebrew -> It is moved to init_in_fish.fish 📅 2025-01-20 01:36:46
 
 
 

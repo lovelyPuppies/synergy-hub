@@ -19,7 +19,7 @@
 
   📅 2025-01-18 ~
 
-  🏷️ Tag: Turtlebot 3, ROS 1 Noetic, STM32 Nucleo F411RE, CMake, Cross-Compilation (Qt), Qt, APM
+  🏷️ Tag: Turtlebot 3, ROS 1 Noetic, STM32 Nucleo F411RE, CMake, Cross-Compilation (Qt), Qt, APM stack
 
   - 팀원: 6
 
@@ -31,7 +31,7 @@
 
 - [**실시간 수신호 기반 자율주행 RC카**](https://github.com/lovelyPuppies/Project_SignalMaster) (External Link)
 
-  🏷️ Tag: Python 3, C, Edge AI, On-Device, Yolo v11, JetSon Nano, Multi-Threading
+  🏷️ Tag: C, Python 3, Edge AI, On-Device, Yolo v11, JetSon Nano, Multi-Threading
 
   - 팀원: 3
 
@@ -282,6 +282,8 @@ tree [**prototypes/\_initialization/\_about**](prototypes/_initialization/_about
 2. Run **[initialization script](prototypes/_initialization/ubuntu/init_in_bash.sh)**:
 
    📝 Note that this script requires the password to be entered multiple times \(about 4 times\), because **[Homebrew command invalidates the sudo timestamp \(sudo password cache\)](https://github.com/Homebrew/brew/issues/17905#issuecomment-2258522878)**.
+
+   > `This is likely a WONTFIX, sorry. We clear the sudo password cache intentionally as a precaution against privilege escalation attacks. See https://brew.sh/2024/07/30/homebrew-security-audit/.`
 
    ```bash
    #!/bin/bash

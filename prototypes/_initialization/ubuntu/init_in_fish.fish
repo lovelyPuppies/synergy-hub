@@ -1,5 +1,5 @@
 #!/usr/bin/env fish
-##### Define
+##### Define Variables
 ### 📁 MY Directory Structures 📅 2024-12-14 21:08:26
 : '
 📂 $HOME/repos/
@@ -81,6 +81,56 @@ mkdir -p $font_dir
 
 
 
+set unique_comment '## [homebrew] Environment variable settings for Linuxbrew in Fish shell'
+if not grep -Fxq "$unique_comment" "$FISH_CONFIG_PATH"
+    echo "
+        $unique_comment"'
+        # If Homebrew is installed on Linux
+        if test -d /home/linuxbrew/.linuxbrew
+            # Run raw output from `eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"`
+            set --global --export HOMEBREW_PREFIX "/home/linuxbrew/.linuxbrew"
+            set --global --export HOMEBREW_CELLAR "/home/linuxbrew/.linuxbrew/Cellar"
+            set --global --export HOMEBREW_REPOSITORY "/home/linuxbrew/.linuxbrew/Homebrew"
+            fish_add_path --global --move --path "/home/linuxbrew/.linuxbrew/bin" "/home/linuxbrew/.linuxbrew/sbin"
+            if test -n "$MANPATH[1]"
+                set --global --export MANPATH '' $MANPATH
+            end
+            if not contains "/home/linuxbrew/.linuxbrew/share/info" $INFOPATH
+                set --global --export INFOPATH "/home/linuxbrew/.linuxbrew/share/info" $INFOPATH
+            end
+        end
+      ' | prettify_indent_via_pipe | tee -a $FISH_CONFIG_PATH >/dev/null
+    echo -e "\n" >>"$FISH_CONFIG_PATH"
+end
+source $FISH_CONFIG_PATH
+
+set unique_comment '## [homebrew] Environment variable settings for Linuxbrew in Bash shell'
+if not grep -Fxq "$unique_comment" "$BASHRC_PATH"
+    echo "
+        $unique_comment"'
+        # If Homebrew is installed on Linux
+        if [ -d /home/linuxbrew/.linuxbrew ]; then
+            # Run raw output from `eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"`
+            export HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew";
+            export HOMEBREW_CELLAR="/home/linuxbrew/.linuxbrew/Cellar";
+            export HOMEBREW_REPOSITORY="/home/linuxbrew/.linuxbrew/Homebrew";
+            export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin${PATH+:$PATH}";
+            [ -z "${MANPATH-}" ] || export MANPATH=":${MANPATH#:}";
+            export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:${INFOPATH:-}";
+        fi
+      ' | prettify_indent_via_pipe | tee -a $BASHRC_PATH >/dev/null
+    echo -e "\n" >>"$BASHRC_PATH"
+end
+
+
+
+
+
+
+
+
+
+##########
 ### Fish plugins
 : '
 Fish plugins
@@ -1305,14 +1355,15 @@ echo '
   disabled = false
 ' | prettify_indent_via_pipe | tee $HOME/.config/starship.toml >/dev/null
 
-set unique_comment "## [starship] prompt initialization settings"
-if not grep -Fxq "$unique_comment" "$FISH_CONFIG_PATH"
-    echo "
-    $unique_comment
+
+set unique_comment "# [starship] prompt initialization settings"
+set conetents (echo "
     starship init fish | source
-    " | prettify_indent_via_pipe | tee -a $FISH_CONFIG_PATH >/dev/null
-    echo -e "\n" >>"$FISH_CONFIG_PATH"
-end
+" | prettify_indent_via_pipe | string split0)
+
+# Call the function to update the config
+update_fish_interactive_block --unique-comment="$unique_comment" --contents="$conetents"
+
 
 
 
