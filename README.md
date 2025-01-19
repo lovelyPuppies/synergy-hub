@@ -15,17 +15,27 @@
 
 ## 📌 Project Shortcuts
 
+- 📰 (Doing) [**스마트 택배 시스템**](prototypes/study/ros_study/ros-noetic-turtlebot3/README.md)
+
+  📅 2025-01-18 ~
+
+  🏷️ Tag: Turtlebot 3, ROS 1 Noetic, STM32 Nucleo F411RE, CMake, Cross-Compilation (Qt), Qt, APM
+
+  - 팀원: 6
+
+  <!-- **STM32 Nucleo F411RE 기반 디지털 시계 및 알람 시스템** + -->
+
+- [**타이머 기반 LED 제어 시스템 (디바이스 드라이버, 애플리케이션)**](prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/README.md)
+
+  🏷️ Tag: C, Make, Cross-Compilation (Kernel), clang, Device Driver, Raspberry Pi 4 B, ioctl, Button ISR
+
 - [**실시간 수신호 기반 자율주행 RC카**](https://github.com/lovelyPuppies/Project_SignalMaster) (External Link)
 
-  🏷️ Tag: Python 3, C, Edge AI, On-Device, Yolo v11, JetSon Nano
+  🏷️ Tag: Python 3, C, Edge AI, On-Device, Yolo v11, JetSon Nano, Multi-Threading
 
   - 팀원: 3
 
     📜 역할: [**젯슨 나노 통합 및 머신러닝 모델 파이프라인 구현**](https://github.com/lovelyPuppies/Project_SignalMaster/tree/main/src/jetson-nano-mount/README.md) (External Link)
-
-- [**선풍기 제어 시스템**](https://github.com/lovelyPuppies/fanProject) (External Link)
-
-  🏷️ Tag: C, ATmega128, AVR, Peripherals (UART, I2C, PWM, Timer), Design Pattern (MVP), Finite State Machine
 
 - [**카메라 필터 애플리케이션**](prototypes/study/python_study/camera_filter_app/README.md)
 
@@ -35,9 +45,9 @@
 
     📜 역할: **[🌟 팀장] 토끼 귀 필터 구현 및 리팩터링, 프로젝트 다이어그램 작성.**
 
-- [**타이머 기반 LED 제어 시스템 (디바이스 드라이버, 애플리케이션)**](prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/README.md)
+- [**선풍기 제어 시스템**](https://github.com/lovelyPuppies/fanProject) (External Link)
 
-  🏷️ Tag: C, Make, clang, Device Driver, Raspberry Pi 4 B, ioctl, Button ISR
+  🏷️ Tag: C, ATmega128, AVR, Peripherals (UART, I2C, PWM, Timer), Design Pattern (MVP), Finite State Machine
 
 - [**환경 및 네트워크 초기화 자동화 스크립트 작성**](#️-scripts)
 
@@ -52,16 +62,6 @@
   &nbsp;&nbsp; ➡️ [**Web Hosting**](https://wbfw109.github.io/visualization_manager/ipython_central_control.html)
 
   🏷️ Tag: Python 3, GitHub Pages, Jupyter, IPython
-
-- 📰 (Doing ...) [**Turtlebot 3**](prototypes/study/ros_study/ros-noetic-turtlebot3)
-
-  📅 2025-01-18 ~
-
-  🏷️ Tag: ROS 1, STM32,
-
-  📰 Doing ...
-
-  **STM32 Nucleo F411RE 기반 디지털 시계 및 알람 시스템** +
 
 - [**CS 용어 사전 웹 애플리케이션**](https://github.com/wbfw109/study-core?tab=readme-ov-file#41-glossary-service) \(External Link\)
 
@@ -244,9 +244,8 @@ tree [**prototypes/\_initialization/ubuntu**](prototypes/_initialization/ubuntu)
 │&nbsp;&nbsp;&nbsp;&nbsp;├── \_internal  
 │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 file_supervisor  
 │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [inotify-make_fish_utilities_executable.fish](prototypes/_initialization/ubuntu/howto/_internal/file_supervisor/inotify-make_fish_utilities_executable.fish)  
-│&nbsp;&nbsp;&nbsp;&nbsp;├── [snippet.fish](prototypes/_initialization/ubuntu/howto/snippet.fish)  
+│&nbsp;&nbsp;&nbsp;&nbsp;└── [snippet.fish](prototypes/_initialization/ubuntu/howto/snippet.fish)  
 │&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 template  
-│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [README.md](prototypes/_initialization/ubuntu/howto/template/README.md)  
 ├── [init_in_bash.sh](prototypes/_initialization/ubuntu/init_in_bash.sh)  
 ├── **[init_in_fish.fish](prototypes/_initialization/ubuntu/init_in_fish.fish)**  
 ├── [init_in_fish_semi_automatic.fish](prototypes/_initialization/ubuntu/init_in_fish_semi_automatic.fish)  
