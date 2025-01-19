@@ -4,10 +4,10 @@
 
 - [Synergy Hub Documentation](#synergy-hub-documentation)
   - [📌 Project Shortcuts](#-project-shortcuts)
+  - [🔧 Tech Stack](#-tech-stack)
   - [🌐 Open Source Contributions](#-open-source-contributions)
     - [Issues Overview](#issues-overview)
     - [Steam Workshop Contributions](#steam-workshop-contributions)
-  - [🔧 Tech Stack](#-tech-stack)
   - [🖋️ Scripts](#️-scripts)
   - [📈 Trend](#-trend)
   - [🚀 Project Setup Instructions (Ubuntu)](#-project-setup-instructions-ubuntu)
@@ -53,73 +53,25 @@
 
   🏷️ Tag: Python 3, GitHub Pages, Jupyter, IPython
 
-- [**Turtlebot 3**](prototypes/study/ros_study/ros-noetic-turtlebot3)
+- 📰 (Doing ...) [**Turtlebot 3**](prototypes/study/ros_study/ros-noetic-turtlebot3)
+
+  📅 2025-01-18 ~
+
+  🏷️ Tag: ROS 1, STM32,
 
   📰 Doing ...
 
-- **STM32 Nucleo F411RE 기반 디지털 시계 및 알람 시스템 구현**
+  **STM32 Nucleo F411RE 기반 디지털 시계 및 알람 시스템** +
 
-  📰 Doing ...
+- [**CS 용어 사전 웹 애플리케이션**](https://github.com/wbfw109/study-core?tab=readme-ov-file#41-glossary-service) \(External Link\)
 
-- [**Pynecone (현재 Reflex) 를 활용한 CS 용어 사전 웹 애플리케이션 개발**](https://github.com/wbfw109/study-core?tab=readme-ov-file#41-glossary-service) \(External Link\)
-
-  🏷️ Tag: Python 3, [Pynecone](https://github.com/reflex-dev) (Full-stack framework)
+  🏷️ Tag: Python 3, [Pynecone (New: Reflex)](https://github.com/reflex-dev) (Full-stack framework)
 
 - [**IoT의 안전한 운영을 위한 Docker 기반 시스템 환경 설계 및 구현**](https://github.com/wbfw109/safe_iot_architecture) \(External Link\)
 
   🏷️ Tag: Java, Gradle, Docker, Docker Swarm
 
   ❗ **Broken:** The original README.md file is missing because a team member deleted the repository.
-
-## 🌐 Open Source Contributions
-
-### Issues Overview
-
-- ⏳ **Pending Issues**
-
-  - 📅 2025-01-19: fish-shell/fish-shell 🔪 [whenever run `fish -c "sudo -v"`, it requires password every time in same terminal session](https://github.com/fish-shell/fish-shell/issues/11064)
-  - 📅 2024-08-29: conan-io/conan 🔪 [[bug] in Ubuntu, clang, Ninja enviornment. ERROR: pulseaudio/14.2: Error in build() method, line 131 (external link)](https://github.com/conan-io/conan/issues/16905)
-  - 📅 2024-08-29: conan-io/conan-center-index 🔪 [\[package\] pulseaudio/14.2 : I'm using clang 18 but error; Compiler does not support -std=gnu11](https://github.com/conan-io/conan-center-index/issues/25075)
-  - 📅 2024-08-26: prefix-dev/pixi 🔪 [in VS Code, manifest PIXI_PROJECT_MANIFEST is not changed when open by command "code <path>](https://github.com/prefix-dev/pixi/issues/1907)
-
-- ✅ **Resolved Issues**
-
-  - 📅 2024-10-17: opmaksim/Project_SignalMaster 🔪 [Python Jupyter Interactive Kernel crashed when use cv2.imshow()](https://github.com/opmaksim/Project_SignalMaster/issues/14)
-
-    ➡️ On Jetson Nano and VS Code, avoid using `cv2.imshow()`. Instead, use the following workaround:
-
-    ```python
-    from IPython.display import clear_output, display
-    ```
-
-    The issue appears to stem from a combination of:
-
-    - Accessing Jetson Nano via **VS Code's Remote-SSH**.
-    - Running **Jupyter Notebook (IPython)**.
-    - Using OpenCV without hardware acceleration.
-
-    These factors likely led to increased CPU usage and memory shortage, resulting in a kernel crash in Jupyter Notebook.
-
-### Steam Workshop Contributions
-
-- 📅 2024-10-15: Choro Ark 🔪 Workshop Mod KR Localization 🔪 [Automation Scripts](https://steamcommunity.com/sharedfiles/filedetails/?id=3343188695&searchtext=)
-
-  It identifies the Steam installation path, updates the `config.ini` file with the correct paths, and runs the localization application without manual intervention.
-
-  ```powershell
-  # 🐚 %shell> Powershell
-  # 🚧 Prerequisite
-  #   - Windows OS
-  #   - Donet Installation: https://dotnet.microsoft.com/en-us/download/dotnet/8.0/runtime?cid=getdotnetcore&amp;os=windows&amp;arch=x64
-
-  $steamInstallPath = (Get-ItemProperty -Path "HKCU:\Software\Valve\Steam").SteamPath
-  $basePath = "$steamInstallPath\steamapps\workshop\content\1188930\3343188695\LocailzationAutoCopy"
-  $configPath = "$basePath\config.ini"
-  (Get-Content $configPath) | ForEach-Object {
-  ($_ -match '^steampath\s*=') ? "steampath = $($steamInstallPath -replace '\\', '/')/steamapps" : $_
-  } | Set-Content $configPath
-  pushd $basePath; $env:DOTNET_ROOT = "C:\Program Files\dotnet"; & "$basePath\LocailzationAutoCopy.exe"; popd
-  ```
 
 ## 🔧 Tech Stack
 
@@ -209,6 +161,56 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
  │&nbsp;&nbsp;&nbsp;&nbsp;└── [edge](prototypes/_lab/tech_stack/web/web_browser/edge.txt)  
  └── 📂 web_server  
  &nbsp;&nbsp;&nbsp;&nbsp;└── <a href="prototypes/_lab/tech_stack/web/web_server/nginx.txt"><img src="https://img.shields.io/badge/-Nginx-269539?logo=nginx&logoColor=white" alt="nginx" /></a>
+
+## 🌐 Open Source Contributions
+
+### Issues Overview
+
+- ⏳ **Pending Issues**
+
+  - 📅 2025-01-19: fish-shell/fish-shell 🔪 [whenever run `fish -c "sudo -v"`, it requires password every time in same terminal session](https://github.com/fish-shell/fish-shell/issues/11064)
+  - 📅 2024-08-29: conan-io/conan 🔪 [[bug] in Ubuntu, clang, Ninja enviornment. ERROR: pulseaudio/14.2: Error in build() method, line 131 (external link)](https://github.com/conan-io/conan/issues/16905)
+  - 📅 2024-08-29: conan-io/conan-center-index 🔪 [\[package\] pulseaudio/14.2 : I'm using clang 18 but error; Compiler does not support -std=gnu11](https://github.com/conan-io/conan-center-index/issues/25075)
+  - 📅 2024-08-26: prefix-dev/pixi 🔪 [in VS Code, manifest PIXI_PROJECT_MANIFEST is not changed when open by command "code <path>](https://github.com/prefix-dev/pixi/issues/1907)
+
+- ✅ **Resolved Issues**
+
+  - 📅 2024-10-17: opmaksim/Project_SignalMaster 🔪 [Python Jupyter Interactive Kernel crashed when use cv2.imshow()](https://github.com/opmaksim/Project_SignalMaster/issues/14)
+
+    ➡️ On Jetson Nano and VS Code, avoid using `cv2.imshow()`. Instead, use the following workaround:
+
+    ```python
+    from IPython.display import clear_output, display
+    ```
+
+    The issue appears to stem from a combination of:
+
+    - Accessing Jetson Nano via **VS Code's Remote-SSH**.
+    - Running **Jupyter Notebook (IPython)**.
+    - Using OpenCV without hardware acceleration.
+
+    These factors likely led to increased CPU usage and memory shortage, resulting in a kernel crash in Jupyter Notebook.
+
+### Steam Workshop Contributions
+
+- 📅 2024-10-15: Choro Ark 🔪 Workshop Mod KR Localization 🔪 [Automation Scripts](https://steamcommunity.com/sharedfiles/filedetails/?id=3343188695&searchtext=)
+
+  It identifies the Steam installation path, updates the `config.ini` file with the correct paths, and runs the localization application without manual intervention.
+
+  ```powershell
+  # 🐚 %shell> Powershell
+  # 🚧 Prerequisite
+  #   - Windows OS
+  #   - Donet Installation: https://dotnet.microsoft.com/en-us/download/dotnet/8.0/runtime?cid=getdotnetcore&amp;os=windows&amp;arch=x64
+
+  $steamInstallPath = (Get-ItemProperty -Path "HKCU:\Software\Valve\Steam").SteamPath
+  $basePath = "$steamInstallPath\steamapps\workshop\content\1188930\3343188695\LocailzationAutoCopy"
+  $configPath = "$basePath\config.ini"
+  (Get-Content $configPath) | ForEach-Object {
+  ($_ -match '^steampath\s*=') ? "steampath = $($steamInstallPath -replace '\\', '/')/steamapps" : $_
+  } | Set-Content $configPath
+  pushd $basePath; $env:DOTNET_ROOT = "C:\Program Files\dotnet"; & "$basePath\LocailzationAutoCopy.exe"; popd
+  ```
 
 ## 🖋️ Scripts
 
