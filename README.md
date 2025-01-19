@@ -15,7 +15,7 @@
 
 - 📰 (Doing) [**스마트 택배 시스템**](prototypes/study/ros_study/ros-noetic-turtlebot3/README.md)
 
-  📅 2025-01-18 ~
+  📅 2025-01-20 ~
 
   🏷️ Tag: Turtlebot 3, ROS 1 Noetic, STM32 Nucleo F411RE, CMake, Cross-Compilation (Qt), Qt, APM stack, TCP/IP
 

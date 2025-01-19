@@ -222,7 +222,10 @@ stateDiagram-v2
   # ⭕ we recommend passing a number 1.5x your number of processors. 🔗 https://www.raspberrypi.com/documentation/computers/linux_kernel.html#native-build
   set jobs_core_n (math (nproc)" * 1.5")
 
+  #📰 kernel8.img 가 만들어졌을 때, 이 이미지를  $KERNEL.img 로 만들어서 옮기고, /boot/fimrware/config.txt 에 부트할 이미지 지정
   set -gx KERNEL kernel8-kernel_timer_config
+  set -gx CONFIG_LOCALVERSION -v8-synergy_hub
+
 
   # Set variables for Deploy (Host is NFS server, RasBerry pi is NFS Client)
   set nfs_host_pi_kernel "/nfs/kernels/raspberry_pi"
@@ -260,9 +263,9 @@ stateDiagram-v2
 
   if not grep -Fxq "$unique_comment" "$config_file"
       echo "
-      $unique_comment"'
-      CONFIG_LOCALVERSION="-v8-synergy_hub"
-      ' | prettify_indent_via_pipe | tee -a "$config_file" >/dev/null
+      $unique_comment
+      CONFIG_LOCALVERSION=\"$CONFIG_LOCALVERSION\"
+      " | prettify_indent_via_pipe | tee -a "$config_file" >/dev/null
       echo -e "\n" >> "$config_file"
   end
 
@@ -283,7 +286,7 @@ stateDiagram-v2
   ##### 👆 Deploy Image
 
   cp arch/arm64/boot/Image /nfs/kernels/raspberry_pi/$KERNEL.img
-  ssh r-pi.local "sudo cp /mnt/host/kernels/raspberry_pi/$KERNEL.img /boot/firmware"
+  ssh r-pi.local "sudo cp /mnt/host/kernels/raspberry_pi/$KERNEL.img /boot/firmware/"
 
   # echo "kernel=$KERNEL.img" | sudo tee -a /boot/firmware/config.txt
   # 📰 Doing... (Automation script)
