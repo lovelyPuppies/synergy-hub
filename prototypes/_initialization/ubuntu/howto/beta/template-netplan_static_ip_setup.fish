@@ -122,7 +122,7 @@ echo "Stopping $service_to_stop... and Starting $service_to_start..."
 
 
 ## Run nohup with multiple commands in background process 📅 2025-01-19 00:47:43
-systemd-run --user --unit=custom-task --scope nohup sh -c "
+systemd-run --user --unit=custom-task --scope nohup fish -c "
   sudo systemctl stop $service_to_stop && \
   sudo systemctl disable $service_to_stop && \
   sudo systemctl start $service_to_start && \
