@@ -15,7 +15,7 @@
 
 ## 📌 Project Shortcuts
 
-- [**Jetson Nano와 Edge AI를 활용한 실시간 수신호 인식 자율주행 RC카 개발 프로젝트**](https://github.com/lovelyPuppies/Project_SignalMaster) (External Link)
+- [**실시간 수신호 기반 자율주행 RC카**](https://github.com/lovelyPuppies/Project_SignalMaster) (External Link)
 
   🏷️ Tag: Python 3, C, Edge AI, On-Device, Yolo v11, JetSon Nano
 
@@ -23,11 +23,11 @@
 
     📜 **역할**: [젯슨 나노 통합 및 머신러닝 모델 파이프라인 구현](https://github.com/lovelyPuppies/Project_SignalMaster/tree/main/src/jetson-nano-mount/README.md) (External Link)
 
-- [**ATmega128 기반 선풍기 제어 시스템**](https://github.com/lovelyPuppies/fanProject) (External Link)
+- [**선풍기 제어 시스템**](https://github.com/lovelyPuppies/fanProject) (External Link)
 
   🏷️ Tag: C, ATmega128, AVR, Peripherals (UART, I2C, PWM, Timer), Design Pattern (MVP), Finite State Machine
 
-- [**Opencv 및 MediaPipe 기반 카메라 필터 애플리케이션 개발**](prototypes/study/python_study/camera_filter_app)
+- [**카메라 필터 애플리케이션**](prototypes/study/python_study/camera_filter_app/README.md)
 
   🏷️ Tag: Python 3, OpenCV, MediaPipe, PySide6, Face Detection, Landmark Processing, Alpha Blending, Real-time Filters
 
@@ -35,9 +35,9 @@
 
     📜 **역할**: [🌟 팀장] 토끼 귀 필터 구현 및 리팩터링, 프로젝트 다이어그램 작성.
 
-- [**Raspberry Pi 4 B 기반 커널 모듈 및 디바이스 드라이버 구현 (LED 제어)**](prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer)
+- [**타이머 기반 LED 제어 시스템 (디바이스 드라이버, 애플리케이션)**](prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/README.md)
 
-  🏷️ Tag: C, Make, clang
+  🏷️ Tag: C, Make, clang, Device Driver, Raspberry Pi 4 B, ioctl, Button ISR
 
 - [**환경 및 네트워크 초기화 자동화 스크립트 작성**](#️-scripts)
 
@@ -47,11 +47,11 @@
 
   🏷️ Tag: Docker, LFS
 
-- [**Python 및 IPython 기반 CS 지식 연구 결과를 웹에 시각화하기 위한 라이브러리 개발**](https://github.com/wbfw109/study-core?tab=readme-ov-file#31-python-utilities) \(External Link\)
+- [**CS 연구 시각화 라이브러리**](https://github.com/wbfw109/study-core?tab=readme-ov-file#31-python-utilities) \(External Link\)
 
-  &nbsp;&nbsp; ➡️ [Web Hosting](https://wbfw109.github.io/visualization_manager/ipython_central_control.html)
+  &nbsp;&nbsp; ➡️ [**Web Hosting**](https://wbfw109.github.io/visualization_manager/ipython_central_control.html)
 
-  🏷️ Tag: Python 3, GitHub Pages, Jupyter
+  🏷️ Tag: Python 3, GitHub Pages, Jupyter, IPython
 
 - [**Turtlebot 3**](prototypes/study/ros_study/ros-noetic-turtlebot3)
 

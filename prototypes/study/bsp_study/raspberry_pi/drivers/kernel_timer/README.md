@@ -18,7 +18,6 @@
         - [GPIO Pinout Table](#gpio-pinout-table)
     - [📁 Directory Structure](#-directory-structure)
   - [Retrospective](#retrospective)
-    - [📌 Key Learnings and Improvements](#-key-learnings-and-improvements)
 
 ## Project Introduction
 
@@ -363,13 +362,15 @@ stateDiagram-v2
 
 ## Retrospective
 
-### 📌 Key Learnings and Improvements
+1. gpio\_ prefix
 
-1. ***
+gpio\_ 접두사 함수는 비효율적이며, GPIO 핀을 명시적으로 관리하지 않아 핀 충돌이나 불필요한 요청 해제가 발생할 수 있습니다.
 
-   ➡️
+- 🔗 [GPIO Descriptor Consumer Interface](https://www.kernel.org/doc/html/latest/driver-api/gpio/consumer.html)
 
-   -
+  > The gpio\_ prefix is used for the legacy interface. No other function in the kernel should use these prefixes. The use of the legacy functions is **strongly discouraged**, new code should use <linux/gpio/consumer.h> and descriptors exclusively.
+
+-
 
 2. ***
    Gpiod.. gpiod 에 대해서만

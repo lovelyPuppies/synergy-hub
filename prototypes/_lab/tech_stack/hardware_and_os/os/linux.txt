@@ -1,5 +1,6 @@
 list of level 1 subjects
   - Linux
+  - Linux Kernel
   
 
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
@@ -661,3 +662,23 @@ Linux 🔪 library only
             ; Special Inode Read Write eXecute for Others
             This is equivalent to ‘(S_IROTH | S_IWOTH | S_IXOTH)’.
 
+
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+Linux Kernel
+
+  https://www.kernel.org/doc/
+  ⚓ GPIO Descriptor Consurmer Interface ; https://www.kernel.org/doc/html/latest/driver-api/gpio/consumer.html
+
+  All the functions that work with the descriptor-based GPIO interface are prefixed with gpiod_.
+  ❌ The gpio_ prefix is used for the legacy interface. No other function in the kernel should use these prefixes.
+    The use of the legacy functions is strongly discouraged, new code should use <linux/gpio/consumer.h> and descriptors exclusively.
+
+  # Userspace API
+    # Devices and I/O
+      # GPIO
+        #❌ Obsolete GPIO Userspace APIs
+          ⚓ GPIO Sysfs Interface for Userspace ; https://www.kernel.org/doc/html/latest/userspace-api/gpio/sysfs.html
+          
+
+https://www.kernel.org/doc/html/latest/userspace-api/gpio/sysfs.html

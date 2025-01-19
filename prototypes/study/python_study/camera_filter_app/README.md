@@ -20,14 +20,9 @@
       - [🖥️ Hardware](#️-hardware)
     - [📁 Directory Structure](#-directory-structure)
     - [📖 Key Components and Implementation](#-key-components-and-implementation)
-      - [Library Investigation](#library-investigation)
-      - [MediaPipe Solutions](#mediapipe-solutions)
-      - [Rabbit Ear Filter Implementation](#rabbit-ear-filter-implementation)
-      - [Code Refactoring](#code-refactoring)
-      - [Diagram Design](#diagram-design)
   - [📁 Python Files](#-python-files)
     - [🗄️ **filter.py**](#️-filterpy)
-      - [function: **overlay\_rabbit\_ears**(frame, landmarks)\*\*](#function-overlay_rabbit_earsframe-landmarks)
+      - [function: overlay_rabbit_ears(frame, landmarks)](#function-overlay_rabbit_earsframe-landmarks)
   - [❔ 참고사항](#-참고사항)
   - [Retrospective](#retrospective)
     - [📌 Key Learnings and Improvements](#-key-learnings-and-improvements)
@@ -326,28 +321,29 @@ tree camera_filter_app
 
 ### 📖 Key Components and Implementation
 
-#### Library Investigation
+- **Library Investigation**
 
-- PySide6, OpenCV, MediaPipe Solutions 등 프로젝트에 필요한 라이브러리 조사.
+  - PySide6, OpenCV, MediaPipe Solutions 등 프로젝트에 필요한 라이브러리 조사.
 
-#### MediaPipe Solutions
+- **MediaPipe Solutions**
 
-- MediaPipe BlazeFace 및 Face Mesh V2 모델 조사 및 활용.
-- 얼굴 탐지와 랜드마크 데이터 활용 최적화.
+  - MediaPipe BlazeFace 및 Face Mesh V2 모델 조사 및 활용.
+  - 얼굴 탐지와 랜드마크 데이터 활용 최적화.
 
-#### Rabbit Ear Filter Implementation
+- **Rabbit Ear Filter Implementation**
 
-- 얼굴 랜드마크 기반 필터 오버레이.
-- 알파 블렌딩을 적용하여 자연스러운 결과 구현.
+  - 얼굴 랜드마크 기반 필터 오버레이.
+  - 알파 블렌딩을 적용하여 자연스러운 결과 구현.
 
-#### Code Refactoring
+- **Code Refactoring**
 
-- 모듈화와 함수화로 코드 가독성 개선.
-- 중복 코드 제거 및 데이터 처리 최적화.
+  - 모듈화와 함수화로 코드 가독성 개선.
+  - 중복 코드 제거 및 데이터 처리 최적화.
 
-#### Diagram Design
+- **Diagram Design**
 
-- 프로젝트 구조와 알고리즘을 시각화하기 위해 다음 다이어그램을 작성:
+  프로젝트 구조와 알고리즘을 시각화하기 위해 다음 다이어그램을 작성:
+
   - Use Case Diagram
   - Activity Diagram
   - Sequence Diagram
@@ -362,7 +358,7 @@ tree camera_filter_app
 
 ### 🗄️ **[filter.py](filters.py)**
 
-#### function: **overlay_rabbit_ears**(frame, landmarks)\*\*
+#### function: overlay_rabbit_ears\(frame, landmarks\)
 
 ❔ 주요 기능
 

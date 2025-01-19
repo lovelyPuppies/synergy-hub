@@ -5,7 +5,7 @@
 
 회고..
 
-1. 현재 코드는 디스크립터 기반 GPIO API를 사용하지 않고 레거시 GPIO API(gpio_request, gpio_direction_output, gpio_free)를 사용합니다...
+1. 현재 코드는 디스크립터 기반 GPIO API를 사용하지 않고 레거시 GPIO API(gpio_request, gpio_direction_output, gpio_free)를 사용합니다... >> gpiod.. 리눅스 커널에서 권장하는..
 
    libgpiod는 기존의 sysfs 방식보다... (무슨차이? 테이블로..)
 
@@ -30,7 +30,7 @@
    gpioinfo /dev/gpiochip0
    gpioinfo /dev/gpiochip1
 
-2. 디바이스 트리 오버레이(DTS Overlay)의 실무 사용
+2. 디바이스 트리 오버레이(DTS Overlay)의 실무 사용을 는 것이 좋아 보인다?
    디바이스 트리 오버레이(DTS Overlay)는 하드웨어 설정을 동적으로 변경하거나 확장할 때 사용하는 도구로, 실무에서 다음과 같은 상황에서 유용하게 사용됩니다.
 
    !! 제품 프로토타이핑 및 테스트

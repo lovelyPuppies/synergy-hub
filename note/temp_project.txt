@@ -9680,7 +9680,6 @@ init/main.c
   }
   대신 SYSCALL_DEFINE1
 
-https://www.kernel.org/doc/html/latest/driver-api/gpio/consumer.html
 https://lwn.net/Articles/533632/
 https://stackoverflow.com/questions/39103185/gpiod-vs-gpio-methods-in-the-linux-kernel
 https://dev-growbook91.tistory.com/35
