@@ -17290,3 +17290,293 @@ GPG 에이전트가 ~/.gnupg/sshcontrol 파일에 SSH 키를 관리하도록 설
   gpg-agent 가 추세?
   https://jadaptive.com/java-ssh-library/ssh-key-management-best-practices-and-tools/
   https://dev.to/ehuelsmann/ssh-with-gpg-agent-on-systemd-5ddf
+
+
+💡 현대자동차 그룹 softeer HSAT  --> 자격인증 Lv.3 를 획득한 사람은 코딩테스트 면제.
+
+gpg-connect-agent /bye
+
+https://manpages.ubuntu.com/manpages/xenial/man1/gpg-agent.1.html
+       The agent is automatically started on demand by gpg, gpgsm, gpgconf, or gpg-connect-agent.
+       Thus there is no reason to start it manually.  In case you want to use the included Secure
+       Shell Agent you may start the agent using:
+
+         gpg-connect-agent /bye
+
+    It  is  important to set the GPG_TTY environment variable in your login shell, for example
+       in the ‘~/.bashrc’ init script:
+
+           export GPG_TTY=$(tty)
+
+       If you enabled the Ssh Agent Support, you also need to tell ssh about it by adding this to
+       your init script:
+
+         unset SSH_AGENT_PID
+         if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
+           export SSH_AUTH_SOCK="${HOME}/.gnupg/S.gpg-agent.ssh"
+         fi
+
+
+export GPG_TTY=(tty)
+
+mkdir -p ~/.gnupg
+echo 'enable-ssh-support
+extra-socket $HOME/.gnupg/S.gpg-agent.ssh
+' | tee ~/.gnupg/gpg-agent.conf >/dev/null
+
+
+. unset SSH_AGENT_PID
+  역할:
+  기존 ssh-agent의 PID 값을 비우는 역할을 합니다.
+
+  이유:
+  ssh-agent가 실행 중일 경우, 해당 프로세스가 SSH 키 인증을 처리하려고 할 수 있습니다. 그러나 우리는 gpg-agent를 SSH 에이전트로 사용하려 하므로 SSH_AGENT_PID를 해제해야 합니다.
+
+   pgrep -a ssh-agent
+
+
+systemctl --user edit gpg-agent
+
+    GNU nano 8.1                            /home/wbfw109v2/.config/systemd/user/gpg-agent.service.d/.#override.confbd25bdcface1c185                                     
+  ### Editing /home/wbfw109v2/.config/systemd/user/gpg-agent.service.d/override.conf
+  ### Anything between here and the comment below will become the contents of the drop-in file
+
+  [Service]
+  Environment=SSH_AUTH_SOCK=%h/.gnupg/S.gpg-agent.ssh
+  ExecStart=
+  ExecStart=/usr/bin/gpg-agent --supervised --enable-ssh-support --extra-socket %h/.gnupg/S.gpg-agent.ssh
+
+
+systemctl --user cat gpg-agent
+
+
+gpg-agent가 systemd에 의해 관리되고 있어, 직접 시작하거나 설정 파일(~/.gnupg/gpg-agent.conf) 변경만으로는 원하는 SSH 소켓 설정이 적용되지 않을 수 있습니다.
+따라서 systemd의 gpg-agent 관련 설정을 수정해야 합니다.
+https://askubuntu.com/questions/777900/how-to-configure-gnupgs-s-gpg-agent-socket-location
+❗ https://www.procustodibus.com/blog/2023/02/gpg-2-4-on-ubuntu-22-04/
+
+gpg --version
+bfw109v2 in 🌐 iot-04 in synergy-hub on  main [!] is 📦 v0.1.0 via 🐍 v3.13.1 
+❯ which gpg
+/home/linuxbrew/.linuxbrew/bin/gpg
+
+
+https://wiki.gnupg.org/AgentForwarding
+### SSH Configuration
+Note: With GnuPG >= 2.1.13 the location of the agents socket changed. To find out the name of the local socket, always use:
+❯ gpgconf --list-dir agent-extra-socket
+/run/user/1000/gnupg/S.gpg-agent.extra
+
+this is the name of the extra socket on the local box. On the server the standard socket needs to be configured. Find this one out with
+
+❯ gpgconf --list-dir agent-socket
+/run/user/1000/gnupg/S.gpg-agent
+
+음... 이게 무슨소리야?
+
+일단 내가 원하는건 Host (Ubuntu) -> Raspberry Pi 로 접근할 때 ssh key 로 접근하는건데, passphrase 를 입력해놔서 매 번 입력하는 것이 불필요해.
+그래서 gpg 를 사용해서 이를 터미널 셰션간 공유하려고 하는건데..
+그거랑 관련이 있는거야?
+
+❯ gpgconf --list-options gpg-agent
+pinentry-curses
+
+gpgconf --kill gpg-agent
+gpgconf --launch gpg-agent
+
+
+
+============
+흠.. gpg 이거 homebrew 로 설치해서 그런가?
+❯ ssh-add -v ~/.ssh/id_ed25519-raspberry_pi_1
+
+Enter passphrase for /home/wbfw109v2/.ssh/id_ed25519-raspberry_pi_1: 
+Could not add identity "/home/wbfw109v2/.ssh/id_ed25519-raspberry_pi_1": agent refused operation
+
+
+
+
+❗  https://opensource.com/article/19/4/gpg-subkeys-ssh
+
+Optionally, you may want to pre-specify the keys to be used for SSH so you won't have to use ssh-add to load the keys. To do this, specify the keys in the ~/.gnupg/sshcontrol file. The entries in this file are keygrips—internal identifiers gpg-agent uses to refer to keys. Unlike a key hash, a keygrip refers to both the public and private key. To find the keygrip, use gpg2 -K --with-keygrip, as shown below. Then add that line to the sshcontrol file.
+
+
+
+ssh-keygen -t ed25519 -C "wbfw109v2@gmail.com" -f ~/.ssh/id_ed25519-raspberry_pi_1
+  ❯ gpg --expert --edit-key ~/.ssh/id_ed25519-raspberry_pi_1.pub
+
+  gpg (GnuPG) 2.4.7; Copyright (C) 2024 g10 Code GmbH
+  This is free software: you are free to change and redistribute it.
+  There is NO WARRANTY, to the extent permitted by law.
+
+  gpg: key
+
+
+
+
+GnuPG needs to construct a user ID to identify your key.
+
+Real name: 
+
+id_ed25519-raspberry_pi_1
+# https://serverfault.com/questions/691120/how-to-generate-gpg-key-without-user-interaction
+echo "%echo Generating a new GPG key
+Key-Type: 1
+Key-Usage: sign
+Key-Length: 255
+Subkey-Type: 1
+Subkey-Usage: encrypt
+Subkey-Length: 255
+Name-Real: id_ed25519-raspberry_pi_1
+Name-Email: wbfw109v2@gmail.com
+Expire-Date: 0
+%commit
+%echo done" > batch_key.txt
+
+gpg --batch --generate-key batch_key.txt
+
+
+cat >keydetails <<EOF
+    %echo Generating a basic OpenPGP key
+    Key-Type: RSA
+    Key-Length: 2048
+    Subkey-Type: RSA
+    Subkey-Length: 2048
+    Name-Real: User 1
+    Name-Comment: User 1
+    Name-Email: user@1.com
+    Expire-Date: 0
+    %no-ask-passphrase
+    %no-protection
+    %pubring pubring.kbx
+    %secring trustdb.gpg
+    # Do a commit here, so that we can later print "done" :-)
+    %commit
+    %echo done
+EOF
+
+
+https://www.gnupg.org/documentation/
+https://www.gnupg.org/documentation/manuals.html
+  GnuPG manual
+  https://www.gnupg.org/documentation/manuals/gnupg/
+  HTML, PDF
+  Libgcrypt manual
+  HTML, PDF.
+  Libksba manual
+  HTML, PDF.
+  Libassuan manual
+  HTML, PDF.
+  GPGME manual
+  HTML, PDF.
+  Scute manual
+  HTML, PDF.
+  Man pages extracted from
+https://www.gnupg.org/documentation/manpage.html
+https://www.gnupg.org/documentation/manuals/gnupg24/gpg.1.html
+  # Unattended key generation
+
+
+echo "%echo Generating a new GPG key
+Key-Type: default
+Subkey-Type: default
+Name-Real: id_ed25519-raspberry_pi_1
+Name-Email: wbfw109v2@gmail.com
+Expire-Date: 0
+Passphrase: rpi
+%commit
+%echo done" | gpg --batch --generate-key
+
+echo "%echo Generating a new GPG key
+Key-Type: default
+Key-Curve: Ed25519
+Subkey-Type: default
+Subkey-Curve: Ed25519
+Name-Real: id_ed25519-raspberry_pi_1
+Name-Email: wbfw109v2@gmail.com
+Expire-Date: 0
+Passphrase: your_passphrase_here
+%commit
+%echo done" | gpg --batch --generate-key
+
+
+gpg: Generating a new GPG key
+gpg: WARNING: server 'gpg-agent' is older than us (2.4.4 < 2.4.7)
+gpg: Note: Outdated servers may lack important security fixes.
+gpg: Note: Use the command "gpgconf --kill all" to restart them.
+gpg: revocation certificate stored as '/home/wbfw109v2/.gnupg/openpgp-revocs.d/07944583F150CA9B92FA890EACD8D001FF60DD2C.rev'
+gpg: done
+
+
+gpg: revocation certificate stored as '/home/wbfw109v2/.gnupg/openpgp-revocs.d/0898979197C7EFDD1BB2DF790FA0703121EC6873.rev
+
+☑️ Issue; https://dev.gnupg.org/T5444
+  When 
+      %shell> 
+        echo "%echo Generating a new GPG key
+        Key-Type: default
+        Subkey-Type: default
+        Name-Real: id_ed25519-raspberry_pi_1
+        Name-Email: wbfw109v2@gmail.com
+        Expire-Date: 0
+        Passphrase: your_passphrase_here
+        %commit
+        %echo done" | gpg --batch --generate-key
+  >>
+    gpg: Generating a new GPG key
+    gpg: key generation failed: Unknown elliptic curve
+    gpg: done
+
+  >> add
+    Key-Curve: Ed25519
+    Subkey-Curve: Ed25519
+
+📦 gpg; gnupg
+    https://repology.org/project/gnupg/versions
+    https://formulae.brew.sh/formula/gnupg#default
+
+    It seems that it is harcorded to use path "/usr/bin/gpg-agent". 📅 2025-01-21 02:29:57
+    ? 근데 상관없을거같기도.. 명령어 사용할떄는 저 경로 참조 안하니까? path 가장 온쪽부터 binary 부터 찾아서...
+
+      %shell> 
+        echo "%echo Generating a new GPG key
+        Key-Type: default
+        Key-Curve: Ed25519
+        Subkey-Type: default
+        Subkey-Curve: Ed25519
+        Name-Real: id_ed25519-raspberry_pi_1
+        Name-Email: wbfw109v2@gmail.com
+        Expire-Date: 0
+        Passphrase: your_passphrase_here
+        %commit
+        %echo done" | gpg --batch --generate-key
+      >>
+        gpg: Generating a new GPG key
+        gpg: WARNING: server \'gpg-agent\' is older than us (2.4.4 < 2.4.7)
+        gpg: Note: Outdated servers may lack important security fixes.
+        gpg: Note: Use the command "gpgconf --kill all" to restart them.
+        gpg: revocation certificate stored as \'/home/wbfw109v2/.gnupg/openpgp-revocs.d/07944583F150CA9B92FA890EACD8D001FF60DD2C.rev\'
+        gpg: done
+
+
+echo "%echo Generating a new GPG key
+  Key-Type: default
+  Key-Curve: Ed25519
+  Subkey-Type: default
+  Subkey-Curve: Ed25519
+  Name-Real: id_ed25519-raspberry_pi_1
+  Name-Email: wbfw109v2@gmail.com
+  Expire-Date: 0
+  Passphrase: your_passphrase_here
+  %commit
+  %echo done" | gpg --batch --generate-key
+>> 
+  gpg: Generating a new GPG key
+  gpg: WARNING: server 'gpg-agent' is older than us (2.4.4 < 2.4.7)
+  gpg: Note: Outdated servers may lack important security fixes.
+  gpg: Note: Use the command "gpgconf --kill all" to restart them.
+  gpg: revocation certificate stored as '/home/wbfw109v2/.gnupg/openpgp-revocs.d/0898979197C7EFDD1BB2DF790FA0703121EC6873.rev'
+  gpg: done
+
+gpg --list-secret-keys
+

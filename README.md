@@ -18,7 +18,7 @@
 
   📅 2025-01-20 ~
 
-  🏷️ Tag: Turtlebot 3, ROS 1 Noetic, STM32 Nucleo F411RE, CMake, Cross-Compilation (Qt), Qt, APM stack, TCP/IP
+  🏷️ Tag: Turtlebot 3, ROS 1 Noetic, STM32 (Nucleo F411RE), CMake, Cross-Compilation (Qt), Qt, APM stack, TCP/IP
 
   - 팀원: 6
 
@@ -26,7 +26,7 @@
 
 - 🎱 [**타이머 기반 LED 제어 시스템 (디바이스 드라이버, 애플리케이션)**](prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/README.md)
 
-  🏷️ Tag: C, Make, Cross-Compilation (Kernel), clang, **Device Driver** (ioctl, Button ISR), Raspberry Pi 4 B
+  🏷️ Tag: C, Make, **ARMv8-a** (Raspberry Pi 4 B), Cross-Compilation (Kernel), clang, **Device Driver** (ioctl, Button ISR)
 
 - 🎱 [**실시간 수신호 기반 자율주행 RC카**](https://github.com/lovelyPuppies/Project_SignalMaster) (External Link)
 
@@ -52,7 +52,7 @@
 
   🏷️ Tag: Fish script, PowerShell
 
-- 🎱 [synergy-hub **LFS using docker**](prototypes/_initialization/lfs)
+- 🎱 [Private **LFS using docker**](prototypes/_initialization/lfs)
 
   🏷️ Tag: Docker, LFS
 
