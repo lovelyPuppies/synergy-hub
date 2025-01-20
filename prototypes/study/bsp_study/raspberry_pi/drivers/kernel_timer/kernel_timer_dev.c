@@ -24,14 +24,6 @@
 #define OFF              0
 #define ON               1
 
-#ifdef DEBUG
-  #define DEBUG_LOG(fmt, ...)                                                  \
-    printk(KERN_DEBUG "DEBUG: %s:%d:%s: " fmt, __FILE__, __LINE__, __func__,   \
-           ##__VA_ARGS__)
-#else
-  #define DEBUG_LOG(fmt, ...)
-#endif
-
 /* =========================
  *  Global Variables
  * ========================= */
@@ -89,7 +81,7 @@ static void kernel_timer_registertimer(unsigned long timeover) {
 }
 
 static void kernel_timer_func(struct timer_list *t) {
-  DEBUG_LOG("ledVal : %#04x\n", (unsigned int)(ledVal));
+  printk(KERN_DEBUG "ledVal : %#04x\n", (unsigned int)(ledVal));
   gpioLedSet(ledVal);
   ledVal = ~ledVal & 0xff;
   mod_timer(t, get_jiffies_64() + timerVal);
@@ -106,12 +98,12 @@ static int gpioLedInit(void) {
     sprintf(gpioName, "led%d", i);
     ret = gpio_request(gpioLed[i], gpioName);
     if (ret < 0)
-      DEBUG_LOG("Failed request gpio%d error\n", gpioLed[i]);
+      printk(KERN_DEBUG "Failed request gpio%d error\n", gpioLed[i]);
     return ret;
 
     ret = gpio_direction_output(gpioLed[i], OFF);
     if (ret < 0)
-      DEBUG_LOG("Failed directon_output gpio%d error\n", gpioLed[i]);
+      printk(KERN_DEBUG "Failed directon_output gpio%d error\n", gpioLed[i]);
     return ret;
   }
   return 0;
@@ -137,12 +129,12 @@ static int gpioKeyInit(void) {
     sprintf(gpioName, "key%d", i);
     ret = gpio_request(gpioKey[i], gpioName);
     if (ret < 0)
-      DEBUG_LOG("Failed Request gpio%d error\n", gpioKey[i]);
+      printk(KERN_DEBUG "Failed Request gpio%d error\n", gpioKey[i]);
     return ret;
 
     ret = gpio_direction_input(gpioKey[i]);
     if (ret < 0)
-      DEBUG_LOG("Failed direction_output gpio%d error\n", gpioKey[i]);
+      printk(KERN_DEBUG "Failed direction_output gpio%d error\n", gpioKey[i]);
     return ret;
   }
   return 0;
@@ -159,11 +151,11 @@ static int irqKeyInit(keyDataStruct *pKeyData) {
     // 🚣 Converts a GPIO pin to its corresponding IRQ number.
     pKeyData->irqKey[i] = gpio_to_irq(gpioKey[i]);
     if (pKeyData->irqKey[i] < 0) {
-      DEBUG_LOG("Failed gpio_to_irq() gpio%d error\n", gpioKey[i]);
+      printk(KERN_DEBUG "Failed gpio_to_irq() gpio%d error\n", gpioKey[i]);
       return pKeyData->irqKey[i];
     }
-    DEBUG_LOG("gpio_to_irq() gpio%d (irq%d) \n", gpioKey[i],
-              pkeyData->irqKey[i]);
+    printk(KERN_DEBUG "gpio_to_irq() gpio%d (irq%d) \n", gpioKey[i],
+           pKeyData->irqKey[i]);
   }
   return 0;
 }
@@ -187,7 +179,7 @@ irqreturn_t keyIsr(int irq, void *data) {
       }
     }
   }
-  DEBUG_LOG("keyIsr() irq : %d, keyNum : %d\n", irq, pKeyData->keyNum);
+  printk(KERN_DEBUG "keyIsr() irq : %d, keyNum : %d\n", irq, pKeyData->keyNum);
 
   wake_up_interruptible(&waitQueueRead);
   return IRQ_HANDLED;
@@ -198,8 +190,8 @@ irqreturn_t keyIsr(int irq, void *data) {
  * ========================= */
 static int ledkey_open(struct inode *inode, struct file *filp) {
 
-  DEBUG_LOG("call open -> major.minor: %d.%d\n", MAJOR(inode->i_rdev),
-            MINOR(inode->i_rdev));
+  printk(KERN_DEBUG "call open -> major.minor: %d.%d\n", MAJOR(inode->i_rdev),
+         MINOR(inode->i_rdev));
   int result = 0;
   keyDataStruct *pKeyData;
   char *irqName[GPIO_COUNT] = {
@@ -246,7 +238,7 @@ static ssize_t ledkey_read(struct file *filp, char *buf, size_t count,
     //    wait_event_interruptible_timeout(waitQueueRead, gpioKeyGet(), 100); = 1second
   }
 
-  DEBUG_LOG("call read -> key : %#04x\n", pKeyData->keyNum);
+  printk(KERN_DEBUG "call read -> key : %#04x\n", pKeyData->keyNum);
 
   put_user(pKeyData->keyNum, buf);
   // Or
@@ -273,7 +265,7 @@ static ssize_t ledkey_write(struct file *filp, const char *buf, size_t count,
   //  int ret;
   //  ret = copy_from_user(&kbuf, buf, sizeof(kbuf));
 
-  DEBUG_LOG("call write -> led : %#04x\n", kbuf);
+  printk(KERN_DEBUG "call write -> led : %#04x\n", kbuf);
 
   ledVal = (int)kbuf;
   return sizeof(kbuf);
@@ -281,14 +273,14 @@ static ssize_t ledkey_write(struct file *filp, const char *buf, size_t count,
 
 static __poll_t ledkey_poll(struct file *filp, struct poll_table_struct *wait) {
   keyDataStruct *pKeyData = filp->private_data;
-  DEBUG_LOG("_key : %u\n", (wait->_key & POLLIN));
+  printk(KERN_DEBUG "_key : %u\n", (wait->_key & POLLIN));
   if (wait->_key & POLLIN)
     poll_wait(filp, &waitQueueRead, wait);
   return pKeyData->keyNum > 0 ? POLLIN : 0;
 }
 
 static int ledkey_release(struct inode *inode, struct file *filp) {
-  DEBUG_LOG("call release \n");
+  printk(KERN_DEBUG "call release \n");
   keyDataStruct *pKeyData = filp->private_data;
 
   if (timer_pending(&timerLed)) {
@@ -310,7 +302,7 @@ static long timer_ioctl(struct file *filp, unsigned int cmd,
   int size = _IOC_SIZE(cmd);
   ledKey_data timer_info = {0};
 
-  DEBUG_LOG("call ioctl -> cmd : %04X\n", cmd);
+  printk(KERN_DEBUG "call ioctl -> cmd : %04X\n", cmd);
 
   if (_IOC_TYPE(cmd) != LEDKEY_IOCTL_MAGIC)
     return -EINVAL;
@@ -326,7 +318,7 @@ static long timer_ioctl(struct file *filp, unsigned int cmd,
 
   switch (cmd) {
   case TIMER_START:
-    DEBUG_LOG("timerVal : %d , sec : %d \n", timerVal, timerVal / HZ);
+    printk(KERN_DEBUG "timerVal : %d , sec : %d \n", timerVal, timerVal / HZ);
     // 🚣 If already regsitered, delete that.
     if (timer_pending(&timerLed))
       del_timer(&timerLed);
@@ -382,7 +374,7 @@ struct file_operations ledkey_fops = {
  *  Module Init/Exit
  * ========================= */
 static int kernel_timer_init(void) {
-  DEBUG_LOG("call kernel_timer_init \n");
+  printk(KERN_DEBUG "call kernel_timer_init \n");
 
   int ret;
 
@@ -399,7 +391,7 @@ static int kernel_timer_init(void) {
 }
 
 static void kernel_timer_exit(void) {
-  DEBUG_LOG("call kernel_timer_exit \n");
+  printk(KERN_DEBUG "call kernel_timer_exit \n");
 
   if (timer_pending(&timerLed)) {
     del_timer(&timerLed);

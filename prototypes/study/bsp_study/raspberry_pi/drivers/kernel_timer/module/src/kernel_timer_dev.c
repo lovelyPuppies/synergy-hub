@@ -24,14 +24,6 @@
 #define OFF              0
 #define ON               1
 
-// #ifdef DEBUG
-//   #define printk(KERN_DEBUG fmt, ...)                                                  \
-//     printk(KERN_DEBUG "DEBUG: %s:%d:%s: " fmt, __FILE__, __LINE__, __func__,   \
-//            ##__VA_ARGS__)
-// #else
-//   #define printk(KERN_DEBUG fmt, ...)
-// #endif
-
 /* =========================
  *  Global Variables
  * ========================= */

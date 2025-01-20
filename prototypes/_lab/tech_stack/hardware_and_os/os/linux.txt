@@ -682,7 +682,59 @@ Linux Kernel
           
 
 (✍️ Linux Kernel 🔪 study)
+  🚨 (Issue: Error); :.... 📅 16:38:04
+    ➡️ Workaround
+      - Use Dynamic DEBUG for the kernel, which is provided by the official documentation 🔗 https://www.kernel.org/doc/html/v4.19/admin-guide/dynamic-debug-howto.html  
+      - Try using `gpiod_*` instead of the legacy `gpio_*` API  
+
+  Description  
+    In a normal C program, this code works.
+    // 🧮 clang -o temp/c_program temp/c.c && temp/c_program  
+    #include <stdio.h>  
+
+    #define DEBUG  
+    #ifdef DEBUG  
+      #define DEBUG_LOG(fmt, ...)                                                  \  
+        printf("DEBUG: %s:%d:%s: " fmt, __FILE__, __LINE__, __func__, ##__VA_ARGS__)  
+    #else  
+      #define DEBUG_LOG(fmt, ...) /* Do nothing */  
+    #endif  
+
+    int main() {  
+      DEBUG_LOG("This is a debug message: %s, number: %d\n", "Testing", 123);  
+      return 0;  
+    }  
+
+    But if it's a kernel module, when inserting this module, it will return:  
+    insmod: ERROR: could not insert module /mnt/host/drivers/module/kernel_timer_dev.ko: Unknown error 517  
+    #define DEBUG
+    #ifdef DEBUG
+      #define DEBUG_LOG(fmt, ...)                                                  \
+        printk(KERN_DEBUG "DEBUG: %s:%d:%s: " fmt, __FILE__, __LINE__, __func__,   \
+              ##__VA_ARGS__)
+    #else
+      #define DEBUG_LOG(fmt, ...) /* Do nothing */
+    #endif
+
+    // 🛍️ e.g.  DEBUG_LOG("ledVal : %#04x\n", (unsigned int)(ledVal));
+    but it doesn't work. Any device LED doesn't work (turn on/off).
+    When rmmod and insmod are used, the error appears:
+    insmod: ERROR: could not insert module /mnt/host/drivers/module/kernel_timer_dev.ko: Unknown error 517
+    After reboot, the display is black.
+    
+    It must be because the hardware needs to be powered off and on again for it to persist.  
+    I don't know whether this issue is caused by the above code or by the use of the legacy `gpio_*` API.  
+    It seems better to use `gpiod_*` instead of `gpio_*` to avoid potential issues.
+
+
+
   ☑️ (Issue); Raspberry PI Display shows only a black screen when switching to a custom kernel image. 📅 2025-01-20 13:05:12
+    ➡️ Solution
+      Before booting with a custom kernel image, ensure that the modules are installed in `/lib/modules/$kernel_release`.
+      Or, If the system has already booted without the required modules, 
+        - Install the kernel's modules
+        - %shlle> sudo depmod -a && sudo reboot
+
     ❔ When
       - Build Configuration and Build in Host Raspberry Pi kernel source:
         ```fish
@@ -749,8 +801,3 @@ Linux Kernel
       Additionally, because the system was initially booted without the necessary modules being installed, even installing the modules afterward and rebooting did not resolve the issue immediately.
 
 
-    ➡️ Solution
-      Before booting with a custom kernel image, ensure that the modules are installed in `/lib/modules/$kernel_release`.
-      Or, If the system has already booted without the required modules, 
-        - Install the kernel's modules
-        - %shlle> sudo depmod -a && sudo reboot
