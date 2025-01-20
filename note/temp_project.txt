@@ -17396,8 +17396,6 @@ Could not add identity "/home/wbfw109v2/.ssh/id_ed25519-raspberry_pi_1": agent r
 
 
 
-❗  https://opensource.com/article/19/4/gpg-subkeys-ssh
-
 Optionally, you may want to pre-specify the keys to be used for SSH so you won't have to use ssh-add to load the keys. To do this, specify the keys in the ~/.gnupg/sshcontrol file. The entries in this file are keygrips—internal identifiers gpg-agent uses to refer to keys. Unlike a key hash, a keygrip refers to both the public and private key. To find the keygrip, use gpg2 -K --with-keygrip, as shown below. Then add that line to the sshcontrol file.
 
 
@@ -17456,27 +17454,6 @@ cat >keydetails <<EOF
 EOF
 
 
-https://www.gnupg.org/documentation/
-https://www.gnupg.org/documentation/manuals.html
-  GnuPG manual
-  https://www.gnupg.org/documentation/manuals/gnupg/
-  HTML, PDF
-  Libgcrypt manual
-  HTML, PDF.
-  Libksba manual
-  HTML, PDF.
-  Libassuan manual
-  HTML, PDF.
-  GPGME manual
-  HTML, PDF.
-  Scute manual
-  HTML, PDF.
-  Man pages extracted from
-https://www.gnupg.org/documentation/manpage.html
-https://www.gnupg.org/documentation/manuals/gnupg24/gpg.1.html
-  # Unattended key generation
-
-
 echo "%echo Generating a new GPG key
 Key-Type: default
 Subkey-Type: default
@@ -17508,7 +17485,7 @@ gpg: revocation certificate stored as '/home/wbfw109v2/.gnupg/openpgp-revocs.d/0
 gpg: done
 
 
-gpg: revocation certificate stored as '/home/wbfw109v2/.gnupg/openpgp-revocs.d/0898979197C7EFDD1BB2DF790FA0703121EC6873.rev
+gpg: revocation certificate stored as '/home/wbfw109v2/.gnupg/openpgp-revocs.d/D25A6DD3C9C4C92EB759A05E193BE4FC228E2D5D.rev
 
 ☑️ Issue; https://dev.gnupg.org/T5444
   When 
@@ -17558,25 +17535,122 @@ gpg: revocation certificate stored as '/home/wbfw109v2/.gnupg/openpgp-revocs.d/0
         gpg: revocation certificate stored as \'/home/wbfw109v2/.gnupg/openpgp-revocs.d/07944583F150CA9B92FA890EACD8D001FF60DD2C.rev\'
         gpg: done
 
+      근데 spam 이 너무 심함;; 삭제하자.
 
-echo "%echo Generating a new GPG key
-  Key-Type: default
+❗  https://opensource.com/article/19/4/gpg-subkeys-ssh
+  https://www.gnupg.org/documentation/
+  https://www.gnupg.org/documentation/manuals.html
+    GnuPG manual
+    https://www.gnupg.org/documentation/manuals/gnupg/
+    HTML, PDF
+    Libgcrypt manual
+    HTML, PDF.
+    Libksba manual
+    HTML, PDF.
+    Libassuan manual
+    HTML, PDF.
+    GPGME manual
+    HTML, PDF.
+    Scute manual
+    HTML, PDF.
+    Man pages extracted from
+  https://www.gnupg.org/documentation/manpage.html
+  https://www.gnupg.org/documentation/manuals/gnupg24/gpg.1.html
+    #❗ Unattended key generation
+
+🧮 awk "~",🆚 "="
+  정규식 매칭 vs  정확한 문자열 비교
+🧪📵 Test Fail ... gpg key with ssh...  음.. 이거 너무 문서가 없어.. gpg key 를 ssh 로 사용하는 경우는 드문가..
+  fish config
+    # 현재 터미널 정보를 GPG_TTY에 설정
+    set -x GPG_TTY (tty)
+
+    # 기존 ssh-agent의 PID를 해제
+    set -e SSH_AGENT_PID
+
+    # GPG 에이전트의 SSH 소켓을 SSH_AUTH_SOCK에 설정
+    if test "$gnupg_SSH_AUTH_SOCK_by" != "$fish_pid"
+        set -x SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
+    end
+    # set -gx XDG_RUNTIME_DIR /run/user/(id -u)
+
+    gpgconf --launch gpg-agent
+
+  echo "%echo Generating an SSH-compatible GPG key
+  Key-Type: eddsa
   Key-Curve: Ed25519
-  Subkey-Type: default
-  Subkey-Curve: Ed25519
+  Key-Usage: sign,auth
+  Subkey-Type: ecdh
+  Subkey-Curve: Curve25519
+  Subkey-Usage: encrypt
   Name-Real: id_ed25519-raspberry_pi_1
   Name-Email: wbfw109v2@gmail.com
   Expire-Date: 0
-  Passphrase: your_passphrase_here
+  Passphrase: rpi
   %commit
   %echo done" | gpg --batch --generate-key
->> 
-  gpg: Generating a new GPG key
-  gpg: WARNING: server 'gpg-agent' is older than us (2.4.4 < 2.4.7)
-  gpg: Note: Outdated servers may lack important security fixes.
-  gpg: Note: Use the command "gpgconf --kill all" to restart them.
-  gpg: revocation certificate stored as '/home/wbfw109v2/.gnupg/openpgp-revocs.d/0898979197C7EFDD1BB2DF790FA0703121EC6873.rev'
-  gpg: done
 
-gpg --list-secret-keys
 
+  >> 
+    gpg: Generating an SSH-compatible GPG key
+    gpg: WARNING: server 'gpg-agent' is older than us (2.4.4 < 2.4.7)
+    gpg: Note: Outdated servers may lack important security fixes.
+    gpg: Note: Use the command "gpgconf --kill all" to restart them.
+    gpg: revocation certificate stored as '/home/wbfw109v2/.gnupg/openpgp-revocs.d/D25A6DD3C9C4C92EB759A05E193BE4FC228E2D5D.rev'
+    gpg: done
+
+  gpgconf --kill all
+  gpgconf --launch gpg-agent
+
+  gpg --list-secret-keys
+
+  echo "enable-ssh-support" | tee ~/.gnupg/gpg-agent.conf
+
+  gpg -K --with-keygrip 
+  # sec (Secret Key)
+  # uid (User ID)
+  # ssb (Subkey)
+  # keygrip: unique identifier for GPG key
+
+  # Search for the ssb section in the GPG output, then extract the Keygrip that follows and immediately exit
+  set keygrip (gpg --list-secret-keys --with-keygrip | awk '/ssb/ {while(getline) if($1 == "Keygrip") {print $3; exit}}')
+    1. 주 키 또는 서브키 선택
+      SSH 인증에 사용할 키를 선택하려면 주 키(Primary Key) 또는 서브키(Subkey) 중 하나를 선택해야 합니다.
+      일반적으로 주 키는 서명 및 인증을 위한 기본 키로 사용되며, 서브키는 암호화나 서명을 위한 보조적인 역할을 합니다.
+
+    2. keygrip 선택
+      keygrip이 여러 개 나올 때, SSH 인증용으로 사용할 키에 해당하는 keygrip을 선택해야 합니다.
+      SSH 인증에 주로 사용되는 키는 ssb 항목으로 나타나는 서브키입니다. 따라서 서브키의 keygrip을 사용하여 sshcontrol 파일에 추가할 수 있습니다.
+
+  # Search for the ssb section in the GPG output, then extract the Keygrip that follows and immediately exit
+  set keygrip (gpg --list-secret-keys --with-keygrip | awk '/ssb/ {while(getline) if($1 == "Keygrip") {print $3; exit}}')
+  # DE768498810614C4CA2F91ECA722774023EF7FB9
+  echo $keygrip | tee -a ~/.gnupg/sshcontrol
+
+  gpg --list-public-keys
+    >> D25A6DD3C9C4C92EB759A05E193BE4FC228E2D5D
+
+  ❯ gpg --export-ssh-key
+  usage: gpg [options] --export-ssh-key <user-id>
+
+  gpg --export-ssh-key id_ed25519-raspberry_pi_1 > ~/.ssh/id_ed25519-raspberry_pi_1.pub
+    >> ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHKjKpyn2VRHYN0O5B0l7X1Rb4GazdDGT76rK/j6n/TO openpgp:0x228E2D5D
+  ssh-copy-id -f -i ~/.ssh/id_ed25519-raspberry_pi_1.pub pi19@pi.local
+
+
+
+  # gpgp --delete-key
+
+
+
+  gpg --export-ssh-key DE768498810614C4CA2F91ECA722774023EF7FB9 > ~/.ssh/id_ed25519-raspberry_pi_1.pub
+
+  gpg --edit-key wbfw109v2@gmail.com
+    >>  usage: SC .. 서명 및 인증용..
+
+
+  ❓ GPG 키를 사용할 경우, SSH 설정 파일에서 IdentityFile을 지정하지 않아야 합니다. 대신, SSH 클라이언트가 GPG 에이전트를 통해 키를 자동으로 가져오게 설정합니다. ~/.ssh/config 파일을 아래와 같이 수정하세요:
+
+
+
+  현재 ssh-agent를 시작한 상태에서 ssh-add -L 명령이 "The agent has no identities"라고 표시되는 것은 gpg-agent와 ssh-agent가 서로 다른 에이전트를 사용하고 있다는 점이 문제일 수 있습니다. 아

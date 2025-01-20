@@ -228,9 +228,6 @@ echo "▶️  Installing essential tools for downloading, managing packages, and
 📦 wget
     https://repology.org/project/wget/versions
     https://formulae.brew.sh/formula/wget#default
-📦 gpg; gnupg
-    https://repology.org/project/gnupg/versions
-    https://formulae.brew.sh/formula/gnupg#default
 📦 awk; gawk
     https://repology.org/project/gawk/versions
     https://formulae.brew.sh/formula/gawk#default
@@ -249,7 +246,7 @@ echo "▶️  Installing essential tools for downloading, managing packages, and
     https://repology.org/project/github-cli/versions
     https://formulae.brew.sh/formula/gh#default
 '
-brew install curl wget gnupg gawk git gh
+brew install curl wget gawk git gh
 git config --global init.defaultBranch main
 git config --global core.editor "code --wait"
 
@@ -1392,6 +1389,9 @@ end
 
 
 : ' ❌🥞 Packages that should not be installed via Linux Homebrew
+📰📦 gpg; gnupg
+    https://repology.org/project/gnupg/versions
+    https://formulae.brew.sh/formula/gnupg#default
 📦 avahi ; https://github.com/avahi/avahi
   https://repology.org/project/avahi/versions
   https://formulae.brew.sh/formula/avahi
