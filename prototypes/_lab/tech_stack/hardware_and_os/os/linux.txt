@@ -667,64 +667,54 @@ Linux 🔪 library only
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
 Linux Kernel
 
-  https://www.kernel.org/doc/
-  ⚓ GPIO Descriptor Consurmer Interface ; https://www.kernel.org/doc/html/latest/driver-api/gpio/consumer.html
-
-  All the functions that work with the descriptor-based GPIO interface are prefixed with gpiod_.
-  ❌ The gpio_ prefix is used for the legacy interface. No other function in the kernel should use these prefixes.
-    The use of the legacy functions is strongly discouraged, new code should use <linux/gpio/consumer.h> and descriptors exclusively.
-
-  # Userspace API
-    # Devices and I/O
-      # GPIO
-        #❌ Obsolete GPIO Userspace APIs
-          ⚓ GPIO Sysfs Interface for Userspace ; https://www.kernel.org/doc/html/latest/userspace-api/gpio/sysfs.html
-          
-
 (✍️ Linux Kernel 🔪 study)
-  🚨 (Issue: Error); :.... 📅 16:38:04
+  🚨 (Issue: Error); Unknown Error: Caused by Custom Dynamic Debug Code or Legacy GPIO API Usage 📅 2025-01-20 18:42:35
     ➡️ Workaround
       - Use Dynamic DEBUG for the kernel, which is provided by the official documentation 🔗 https://www.kernel.org/doc/html/v4.19/admin-guide/dynamic-debug-howto.html  
       - Try using `gpiod_*` instead of the legacy `gpio_*` API  
 
-  Description  
-    In a normal C program, this code works.
-    // 🧮 clang -o temp/c_program temp/c.c && temp/c_program  
-    #include <stdio.h>  
+    ❔ Description
+      In a normal C program, this code works.
+      // 🧮 clang -o temp/c_program temp/c.c && temp/c_program  
+      #include <stdio.h>  
 
-    #define DEBUG  
-    #ifdef DEBUG  
-      #define DEBUG_LOG(fmt, ...)                                                  \  
-        printf("DEBUG: %s:%d:%s: " fmt, __FILE__, __LINE__, __func__, ##__VA_ARGS__)  
-    #else  
-      #define DEBUG_LOG(fmt, ...) /* Do nothing */  
-    #endif  
+      #define DEBUG  
+      #ifdef DEBUG  
+        #define DEBUG_LOG(fmt, ...)                                                  \  
+          printf("DEBUG: %s:%d:%s: " fmt, __FILE__, __LINE__, __func__, ##__VA_ARGS__)  
+      #else  
+        #define DEBUG_LOG(fmt, ...) /* Do nothing */  
+      #endif  
 
-    int main() {  
-      DEBUG_LOG("This is a debug message: %s, number: %d\n", "Testing", 123);  
-      return 0;  
-    }  
+      int main() {  
+        DEBUG_LOG("This is a debug message: %s, number: %d\n", "Testing", 123);  
+        return 0;  
+      }  
 
-    But if it's a kernel module, when inserting this module, it will return:  
-    insmod: ERROR: could not insert module /mnt/host/drivers/module/kernel_timer_dev.ko: Unknown error 517  
-    #define DEBUG
-    #ifdef DEBUG
-      #define DEBUG_LOG(fmt, ...)                                                  \
-        printk(KERN_DEBUG "DEBUG: %s:%d:%s: " fmt, __FILE__, __LINE__, __func__,   \
-              ##__VA_ARGS__)
-    #else
-      #define DEBUG_LOG(fmt, ...) /* Do nothing */
-    #endif
+      But if it's a kernel module, when inserting this module, it will return:  
+      insmod: ERROR: could not insert module /mnt/host/drivers/module/kernel_timer_dev.ko: Unknown error 517  
+      #define DEBUG
+      #ifdef DEBUG
+        #define DEBUG_LOG(fmt, ...)                                                  \
+          printk(KERN_DEBUG "DEBUG: %s:%d:%s: " fmt, __FILE__, __LINE__, __func__,   \
+                ##__VA_ARGS__)
+      #else
+        #define DEBUG_LOG(fmt, ...) /* Do nothing */
+      #endif
 
-    // 🛍️ e.g.  DEBUG_LOG("ledVal : %#04x\n", (unsigned int)(ledVal));
-    but it doesn't work. Any device LED doesn't work (turn on/off).
-    When rmmod and insmod are used, the error appears:
-    insmod: ERROR: could not insert module /mnt/host/drivers/module/kernel_timer_dev.ko: Unknown error 517
-    After reboot, the display is black.
-    
-    It must be because the hardware needs to be powered off and on again for it to persist.  
-    I don't know whether this issue is caused by the above code or by the use of the legacy `gpio_*` API.  
-    It seems better to use `gpiod_*` instead of `gpio_*` to avoid potential issues.
+      // 🛍️ e.g.  DEBUG_LOG("ledVal : %#04x\n", (unsigned int)(ledVal));
+      but it doesn't work. Any device LED doesn't work (turn on/off).
+      
+      When rmmod and insmod are used, the error appears:
+        >> insmod: ERROR: could not insert module /mnt/host/drivers/module/kernel_timer_dev.ko: Unknown error 517
+      ❗ After reboot, the display is black, and it persists until the hardware is physically powered off and on again.
+      
+      
+      🤔 I don't know whether this issue is caused
+        - by the above code,
+        - by the use of the legacy `gpio_*` API, or
+        - by the kernel's support for C99 or lower versions, which might affect compatibility.
+      It seems better to use `gpiod_*` instead of `gpio_*` to avoid potential issues.
 
 
 
@@ -799,5 +789,25 @@ Linux Kernel
           This means that if modules are missing during the first boot with the custom kernel, even installing the modules later will not resolve the issue until the dependency information is manually updated.
       
       Additionally, because the system was initially booted without the necessary modules being installed, even installing the modules afterward and rebooting did not resolve the issue immediately.
+
+
+----------------------------------------------
+⚓ Linux Kernel 🔪 Docs ; https://www.kernel.org/doc/
+  # Drvier APIs
+    # Subsystem-specific APIs
+      # General Purpose Input/Output (GPIO)
+        ⚓ GPIO Descriptor Consurmer Interface ; https://www.kernel.org/doc/html/latest/driver-api/gpio/consumer.html
+          All the functions that work with the descriptor-based GPIO interface are prefixed with gpiod_.
+          ❌ The gpio_ prefix is used for the legacy interface. No other function in the kernel should use these prefixes.
+            The use of the legacy functions is strongly discouraged, new code should use <linux/gpio/consumer.h> and descriptors exclusively.
+
+  # Userspace API
+    # Devices and I/O
+      # GPIO
+        #❌ Obsolete GPIO Userspace APIs
+          ⚓ GPIO Sysfs Interface for Userspace ; https://www.kernel.org/doc/html/latest/userspace-api/gpio/sysfs.html
+          
+
+
 
 

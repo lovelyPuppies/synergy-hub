@@ -4246,51 +4246,6 @@ journalctl -u signal-masters.service -f
 
 
 
-set -x USER_EMAIL wbfw109v2@gmail.com
-ssh-keygen -t rsa -b 4096 -C $USER_EMAIL
-
->>
-Generating public/private rsa key pair.
-Enter file in which to save the key (/home/wbfw109v2/.ssh/id_rsa): 
-Enter passphrase (empty for no passphrase): 
-Enter same passphrase again: 
-Your identification has been saved in /home/wbfw109v2/.ssh/id_rsa
-Your public key has been saved in /home/wbfw109v2/.ssh/id_rsa.pub
-The key fingerprint is:
-SHA256:kAZVp9FN7399ZIoV87ew2Nwofaa5QM8et7T9wuwOn+A wbfw109v2@gmail.com
-The key's randomart image is:
-+---[RSA 4096]----+
-|    ....o..o.    |
-|     . . +. ..   |
-|      + .     +  |
-|     . .     . + |
-|        S  . .o =|
-|          . Bo==+|
-|           ++%.B=|
-|           .++%.*|
-|            EB*++|
-+----[SHA256]-----+
-
-
-cat ~/.ssh/id_rsa.pub
-# and copy and paste https://github.com/settings/keys
-# >> ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCpnZq5CnCdclRxcJUtkite3Av1Inpp1ibyiOK0P6ERonW2nTknD/lesW2nzSDFypxK3YDUg6YZaplgQvH/K0+DOFoh7rf8aoPJGXGqOjbp3o+bbXPqxg/MkZ1F29OA3t5Iu0vLE6l59r7OxBSnqyjnXW43oqNgau9HH0LhlM6gSCDjLLAZMPBdVXrriAzlLnwCrccy/sCAn/npeBBMHdGXOFWdVxZUhXl+rUoTwM91VyxrOx67giOMgq55nVksutUXgEdeQ2duO8EkuZAiSU0vSQT0US0NUsT6XN5D+lHJx/0EF9GCjIaHDIMehMh9tHxhlwMvJen4LB+JUEcY1Nob11h9/loHIFJvl1F9ja9I+UStQuCbfO3grHIJmDp29eW/Vd6gSW2IiC1MSCL2oU8dIUOmMjqHWdBcziYHUnKG9o5nTUvObPy7pFZOn8HXQLIdEF05RFZI3rVFgSohVKsh16BwwrmTOVWkHS9glOItDifkhx5rfb8Hkr0JVXyV4EQnhAVBfgwaaKukLYOQX9sfPLkZKA2voyHK6ve2eTTabtynkzLNcNefKaMKCbUGTc4Y8CZSUQSh8ECs7EBS6eIKvNcQCh1DO1DvcKtm+kVqLpngDYn1vzCeZkHV8B/7mbrAS3/QuJbgP5GwkuLDUi6W7bGFv0MhFDxYOzEXQpYkKQ== wbfw109v2@gmail.com
-
-
-eval (ssh-agent -c)
-# e.g. >> Agent pid 34890
-
-
-ssh-add ~/.ssh/id_rsa
-# e.g. >> Identity added: /home/wbfw109v2/.ssh/id_rsa (wbfw109v2@gmail.com)
-
-echo "복사한 공개 키 내용" >> ~/.ssh/authorized_keys
-chmod 600 ~/.ssh/authorized_keys
-
-서버에 설정
-
-
-
 git config user.name "wbfw109v2"
 git config user.email "wbfw109v2@gmail.com"
 
@@ -5020,30 +4975,6 @@ Atemgea 128 에 flash memory 가 128KB, SRAM: 4KB (힙 메모리영역..?전역 
   xd: You can use xd, which will select the current line (x) and delete it (d). Tip: pressing x repeatedly will select more lines downwards.
 범용 레지스터? R0 ~ R31 ? 32 비트구조.. ARM architecture.. LU.. 
 메모리 공간을 잡고 변수에 이름을 붙인 것.
-
-
-로컬 머신에서
-  >> ssh-keygen -t rsa -b 4096 -C "wbfw109v2@gamil.com"
-
-~/home/wbfw109v2/.ssh/id_rsa
-
-사용자 이름 + 시스템 이름 + 용도를
-
-ssh-keygen -t rsa -b 4096 -C "wbfw109v2@gmail.com" -f ~/.ssh/id_rsa_vm-management
-  The key fingerprint is:
-  SHA256:QTPThTRgQ5vdpmHnib1CqQPgWG2jvwSDZg2IF1tf5dQ wbfw109v2@gmail.com
-  The key's randomart image is:
-  +---[RSA 4096]----+
-  |  . .  .@==+.    |
-  |.. + o + @ooE    |
-  |o + o = + = +    |
-  | . B + . o X .   |
-  |  = * . S = +    |
-  | o   + . o   .   |
-  |      o o . .    |
-  |     . . . .     |
-  |      .          |
-  +----[SHA256]-----+
 
 ??? 임베디드 프로그래밍에서는 system call 함수를 직접 사용해서 사용하나? stdlib 를 안쓰고?
 
@@ -17250,16 +17181,8 @@ dev-dri-renderD128
 
  ??? 이거? https://inblog.ai/isehyeon258/22417?utm_source
 
- SSH 키 생성
 
-  ssh-keygen -t rsa -b 4096 -C "your_email@example.com" // SSH 키 생성,여러 프롬프트가 떠도 그냥 엔터
-  ssh-copy-id sehyeon@ip // SSH 키 라즈베리파이로 복사
-  ssh sehyeon@ip // SSH 접속 시 비밀번호를 묻지 않는다면 성공
-
-  /*scp 명령어 실행 시 라즈베리파이 계정 비밀번호 입력이 필요한데 매번 비밀번호를 입력하지 않고 자동으로 파일을 전
-
-
-  커널과 모듈 일치:
+커널과 모듈 일치:
 
 커널 이미지와 lib/modules/<커널 버전>의 모듈 버전이 일치해야 합니다.
 커널 이미지만 변경했는데 기존 모듈이 불일치하면 부팅 문제 또는 장치 초기화 실패가 발생할 수 있습니다.
@@ -17315,3 +17238,83 @@ for 32bit defaul value is 100.
 🚣 https://docs.kernel.org/core-api/printk-basics.html
 
 
+ SSH 키 생성
+
+  ssh-keygen -t rsa -b 4096 -C "your_email@example.com" // SSH 키 생성,여러 프롬프트가 떠도 그냥 엔터
+  ssh-copy-id sehyeon@ip // SSH 키 라즈베리파이로 복사
+  ssh sehyeon@ip // SSH 접속 시 비밀번호를 묻지 않는다면 성공
+
+  /*scp 명령어 실행 시 라즈베리파이 계정 비밀번호 입력이 필요한데 매번 비밀번호를 입력하지 않고 자동으로 파일을 전
+
+
+
+
+로컬 머신에서
+  >> ssh-keygen -t rsa -b 4096 -C "wbfw109v2@gamil.com"
+
+~/home/wbfw109v2/.ssh/id_rsa
+
+사용자 이름 + 시스템 이름 + 용도를
+
+ssh-keygen -t rsa -b 4096 -C "wbfw109v2@gmail.com" -f ~/.ssh/id_rsa_vm-management
+  The key fingerprint is:
+  SHA256:QTPThTRgQ5vdpmHnib1CqQPgWG2jvwSDZg2IF1tf5dQ wbfw109v2@gmail.com
+  The key's randomart image is:
+  +---[RSA 4096]----+
+  |  . .  .@==+.    |
+  |.. + o + @ooE    |
+  |o + o = + = +    |
+  | . B + . o X .   |
+  |  = * . S = +    |
+  | o   + . o   .   |
+  |      o o . .    |
+  |     . . . .     |
+  |      .          |
+  +----[SHA256]-----+
+
+
+
+
+
+set -x USER_EMAIL wbfw109v2@gmail.com
+ssh-keygen -t rsa -b 4096 -C $USER_EMAIL
+
+>>
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/wbfw109v2/.ssh/id_rsa): 
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /home/wbfw109v2/.ssh/id_rsa
+Your public key has been saved in /home/wbfw109v2/.ssh/id_rsa.pub
+The key fingerprint is:
+SHA256:kAZVp9FN7399ZIoV87ew2Nwofaa5QM8et7T9wuwOn+A wbfw109v2@gmail.com
+The key's randomart image is:
++---[RSA 4096]----+
+|    ....o..o.    |
+|     . . +. ..   |
+|      + .     +  |
+|     . .     . + |
+|        S  . .o =|
+|          . Bo==+|
+|           ++%.B=|
+|           .++%.*|
+|            EB*++|
++----[SHA256]-----+
+
+
+cat ~/.ssh/id_rsa.pub
+# and copy and paste https://github.com/settings/keys
+# >> ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCpnZq5CnCdclRxcJUtkite3Av1Inpp1ibyiOK0P6ERonW2nTknD/lesW2nzSDFypxK3YDUg6YZaplgQvH/K0+DOFoh7rf8aoPJGXGqOjbp3o+bbXPqxg/MkZ1F29OA3t5Iu0vLE6l59r7OxBSnqyjnXW43oqNgau9HH0LhlM6gSCDjLLAZMPBdVXrriAzlLnwCrccy/sCAn/npeBBMHdGXOFWdVxZUhXl+rUoTwM91VyxrOx67giOMgq55nVksutUXgEdeQ2duO8EkuZAiSU0vSQT0US0NUsT6XN5D+lHJx/0EF9GCjIaHDIMehMh9tHxhlwMvJen4LB+JUEcY1Nob11h9/loHIFJvl1F9ja9I+UStQuCbfO3grHIJmDp29eW/Vd6gSW2IiC1MSCL2oU8dIUOmMjqHWdBcziYHUnKG9o5nTUvObPy7pFZOn8HXQLIdEF05RFZI3rVFgSohVKsh16BwwrmTOVWkHS9glOItDifkhx5rfb8Hkr0JVXyV4EQnhAVBfgwaaKukLYOQX9sfPLkZKA2voyHK6ve2eTTabtynkzLNcNefKaMKCbUGTc4Y8CZSUQSh8ECs7EBS6eIKvNcQCh1DO1DvcKtm+kVqLpngDYn1vzCeZkHV8B/7mbrAS3/QuJbgP5GwkuLDUi6W7bGFv0MhFDxYOzEXQpYkKQ== wbfw109v2@gmail.com
+
+
+eval (ssh-agent -c)
+# e.g. >> Agent pid 34890
+
+
+ssh-add ~/.ssh/id_rsa
+# e.g. >> Identity added: /home/wbfw109v2/.ssh/id_rsa (wbfw109v2@gmail.com)
+
+echo "복사한 공개 키 내용" >> ~/.ssh/authorized_keys
+chmod 600 ~/.ssh/authorized_keys
+
+서버에 설정
