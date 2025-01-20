@@ -41,16 +41,18 @@ Host tailscale-machine-to-intel-server
 #   User pi19
 #   ForwardX11 yes
 #   ForwardX11Trusted yes
-##### ✅ (how-to); Add SSH key with Passphrase 📅 2025-01-20 20:16:50
-## Note that 4096 bit is excessive. It significantly slows down the connection.
-# ssh-keygen -t rsa -b 2048 -C "wbfw109v2@gmail.com" -f ~/.ssh/id_rsa-raspberry_pi_1
-##  >> SHA256:Mud7db0JIF8pfj2cZDUTxx8p4pz4tD1krMVZ6v1Gjbo wbfw109v2@gmail.com
-# ssh-copy-id -i ~/.ssh/id_rsa-raspberry_pi_1.pub pi19@pi.local
-##  %shell> ssh -i ~/.ssh/id_rsa-raspberry_pi_1 pi19@pi.local
-### Register to ssh-agent
+# #### ✅ (how-to); Add SSH key with Passphrase 📅 2025-01-20 20:16:50
+# # Note that RSA is excessive. It significantly slows down the connection.
+# ssh-keygen -t ed25519 -C "wbfw109v2@gmail.com" -f ~/.ssh/id_ed25519-raspberry_pi_1
+# # #  >> SHA256:WRpi2KApyJmZXcOQc+/YOKetpQ+5BYe4uu+tR/y+cdo wbfw109v2@gmail.com
+# ssh-copy-id -f -i ~/.ssh/id_ed25519-raspberry_pi_1.pub pi19@pi.local
+# # #  %shell> ssh -i ~/.ssh/id_ed25519-raspberry_pi_1 pi19@pi.local
+# # ## Register to ssh-agent
 # eval (ssh-agent -c)
-# ssh-add ~/.ssh/id_rsa-raspberry_pi_1
-## %shell> ssh r-pi.local
+# ssh-add ~/.ssh/id_ed25519-raspberry_pi_1
+# ## >> Enter passphrase for ~/.ssh/id_ed25519-raspberry_pi_1: 
+# ## >> Please enter a passphrase to protect the received secret key .... within gpg-agent's key storage
+
 
 # # %shell> ssh jetson@nano19.local
 # Host nano19.local

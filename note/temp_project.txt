@@ -17253,6 +17253,40 @@ ssh-keygen -t rsa -b 4096 -C "wbfw109v2@gmail.com" -f ~/.ssh/id_rsa-jetson_nano_
   %shell> ssh -V
   >> OpenSSH_9.9p1, OpenSSL 3.4.0 22 Oct 2024ps aux | grep ssh-agent
 
+~/.gnupg/private-keys.v1
+
+ssh-agent는 메모리에서만 키를 관리하기 때문에, 해당 키는 현재 세션에서만 유효합니다.
+
+       ssh-add -T pubkey ...
+
+synergy-hub on  main [!] is 📦 v0.1.0 via 🐍 v3.13.1 
+❯ ssh-add -d ~/.ssh/id_rsa-raspberry_pi_1
+Identity removed: /home/wbfw109v2/.ssh/id_rsa-raspberry_pi_1 RSA (wbfw109v2@gmail.com)
+
+
+synergy-hub on  main [!] is 📦 v0.1.0 via 🐍 v3.13.1 
+❯ ssh-add -D
+All identities removed.
+
+❯ ssh-add -l
+4096 SHA256:VVYmdeO3P+6WGdDBKvLcNp74eCd/OpTCL9mY0tlnZ1I wbfw109v2@gmail.com (RSA)
+
+
+GPG 에이전트가 ~/.gnupg/sshcontrol 파일에 SSH 키를 관리하도록 설정되어 있으면, GPG는 SSH 인증 요청을 **gpg-agent**에 전달합니다. 기본적으로 gpg-agent는 SSH 인증을 담당하는 설정을 갖추고 있어서, ssh-agent와 겹치게 됩니다.
 
 
 
+🚨 GPG agent doesn't remove my SSH key from the keyring ; https://unix.stackexchange.com/questions/185393/gpg-agent-doesnt-remove-my-ssh-key-from-the-keyring
+  gpg-connect-agent
+  KEYINFO --ssh-list --ssh-fpr
+  DELETE_KEY <key_id>
+  BYE
+
+  gpg-agent vs ssh agent
+  https://jadaptive.com/java-ssh-library/ssh-key-management-best-practices-and-tools/
+
+
+🆚 ssh-agent vs gpg-agent
+  gpg-agent 가 추세?
+  https://jadaptive.com/java-ssh-library/ssh-key-management-best-practices-and-tools/
+  https://dev.to/ehuelsmann/ssh-with-gpg-agent-on-systemd-5ddf
