@@ -306,11 +306,11 @@ stateDiagram-v2
   ##### 👆 Deploy Image
   ### Install the 64-bit kernel
   cp arch/arm64/boot/Image /nfs/kernels/raspberry_pi/$kernel_image_name
-  ssh r-pi.local "sudo cp $nfs_client_raspberry_pi_kernel_dir/$kernel_image_name /boot/firmware/"
+  ssh $raspberry_pi_host "sudo cp $nfs_client_raspberry_pi_kernel_dir/$kernel_image_name /boot/firmware/"
 
   ### Install the kernel modules
   make -j$jobs_core_n ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- INSTALL_MOD_PATH=$nfs_server_raspberry_pi_kernel_dir modules_install
-  ssh r-pi.local "sudo cp -r $nfs_client_raspberry_pi_kernel_dir/lib/modules/$kernel_release/ /lib/modules/"
+  ssh $raspberry_pi_host "sudo cp -r $nfs_client_raspberry_pi_kernel_dir/lib/modules/$kernel_release/ /lib/modules/"
 
   🪶🏷️ Set Kernel image to be Booted
   set CONFIG_FILE /boot/firmware/config.txt

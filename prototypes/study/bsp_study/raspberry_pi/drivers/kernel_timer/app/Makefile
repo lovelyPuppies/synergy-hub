@@ -57,7 +57,7 @@ default: $(BUILD_DIR)/$(APP_NAME).out
 # 	Use the compiler to link all object files in 'OBJS' into the final application executable.
 # 		'$@' refers to the target file (application output), and '$<' would refer to the first prerequisite if needed.
 $(BUILD_DIR)/$(APP_NAME).out: $(OBJS)
-	$(COMPILER) $(CFLAGS) -o $@ $(OBJS)
+	$(COMPILER) $(CLANG_FLAGS) -o $@ $(OBJS)
 
 ## Compile source files to object files
 # This is a pattern rule for converting individual .c files to .o files.
@@ -66,7 +66,7 @@ $(BUILD_DIR)/$(APP_NAME).out: $(OBJS)
 # 		Compile the source file ('$<') into an object file ('$@') using the compiler and flags.
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(BUILD_DIR)
-	$(COMPILER) $(CFLAGS) -c -o $@ $<
+	$(COMPILER) $(CLANG_FLAGS) -c -o $@ $<
 
 
 # Clean
