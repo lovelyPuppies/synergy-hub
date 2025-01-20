@@ -24,6 +24,8 @@
 #define OFF              0
 #define ON               1
 
+#define DEBUG
+
 #ifdef DEBUG
   #define DEBUG_LOG(fmt, ...)                                                  \
     printk(KERN_DEBUG "DEBUG: %s:%d:%s: " fmt, __FILE__, __LINE__, __func__,   \
