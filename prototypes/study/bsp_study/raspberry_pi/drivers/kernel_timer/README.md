@@ -208,7 +208,7 @@ stateDiagram-v2
 
 ##### Setup
 
-- Ensure the kernel architecture is ARM 64-bit.
+- **❗ Ensure the kernel architecture is ARM 64-bit.**
 
   ```bash
   #!/usr/bin/env fish
@@ -221,20 +221,22 @@ stateDiagram-v2
   #   >> arm64
   ```
 
-- Setup Automation script
+- Setup with **Automation script**
 
   ```bash
   #!/usr/bin/env fish
 
   ##### 👆 User-specific settings
+
   ### Set Path of Raspberry Pi kernel source and Download
   mkdir -p $HOME/repos/kernels
   cd $HOME/repos/kernels
 
+  # 📝 In Host, In `$HOME/repos/kernels` directory (🖥️ in the case of Raspberry Pi 4, 64-bit)
   git clone --depth=1 --single-branch https://github.com/raspberrypi/linux raspberry_pi
-
-  # 👆 In Host and `$HOME/repos/kernels` directory (🖥️ in the case of Raspberry Pi 4, 64-bit)
   cd raspberry_pi
+
+
 
   ### Set Variables
   # we recommend passing a number 1.5x your number of processors. 🔗 https://www.raspberrypi.com/documentation/computers/linux_kernel.html#native-build
@@ -263,6 +265,7 @@ stateDiagram-v2
 
 
 
+  ##### 👆 Pipeline
   ### Install the build dependencies
   sudo apt install -y bc bison flex libssl-dev make
   # Install the build dependencies for Cross-compiling the kernel
@@ -300,6 +303,9 @@ stateDiagram-v2
 
   ## If boot media is mounted
   # sudo env PATH=$PATH make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- INSTALL_MOD_PATH=mnt/root modules_install -j{$jobs_core_n}
+
+
+
 
 
 

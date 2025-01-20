@@ -473,15 +473,32 @@ Linux 🔪 Man pages
     ⚓ pam_systemd  ; https://www.freedesktop.org/software/systemd/man/latest/pam_systemd.html#
 
   ⚓ OpenSSH ; https://www.openssh.com/manual.html
-    ⚓ 🧮 ssh(1) — The basic rlogin/rsh-like client program ; https://man.openbsd.org/ssh
-      ssh connects and logs into the specified destination, which may be specified as either [user@]hostname or a URI of the form ssh://[user@]hostname[:port]. 
-      📝❗ Hostname can be ip 🚣 host name, ip address, domain name, 
-      
-      # ENVIRONMENT
-        #🪱 SSH_CONNECTION
-          Identifies the client and server ends of the connection.
-          The variable contains four space-separated values: (client IP address, client port number, server IP address, and server port number.)
-          
+    https://www.openssh.com/
+    https://en.wikipedia.org/wiki/OpenSSH
+    https://github.com/openssh/openssh-portable
+
+    # Remote operations
+      ⚓🧮 ssh(1) — The basic rlogin/rsh-like client program ; https://man.openbsd.org/ssh
+        ssh connects and logs into the specified destination, which may be specified as either [user@]hostname or a URI of the form ssh://[user@]hostname[:port]. 
+        📝❗ Hostname can be ip 🚣 host name, ip address, domain name, 
+        
+        # ENVIRONMENT
+          #🪱 SSH_CONNECTION
+            Identifies the client and server ends of the connection.
+            The variable contains four space-separated values: (client IP address, client port number, server IP address, and server port number.)
+      ⚓🧮 scp ; https://man.openbsd.org/scp.1
+      ⚓🧮 sftp ; https://man.openbsd.org/sftp.1
+    # Key management
+      ⚓🧮 ssh-add ; https://man.openbsd.org/ssh-add.1
+      ⚓🧮 ssh-keysign ; https://man.openbsd.org/ssh-keysign.8
+      ⚓🧮 ssh-keyscan ; https://man.openbsd.org/ssh-keyscan.1
+      ⚓🧮 ssh-keygen ; https://man.openbsd.org/ssh-keygen.1
+    # Service side
+      ⚓🧮 sshd ; https://man.openbsd.org/sshd.8
+      ⚓🧮 sftp-server ; https://man.openbsd.org/sftp-server.8
+      ⚓🧮 ssh-agent ; https://man.openbsd.org/ssh-agent.1
+        # Description
+          🪱 -c    Generate C-shell commands on stdout. This is the default if SHELL looks like it's a csh style of shell.
   ⚓🧮 sudo ; https://www.sudo.ws/docs/man/1.8.27/sudo.man/
     #️⃣ ENVIRONMENT ; https://www.sudo.ws/docs/man/1.8.27/sudo.man/#DESCRIPTION
       #📍 SUDO_ASKPASS
@@ -620,10 +637,6 @@ Linux 🔪 Man pages
     ⚓🧮 ip ; https://www.mankier.com/8/ip
 
 
-  ⚓ OpenSSH
-    https://www.openssh.com/
-    https://en.wikipedia.org/wiki/OpenSSH
-    https://github.com/openssh/openssh-portable
 
 ----------------------------------------------
 Linux 🔪 library only
