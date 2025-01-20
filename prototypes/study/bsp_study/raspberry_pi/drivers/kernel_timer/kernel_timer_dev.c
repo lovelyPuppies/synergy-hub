@@ -38,7 +38,7 @@
 static int gpioLed[GPIO_COUNT] = {518, 519, 520, 521, 522, 523, 524, 525};
 static int gpioKey[GPIO_COUNT] = {528, 529, 530, 531, 532, 533, 534, 535};
 static int openFlag = 0;
-static int timerVal = 100;
+static int timerVal = 255;
 module_param(timerVal, int, 0);
 static int ledVal = 0;
 module_param(ledVal, int, 0);
@@ -82,8 +82,7 @@ static void kernel_timer_exit(void);
  *  Timer Functions
  * ========================= */
 static void kernel_timer_registertimer(unsigned long timeover) {
-  // 🕥 f=100Hz, T=1/100 = 10ms, 100*10ms = 1 Second
-  //  get_jiffies_64 (10ms) * timeover (100) = 1 Second
+  // 🕥
   timerLed.expires = get_jiffies_64() + timeover;
   timer_setup(&timerLed, kernel_timer_func, 0);
   add_timer(&timerLed);
@@ -239,7 +238,7 @@ static int ledkey_open(struct inode *inode, struct file *filp) {
 }
 static ssize_t ledkey_read(struct file *filp, char *buf, size_t count,
                            loff_t *f_pos) {
-  keyDataStruct *pKeyData = filp->private_data;
+  keyDataStruct *pKeyData = (keyDataStruct *)filp->private_data;
 
   if (!(filp->f_flags & O_NONBLOCK)) {
     wait_event_interruptible(waitQueueRead, pKeyData->keyNum);
@@ -249,10 +248,11 @@ static ssize_t ledkey_read(struct file *filp, char *buf, size_t count,
 
   DEBUG_LOG("call read -> key : %#04x\n", pKeyData->keyNum);
 
-  // Or  put_user(pKeyData->keyNum, buf);
-  int ret = copy_to_user(buf, &(pKeyData->keyNum), sizeof(pKeyData->keyNum));
-  if (ret < 0)
-    return ret;
+  put_user(pKeyData->keyNum, buf);
+  // Or
+  // int ret = copy_to_user(buf, &(pKeyData->keyNum), sizeof(pKeyData->keyNum));
+  // if (ret < 0)
+  //   return ret;
 
   if (mutex_trylock(&keyMutex) != 0) {
     if (pKeyData->keyNum != 0) {
@@ -327,8 +327,10 @@ static long timer_ioctl(struct file *filp, unsigned int cmd,
   switch (cmd) {
   case TIMER_START:
     DEBUG_LOG("timerVal : %d , sec : %d \n", timerVal, timerVal / HZ);
+    // 🚣 If already regsitered, delete that.
     if (timer_pending(&timerLed))
       del_timer(&timerLed);
+    // and start timer
     kernel_timer_registertimer(timerVal);
     return 0;
 

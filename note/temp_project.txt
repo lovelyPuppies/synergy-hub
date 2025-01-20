@@ -17310,3 +17310,6 @@ lcd_rotate=2
   CONFIG_HZ_250=y
   CONFIG_HZ=250
 for 32bit defaul value is 100.
+
+
+🚣 https://docs.kernel.org/core-api/printk-basics.html
