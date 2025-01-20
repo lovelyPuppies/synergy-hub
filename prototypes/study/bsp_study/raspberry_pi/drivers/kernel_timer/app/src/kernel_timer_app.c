@@ -25,7 +25,7 @@ int open_device();
 void write_timer_period(int dev, ledKey_data *info, int timer_period);
 void write_led(int dev, unsigned char led_value);
 void start_timer(int dev);
-void stop_device(int dev);
+void stop_timer(int dev);
 void initialize_device(int dev, ledKey_data *info, unsigned char led_value,
                        int timer_val);
 void handle_polling(int dev);
@@ -72,7 +72,8 @@ int main(int argc, char *argv[]) {
  * ========================= */
 
 void print_usage(const char *prog_name) {
-  printf("Usage : %s [led_value(0x00~0xff)] [timer_value(1/100)]\n", prog_name);
+  printf("Usage : %s [led_value(0x00~0xff)] [timer_value(1/250) (64bit)]\n",
+         prog_name);
 }
 
 int open_device() {
@@ -85,7 +86,7 @@ int open_device() {
 }
 
 void write_timer_period(int dev, ledKey_data *info, int timer_period) {
-  info->timer_val = timer_period;
+  info->timer_period = timer_period;
   ioctl(dev, TIMER_VALUE, info);
 }
 
@@ -94,7 +95,7 @@ void write_led(int dev, unsigned char led_value) {
 }
 
 void start_timer(int dev) { ioctl(dev, TIMER_START); }
-void stop_device(int dev) { ioctl(dev, TIMER_STOP); }
+void stop_timer(int dev) { ioctl(dev, TIMER_STOP); }
 
 void initialize_device(int dev, ledKey_data *info, unsigned char led_value,
                        int timer_period) {
@@ -147,14 +148,14 @@ void handle_polling(int dev) {
       switch (button_key_no) {
       case 1:
         printf("TIMER STOP! \n");
-        stop_device(dev);
+        stop_timer(dev);
         break;
       case 2:
-        stop_device(dev);
+        stop_timer(dev);
         printf("Enter timer value! \n");
         break;
       case 3:
-        stop_device(dev);
+        stop_timer(dev);
         printf("Enter led value! (as ❗ Hex value; 🛍️ e.g.  0xFF) \n");
         break;
       case 4:
@@ -163,7 +164,7 @@ void handle_polling(int dev) {
         break;
       case 8:
         printf("APP CLOSE ! \n");
-        stop_device(dev);
+        stop_timer(dev);
         loopFlag = 0;
         break;
       }

@@ -17303,3 +17303,10 @@ lcd_rotate=2
 
 🪱 No. https://en.wiktionary.org/wiki/No.#English
   Abbreviation of number. 
+
+
+64bit..
+❯ cat .config  | grep CONFIG_HZ
+  CONFIG_HZ_250=y
+  CONFIG_HZ=250
+for 32bit defaul value is 100.

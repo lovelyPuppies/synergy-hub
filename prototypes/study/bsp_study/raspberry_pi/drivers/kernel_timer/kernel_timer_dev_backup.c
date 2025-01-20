@@ -280,8 +280,8 @@ static long timer_ioctl(struct file *filp, unsigned int cmd,
     err = copy_from_user((void *)&timer_info, (void *)arg, size);
     if (err != 0)
       return -EFAULT;
-    if (timer_info.timer_val > 0) {
-      timerVal = timer_info.timer_val;
+    if (timer_info.timer_period > 0) {
+      timerVal = timer_info.timer_period;
     }
     break;
   default:

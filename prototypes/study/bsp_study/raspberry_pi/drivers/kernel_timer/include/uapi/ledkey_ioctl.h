@@ -4,7 +4,7 @@
 #define LEDKEY_IOCTL_MAGIC '6'
 // ⚙️ ~ ------------------------------------
 typedef struct {
-  unsigned long timer_val;
+  unsigned long timer_period;
 } __attribute__((packed)) ledKey_data;
 
 #define IOCTLTEST_MAXNR 14

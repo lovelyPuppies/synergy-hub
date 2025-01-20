@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
   }
   printf("Author: PJS\n");
   timer_val = atoi(argv[2]);
-  info.timer_val = timer_val;
+  info.timer_period = timer_val;
 
   //	dev = open(DEVICE_FILENAME, O_RDWR | O_NONBLOCK);
   dev = open(DEVICE_FILENAME, O_RDWR);
@@ -101,7 +101,7 @@ int main(int argc, char *argv[]) {
       if (key_no == 2) //timer value
       {
         timer_val = atoi(inputString);
-        info.timer_val = timer_val;
+        info.timer_period = timer_val;
         ioctl(dev, TIMER_VALUE, &info);
         ioctl(dev, TIMER_START);
 
