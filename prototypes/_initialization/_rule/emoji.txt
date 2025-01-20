@@ -22,3 +22,6 @@ Emoji 🔗 from VS Code Extension :emojisense: ;https://marketplace.visualstudio
   📵      :no_mobile_phones:  ""                                  Attempt: Fail
 
   🌳      :deciduous_tree:    ""                                  Branch. Selection.
+  ♾️      :infinity:          "<Title> Pipeline"                  Pipeline.
+
+

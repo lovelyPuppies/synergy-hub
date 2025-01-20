@@ -15,6 +15,7 @@
       - [🧑‍💻 Software](#-software)
         - [🚧 Prerequisite](#-prerequisite)
         - [Setup](#setup)
+        - [♾️ Development Pipeline](#️-development-pipeline)
       - [🖥️ Hardware](#️-hardware)
         - [GPIO Pinout Table](#gpio-pinout-table)
     - [📁 Directory Structure](#-directory-structure)
@@ -187,7 +188,7 @@ stateDiagram-v2
 
 ##### 🚧 Prerequisite
 
-- setup fish shell in Raspberry Pi 🔗 prototypes/\_initialization/ubuntu/howto/config-raspberry_pi/\_setup_fish_shell.sh
+- Setup **fish shell** in Raspberry Pi 🔗 prototypes/\_initialization/ubuntu/howto/config-raspberry_pi/\_setup_fish_shell.sh
 
   ```bash
   #!/usr/bin/env fish
@@ -373,6 +374,25 @@ stateDiagram-v2
 &nbsp;
 
 ---
+
+##### ♾️ Development Pipeline
+
+**In "kernel_timer" directory**, Run
+
+- make
+  - build
+    - build-app
+    - build-module
+  - clean
+    - clean-app
+    - clean-module
+  - deploy
+    - deploy-app
+    - deploy-module
+
+📝 Note that ⚖️ **default deploy directory** is "DEPLOY_DIR := /nfs/drivers" in **Makefile**
+
+&nbsp;
 
 #### 🖥️ Hardware
 

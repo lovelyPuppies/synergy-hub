@@ -620,6 +620,11 @@ Linux 🔪 Man pages
     ⚓🧮 ip ; https://www.mankier.com/8/ip
 
 
+  ⚓ OpenSSH
+    https://www.openssh.com/
+    https://en.wikipedia.org/wiki/OpenSSH
+    https://github.com/openssh/openssh-portable
+
 ----------------------------------------------
 Linux 🔪 library only
   ⚓ GNU library (libc; glibc); https://sourceware.org/glibc/manual/latest/html_mono/libc.html
@@ -670,7 +675,7 @@ Linux Kernel
 (✍️ Linux Kernel 🔪 study)
   🚨 (Issue: Error); Unknown Error: Caused by Custom Dynamic Debug Code or Legacy GPIO API Usage 📅 2025-01-20 18:42:35
     ➡️ Workaround
-      - Use Dynamic DEBUG for the kernel, which is provided by the official documentation 🔗 https://www.kernel.org/doc/html/v4.19/admin-guide/dynamic-debug-howto.html  
+      - Use 🔗 "Dynamic Debug" for the kernel, which is provided by the official documentation 🔗 https://www.kernel.org/doc/html/v4.19/admin-guide/dynamic-debug-howto.html  
       - Try using `gpiod_*` instead of the legacy `gpio_*` API  
 
     ❔ Description
@@ -800,6 +805,9 @@ Linux Kernel
           All the functions that work with the descriptor-based GPIO interface are prefixed with gpiod_.
           ❌ The gpio_ prefix is used for the legacy interface. No other function in the kernel should use these prefixes.
             The use of the legacy functions is strongly discouraged, new code should use <linux/gpio/consumer.h> and descriptors exclusively.
+
+  # Administration
+    ⚓🚣 Dynamic Debug ; https://docs.kernel.org/admin-guide/dynamic-debug-howto.html
 
   # Userspace API
     # Devices and I/O
