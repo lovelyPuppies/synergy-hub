@@ -18,8 +18,7 @@ git config --global init.defaultBranch main
 ☑️ If "build-essential" is not installed, the system cannot find standard headers like stdio.h, string.h, etc. 📅 2024-11-28 21:14:48
   This is because the standard library packages (like glibc) and compiler packages (like GCC or Clang) are separate in Linux systems.
 '
-sudo apt install -y build-essential
-
+sudo apt install -y build-essential gnupg
 
 
 

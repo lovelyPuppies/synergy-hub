@@ -17659,3 +17659,9 @@ gpg: revocation certificate stored as '/home/wbfw109v2/.gnupg/openpgp-revocs.d/D
   AddKeysToAgent yes  >> 비밀번호 입력 요구..
 
 ## https://docs.redhat.com/ko/documentation/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/connecting-to-remote-machines-with-ssh-keys-using-ssh-agent_assembly_using-secure-communications-between-two-systems-with-openssh#connecting-to-remote-machines-with-ssh-keys-using-ssh-agent_assembly_using-secure-communications-between-two-systems-with-openssh
+
+
+
+https://raw.githubusercontent.com/Ileriayo/markdown-badges/refs/heads/master/README.md
+
+Badge Rule
