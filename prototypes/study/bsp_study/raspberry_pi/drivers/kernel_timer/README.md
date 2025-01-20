@@ -221,10 +221,18 @@ stateDiagram-v2
 
   # ⭕ we recommend passing a number 1.5x your number of processors. 🔗 https://www.raspberrypi.com/documentation/computers/linux_kernel.html#native-build
   set jobs_core_n (math (nproc)" * 1.5")
-
-  #📰 kernel8.img 가 만들어졌을 때, 이 이미지를  $KERNEL.img 로 만들어서 옮기고, /boot/fimrware/config.txt 에 부트할 이미지 지정
+  set -gx kernelrelease (make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- kernelrelease)
   set -gx KERNEL kernel8-kernel_timer_config
-  set -gx CONFIG_LOCALVERSION -v8-synergy_hub
+  set -gx KERNEL_CONFIG_LOCALVERSION -v8-synergy_hub
+  set -gx nfs_server_root_dir /nfs
+  set -gx nfs_server_raspberry_pi_kernel_dir $nfs_server_root_dir/kernels/raspberry_pi
+  mkdir -p $nfs_server_raspberry_pi_kernel_dir
+  set -gx nfs_client_root_dir /mnt/host
+  set -gx nfs_client_raspberry_pi_kernel_dir $nfs_client_root_dir/kernels/raspberry_pi
+
+
+  set -gx raspberry_pi_host r-pi.local
+  sudo cp -r /mnt/lib/modules/$(uname -r) /lib/modules/
 
 
   # Set variables for Deploy (Host is NFS server, RasBerry pi is NFS Client)
@@ -264,7 +272,7 @@ stateDiagram-v2
   if not grep -Fxq "$unique_comment" "$config_file"
       echo "
       $unique_comment
-      CONFIG_LOCALVERSION=\"$CONFIG_LOCALVERSION\"
+      CONFIG_LOCALVERSION=\"$KERNEL_CONFIG_LOCALVERSION\"
       " | prettify_indent_via_pipe | tee -a "$config_file" >/dev/null
       echo -e "\n" >> "$config_file"
   end
@@ -282,11 +290,15 @@ stateDiagram-v2
 
 
 
-
   ##### 👆 Deploy Image
 
+  ### Install the kernel modules
+  make -j$jobs_core_n ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- INSTALL_MOD_PATH=$nfs_server_raspberry_pi_kernel_dir modules_install
+  ssh r-pi.local "sudo cp -r $nfs_client_raspberry_pi_kernel_dir/lib/modules/$kernelrelease/ /lib/modules/"
+
+  ### To install the 64-bit kernel
   cp arch/arm64/boot/Image /nfs/kernels/raspberry_pi/$KERNEL.img
-  ssh r-pi.local "sudo cp /mnt/host/kernels/raspberry_pi/$KERNEL.img /boot/firmware/"
+  ssh r-pi.local "sudo cp $nfs_client_raspberry_pi_kernel_dir/$KERNEL.img /boot/firmware/"
 
   # echo "kernel=$KERNEL.img" | sudo tee -a /boot/firmware/config.txt
   # 📰 Doing... (Automation script)

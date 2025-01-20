@@ -1,7 +1,9 @@
+/* =========================
+ *  Includes and Definitions
+ * ========================= */
 // 📅 2024-11-06 14:36:06
 
 // Library inclusions for necessary functionalities
-// #include <signal.h>  // Signal handling functions.
 #include <arpa/inet.h> // Defines functions for internet operations, such as inet_addr.
 #include <pthread.h> // Includes POSIX thread support.
 #include <stdio.h>   // Standard I/O functions, like printf and fgets.
@@ -17,16 +19,24 @@
 #define NAME_SIZE 20
 #define ARR_CNT   5
 
+/* =========================
+ *  Global Variables
+ * ========================= */
+// Global variables for storing the client’s name and message data
+char name[NAME_SIZE] = "[Default]";
+char msg[BUF_SIZE];
+
+/* =========================
+ *  Function Prototypes
+ * ========================= */
 // Function declarations for sending, receiving, and handling errors
 void *send_msg(void *arg);
 void *recv_msg(void *arg);
 void error_handling(char *message);
 
-// Global variables for storing the client’s name and message data
-char name[NAME_SIZE] = "[Default]";
-char msg[BUF_SIZE];
-
-// ---- Main Function ----
+/* =========================
+ *  Main Function
+ * ========================= */
 int main(int argc, char *argv[]) {
   // Variables for socket, server address, and thread management
   int sock;
@@ -72,6 +82,9 @@ int main(int argc, char *argv[]) {
   return 0;
 }
 
+/* =========================
+ *  Helper Functions
+ * ========================= */
 // ---- Send Message Function ----
 void *send_msg(void *arg) {
   // Variable definitions for socket, file descriptors, and timeouts
@@ -146,21 +159,3 @@ void *recv_msg(void *arg) {
     fputs(name_msg, stdout);
   }
 }
-
-/*
-❓ About socket(); creates a new socket for communication.
-  - `PF_INET`: Protocol family for IPv4 addresses, used for internet communication.
-  - `SOCK_STREAM`: Socket type for TCP connection, ensures reliable, ordered data transmission.
-  - `0`: Protocol, defaulting to TCP for PF_INET and SOCK_STREAM.
-  - Returns file descriptor for the created socket, or `-1` on error.
-
-❓ About pthread_create()
-  - Creates a new thread to handle sending or receiving.
-  - Allows non-blocking, asynchronous communication.
-  - `recv_msg` and `send_msg` handle server and client communication respectively.
-
-❓ About select(); for monitoring input from stdin.
-  - Monitors multiple file descriptors.
-  - `select()` waits for keyboard input or timeout (1 second).
-  - Helps avoid blocking other processes and manage server messages effectively.
-*/

@@ -2,6 +2,7 @@
 
 - [Synergy Hub Documentation](#synergy-hub-documentation)
   - [📌 Project Shortcuts](#-project-shortcuts)
+    - [Mini Project](#mini-project)
   - [🔧 Tech Stack](#-tech-stack)
   - [🌐 Open Source Contributions](#-open-source-contributions)
     - [Issues Overview](#issues-overview)
@@ -13,7 +14,7 @@
 
 ## 📌 Project Shortcuts
 
-- 📰 (Doing) [**스마트 택배 시스템**](prototypes/study/ros_study/ros-noetic-turtlebot3/README.md)
+- 🎱 📰 (Doing) [**스마트 택배 시스템**](prototypes/study/ros_study/ros-noetic-turtlebot3/README.md)
 
   📅 2025-01-20 ~
 
@@ -23,19 +24,19 @@
 
   <!-- **STM32 Nucleo F411RE 기반 디지털 시계 및 알람 시스템** + -->
 
-- [**타이머 기반 LED 제어 시스템 (디바이스 드라이버, 애플리케이션)**](prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/README.md)
+- 🎱 [**타이머 기반 LED 제어 시스템 (디바이스 드라이버, 애플리케이션)**](prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/README.md)
 
-  🏷️ Tag: C, Make, Cross-Compilation (Kernel), clang, Device Driver, Raspberry Pi 4 B, ioctl, Button ISR
+  🏷️ Tag: C, Make, Cross-Compilation (Kernel), clang, **Device Driver** (ioctl, Button ISR), Raspberry Pi 4 B
 
-- [**실시간 수신호 기반 자율주행 RC카**](https://github.com/lovelyPuppies/Project_SignalMaster) (External Link)
+- 🎱 [**실시간 수신호 기반 자율주행 RC카**](https://github.com/lovelyPuppies/Project_SignalMaster) (External Link)
 
-  🏷️ Tag: C, Python 3, Edge AI, On-Device, **Machine Learning** (Yolo v11), JetSon Nano, Multi-Threading
+  🏷️ Tag: C, Python 3, Edge AI, On-Device, **Machine Learning** (Yolo v11), Arduino, JetSon Nano, Multi-Threading
 
   - 팀원: 3
 
     📜 역할: [**젯슨 나노 통합 및 머신러닝 모델 파이프라인 구현**](https://github.com/lovelyPuppies/Project_SignalMaster/tree/main/src/jetson-nano-mount/README.md) (External Link)
 
-- [**카메라 필터 애플리케이션**](prototypes/study/python_study/camera_filter_app/README.md)
+- 🎱 [**카메라 필터 애플리케이션**](prototypes/study/python_study/camera_filter_app/README.md)
 
   🏷️ Tag: Python 3, OpenCV, PySide6, **Machine Learning** (MediaPipe, Face Detection, Landmark Processing), Alpha Blending, Real-time Filters
 
@@ -43,33 +44,39 @@
 
     📜 역할: **[🌟 팀장] 토끼 귀 필터 구현 및 리팩터링, 프로젝트 다이어그램 작성.**
 
-- [**선풍기 제어 시스템**](https://github.com/lovelyPuppies/fanProject) (External Link)
+- 🎱 [**선풍기 제어 시스템**](https://github.com/lovelyPuppies/fanProject) (External Link)
 
-  🏷️ Tag: C, ATmega128, AVR, Peripherals (UART, I2C, PWM, Timer), Design Pattern (MVP), Finite State Machine
+  🏷️ Tag: C, ATmega128, AVR, **Peripherals** (UART, I2C, PWM, Timer), **Design Pattern** (MVP), Finite State Machine
 
-- [**환경 및 네트워크 초기화 자동화 스크립트 작성**](#️-scripts)
+- 🎱 [**환경 및 네트워크 초기화 자동화 스크립트 작성**](#️-scripts)
 
   🏷️ Tag: Fish script, PowerShell
 
-- [synergy-hub **LFS using docker**](prototypes/_initialization/lfs)
+- 🎱 [synergy-hub **LFS using docker**](prototypes/_initialization/lfs)
 
   🏷️ Tag: Docker, LFS
 
-- [**CS 연구 시각화 라이브러리**](https://github.com/wbfw109/study-core?tab=readme-ov-file#31-python-utilities) \(External Link\)
+- 🎱 [**CS 연구 시각화 라이브러리**](https://github.com/wbfw109/study-core?tab=readme-ov-file#31-python-utilities) \(External Link\)
 
   &nbsp;&nbsp; ➡️ [**Web Hosting**](https://wbfw109.github.io/visualization_manager/ipython_central_control.html)
 
   🏷️ Tag: Python 3, GitHub Pages, Jupyter, IPython
 
-- [**CS 용어 사전 웹 애플리케이션**](https://github.com/wbfw109/study-core?tab=readme-ov-file#41-glossary-service) \(External Link\)
+- 🎱 [**CS 용어 사전 웹 애플리케이션**](https://github.com/wbfw109/study-core?tab=readme-ov-file#41-glossary-service) \(External Link\)
 
   🏷️ Tag: Python 3, [Pynecone (New: Reflex)](https://github.com/reflex-dev) (Full-stack framework)
 
-- [**IoT의 안전한 운영을 위한 Docker 기반 시스템 환경 설계 및 구현**](https://github.com/wbfw109/safe_iot_architecture) \(External Link\)
+- 🎱 [**IoT의 안전한 운영을 위한 Docker 기반 시스템 환경 설계 및 구현**](https://github.com/wbfw109/safe_iot_architecture) \(External Link\)
 
   🏷️ Tag: Java, Gradle, Docker, Docker Swarm
 
   ❗ **Broken:** The original README.md file is missing because a team member deleted the repository.
+
+### Mini Project
+
+- 🎱 [**Yocto for Raspberry Pi B4**](prototypes/study/bsp_study/raspberry_pi/kernel/mini-yocto.md)
+
+  🏷️ Tag: Yocto Project, Raspberry Pi 4 B
 
 ## 🔧 Tech Stack
 
@@ -282,7 +289,7 @@ tree [**prototypes/\_initialization/\_about**](prototypes/_initialization/_about
 
 2. Run **[initialization script](prototypes/_initialization/ubuntu/init_in_bash.sh)**:
 
-   📝 Note that this script requires the password to be entered multiple times \(about 4 times\), because **[Homebrew command invalidates the sudo timestamp \(sudo password cache\)](https://github.com/Homebrew/brew/issues/17905#issuecomment-2258522878)**.
+   📝 Note that this script requires the password to be entered multiple times \(3 times\), because **[Homebrew command invalidates the sudo timestamp \(sudo password cache\)](https://github.com/Homebrew/brew/issues/17905#issuecomment-2258522878)**.
 
    > `This is likely a WONTFIX, sorry. We clear the sudo password cache intentionally as a precaution against privilege escalation attacks. See https://brew.sh/2024/07/30/homebrew-security-audit/.`
 
