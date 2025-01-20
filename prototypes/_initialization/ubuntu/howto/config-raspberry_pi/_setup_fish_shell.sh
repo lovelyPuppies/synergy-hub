@@ -32,5 +32,5 @@ curl -fsSL https://download.opensuse.org/repositories/shells:fish:release:3/Debi
 sudo apt update && sudo apt install -y fish
 
 
-# Change the default shell to Fish
+# ❗ Change the default shell to Fish
 sudo chsh -s $(which fish) $USER

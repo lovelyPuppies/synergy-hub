@@ -13,6 +13,7 @@
       - [📊 Diagram](#-diagram)
     - [🛠️ Tools](#️-tools)
       - [🧑‍💻 Software](#-software)
+        - [🚧 Prerequisite](#-prerequisite)
         - [Setup](#setup)
       - [🖥️ Hardware](#️-hardware)
         - [GPIO Pinout Table](#gpio-pinout-table)
@@ -184,12 +185,32 @@ stateDiagram-v2
 - Compiler: **clang**
 - NFS Server (Host), NFS Client (Raspberry Pi)
 
+##### 🚧 Prerequisite
+
+- setup fish shell in Raspberry Pi 🔗 prototypes/\_initialization/ubuntu/howto/config-raspberry_pi/\_setup_fish_shell.sh
+
+  ```bash
+  #!/usr/bin/env fish
+
+  #### https://software.opensuse.org/download.html?project=shells%3Afish%3Arelease%3A3&package=fish
+  echo 'deb http://download.opensuse.org/repositories/shells:/fish:/release:/3/Debian_12/ /' | sudo tee /etc/apt/sources.list.d/shells:fish:release:3.list
+  curl -fsSL https://download.opensuse.org/repositories/shells:fish:release:3/Debian_12/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish_release_3.gpg > /dev/null
+
+
+  # Install the Fish shell
+  sudo apt update && sudo apt install -y fish
+
+
+  # ❗ Change the default shell to Fish
+  sudo chsh -s $(which fish) $USER
+  ```
+
 ##### Setup
 
 - Ensure the kernel architecture is ARM 64-bit.
 
   ```bash
-  #!/usr/bin/fish
+  #!/usr/bin/env fish
   ## Kernel architecture
   uname -m
   # >> arm64
@@ -205,24 +226,21 @@ stateDiagram-v2
   #!/usr/bin/env fish
 
   ##### 👆 User-specific settings
-
-  function prettify_indent_via_pipe
-    awk '
-      NR == 2 { indent = match($0, /[^ ]/) - 1 }
-      NR > 1 { sub("^ {" indent "}", "") }
-      NR == 1 { next }
-      { gsub(/[[:blank:]]*$/, ""); print }
-    '
-  end
-
-  # Set Path of Raspberry Pi kernel source
+  ### Set Path of Raspberry Pi kernel source and Download
   mkdir -p $HOME/repos/kernels
   cd $HOME/repos/kernels
 
-  # ⭕ we recommend passing a number 1.5x your number of processors. 🔗 https://www.raspberrypi.com/documentation/computers/linux_kernel.html#native-build
+  git clone --depth=1 --single-branch https://github.com/raspberrypi/linux raspberry_pi
+
+  # 👆 In Host and `$HOME/repos/kernels` directory (🖥️ in the case of Raspberry Pi 4, 64-bit)
+  cd raspberry_pi
+
+  ### Set Variables
+  # we recommend passing a number 1.5x your number of processors. 🔗 https://www.raspberrypi.com/documentation/computers/linux_kernel.html#native-build
   set jobs_core_n (math (nproc)" * 1.5")
-  set -gx kernelrelease (make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- kernelrelease)
-  set -gx KERNEL kernel8-kernel_timer_config
+  set -gx kernel_release (make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- kernelrelease)
+  set -gx kernel_image_name "kernel8-kernel_timer_config.img"  # Image name to set
+
   set -gx KERNEL_CONFIG_LOCALVERSION -v8-synergy_hub
   set -gx nfs_server_root_dir /nfs
   set -gx nfs_server_raspberry_pi_kernel_dir $nfs_server_root_dir/kernels/raspberry_pi
@@ -244,13 +262,6 @@ stateDiagram-v2
 
 
 
-  ##### 👆 In Host and `$HOME/repos/kernels` directory (🖥️ in the case of Raspberry Pi 4, 64-bit)
-
-  ### Download kernel source
-  git clone --depth=1 --single-branch https://github.com/raspberrypi/linux raspberry_pi
-  cd raspberry_pi
-
-
   ### Install the build dependencies
   sudo apt install -y bc bison flex libssl-dev make
   # Install the build dependencies for Cross-compiling the kernel
@@ -264,18 +275,20 @@ stateDiagram-v2
 
   make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- bcm2711_defconfig
 
-  ##🏷️ Customize the kernel version using LOCALVERSION
+  ## 🪶🏷️ Customize the kernel version using LOCALVERSION
+  set CONFIG_FILE .config
 
-  set config_file ".config"
-  set unique_comment '## ⚙️ Customize the kernel version (Override)'
+  set TMP_FILE (mktemp)
 
-  if not grep -Fxq "$unique_comment" "$config_file"
-      echo "
-      $unique_comment
-      CONFIG_LOCALVERSION=\"$KERNEL_CONFIG_LOCALVERSION\"
-      " | prettify_indent_via_pipe | tee -a "$config_file" >/dev/null
-      echo -e "\n" >> "$config_file"
-  end
+  awk -v new_local_version=$KERNEL_CONFIG_LOCALVERSION '{
+      if ($1 ~ /^CONFIG_LOCALVERSION=/) {
+          print "CONFIG_LOCALVERSION=\"" new_local_version "\""
+      } else {
+          print $0
+      }
+  }' $CONFIG_FILE > $TMP_FILE
+
+  mv $TMP_FILE $CONFIG_FILE
 
 
 
@@ -291,19 +304,70 @@ stateDiagram-v2
 
 
   ##### 👆 Deploy Image
+  ### Install the 64-bit kernel
+  cp arch/arm64/boot/Image /nfs/kernels/raspberry_pi/$kernel_image_name
+  ssh r-pi.local "sudo cp $nfs_client_raspberry_pi_kernel_dir/$kernel_image_name /boot/firmware/"
 
   ### Install the kernel modules
   make -j$jobs_core_n ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- INSTALL_MOD_PATH=$nfs_server_raspberry_pi_kernel_dir modules_install
-  ssh r-pi.local "sudo cp -r $nfs_client_raspberry_pi_kernel_dir/lib/modules/$kernelrelease/ /lib/modules/"
+  ssh r-pi.local "sudo cp -r $nfs_client_raspberry_pi_kernel_dir/lib/modules/$kernel_release/ /lib/modules/"
 
-  ### To install the 64-bit kernel
-  cp arch/arm64/boot/Image /nfs/kernels/raspberry_pi/$KERNEL.img
-  ssh r-pi.local "sudo cp $nfs_client_raspberry_pi_kernel_dir/$KERNEL.img /boot/firmware/"
+  🪶🏷️ Set Kernel image to be Booted
+  set CONFIG_FILE /boot/firmware/config.txt
+  set TMP_FILE (mktemp)
 
-  # echo "kernel=$KERNEL.img" | sudo tee -a /boot/firmware/config.txt
-  # 📰 Doing... (Automation script)
-  # ..    .. 위에 사용자 설정으로 옮기기.. [all] 발견한 뒤에서..
-  # kernel=kernel8-kernel_timer_config.img
+  # Use awk to ensure the kernel line is updated correctly
+  awk -v new_kernel_image=$kernel_image_name '
+  BEGIN { updated = 0 }
+  {
+      if ($1 ~ /^kernel=/) {
+          # Update the kernel= line, even if it is empty
+          print "kernel=" new_kernel_image
+          updated = 1
+      } else {
+          print $0
+      }
+  }
+  END {
+      if (updated == 0) {
+          # If no kernel= line was found, add it at the end
+          print "kernel=" new_kernel_image
+      }
+  }' $CONFIG_FILE > $TMP_FILE
+
+  # Apply original ownership and permissions to the temporary file
+  set OWNER (stat --format='%u:%g' $CONFIG_FILE)
+  set PERMISSIONS (stat --format='%a' $CONFIG_FILE)
+
+  sudo chown $OWNER $TMP_FILE
+  sudo chmod $PERMISSIONS $TMP_FILE
+
+  # Overwrite the original file with the updated content
+  sudo mv $TMP_FILE $CONFIG_FILE
+
+  # Output result
+  echo "Updated kernel configuration in $CONFIG_FILE to:"
+  echo "kernel=$KERNEL_IMAGE"
+  ```
+
+- 📝 Note that:
+
+  - Before booting with a custom kernel image, ensure that the modules are installed in `/lib/modules/$kernel_release`.
+  - Or, if the system has already booted without the required modules:
+    - Install the kernel's modules.
+    - ```bash
+      sudo depmod -a && sudo reboot
+      ```
+
+  ⚠️ Otherwise, the error occurs on Raspberry Pi, and the display shows a black screen (🚣 **but SSH can still be connected**):
+
+  ```plaintxt
+  Mounting proc-sys-fs-binfmt_misc.mou…trary Executable File Formats File System...
+  [FAILED] Failed to mount proc-sys-fs-binfmt_m…bitrary Executable File Formats File System.
+  [FAILED] Failed to start systemd-binfmt.service - Set Up Additional Binary Formats.
+  [*     ] (1 of 3) Job plymouth-quit-wait.service/start running (1min 28s / no limit)
+  [   ***] (2 of 3) Job dev-dri-card0.device/start running (1min 26s / 1min 30s)
+  [ ***  ] (3 of 3) Job dev-dri-renderD128.device/start running (1min 23s / 1min 30s)
   ```
 
 &nbsp;

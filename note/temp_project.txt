@@ -17276,3 +17276,19 @@ Android
   🪱 Toast message 
 
 ➡️  OPIC
+
+
+
+
+  # Get the original file ownership and permissions
+  set OWNER (stat --format='%u:%g' $CONFIG_FILE)
+  set PERMISSIONS (stat --format='%a' $CONFIG_FILE)
+
+
+  # Apply the original ownership and permissions to the temporary file
+  sudo chown $OWNER $TMP_FILE
+  sudo chmod $PERMISSIONS $TMP_FILE
+
+
+
+

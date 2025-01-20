@@ -135,7 +135,7 @@ class SubsetSumProblem(MixInParentAlgorithmVisualization):
 
     class ThreeSumVariant(ChildAlgorithmVisualization[SubsetSumDST]):
         """
-        Deduction
+        Inference
             O := Optimized value that make Minimum Abs with two control variable existed
                 1. the Optimized value is different for each a independent variable.
                 2. the Optimized value may exist or not in given Array

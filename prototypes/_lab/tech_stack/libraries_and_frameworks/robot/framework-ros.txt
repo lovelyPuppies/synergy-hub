@@ -110,7 +110,7 @@ ROS 2 🔪 Docs ; https://docs.ros.org/en/jazzy/index.html
           process has died [pid 1328, exit code -9, cmd /opt/ros/noetic/lib/rviz/rviz -d /opt/ros/noetic/share/turtlebot3_slam/rviz/turtlebot3_gmapping.rviz __name:=rviz __log:=/home/vscode/.ros/log/ae21d00e-d215-11ef-93ce-0242ac120002/rviz-3.log].
         ...
 
-    ❔🤔 Deduction
+    ❔🤔 Inference
       %shell> top
       
       Swap memory usage increases significantly, with some processes consuming up to 512 MiB per process.

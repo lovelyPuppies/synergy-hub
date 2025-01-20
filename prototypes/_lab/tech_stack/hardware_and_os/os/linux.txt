@@ -33,7 +33,7 @@ list of level 1 subjects
       
     - However, when using the **VSCode DevContainer** with a new user defined in the Dockerfile, the same command will return **CUDA: False**.
 
-    ## Deduction
+    ## Inference
 
     - The device files are owned by the `root` user and the `video` group.
     - Users not in the `video` group cannot access these devices, restricting GPU usage.
@@ -681,4 +681,76 @@ Linux Kernel
           ⚓ GPIO Sysfs Interface for Userspace ; https://www.kernel.org/doc/html/latest/userspace-api/gpio/sysfs.html
           
 
-https://www.kernel.org/doc/html/latest/userspace-api/gpio/sysfs.html
+(✍️ Linux Kernel 🔪 study)
+  ☑️ (Issue); Raspberry PI Display shows only a black screen when switching to a custom kernel image. 📅 2025-01-20 13:05:12
+    ❔ When
+      - Build Configuration and Build in Host Raspberry Pi kernel source:
+        ```fish
+        #!/usr/bin/env fish
+
+        make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- bcm2711_defconfig
+        
+        ## ❗ Set custom CONFIG_LOCALVERSION
+        set CONFIG_FILE .config
+        set new_local_version "-v8-synergy_hub"
+
+        set TMP_FILE (mktemp)
+
+        awk -v new_local_version=$new_local_version '{
+            if ($1 ~ /^CONFIG_LOCALVERSION=/) {
+                print "CONFIG_LOCALVERSION=\"" new_local_version "\""
+            } else {
+                print $0
+            }
+        }' $CONFIG_FILE > $TMP_FILE
+
+        mv $TMP_FILE $CONFIG_FILE
+    
+
+        ## Build kernel and modules
+        make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- Image modules -j(nproc)
+        ```
+      - Install the Image to /boot/firmware/ on the Raspberry Pi.
+      - Reboot the Raspberry Pi.
+    
+    ❔ Symptom
+      Boot message:
+        ```plaintxt
+        Mounting proc-sys-fs-binfmt_misc.mou…trary Executable File Formats File System...
+        [FAILED] Failed to mount proc-sys-fs-binfmt_m…bitrary Executable File Formats File System.
+        [FAILED] Failed to start systemd-binfmt.service - Set Up Additional Binary Formats.
+        [*     ] (1 of 3) Job plymouth-quit-wait.service/start running (1min 28s / no limit)
+        [   ***] (2 of 3) Job dev-dri-card0.device/start running (1min 26s / 1min 30s)
+        [ ***  ] (3 of 3) Job dev-dri-renderD128.device/start running (1min 23s / 1min 30s)
+        ```
+      And Raspberry PI Display shows only a black screen 
+      
+      🚣 But SSH can be connected.
+
+    🤔 Inference
+
+      1. Copy the new kernel image to /boot/firmware, configure `/boot/firmware/config` to boot from it, and reboot
+        --> The screen remains black.
+      2. Install modules to `/lib/modules/$kernel_release` and reboot
+        --> The screen remains black.
+      3. Reset `/boot/firmware/config` to use the default kernel and reboot
+        --> The screen works.
+      4. Configure `/boot/firmware/config` to boot with the custom kernel again
+        --> The screen remains black.
+      5. Run `sudo depmod -a` and reboot
+        --> The screen works. Subsequent boots with this kernel also work without issues.
+
+    ❔ Root Causes
+      ❗ The issue arises from the kernel's module loading mechanism.
+        1. The kernel relies on the dependency information files (modules.dep, modules.alias, etc.) in /lib/modules/<kernel_release>/ to automatically load the required modules.
+        2. The kernel retains the module information from the first boot with the custom kernel until the dependencies are manually updated (e.g., sudo depmod -a).
+          This means that if modules are missing during the first boot with the custom kernel, even installing the modules later will not resolve the issue until the dependency information is manually updated.
+      
+      Additionally, because the system was initially booted without the necessary modules being installed, even installing the modules afterward and rebooting did not resolve the issue immediately.
+
+
+    ➡️ Solution
+      Before booting with a custom kernel image, ensure that the modules are installed in `/lib/modules/$kernel_release`.
+      Or, If the system has already booted without the required modules, 
+        - Install the kernel's modules
+        - %shlle> sudo depmod -a && sudo reboot
