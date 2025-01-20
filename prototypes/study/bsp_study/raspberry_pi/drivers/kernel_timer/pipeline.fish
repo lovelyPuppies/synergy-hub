@@ -21,3 +21,12 @@ ssh r-pi.local 'sudo insmod /mnt/host/drivers/module/kernel_timer_dev.ko'
 ssh -t r-pi.local '/mnt/host/drivers/app/kernel_timer_app 0x55 100'
 
 ssh r-pi.local 'sudo rmmod kernel_timer_dev'
+
+
+sudo mknod /dev/ledKey_dev c 230 0
+sudo chmod 666 /dev/ledKey_dev
+
+sudo insmod /mnt/host/drivers/module/kernel_timer_dev.ko
+/mnt/host/drivers/app/kernel_timer_app 0x55 100
+
+sudo rmmod kernel_timer_dev

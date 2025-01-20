@@ -22,7 +22,7 @@
  * ========================= */
 void print_usage(const char *prog_name);
 int open_device();
-void write_timer_period(int dev, ledKey_data *info, int timer_period);
+void write_timer(int dev, ledKey_data *info, int timer_val);
 void write_led(int dev, unsigned char led_value);
 void start_timer(int dev);
 void stop_device(int dev);
@@ -35,32 +35,28 @@ void handle_polling(int dev);
  * ========================= */
 
 int main(int argc, char *argv[]) {
-  // 🌀
-
   if (argc != 3) {
     print_usage(argv[0]);
     return 1;
   }
 
-  unsigned char led_value = (unsigned char)strtoul(argv[1], NULL, 16);
+  unsigned char led_value = (char)strtoul(argv[1], NULL, 16);
   if (!(0 <= led_value && led_value <= 255)) {
     print_usage(argv[0]);
     return 2;
   }
+
+  int timer_val = atoi(argv[2]);
+  ledKey_data info;
+
+  printf("Author: PJS\n");
 
   int dev = open_device();
   if (dev < 0) {
     return 2;
   }
 
-  // 🌀
-  printf("Author: PJS\n");
-
-  // 🌀
-  int timer_period = atoi(argv[2]);
-  ledKey_data info;
-
-  initialize_device(dev, &info, led_value, timer_period);
+  initialize_device(dev, &info, led_value, timer_val);
   handle_polling(dev);
 
   close(dev);
@@ -84,8 +80,8 @@ int open_device() {
   return dev;
 }
 
-void write_timer_period(int dev, ledKey_data *info, int timer_period) {
-  info->timer_val = timer_period;
+void write_timer(int dev, ledKey_data *info, int timer_val) {
+  info->timer_val = timer_val;
   ioctl(dev, TIMER_VALUE, info);
 }
 
@@ -97,8 +93,8 @@ void start_timer(int dev) { ioctl(dev, TIMER_START); }
 void stop_device(int dev) { ioctl(dev, TIMER_STOP); }
 
 void initialize_device(int dev, ledKey_data *info, unsigned char led_value,
-                       int timer_period) {
-  write_timer_period(dev, info, timer_period);
+                       int timer_val) {
+  write_timer(dev, info, timer_val);
   write_led(dev, led_value);
   start_timer(dev);
 }
@@ -127,11 +123,8 @@ void handle_polling(int dev) {
   Events[1].events = POLLIN;
 
   int loopFlag = 1;
-  char button_key_no;
+  char key_no;
   char inputString[80];
-  // ❗ char timer_value; is managed by `ledKey_data` struct while led_value is directly managed.
-  char led_value;
-
   ledKey_data info;
 
   while (loopFlag) {
@@ -141,10 +134,10 @@ void handle_polling(int dev) {
     }
 
     if (Events[0].revents & POLLIN) {
-      read(dev, &button_key_no, sizeof(button_key_no));
-      printf("button_key_no : %d\n", button_key_no);
+      read(dev, &key_no, sizeof(key_no));
+      printf("key_no : %d\n", key_no);
 
-      switch (button_key_no) {
+      switch (key_no) {
       case 1:
         printf("TIMER STOP! \n");
         stop_device(dev);
@@ -152,10 +145,25 @@ void handle_polling(int dev) {
       case 2:
         stop_device(dev);
         printf("Enter timer value! \n");
+
+        fgets(inputString, sizeof(inputString), stdin);
+        // Next line replaces the newline character at the end of the user input (from fgets) with a null terminator (`\0`).
+        // Ensures the string is properly terminated and avoids issues when processing the input.
+        inputString[strlen(inputString) - 1] = '\0';
+
+        write_timer(dev, &info, atoi(inputString));
+        start_timer(dev);
         break;
       case 3:
         stop_device(dev);
-        printf("Enter led value! (as ❗ Hex value; 🛍️ e.g.  0xFF) \n");
+        printf("Enter led value! \n");
+
+        fgets(inputString, sizeof(inputString), stdin);
+        inputString[strlen(inputString) - 1] = '\0';
+        unsigned char led_value = (char)strtoul(inputString, NULL, 16);
+
+        write_led(dev, led_value);
+        start_timer(dev);
         break;
       case 4:
         printf("TIMER START! \n");
@@ -167,36 +175,12 @@ void handle_polling(int dev) {
         loopFlag = 0;
         break;
       }
-
     } else if (Events[1].revents & POLLIN) {
-      // ❔ `else if (Events[1].revents & POLLIN)`; When POLLIN event is triggered, it means stdin has data ready to be read (including newline character).
-
-      // ❔ ``; Flush any leftover characters, including newline characters, in the stdin buffer to ensure clean input.
-      //  This ensures no unwanted characters (such as previous line's leftover newlines) interfere with the current input.
-      fflush(stdin);
-
       fgets(inputString, sizeof(inputString), stdin);
       if ((inputString[0] == 'q') || (inputString[0] == 'Q')) {
         break;
       }
-      // Next line replaces the newline character at the end of the user input (from fgets) with a null terminator (`\0`).
-      //  Ensures the string is properly terminated and avoids issues when processing the input.
-      inputString[strlen(inputString) - 1] = '\0';
-
-      if (button_key_no == 2) //timer value
-      {
-        write_timer_period(dev, &info, atoi(inputString));
-        start_timer(dev);
-
-      } else if (button_key_no == 3) //led value
-      {
-        write(dev, &led_value, sizeof(led_value));
-        led_value = (unsigned char)strtoul(inputString, NULL, 16);
-
-        write_led(dev, led_value);
-        start_timer(dev);
-      }
-      button_key_no = 0;
+      // inputString[strlen(inputString) - 1] = '\0';
     }
   }
 }

@@ -17279,7 +17279,7 @@ Android
 
 
 
-
+ㅁㅁ
   # Get the original file ownership and permissions
   set OWNER (stat --format='%u:%g' $CONFIG_FILE)
   set PERMISSIONS (stat --format='%a' $CONFIG_FILE)
@@ -17291,4 +17291,15 @@ Android
 
 
 
+lcd_rotate=2
+추가 만 하면.. 부팅 할떄만 돌아가고, 부팅 후에는 돌아간 화면이 안나옴.
+  vc4-fkms-v3d (Fake KMS):  >> 이거 사용하게 바꿔야 함.
+    이 설정은 Fake KMS 모드로, 프레임버퍼를 사용하여 그래픽을 처리합니다. 이 모드는 더 낮은 레벨에서 그래픽을 처리하지만, 일부 그래픽 하드웨어나 구형 모니터에서 호환성이 좋을 수 있습니다.
+  vc4-kms-v3d (KMS):
+    이 설정은 Kernel Mode Setting (KMS) 모드로, 그래픽 하드웨어가 커널 차원에서 직접 관리됩니다. 이 모드는 더 현대적인 방식이지만, 일부 드라이버나 설정에 따라 호환성 문제가 발생할 수 있습니다.
 
+
+??????? 그라운드가 제대로 연결이 안되면, 임의의 버튼을 눌럿을 때 해당 버튼의 입력이 아니고 여러 버튼 입력이 된다.. 랜덤임.. 플로팅 상태.ㄴ
+
+🪱 No. https://en.wiktionary.org/wiki/No.#English
+  Abbreviation of number. 
