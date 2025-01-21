@@ -30,6 +30,8 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
  │&nbsp;&nbsp;&nbsp;&nbsp;└── [**Make**](prototypes/_lab/tech_stack/build_tool/build_system/make.txt)  
  ├── 📂 code_quality_tool  
  │&nbsp;&nbsp;&nbsp;&nbsp;└── [Ruff](prototypes/_lab/tech_stack/code_quality_tool/ruff.txt)  
+ ├── 📂 database  
+ │&nbsp;&nbsp;&nbsp;&nbsp;└── [![MariaDB](https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white)](prototypes/_lab/tech_stack/database/mariadb.txt)  
  ├── 📂 design_pattern_and_uml  
  │&nbsp;&nbsp;&nbsp;&nbsp;├── [d2](prototypes/_lab/tech_stack/design_pattern_and_uml/d2.txt)  
  │&nbsp;&nbsp;&nbsp;&nbsp;├── [design_pattern](prototypes/_lab/tech_stack/design_pattern_and_uml/design_pattern.txt)  
@@ -44,7 +46,6 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
  ├── 📂 hardware_and_os  
  │&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 arm  
  │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── [arm_compiler](prototypes/_lab/tech_stack/hardware_and_os/arm/arm_compiler.txt)  
- │&nbsp;&nbsp;&nbsp;&nbsp;├── [Issues.md](prototypes/_lab/tech_stack/hardware_and_os/Issues.md)  
  │&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 os  
  │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 linux  
  │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── [![Kubuntu](https://img.shields.io/badge/-KUbuntu-%230079C1?style=for-the-badge&logo=kubuntu&logoColor=white)](prototypes/_lab/tech_stack/hardware_and_os/os/linux/kubuntu.txt)  
@@ -56,6 +57,9 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
  ├── 📂 libraries_and_frameworks  
  │&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 mobile  
  │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)](prototypes/_lab/tech_stack/libraries_and_frameworks/mobile/android_sdk.txt)  
+ │&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 multimedia  
+ │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 vision  
+ │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [![OpenCV](https://img.shields.io/badge/opencv-%23white.svg?style=for-the-badge&logo=opencv&logoColor=white)](prototypes/_lab/tech_stack/libraries_and_frameworks/multimedia/vision/library-opencv.txt)  
  │&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 robot  
  │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [![ROS](https://img.shields.io/badge/ros-%230A0FF9.svg?style=for-the-badge&logo=ros&logoColor=white)](prototypes/_lab/tech_stack/libraries_and_frameworks/robot/framework-ros.txt)  
  │&nbsp;&nbsp;&nbsp;&nbsp;└── [![Qt](https://img.shields.io/badge/Qt-%23217346.svg?style=for-the-badge&logo=Qt&logoColor=white)](prototypes/_lab/tech_stack/libraries_and_frameworks/framework-qt.txt)  
@@ -84,6 +88,7 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
  ├── 📂 programming_languages  
  │&nbsp;&nbsp;&nbsp;&nbsp;├── [![C](https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white)](prototypes/_lab/tech_stack/programming_languages/c+cpp.txt) [![C++](https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white)](prototypes/_lab/tech_stack/programming_languages/c+cpp.txt)  
  │&nbsp;&nbsp;&nbsp;&nbsp;├── [![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)](prototypes/_lab/tech_stack/programming_languages/java.txt)  
+ │&nbsp;&nbsp;&nbsp;&nbsp;├── [![Kotlin](https://img.shields.io/badge/kotlin-%237F52FF.svg?style=for-the-badge&logo=kotlin&logoColor=white)](prototypes/_lab/tech_stack/programming_languages/kotlin.txt)  
  │&nbsp;&nbsp;&nbsp;&nbsp;├── [![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)](prototypes/_lab/tech_stack/programming_languages/python.txt)  
  │&nbsp;&nbsp;&nbsp;&nbsp;└── [![Rust](https://img.shields.io/badge/rust-%23000000.svg?style=for-the-badge&logo=rust&logoColor=white)](prototypes/_lab/tech_stack/programming_languages/rust.txt)  
  ├── 📂 remote_access_tools  
@@ -114,7 +119,7 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
 
   📅 2025-01-20 ~
 
-  🏷️ Tag: Turtlebot 3, ROS 1 Noetic, STM32 (Nucleo F411RE), CMake, Cross-Compilation (Qt), Qt, APM stack, TCP/IP
+  🏷️ Tag: Turtlebot 3, ROS 1 Noetic, STM32 (Nucleo F411RE), CMake, Cross-Compilation (Qt), Qt, APM stack, TCP/IP, Android
 
   - 팀원: 6
 

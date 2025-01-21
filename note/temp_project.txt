@@ -2281,16 +2281,6 @@ ADAS 시스템 수신호
 
 
 
-https://docs.opencv.org/4.x/d4/dd5/highgui_8hpp.html
-  https://docs.opencv.org/4.x/d7/dfc/group__highgui.html#ga89e7806b0a616f6f1d502bd8c183ad3e 
-  typedef void(* 	cv::MouseCallback) (int event, int x, int y, int flags, void *userdata)
-    Callback function for mouse events. see cv::setMouseCallback. More...
-  typedef void(* 	cv::TrackbarCallback) (int pos, void *userdata)
-    Callback function for Trackbar see cv::createTrackbar. More...
-https://docs.opencv.org/4.x/dc/d4d/tutorial_py_table_of_contents_gui.html
-  https://docs.opencv.org/4.x/db/d5b/tutorial_py_mouse_handling.html
-  https://docs.opencv.org/4.x/d9/dc8/tutorial_py_trackbar.html
-
 
 
 Ctrl + Alt + -
@@ -4948,10 +4938,6 @@ https://unix.stackexchange.com/a/677988
 
 텔레칩스, 하만, 인텔,글루브드 swm
 
-sudo apt install mariadb-server
-https://velog.io/@xangj0ng/Linux-Ubuntu-Mariadb-%EC%84%A4%EC%B9%98
-
-
 
 ⚓ Kernel offical urls ; https://www.kernel.org/
   https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.15.169.tar.xz
@@ -5470,10 +5456,6 @@ https://man7.org/linux/man-pages/man3/errno.3.html
 
 
 
-
-
-
-
 따라서, indexes_of_smallest_v_at_l은 **"길이가 l인 증가하는 부분 수열 중, 마지막 값이 가장 작은 원소의 인덱스"**를 저장하는 배열입니다.
 
 >> 👍 cin.tie(0)
@@ -5498,18 +5480,12 @@ cout.tie(0 or nullptr);
 
   동기식 통신은 PBI? 안에서 자주 쓴다고 한다?
 
-//
-sudo reboot
-ip -c a
-/dev/sdb1
-
 
 
 ❔ snapshot backup
 
 address 10.10.14.19/24 -gateway 10.10.14.254 dns 203.248.252.2
   📰   사용법 추가.. display 가속
-  📰 추가 
 
 
 ⭕ 경험 : https://velog.io/
@@ -5523,13 +5499,8 @@ srv	Site-specific data served by this system, such as data and scripts for web s
 
 
 ??? ..허용?하지 말아야할것?.. 허용해야할것?.. 주석처리해아할 ㄳ?
-  maridb - 설정 파일-  bind - 127.0.0.1 .. ㅇㅇ 주석처리 or 0.0.0.1
 
-https://ubuntu.com/server/docs/network-file-system-nfs
-https://qengineering.eu/install-opencv-on-raspberry-pi.html
-
-https://opencv.org/releases/
-  cat /proc/device-tree/model // 모델 정보 확인
+cat /proc/device-tree/model // 모델 정보 확인
 
   free -h // MEM 2기가 바이트 기준.
   vcgencmd get_config int // 라즈베리파이 전용 명령어.
@@ -5591,52 +5562,6 @@ set -e ////// 명령어 실패 시 자동 종료...
 du -hd 0 opencv
 
 ????? iconv f euc-kr -t utf-9 opencvCam.cpp > opencvCam_.cpp 를 하는 이유 ???
-
-⚓ Maridab
-  ⚓ MariaDB Server ; https://mariadb.com/docs/server/
-    ⚓💡 MariaDB Connector ; https://mariadb.com/docs/server/connect/programming-languages/
-      ⚓ C ; https://mariadb.com/docs/server/connect/programming-languages/c/
-        🔰 Install ; https://mariadb.com/docs/server/connect/programming-languages/c/install/
-        ⚓ Connect ; https://mariadb.com/docs/server/connect/programming-languages/c/connect/
-        ⚓ Development ; https://mariadb.com/docs/server/connect/programming-languages/c/development/
-          🧮 gcc -o example example.c $(mariadb_config --include --libs)
-        ⚓ Setup for Examples ; https://mariadb.com/docs/server/connect/programming-languages/c/example-setup/
-
-
-  install from https://mariadb.com/kb/en/mariadb-package-repository-setup-and-usage/
-  Install
-    %shell>
-      curl -LsS https://r.mariadb.com/downloads/mariadb_repo_setup | sudo bash
-      sudo apt update
-      sudo apt install -y mariadb-server mariadb-client
-    MariaDB Commands and Documentation Links
-      - ⚓ https://mariadb.com/kb/en/show-databases/
-          show databases;: Lists all databases in the MariaDB server.
-      - ⚓ https://mariadb.com/kb/en/create-database/
-          create database st_db;: Creates a new database named st_db.
-      - ⚓ https://mariadb.com/kb/en/use/
-          use st_db;: Selects the st_db database for subsequent operations.
-      - ⚓ https://mariadb.com/kb/en/grant/
-          🚣 grant all privileges on st_db.* to iot@localhost identified by 'pwiot';: Grants all privileges on the st_db database to the user iot with the specified password.
-      - ⚓ https://mariadb.com/kb/en/show-tables/
-          show tables;: Shows all tables in the currently selected database.
-      - ⚓ https://mariadb.com/kb/en/create-table/
-          create table st_info (ST_ID int, NAME varchar(20), DEPT varchar(25)) default charset=utf8;: Creates a table named st_info with specified columns and UTF-8 character set.
-          create table st_grade (ST_ID int, Linux int, DB int);: Creates a table named st_grade.
-      - ⚓ https://mariadb.com/kb/en/explain/
-          explain st_info;: Describes the structure of the st_info table.
-      - ⚓ https://mariadb.com/kb/en/alter-table/
-          alter table st_info modify ST_ID int Not Null;: Alters the st_info table to set ST_ID as NOT NULL.
-          alter table st_info add constraint pk_stinfo primary key (ST_ID);: Sets ST_ID as the primary key for st_info.
-      - ⚓ https://mariadb.com/kb/en/insert/
-          insert into st_info values (201801, '이길동', 'Game');: Inserts a new record into st_info.
-      - ⚓ https://mariadb.com/kb/en/select/
-          select * from st_info;: Selects all records from st_info.
-      - ⚓ https://mariadb.com/kb/en/update/
-          update st_grade set DB=90 where ST_ID=201801;: Updates the DB column for st_grade where ST_ID is 201801.
-      - ⚓ https://mariadb.com/kb/en/delete/
-          delete from st_info where ST_ID=201803;: Deletes a record from st_info where ST_ID is 201803.
-
 
 
 
@@ -6669,6 +6594,12 @@ raspberry pi - system pakcages
   php
   apache
 
+  install from https://mariadb.com/kb/en/mariadb-package-repository-setup-and-usage/
+  Install
+    %shell>
+      curl -LsS https://r.mariadb.com/downloads/mariadb_repo_setup | sudo bash
+      sudo apt update
+      sudo apt install -y mariadb-server mariadb-client
   // home manger
 
 >>>>>>> https://discourse.nixos.org/t/how-to-really-prefetch-the-sha256/14817
@@ -6766,17 +6697,6 @@ CMake Error at CMakeLists.txt:31 (enable_language):
   gcc iot_client_bluetooth.c -o iot_client_bluetooth -lbluetooth -pthread
   
 
-📦 systemd
-    https://repology.org/project/mariadb/versions
-    https://formulae.brew.sh/formula/mariadb#default
-
-
-apache
-  systemctl --user status homebrew.httpd
-      Active: failed (Result: exit-code) since Mon 2024-12-02 04:28:59 KST; 34s ago
-  Dec 02 04:28:59 home httpd[82950]: AH00543: httpd: bad user name _www
-
-  
 
 Conan:/// 여기서 target_link_libraries(cpp_study PRIVATE ${CONAN_LIBS} opencv::opencv fmt::fmt)
   이렇게 설정했는데, 이거는 빌드할 때 동적으로 필요하면 opencv 를 찾아서 라이브러리를 사용하는거야? 만약 main.cpp 에 include opencv 가 없으면 저거 없이 빠르게 빌드되나?
@@ -6804,9 +6724,6 @@ Created symlink '/home/wbfw109/.config/systemd/user/default.target.wants/homebre
 
 /home/linuxbrew/.linuxbrew/opt/nginx/bin/nginx -g daemon\ off\;
 
-
-mariadb
-  SELECT USER(), CURRENT_USER();
 ❔ 
   cat /home/wbfw109/.config/systemd/user/homebrew.nginx.service
     ExecStart=/home/linuxbrew/.linuxbrew/opt/nginx/bin/nginx -g daemon\ off\;
@@ -7056,26 +6973,6 @@ STM32의 ITM (Instrumentation Trace Macrocell)을 통해 디버깅 메시지 출
   Board       : NUCLEO-F411RE
   Voltage     : 3.27V
   Error: No STM32 target found! If your product embeds Debug Authentication, please perform a discovery using Debug Authentication
-
-DB
-  PostgreSQL:
-    트랜잭션 처리 성능이 우수하며 대규모 데이터를 다룰 때 유리.
-    읽기보다 쓰기가 많은 작업에 적합.
-    동시성 제어를 위해 Multi-Version Concurrency Control(MVCC)을 효율적으로 사용.
-  MariaDB:
-    경량화된 아키텍처로, 읽기 작업이 많은 애플리케이션에 적합.
-    단순한 쿼리나 OLAP(온라인 분석 처리) 작업에서 빠른 속도.
-    플러그인 스토리지 엔진(MyRocks, Aria 등)을 통해 워크로드에 맞게 성능 조정 가능.
-
-
-    PostgreSQL:
-      데이터 분석 및 OLTP(온라인 트랜잭션 처리) 작업.
-      복잡한 데이터 모델링이 필요한 환경.
-      지리공간 데이터 작업(PostGIS 등).
-    MariaDB:
-      웹 애플리케이션 및 경량 서비스.
-      읽기 작업이 많은 워크로드.
-      기존 MySQL 애플리케이션과의 호환성이 필요한 경우.
 
 ❯ git log --name-only -n 1
 ❯ git log --name-only -n 3
@@ -7359,17 +7256,9 @@ dev 이런 시스템 패키지도 버전관리가 가능해? 그래야 라이브
     근데 이 뿐 아니라, STM32 등 GUI 를 실제 필요로하는 것은 데스크탑이/노트북에서 하는 게 좋아서.
   ➡️ 작업환경을 우분투로 옮기고.. 모니터 암 아래에 노트북 두고 스피커는 안보이게 그뒤쪽으로 치운다.. 
 
-
   Conan System Package Tools 은 또 OS에 종송적인가?
-  근데 build-essential 을 설치해야 리눅스에서는 표준 c 라이브러리를 사용 가능한데 mac 은 안그래?
-  그럼 뭐 어떻게 관리해야하는거지.. mariadb 를 c언어에서 사용하기 위한 시스템 패키지같은것도 잇을텐데 시스템 패키지 대신 프로젝트에 종솏적으로 최신버전 설치 가능한가? 버전 지정해서?
 
 
-  📰➡️ 의존성 부류를 나눠야할것 같은데..
-  빌드할 떄 필요한 거. dev shell + flake 로 관리. 
-    >> WSL2 에서 PHP + mariadb 이거 같이먼저 코드 테스트해보고, 적용하기.
-  APM 스택부터 적용해보기. docker compose.
-  하고나서
   -- 블루투스 연동하기.
 
 
@@ -7728,9 +7617,6 @@ map(|line| line.unwrap())
 📍⌨️ Sound output: Ctrl+Windows+V
 
 
-
-📰 mariadb-connector-c 
-  conan 구성 이후에, mariadb-connector-c 잘 작동하는지 확인 필요.
 
 📰 STM32 모듈파일 새로추 가하면 cmake 폴더 삭제 후, 다시 CubeMx 에서 code genreate 해야 하는듯
 
@@ -11317,7 +11203,6 @@ TODO: OpenCV - Python opencv integrate...
 
 버전관리전략.. 이란게 따로 없나.. 그냥 로컬에서는 최신버전, 낮은버전을 할 때에는 도커로 devcontainer 만드는게 나은거같음.
 
-https://github.com/opencv/opencv
 
 /home/wbfw109/.wezterm.lua
 
@@ -12913,9 +12798,6 @@ Database connection test was not successful. Error was: Driver not loaded Driver
 
   >> 버전 낮음.ㅣ
 
-brew install qt-mariadb
-
-Qt SQL Database Driver
 
 Digikam ; 8.5.0
 
@@ -14303,11 +14185,6 @@ Prerequsites
   # ...
   make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- modules
 ```
-
-Opencv
-
-
-
 
 #!/usr/bin/env fish
 
@@ -16902,10 +16779,6 @@ HDMI-A-1 connected primary 1920x1080+0+0 (normal left inverted right x axis y ax
 
    xrandr --output HDMI-A-1 --rotate inverted
 
-
-이투비비 지원자 확인바랍니다
-
-
 Re: Raspberry Pi 4 - screen rotation
 Mon Sep 21, 2020 11:35 am
 
@@ -17669,19 +17542,32 @@ Badge Rule
 
 https://en.wikipedia.org/wiki/Extended_Display_Identification_Data
 
+ │&nbsp;&nbsp;&nbsp;&nbsp;├── [Issues.md](prototypes/_lab/tech_stack/hardware_and_os/Issues.md)  
 
-Databases
-⚓ Mariadb 
-![MariaDB](https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white)
-OpenCV	OpenCV	![OpenCV](https://img.shields.io/badge/opencv-%23white.svg?style=for-the-badge&logo=opencv&logoColor=white)
+
+ HTML, CSS, Gradle, PlatformIO, ARduino, Numpy, Pandas
+
+Pandas, Numpy
+Arduino	Arduino	![Arduino](https://img.shields.io/badge/-Arduino-00979D?style=for-the-badge&logo=Arduino&logoColor=white)
+HTML5, CSS
+Gradle	Gradle	![Gradle](https://img.shields.io/badge/Gradle-02303A.svg?style=for-the-badge&logo=Gradle&logoColor=white)
+PlatformIO	PlatformIO	![PlatformIO](https://img.shields.io/badge/PlatformIO-%23222.svg?style=for-the-badge&logo=platformio&logoColor=%23f5822a)
+
+Gradle, PlatformIO
+
+Javascript, Apache, Numpy, Pandas, Pytorch, Tensorflow
+
+
+https://developer.mozilla.org/en-US/docs/Web/CSS
+
+Apache	Apache	![Apache](https://img.shields.io/badge/apache-%23D42029.svg?style=for-the-badge&logo=apache&logoColor=white)
+
 nVIDIA	nVIDIA	![nVIDIA](https://img.shields.io/badge/nVIDIA-%2376B900.svg?style=for-the-badge&logo=nVIDIA&logoColor=white)
   prototypes/_initialization/ubuntu/init_in_fish_semi_automatic-vision.fish
 
+LaTeX	LaTeX	![LaTeX](https://img.shields.io/badge/latex-%23008080.svg?style=for-the-badge&logo=latex&logoColor=white)
 
 HTML5	HTML5	![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
-LaTeX	LaTeX	![LaTeX](https://img.shields.io/badge/latex-%23008080.svg?style=for-the-badge&logo=latex&logoColor=white)
-Kotlin	Kotlin	![Kotlin](https://img.shields.io/badge/kotlin-%237F52FF.svg?style=for-the-badge&logo=kotlin&logoColor=white)
-
 JavaScript	JavaScript	![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 
 NumPy	NumPy	![NumPy](https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white)
@@ -17689,11 +17575,6 @@ Pandas	Pandas	![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=
 PyTorch	PyTorch	![PyTorch](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=for-the-badge&logo=PyTorch&logoColor=white)
 TensorFlow	TensorFlow	![TensorFlow](https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?style=for-the-badge&logo=TensorFlow&logoColor=white)
 
-Arduino	Arduino	![Arduino](https://img.shields.io/badge/-Arduino-00979D?style=for-the-badge&logo=Arduino&logoColor=white)
-Gradle	Gradle	![Gradle](https://img.shields.io/badge/Gradle-02303A.svg?style=for-the-badge&logo=Gradle&logoColor=white)
-PlatformIO	PlatformIO	![PlatformIO](https://img.shields.io/badge/PlatformIO-%23222.svg?style=for-the-badge&logo=platformio&logoColor=%23f5822a)
-
-Apache	Apache	![Apache](https://img.shields.io/badge/apache-%23D42029.svg?style=for-the-badge&logo=apache&logoColor=white)
 
 
 
@@ -17734,3 +17615,6 @@ Jenkins	Jenkins	![Jenkins](https://img.shields.io/badge/jenkins-%232C5263.svg?st
 Apache Tomcat	Apache Tomcat	![Apache Tomcat](https://img.shields.io/badge/apache%20tomcat-%23F8DC75.svg?style=for-the-badge&logo=apache-tomcat&logoColor=black)
 
 GitHub	GitHub	![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
+
+
+❗ Android Layout 종류?

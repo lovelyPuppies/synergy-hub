@@ -634,7 +634,7 @@ Linux 🔪 Man pages
       # Load balancing
       # Shaping by realm
 
-    ⚓🧮 ip ; https://www.mankier.com/8/ip
+    ⚓🧮💡 ip ; https://www.mankier.com/8/ip
 
 
 
