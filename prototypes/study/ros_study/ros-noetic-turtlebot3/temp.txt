@@ -1320,44 +1320,146 @@ catkin build hls_lfcd_lds_driver
 ----------------
 ----------------
 ----------------
+2. cJSON 사용 시 최적화
+  cJSON은 사용이 간단하지만, JSON 크기가 커지거나 리소스가 제한된 환경에서는 추가 최적화가 필요합니다.
+
+  (1) 동적 할당 관리
+  cJSON은 기본적으로 동적 메모리 할당(malloc)을 사용합니다.
+  STM32와 같은 제한된 환경에서는 동적 할당 대신 정적 메모리 할당으로 전환하는 것이 좋습니다.
+Mariadb
+  https://mariadb.com/kb/en/create-table/#comment-column-option
+  1. ENGINE=InnoDB
+    InnoDB는 MariaDB와 MySQL에서 사용되는 저장 엔진 중 하나입니다.
+    특징:
+      트랜잭션 지원: 데이터 일관성과 무결성을 보장.
+      외래키(Foreign Key) 지원: 관계형 데이터베이스 설계에 필수.
+      충돌 회복: 예기치 않은 종료 시 데이터 복구 가능.
+      행 수준 잠금(Row-level Locking): 동시성을 높이고 성능을 개선.
+    최근 추세:
+      2025년 기준 MariaDB와 MySQL에서 기본 저장 엔진으로 InnoDB가 사용됩니다.
+      이유: 높은 안정성과 성능.
+  2. DEFAULT CHARSET=utf8mb4
+    **문자셋(Character Set)**은 데이터베이스에 저장될 문자의 인코딩 형식을 정의합니다.
+
+    utf8mb4:
+      **유니코드(UTF-8의 확장 버전)**를 지원하며, 4바이트 문자까지 저장 가능.
+      이모지, 한글, 특수 문자 등 다양한 문자를 완벽히 지원.
+      utf8mb4는 기존 utf8과 달리 이모지(😊 등) 및 추가 유니코드 문자를 저장할 수 있습니다.
+      왜 utf8mb4를 사용해야 하나?
+    MariaDB의 기존 utf8은 최대 3바이트만 지원하여 일부 유니코드 문자를 처리하지 못합니다.
+    최신 데이터베이스 설계에서는 기본 문자셋으로 utf8mb4를 사용하는 것이 표준
+  3. utf8mb4_unicode_ci: 대소문자 구분 없이 유니코드 표준에 따라 문자열 비교 및 정렬.
+    Collation
+    
+❓
+  택배 
 
 
-Socket, DB design
 * Raspberry Pi Server
   * Requirements
     - 대부분의 모든 통신은 중앙 서버인 이 라즈베리파이 서버를 거치도록 한다.
     - Database 에는 "한글" (유니코드) 문자가 저장되어야 한다.
-
+    - 각 노드로부터 메시지를 받고 데이터와 함께 상태를 전달해주어야 한다.
+      🤔 cJSON 사용? 가장 최근 릴리즈 2024-05-13 ; https://github.com/DaveGamble/cJSON
+  * Design Pattern
+    - Imitate REST API naming convention (But not HTTP protocol.)
+      - HATEOAS (Hypermedia as the Engine of Application State)
+        HATEOAS는 클라이언트가 리소스를 탐색하고 상태를 전이할 수 있도록 링크와 관련 정보를 응답에 포함시키는 것을 권장
 
   * Components
     - 💾 Database: MariaDB
       📝 "🧪": 테스트 중 생략 가능 
-      Table
-        - parcels
-          - id                 INT(PK)        택배 고유 식별자.
-          - parcel_name        VARCHAR        택배 물품 이름.
-          - recipient_name     VARCHAR        🧪 수령자 이름.
-          - phone_number       VARCHAR        수령자 연락처. 이를 기반으로 각 사용자의 월패드에 정보가 전달될 예정
-          - delivery_status    ENUM           배송 상태 (pending, in_transit, delivered).
-          - delivery_date      DATE           🧪 배송 예정일.
-          - address_id         INT(FK)        배송지 주소와 연결되는 외래키 (addresses.id 참조).
+      CREATE TABLE parcels (
+          id                  INT AUTO_INCREMENT PRIMARY KEY    COMMENT '택배 고유 식별자',
+          parcel_name         VARCHAR(255) NOT NULL             COMMENT '택배 물품 이름',
+          recipient_name      VARCHAR(255)                      COMMENT '🧪 수령자 이름',
+          phone_number        VARCHAR(20)                       COMMENT '수령자 연락처. 월패드로 정보 전달 예정',
+          delivery_status     ENUM('pending', 'in_transit', 'delivered') NOT NULL DEFAULT 'pending'
+                                                                COMMENT '배송 상태 (pending, in_transit, delivered)',
+          delivery_date       DATE                              COMMENT '🧪 배송 예정일',
+          address_id          INT                               COMMENT '배송지 주소의 외래키 (addresses.id 참조)',
+          delivery_image_path VARCHAR(255)                      COMMENT '배송 완료 후 이미지 경로 (URL 또는 파일 경로)'
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-        - addresses
-          - id                 INT(PK)        주소 고유 식별자.
-          - city               VARCHAR        🧪 도시 이름.                           
-          - district           VARCHAR        🧪 구/군 이름.                           
-          - sub_address        VARCHAR        상세 주소 (예: XX동, XX호).
-          - created_at         DATETIME       주소 생성 시각.
-          - updated_at         DATETIME       주소 업데이트 시각.
-    -
-    - ROS
-  
+      CREATE TABLE addresses (
+          id            INT AUTO_INCREMENT PRIMARY KEY          COMMENT '주소 고유 식별자',
+          city          VARCHAR(100)                            COMMENT '🧪 도시 이름',
+          district      VARCHAR(100)                            COMMENT '🧪 구/군 이름',
+          sub_address   VARCHAR(255)                            COMMENT '상세 주소 (예: XX동, XX호)',
+          created_at    DATETIME DEFAULT CURRENT_TIMESTAMP 
+                                                                COMMENT '🧪 주소 생성 시각 (기본값: 현재 시각)',
+          updated_at    DATETIME DEFAULT CURRENT_TIMESTAMP 
+                      ON UPDATE CURRENT_TIMESTAMP               COMMENT '🧪 주소 업데이트 시각 (수정 시 자동 갱신)'
+      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-  엘레베이터의 경우,
+
+    - Socket Server
+    - ROS Master Node 📰 (Doing...) 
+
+  * Message Format
+    {
+      "source": "client_name",
+      "destination": "target_name",
+      "command": "command_name",
+      "payload": {
+        "key1": "value1",
+        "key2": "value2"
+      },
+      "links": [
+        { "rel": "self", "href": "/api/current_state" },
+        { "rel": "update", "href": "/api/update_state" }
+      ]
+    }
+
+    command := ["get", "set", "create", "read" "update", "delete", ...]
+      📝 CRUD (create, read, update, delete) 는 DB 에 대한 Query. 그 외에는 메모리에서만 유지되는 정보에 대한 쿼리.
+
+  * Messages Speicifcation
+    ⚖️ Mockup
+      - storage_1
+      - storage_2
+      - elevator_1
+      - elevator_2
+      - home_1
+      - home_2
+  *🧪 Optimization
+    - Maximum Message Size is 1460 bytes
+      Ethernet Frame Total Size = 1518 bytes
+        - Ethernet MTU (1500 bytes)
+        + Ethernet Header (14 bytes)
+        + FCS (Footer) (4 bytes)              // Frame Check Sequence
+        --------------------------------------
+        Total = 1518 bytes (Maximum Ethernet Frame Size)
+
+      TCP MSS (Maximum Segment Size) = 1460 bytes
+        - Ethernet MTU (1500 bytes)
+        - IP Header (20 bytes)
+        - TCP Header (20 bytes)
+        --------------------------------------
+        TCP MSS = 1460 bytes (Maximum Application Data Size)
+    - 289 bytes for the message format (including whitespaces)
+      {
+        "source": "client_name",
+        "destination": "target_name",
+        "command": "command_name",
+        "payload": {
+          "key1": "value1",
+          "key2": "value2"
+        },
+        "links": [
+          { "rel": "self", "href": "/api/current_state" },
+          { "rel": "update", "href": "/api/update_state" }
+        ]
+      }
+
+  ...???
+  엘레베이터 정보
     - 엘레베이터 문 개폐 상태
-    - ✔️ 엘레베이터 현재 층수
-  택배보관소
-    
+    - 엘레베이터 현재 층수
+  택배보관소 정보
+    - 택배 (parcel) - CRUD to DB
+
+
 Node
   n * Rasberry Pi 3 (Turtlebot)
     [주변장치]: 컨베이어밸트, 센서, 카메라
@@ -1377,7 +1479,7 @@ Database
     X. 고수준 통신의 웹 서버/클라이언트 구조의 경우 HTTP 헤더로부터 알 수 있지만 저수준의 소켓 통신에서는 알 수 없다.
 Network socket
 
-박인혁	[터틀봇]
+[터틀봇]
 	1. 하드웨어 제작
 	- 라즈베리파이 3B+ + OpenCR + 컨베이어밸트 + 센서 + 카메라
 	- 플레이트로 형상 변경
@@ -1389,14 +1491,14 @@ Network socket
 	- 무인택배함소 -> 집배송지 이동
 	- 목적지에서 컨베이어밸트로 물품 하차
 	- 배송완료 사진 촬영 & 전송
-박준수	[서버]
+[서버]
 	1. Namespace 규격 작성
     - DB 테이블 설계
 	 - 소켓통신 규격 설계
 	 - ROS namespace
 	
 	　
-박진우	[엘레베이터]
+[엘레베이터]
 	1. 하드웨어 제작
 	아파트 동 유리 현관문 내부 폼보드 제작
 	ESP32 + 모터 + 7-Segment
@@ -1407,14 +1509,11 @@ Network socket
 	- 문 개폐: 모터 제어
 	- 층수 표시: 세그먼트 제어
 	- 메인 서버에 엘레베이터 층수 정보 전달
-정태현	[집 호수]
+[집 호수]
 	1. 하드웨어 제작
 	
 	
-	[엘레베이터]? 정호 역할에 미리 작성 내용 활용 요망!
-	　
-	
-조명근	[택배보관장소]
+[택배보관장소]
 	<Tab1>
 	1. cctv 영상 처리
 	- 프레임 처리 코드 구현
@@ -1426,7 +1525,7 @@ Network socket
 	- 탐지된 객체 데이터 활용 기능
 
   
-최정호	[택배보관장소]
+[택배보관장소]
 	<Tab1>
 	1. 택배 기사님/주민 사용 기능
 	- 동/호수/택배함 번호 입력 UI
@@ -1440,13 +1539,13 @@ Network socket
 	- 서버-택배함 데이터 송수신 코드
 	*택배함 사용 시, 해당 호수로 정보 전송
 
-	[월패드]
+[월패드]
 	3. 주민 집 월패드 기능
 - 택배보관함 내 택배 도착 알림
 	- 집배송 로봇 배달 요청
 	- 집배송 도착 알림
 
-	[아파트 동 & 엘레베이터]
+[아파트 동 & 엘레베이터]
 	1. 하드웨어 제작
 	아파트 동 유리 현관문 내부 폼보드 제작
 	ESP32 + 모터 + 7-Segment
@@ -1458,8 +1557,6 @@ Network socket
 	- 층수 표시: 세그먼트 제어
 	- 메인 서버에 엘레베이터 층수 정보 전달
 
-지금 자율주행 택배 시스템을 만들고 있는데, 라즈베리파이 서버에서 원거리에 있는 ROS 터틀봇, 엘레베이터, 택배보관함, 머신러닝 처리용 PC까지 모두 하나의 네트워크로 묶어야 해. 대부분 라즈베리파이 서버를 통과할 예정이야. 중앙 서버라서.
 
-
-지금 자율주행 택배 시스템을 만들고 있는데, 라즈베리파이 서버에서 원거리에 있는 ROS 터틀봇 (OpenCR), 엘레베이터 (STM32), 택배보관함(STM or rasberry), 머신러닝 처리용 PC까지 모두 하나의 네트워크로 묶어야 해. 대부분 라즈베리파이 서버를 통과할 예정이야. 라즈베리파이 서버가 ROst master server 와, 소켓 서버가 둘 다 돌아가야 해. 그럴 경우에는?
+지금 자율주행 택배 시스템을 만들고 있는데, 라즈베리파이 서버에서 원거리에 있는 ROS 터틀봇 (OpenCR), 엘레베이터 (STM32), 택배보관함(STM or rasberry), 머신러닝 처리용 PC까지 모두 하나의 네트워크로 묶어야 해. 대부분 라즈베리파이 서버를 통과할 예정이야. 라즈베리파이 서버가 ROst master server 와, 소켓 서버가 둘 다 돌아가야 해.
 

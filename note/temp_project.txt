@@ -17669,4 +17669,53 @@ https://shields.io/badges
   Example: flat
     https://itmustbecode.com/pcf-control-generate-shields-io-badges-in-the-powerplatform/
 
-    
+
+TCP MSS is 1460 bytes ; https://en.wikipedia.org/wiki/Maximum_segment_size
+  https://velog.io/@leesfact/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-TCPIP-4%EA%B3%84%EC%B8%B5-MTU-MSSPMTUD
+
+Network
+ 3계층은 "어디로 보낼지", **4계층은 "어떻게 전달할지"**에 초점
+ 2계층 프레임은 데이터를 캡슐화한 구조로, 물리 계층에서 실제 전송되는 데이터입니다.
+
+- Wireless-networking standard: IEEE 802.11n ; https://en.wikipedia.org/wiki/IEEE_802.11n-2009
+  > Data rates up to 600 Mbit/s are achieved only with the maximum of four spatial streams using one 40 MHz-wide channel.
+  
+- Maximum transmission unit (MTU) ; https://en.wikipedia.org/wiki/Maximum_transmission_unit
+  > Media for IP transport    Maximum transmission unit (bytes)   Notes
+    Ethernet                  1500                                Nearly all IP over Ethernet implementations use the Ethernet II frame format."
+
+✅ (how-to) Optimize... packaet...전송 단위.. 1460 초과 안되도록... network.. 2025-01-22 01:44:41
+  Ethernet Frame Structure and TCP MSS (Maximum Segment Size) Calculation
+  for determining the optimal maximum size of application data (payload).
+
+  Ethernet Frame Components:
+    Component            Size         Description
+    Ethernet Header      14 bytes     Contains MAC addresses and Ethernet layer information
+    IP Header            20 bytes     Contains source and destination IP addresses
+    TCP Header           20 bytes     Contains port information and TCP layer details
+    Payload (Data)       1460 bytes   Application data
+    FCS (Footer)         4 bytes      Frame Check Sequence for error detection
+
+  Calculation:
+    Ethernet MTU (Maximum Transmission Unit) = 1500 bytes
+      - This refers to the maximum size of the payload that can be carried by Ethernet.
+      - Includes the IP Header, TCP Header, and Application Data (Payload).
+
+    Ethernet Frame Total Size = 1518 bytes
+      - Ethernet MTU (1500 bytes)
+      + Ethernet Header (14 bytes)
+      + FCS (Footer) (4 bytes)            // Frame Check Sequence
+      --------------------------------------
+      Total = 1518 bytes (Maximum Ethernet Frame Size)
+
+    TCP MSS (Maximum Segment Size) = 1460 bytes
+      - Ethernet MTU (1500 bytes)
+      - IP Header (20 bytes)
+      - TCP Header (20 bytes)
+      --------------------------------------
+      TCP MSS = 1460 bytes (Maximum Application Data Size)
+
+  Optimization:
+    Application data (payload) should be kept within 1460 bytes
+    to avoid fragmentation at the network layer, ensuring efficient
+    and reliable transmission.
