@@ -17,7 +17,7 @@ Written at 📅 2024-12-12 19:21:31
 
 ### ✔️ Basic Setup
 
-📁 Default Workspace: poly/ from `git clone git://git.yoctoproject.org/poky`
+📁 Default Workspace: poky/ from `git clone git://git.yoctoproject.org/poky`
 
 ```bash
 #!/usr/bin/env fish
