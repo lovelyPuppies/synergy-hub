@@ -1314,17 +1314,45 @@ catkin build hls_lfcd_lds_driver
 
 
 안녕하십니까
-
-----------------
-----------------
-----------------
-----------------
-Socket, DB design
-* Raspberry Pi Server
-  - 대부분의 모든 통신은 중앙 서버인 이 라즈베리파이 서버를 거치도록 한다.
   
 
-❓ 각 모듈 센서의 작동상태롤 "모두" 라즈베리파이 서버에 전달할 것인가.
+----------------
+----------------
+----------------
+----------------
+
+
+Socket, DB design
+* Raspberry Pi Server
+  * Requirements
+    - 대부분의 모든 통신은 중앙 서버인 이 라즈베리파이 서버를 거치도록 한다.
+    - Database 에는 "한글" (유니코드) 문자가 저장되어야 한다.
+
+
+  * Components
+    - 💾 Database: MariaDB
+      📝 "🧪": 테스트 중 생략 가능 
+      Table
+        - parcels
+          - id                 INT(PK)        택배 고유 식별자.
+          - parcel_name        VARCHAR        택배 물품 이름.
+          - recipient_name     VARCHAR        🧪 수령자 이름.
+          - phone_number       VARCHAR        수령자 연락처. 이를 기반으로 각 사용자의 월패드에 정보가 전달될 예정
+          - delivery_status    ENUM           배송 상태 (pending, in_transit, delivered).
+          - delivery_date      DATE           🧪 배송 예정일.
+          - address_id         INT(FK)        배송지 주소와 연결되는 외래키 (addresses.id 참조).
+
+        - addresses
+          - id                 INT(PK)        주소 고유 식별자.
+          - city               VARCHAR        🧪 도시 이름.                           
+          - district           VARCHAR        🧪 구/군 이름.                           
+          - sub_address        VARCHAR        상세 주소 (예: XX동, XX호).
+          - created_at         DATETIME       주소 생성 시각.
+          - updated_at         DATETIME       주소 업데이트 시각.
+    -
+    - ROS
+  
+
   엘레베이터의 경우,
     - 엘레베이터 문 개폐 상태
     - ✔️ 엘레베이터 현재 층수

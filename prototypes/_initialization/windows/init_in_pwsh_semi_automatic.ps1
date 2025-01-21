@@ -315,7 +315,8 @@ scoop install extras/digikam # https://www.digikam.org/
 scoop install extras/kakaotalk
 
 
-scoop install extras/powertoys
+winget install --id Microsoft.PowerToys --source winget
+# scoop install extras/powertoys
 <#
   - ✔️ customize FancyZone
 
@@ -326,6 +327,8 @@ scoop install extras/powertoys
 
   If an error occurs when updating or uninstalling, execute the following command then retry:
   `Stop-Process -Name 'explorer'`
+
+  📰 Image Resizer 가 실행되고 있음에도 안나온다. 우클릭에..
 #>
 
 scoop install versions/steam

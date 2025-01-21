@@ -1561,6 +1561,41 @@ https://marketplace.visualstudio.com/items?itemName=shd101wyy.markdown-preview-e
 
   acgpn ? 딥러닝모델... 여성 옷에 최적화.. 
   Stable diffusion
+>>> 우리회사는 뭘 해서
+P2P의 TC/UDP 홀펀칭? webRTC 의 동작과정?
+P2P의 TCP/UDP 홀 펀칭 (Hole Punching)
+  P2P(Peer-to-Peer) 통신에서 **홀 펀칭(Hole Punching)**은 방화벽이나 NAT(Network Address Translation) 뒤에 있는 기기들이 직접적으로 통신할 수 있도록 경로를 만드는 기술입니다. NAT는 사설 네트워크와 공용 네트워크를 연결하며, 외부에서 내부로의 연결을 차단하는 경우가 많습니다. 홀 펀칭은 이런 상황을 해결하기 위한 방법입니다.
+
+  1. NAT 문제
+    NAT 뒤에 있는 기기는 공인 IP 주소가 없기 때문에 외부에서 직접적으로 접근할 수 없습니다.
+    NAT는 외부의 요청이 올 때만 내부로 연결을 허용합니다.
+  2. 홀 펀칭의 동작 방식
+    UDP 홀 펀칭
+    TCP 홀 펀칭:
+
+
+1. WebRTC 주요 구성 요소
+  WebRTC는 브라우저 간 실시간 P2P 통신을 가능하게 하는 기술로, 음성, 영상, 데이터 전송을 지원합니다. NAT와 방화벽 문제를 해결하기 위해 TCP/UDP 홀 펀칭과 유사한 과정을 포함합니다.
+
+  STUN 서버:
+    NAT 뒤에서 클라이언트의 공인 IP 주소와 포트를 알아내는 데 사용됩니다.
+  TURN 서버:
+    P2P 연결이 불가능할 때 중계 서버 역할을 합니다.
+  SDP (Session Description Protocol):
+    연결을 설정하기 위한 메타데이터(코덱 정보, IP, 포트 등)를 포함합니다.
+  ICE (Interactive Connectivity Establishment):
+    후보 네트워크 경로를 탐색하고 최적의 경로를 선택하는 프로토콜입니다.
+HLS 프로토콜 (HTTP Live Streaming)
+  **HLS(HTTP Live Streaming)**는 Apple이 개발한 비디오 스트리밍 프로토콜로, 인터넷을 통해 실시간 및 주문형(VoD) 콘텐츠를 전송하는 데 사용됩니다. 이 프로토콜은 HTTP 기반으로 동작하며, 주로 다양한 네트워크 조건과 디바이스 환경에서 안정적인 스트리밍을 제공하는 것을 목표로 합니다.
+
+>> PC P2P 클라이언트 개발
+>> LIVE 방송 서버 개발
+>> 미디어 서버 개발
+이거 3개 차이가 뭐야?
+https://vod.sooplive.co.kr/player/148152989
+
+REST 스타일 
+시나리오 3: Pub/Sub 기반 이벤트
 
 Opencv
   opencv 를 사용하여 얼굴 감지 후 성별과 연령 인식. ; OPEN-source Computer Vision
