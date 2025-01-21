@@ -17668,3 +17668,6 @@ https://raw.githubusercontent.com/Ileriayo/markdown-badges/refs/heads/master/REA
 Badge Rule
 
 https://en.wikipedia.org/wiki/Extended_Display_Identification_Data
+
+
+qt
