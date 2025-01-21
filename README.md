@@ -4,6 +4,7 @@
   - [🔧 Tech Stack](#-tech-stack)
   - [📌 Project Shortcuts](#-project-shortcuts)
     - [Mini Project](#mini-project)
+    - [Project Prototype](#project-prototype)
   - [🌐 Open Source Contributions](#-open-source-contributions)
     - [Issues Overview](#issues-overview)
     - [Steam Workshop Contributions](#steam-workshop-contributions)
@@ -28,7 +29,7 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
  │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [![Gradle](https://img.shields.io/badge/Gradle-02303A.svg?style=plastic&logo=Gradle&logoColor=white)](prototypes/_lab/tech_stack/build_tool/build_system_generator/gradle.txt)  
  │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [![PlatformIO](https://img.shields.io/badge/PlatformIO-%23222.svg?style=plastic&logo=platformio&logoColor=%23f5822a)](prototypes/_lab/tech_stack/build_tool/build_system_generator/gradle.txt)  
  ├── 📂 ci+cd  
- │&nbsp;&nbsp;&nbsp;&nbsp;└── [![GitHub Actions](https://img.shields.io/badge/ithub%20Actions-%232671E5.svg?style=plastic&logo=githubactions&logoColor=white)](prototypes/_lab/tech_stack/ci+cd/github_actions.txt)  
+ │&nbsp;&nbsp;&nbsp;&nbsp;└── [![GitHub Actions](https://img.shields.io/badge/Github%20Actions-%232671E5.svg?style=plastic&logo=githubactions&logoColor=white)](prototypes/_lab/tech_stack/ci+cd/github_actions.txt)  
  ├── 📂 code_quality_tool  
  │&nbsp;&nbsp;&nbsp;&nbsp;└── [Ruff](prototypes/_lab/tech_stack/code_quality_tool/ruff.txt)  
  ├── 📂 database  
@@ -111,7 +112,7 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
  │&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 os_level_virtualization  
  │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [![Docker](https://img.shields.io/badge/Docker-%230db7ed.svg?style=plastic&logo=docker&logoColor=white)](prototypes/_lab/tech_stack/virtualization/os_level_virtualization/runtime-docker.txt)  
  │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [**dev_env-devcontainer**](prototypes/_lab/tech_stack/virtualization/os_level_virtualization/dev_env-devcontainer.txt)  
- └── 📂 web  
+ ├── 📂 web  
  ├── 📂 web_browser  
  │&nbsp;&nbsp;&nbsp;&nbsp;└── [![Edge](https://img.shields.io/badge/Edge-0078D7?style=plastic&logo=Microsoft-edge&logoColor=white)](prototypes/_lab/tech_stack/web/web_browser/edge.txt)  
  └── 📂 web_server  
@@ -186,6 +187,12 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
 - 🎱 [**Yocto for Raspberry Pi B4**](prototypes/study/bsp_study/raspberry_pi/kernel/mini-yocto.md)
 
   🏷️ Tag: Yocto Project, Raspberry Pi 4 B
+
+### Project Prototype
+
+- 🎱 [Prototype - **Qt** with **Clang**, **CMakePreset**, **Cross-compilation** (32bit)](prototypes/_initialization/project-clang-qt)
+
+- 🎱 [Prototype - **Device Driver**, **App** with **Clang**, **Make**, **Cross-compilation** (Raspberry Pi Kernel 64bit)](prototypes/_initialization/project-clang-device_driver_and_app_development)
 
 ## 🌐 Open Source Contributions
 
@@ -272,7 +279,7 @@ tree [**prototypes/\_initialization/ubuntu**](prototypes/_initialization/ubuntu)
 │&nbsp;&nbsp;&nbsp;&nbsp;├── \_internal  
 │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 file_supervisor  
 │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [inotify-make_fish_utilities_executable.fish](prototypes/_initialization/ubuntu/howto/_internal/file_supervisor/inotify-make_fish_utilities_executable.fish)  
-│&nbsp;&nbsp;&nbsp;&nbsp;└── [snippet.fish](prototypes/_initialization/ubuntu/howto/snippet.fish)  
+│&nbsp;&nbsp;&nbsp;&nbsp;├── [snippet.fish](prototypes/_initialization/ubuntu/howto/snippet.fish)  
 │&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 template  
 ├── [init_in_bash.sh](prototypes/_initialization/ubuntu/init_in_bash.sh)  
 ├── **[init_in_fish.fish](prototypes/_initialization/ubuntu/init_in_fish.fish)**  
