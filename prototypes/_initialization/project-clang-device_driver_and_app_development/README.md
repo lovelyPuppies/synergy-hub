@@ -5,7 +5,7 @@
 ├── 📂 app
 │   ├── Makefile
 │   └── 📂 src
-│       ├── include
+│       ├── 📂 include
 │       └── kernel_timer_app.c
 ├── 📂 include
 │   └── 📂 uapi
@@ -14,7 +14,7 @@
 ├── 📂 module
 │   ├── Makefile
 │   └── 📂 src
-│       ├── include
+│       ├── 📂 include
 │       └── kernel_timer_dev.c
 └── pipeline.fish
 ```
