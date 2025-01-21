@@ -1,0 +1,3 @@
+
+Badge Format 🔪 Precedence
+   - ⚓ Ileriayo/markdown-badges ; https://github.com/Ileriayo/markdown-badges?tab=readme-ov-file#badges

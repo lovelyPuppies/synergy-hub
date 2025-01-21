@@ -122,8 +122,6 @@
       Block Device 🆚 Character Device..
         Buufer Cache 유무 차이
     Process Management
-
-
   
 📰 Yocto, ROS2 as Docker container
   Yocto는 Incremental Build(증분 빌드)를 지원합니다. 변경 사항이 local.conf에만 영향을 미치므로, 기본적으로 변경된 설정에 따라 필요한 부분만 빌드합니다. 
@@ -6268,7 +6266,6 @@ Twemoji Mozilla.. 이거 FireFox 에서 제공되는 emoji 였떤거같기도..
 
   Powerline glyphs
     https://github.com/ryanoasis/powerline-extra-symbols?tab=readme-ov-file
-  🌟 >> https://casterian.net/stm32/STM32CubeMX-PlatformIO/
 
   mkdir -p ~/.config/fontconfig/conf.d/
   ❗ fc-cache -f 이후 vscode 에서는 vscode 프로세스를 모두 종료했다가 다시 시작해야 적용된다.
@@ -8287,33 +8284,6 @@ Dynamic device management
 ⚓ udevadm ; https://man7.org/linux/man-pages/man8/udevadm.8.html
   #🚣 Table 1. udevadm info output prefixes
 
-아래꺼 curl -fsSL ~ 부분 자동화 스크립트 작성 팔요 ===
-✅ (how-to); settings for Embedded development 📅 2024-10-11 14:17:51
-  - install PlatformIO Extension in VSCode
-  - install udev ; https://docs.platformio.org/en/latest/core/installation/udev-rules.html
-    | https://en.wikipedia.org/wiki/Udev
-    🚣 Linux users have to install udev rules for PlatformIO supported boards/devices.
-    %shell>
-      # udb: user device or userspace/dev
-      # https://raw.githubusercontent.com/platformio/platformio-core/develop/platformio/assets/system/99-platformio-udev.rules
-      curl -fsSL https://raw.githubusercontent.com/platformio/platformio-core/develop/platformio/assets/system/99-platformio-udev.rules | sudo tee /etc/udev/rules.d/99-platformio-udev.rules
-      # udevadm: udev administator
-      sudo udevadm control --reload-rules
-      sudo udevadm trigger
-  - %vscode> PlatformIO: PlatformIO Home
-    Quick Access - New Project
-      - Project Wizard
-        - Name: signal-master
-        - Board: Arduino Uno
-        - Framework: Arudino
-        - Location: <project_root>
-  ##  https://docs.platformio.org/en/latest/tutorials/espressif32/arduino_debugging_unit_testing.html ~
-  # Compiling and Uploading the Firmware: Compile, Upload, Minitor
-  # 📰 Adding Bluetooth LE features
-
-  - check conneted device
-    %shell> udevadm info --query=property --name=/dev/ttyACM0 | grep --extended-regexp 'ID_VENDOR_FROM_DATABASE|ID_MODEL_FROM_DATABASE'
-
 lsusb
 📰
   // STM32 VS Code Extension path ⚠️ Bug: It not interpret Variable Rference like ${userHome} 🔗 https://code.visualstudio.com/docs/editor/variables-reference
@@ -8339,20 +8309,7 @@ lsusb
 
 그러면 Create empty project 이후, 보드 설정을 해줘야하나? ioc 파일로부터 만들기 해야하나
 
-📅 2024-11-21 13:13:02
-  다음의 말 문잔 하나하나 맞는지실제 사례로부터 검토해줘. 그리고 의견을 줘
-  ㅡㅡ
-  1. Platform io 랑 stm32mx 를 연동해서 사용하려했는데 실제로 그런 사례가 별로 없는거 같아. 
-  2. 그래서 cmake 를 사용 할 수 있는 vscode stm32 공식 확장을 사용해봤는데, cmake 가 stm32ide 에서는 숨겨져있었는데 vscode 에서 하니까 숨겨지지 않아서 좋은 것 같아. 
-  3.cmake 에서 일부는 cpp 로, 일부는 c 로 빌드가 가능한가?
-  4. 그렇다면 최종적으로 stm32 가 아닌 보드에서만 platformio 를 쓰는 것이 좋으려나? 
-  >>
-  STM32를 전문적으로 다룰 때는 STM32CubeIDE 또는 VSCode + CMake 구성이 더 자연스럽습니다.
-  PlatformIO는 STM32 외의 다른 보드에서 활용성을 극대화할 수 있습니다.
-  CMake를 직접 조작할 계획이라면 VSCode 환경이 적합하며, C/C++ 혼합 빌드도 충분히 가능합니다.
-
 📰 dd 복사 명령어..  <-> 유틸리티 만들기
-
 📰 면접 T32 명령어 셋 vs A32 명령어 셋
 
 note/temp_to_be_copied.txt
@@ -17534,29 +17491,20 @@ gpg: revocation certificate stored as '/home/wbfw109v2/.gnupg/openpgp-revocs.d/D
 
 ## https://docs.redhat.com/ko/documentation/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/connecting-to-remote-machines-with-ssh-keys-using-ssh-agent_assembly_using-secure-communications-between-two-systems-with-openssh#connecting-to-remote-machines-with-ssh-keys-using-ssh-agent_assembly_using-secure-communications-between-two-systems-with-openssh
 
-
-
-https://raw.githubusercontent.com/Ileriayo/markdown-badges/refs/heads/master/README.md
-
-Badge Rule
+🪱 platform ; https://en.wiktionary.org/wiki/platform
+  (computing) Ellipsis of computing platform: a particular type of operating system or environment such as a database or other specific software, and/or a particular type of computer or microprocessor, used to describe a particular environment for running other software.
 
 https://en.wikipedia.org/wiki/Extended_Display_Identification_Data
 
  │&nbsp;&nbsp;&nbsp;&nbsp;├── [Issues.md](prototypes/_lab/tech_stack/hardware_and_os/Issues.md)  
 
-
- HTML, CSS, Gradle, PlatformIO, ARduino, Numpy, Pandas
+ HTML, CSS, Numpy, Pandas
 
 Pandas, Numpy
-Arduino	Arduino	![Arduino](https://img.shields.io/badge/-Arduino-00979D?style=for-the-badge&logo=Arduino&logoColor=white)
-HTML5, CSS
-Gradle	Gradle	![Gradle](https://img.shields.io/badge/Gradle-02303A.svg?style=for-the-badge&logo=Gradle&logoColor=white)
-PlatformIO	PlatformIO	![PlatformIO](https://img.shields.io/badge/PlatformIO-%23222.svg?style=for-the-badge&logo=platformio&logoColor=%23f5822a)
 
-Gradle, PlatformIO
+HTML5, CSS
 
 Javascript, Apache, Numpy, Pandas, Pytorch, Tensorflow
-
 
 https://developer.mozilla.org/en-US/docs/Web/CSS
 
@@ -17574,8 +17522,6 @@ NumPy	NumPy	![NumPy](https://img.shields.io/badge/numpy-%23013243.svg?style=for-
 Pandas	Pandas	![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white)
 PyTorch	PyTorch	![PyTorch](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=for-the-badge&logo=PyTorch&logoColor=white)
 TensorFlow	TensorFlow	![TensorFlow](https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?style=for-the-badge&logo=TensorFlow&logoColor=white)
-
-
 
 
 FastAPI	FastAPI	![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)
@@ -17598,7 +17544,6 @@ Matplotlib	Matplotlib	![Matplotlib](https://img.shields.io/badge/Matplotlib-%23f
 
 Hibernate	Hibernate	![Hibernate](https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=Hibernate&logoColor=white)
 
-
 ESLint	ESLint	![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white)
 FFmpeg	FFmpeg	![FFmpeg](https://shields.io/badge/FFmpeg-%23171717.svg?logo=ffmpeg&style=for-the-badge&labelColor=171717&logoColor=5cb85c)
 
@@ -17618,3 +17563,44 @@ GitHub	GitHub	![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=
 
 
 ❗ Android Layout 종류?
+https://gnss.eseoul.go.kr/system_sub1_01  
+
+📰📰📰📰📰📰📰📰📰📰📰📰📰📰>> 이투비비 ..명함만 받아오기.
+  Rust 개발.. >> 거기 지원서 하나 넣기..
+  
+  꾸미기 + 양복.
+  + IDE   
+
+Layout gravity
+
+Ctrl + Shift + U 우분투 특수문자 입력
+
+아래꺼 curl -fsSL ~ 부분 자동화 스크립트 작성 팔요 ===
+✅ (how-to); settings for Embedded development 📅 2024-10-11 14:17:51
+  - install PlatformIO Extension in VSCode
+  - install udev ; https://docs.platformio.org/en/latest/core/installation/udev-rules.html
+    | https://en.wikipedia.org/wiki/Udev
+    🚣 Linux users have to install udev rules for PlatformIO supported boards/devices.
+    %shell>
+      # udb: user device or userspace/dev
+      # https://raw.githubusercontent.com/platformio/platformio-core/develop/platformio/assets/system/99-platformio-udev.rules
+      curl -fsSL https://raw.githubusercontent.com/platformio/platformio-core/develop/platformio/assets/system/99-platformio-udev.rules | sudo tee /etc/udev/rules.d/99-platformio-udev.rules
+      # udevadm: udev administator
+      sudo udevadm control --reload-rules
+      sudo udevadm trigger
+  - %vscode> PlatformIO: PlatformIO Home
+    Quick Access - New Project
+      - Project Wizard
+        - Name: signal-master
+        - Board: Arduino Uno
+        - Framework: Arudino
+        - Location: <project_root>
+  ##  https://docs.platformio.org/en/latest/tutorials/espressif32/arduino_debugging_unit_testing.html ~
+  # Compiling and Uploading the Firmware: Compile, Upload, Minitor
+  # 📰 Adding Bluetooth LE features
+
+  - check conneted device
+    %shell> udevadm info --query=property --name=/dev/ttyACM0 | grep --extended-regexp 'ID_VENDOR_FROM_DATABASE|ID_MODEL_FROM_DATABASE'
+
+
+udev
