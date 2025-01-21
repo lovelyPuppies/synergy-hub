@@ -52,6 +52,8 @@ list of level 1 subjects
 
     🗑️ When it was first introduced, the name was an acronym for Compute Unified Device Architecture
       , but Nvidia later dropped the common use of the acronym and now rarely expands it.
+
+
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
 ⚓ NVIDIA Video Codec SDK ; https://developer.nvidia.com/video-codec-sdk
   # Contents
@@ -59,4 +61,5 @@ list of level 1 subjects
       GPU hardware accelerator engines for video encoding (referred to as 🪱 NVENC) and video decoding (referred to as 🪱 NVDEC) support faster-than-real-time video processing
       , which makes them suitable for use in multiple applications, including video transcoding, video data compression/decompression for deep learning, game broadcasting, virtual desktops, cloud gaming, secure video playback, etc.
       Video Codec SDK exposes the APIs that let you harness the NVENC and NVDEC for all video encoding/decoding capabilities of these engines
+
 

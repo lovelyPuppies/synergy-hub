@@ -1,0 +1,16 @@
+list of level 1 subjects
+  - Github Actions
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ Github Actions ; https://docs.github.com/actions
+
+----------------------------------------------
+Github Actions 🔪⚓ Docs ; https://docs.github.com/actions
+
+
+
+----------------------------------------------
+📰 Temp
+  https://github.com/wbfw109/study-core/blob/main/.github/workflows/e_commerce_service-coverage-github_pages-CD.yml
+  https://github.com/wbfw109/study-core/blob/main/.github/workflows/github_pages-CD.yml
+  
