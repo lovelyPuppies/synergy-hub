@@ -1326,6 +1326,10 @@ catkin build hls_lfcd_lds_driver
   (1) 동적 할당 관리
   cJSON은 기본적으로 동적 메모리 할당(malloc)을 사용합니다.
   STM32와 같은 제한된 환경에서는 동적 할당 대신 정적 메모리 할당으로 전환하는 것이 좋습니다.
+# https://kjt9109.tistory.com/entry/NanoPB-Stm32
+  NanoPb를 STM32에 적용시켜보자 
+    ❗ ⚓ NanoPb ; https://github.com/nanopb/nanopb
+    -> Protobuf를 Embedded System에 적용하기 위해 C기반 경량화로 나온 프로토콜을 NanoPb라고 한다.
 Mariadb
   https://mariadb.com/kb/en/create-table/#comment-column-option
   1. ENGINE=InnoDB
@@ -1350,17 +1354,22 @@ Mariadb
     최신 데이터베이스 설계에서는 기본 문자셋으로 utf8mb4를 사용하는 것이 표준
   3. utf8mb4_unicode_ci: 대소문자 구분 없이 유니코드 표준에 따라 문자열 비교 및 정렬.
     Collation
-    
-❓
+🤔 cJSON 사용? 동적이라 임베디드에서는 성능문제.. 가장 최근 릴리즈 2024-05-13 ; https://github.com/DaveGamble/cJSON
+  JSMN?.. ..파싱만 가능..
+  >> https://github.com/nanopb/nanopb
+    https://formulae.brew.sh/formula/protobuf
+❓  
   택배 
 
 
 * Raspberry Pi Server
   * Requirements
     - 대부분의 모든 통신은 중앙 서버인 이 라즈베리파이 서버를 거치도록 한다.
-    - Database 에는 "한글" (유니코드) 문자가 저장되어야 한다.
-    - 각 노드로부터 메시지를 받고 데이터와 함께 상태를 전달해주어야 한다.
-      🤔 cJSON 사용? 가장 최근 릴리즈 2024-05-13 ; https://github.com/DaveGamble/cJSON
+    - Database 에는 "한글" (유니코드) 문자를 저장할 수 있어야 한다.
+    - 각 노드로부터 메시지를 받고 데이터와 함께 상태를 받아야 하며, 처리결과에 대한 상태를 함께 전달해주어야 한다.
+    - 고급 임베디드 장치인 라즈베리파이, 아두이노 뿐 아니라, 자원이 제한적인 STM32 에서도 성능 문제 없이 작동해야 한다.
+    - ROS 1 noetic 환경에서도 호환성을 보장해야 한다.
+
   * Design Pattern
     - Imitate REST API naming convention (But not HTTP protocol.)
       - HATEOAS (Hypermedia as the Engine of Application State)
@@ -1368,30 +1377,34 @@ Mariadb
 
   * Components
     - 💾 Database: MariaDB
-      📝 "🧪": 테스트 중 생략 가능 
-      CREATE TABLE parcels (
-          id                  INT AUTO_INCREMENT PRIMARY KEY    COMMENT '택배 고유 식별자',
-          parcel_name         VARCHAR(255) NOT NULL             COMMENT '택배 물품 이름',
-          recipient_name      VARCHAR(255)                      COMMENT '🧪 수령자 이름',
-          phone_number        VARCHAR(20)                       COMMENT '수령자 연락처. 월패드로 정보 전달 예정',
-          delivery_status     ENUM('pending', 'in_transit', 'delivered') NOT NULL DEFAULT 'pending'
-                                                                COMMENT '배송 상태 (pending, in_transit, delivered)',
-          delivery_date       DATE                              COMMENT '🧪 배송 예정일',
-          address_id          INT                               COMMENT '배송지 주소의 외래키 (addresses.id 참조)',
-          delivery_image_path VARCHAR(255)                      COMMENT '배송 완료 후 이미지 경로 (URL 또는 파일 경로)'
-      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+      📝
+        - "🧪": 테스트 중 생략 가능한 컬럼
+      * Data Definition
+        CREATE TABLE parcels (
+            id                  INT AUTO_INCREMENT PRIMARY KEY    COMMENT '택배 고유 식별자',
+            parcel_name         VARCHAR(255) NOT NULL             COMMENT '택배 물품 이름',
+            recipient_name      VARCHAR(255)                      COMMENT '🧪 수령자 이름',
+            phone_number        VARCHAR(20)                       COMMENT '수령자 연락처. 월패드로 정보 전달 예정',
+            delivery_status     ENUM('pending', 'in_transit', 'delivered') NOT NULL DEFAULT 'pending'
+                                                                  COMMENT '배송 상태 (pending, in_transit, delivered)',
+            delivery_date       DATE                              COMMENT '🧪 배송 예정일',
+            address_id          INT                               COMMENT '배송지 주소의 외래키 (addresses.id 참조)',
+            delivery_image_path VARCHAR(255)                      COMMENT '배송 완료 후 이미지 경로 (URL 또는 파일 경로)'
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-      CREATE TABLE addresses (
-          id            INT AUTO_INCREMENT PRIMARY KEY          COMMENT '주소 고유 식별자',
-          city          VARCHAR(100)                            COMMENT '🧪 도시 이름',
-          district      VARCHAR(100)                            COMMENT '🧪 구/군 이름',
-          sub_address   VARCHAR(255)                            COMMENT '상세 주소 (예: XX동, XX호)',
-          created_at    DATETIME DEFAULT CURRENT_TIMESTAMP 
-                                                                COMMENT '🧪 주소 생성 시각 (기본값: 현재 시각)',
-          updated_at    DATETIME DEFAULT CURRENT_TIMESTAMP 
-                      ON UPDATE CURRENT_TIMESTAMP               COMMENT '🧪 주소 업데이트 시각 (수정 시 자동 갱신)'
-      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+        CREATE TABLE addresses (
+            id            INT AUTO_INCREMENT PRIMARY KEY          COMMENT '주소 고유 식별자',
+            city          VARCHAR(100)                            COMMENT '🧪 도시 이름',
+            district      VARCHAR(100)                            COMMENT '🧪 구/군 이름',
+            sub_address   VARCHAR(255)                            COMMENT '상세 주소 (예: XX동, XX호)',
+            created_at    DATETIME DEFAULT CURRENT_TIMESTAMP 
+                                                                  COMMENT '🧪 주소 생성 시각 (기본값: 현재 시각)',
+            updated_at    DATETIME DEFAULT CURRENT_TIMESTAMP 
+                        ON UPDATE CURRENT_TIMESTAMP               COMMENT '🧪 주소 업데이트 시각 (수정 시 자동 갱신)'
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+      * Cardinality
+        parcels : addresses     ==    N : 1
 
     - Socket Server
     - ROS Master Node 📰 (Doing...) 
@@ -1437,7 +1450,7 @@ Mariadb
         - TCP Header (20 bytes)
         --------------------------------------
         TCP MSS = 1460 bytes (Maximum Application Data Size)
-    - 289 bytes for the message format (including whitespaces)
+    - 🛍️ e.g. 289 bytes for the message format (including whitespaces)
       {
         "source": "client_name",
         "destination": "target_name",
@@ -1451,8 +1464,37 @@ Mariadb
           { "rel": "update", "href": "/api/update_state" }
         ]
       }
+    
+  1. 📰
+    syntax = "proto3"; // Protobuf 버전 3 사용
 
-  ...???
+    // 메시지 정의
+    message Message {
+      string source = 1;                // 메시지를 보낸 노드
+      string destination = 2;           // 메시지를 받을 노드
+      string command = 3;               // 수행할 명령
+      Payload payload = 4;              // 명령에 필요한 데이터
+      repeated Link links = 5;          // 선택적: 다음 가능한 작업 정보
+    }
+
+    // Payload 메시지 정의
+    message Payload {
+      string key1 = 1;                  // 첫 번째 데이터 키
+      string key2 = 2;                  // 두 번째 데이터 키
+    }
+
+    // Link 메시지 정의
+    message Link {
+      string rel = 1;                   // 링크의 관계 (예: self, update 등)
+      string href = 2;                  // 링크 URL
+    }
+
+
+  2. 크로스컴파일 환경 구성 및 크로스컴파일, 라즈베리파이에서 직접 테스트.
+
+
+  
+  ...??? protoc --nanopb_out=. example.proto
   엘레베이터 정보
     - 엘레베이터 문 개폐 상태
     - 엘레베이터 현재 층수

@@ -39,9 +39,9 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
  │&nbsp;&nbsp;&nbsp;&nbsp;├── [design_pattern](prototypes/_lab/tech_stack/design_pattern_and_uml/design_pattern.txt)  
  ├── 📂 editor  
  │&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 gui_based-ide  
+ │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── [![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=plastic&logo=visual-studio-code&logoColor=white)](prototypes/_lab/tech_stack/editor/gui_based-ide/vs_code.txt)  
  │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;├── [microchip_studio](prototypes/_lab/tech_stack/editor/gui_based-ide/microchip_studio.txt)  
  │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;├── [visual_studio](prototypes/_lab/tech_stack/editor/gui_based-ide/visual_studio.txt)  
- │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── [![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=plastic&logo=visual-studio-code&logoColor=white)](prototypes/_lab/tech_stack/editor/gui_based-ide/vs_code.txt)  
  │&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 terminal_based  
  │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [![Helix](https://img.shields.io/badge/Helix-%2328153e.svg?style=plastic&logo=helix&logoColor=white)](prototypes/_lab/tech_stack/editor/terminal_based/helix.txt)  
  ├── [fonts](prototypes/_lab/tech_stack/fonts.txt)  
