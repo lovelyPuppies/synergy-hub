@@ -17723,3 +17723,12 @@ https://zserge.com/jsmn/
 
 ❓ 직렬화란.. bytes형태로..
   https://en.wikipedia.org/wiki/Serialization
+
+
+
+
+
+
+
+
+
