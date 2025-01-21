@@ -17723,3 +17723,9 @@ https://zserge.com/jsmn/
 
 ❓ 직렬화란.. bytes형태로..
   https://en.wikipedia.org/wiki/Serialization
+
+
+..Media.. CUDA programming.. open mesa?.. 이걸 뭐 작성할떄 쓰지.. 작성할일이잇나.. 우분투에서..
+
+
+
