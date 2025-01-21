@@ -28,7 +28,7 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
  │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [![Gradle](https://img.shields.io/badge/Gradle-02303A.svg?style=plastic&logo=Gradle&logoColor=white)](prototypes/_lab/tech_stack/build_tool/build_system_generator/gradle.txt)  
  │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [![PlatformIO](https://img.shields.io/badge/PlatformIO-%23222.svg?style=plastic&logo=platformio&logoColor=%23f5822a)](prototypes/_lab/tech_stack/build_tool/build_system_generator/gradle.txt)  
  ├── 📂 ci+cd  
- │&nbsp;&nbsp;&nbsp;&nbsp;└── [![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=plastic&logo=githubactions&logoColor=white)](prototypes/_lab/tech_stack/ci+cd/github_actions.txt)  
+ │&nbsp;&nbsp;&nbsp;&nbsp;└── [![GitHub Actions](https://img.shields.io/badge/ithub%20Actions-%232671E5.svg?style=plastic&logo=githubactions&logoColor=white)](prototypes/_lab/tech_stack/ci+cd/github_actions.txt)  
  ├── 📂 code_quality_tool  
  │&nbsp;&nbsp;&nbsp;&nbsp;└── [Ruff](prototypes/_lab/tech_stack/code_quality_tool/ruff.txt)  
  ├── 📂 database  
@@ -51,7 +51,7 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
  │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── [![Arduino](https://img.shields.io/badge/-Arduino-00979D?style=plastic&logo=Arduino&logoColor=white)](prototypes/_lab/tech_stack/hardware_and_os/board/arduino.txt)  
  │&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 os  
  │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 linux  
- │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── [![Kubuntu](https://img.shields.io/badge/-KUbuntu-%230079C1?style=plastic&logo=kubuntu&logoColor=white)](prototypes/_lab/tech_stack/hardware_and_os/os/linux/kubuntu.txt)  
+ │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── [![Kubuntu](https://img.shields.io/badge/-Kbuntu-%230079C1?style=plastic&logo=kubuntu&logoColor=white)](prototypes/_lab/tech_stack/hardware_and_os/os/linux/kubuntu.txt)  
  │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── [![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=plastic&logo=ubuntu&logoColor=white)](prototypes/_lab/tech_stack/hardware_and_os/os/linux/ubuntu.txt)  
  │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── [![Linux](https://img.shields.io/badge/Linux-FCC624?style=plastic&logo=linux&logoColor=black)](prototypes/_lab/tech_stack/hardware_and_os/os/linux.txt)  
  │&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 platform  
@@ -63,9 +63,9 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
  │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [Android](prototypes/_lab/tech_stack/libraries_and_frameworks/mobile/android_sdk.txt)<!--[![Android](https://img.shields.io/badge/Android-3DDC84?style=plastic&logo=android&logoColor=white)](prototypes/_lab/tech_stack/libraries_and_frameworks/mobile/android_sdk.txt)-->  
  │&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 multimedia  
  │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 vision  
- │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [![OpenCV](https://img.shields.io/badge/opencv-%23white.svg?style=plastic&logo=opencv&logoColor=white)](prototypes/_lab/tech_stack/libraries_and_frameworks/multimedia/vision/library-opencv.txt)  
+ │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [![OpenCV](https://img.shields.io/badge/OpenCV-%23white.svg?style=plastic&logo=opencv&logoColor=white)](prototypes/_lab/tech_stack/libraries_and_frameworks/multimedia/vision/library-opencv.txt)  
  │&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 robot  
- │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [![ROS](https://img.shields.io/badge/ros-%230A0FF9.svg?style=plastic&logo=ros&logoColor=white)](prototypes/_lab/tech_stack/libraries_and_frameworks/robot/framework-ros.txt)  
+ │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [![ROS](https://img.shields.io/badge/ros-%230A0FF9.svg?style=plastic&logo=ROS&logoColor=white)](prototypes/_lab/tech_stack/libraries_and_frameworks/robot/framework-ros.txt)  
  │&nbsp;&nbsp;&nbsp;&nbsp;└── [![Qt](https://img.shields.io/badge/Qt-%23217346.svg?style=plastic&logo=Qt&logoColor=white)](prototypes/_lab/tech_stack/libraries_and_frameworks/framework-qt.txt)  
  ├── 📂：![LLVM](https://img.shields.io/badge/LLVM-%23262D3A.svg?style=plastic&logo=llvm&logoColor=white)  
  │&nbsp;&nbsp;&nbsp;&nbsp;└── [**clang**](prototypes/_lab/tech_stack/llvm_stack/clang.txt)  
@@ -78,7 +78,7 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
  │&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 file_system_monitoring  
  │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [inotify-tools](prototypes/_lab/tech_stack/monitoring_tools/file_system_monitoring/inotify-tools.txt)  
  ├── 📂 package_manager  
- │&nbsp;&nbsp;&nbsp;&nbsp;├── [![Nix](https://img.shields.io/badge/NIX-5277C3.svg?style=plastic&logo=NixOS&logoColor=white)](prototypes/_lab/tech_stack/package_manager/env-nix.txt)  
+ │&nbsp;&nbsp;&nbsp;&nbsp;├── [![Nix](https://img.shields.io/badge/Nix-5277C3.svg?style=plastic&logo=NixOS&logoColor=white)](prototypes/_lab/tech_stack/package_manager/env-nix.txt)  
  │&nbsp;&nbsp;&nbsp;&nbsp;├── [![Conan](https://img.shields.io/badge/Conan-%236699CB.svg?style=plastic&logo=conan&logoColor=white)](prototypes/_lab/tech_stack/package_manager/lang-conan.txt)  
  │&nbsp;&nbsp;&nbsp;&nbsp;├── [![Poetry](https://img.shields.io/badge/Poetry-%233B82F6.svg?style=plastic&logo=poetry&logoColor=0B3D8D)](prototypes/_lab/tech_stack/package_manager/lang-poetry.txt)  
  │&nbsp;&nbsp;&nbsp;&nbsp;├── [![Homebrew](https://img.shields.io/badge/Homebrew-%23FBB040.svg?style=plastic&logo=homebrew&logoColor=white)](prototypes/_lab/tech_stack/package_manager/sys-homebrew.txt)  
@@ -98,7 +98,7 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
  ├── 📂 remote_access_tools  
  │&nbsp;&nbsp;&nbsp;&nbsp;└── [tailscale](prototypes/_lab/tech_stack/remote_access_tools/tailscale.txt)  
  ├── 📂 scm  
- │&nbsp;&nbsp;&nbsp;&nbsp;└── [![Git](https://img.shields.io/badge/git-%23F05033.svg?style=plastic&logo=git&logoColor=white)](prototypes/_lab/tech_stack/scm/git.txt)  
+ │&nbsp;&nbsp;&nbsp;&nbsp;└── [![Git](https://img.shields.io/badge/Git-%23F05033.svg?style=plastic&logo=git&logoColor=white)](prototypes/_lab/tech_stack/scm/git.txt)  
  ├── 📂 shell  
  │&nbsp;&nbsp;&nbsp;&nbsp;├── [![Fish Shell](https://img.shields.io/badge/Fish%20Shell-%2334C534.svg?style=plastic&logo=fishshell&logoColor=white)](prototypes/_lab/tech_stack/shell/fish.txt)  
  │&nbsp;&nbsp;&nbsp;&nbsp;└── [PowerShell](prototypes/_lab/tech_stack/shell/powershell.txt)  
@@ -109,7 +109,7 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
  │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [timg](prototypes/_lab/tech_stack/terminal/graphics_tools/timg.txt)  
  ├── 📂 virtualization  
  │&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 os_level_virtualization  
- │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=plastic&logo=docker&logoColor=white)](prototypes/_lab/tech_stack/virtualization/os_level_virtualization/runtime-docker.txt)  
+ │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [![Docker](https://img.shields.io/badge/Docker-%230db7ed.svg?style=plastic&logo=docker&logoColor=white)](prototypes/_lab/tech_stack/virtualization/os_level_virtualization/runtime-docker.txt)  
  │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [**dev_env-devcontainer**](prototypes/_lab/tech_stack/virtualization/os_level_virtualization/dev_env-devcontainer.txt)  
  └── 📂 web  
  ├── 📂 web_browser  
