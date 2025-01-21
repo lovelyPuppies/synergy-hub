@@ -17201,7 +17201,7 @@ Android
   set OWNER (stat --format='%u:%g' $CONFIG_FILE)
   set PERMISSIONS (stat --format='%a' $CONFIG_FILE)
 
-
+  
   # Apply the original ownership and permissions to the temporary file
   sudo chown $OWNER $TMP_FILE
   sudo chmod $PERMISSIONS $TMP_FILE
@@ -17651,6 +17651,7 @@ gpg: revocation certificate stored as '/home/wbfw109v2/.gnupg/openpgp-revocs.d/D
 
   ❓ GPG 키를 사용할 경우, SSH 설정 파일에서 IdentityFile을 지정하지 않아야 합니다. 대신, SSH 클라이언트가 GPG 에이전트를 통해 키를 자동으로 가져오게 설정합니다. ~/.ssh/config 파일을 아래와 같이 수정하세요:
 
+  https://gist.github.com/mcattarinussi/834fc4b641ff4572018d0c665e5a94d3
 
 
   현재 ssh-agent를 시작한 상태에서 ssh-add -L 명령이 "The agent has no identities"라고 표시되는 것은 gpg-agent와 ssh-agent가 서로 다른 에이전트를 사용하고 있다는 점이 문제일 수 있습니다. 아
@@ -17665,3 +17666,5 @@ gpg: revocation certificate stored as '/home/wbfw109v2/.gnupg/openpgp-revocs.d/D
 https://raw.githubusercontent.com/Ileriayo/markdown-badges/refs/heads/master/README.md
 
 Badge Rule
+
+https://en.wikipedia.org/wiki/Extended_Display_Identification_Data

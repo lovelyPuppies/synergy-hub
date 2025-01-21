@@ -747,6 +747,15 @@ set -U fish_user_paths /home/linuxbrew/.linuxbrew/opt/rustup/bin $fish_user_path
 echo "▶️ Installing Web-related tools ..."
 
 : '
+📦 gradle
+  https://repology.org/project/gradle/versions
+  https://formulae.brew.sh/formula/gradle#default
+'
+📦 brew install gradle
+
+
+
+: '
 📦 openjdk
   https://repology.org/project/openjdk/versions
   https://formulae.brew.sh/formula/openjdk#default
