@@ -1,5 +1,3 @@
-# ETOBB 
-  ETOBB 🔪 Youtube Channel ; https://www.youtube.com/channel/UClKnk7C10K1pmOwNYu8zouQ/videos?app=desktop&view=0&sort=da&flow=grid
 
 ㈜이투비비 (ETOBB) 개요 및 주요 정보
   1. 회사 개요
@@ -59,8 +57,11 @@ GNSS(Global Navigation Satellite System) ; 위성 항법 시스템
   https://www.spirent.kr/blogs/what-is-the-difference-between-gnss-and-gps
 
 🪱 Glossary
+  - 음영지역: 방송이나 교통이 닿지 않는 지역
+  - ⚓ Hardware-in-the-loop (HIL) simulation ; https://en.wikipedia.org/wiki/Hardware-in-the-loop_simulation
+    Hardware-in-the-loop (HIL) simulation, also known by various acronyms such as HiL, HITL, and HWIL, is a 🚣 technique that is used in the development and testing of complex real-time embedded systems.
   - ⚓ Radio jamming ; https://en.wikipedia.org/wiki/Radio_jamming
-     the deliberate blocking of or interference with wireless communications.[1][2] In some cases, jammers work by the transmission of radio signals that disrupt telecommunications by decreasing the signal-to-noise ratio.[3
+     the deliberate blocking of or interference with 🚣 wireless communications.[1][2] In some cases, jammers work by the transmission of radio signals that disrupt telecommunications by decreasing the signal-to-noise ratio.[3
   - National Coordination Office for Space-Based Positioning, Navigation, and Timing (PNT) ; https://en.wikipedia.org/wiki/National_Executive_Committee_for_Space-Based_Positioning,_Navigation_and_Timing
 
      ? 신호 대 잡음비? 
@@ -68,13 +69,9 @@ GNSS(Global Navigation Satellite System) ; 위성 항법 시스템
         Radio jamming is the deliberate blocking of or interference with wireless communications.[1][2] In some cases, jammers work by the transmission of radio signals that disrupt telecommunications by decreasing the signal-to-noise ratio.[3]
 
 
-Smart Repeater GNSS System ; https://www.youtube.com/watch?v=6XnLsY4g9v4
-  실내환경(터널 ,지하주차장)에서도 GNSS 위성신호를 끊임없이 전송해주는 시스템
 
-Spoofing by Joystick ; https://youtu.be/dT0JKjLsVm0
-  Joystick 으로 Spoofing(기만)신호를 생성하여 GNSS 수신기로 하여금 Joystick 움직임대로 따라오게 하는 테스트 영상
-Driving Spoofing test ; https://youtu.be/nYZXA7pnvgQ
-  기만신호 차량시험 L1, L2 조이스틱
+
+
 
 아시아경제 TV Interview ; https://youtu.be/HvJPtbkPtlg
   GNSS 위성 항법 시뮬레이터
@@ -124,7 +121,7 @@ GPS (Global Positioning System)
 
 
 ㈜이투비비를 소개해요
-㈜이투비비는 GNSS 기반의 위치기반(Positioning), 위성항법 시뮬레이션(Navigation), 시각동기(Timing)솔루션 등의 서비스를 통해
+❗ ㈜이투비비는 GNSS 기반의 수신기(Positioning), 위성항법 시뮬레이션(Navigation), 시각동기(Timing)솔루션 등의 서비스를 통해
 사용자가 언제 어디서든 다양한 종류의 부가가치 서비스를 이용할 수 있도록 GNSS 솔루션을 개발해 나가는 회사로
 해외 유수 업체와 손잡고 최고의 제품과 서비스를 제공하고 있습니다.
 
@@ -158,3 +155,123 @@ https://www.etobb.co.kr/default/
 https://www.youtube.com/channel/UClKnk7C10K1pmOwNYu8zouQ/videos?app=desktop&view=0&sort=da&flow=grid
 
 네, 맞습니다! **항재밍(Anti-Jamming)**은 기존 GNSS 기술을 그대로 사용하면서, 추가적인 하드웨어와 알고리즘을 도입하여 신호 교란(Jamming)에 대응하는 기술이라고 보면 됩니다.
+
+
+🪱 RTK (Real Time Kinematic)
+
+ 2023. 1. 25.  
+  기만 신호.. 안전하게 페이크 신호를 이용해서 원하는 위치에다가 
+
+# ETOBB 
+  ETOBB 🔪 Youtube Channel ; https://www.youtube.com/channel/UClKnk7C10K1pmOwNYu8zouQ/videos?app=desktop&view=0&sort=da&flow=grid
+
+⚓ GNSS 기만 신호로 불법 드론을 유인하는 세계에서 가장 정확한 안티드론시스템  ; https://www.youtube.com/watch?v=S860XYNbqv0
+  스푸핑(Spoofing): **가짜 GNSS 신호(기만 신호)**를 생성하여 GNSS 수신기를 속이는 기술.
+    GNSS 수신기는 위성 신호를 기반으로 자신의 위치를 계산하는데, 스푸핑 신호를 통해 잘못된 위치 정보를 받게 만들어 수신기를 오작동하도록 유도합니다.
+
+    페이크 신호 생성해서 드론 유도:
+
+  1️⃣ 가짜 위성 신호 (기만 신호)를 생성하고, 드론이 이를 실제 위성 신호로 착각하도록 만듭니다.
+  2️⃣ 이투비비의 기술은 나노초 단위로 정밀한 신호 타이밍을 생성하여, 드론의 GNSS 수신기를 속이는 데 높은 성공률을 가집니다.
+  불법 드론을 비접촉 방식으로 드론을 제어할 수 있음.
+
+⚓ ... ; https://www.youtube.com/watch?v=HvJPtbkPtlg
+
+
+
+GNSS 를 사용하는 자율주행 자동차가 다양한 도심환경에서 안전하게 잘 주행하는지 미리 알 수 있어 사고 예방을 하고 완벽한 자율주행을 하게 함.
+  - 자율주행
+GNSS 일상생활에서 매일 같이 사용되고 있는 기술이며 4차 산업 혁명의 핵심 분야인 자율 주행차와 드론의 안전을 담당하고 있는 첨단 기술.
+
+
+https://dulidungsil.tistory.com/entry/RTK%EB%B0%A9%EC%8B%9D
+
+
+!! 고정밀 실시간이동측량 기법인 RTK (Real Time Kinematic)의 기본개념은 정밀한 위치를 확보한 기준점의 반송파 오차 보정치를 이용하여 사용자가 실시간으로 수 cm의 정밀도를 유지하는 관측치를 얻을 수 있게 하는 것입니다
+
+
+회사 --> GNSS 솔루션 전문기업
+  👨 이정호 대표
+  👨 김현수 기술이사
+
+📅 2025-07-06
+202년 글.
+1️⃣ GNSS PNT 솔루션: 위치기반 수신기 
+  군집 비행과 무인 자동차에 탑재되어 RTK 및 다중 주파수를 이용해 🪱 실시간으로 cm 급의 위치 정확도를 얻을 수 있음
+2️⃣ GNSS 위성항법 시뮬레이션 기술
+  소프트웨어를 기반으로 기존 하드웨어 기능의 제품보다 확장성과 유연성이 아주 뛰어나며, 사용자가 원하는 모든 기능의 시험을 제공.
+  ❗ 실내에서도 GNSS 를 사용할 수 있는 기술 개발
+
+    도심지, 터널, 지하주차장, 지하철역과 같이 GNSS 가 잘 도달하지 못하는 곳에서는, 네비게이션이나 스마트폰으로 위치를 제대로 파악하지 못함.
+      이로 인해 재난, 재해 같은 위험한 상황에서 위치를 파악하지 못해 인명피해가 발생할 가능성이 매우 높다.
+        ❗ 20년 전에 발생한 911 사태가 그렇고.
+      GNSS 시뮬레이션 기술의 일부를 다중으로 패키지화해서 실내 곳곳에 설치하여 위치를 파악하도록 함.
+
+이 2개는 🧑‍💻 SDR (Software Defined Radio) 기술을 바탕으로 만들어졌다.
+  🪱 SDR: 기존에는 아날로그 하드웨어(예: 믹서, 필터, 증폭기, 변조기/복조기, 검출기 등)로 구현되었던 구성 요소를 대신 컴퓨터나 임베디드 시스템의 소프트웨어를 통해 구현하는 무선 통신 시스템입니다.
+
+  이 SDR 을 통해 다양한 Jamming 과 Spoofing 신호를 생성/제어 할 수 있으며, 이러한 신호를 제거하기 위한 수신 패턴 제어 안테나, 🪱 CRPA (Controlled Reception Pattern Antenna) system 으로 쉽게 구현할 수 있다.
+    🔗 Reference
+      ⚓ 제 7회 국방과학기술대제전 | 2023.08.03 | 한기호 국회 국방위원장과 엄동환 방위사업청장 방문 ; https://youtu.be/tmK0U6FZnEo
+        안테나 요소 개수에 따라 4소자, 8소자로 구분되는데 4군대나 8군대에서 발생하는 재밍을 필터링해서 버릴 수 있는 모듈을 사용합니다
+
+  여기에 🪱 Hardware in the loop (HIL) 실시간 동작 기술을 더하여, 운용성과 확장성 면에서 무한한 기능을 제공하고 있다.ㅊ
+    🔗 Reference
+      - Spoofing by Joystick ; https://youtu.be/dT0JKjLsVm0
+        Joystick 으로 Spoofing(기만)신호를 생성하여 GNSS 수신기로 하여금 Joystick 움직임대로 따라오게 하는 테스트 영상
+        - GPS 수신기: Ublox F9P 사용.
+      - Driving Spoofing test ; https://youtu.be/nYZXA7pnvgQ
+        기만신호 차량시험 L1, L2 조이스틱
+        True 신호와 스푸핑 신호 비교영상
+
+👨 이정호 대표
+👨 김현수 기술이사
+🪱 김현수 기술이사님; 터널에서 갈래길을 만나거나, 지하추장에서 어디로 나가야할 지 몰라서 헤매다가 길을 헤맬 대.
+  GNSS 음영지역에도 위치 측정이 가능한 3️⃣ GNS 위성신호 발생 시스템 도 있음.
+    🔗 Reference
+      Smart Repeater GNSS System ; https://youtu.be/6XnLsY4g9v4
+        실내환경(터널 ,지하주차장)에서도 GNSS 위성신호를 끊임없이 전송해주는 시스템
+➡️ 터널과 지하시설물에서도 라이브 위성 신호를 똑같이 수신해서 차량용 네비게이션에 똑같이 표시해서 안전운행에 도움을 주는 것이 이 시스템의 목적.
+➡️ GNSS 가 가지고 있는 한계를 극복하고 안전을 보장할 수 있는 위치 기반 서비스.
+  현재 GNSS 시뮬레이터가 GNSS 시스템은 현재 미국의 GPS, 러시아의 GLONASS, 유럽의 Galileo, 중국의 BeiDou, 일본의 QZSS 를 모두 지원하고 있다. 앞으로 2035년에 운용시작될 ➡️ 한국의 KPS (한국형 위성항법시스템) 를 지원할 수 있도록 준비하고 있음. 
+    ; https://www.kari.re.kr/kor/sub03_08_01.do?utm_source=chatgpt.com
+    ; https://www.fortunebusinessinsights.com/ko/gnss-simulators-market-103368
+  QZSS (일본): 일본 및 동아시아 지역에 초점을 맞춘 보조 GNSS 시스템.
+  NAVIC (인도): 인도와 주변 지역에서 작동하는 지리적 항법 시스템.
+
+❗  위치기반서비스의 최대약점이 신호 차단과, 신호 불량인데 이러한 문제점을 해결해주는 서비스
+
+수신패턴 제어 안테나 crpa
+
+
+
+안티재밍. 소자가 4소좌 8소좌 있는데..
+4소자: 4개의 안테나 소자로 구성.
+8소자: 8개의 안테나 소자로 구성.
+
+
+☸️ 회사..
+  🔗 Reference
+    - 이투비비 회사소개 ; https://www.youtube.com/watch?v=KWS48HTf2AE
+    
+  사업 아이템은 주로 B2G
+  향후에는 B2B (엔터테인먼트) 에도 활용될 수도 있음. 불법드론 퇴치.
+
+  기존 재밍 기술:
+    특정 주파수(GPS 신호)를 차단하여 드론이나 장비가 정상적으로 작동하지 못하게 만드는 방식.
+  문제점:
+    협대역(狹帶域) 재머는 GPS만 차단하지만, 다른 통신 주파수(블루투스, Wi-Fi, 5G 등)까지 방해를 받을 수 있음.
+    재밍된 드론은 위치를 잃고 무작위로 추락하거나 날아가 회수하기 어려움.
+
+  이투비비의 차별화된 기술:
+    GPS, GNSS, GLONASS, Galileo, BeiDou 신호를 자체적으로 생성하여 실제 위성 신호와 똑같이 위장된 **가짜 신호(스푸핑 신호)**를 사용.
+    저출력 신호로 작동하여 다른 주파수 대역(블루투스, Wi-Fi, 5G 등)에 영향을 거의 주지 않음.
+    드론을 특정 위치로 유도하여 안전하게 착륙시키고, 이후 드론의 의도(악의적 침입 여부)를 파악 가능.
+  장점:
+    드론을 무작위로 추락시키지 않고, 제어된 방식으로 안전하게 유도하여 목적과 소유자를 조사 가능.
+    다른 통신 장비에 미치는 부작용 최소화.
+
+  협대역(狹帶域, narrowband)은 좁은 대역폭을 의미한다. 데이터 통신의 주파수 중 좁은 대역에서 음성정보를 전달하는 통신채널이다, SETI가 대역을 통해 외계 지적 ...
+
+알고리즘 짜보기.
+  탐지 -> 식별 -> 
