@@ -1,0 +1,6 @@
+# https://clang.llvm.org/docs/ClangFormatStyleOptions.html
+AlignConsecutiveMacros: true
+ReflowComments: false
+BasedOnStyle: LLVM
+# https://clang.llvm.org/docs/ClangFormatStyleOptions.html#indentppdirectives
+IndentPPDirectives: BeforeHash

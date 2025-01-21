@@ -17562,6 +17562,18 @@ Apache Tomcat	Apache Tomcat	![Apache Tomcat](https://img.shields.io/badge/apache
 GitHub	GitHub	![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
 
 
+
+-==========
+### conan 🔪 [\[package\] pulseaudio/14.2 : I'm using clang 18 but error; Compiler does not support -std=gnu11](https://github.com/conan-io/conan-center-index/issues/25075)
+
+Checked on 📅 2025-01-02 16:04:18
+
+---
+
+
+### [Cross-compiling Qt for a 32-bit Raspberry Pi does not work well](https://github.com/PhysicsX/QTonRaspberryPi/issues/21)
+
+=========
 ❗ Android Layout 종류?
 https://gnss.eseoul.go.kr/system_sub1_01  
 
@@ -17604,3 +17616,20 @@ Ctrl + Shift + U 우분투 특수문자 입력
 
 
 udev
+
+
+project template readme 잣겅.
+
+
+📰▶️ 다원시스!! 준비
+
+https://shields.io/badges
+
+  uery Parameters
+  style string
+  Possible values: [flat, flat-square, plastic, for-the-badge, social]
+
+  If not specified, the default style for this badge is "flat".
+
+  Example: flat
+    https://itmustbecode.com/pcf-control-generate-shields-io-badges-in-the-powerplatform/
