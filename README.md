@@ -22,14 +22,13 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
  │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [**BitBake**](prototypes/_lab/tech_stack/build_tool/build_system/meta_build_system/yocto_project/bitbake.txt)  
  │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [**Yocto**](prototypes/_lab/tech_stack/build_tool/build_system/meta_build_system/yocto_project/yocto.txt)  
  │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;├── [**Ninja**](prototypes/_lab/tech_stack/build_tool/build_system/ninja.txt)  
- │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── [**Make**](prototypes/_lab/tech_stack/build_tool/build_system/make.txt)  
+ │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── [![Make](https://img.shields.io/badge/Make-%236D00CC.svg?style=plastic&logo=make&logoColor=white)](prototypes/_lab/tech_stack/build_tool/build_system/make.txt)  
  │&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 build_system_generator  
  │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [![CMake](https://img.shields.io/badge/CMake-%23008FBA.svg?style=plastic&logo=cmake&logoColor=white)](prototypes/_lab/tech_stack/build_tool/build_system_generator/cmake.txt)  
  │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [![Gradle](https://img.shields.io/badge/Gradle-02303A.svg?style=plastic&logo=Gradle&logoColor=white)](prototypes/_lab/tech_stack/build_tool/build_system_generator/gradle.txt)  
  │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [![PlatformIO](https://img.shields.io/badge/PlatformIO-%23222.svg?style=plastic&logo=platformio&logoColor=%23f5822a)](prototypes/_lab/tech_stack/build_tool/build_system_generator/gradle.txt)  
  ├── 📂 ci+cd  
  │&nbsp;&nbsp;&nbsp;&nbsp;└── [![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=plastic&logo=githubactions&logoColor=white)](prototypes/_lab/tech_stack/ci+cd/github_actions.txt)  
- │&nbsp;&nbsp;&nbsp;&nbsp;└── [**Make**](prototypes/_lab/tech_stack/build_tool/build_system/make.txt)  
  ├── 📂 code_quality_tool  
  │&nbsp;&nbsp;&nbsp;&nbsp;└── [Ruff](prototypes/_lab/tech_stack/code_quality_tool/ruff.txt)  
  ├── 📂 database  
@@ -61,7 +60,7 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
  │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [tio](prototypes/_lab/tech_stack/hardware_and_os/serial_tools/tio.txt)  
  ├── 📂 libraries_and_frameworks  
  │&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 mobile  
- │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [![Android](https://img.shields.io/badge/Android-3DDC84?style=plastic&logo=android&logoColor=white)](prototypes/_lab/tech_stack/libraries_and_frameworks/mobile/android_sdk.txt)  
+ │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [Android](prototypes/_lab/tech_stack/libraries_and_frameworks/mobile/android_sdk.txt)<!--[![Android](https://img.shields.io/badge/Android-3DDC84?style=plastic&logo=android&logoColor=white)](prototypes/_lab/tech_stack/libraries_and_frameworks/mobile/android_sdk.txt)-->  
  │&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 multimedia  
  │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 vision  
  │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [![OpenCV](https://img.shields.io/badge/opencv-%23white.svg?style=plastic&logo=opencv&logoColor=white)](prototypes/_lab/tech_stack/libraries_and_frameworks/multimedia/vision/library-opencv.txt)  
@@ -101,7 +100,7 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
  ├── 📂 scm  
  │&nbsp;&nbsp;&nbsp;&nbsp;└── [![Git](https://img.shields.io/badge/git-%23F05033.svg?style=plastic&logo=git&logoColor=white)](prototypes/_lab/tech_stack/scm/git.txt)  
  ├── 📂 shell  
- │&nbsp;&nbsp;&nbsp;&nbsp;├── [**Fish**](prototypes/_lab/tech_stack/shell/fish.txt)  
+ │&nbsp;&nbsp;&nbsp;&nbsp;├── [![Fish Shell](https://img.shields.io/badge/Fish%20Shell-%2334C534.svg?style=plastic&logo=fishshell&logoColor=white)](prototypes/_lab/tech_stack/shell/fish.txt)  
  │&nbsp;&nbsp;&nbsp;&nbsp;└── [![PowerShell](https://img.shields.io/badge/PowerShell-%235391FE.svg?style=plastic&logo=powershell&logoColor=white)](prototypes/_lab/tech_stack/shell/powershell.txt)  
  ├── 📂 terminal  
  │&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 emulator  
@@ -117,6 +116,10 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
  │&nbsp;&nbsp;&nbsp;&nbsp;└── [![Edge](https://img.shields.io/badge/Edge-0078D7?style=plastic&logo=Microsoft-edge&logoColor=white)](prototypes/_lab/tech_stack/web/web_browser/edge.txt)  
  └── 📂 web_server  
  &nbsp;&nbsp;&nbsp;&nbsp;└── [![Nginx](https://img.shields.io/badge/nginx-%23009639.svg?style=plastic&logo=nginx&logoColor=white)](prototypes/_lab/tech_stack/web/web_server/nginx.txt)
+
+&nbsp;
+
+---
 
 ## 📌 Project Shortcuts
 

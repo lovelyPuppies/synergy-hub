@@ -2,7 +2,9 @@ Badge Format 🔪 Precedence
    - ⚓ Ileriayo/markdown-badges ; https://github.com/Ileriayo/markdown-badges?tab=readme-ov-file#badges
 
    - ⚓ Simple Icons ; https://simpleicons.org/
-      -![LLVM](https://img.shields.io/badge/LLVM-%23262D3A.svg?style=for-the-badge&logo=llvm&logoColor=white)
+      -![LLVM](https://img.shields.io/badge/LLVM-%23262D3A.svg?style=plastic&logo=llvm&logoColor=white)
 
-      ![Homebrew](https://img.shields.io/badge/Homebrew-%23FBB040.svg?style=for-the-badge&logo=homebrew&logoColor=white)
-      ![Conan](https://img.shields.io/badge/Conan-%236699CB.svg?style=for-the-badge&logo=conan&logoColor=white)
+      ![Conan](https://img.shields.io/badge/Conan-%236699CB.svg?style=plastic&logo=conan&logoColor=white)
+      ![Fish Shell](https://img.shields.io/badge/Fish%20Shell-%2334C534.svg?style=plastic&logo=fishshell&logoColor=white)
+      ![Homebrew](https://img.shields.io/badge/Homebrew-%23FBB040.svg?style=plastic&logo=homebrew&logoColor=white)
+      ![Make](https://img.shields.io/badge/Make-%236D00CC.svg?style=plastic&logo=make&logoColor=white)

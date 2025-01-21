@@ -17633,3 +17633,5 @@ https://shields.io/badges
 
   Example: flat
     https://itmustbecode.com/pcf-control-generate-shields-io-badges-in-the-powerplatform/
+
+    
