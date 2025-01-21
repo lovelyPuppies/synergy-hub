@@ -1,0 +1,14 @@
+list of level 1 subjects
+  - Android SDK
+
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ Android SDK ; https://developer.android.com/
+  https://en.wikipedia.org/wiki/Android_SDK
+----------------------------------------------
+Android SDK 🔪 Guides ; https://developer.android.com/guide
+  # App architecture
+    # App entry points
+      # Activities
+        ⚓ Introduction to activities ; https://developer.android.com/guide/components/activities/intro-activities
+        ⚓🚣📎 The activity lifecycle ; https://developer.android.com/guide/components/activities/activity-lifecycle
