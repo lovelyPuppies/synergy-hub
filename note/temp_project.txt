@@ -17727,8 +17727,9 @@ https://zserge.com/jsmn/
 
 
 
-
-
+=======
+..Media.. CUDA programming.. open mesa?.. 이걸 뭐 작성할떄 쓰지.. 작성할일이잇나.. 우분투에서..
+>>>>>>> refs/remotes/origin/main
 
 
 
