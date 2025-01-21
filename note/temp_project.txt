@@ -17616,7 +17616,7 @@ Ctrl + Shift + U 우분투 특수문자 입력
 
 
 udev
-
+  
 
 project template readme 잣겅.
 
