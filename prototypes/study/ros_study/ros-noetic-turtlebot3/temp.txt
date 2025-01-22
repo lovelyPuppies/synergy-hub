@@ -1418,6 +1418,8 @@ Mariadb
         "key1": "value1",
         "key2": "value2"
       },
+      "status": "hub/1.0 0 OK",   // Format: protocol, " ", status code, " ", "message"
+      "message": "",
       "links": [
         { "rel": "self", "href": "/api/current_state" },
         { "rel": "update", "href": "/api/update_state" }
@@ -1435,6 +1437,8 @@ Mariadb
       - elevator_2
       - home_1
       - home_2
+      - turtlebot_1
+      - turtlebot_2
   *🧪 Optimization
     - Maximum Message Size is 1460 bytes
       Ethernet Frame Total Size = 1518 bytes

@@ -17732,4 +17732,21 @@ https://zserge.com/jsmn/
 >>>>>>> refs/remotes/origin/main
 
 
+https://www.raspberrypi.com/documentation/
 
+
+  https://www.raspberrypi.com/documentation/computers/raspberry-pi.html
+  https://www.raspberrypi.com/documentation/computers/processors.html#bcm2711
+    https://datasheets.raspberrypi.com/bcm2711/bcm2711-peripherals.pdf
+  https://datasheets.raspberrypi.com/bcm2711/bcm2711-peripherals.pdf
+
+
+  https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#raspberry-pi-4-model-b
+    https://datasheets.raspberrypi.com/rpi4/raspberry-pi-4-reduced-schematics.pdf
+
+  https://en.wikipedia.org/wiki/OrCAD
+
+  https://en.wikipedia.org/wiki/OrCAD#OrCAD_PSpice
+    OrCAD EE PSpice is a SPICE circuit simulator application for the simulation 
+
+  ❗ Ground symbol ; https://en.wikipedia.org/wiki/Ground_(electricity)#Electronics
