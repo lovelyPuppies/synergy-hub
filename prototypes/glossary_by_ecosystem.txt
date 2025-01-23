@@ -1,0 +1,66 @@
+(Canonical Ecosystem)
+  ⚓ Launchpad ; https://en.wikipedia.org/wiki/Launchpad_(website)
+    Laucnhpad is a web application and website that allows users to develop and maintain software, particularly open-source software.
+
+  ⚓ Canonical (company) ; https://en.wikipedia.org/wiki/Canonical_(company)
+    Canonical Ltd. is a privately held computer software company based in London, England. It
+
+
+
+(Operating System (OS))
+  ⚓📎 Out of memory (OOM) ; https://en.wikipedia.org/wiki/Out_of_memory
+    Out of memory (OOM) is an often undesired state of computer operation where no additional memory can be allocated for use by programs or the operating system. Such a system will be unable to load any additional programs, and since many programs may load additional data into memory during execution, these will cease to function correctly. This usually occurs because all available memory, including disk swap space, has been allocated.
+    
+    🗒️ Contents
+      # Recovery
+        The kernels of operating systems such as Linux will attempt to recover from this type of OOM condition by terminating one or more processes, a mechanism known as 🪱 the OOM Killer
+(OS 🔪 Linux)
+  ⚓ Inotify ; https://en.wikipedia.org/wiki/Inotify
+    inotify (inode notify) is a Linux kernel subsystem created by John McCutchan, which monitors changes to the filesystem, and reports those changes to applications.
+
+
+⚓📎 Interface Description Language (IDL) ; https://en.wikipedia.org/wiki/Interface_description_language
+  🗒️ Contents
+    🚣 IDLs are commonly used in remote procedure call software.
+    ... 📰 UML Component Diagram
+      Representation of different software components for performing a hypothetical holiday reservation in UML.
+      
+
+
+
+  ⚓📎 Protocol Buffers ; https://en.wikipedia.org/wiki/Protocol_Buffers
+    Protocol Buffers (Protobuf) is a free and open-source cross-platform data format used to serialize structured data.
+    The method involves an interface description language ...
+
+  ⚓📎 Remote Procedure Call ; https://en.wikipedia.org/wiki/Remote_procedure_call
+    🚣 RPCs are a form of inter-process communication (IPC), ...
+
+
+(Graphical notation)
+  ⚓ C4 model ; https://en.wikipedia.org/wiki/C4_model
+    🗒️ Contents
+      - Context diagrams (level 1)
+      - Container diagrams (level 2)
+      - Component diagrams (level 3)
+      - Code diagrams (level 4)
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+(Still not ground)
+⚓ Synchronization ; https://en.wikipedia.org/wiki/Synchronization_(computer_science)
+  🗒️ Contents
+    #️⃣ Implementation ; https://en.wikipedia.org/wiki/Synchronization_(computer_science)#Implementation
+      #🪱 Spinlocks
+      #🪱 Barriers
+      #🪱 Semaphores
+  
+  
+
+
+https://en.wikipedia.org/wiki/Lean_thinking
+Wiktionary
+  - Lean ; https://en.wiktionary.org/wiki/lean#English
+    (business) Efficient, economic, frugal, agile, slimmed-down; pertaining to the modern industrial principles of "lean manufacturing
+
+
+
+

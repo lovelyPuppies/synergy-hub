@@ -32,3 +32,9 @@ Rust Docs ; https://www.rust-lang.org/learn
 
 
 (✍️ Rust 🔪 study)
+
+
+----------------------------------------------
+Temp
+  To organize:
+    - study/rust_study/algorithm_solutions/Cargo.toml

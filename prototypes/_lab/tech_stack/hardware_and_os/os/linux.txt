@@ -72,25 +72,6 @@ list of level 1 subjects
 
 
 ----------------------------------------------
-Linux 🔪🪶 Glossary (still not grouped)
-  ⚓ Launchpad ; https://en.wikipedia.org/wiki/Launchpad_(website)
-    Laucnhpad is a web application and website that allows users to develop and maintain software, particularly open-source software.
-
-  ⚓ Canonical (company) ; https://en.wikipedia.org/wiki/Canonical_(company)
-    Canonical Ltd. is a privately held computer software company based in London, England. It
-
-
-  ⚓ Inotify ; https://en.wikipedia.org/wiki/Inotify
-    inotify (inode notify) is a Linux kernel subsystem created by John McCutchan, which monitors changes to the filesystem, and reports those changes to applications.
-
-
-  ⚓📎 Out of memory (OOM) ; https://en.wikipedia.org/wiki/Out_of_memory
-    Out of memory (OOM) is an often undesired state of computer operation where no additional memory can be allocated for use by programs or the operating system. Such a system will be unable to load any additional programs, and since many programs may load additional data into memory during execution, these will cease to function correctly. This usually occurs because all available memory, including disk swap space, has been allocated.
-    
-    # Recovery
-      The kernels of operating systems such as Linux will attempt to recover from this type of OOM condition by terminating one or more processes, a mechanism known as 🪱 the OOM Killer
-      
-----------------------------------------------
 Linux 🔪 Man pages
   ⚓ Man pages ; https://en.wikipedia.org/wiki/Man_page
     #️⃣📍 Manual sections ; https://en.wikipedia.org/wiki/Man_page#Manual_sections

@@ -1,0 +1,19 @@
+list of level 1 subjects
+  - protobuf (Protocol Buffers)
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓⭕ protobuf (Protocol Buffers) ; https://en.wikipedia.org/wiki/Protocol_Buffers 
+  protobuf — Install and Run Python Applications in 👍 Isolated Environments
+  pipa/protobuf ; https://github.com/pypa/protobuf/tree/main
+----------------------------------------------
+protobuf 🔪⚓ Installation ; https://protobuf.pypa.io/stable/installation/
+  #️⃣ On Linux ; https://protobuf.pypa.io/stable/installation/#on-linux
+
+
+----------------------------------------------
+protobuf 🔪⚓ Docs ; https://protobuf.pypa.io/stable/docs/
+  #️⃣ protobuf install ; https://protobuf.pypa.io/stable/docs/#protobuf-install
+
+  #️⃣ protobuf ensurepath ; https://protobuf.pypa.io/stable/docs/#protobuf-ensurepath
+  #️⃣ protobuf completions ; https://protobuf.pypa.io/stable/docs/#protobuf-completions
+

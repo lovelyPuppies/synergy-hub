@@ -9,12 +9,16 @@ Emoji 🔗 from VS Code Extension :emojisense: ;https://marketplace.visualstudio
   📜      :scroll:            "(how-to) fish script: <Title>"
   ✍️      :writing_hand:      "(✍️ <Subject> 🔪 study)"
 
+
+  🗒️      :spiral_notepad:    "Contents"                          Used to distinguish the "Contents" section within a Wikipedia article from other articles that I have logically grouped, for better clarity and organization.
+  📎      :paperclip:         ""                                  Used to indicate that the reader has skimmed only the summary or abstract portion of the content.
+
+
   🚨      :rotating_light:    "(Issue: Error); <Title>"
   🚨      :rotating_light:    "(Issue: Bug); <Title>"
  
   🤚      :raised_hand:       "User interaction: <Title>"         User interaction required because it cannot be a completely automatic script
 
-  🪶      :feather:           "<Title> 🔪 Glossary"               Glossary
   ⚖️      :balance_scale:     ""                                  Description for Default value
   🗑️      :wastebasket:       "Deprecated: <Title>"
 
@@ -24,4 +28,6 @@ Emoji 🔗 from VS Code Extension :emojisense: ;https://marketplace.visualstudio
   🌳      :deciduous_tree:    ""                                  Branch. Selection.
   ♾️      :infinity:          "<Title> Pipeline"                  Pipeline.
 
-
+----------------------------------------------
+Temp
+  🪶      :feather:           "<Title> 🔪 Glossary"               Glossaryc

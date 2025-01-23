@@ -1,0 +1,106 @@
+```mermaid
+    C4Context
+    title Delivery System Context Diagram
+
+    Enterprise_Boundary(b0, "Delivery System") {
+
+        Person(customer, "Customer", "Places the delivery order and interacts with the system.")
+        System(server, "Central Server", "Manages and coordinates delivery tasks.")
+
+        System_Boundary(storageBoundary, "Storage System") {
+            System(storageBox, "Storage Box", "Securely holds packages for delivery.")
+        }
+
+        System_Boundary(robotBoundary, "Robot System") {
+            System(elevator, "Elevator Controller", "Operates the building's elevator system.")
+            System(robot, "Delivery Robot", "Autonomously transports the package.")
+        }
+
+        System_Ext(carrier, "Delivery Carrier", "Drops off packages into the storage box.")
+    }
+
+    BiRel(carrier, storageBox, "Places package into")
+    BiRel(server, customer, "Requests and confirms delivery")
+    BiRel(server, robot, "Sends and receives delivery commands")
+    Rel(storageBox, server, "Sends package notification")
+    Rel(robot, elevator, "Coordinates elevator access")
+    Rel(robot, storageBox, "Picks up package from")
+    Rel(robot, storageBox, "Returns to storage box after delivery")
+
+    UpdateRelStyle(carrier, storageBox, $textColor="black", $lineColor="gray", $offsetX="-20", $offsetY="10")
+    UpdateRelStyle(server, customer, $textColor="blue", $lineColor="blue", $offsetX="-30", $offsetY="20")
+    UpdateRelStyle(server, robot, $textColor="green", $lineColor="green", $offsetX="20", $offsetY="-10")
+    UpdateRelStyle(storageBox, server, $textColor="brown", $lineColor="brown", $offsetX="-30", $offsetY="0")
+    UpdateRelStyle(robot, elevator, $textColor="purple", $lineColor="purple", $offsetX="-10", $offsetY="30")
+    UpdateRelStyle(robot, storageBox, $textColor="red", $lineColor="red", $offsetX="40", $offsetY="-30")
+
+    UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
+
+```
+
+노드
+    사용자
+    중앙 서버
+    택배 저장소
+    배달 로봇
+    엘레베이터
+
+
+<시나리오>
+2. 택배 보관
+  - [택배기사] 무인보관함에 택배 보관
+  - [무인보관함] 서버에 택배 도착 알림
+3. 택배 배송
+  - [사용자] 서버에게 사용자에게로 택배 배송 명령 전달
+    - [서버] 무인보관함에 배달 로봇에 택배 적재 명령    // 어느 배달 로봇에게 주는지는 서버에서 관리. ❓ 택배로봇 자동정렬 기능이 들어가야 할수도
+      - [무인보관함] 배달 로봇 위에 택배 적재
+      - [배달 로봇] 🚥 서버에게 택배 정상적으로 적재됨 전달. 이벤트 기반.    // 센서로 적재 감지 (e.g. 적외선 센서)
+    - [서버] 배달 로봇에게 택배 배송 지시             // 어느 주소의 엘레베이터로 이동할 것인지 함께 전달
+      - [배달 로봇] 엘레베이터 앞으로 이동 후, 🚥 서버에 자신의 도착 상태 전달.
+    - [서버] 엘레베이터에게 1층 도착 명령 
+      - [엘레베이터] 1층으로 이동 후, 🚥 서버에 자신의 도착 상태 전달.
+    - 🅰️ [서버] 엘레베이터와 배달 로봇 간의 동기화         // ❓ 근데 이게 실제로 엘레베이터 안이나 밖으로 나온 이후, 라즈베리파이 서버와 통신이 가능한지?
+      - [엘레베이터] 서버로부터 문 개방 명령을 받음 (일정 시간마다 반복)
+      - [배달 로봇] 서버로부터 엘레베이터 안으로 이동 명령을 받음.
+      - [엘레베이터] 🚥 서버에 배달 로봇 도착 상태 전달. // ❓ 실제로 들어왔는지는 어떻게 체크? 엘레베이터 CCTV 로 터틀봇 감지? AI 활용해야 하나? 근데 그렇게 하기에는 어떤 터틀봇인지는 알 수가 없는데
+      - [엘레베이터] 서버로부터 문 개방 취소 명령을 반복. // 다른 사람들이 함께 탈 수 있기 때문에 폐쇄 명령을 직접 내리면 안된다.
+      - [엘레베이터] 🚥 문이 닫히면, 서버에 자신의 상태 전달.
+      - [엘레베이터] 🚥 해당 층수에 도착하고 문이 열리면, 서버에 자신의 상태 전달.
+    - [서버] 배달 로봇에게 택배 주소 앞으로 이동 명령
+      - [배달 로봇] 택배 주소 앞으로 이동, 🚥 서버에 자신의 도착 상태 전달.
+    - [서버] 
+
+  a. [배달 로봇] 엘레베이터 앞으로 이동, 서버에게 엘레베이터 1층 이동 요청
+  b. [서버] 엘레베이터에게 
+  b. [엘레베이터] 
+
+<로봇 이동>
+
+<배송 시작>
+1) 보관함 도착
+2) 택배 수령 (보관함→로봇)
+3) 엘리베이터 도착 (로봇→서버)
+4) 엘리베이터 작동 (서버→엘리베이터)
+5) 해당 층 승수 도착 (엘리베이터→서버→로봇)
+6) 화물 승수 도착
+7) 대기 장소 도착 
+
+<로봇 귀환>
+1) 엘리베이터 도착 (로봇→서버)
+2) 엘리베이터 작동 (서버→엘리베이터)
+3) 로봇 기본 대기 장소 승수 도착 (엘리베이터→서버→로봇)
+4) 대기 장소 도착
+
+<추후 발전 기능>
+1. 보관함 택배 회수 후 배송 대체 적재하기
+2. 해당되야 할 내용: 회수택배 로봇 적재
+3. 배송택배, 회수택배 보관함에 적재
+
+
+차량전장 SW:
+  어셈블리어~, C (주), 여러 언어 활용중.
+  기능안전부분 ISO2616??
+
+  BSW 영역.
+
+
