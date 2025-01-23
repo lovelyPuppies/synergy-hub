@@ -22,12 +22,12 @@ list of level 1 subjects
       $shell> make build-module
       >> 
         find: ‘/home/wbfw109v2/repos/kernels/raspberry_pi/src’: No such file or directory
-        make[4]: *** No rule to make target '/home/wbfw109v2/repos/synergy-hub/prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/module/kernel_timer_dev.o', needed by '/home/wbfw109v2/repos/synergy-hub/prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/module/'.  Stop.
-        make[3]: *** [/home/wbfw109v2/repos/kernels/raspberry_pi/Makefile:1921: /home/wbfw109v2/repos/synergy-hub/prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/module] Error 2
+        make[4]: *** No rule to make target '/home/wbfw109v2/repos/synergy-hub/study/bsp_study/raspberry_pi/drivers/kernel_timer/module/kernel_timer_dev.o', needed by '/home/wbfw109v2/repos/synergy-hub/study/bsp_study/raspberry_pi/drivers/kernel_timer/module/'.  Stop.
+        make[3]: *** [/home/wbfw109v2/repos/kernels/raspberry_pi/Makefile:1921: /home/wbfw109v2/repos/synergy-hub/study/bsp_study/raspberry_pi/drivers/kernel_timer/module] Error 2
         make[2]: *** [Makefile:234: __sub-make] Error 2
         make[2]: Leaving directory '/home/wbfw109v2/repos/kernels/raspberry_pi'
         make[1]: *** [Makefile:79: build] Error 2
-        make[1]: Leaving directory '/home/wbfw109v2/repos/synergy-hub/prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/module'
+        make[1]: Leaving directory '/home/wbfw109v2/repos/synergy-hub/study/bsp_study/raspberry_pi/drivers/kernel_timer/module'
         make: *** [Makefile:52: build-module] Error 2
 
     Root Cause

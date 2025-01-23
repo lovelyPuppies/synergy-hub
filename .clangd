@@ -9,7 +9,7 @@ InlayHints:
 ---
 # Add ARM cross-compilation flags for files under "drivers/" (For 🚣 64bit)
 If:
-  PathMatch: "prototypes/study/bsp_study/raspberry_pi/drivers/.*\\.(c|h)$"
+  PathMatch: "study/bsp_study/raspberry_pi/drivers/.*\\.(c|h)$"
 CompileFlags:
   Add:
     - "--target=aarch64-linux-gnu"
@@ -18,7 +18,7 @@ CompileFlags:
 ---
 # Common settings for both C and C++ files
 If:
-  PathMatch: "prototypes/study/c.*_study/.*\\.(c|cpp|h|hpp)$"
+  PathMatch: "study/c.*_study/.*\\.(c|cpp|h|hpp)$"
 CompileFlags:
   Add:
     - -Wall
@@ -32,7 +32,7 @@ CompileFlags:
 # Specific settings for C files
 ---
 If:
-  PathMatch: "prototypes/study/c.*_study/.*\\.(c|h)$"
+  PathMatch: "study/c.*_study/.*\\.(c|h)$"
 CompileFlags:
   Add:
     - -std=c23
@@ -43,7 +43,7 @@ CompileFlags:
 # Specific settings for C++ files
 ---
 If:
-  PathMatch: "prototypes/study/c.*_study/.*\\.(cpp|hpp)$"
+  PathMatch: "study/c.*_study/.*\\.(cpp|hpp)$"
 CompileFlags:
   Compiler: clang++
   Add:

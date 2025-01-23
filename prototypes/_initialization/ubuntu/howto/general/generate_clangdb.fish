@@ -32,7 +32,7 @@ echo ""
 # Prompt for BASE_DIR
 while true
     echo "Enter the base directory for driver modules:"
-    echo "  🛍️ e.g. prototypes/study/bsp_study/raspberry_pi/drivers"
+    echo "  🛍️ e.g. study/bsp_study/raspberry_pi/drivers"
     read -g BASE_DIR
 
     # Check if the directory is valid

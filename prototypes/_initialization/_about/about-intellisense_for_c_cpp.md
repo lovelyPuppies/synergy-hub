@@ -119,7 +119,7 @@ Written at 📅 2024-12-18 04:33:15
 
 - Errors occur during a **dry-run make** (`make -n`) when generating `compile_commands.json`:
   ```
-  make[3]: *** No rule to make target '/home/wbfw109v2/repos/synergy-hub/prototypes/study/bsp_study/raspberry_pi/drivers/p106_led/modules.order', needed by '/home/wbfw109v2/repos/synergy-hub/prototypes/study/bsp_study/raspberry_pi/drivers/p106_led/Module.symvers'.
+  make[3]: *** No rule to make target '/home/wbfw109v2/repos/synergy-hub/study/bsp_study/raspberry_pi/drivers/p106_led/modules.order', needed by '/home/wbfw109v2/repos/synergy-hub/study/bsp_study/raspberry_pi/drivers/p106_led/Module.symvers'.
   make[2]: *** [/home/wbfw109v2/repos/kernels/raspberry_pi/Makefile:1873: modpost] Error 2
   make[1]: *** [Makefile:234: __sub-make] Error 2
   make: *** [Makefile:12: dryrun] Error 2

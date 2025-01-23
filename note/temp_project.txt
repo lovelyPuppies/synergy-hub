@@ -8401,7 +8401,7 @@ time dd if=/dev/sdb of=$HOME/backup/raspbian/raspbian_backup_20241204.img bs=512
 
 
 ❓ Disassembly: arm-linux-gnueabifhf-objdump -S start.o > start.txt
-arm-linux-gnueabifhf-objdump -S prototypes/study/assembly_study/sum.o | bat
+arm-linux-gnueabifhf-objdump -S study/assembly_study/sum.o | bat
   Command 'arm-linux-gnueabifhf-objdump' not found, did you mean:
   command 'arm-linux-gnueabihf-objdump' from deb binutils-arm-linux-gnueabihf (2.42-4ubuntu2.3)
   Try: sudo apt install <deb name>
@@ -13213,7 +13213,7 @@ brew install tio
 
 
 
-cd /home/wbfw109/repos/synergy-hub/prototypes/study/cpp_study/p_doxygen_test
+cd /home/wbfw109/repos/synergy-hub/study/cpp_study/p_doxygen_test
 doxygen -g
 doxygen Doxyfile
 
@@ -17750,3 +17750,26 @@ https://www.raspberrypi.com/documentation/
     OrCAD EE PSpice is a SPICE circuit simulator application for the simulation 
 
   ❗ Ground symbol ; https://en.wikipedia.org/wiki/Ground_(electricity)#Electronics
+
+
+폴 캐스터
+
+https://www.actfl.org/assessments/postsecondary-assessments/oral-proficiency-interview-computer-opic
+
+conan - 
+Kubuntu 클립보드 -> ctrl+; 단축키
+ROS, QT 
+
+
+⚓ noanPB ; https://jpa.kapsi.fi/nanopb/
+  Nanopb is a plain-C implementation of Google's Protocol Buffers data format. It is targeted at 32 bit microcontrollers, but is also fit for other embedded systems with tight (<10 kB ROM, <1 kB RAM) memory constraints.
+  https://jpa.kapsi.fi/nanopb/
+  https://jpa.kapsi.fi/nanopb/docs/
+
+  Generator는 Python 스크립트(nanopb_generator.py) 또는 사전 빌드된 실행 파일(nanopb_generator)로 제공됩니다. 
+
+
+https://github.com/protocolbuffers/protobuf/?tab=readme-ov-file#protocol-buffers---googles-data-interchange-format
+
+🪱 **직렬화(Serialization)**는 데이터를 연속된 바이트(stream) 형태로 변환하여, 파일, 메모리, 네트워크 등을 통해 전송하거나 저장할 수 있도록 만드는 것.
+  반대로, **역직렬화(Deserialization)**는 이 바이트 데이터를 원래의 데이터 구조나 객체로 복원하는 과정입니다.

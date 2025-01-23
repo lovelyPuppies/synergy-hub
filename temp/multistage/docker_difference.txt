@@ -424,7 +424,7 @@ synergy-hub on  main is 📦 v0.1.0 via 🐍 v3.13.1
             "Mounts": [
                 {
                     "Type": "bind",
-                    "Source": "/home/wbfw109v2/repos/synergy-hub/prototypes/study/ros_study/ros-noetic",
+                    "Source": "/home/wbfw109v2/repos/synergy-hub/study/ros_study/ros-noetic",
                     "Target": "/workspace"
                 },
                 {
@@ -471,7 +471,7 @@ synergy-hub on  main is 📦 v0.1.0 via 🐍 v3.13.1
             },
             {
                 "Type": "bind",
-                "Source": "/home/wbfw109v2/repos/synergy-hub/prototypes/study/ros_study/ros-noetic",
+                "Source": "/home/wbfw109v2/repos/synergy-hub/study/ros_study/ros-noetic",
                 "Destination": "/workspace",
                 "Mode": "",
                 "RW": true,
@@ -525,8 +525,8 @@ synergy-hub on  main is 📦 v0.1.0 via 🐍 v3.13.1
             ],
             "OnBuild": null,
             "Labels": {
-                "devcontainer.config_file": "/home/wbfw109v2/repos/synergy-hub/prototypes/study/ros_study/ros-noetic/.devcontainer/devcontainer.json",
-                "devcontainer.local_folder": "/home/wbfw109v2/repos/synergy-hub/prototypes/study/ros_study/ros-noetic",
+                "devcontainer.config_file": "/home/wbfw109v2/repos/synergy-hub/study/ros_study/ros-noetic/.devcontainer/devcontainer.json",
+                "devcontainer.local_folder": "/home/wbfw109v2/repos/synergy-hub/study/ros_study/ros-noetic",
                 "devcontainer.metadata": "[ {\"id\":\"ghcr.io/devcontainers-extra/features/fish-apt-get:1\"}, {\"customizations\":{\"vscode\":{\"extensions\":[\"ms-iot.vscode-ros\",\"PKief.material-icon-theme\"],\"settings\":{\"files.exclude\":{\"**/*.egg-info\":true}}}},\"containerEnv\":{\"DISPLAY\":\":1\",\"XAUTHORITY\":\"/tmp/.Xauthority\"},\"remoteUser\":\"vscode\"} ]",
                 "org.opencontainers.image.ref.name": "ubuntu",
                 "org.opencontainers.image.version": "20.04"

@@ -124,7 +124,7 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
 
 ## 📌 Project Shortcuts
 
-- 🎱 📰 (Doing) [**스마트 택배 시스템**](prototypes/study/ros_study/ros-noetic-turtlebot3/README.md)
+- 🎱 📰 (Doing) [**스마트 택배 시스템**](study/ros_study/ros-noetic-turtlebot3/README.md)
 
   📅 2025-01-20 ~
 
@@ -134,7 +134,7 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
 
   <!-- **STM32 Nucleo F411RE 기반 디지털 시계 및 알람 시스템** + -->
 
-- 🎱 [**타이머 기반 LED 제어 시스템 (디바이스 드라이버, 애플리케이션)**](prototypes/study/bsp_study/raspberry_pi/drivers/kernel_timer/README.md)
+- 🎱 [**타이머 기반 LED 제어 시스템 (디바이스 드라이버, 애플리케이션)**](study/bsp_study/raspberry_pi/drivers/kernel_timer/README.md)
 
   🏷️ Tag: C, Make, **ARMv8-a** (Raspberry Pi 4 B), Cross-Compilation (Kernel), clang, **Device Driver** (ioctl, Button ISR)
 
@@ -146,7 +146,7 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
 
     📜 역할: [**젯슨 나노 통합 및 머신러닝 모델 파이프라인 구현**](https://github.com/lovelyPuppies/Project_SignalMaster/tree/main/src/jetson-nano-mount/README.md) (External Link)
 
-- 🎱 [**카메라 필터 애플리케이션**](prototypes/study/python_study/camera_filter_app/README.md)
+- 🎱 [**카메라 필터 애플리케이션**](study/python_study/camera_filter_app/README.md)
 
   🏷️ Tag: Python 3, OpenCV, PySide6, **Machine Learning** (MediaPipe, Face Detection, Landmark Processing), Alpha Blending, Real-time Filters
 
@@ -184,7 +184,7 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
 
 ### Mini Project
 
-- 🎱 [**Yocto for Raspberry Pi B4**](prototypes/study/bsp_study/raspberry_pi/kernel/mini-yocto.md)
+- 🎱 [**Yocto for Raspberry Pi B4**](study/bsp_study/raspberry_pi/kernel/mini-yocto.md)
 
   🏷️ Tag: Yocto Project, Raspberry Pi 4 B
 

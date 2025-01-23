@@ -1,10 +1,10 @@
 /*
 🧪 Test
-  cd /home/wbfw109/repos/synergy-hub/prototypes/study/cpp_study/p_doxygen_test
+  cd /home/wbfw109/repos/synergy-hub/study/cpp_study/p_doxygen_test
   doxygen -g
   doxygen Doxyfile
 
-  file://wsl.localhost/Ubuntu/home/wbfw109/repos/synergy-hub/prototypes/study/cpp_study/p_doxygen_test/docs/html/index.html
+  file://wsl.localhost/Ubuntu/home/wbfw109/repos/synergy-hub/study/cpp_study/p_doxygen_test/docs/html/index.html
 */
 
 /**

@@ -10,7 +10,7 @@ name = "python-study"
 version = "0.1.0"
 description = ""
 authors = ["wbfw109v2 <wbfw109v2@gmail.com>"]
-packages = [{ from = "prototypes/study", include = "python_study" }]
+packages = [{ from = "study", include = "python_study" }]
 
 
 [tool.poetry.dependencies]

@@ -436,7 +436,7 @@ brew install bottom
 
 
 : '
-📦 🧮 nvtop
+📦🧮 nvtop
   https://github.com/Syllo/nvtop
   https://repology.org/project/nvtop/versions
   https://formulae.brew.sh/formula/nvtop#default
@@ -445,6 +445,33 @@ brew install bottom
   🚣 Currently supported vendors are AMD (Linux amdgpu driver), Apple (limited M1 & M2 support), Huawei (Ascend), Intel (Linux i915/Xe drivers), NVIDIA (Linux proprietary divers), Qualcomm Adreno (Linux MSM driver), Broadcom VideoCore (Linux v3d driver). 📅 2025-01-14 20:50:04
 '
 brew install nvtop
+
+
+
+
+
+
+
+: '
+📦🚀 protobuf
+  https://repology.org/project/protobuf/versions
+  https://formulae.brew.sh/formula/protobuf#default
+
+  Also known as: protobuf@29
+  Protocol buffers (Google\'s data interchange format)
+
+📦🚀 nanopb
+  https://github.com/nanopb/nanopb?tab=readme-ov-file#nanopb---protocol-buffers-for-embedded-systems
+  https://repology.org/project/nanopb/versions
+  https://formulae.brew.sh/formula/nanopb#default
+
+  📝 For Embedded System
+  Formerly known as: nanopb-generator
+  C library for encoding and decoding Protocol Buffer messages
+'
+# %shell> brew uses --installed protobuf
+brew install protobuf nanopb
+
 
 
 
@@ -595,8 +622,6 @@ echo "❔ You can check the list of binaries with the command 🧮 'ls /home/lin
   🛍️ e.g. It is used for IntelliSense in the kernel build by the Makefile.
 '
 brew install compiledb
-
-
 
 
 
