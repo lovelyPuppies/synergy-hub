@@ -1957,59 +1957,59 @@ else
         cd -
     end
 
-    #### JetBrains Mono Nerd Font
-    # Written at 📅 2024-12-25 09:47:38
-    # Fonts to download and their URLs
-    set -l fonts \
-        "JetBrainsMono Nerd Font https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/JetBrainsMono.zip"
-    # Download, extract, and install fonts
-    for font_info in $fonts
-        # Extract font name and URL
-        # Split the string into two parts: before and after "http"
-        set -l parts (string match -r '(.*) (http.*)' $font_info)
-        set -l font_name $parts[2]
-        set -l font_url $parts[3]
+    # #### JetBrains Mono Nerd Font
+    # # Written at 📅 2024-12-25 09:47:38
+    # # Fonts to download and their URLs
+    # set -l fonts \
+    #     "JetBrainsMono Nerd Font https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/JetBrainsMono.zip"
+    # # Download, extract, and install fonts
+    # for font_info in $fonts
+    #     # Extract font name and URL
+    #     # Split the string into two parts: before and after "http"
+    #     set -l parts (string match -r '(.*) (http.*)' $font_info)
+    #     set -l font_name $parts[2]
+    #     set -l font_url $parts[3]
 
-        # Determine file extension (extract last part of URL after '.')
-        set -l file_extension (echo $font_url | awk -F. '{print $NF}')
+    #     # Determine file extension (extract last part of URL after '.')
+    #     set -l file_extension (echo $font_url | awk -F. '{print $NF}')
 
-        echo "Downloading $font_name..."
-        set -l download_path /tmp/$font_name.$file_extension
-        wget --show-progress $font_url -O $download_path
+    #     echo "Downloading $font_name..."
+    #     set -l download_path /tmp/$font_name.$file_extension
+    #     wget --show-progress $font_url -O $download_path
 
-        echo "Extracting $font_name..."
-        mkdir -p /tmp/$font_name
+    #     echo "Extracting $font_name..."
+    #     mkdir -p /tmp/$font_name
 
-        # Handle extraction based on file extension
-        if test $file_extension = "tar.xz"
-            tar -xf $download_path -C /tmp/$font_name
-        else if test $file_extension = zip
-            unzip -q $download_path -d /tmp/$font_name
-        else
-            echo "Unsupported file extension: $file_extension"
-            continue
-        end
+    #     # Handle extraction based on file extension
+    #     if test $file_extension = "tar.xz"
+    #         tar -xf $download_path -C /tmp/$font_name
+    #     else if test $file_extension = zip
+    #         unzip -q $download_path -d /tmp/$font_name
+    #     else
+    #         echo "Unsupported file extension: $file_extension"
+    #         continue
+    #     end
 
-        echo "Installing $font_name..."
-        mkdir -p $font_dir
-        find /tmp/$font_name \( -name '*.ttf' -o -name '*.otf' \) -exec cp {} $font_dir \;
+    #     echo "Installing $font_name..."
+    #     mkdir -p $font_dir
+    #     find /tmp/$font_name \( -name '*.ttf' -o -name '*.otf' \) -exec cp {} $font_dir \;
 
-        # Clean up temporary files
-        rm -rf /tmp/$font_name $download_path
-    end
-    # Update the font cache
-    echo "Updating font cache..."
-    fc-cache -f $font_dir
+    #     # Clean up temporary files
+    #     rm -rf /tmp/$font_name $download_path
+    # end
+    # # Update the font cache
+    # echo "Updating font cache..."
+    # fc-cache -f $font_dir
 
-    echo "All fonts installed successfully!"
-    fc-list | grep -i nerd | awk -F: '{print $2}' | awk -F, '{print $1}' | sort | uniq
+    # echo "All fonts installed successfully!"
+    # fc-list | grep -i nerd | awk -F: '{print $2}' | awk -F, '{print $1}' | sort | uniq
 
-    echo "Update GNOME desktop font settings to use JetBrainsMono Nerd Font Mono..."
-    # gsettings set org.gnome.desktop.interface font-name 'JetBrainsMono Nerd Font Mono'
-    # gsettings set org.gnome.desktop.interface document-font-name 'JetBrainsMono Nerd Font Mono'
-    # gsettings set org.gnome.desktop.interface monospace-font-name 'JetBrainsMono Nerd Font Mono'
+    # echo "Update GNOME desktop font settings to use JetBrainsMono Nerd Font Mono..."
+    # # gsettings set org.gnome.desktop.interface font-name 'JetBrainsMono Nerd Font Mono'
+    # # gsettings set org.gnome.desktop.interface document-font-name 'JetBrainsMono Nerd Font Mono'
+    # # gsettings set org.gnome.desktop.interface monospace-font-name 'JetBrainsMono Nerd Font Mono'
 
-    echo "❗ Font installation complete. Please reboot to apply the font correctly."
+    # echo "❗ Font installation complete. Please reboot to apply the font correctly."
 
 
 
