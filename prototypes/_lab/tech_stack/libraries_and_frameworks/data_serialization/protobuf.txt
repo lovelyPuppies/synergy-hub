@@ -3,17 +3,13 @@ list of level 1 subjects
   
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
 ⚓⭕ protobuf (Protocol Buffers) ; https://en.wikipedia.org/wiki/Protocol_Buffers 
-  protobuf — Install and Run Python Applications in 👍 Isolated Environments
-  pipa/protobuf ; https://github.com/pypa/protobuf/tree/main
-----------------------------------------------
-protobuf 🔪⚓ Installation ; https://protobuf.pypa.io/stable/installation/
-  #️⃣ On Linux ; https://protobuf.pypa.io/stable/installation/#on-linux
-
+  Protocol Buffers are language-neutral, platform-neutral extensible mechanisms for serializing structured data.
+  https://github.com/protocolbuffers/protobuf
 
 ----------------------------------------------
-protobuf 🔪⚓ Docs ; https://protobuf.pypa.io/stable/docs/
-  #️⃣ protobuf install ; https://protobuf.pypa.io/stable/docs/#protobuf-install
-
-  #️⃣ protobuf ensurepath ; https://protobuf.pypa.io/stable/docs/#protobuf-ensurepath
-  #️⃣ protobuf completions ; https://protobuf.pypa.io/stable/docs/#protobuf-completions
-
+protobuf 🔪⚓ Docs ; https://protobuf.dev/
+  ⚓ Overview ; https://protobuf.dev/overview/
+    # What Problems do Protocol Buffers Solve?
+      🚣 Protocol buffers allow for the seamless support of changes, including the addition of new fields and the deletion of existing fields, to any protocol buffer without breaking existing services.
+    # What are the Benefits of Using Protocol Buffers?
+      #️⃣📍 Cross-language Compa  tibility

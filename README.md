@@ -60,6 +60,8 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
  │&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 serial_tools  
  │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [tio](prototypes/_lab/tech_stack/hardware_and_os/serial_tools/tio.txt)  
  ├── 📂 libraries_and_frameworks  
+ │&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 data_serialization  
+ │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [**Protocol Buffers**](prototypes/_lab/tech_stack/libraries_and_frameworks/data_serialization/protobuf.txt)<!--[![Android](https://img.shields.io/badge/Android-3DDC84?style=plastic&logo=android&logoColor=white)](prototypes/_lab/tech_stack/libraries_and_frameworks/mobile/android_sdk.txt)-->  
  │&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 mobile  
  │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [Android](prototypes/_lab/tech_stack/libraries_and_frameworks/mobile/android_sdk.txt)<!--[![Android](https://img.shields.io/badge/Android-3DDC84?style=plastic&logo=android&logoColor=white)](prototypes/_lab/tech_stack/libraries_and_frameworks/mobile/android_sdk.txt)-->  
  │&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 multimedia  

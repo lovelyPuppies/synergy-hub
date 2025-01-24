@@ -1,5 +1,3 @@
-// author : KSH
-
 // Library inclusions for necessary functionalities
 #include <arpa/inet.h>  // Internet operations and functions
 #include <dirent.h>     // Directory handling functions
@@ -20,8 +18,8 @@
 // Buffer and size definitions
 #define BUF_SIZE 100
 #define MAX_CLNT 32
-#define ID_SIZE 10
-#define ARR_CNT 5
+#define ID_SIZE  10
+#define ARR_CNT  5
 
 // Debugging mode
 #define DEBUG
