@@ -17896,3 +17896,19 @@ https://marketplace.visualstudio.com/items?itemName=yzane.markdown-pdf
 
 
 ... 어도비 컨버터는 이상하게 줌. 글자 깨지고..  https://www.online-convert.com/result#j=2dff2635-8fe2-48e3-92a8-152b0185cfac
+
+ Marked 🆚 Pandoc
+  https://github.com/markedjs/marked
+    brew install marked
+    https://marked2app.com/
+    https://marked2app.com/styles/
+    https://github.com/ttscoff/MarkedCustomStyles
+  https://github.com/sbisbee/node-pandoc
+
+
+PDF 병합 툴
+  https://formulae.brew.sh/formula/ghostscript#default
+  brew install ghostscript (gs)
+  /mnt/f/OneDrive/Ceritifcation/_Portfolio/
+  gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=output.pdf 1.pdf 2.pdf
+

@@ -22,7 +22,7 @@
     - [📖 Key Components and Implementation](#-key-components-and-implementation)
   - [📁 Python Files](#-python-files)
     - [🗄️ **filter.py**](#️-filterpy)
-      - [function: overlay\_rabbit\_ears(frame, landmarks)](#function-overlay_rabbit_earsframe-landmarks)
+      - [function: overlay_rabbit_ears(frame, landmarks)](#function-overlay_rabbit_earsframe-landmarks)
   - [❔ 참고사항](#-참고사항)
   - [Retrospective](#retrospective)
     - [📌 Key Learnings and Improvements](#-key-learnings-and-improvements)
@@ -40,7 +40,6 @@
 ### 🎯 Purposes
 
 - 사용자에게 재미있고 창의적인 사진 촬영 경험 제공.
-- 카카오톡 연동으로 간편한 사진 공유 가능.
 
 ### Showcase
 
