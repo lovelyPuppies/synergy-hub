@@ -154,6 +154,11 @@ View
   Settings
     Menu - Select Skin - Dark
       - ✔️ Kandinsky dark
+
+📦⚓ Potplayer ; https://t1.daumcdn.net/potplayer/PotPlayer/Version/Latest/PotPlayerSetup64.exe
+  ❌ Do not install from Scoop (extras/potplayer) 📅 2025-01-25 14:13:04
+    When select multiple files and press Enter, an app will run for each file.
+
 #>
 
 
@@ -307,7 +312,6 @@ if (-not (Get-Content $profilePath | Select-String -SimpleMatch $gsudoUniqueComm
 scoop install main/gdrive
 scoop install extras/vcxsrv
 scoop install extras/bandizip
-scoop install extras/potplayer
 scoop install extras/okular
 scoop install extras/gimp
 scoop install extras/rufus
