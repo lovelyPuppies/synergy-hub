@@ -6,7 +6,6 @@
   - [One-time Installation](#one-time-installation)
     - [System and Package Installation](#system-and-package-installation)
     - [C++ Package manger: Conan 2](#c-package-manger-conan-2)
-    - [C++ Formatter: clang-format](#c-formatter-clang-format)
   - [.vscode/c\_cpp\_properties.json in Ubuntu](#vscodec_cpp_propertiesjson-in-ubuntu)
 
 ## One-time Installation
@@ -60,15 +59,6 @@ sudo apt install -y build-essential autoconf automake libtool \
    # shell command
    conan editable add <my_package_name>
    conan editable list
-   ```
-
-### C++ Formatter: clang-format
-
-1. Install clang-format:
-
-   ```bash
-   # shell command
-   sudo apt install -y clang-format
    ```
 
 ## .vscode/c_cpp_properties.json in Ubuntu
