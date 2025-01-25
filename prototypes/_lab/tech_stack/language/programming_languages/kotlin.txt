@@ -1,0 +1,10 @@
+list of level 1 subjects
+  - Kotlin
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ Kotlin ; https://kotlinlang.org/
+  https://en.wikipedia.org/wiki/Kotlin_(programming_language)
+
+----------------------------------------------
+Kotlin 🔪 Docs ; https://kotlinlang.org/docs/home.html
+

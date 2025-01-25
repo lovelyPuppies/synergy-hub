@@ -1,0 +1,39 @@
+list of level 1 subjects
+  - markdown
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ markdown ; https://en.wikipedia.org/wiki/Markdown
+  https://docs.github.com/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax
+rr
+
+(✍️ markdown 🔪 study)
+  ✅ (how-to) convert markdown to (pdf, html, image) 📅 2025-01-24 22:18:48
+    ❔ Convert markdown to html
+      a. Use `Markdown All in One` extension (https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one)
+      b. %VSCode> >Markdown All in One: Print current document to HTML
+
+    ❔ Convert markdown to pdf
+      🚧 Prerequisite
+        - 🔗 Convert markdown to html
+      a. Open .html file in Microsoft Edge Browser
+      b. Right click - Print
+        - Printer
+          - ✔️ Microsoft Print to PDF
+        - Print
+    
+    ❔ Convert markdown to jpg
+      🚧 Prerequisite
+        - 🔗 Convert markdown to html
+      Select the option that corresponds to your situation:
+        - Use an online converter: Convert HTML to JPG using https://image.online-convert.com/convert/html-to-jpg
+          - The output HTML reflects the VS Code rendering style or GitHub rendering style, which automatically adds horizontal rules for level 1 to level 2 headers.
+          - ⚠️ However, it does not render resource files such as images.
+        - Use the `Markdown PDF` extension (https://marketplace.visualstudio.com/items?itemName=yzane.markdown-pdf)
+          - ⚠️ While it supports formats like PDF, JPEG, and PNG, it does not properly render all Markdown elements except for HTML.
+
+
+
+----------------------------------------------
+⚓ markdown 🔪 Docs ; https://daringfireball.net/projects/markdown/
+
+

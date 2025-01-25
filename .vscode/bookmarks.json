@@ -14,43 +14,38 @@
 			"path": "prototypes/_lab/tech_stack/hardware_and_os/os/linux.txt",
 			"bookmarks": [
 				{
-					"line": 96,
+					"line": 115,
 					"column": 11,
 					"label": ""
 				},
 				{
-					"line": 437,
+					"line": 456,
 					"column": 13,
 					"label": ""
 				},
 				{
-					"line": 455,
+					"line": 474,
 					"column": 12,
 					"label": ""
 				},
 				{
-					"line": 482,
+					"line": 501,
 					"column": 12,
 					"label": ""
 				},
 				{
-					"line": 492,
-					"column": 17,
-					"label": ""
-				},
-				{
-					"line": 500,
-					"column": 16,
-					"label": ""
-				},
-				{
-					"line": 508,
+					"line": 511,
 					"column": 17,
 					"label": ""
 				},
 				{
 					"line": 519,
-					"column": 15,
+					"column": 16,
+					"label": ""
+				},
+				{
+					"line": 527,
+					"column": 17,
 					"label": ""
 				},
 				{
@@ -59,17 +54,22 @@
 					"label": ""
 				},
 				{
-					"line": 593,
+					"line": 557,
+					"column": 15,
+					"label": ""
+				},
+				{
+					"line": 612,
 					"column": 18,
 					"label": ""
 				},
 				{
-					"line": 603,
+					"line": 622,
 					"column": 14,
 					"label": ""
 				},
 				{
-					"line": 573,
+					"line": 592,
 					"column": 1,
 					"label": ""
 				}
@@ -80,26 +80,6 @@
 			"bookmarks": [
 				{
 					"line": 6099,
-					"column": 0,
-					"label": ""
-				},
-				{
-					"line": 15589,
-					"column": 12,
-					"label": ""
-				},
-				{
-					"line": 15909,
-					"column": 2,
-					"label": ""
-				},
-				{
-					"line": 16666,
-					"column": 10,
-					"label": ""
-				},
-				{
-					"line": 16708,
 					"column": 0,
 					"label": ""
 				}
