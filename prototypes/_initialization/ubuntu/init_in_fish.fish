@@ -309,7 +309,12 @@ if not grep -Fxq "$unique_comment" "$FISH_CONFIG_PATH"
 end
 
 
-
+: '
+📦 p7zip ; 7-Zip (high compression file archiver) implementation📅  2024-12-04 14:42:03
+    https://repology.org/project/p7zip/versions
+    https://formulae.brew.sh/formula/p7zip#default
+'
+brew install p7zip
 
 
 
