@@ -1789,3 +1789,11 @@ I. select 함수의 단점
   epoll + multi threading
 
 ROs =
+
+
+❯ conan profile detect --force
+detect_api: Found cc=gcc- 14.2.0
+detect_api: gcc>=5, using the major as version
+detect_api: gcc C++ standard library: libstdc++11
+
+  Saving detected profile to /home/wbfw109v2/.conan2/profiles/default
