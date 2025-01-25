@@ -17896,3 +17896,372 @@ https://marketplace.visualstudio.com/items?itemName=yzane.markdown-pdf
 
 
 ... 어도비 컨버터는 이상하게 줌. 글자 깨지고..  https://www.online-convert.com/result#j=2dff2635-8fe2-48e3-92a8-152b0185cfac
+
+
+Windows Powershel settings..
+  Privacy & security
+    ...
+
+다음 팟 플레이어는
+  설치 과정에 
+    OpenCodec Files
+    FFmpeg Files
+    Intel H.264 MVC Decoder
+  코덱 설치 과정이 포함되어있다.
+
+
+?📰 TCP/IP 소켓에서 nanoPB 를 사용해서 이미지 메타데이터와, 이미지 를 나눠 전송해야 한다..?   
+  어떻게..
+  이미지 전송 시작 플래그, 해제 플래그가 있어야 함.
+
+  
+
+일단은 통신부터.
+
+  typedef enum {
+      TYPE_IMAGE = 1,
+      TYPE_VIDEO,
+      TYPE_AUDIO,
+      TYPE_TEXT
+  } DataType;
+
+  typedef enum {
+      STATUS_START = 1,
+      STATUS_IN_PROGRESS,
+      STATUS_END
+  } DataStatus;
+
+플래그 전송 구조
+  typedef struct {
+      DataType type;      // 데이터 유형
+      DataStatus status;  // 데이터 전송 상태
+      uint32_t size;      // 데이터 크기 (옵션)
+  } DataFlag;
+
+NanoPB를 사용할 경우, .proto 파일로 정의:
+  syntax = "proto3";
+
+  message DataFlag {
+    enum DataType {
+      TYPE_PROTOBUF = 1;  // NanoPB 메시지
+      TYPE_TEXT = 2;      // 텍스트 데이터
+      TYPE_AUDIO = 3;     // 오디오 데이터 (스트림)
+      TYPE_IMAGE = 4;     // 이미지 데이터 (스트림)
+      TYPE_VIDEO = 5;     // 비디오 데이터 (스트림)
+    }
+
+    enum DataStatus {
+      STATUS_START = 1;
+      STATUS_IN_PROGRESS = 2;
+      STATUS_END = 3;
+    }
+
+    DataType type = 1;       // 데이터 유형
+    DataStatus status = 2;   // 데이터 상태
+    uint32 size = 3;         // 데이터 크기 (옵션)
+}
+
+
+음.. 데이터 플래그를 설정해서 소켓에서 다양한 유형의 포맷으로 TCP 통신하는게 일반적인 practice 야?
+  네, 데이터 플래그를 설정하여 다양한 데이터 유형(예: 이미지, 영상, 오디오 등)을 TCP 통신으로 처리하는 방식은 일반적인 실무 관행입니다. 특히, 프로토콜 설계가 필요한 커스텀 TCP 통신에서 데이터의 유형과 상태를 명확히 구분하는 것이 중요합니다. 이는 유연성, 확장성, 디버깅 용이성을 제공하기 때문입니다.
+
+
+  네, 데이터 플래그를 설정하여 다양한 데이터 유형(예: 이미지, 영상, 오디오 등)을 TCP 통신으로 처리하는 방식은 일반적인 실무 관행입니다. 특히, 프로토콜 설계가 필요한 커스텀 TCP 통신에서 데이터의 유형과 상태를 명확히 구분하는 것이 중요합니다. 이는 유연성, 확장성, 디버깅 용이성을 제공하기 때문입니다.
+  1. 데이터 플래그를 사용하는 이유
+  (1) TCP는 데이터의 경계를 구분하지 않음
+    TCP는 스트림 기반 프로토콜로, 데이터를 바이트 스트림으로 전달합니다.
+    이는 전송 데이터가 하나의 흐름으로 전달되기 때문에, 데이터의 경계를 명확히 알 수 없습니다.
+    데이터를 구분하려면 애플리케이션 레벨에서 추가 정보를 정의해야 합니다(예: 데이터 유형, 크기, 상태 등).
+  (2) 다양한 데이터 유형의 처리
+    실무에서는 한 연결에서 여러 유형의 데이터를 처리해야 할 수 있습니다(예: 명령 메시지, 이미지 데이터, 영상 데이터 등).
+    데이터를 구분하기 위해 메타데이터와 데이터 유형을 함께 전송하여 데이터를 명확히 식별합니다.
+  (3) 확장성과 유지보수성
+    enum을 통해 데이터 유형과 상태를 체계적으로 관리하면 새로운 데이터 유형(예: 텍스트, 센서 데이터 등)을 추가할 때도 쉽게 확장 가능합니다.
+    문자열 기반 구분("START_IMAGE", "END_IMAGE")보다 오타나 일관성 문제를 줄여 유지보수가 쉽습니다.
+
+  2. 실무에서 데이터 플래그 사용 사례
+  (1) 멀티미디어 데이터 전송
+    예: 스트리밍 서비스(Netflix, YouTube 등)는 하나의 TCP 연결에서 메타데이터와 영상 데이터를 동시에 전송합니다.
+    메타데이터: 영상의 해상도, 길이, 포맷, 청크 크기 등.
+    플래그: 데이터 유형(영상, 오디오 등)과 전송 상태(시작, 종료)를 명시.
+  (2) IoT 기기 데이터 통신
+    예: 센서 데이터를 클라우드 서버로 전송할 때, 한 연결에서 다양한 센서 데이터를 전송.
+    플래그: 센서 유형(온도, 습도, 압력 등)과 데이터 상태를 구분.
+  (3) 커스텀 프로토콜
+    예: 금융 서비스에서 클라이언트와 서버 간 커스텀 프로토콜로 데이터를 송수신.
+    플래그: 명령(조회, 업데이트 등), 데이터 유형(거래 기록, 사용자 정보 등)을 구분.
+
+3. 데이터 플래그를 활용한 설계의 일반적인 패턴
+(1) 메타데이터와 데이터 플래그 설계
+  데이터 플래그(DataFlag)를 통해 다음 정보를 명시합니다:
+  데이터 유형: 이미지, 영상, 오디오 등.
+  전송 상태: 시작, 진행 중, 종료.
+  데이터 크기: 수신자가 정확히 데이터를 처리하기 위해 필요.
+(2) 전송 구조
+  메타데이터 전송:
+    데이터 유형과 상태를 나타내는 플래그를 먼저 전송.
+    수신자는 이를 해석하여 이후 데이터를 어떻게 처리할지 결정.
+  데이터 본문 전송:
+    메타데이터 뒤에 실제 데이터를 전송.
+    데이터가 크다면 청크 단위로 나눠 전송.
+  완료 플래그 전송:
+    데이터 전송이 완료되었음을 알리기 위해 종료 플래그를 전송.
+
+❓ 근데 궁금한게 이렇게 플래그로 구문하되, 청크로 안나누고 한 번에 보내면 단점이 있나? 내아 알기로는 어차피 프레임크기가 일정 바이트 이상 벗어나면 자동으로 나눠서 전송되는거로 아는데.. 이거랑 다른 개념인가?  중간 데이터 손실 시 알수가 없어? 
+
+1. TCP에서 데이터 전송 방식
+  TCP는 스트림 기반 프로토콜로, 데이터가 프레임 단위로 전송됩니다. 그러나 애플리케이션에서 데이터를 보내는 단위와 TCP가 실제로 네트워크로 나누어 보내는 단위는 다릅니다.
+
+  (1) 애플리케이션 레벨: 데이터 전송
+    애플리케이션에서 send() 또는 write()를 호출할 때, 데이터가 한 번에 송신됩니다.
+    이 데이터가 크더라도 TCP가 내부적으로 나눠서 처리하기 때문에 애플리케이션은 데이터 크기를 신경 쓰지 않아도 됩니다.
+  (2) TCP 레벨: 데이터 프레임 분할
+    TCP는 **MTU(Maximum Transmission Unit)**와 같은 네트워크 제한을 기준으로 데이터를 작은 청크(프레임)로 분할하여 전송합니다.
+    Ethernet의 MTU는 일반적으로 1500바이트이며, TCP/IP 헤더(40바이트)를 제외하면 약 1460바이트의 데이터를 한 번에 보낼 수 있습니다.
+    이보다 큰 데이터는 TCP가 자동으로 분할하고, 수신 측에서 다시 조립합니다.
+  (3) TCP의 데이터 손실 처리
+    TCP는 패킷 손실이 발생하면 해당 패킷만 재전송하여 데이터의 무결성을 보장합니다.
+    따라서, 중간 데이터 손실 시 애플리케이션은 알지 못하며, TCP가 이를 투명하게 처리합니다.
+
+2. 청크로 나누지 않고 한 번에 전송하는 경우의 단점
+  (1) 데이터 경계 관리 문제
+    TCP는 스트림 기반이기 때문에, 수신 측에서 데이터를 받을 때 데이터 경계를 보장하지 않습니다.
+    예: send()로 두 번 나눠 보낸 데이터를 recv()로 한 번에 받거나, 반대로 한 번에 보낸 데이터를 여러 번에 나눠 받을 수 있습니다.
+      해결책:
+        데이터의 경계를 명확히 하기 위해 데이터 크기를 먼저 전송하거나 플래그를 사용하는 방식이 필요합니다.
+  (2) 메모리 사용량 문제
+    데이터를 한 번에 전송하려면 송신 측과 수신 측 모두에서 데이터를 한꺼번에 처리할 메모리가 필요합니다.
+    데이터가 매우 크면(예: 수백 MB 또는 GB) 메모리 부족 문제가 발생할 수 있습니다.
+    해결책:
+      데이터를 청크 단위로 나눠 처리하면 메모리 사용량을 효율적으로 관리할 수 있습니다.
+  (3) 네트워크 대역폭 및 속도 문제
+    네트워크가 불안정한 환경(예: IoT 장치, 무선 네트워크)에서는 대규모 데이터를 한 번에 전송할 경우 패킷 손실 가능성이 높아집니다.
+    TCP는 손실된 패킷만 재전송하지만, 손실된 패킷이 많아지면 전송 속도가 크게 저하될 수 있습니다.
+    해결책:
+      작은 청크로 나눠 전송하면 패킷 손실로 인한 재전송 부담을 줄일 수 있습니다.
+  (4) 데이터 손실 시 복구 문제
+    TCP는 데이터 손실 시 패킷을 재전송하지만, 만약 연결 자체가 끊어지는 경우(예: 소켓 타임아웃), 이미 전송된 데이터는 모두 손실됩니다.
+    청크 단위로 데이터를 나눠 전송하면 부분적으로 전송된 데이터를 저장하여 재시도할 수 있지만, 한 번에 전송하면 전체 데이터를 다시 보내야 합니다.
+    해결책:
+      청크 전송 방식은 실패한 부분만 재전송할 수 있도록 설계가 가능합니다.
+    
+ok . 고마워. 일단 이미지, 오디오, 비디오에 대해서는 이렇게 하는 게 일반적인 관행이란거지?
+
+서버 예시?
+
+  #include <stdio.h>
+  #include <stdlib.h>
+  #include <string.h>
+  #include <unistd.h>
+  #include "pb_decode.h"
+  #include "data_flag.pb.h"
+
+  #define BUF_SIZE 1024
+
+  void error_handling(const char *message) {
+      perror(message);
+      exit(1);
+  }
+
+  // 데이터 플래그 수신 및 처리
+  void receive_data_flag(int sock, DataType *type, DataStatus *status, uint32_t *size) {
+      uint8_t buffer[128];
+      pb_istream_t stream;
+      DataFlag flag = DataFlag_init_zero;
+
+      // 데이터 플래그 수신
+      read(sock, buffer, sizeof(buffer));
+      stream = pb_istream_from_buffer(buffer, sizeof(buffer));
+
+      // NanoPB 역직렬화
+      if (!pb_decode(&stream, DataFlag_fields, &flag)) {
+          fprintf(stderr, "Failed to decode DataFlag: %s\n", PB_GET_ERROR(&stream));
+          exit(1);
+      }
+
+      // 플래그 데이터 반환
+      *type = flag.type;
+      *status = flag.status;
+      *size = flag.size;
+  }
+
+  // 데이터 유형에 따라 처리
+  void handle_data(int sock, DataType type, uint32_t size) {
+      char buffer[BUF_SIZE];
+
+      switch (type) {
+          case TYPE_PROTOBUF:
+              // NanoPB 데이터 처리
+              read(sock, buffer, size);
+              printf("Received Protobuf message (%u bytes): %s\n", size, buffer);
+              // 추가적으로 역직렬화 처리 가능
+              break;
+
+          case TYPE_TEXT:
+              // 텍스트 데이터 처리
+              read(sock, buffer, size);
+              buffer[size] = '\0'; // 널 종결 추가
+              printf("Received Text: %s\n", buffer);
+              break;
+
+          case TYPE_AUDIO:
+              // 오디오 스트림 처리
+              printf("Receiving Audio Stream (%u bytes)...\n", size);
+              while (size > 0) {
+                  ssize_t bytes_read = read(sock, buffer, BUF_SIZE);
+                  size -= bytes_read;
+                  printf("Processing %zd bytes of audio data...\n", bytes_read);
+                  // 오디오 데이터 처리 (예: 저장)
+              }
+              printf("Audio stream completed.\n");
+              break;
+
+          case TYPE_IMAGE:
+              // 이미지 스트림 처리
+              printf("Receiving Image Stream (%u bytes)...\n", size);
+              FILE *image_file = fopen("received_image.jpg", "wb");
+              if (!image_file) {
+                  perror("Failed to open image file");
+                  exit(1);
+              }
+              while (size > 0) {
+                  ssize_t bytes_read = read(sock, buffer, BUF_SIZE);
+                  size -= bytes_read;
+                  fwrite(buffer, 1, bytes_read, image_file);
+                  printf("Writing %zd bytes of image data...\n", bytes_read);
+              }
+              fclose(image_file);
+              printf("Image stream completed and saved to received_image.jpg.\n");
+              break;
+
+          case TYPE_VIDEO:
+              // 비디오 스트림 처리
+              printf("Receiving Video Stream (%u bytes)...\n", size);
+              FILE *video_file = fopen("received_video.mp4", "wb");
+              if (!video_file) {
+                  perror("Failed to open video file");
+                  exit(1);
+              }
+              while (size > 0) {
+                  ssize_t bytes_read = read(sock, buffer, BUF_SIZE);
+                  size -= bytes_read;
+                  fwrite(buffer, 1, bytes_read, video_file);
+                  printf("Writing %zd bytes of video data...\n", bytes_read);
+              }
+              fclose(video_file);
+              printf("Video stream completed and saved to received_video.mp4.\n");
+              break;
+
+          default:
+              fprintf(stderr, "Unknown data type received: %d\n", type);
+              break;
+      }
+  }
+
+  int main(int argc, char *argv[]) {
+      if (argc != 2) {
+          printf("Usage: %s <Port>\n", argv[0]);
+          exit(1);
+      }
+
+      int serv_sock, clnt_sock;
+      struct sockaddr_in serv_addr, clnt_addr;
+      socklen_t clnt_addr_size;
+
+      // 소켓 생성
+      serv_sock = socket(PF_INET, SOCK_STREAM, 0);
+      if (serv_sock == -1)
+          error_handling("socket() error");
+
+      // 서버 주소 설정
+      memset(&serv_addr, 0, sizeof(serv_addr));
+      serv_addr.sin_family = AF_INET;
+      serv_addr.sin_addr.s_addr = htonl(INADDR_ANY);
+      serv_addr.sin_port = htons(atoi(argv[1]));
+
+      // 바인드와 리슨
+      if (bind(serv_sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) == -1)
+          error_handling("bind() error");
+      if (listen(serv_sock, 5) == -1)
+          error_handling("listen() error");
+
+      // 클라이언트 연결 수락
+      clnt_addr_size = sizeof(clnt_addr);
+      clnt_sock = accept(serv_sock, (struct sockaddr *)&clnt_addr, &clnt_addr_size);
+      if (clnt_sock == -1)
+          error_handling("accept() error");
+
+      while (1) {
+          DataType type;
+          DataStatus status;
+          uint32_t size;
+
+          // 데이터 플래그 수신
+          receive_data_flag(clnt_sock, &type, &status, &size);
+
+          // 상태에 따라 처리
+          if (status == STATUS_START) {
+              printf("Starting data transfer (type: %d, size: %u bytes)\n", type, size);
+              handle_data(clnt_sock, type, size);
+          } else if (status == STATUS_END) {
+              printf("Data transfer completed (type: %d)\n", type);
+          } else if (status == STATUS_IN_PROGRESS) {
+              printf("Data transfer in progress...\n");
+          } else {
+              printf("Unknown status received: %d\n", status);
+          }
+      }
+
+      close(clnt_sock);
+      close(serv_sock);
+      return 0;
+  }
+
+
+oneof
+enum
+message
+
+
+
+4. GraphQL의 구조를 소켓 통신에 적용할 때의 장점    // overpatching, underpatching 을 막음.
+유연한 데이터 요청:
+
+클라이언트가 필요한 데이터만 요청할 수 있어, 불필요한 데이터 전송을 줄일 수 있음.
+구조화된 데이터:
+
+요청과 응답이 명확히 정의되어 있어, 유지보수와 디버깅이 쉬움.
+실시간 처리:
+
+Subscription처럼 실시간 이벤트를 관리할 수 있는 구조를 소켓 통신에 쉽게 적용 가능.
+
+
+
+담당할 터틀봇/엘레베이터.. id 받는 쿼리도 있어야 함.
+https://graphql.org/learn/schema/#the-query-mutation-and-subscription-types
+  schema {
+    query: MyQueryType
+    mutation: MyMutationType
+    subscription: MySubscriptionType
+  }
+
+
+graphQL은 쿼리를 통해 요청하므로 POST로만 요청을 보낼 수 있다. URL을 통한 정보를 표현하는 방식은 REST 방식이므로 사용되지 않
+  그러면 등록, 수정, 삭제, 조회는 어떻게 구분해서 요청을 해야할까? 이 부분은 body를 통해 구분하게 된다.
+
+  조회 : query
+  등록/수정/삭제 : mutation
+  구독 : subscription
+
+  Fragment
+  UnionType 
+
+
+https://fastapi.tiangolo.com/how-to/graphql/
+  not nullable
+
+
+  조건을 통해 포함, 생략 여부를 지정해줄 수 있다. 필드값에도 가능하고, 객체에도 가능하다.
+
+    @include(if: T/F) : 포함여부
+    @skip(if: T/F) : 생략여부
