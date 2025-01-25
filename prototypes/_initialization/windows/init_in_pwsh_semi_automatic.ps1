@@ -116,7 +116,7 @@ View
       Tartube stores all of its downloads in one place
         - ✔️ E:\Tartube
       When saving in the database, Tartube makes a backup copy of its databse file (in case seomthing gose wrong)
-        - ✔️ Make a new backup file every time the database is saverd
+        - ✔️ Make a new backup file every time the database is saved
       Choose which downloader to use
         - ✔️ yt-dlp
       📰 Install and update downloader
@@ -129,7 +129,7 @@ View
       # Settings for Video to Audio ; https://github.com/axcore/tartube/issues/38#issuecomment-573664336
       [Tab] Classic Mode
         - Open in Classic Mode menu
-          - Edit downlod options...
+          - Edit download options...
             - [Tab] Name
               - ✔️ Show advanced download options
             - [Tab] Format
