@@ -1,3 +1,9 @@
+(Data structure)
+  ⚓ Red–black tree ; https://en.wikipedia.org/wiki/Red%E2%80%93black_tree
+    #️⃣ Terminology
+      🪱 NIL, parent, uncle
+        ❗ The leaf nodes of red–black trees (NIL in figure 1) do not contain keys or data.
+
 (Canonical Ecosystem)
   ⚓ Launchpad ; https://en.wikipedia.org/wiki/Launchpad_(website)
     Laucnhpad is a web application and website that allows users to develop and maintain software, particularly open-source software.
@@ -15,8 +21,17 @@
       # Recovery
         The kernels of operating systems such as Linux will attempt to recover from this type of OOM condition by terminating one or more processes, a mechanism known as 🪱 the OOM Killer
 (OS 🔪 Linux)
+  ⚓⭕📎 Epoll (event poll) ; https://en.wikipedia.org/wiki/Epoll
+    🗒️ Contents
+      epoll is a Linux kernel system call for a scalable I/O event notification mechanism, ...
+      It is meant to replace the older POSIX ❌ select(2) and ❌ poll(2) system calls, to achieve better performance in more demanding applications, where the number of watched file descriptors is large
+      (unlike the older system calls, which operate in O(n) time, epoll operates in 🚣 O(1) time). ...
+      epoll uses a 🪱 red–black tree (RB-tree) data structure to keep track of all file descriptors that are currently being monitored
+
+
   ⚓ Inotify ; https://en.wikipedia.org/wiki/Inotify
     inotify (inode notify) is a Linux kernel subsystem created by John McCutchan, which monitors changes to the filesystem, and reports those changes to applications.
+
 
 
 ⚓📎 Interface Description Language (IDL) ; https://en.wikipedia.org/wiki/Interface_description_language
@@ -46,6 +61,7 @@
 
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
 (Still not ground)
+
 ⚓ Synchronization ; https://en.wikipedia.org/wiki/Synchronization_(computer_science)
   🗒️ Contents
     #️⃣ Implementation ; https://en.wikipedia.org/wiki/Synchronization_(computer_science)#Implementation
@@ -57,9 +73,18 @@
 
 
 https://en.wikipedia.org/wiki/Lean_thinking
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
 Wiktionary
-  - Lean ; https://en.wiktionary.org/wiki/lean#English
-    (business) Efficient, economic, frugal, agile, slimmed-down; pertaining to the modern industrial principles of "lean manufacturing
+  - lean ; https://en.wiktionary.org/wiki/lean#English
+    Adjective
+      lean (comparative leaner, superlative leanest)
+        6. (business) Efficient, economic, frugal, agile, slimmed-down; pertaining to the modern industrial principles of "lean manufacturing
+
+  - nil ; https://en.wiktionary.org/wiki/nil#English
+    Noun
+      nil (usually uncountable, plural nils)
+        1. Nothing; zero. 
 
 
 
