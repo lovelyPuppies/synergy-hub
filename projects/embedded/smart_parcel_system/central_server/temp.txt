@@ -1941,3 +1941,8 @@ https://docs.conan.io/2/reference/config_files/global_conf.html#information-abou
   //CXX compiler
   CMAKE_CXX_COMPILER:FILEPATH=/usr/bin/c++
   
+
+⚓ Code sanitizer ; https://en.wikipedia.org/wiki/Code_sanitizer
+  The class of tools was first introduced by Google's AddressSanitizer (or ASan) of 2012,
+
+  clang++ -fsanitize=address -g -O1 test.cpp -o test

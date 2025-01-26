@@ -10,7 +10,7 @@ compiler.libcxx=libc++
 
 
 [buildenv]
-## If in [conf], https://github.com/conan-io/conan/issues/10877
+## If in [conf], ☑️ [question] Why does conan not pass CMAKE_CXX_COMPILER to CMAKE ; https://github.com/conan-io/conan/issues/10877
 # tools.build:compiler_executables={"c": "clang", "cpp": "clang++"}
 CC=clang
 CXX=clang++
@@ -26,3 +26,5 @@ tools.cmake.cmaketoolchain:generator=Ninja
 # tools.build:exelinkflags=["-fuse-ld=lld", "-L/home/linuxbrew/.linuxbrew/opt/llvm/lib", "-lc++", "-lc++abi"]
 # tools.build:sharedlinkflags=["-fuse-ld=lld", "-L/home/linuxbrew/.linuxbrew/opt/llvm/lib", "-lc++", "-lc++abi"]
 
+[options]
+custom_suffix=raspberry_pi

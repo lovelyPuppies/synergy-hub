@@ -23,6 +23,10 @@ class iot_serverRecipe(ConanFile):
     exports_sources = "CMakeLists.txt", "src/*"
 
     def layout(self):
+        ## ☑️ [question] preset name != profile name ; https://github.com/conan-io/conan/issues/16557
+        # tools.cmake.cmake_layout:build_folder_vars=["settings.build_type", "settings.compiler"]
+        # https://docs.conan.io/2.0/tutorial/creating_packages/handle_sources_in_packages.html#sources-from-a-zip-file-stored-in-a-remote-repository
+        self.folders.build_folder_vars = ["settings.build_type", "settings.compiler"]
         cmake_layout(self)
 
     def generate(self):

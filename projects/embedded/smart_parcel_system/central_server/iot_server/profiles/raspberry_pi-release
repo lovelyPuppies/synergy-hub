@@ -2,7 +2,7 @@
 [settings]
 arch=armv8
 os=Linux
-build_type=Debug
+build_type=Release
 compiler=clang
 compiler.cstd=23
 compiler.cppstd=23
