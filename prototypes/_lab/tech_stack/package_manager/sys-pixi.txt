@@ -7,10 +7,6 @@ list of level 1 subjects
 
   
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
-🐞 Issue Tracking
-  https://github.com/prefix-dev/pixi/issues/1907
-    in VS Code, manifest PIXI_PROJECT_MANIFEST is not changed when open by command "code <path>"
-  
 ⚓ pixi ; https://pixi.sh/latest/
   https://github.com/prefix-dev/pixi?tab=readme-ov-file
   📝 ❔ I guess it stands for Package Installation & Xross-platform Interface
@@ -24,7 +20,7 @@ list of level 1 subjects
       - rattler • Rust crates to work with conda
       - mamba • a cross-platform package manager
       - boa • build packages in a breeze
-      - quetz • host packages easily  
+      - quetz • host packages easily
 ----------------------------------------------
 pixi 🔪 Pixi by prefix.dev
   ⚓ Installation ; https://pixi.sh/latest/

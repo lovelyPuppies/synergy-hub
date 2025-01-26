@@ -1,0 +1,14 @@
+[settings]
+arch=x86_64
+os=Linux
+build_type=Debug
+compiler=clang
+compiler.cstd=23
+compiler.cppstd=23
+compiler.version=19
+
+
+
+[conf]
+# https://docs.conan.io/2/examples/tools/cmake/cmake_toolchain/use_different_toolchain_generator.html#
+tools.cmake.cmaketoolchain:generator=Ninja

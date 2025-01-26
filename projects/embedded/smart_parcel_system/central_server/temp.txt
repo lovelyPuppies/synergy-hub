@@ -1827,3 +1827,162 @@ Now we are ready to build and run our compressor app: 🧮
   $ cd build
   $ cmake .. -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Release
   $ cmake --build .
+
+
+conanfile.txt¶
+  [requires]
+  zlib/1.2.11
+[tool_requires]
+cmake/3.22.6
+
+❗ 이렇게 설치한 cmake 를 사용하려면 install 이후에
+  $ cd build
+  $ source conanbuild.sh
+  Capturing current environment in deactivate_conanbuildenv-release-x86_64.sh
+  Configuring environment variables
+That is because Conan, if not instructed otherwise, will use a default configuration declared in the ‘default profile’. This default profile was created in the first example when we run the conan profile detect command
+Conan stores this file in the /profiles folder, located in the Conan user home. You can check the contents of your default profile by running the conan config home command to get the location of the Conan user home and then showing the contents of the default profile in the /profiles folder:
+
+🧮
+  conan profile path default
+  cat (conan profile path default)
+  conan config home
+  
+🧮 conan install . --build=missing --profile=default
+  # --profile=default can be ommitted
+
+cmake --preset conan-debug
+cmake --build --preset conan-debug
+
+  
+Conan version: conan 2.7.0
+❯ conan --version
+Conan version 2.11.0
+Python version: Python 3.12.3
+
+
+
+Conan -
+  Library project
+  Executable project
+
+
+
+conan.txt
+  https://docs.conan.io/2/reference/config_files/settings.html#reference-config-files-settings-yml
+  compiler 
+
+https://docs.conan.io/2/tutorial/consuming_packages/different_configurations.html#difference-between-settings-and-options
+  자동으로 #DEFINE 추가되는듯? RELEASE 면
+    int main(void) {
+        ...
+        #ifdef NDEBUG
+        printf("Release configuration!\n");
+        #else
+        printf("Debug configuration!\n");
+        #endif
+
+        return EXIT_SUCCESS;
+    }
+
+❓ 문자열 압축: https://github.com/conan-io/examples2/blob/main/tutorial/consuming_packages/different_configurations/src/main.c
+
+  # Modifying options: linking the application dependencies as shared libraries
+    ㄴconan install . --output-folder=build --build=missing --options=zlib/1.2.11:shared=True
+
+
+$ cd build
+$ cmake .. -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Release
+$ cmake --build .
+
+
+$ ./compressor
+./compressor: error while loading shared libraries: libz.so.1: cannot open shared object file: No such file or directory
+
+Activate the virtual environment, and run the executables again:
+  $ source conanrun.sh
+  $ ./compressor
+  Uncompressed size is: 233
+  Compressed size is: 147
+  https://github.com/conan-io/examples2/tree/main/tutorial/consuming_packages
+
+
+❓ https://github.com/jorgebucaran/fisher
+
+ LD_LIBRARY_PATH=+(path)/home/linuxbrew/.linuxbrew/lib
+📍 path ... https://docs.conan.io/2/reference/config_files/profiles.html#buildenv
+
+
+터미널에서 직접 
+cmake --preset conan-debug \
+  -DCMAKE_EXE_LINKER_FLAGS="-L/home/linuxbrew/.linuxbrew/Cellar/llvm/19.1.7/lib /home/linuxbrew/.linuxbrew/Cellar/llvm/19.1.7/lib/libc++.so" 
+
+
+conan install . --build=missing --profile:all profiles/linux-debug
+🚨 unknwon error 📅 2025-01-26 18:59:44
+  cmake --preset conan-debug 에다가 아무 옵션을 주면. 갑자기 잘 찾는다..
+    cmake --preset conan-debug \
+          -DCMAKE_CXX_FLAGS="-v" \
+          -DCMAKE_EXE_LINKER_FLAGS="-v"
+    
+  ❯ cmake --preset conan-debug
+    Preset CMake variables:
+
+      CMAKE_BUILD_TYPE="Debug"
+      CMAKE_POLICY_DEFAULT_CMP0091="NEW"
+      CMAKE_TOOLCHAIN_FILE:FILEPATH="generators/conan_toolchain.cmake"
+
+    Preset environment variables:
+
+      CC="/home/linuxbrew/.linuxbrew/bin/clang"
+      CFLAGS=""-fuse-ld=lld""
+      CXX="/home/linuxbrew/.linuxbrew/bin/clang++"
+      CXXFLAGS=""-fuse-ld=lld""
+      LD_LIBRARY_PATH="/home/linuxbrew/.linuxbrew/lib:/home/linuxbrew/.linuxbrew/lib/::/usr/local/cuda/lib64"
+      PATH="/home/linuxbrew/.linuxbrew/bin/:/home/linuxbrew/.linuxbrew/opt/llvm/bin:/home/wbfw109v2/.vscode-server/extensions/ms-python.python-2024.22.2-linux-x64/python_files/deactivate/fish:/home/wbfw109v2/.cache/pypoetry/virtualenvs/central-server-ppbOTuMD-py3.13/bin:/home/wbfw109v2/.vscode-server/extensions/ms-python.python-2024.22.2-linux-x64/python_files/deactivate/fish:/home/wbfw109v2/.cache/pypoetry/virtualenvs/central-server-ppbOTuMD-py3.13/bin:/home/wbfw109v2/.pyenv/shims:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:/usr/local/cuda/bin:/usr/local/ffmpeg/bin:/home/wbfw109v2/Qt/6.8.0/gcc_64/bin:/home/linuxbrew/.linuxbrew/opt/rustup/bin:/home/wbfw109v2/.local/bin:/home/wbfw109v2/repos/synergy-hub/prototypes/_initialization/ubuntu/howto/general:/home/wbfw109v2/.volta/bin:/home/linuxbrew/.linuxbrew/opt/mariadb-connector-c/bin:/home/linuxbrew/.linuxbrew/opt/e2fsprogs/sbin:/home/linuxbrew/.linuxbrew/opt/e2fsprogs/bin:/home/wbfw109v2/.vscode-server/extensions/ms-python.python-2024.22.2-linux-x64/python_files/deactivate/fish:/home/wbfw109v2/.cache/pypoetry/virtualenvs/central-server-ppbOTuMD-py3.13/bin:/home/wbfw109v2/.vscode-server/cli/servers/Stable-cd4ee3b1c348a13bafd8f9ad8060705f6d4b9cba/server/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
+
+    -- Using Conan toolchain: /home/wbfw109v2/repos/synergy-hub/projects/embedded/smart_parcel_system/central_server/iot_server/build/Debug/generators/conan_toolchain.cmake
+    -- Conan toolchain: Defining architecture flag: -m64
+    -- Conan toolchain: Defining libcxx as C++ flags: -stdlib=libc++
+    -- Conan toolchain: C++ Standard 23 with extensions OFF
+    -- The CXX compiler identification is Clang 19.1.7
+    -- Detecting CXX compiler ABI info
+    -- Detecting CXX compiler ABI info - failed
+    -- Check for working CXX compiler: /home/linuxbrew/.linuxbrew/bin/clang++
+    -- Check for working CXX compiler: /home/linuxbrew/.linuxbrew/bin/clang++ - broken
+    CMake Error at /home/linuxbrew/.linuxbrew/share/cmake/Modules/CMakeTestCXXCompiler.cmake:73 (message):
+      The C++ compiler
+
+        "/home/linuxbrew/.linuxbrew/bin/clang++"
+
+      is not able to compile a simple test program.
+
+      It fails with the following output:
+
+        Change Dir: '/home/wbfw109v2/repos/synergy-hub/projects/embedded/smart_parcel_system/central_server/iot_server/build/Debug/CMakeFiles/CMakeScratch/TryCompile-yhiFTQ'
+        
+        Run Build Command(s): /home/linuxbrew/.linuxbrew/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_0058a/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_0058a.dir/build.make CMakeFiles/cmTC_0058a.dir/build
+        gmake[1]: Entering directory '/home/wbfw109v2/repos/synergy-hub/projects/embedded/smart_parcel_system/central_server/iot_server/build/Debug/CMakeFiles/CMakeScratch/TryCompile-yhiFTQ'
+        Building CXX object CMakeFiles/cmTC_0058a.dir/testCXXCompiler.cxx.o
+        /home/linuxbrew/.linuxbrew/bin/clang++   "-fuse-ld=lld"   -m64 -stdlib=libc++  -std=c++23 -MD -MT CMakeFiles/cmTC_0058a.dir/testCXXCompiler.cxx.o -MF CMakeFiles/cmTC_0058a.dir/testCXXCompiler.cxx.o.d -o CMakeFiles/cmTC_0058a.dir/testCXXCompiler.cxx.o -c /home/wbfw109v2/repos/synergy-hub/projects/embedded/smart_parcel_system/central_server/iot_server/build/Debug/CMakeFiles/CMakeScratch/TryCompile-yhiFTQ/testCXXCompiler.cxx
+        clang++: warning: argument unused during compilation: '-fuse-ld=lld' [-Wunused-command-line-argument]
+        Linking CXX executable cmTC_0058a
+        /home/linuxbrew/.linuxbrew/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0058a.dir/link.txt --verbose=1
+        ld.lld: error: unable to find library -lc++
+        clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+        /home/linuxbrew/.linuxbrew/bin/clang++ "-fuse-ld=lld"   -m64 -stdlib=libc++  -m64 -L/home/linuxbrew/.linuxbrew/opt/e2fsprogs/lib -L/home/linuxbrew/.linuxbrew/opt/mariadb-connector-c/lib -L/usr/local/ffmpeg/lib  CMakeFiles/cmTC_0058a.dir/testCXXCompiler.cxx.o -o cmTC_0058a
+        gmake[1]: *** [CMakeFiles/cmTC_0058a.dir/build.make:103: cmTC_0058a] Error 1
+        gmake[1]: Leaving directory '/home/wbfw109v2/repos/synergy-hub/projects/embedded/smart_parcel_system/central_server/iot_server/build/Debug/CMakeFiles/CMakeScratch/TryCompile-yhiFTQ'
+        gmake: *** [Makefile:134: cmTC_0058a/fast] Error 2
+        
+        
+
+      
+
+      CMake will not be able to correctly generate this project.
+    Call Stack (most recent call first):
+      CMakeLists.txt:2 (project)
+
+
+❓❓❓❓ Conan embedded: https://dev.to/khozaei/conan-your-embedded-cross-compilation-champion-5bb9

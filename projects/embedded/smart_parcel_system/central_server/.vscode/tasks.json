@@ -1,0 +1,34 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Conan Install",
+      "type": "shell",
+      "command": "cd iot_server && conan install . --build=missing --profile:all profiles/linux-debug",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always", 
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Conan Configure - Debug Preset",
+      "type": "shell",
+      "command": "cd iot_server && cmake --preset conan-debug",
+      // "command": "cd iot_server && cmake --preset conan-debug -DCMAKE_CXX_FLAGS='-v'",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always", 
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    }
+  ]
+}

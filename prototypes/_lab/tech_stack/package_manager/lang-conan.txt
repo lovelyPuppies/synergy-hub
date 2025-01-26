@@ -564,7 +564,7 @@ Conan 🔪⚓ Reference ; https://docs.conan.io/2/reference.html
 
 
     # Creator commands:
-      ⚓ conan new ; https://docs.conan.io/2/reference/commands/new.html
+      ⚓🧮 conan new ; https://docs.conan.io/2/reference/commands/new.html
         Create a new recipe (with a conanfile.py and other associated files) from 🚣 either a predefined or a user-defined template.
       ⚓ conan build ; https://docs.conan.io/2/reference/commands/build.html
         The conan build command installs the recipe 🚣 specified in path and calls its build() method.
@@ -676,7 +676,7 @@ Conan 🔪⚓ Reference ; https://docs.conan.io/2/reference.html
       # [buildenv]
         List of environment variables that will be injected to the environment every time the ConanFile run(cmd, env="conanbuild") method is invoked
           (build time context is automatically run by 🪱 VirtualBuildEnv).
-    ⚓📍 settings.yml ; https://docs.conan.io/2/reference/config_files/settings.html
+    ⚓⚖️ settings.yml ; https://docs.conan.io/2/reference/config_files/settings.html
       ... build_type: [null, Debug, Release, RelWithDebInfo, MinSizeRel]
         🛍️ e.g. https://github.com/conan-io/conan-center-index/blob/master/recipes/opencv/4.x/conanfile.py
           📝 To be installed package is different according to debug settings

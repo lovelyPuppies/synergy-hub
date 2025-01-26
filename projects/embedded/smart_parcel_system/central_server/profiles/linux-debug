@@ -1,0 +1,9 @@
+[settings]
+arch=x86_64
+os=Linux
+build_type=Debug
+compiler=clang
+compiler.cppstd=23
+compiler.libcxx=libc++
+compiler.version=19
+
