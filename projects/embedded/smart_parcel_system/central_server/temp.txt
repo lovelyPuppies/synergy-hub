@@ -1986,7 +1986,7 @@ conan install . --build=missing --profile:all profiles/linux-debug
 
 
 ❓❓❓❓ Conan embedded: https://dev.to/khozaei/conan-your-embedded-cross-compilation-champion-5bb9
-
+brew 로 llvm 설치해서그러ㅡㄴ가?..
 
 default.. compiler..
   ❯ ls -l /usr/bin/c++

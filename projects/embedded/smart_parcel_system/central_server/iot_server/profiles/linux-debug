@@ -6,13 +6,21 @@ compiler=clang
 compiler.cstd=23
 compiler.cppstd=23
 compiler.version=19
-compiler.libcxx=libc++
+# compiler.libcxx=libc++
+
+
+[buildenv]
+CC=clang
+CXX=clang++
+## https://github.com/conan-io/conan/issues/10877
+# tools.build:compiler_executables={"c": "clang", "cpp": "clang++"}
 
 [conf]
 # https://docs.conan.io/2/examples/tools/cmake/cmake_toolchain/use_different_toolchain_generator.html#
 tools.cmake.cmaketoolchain:generator=Ninja
-tools.build:compiler_executables={"c": "clang", "cpp": "clang++"}
-tools.build:sharedlinkflags=["-L//home/linuxbrew/.linuxbrew/opt/llvm/lib/libc++", "-lc++"]
+tools.build:exelinkflags=['-fuse-ld=lld']
+tools.build:sharedlinkflags=['-fuse-ld=lld']
+# tools.build:sharedlinkflags=["-fuse-ld=lld libc++ -lc++abi -lc++ -lm -lc"]
 # tools.cmake.cmaketoolchain:extra_variables={
 #     "CMAKE_CXX_COMPILER": "/usr/bin/clang++",
 #     "CMAKE_MAKE_PROGRAM": "/usr/bin/ninja",
