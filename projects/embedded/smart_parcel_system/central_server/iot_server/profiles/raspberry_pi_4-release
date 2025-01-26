@@ -1,0 +1,28 @@
+# https://docs.conan.io/2/tutorial/consuming_packages/cross_building_with_conan.html
+[settings]
+arch=armv8
+os=Linux
+build_type=Release
+compiler=clang
+compiler.cstd=23
+compiler.cppstd=23
+compiler.version=19
+compiler.libcxx=libc++
+
+
+[buildenv]
+CC=clang
+CXX=clang++
+CFLAGS=--target=aarch64-linux-gnu
+CXXFLAGS=--target=aarch64-linux-gnu
+LDFLAGS=--target=aarch64-linux-gnu -fuse-ld=lld
+
+
+[conf]
+### ☑️ [question] preset name != profile name ; https://github.com/conan-io/conan/issues/16557 📅 2025-01-27 01:19:44
+# tools.cmake.cmake_layout:build_folder_vars=["settings.build_type", "settings.compiler"]
+## build_folder_vars consts ; https://github.com/conan-io/conan/pull/16633
+#   Changelog: Feature: Add build_folder_vars=["const.myvalue"] to create presets for user "myvalue" arbitrary values.
+## %shell> conan config list | grep tools.cmake.cmake_layout:build_folder_vars
+#   >> tools.cmake.cmake_layout:build_folder_vars: Settings and Options that will produce a different build folder and different CMake presets names
+tools.cmake.cmake_layout:build_folder_vars=["settings.build_type", "const.raspberry_pi_4"]

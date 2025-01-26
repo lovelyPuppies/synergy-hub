@@ -10,7 +10,7 @@ compiler.libcxx=libc++
 
 
 [buildenv]
-## If in [conf], ☑️ [question] Why does conan not pass CMAKE_CXX_COMPILER to CMAKE ; https://github.com/conan-io/conan/issues/10877
+## If in [conf], ☑️ [question] Why does conan not pass CMAKE_CXX_COMPILER to CMAKE ; https://github.com/conan-io/conan/issues/10877 📅 2025-01-27 01:19:59
 # tools.build:compiler_executables={"c": "clang", "cpp": "clang++"}
 CC=clang
 CXX=clang++
@@ -25,6 +25,3 @@ tools.cmake.cmaketoolchain:generator=Ninja
 ## If "libc++-dev libc++abi-dev" by sudo, but installed from homebrew, set this. otherwise the Error `ld.lld: error: unable to find library -lc++` will be occurred. 📅 2025-01-26 21:46:52
 # tools.build:exelinkflags=["-fuse-ld=lld", "-L/home/linuxbrew/.linuxbrew/opt/llvm/lib", "-lc++", "-lc++abi"]
 # tools.build:sharedlinkflags=["-fuse-ld=lld", "-L/home/linuxbrew/.linuxbrew/opt/llvm/lib", "-lc++", "-lc++abi"]
-
-[options]
-custom_suffix=raspberry_pi
