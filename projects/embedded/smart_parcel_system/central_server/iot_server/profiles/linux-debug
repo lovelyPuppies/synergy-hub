@@ -10,24 +10,19 @@ compiler.libcxx=libc++
 
 
 [buildenv]
+## If in [conf], https://github.com/conan-io/conan/issues/10877
+# tools.build:compiler_executables={"c": "clang", "cpp": "clang++"}
 CC=clang
 CXX=clang++
-## https://github.com/conan-io/conan/issues/10877
-# tools.build:compiler_executables={"c": "clang", "cpp": "clang++"}
+## If in [conf]
+# tools.build:exelinkflags=["-fuse-ld=lld"]
+LDFLAGS=-fuse-ld=lld
 
 [conf]
-# https://docs.conan.io/2/examples/tools/cmake/cmake_toolchain/use_different_toolchain_generator.html#
+## https://docs.conan.io/2/examples/tools/cmake/cmake_toolchain/use_different_toolchain_generator.html#
 tools.cmake.cmaketoolchain:generator=Ninja
-tools.build:exelinkflags=["-fuse-ld=lld", "-L/home/linuxbrew/.linuxbrew/opt/llvm/lib", "-lc++", "-lc++abi"]
-tools.build:sharedlinkflags=["-fuse-ld=lld", "-L/home/linuxbrew/.linuxbrew/opt/llvm/lib", "-lc++", "-lc++abi"]
 
-# tools.build:sharedlinkflags=["-fuse-ld=lld libc++ -lc++abi -lc++ -lm -lc"]
-# tools.cmake.cmaketoolchain:extra_variables={
-#     "CMAKE_CXX_COMPILER": "/usr/bin/clang++",
-#     "CMAKE_MAKE_PROGRAM": "/usr/bin/ninja",
-#     "CMAKE_EXE_LINKER_FLAGS": "-fuse-ld=lld",
-#     "CMAKE_CXX_STANDARD": "23"
-# }
-# 
-# tools.build:cxxflags=["-std=c++23", "-O2"]
-# tools.build:exelinkflags=["-fuse-ld=lld"]
+## If "libc++-dev libc++abi-dev" by sudo, but installed from homebrew, set this. otherwise the Error `ld.lld: error: unable to find library -lc++` will be occurred. 📅 2025-01-26 21:46:52
+# tools.build:exelinkflags=["-fuse-ld=lld", "-L/home/linuxbrew/.linuxbrew/opt/llvm/lib", "-lc++", "-lc++abi"]
+# tools.build:sharedlinkflags=["-fuse-ld=lld", "-L/home/linuxbrew/.linuxbrew/opt/llvm/lib", "-lc++", "-lc++abi"]
+

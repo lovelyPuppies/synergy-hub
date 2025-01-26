@@ -1,9 +1,25 @@
 🏷️ C++, ePoll, Multithreading, Protocol Buffers (Nano PB)
 
+- Usage
+
+  ```
+  # Install
+  sudo apt-get update
+  sudo apt-get install -y libc++-dev libc++abi-dev
+
+
+  ```
+
 - Initialize
 
   ```bash
   #!/usr/bin/env fish
+  # Install
+  sudo apt-get update
+  sudo apt-get install -y libc++-dev libc++abi-dev
+
+
+  # Set environment
   poetry init
   poetry add conan
   conan new cmake_exe --define name=iot_server --define version=1.0 --output iot_server
