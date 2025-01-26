@@ -18,7 +18,10 @@ CXXFLAGS=--target=aarch64-linux-gnu
 LDFLAGS=--target=aarch64-linux-gnu -fuse-ld=lld
 
 
+
 [conf]
+tools.cmake.cmaketoolchain:generator=Ninja
+
 ### ☑️ [question] preset name != profile name ; https://github.com/conan-io/conan/issues/16557 📅 2025-01-27 01:19:44
 # tools.cmake.cmake_layout:build_folder_vars=["settings.build_type", "settings.compiler"]
 ## build_folder_vars consts ; https://github.com/conan-io/conan/pull/16633

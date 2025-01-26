@@ -4,7 +4,6 @@
         "conan": {}
     },
     "include": [
-        "build/Debug/generators/CMakePresets.json",
         "build/release-raspberry_pi_4/generators/CMakePresets.json"
     ]
 }

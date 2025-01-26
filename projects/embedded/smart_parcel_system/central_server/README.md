@@ -1,12 +1,19 @@
 🏷️ C++, ePoll, Multithreading, Protocol Buffers (Nano PB)
 
-- Usage
+- Usage in Raspberry Pi 4
 
   ```
-  # Install
-  sudo apt-get update
-  sudo apt-get install -y libc++-dev libc++abi-dev
+  #!/usr/bin/env fish
+  sudo apt update
+  sudo apt install -y software-properties-common python3-launchpadlib
 
+  # https://stackoverflow.com/a/77075793
+  sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+  sudo apt update
+  sudo apt install --only-upgrade libstdc++6
+
+  gcc --version
+  strings /lib/aarch64-linux-gnu/libstdc++.so.6 | grep GLIBCXX
 
   ```
 
@@ -14,9 +21,9 @@
 
   ```bash
   #!/usr/bin/env fish
-  # Install
-  sudo apt-get update
-  sudo apt-get install -y libc++-dev libc++abi-dev
+  # Install libc++ packages for clang
+  sudo apt update
+  sudo apt install -y libc++-dev libc++abi-dev
 
 
   # Set environment
@@ -27,19 +34,4 @@
 
 - Build
 
-  ```bash
-  #!/usr/bin/env fish
-  cd iot_server
-  conan install . --build=missing --profile:all profiles/linux-debug
-
-  # `chmod` only be required in Fish shell. not Bash shell.
-  chmod +x build/Release/generators/conanbuild.sh
-  replay build/Release/generators/conanbuild.sh
-
-  # cmake ../.. -DCMAKE_TOOLCHAIN_FILE=generators/conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Release
-
-  cmake --preset conan-debug
-  cmake --build --preset conan-debug
-
-
-  ```
+  - Refer to 🧮 %VSCode> Run Task

@@ -1946,3 +1946,8 @@ https://docs.conan.io/2/reference/config_files/global_conf.html#information-abou
   The class of tools was first introduced by Google's AddressSanitizer (or ASan) of 2012,
 
   clang++ -fsanitize=address -g -O1 test.cpp -o test
+
+
+sudo apt update
+sudo apt install gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
+sudo apt install libc6-dev-arm64-cross

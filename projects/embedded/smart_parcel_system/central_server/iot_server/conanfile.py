@@ -1,6 +1,5 @@
 from conan import ConanFile
 from conan.tools.cmake import CMakeToolchain, CMake, cmake_layout, CMakeDeps
-from conan.errors import ConanInvalidConfiguration
 from conan.tools.build import check_max_cppstd, check_min_cppstd
 
 
@@ -47,6 +46,6 @@ class iot_serverRecipe(ConanFile):
         cmake = CMake(self)
         cmake.install()
 
-    # def validate(self):
-    #     check_min_cppstd(self, "23")
-    #     check_max_cppstd(self, "23")
+    def validate(self):
+        check_min_cppstd(self, "23")
+        check_max_cppstd(self, "23")
