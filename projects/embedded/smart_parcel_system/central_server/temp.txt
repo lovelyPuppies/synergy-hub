@@ -1986,3 +1986,22 @@ conan install . --build=missing --profile:all profiles/linux-debug
 
 
 ❓❓❓❓ Conan embedded: https://dev.to/khozaei/conan-your-embedded-cross-compilation-champion-5bb9
+
+
+default.. compiler..
+  ❯ ls -l /usr/bin/c++
+  lrwxrwxrwx 1 root root 21 Jul 23  2024 /usr/bin/c++ -> /etc/alternatives/c++*
+
+  wbfw109v2 in 🌐 iot-04 in smart_parcel_system/central_server/iot_server on  main [✘!] via △ v3.31.5 via 🐍 v3.13.1 (central-server-py3.13) 
+  ❯ ll /etc/alternatives/c++
+  lrwxrwxrwx root root 12 B Tue Jul 23 18:00:56 2024  /etc/alternatives/c++ ⇒ /usr/bin/g
+
+https://docs.conan.io/2/reference/config_files/global_conf.html#information-about-built-in-confs
+🧮 conan config list
+
+🚨 Issue ; https://github.com/conan-io/conan/issues/10877
+
+  CMakeCache.txt
+  //CXX compiler
+  CMAKE_CXX_COMPILER:FILEPATH=/usr/bin/c++
+  
