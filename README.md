@@ -312,10 +312,10 @@ tree [**prototypes/\_initialization/\_about**](prototypes/_initialization/_about
 
 1. Common Configurations:
 
-   - 🎱 Copy **[settings.json](prototypes/_initialization/.vscode/_user-settings.jsonc)** to your user settings.
-   - 🎱 Copy **[keybindings.json](prototypes/_initialization/.vscode/_user-keybindings.jsonc)** to your user keybindings.
+   - 🎱 Copy **[settings.json](prototypes/_initialization/.vscode/_user-settings.jsonc)** to user settings.
+   - 🎱 Copy **[keybindings.json](prototypes/_initialization/.vscode/_user-keybindings.jsonc)** to user keybindings.
+   - 🎱 Copy **[tasks.json](prototypes/_initialization/.vscode/_user-tasks.jsonc)** to user tasks.
    - 🎱 Copy **[extensions.json](prototypes/_initialization/.vscode/extensions.json)** to your project settings for VS Code recommendations in the mono-repository
-   - 🎱 Copy **[tasks.json](prototypes/_initialization/.vscode/tasks.jsonc)** your project settings for common tasks.
 
 2. Run **[initialization script](prototypes/_initialization/ubuntu/init_in_bash.sh)**:
 

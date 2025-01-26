@@ -2,7 +2,49 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "[Debug Preset] 1. Conan Install",
+      "label": "[Raspberry Pi] [Debug Preset] 1. Conan Install",
+      "type": "shell",
+      "command": "cd iot_server && conan install . --build=missing --profile:build profiles/linux-debug --profile:host profiles/raspberry_pi-release",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always", 
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "[Raspberry Pi] [Debug Preset] 2. Conan Configure",
+      "type": "shell",
+      "command": "cd iot_server && cmake --preset raspberry_pi-release",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always", 
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "[Raspberry Pi] [Debug Preset] 3. Conan Build",
+      "type": "shell",
+      "command": "cd iot_server && cmake --build --preset raspberry_pi-release",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always", 
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "[Host] [Debug Preset] 1. Conan Install",
       "type": "shell",
       "command": "cd iot_server && conan install . --build=missing --profile:all profiles/linux-debug",
       "group": {
@@ -16,7 +58,7 @@
       "problemMatcher": []
     },
     {
-      "label": "[Debug Preset] 2. Conan Configure",
+      "label": "[Host] [Debug Preset] 2. Conan Configure",
       "type": "shell",
       "command": "cd iot_server && cmake --preset conan-debug",
       "group": {
@@ -30,7 +72,7 @@
       "problemMatcher": []
     },
     {
-      "label": "[Debug Preset] 3. Conan Build",
+      "label": "[Host] [Debug Preset] 3. Conan Build",
       "type": "shell",
       "command": "cd iot_server && cmake --build --preset conan-debug",
       "group": {
@@ -44,7 +86,7 @@
       "problemMatcher": []
     },
     {
-      "label": "[Debug Preset] 4. Conan Run",
+      "label": "[Host] [Debug Preset] 4. Conan Run",
       "type": "shell",
       "command": "cd iot_server && build/Debug/iot_server",
       "group": {

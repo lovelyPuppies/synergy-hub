@@ -1,4 +1,5 @@
-// 📝 Note that the original file of "settigns.json "must be .json file. not jsonc.
+// 🧮 %VSCode> Preferences: Open User Settings (JSON)
+// 📝 Note that the original file must be .json file. not jsonc.
 {
   // 🌀 Title: Common settings for all cases
   "editor.inlayHints.enabled": "on",

@@ -1,4 +1,5 @@
-// 📝 Note that the original file of "keybindings.json "must be .json file. not jsonc.
+// 🧮 %VSCode> Preferences: Open Keyboard Shortcuts (JSON)
+// 📝 Note that the original file must be .json file. not jsonc.
 [
   // 🌀 Title: Scroll
   {
