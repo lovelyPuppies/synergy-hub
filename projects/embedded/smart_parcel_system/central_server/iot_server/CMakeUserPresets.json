@@ -4,7 +4,6 @@
         "conan": {}
     },
     "include": [
-        "build/linux-debug-clang-19-x86_64/generators/CMakePresets.json",
-        "build/raspberry_pi_4-release-clang-19-armv8/generators/CMakePresets.json"
+        "build/linux-debug-clang-19-x86_64/generators/CMakePresets.json"
     ]
 }
