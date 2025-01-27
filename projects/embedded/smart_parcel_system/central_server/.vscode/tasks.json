@@ -1,10 +1,11 @@
 {
   "version": "2.0.0",
   "tasks": [
+    // 🌀 Title: target: Raspberry Pi
     {
-      "label": "[Raspberry Pi 4] [Release Preset] 1. Conan Install",
+      "label": "conan-raspberry_pi_4-release-clang-19-armv8 - 1. Conan Install",
       "type": "shell",
-      "command": "cd iot_server && conan install . --build=missing --profile:build profiles/linux-debug --profile:host profiles/raspberry_pi_4-release",
+      "command": "cd iot_server && conan install . --build=missing --profile:build profiles/linux-debug-clang-19-x86_64 --profile:host profiles/raspberry_pi_4-release-clang-19-armv8",
       "group": {
         "kind": "build",
         "isDefault": true
@@ -16,9 +17,9 @@
       "problemMatcher": []
     },
     {
-      "label": "[Raspberry Pi 4] [Release Preset] 2. Conan Configure",
+      "label": "conan-raspberry_pi_4-release-clang-19-armv8 - 2. Conan Configure",
       "type": "shell",
-      "command": "cd iot_server && cmake --preset conan-release-raspberry_pi_4",
+      "command": "cd iot_server && cmake --preset conan-raspberry_pi_4-release-clang-19-armv8",
       "group": {
         "kind": "build",
         "isDefault": true
@@ -30,9 +31,9 @@
       "problemMatcher": []
     },
     {
-      "label": "[Raspberry Pi 4] [Release Preset] 3. Conan Build",
+      "label": "conan-raspberry_pi_4-release-clang-19-armv8 - 3. Conan Build",
       "type": "shell",
-      "command": "cd iot_server && cmake --build --preset conan-release-raspberry_pi_4 && file build/release-raspberry_pi_4/iot_server",
+      "command": "cd iot_server && cmake --build --preset conan-raspberry_pi_4-release-clang-19-armv8 && file build/raspberry_pi_4-release-clang-19-armv8/iot_server",
       "group": {
         "kind": "build",
         "isDefault": true
@@ -44,9 +45,22 @@
       "problemMatcher": []
     },
     {
-      "label": "[Raspberry Pi 4] [Release Preset] Clean",
+      "label": "conan-raspberry_pi_4-release-clang-19-armv8 - Clean",
       "type": "shell",
-      "command": "cd iot_server && rm -fr build/release-raspberry_pi_4",
+      "command": "cd iot_server && rm -fr build/raspberry_pi_4-release-clang-19-armv8",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "never"
+      }
+    },
+    // 🌀 Title: target: Host
+    {
+      "label": "conan-linux-debug-clang-19-x86_64 - 1. Conan Install",
+      "type": "shell",
+      "command": "cd iot_server && conan install . --build=missing --profile:all profiles/linux-debug-clang-19-x86_64",
       "group": {
         "kind": "build",
         "isDefault": true
@@ -58,9 +72,9 @@
       "problemMatcher": []
     },
     {
-      "label": "[Host] [Debug Preset] 1. Conan Install",
+      "label": "conan-linux-debug-clang-19-x86_64 - 2. Conan Configure",
       "type": "shell",
-      "command": "cd iot_server && conan install . --build=missing --profile:all profiles/linux-debug",
+      "command": "cd iot_server && cmake --preset conan-linux-debug-clang-19-x86_64",
       "group": {
         "kind": "build",
         "isDefault": true
@@ -72,9 +86,9 @@
       "problemMatcher": []
     },
     {
-      "label": "[Host] [Debug Preset] 2. Conan Configure",
+      "label": "conan-linux-debug-clang-19-x86_64 - 3. Conan Build",
       "type": "shell",
-      "command": "cd iot_server && cmake --preset conan-debug",
+      "command": "cd iot_server && cmake --build --preset conan-linux-debug-clang-19-x86_64 && file build/linux-debug-clang-19-x86_64/iot_server",
       "group": {
         "kind": "build",
         "isDefault": true
@@ -86,9 +100,9 @@
       "problemMatcher": []
     },
     {
-      "label": "[Host] [Debug Preset] 3. Conan Build",
+      "label": "conan-linux-debug-clang-19-x86_64 - 4. Conan Run",
       "type": "shell",
-      "command": "cd iot_server && cmake --build --preset conan-debug && file build/Debug/iot_server",
+      "command": "cd iot_server && build/linux-debug-clang-19-x86_64/iot_server",
       "group": {
         "kind": "build",
         "isDefault": true
@@ -100,18 +114,16 @@
       "problemMatcher": []
     },
     {
-      "label": "[Host] [Debug Preset] 4. Conan Run",
+      "label": "conan-linux-debug-clang-19-x86_64 - Clean",
       "type": "shell",
-      "command": "cd iot_server && build/Debug/iot_server",
+      "command": "cd iot_server && rm -fr build/linux-debug-clang-19-x86_64",
       "group": {
         "kind": "build",
         "isDefault": true
       },
       "presentation": {
-        "reveal": "always", 
-        "panel": "shared"
-      },
-      "problemMatcher": []
-    }
+        "reveal": "never"
+      }
+    },
   ]
 }

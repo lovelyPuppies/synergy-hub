@@ -7,6 +7,49 @@ list of level 1 subjects
     [package] pulseaudio/14.2 : I'm using clang 18 but error; Compiler does not support -std=gnu11
 ⚓⭕ Conan ; https://docs.conan.io/2/
   Conan 2 - C and C++ Package Manager
+
+
+(✍️ conan 🔪 study)
+  ✅ (how-to); Cross-compile with target's GCC version in a Conan 2 Profile 📅 2025-01-28 01:52:40
+    Solution
+      Add `--gcc-install-dir=/usr/lib/gcc-cross/aarch64-linux-gnu/12` to `CFLAGS` and `CXXFLAGS` in a conan 2 profile
+      
+    Description
+      ❔ clang --help
+        --gcc-install-dir=<value>
+          Use GCC installation in the specified directory.
+          The directory ends with path components like 'lib{,32,64}/gcc{,-cross}/$triple/$version'.
+          🚣 Note: executables (e.g. ld) used by the compiler are not overridden by the selected GCC installation
+        --gcc-toolchain=<value> Specify a directory where Clang can find 'include' and 'lib{,32,64}/gcc{,-cross}/$triple/$version'.
+          Clang will use the GCC installation with the largest version
+                
+
+      Add `--gcc-install-dir=/usr/lib/gcc-cross/aarch64-linux-gnu/12` to `CFLAGS` and `CXXFLAGS`.
+        ```Conan Profile
+          [settings]
+          arch=armv8
+          os=Linux
+          build_type=Release
+          compiler=clang
+          compiler.cstd=23
+          compiler.cppstd=23
+          compiler.version=19
+          compiler.libcxx=libstdc++
+
+          [buildenv]
+          CC=clang
+          CXX=clang++
+          CFLAGS=--target=aarch64-linux-gnu --gcc-install-dir=/usr/lib/gcc-cross/aarch64-linux-gnu/12
+          CXXFLAGS=--target=aarch64-linux-gnu --gcc-install-dir=/usr/lib/gcc-cross/aarch64-linux-gnu/12
+          LDFLAGS=-fuse-ld=lld
+          [conf]
+          tools.cmake.cmaketoolchain:generator=Ninja
+        ```
+      Even without adding `--gcc-install-dir`, cmake configure, ninja build, and executing the output binary file all work correctly.
+      ❗ However, running the output binary on the target system requires a higher GLIBC version, which prevents the binary from executing successfully.
+
+        
+
 ----------------------------------------------
 Conan 🔪⚓ Install ; https://conan.io/downloads
   Recommended install (need python in your system):

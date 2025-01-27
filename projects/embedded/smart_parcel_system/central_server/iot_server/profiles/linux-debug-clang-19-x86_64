@@ -25,3 +25,6 @@ tools.cmake.cmaketoolchain:generator=Ninja
 ## If "libc++-dev libc++abi-dev" by sudo, but installed from homebrew, set this. otherwise the Error `ld.lld: error: unable to find library -lc++` will be occurred. 📅 2025-01-26 21:46:52
 # tools.build:exelinkflags=["-fuse-ld=lld", "-L/home/linuxbrew/.linuxbrew/opt/llvm/lib", "-lc++", "-lc++abi"]
 # tools.build:sharedlinkflags=["-fuse-ld=lld", "-L/home/linuxbrew/.linuxbrew/opt/llvm/lib", "-lc++", "-lc++abi"]
+
+# 🗺️ Format: <platform>-<build_type>-<compiler>[-<compiler.version>]-<arch>
+tools.cmake.cmake_layout:build_folder_vars=["const.linux", "settings.build_type", "settings.compiler", "settings.compiler.version", "settings.arch"]

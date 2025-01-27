@@ -10,9 +10,13 @@ list of level 1 subjects
 
 ----------------------------------------------
 ⚓ clang 🔪 docs ; https://clang.llvm.org/
-  ⚓ Cross-compilation using Clang ; https://clang.llvm.org/docs/CrossCompilation.html
+  ⚓🔰 Cross-compilation using Clang ; https://clang.llvm.org/docs/CrossCompilation.html
+    #🪱 Target Triple
     # Toolchain Options
-      🔰 There are two main ways to have a cross-compiler: ...
+      📍 There are two main ways to have a cross-compiler: ...
+        - --sysroot=<path>
+        - cross-compiler packages
+
 
 
 ================================================
