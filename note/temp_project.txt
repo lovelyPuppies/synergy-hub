@@ -18455,3 +18455,4 @@ TODO: Multithreaded Server in c++ using Epoll ; https://unscriptedcoding.medium.
 TODO: Protobuf c++ ; https://protobuf.dev/getting-started/cpptutorial/
 TODO: + ROS 어떻게 통신할것인지.. 프로토버프.. nanoPB..
 TODO: graphql 과 비슷한 방식으로 protobuf 를 사용하고, + message type 까지 함꼐 보내려는 경우... 메시지 구성..
+Turtlebot 3 <--> ROS matser node <---> socket server 와 통신을 어떻게? 무엇으로 구현?.. 동기화가 필요한데
