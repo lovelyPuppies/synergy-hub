@@ -127,11 +127,11 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
 
 ## 📌 Project Shortcuts
 
-- 🎱 📰 (Doing) [**스마트 택배 시스템**](study/ros_study/ros-noetic-turtlebot3/README.md)
+- 🎱 📰 (Doing) [**스마트 택배 시스템**](projects/smart_parcel_system/central_server)
 
   📅 2025-01-20 ~
 
-  🏷️ Tag: Turtlebot 3, ROS 1 Noetic, STM32 (Nucleo F411RE), CMake, Cross-Compilation (Qt), Qt, APM stack, TCP/IP, Android
+  🏷️ Tag: Turtlebot 3, ROS 1 Noetic, STM32 (Nucleo F411RE), Conan, CMake, Cross-Compilation, MariaDB, TCP/IP, Qt
 
   - 팀원: 6
 
