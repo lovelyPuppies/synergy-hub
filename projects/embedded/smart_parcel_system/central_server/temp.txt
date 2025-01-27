@@ -1991,3 +1991,30 @@ https://forum.osdev.org/viewtopic.php?t=56165
   ... conan 에서 크로스컴파일할 때 libc++ 지정이 어려운 점.. 
    %shell> ls /usr/aarch64-linux-gnu/lib/ | grep libc
     >>.. (libc++ 이 안보인다!.)
+
+clang++ -v \
+  --target=aarch64-linux-gnu \
+  --sysroot=/usr/lib/gcc-cross/aarch64-linux-gnu/12 \
+  -march=armv8-a \
+  -Wall -Wextra \
+  -I/usr/lib/gcc-cross/aarch64-linux-gnu/12/include \
+  -L/usr/aarch64-linux-gnu/lib \
+  -L/usr/lib/gcc-cross/aarch64-linux-gnu/12 \
+  --gcc-toolchain=/usr/lib/gcc-cross/aarch64-linux-gnu/12 \
+  -fuse-ld=lld \
+  -o main_app src/main.cpp
+iot_server/src/main.cpp
+
+
+❔ clang --help
+  --gcc-install-dir=<value>
+                          Use GCC installation in the specified directory. The directory ends with path components like 'lib{,32,64}/gcc{,-cross}/$triple/$version'. Note: executables (e.g. ld) used by the compiler are not overridden by the selected GCC installation
+  --gcc-toolchain=<value> Specify a directory where Clang can find 'include' and 'lib{,32,64}/gcc{,-cross}/$triple/$version'. Clang will use the GCC installation with the largest version
+  -
+
+❓ https://stackoverflow.com/questions/6329887/how-to-fix-linker-error-cannot-find-crt1-o
+    /usr/bin/aarch64-linux-gnu-ld: cannot find Scrt1.o: No such file or directory
+    /usr/bin/aarch64-linux-gnu-ld: cannot find crti.o: No such file or directory
+
+    sudo apt install gcc-multilib
+    ? 전혀 상관없엇음.. 아..

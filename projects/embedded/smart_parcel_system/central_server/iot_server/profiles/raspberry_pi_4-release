@@ -12,10 +12,9 @@ compiler.libcxx=libstdc++11
 [buildenv]
 CC=clang
 CXX=clang++
-LD=ld.lld
-CFLAGS=--target=aarch64-linux-gnu -march=armv8-a -Wall -Wextra -I/usr/lib/gcc-cross/aarch64-linux-gnu/12/include -I/usr/aarch64-linux-gnu/include --gcc-toolchain=/usr/aarch64-linux-gnu
-CXXFLAGS=--target=aarch64-linux-gnu -march=armv8-a -Wall -Wextra -I/usr/lib/gcc-cross/aarch64-linux-gnu/12/include -I/usr/aarch64-linux-gnu/include --gcc-toolchain=/usr/aarch64-linux-gnu
-LDFLAGS=--target=aarch64-linux-gnu -L/usr/aarch64-linux-gnu/lib -L/usr/lib/gcc-cross/aarch64-linux-gnu/12 --gcc-toolchain=/usr/aarch64-linux-gnu
+CFLAGS=--target=aarch64-linux-gnu --gcc-install-dir=/usr/lib/gcc-cross/aarch64-linux-gnu/12
+CXXFLAGS=--target=aarch64-linux-gnu --gcc-install-dir=/usr/lib/gcc-cross/aarch64-linux-gnu/12
+# LDFLAGS=-fuse-ld=lld
 
 # 타겟 툴체인 및 CPU 아키텍처 플래그
 #CFLAGS=--target=aarch64-linux-gnu -march=armv8-a -Wall -Wextra -I/usr/aarch64-linux-gnu/include
