@@ -1806,8 +1806,6 @@ Conan -
   Library project
   Executable project
 
-
-
 conan.txt
   https://docs.conan.io/2/reference/config_files/settings.html#reference-config-files-settings-yml
   compiler 
@@ -1831,14 +1829,6 @@ https://docs.conan.io/2/tutorial/consuming_packages/different_configurations.htm
     ㄴconan install . --output-folder=build --build=missing --options=zlib/1.2.11:shared=True
 
 
-$ cd build
-$ cmake .. -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Release
-$ cmake --build .
-
-
-$ ./compressor
-./compressor: error while loading shared libraries: libz.so.1: cannot open shared object file: No such file or directory
-
 Activate the virtual environment, and run the executables again:
   $ source conanrun.sh
   $ ./compressor
@@ -1847,22 +1837,14 @@ Activate the virtual environment, and run the executables again:
   https://github.com/conan-io/examples2/tree/main/tutorial/consuming_packages
 
 
-❓ https://github.com/jorgebucaran/fisher
-
  LD_LIBRARY_PATH=+(path)/home/linuxbrew/.linuxbrew/lib
 📍 path ... https://docs.conan.io/2/reference/config_files/profiles.html#buildenv
 
-
-터미널에서 직접 
 cmake --preset conan-debug \
   -DCMAKE_EXE_LINKER_FLAGS="-L/home/linuxbrew/.linuxbrew/Cellar/llvm/19.1.7/lib /home/linuxbrew/.linuxbrew/Cellar/llvm/19.1.7/lib/libc++.so" 
 
-
-conan install . --build=missing --profile:all profiles/linux-debug
-
-
 ❓❓❓❓ Conan embedded: https://dev.to/khozaei/conan-your-embedded-cross-compilation-champion-5bb9
-brew 로 llvm 설치해서그러ㅡㄴ가?..
+
 
 default.. compiler..
   ❯ ls -l /usr/bin/c++
@@ -1875,11 +1857,6 @@ default.. compiler..
 https://docs.conan.io/2/reference/config_files/global_conf.html#information-about-built-in-confs
 🧮 conan config list
 
-🚨 Issue ; https://github.com/conan-io/conan/issues/10877
-
-  CMakeCache.txt
-  //CXX compiler
-  CMAKE_CXX_COMPILER:FILEPATH=/usr/bin/c++
   
 ⚓ Code sanitizer ; https://en.wikipedia.org/wiki/Code_sanitizer
   The class of tools was first introduced by Google's AddressSanitizer (or ASan) of 2012,
@@ -1933,3 +1910,4 @@ https://forum.osdev.org/viewtopic.php?t=56165
   
 
   
+cd socket_iot_system && cmake --build --preset conan-linux-debug-clang-19-x86_64 && file build/linux-debug-clang-19-x86_64/iot_server

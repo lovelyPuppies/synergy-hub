@@ -41,6 +41,9 @@
     "josetr.cmake-language-support-vscode",
     "llvm-vs-code-extensions.vscode-clangd",
     "cschlosser.doxdocgen",
+    //  *.cs, .csx (C#)
+    //  CMake Language Support (josetr.cmake-language-support-vscode) depends on .NET Install Tool (ms-dotnettools.vscode-dotnet-runtime)
+    "ms-dotnettools.vscode-dotnet-runtime",
     // 📰 .. stm32 extension.. conflict "llvm-vs-code-extensions.vscode-clangd",
     //  *.py (Python)
     "ms-python.python",

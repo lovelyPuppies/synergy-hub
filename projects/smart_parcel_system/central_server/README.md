@@ -1,4 +1,8 @@
-🏷️ C++, ePoll, Multithreading, Protocol Buffers (Nano PB)
+# Smart Parcel system 🔪 Central Server
+
+## [Socket IoT System](socket_iot_system)
+
+🏷️ C++, ePoll, Multithreading, Protocol Buffers (Nano PB), Conan, CMake, Cross-compilation
 
 - Initialize
 
@@ -16,9 +20,13 @@
   conan new cmake_exe --define name=iot_server --define version=1.0 --output iot_server
   ```
 
+- Configure environment
+
+  - 🧮 %VSCode> Python: Select Interpreter
+
 - Build
 
-  - Refer to 🧮 %VSCode> Run Task
+  - 🔗 Refer to 🧮 %VSCode> Run Task
 
 - Debugging / Verification
 
@@ -46,3 +54,5 @@
     #   >> GLIBC: GNU C Library (Debian GLIBC 2.36-9+rpt2+deb12u9) stable release version 2.36.
     #   >> GLIBCXX_3.4.30
     ```
+
+## [ROS Master Node](ros_master_node)

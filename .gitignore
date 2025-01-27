@@ -1046,18 +1046,20 @@ package
 
 ###⚙️ USER CODE BEGIN
 
+# [Add] Conan
+CMakeUserPresets.json
 
-# against CMake 📅 2024-12-17 20:19:43
+# [Subtract] CMake 📅 2024-12-17 20:19:43
 !/compile_commands.json
 
-# aginst C# default value: '[Aa][Rr][Mm]/' 📅 2024-12-04 21:37:41
+# [Subtract] C# default value: '[Aa][Rr][Mm]/' 📅 2024-12-04 21:37:41
 !arm/
 
-# aginst vscode default value: '*.code-workspace' 📅 2024-12-12 20:05:18
+# [Subtract] vscode default value: '*.code-workspace' 📅 2024-12-12 20:05:18
 !*.code-workspace
 !c_cpp_properties.json
 
-# aginst qt default value: 'Makefile*' 📅 2024-12-12 20:05:18
+# [Subtract] qt default value: 'Makefile*' 📅 2024-12-12 20:05:18
 !Makefile*
 
 

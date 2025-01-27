@@ -1,23 +1,24 @@
-# https://docs.conan.io/2/tutorial/consuming_packages/cross_building_with_conan.html
 [settings]
 arch=armv8
 os=Linux
 build_type=Release
-compiler=gcc
-compiler.cstd=17
-compiler.cppstd=17
-compiler.version=12
+compiler=clang
+compiler.cstd=23
+compiler.cppstd=23
+compiler.version=19
 compiler.libcxx=libstdc++11
 
-
 [buildenv]
-CC=aarch64-linux-gnu-gcc-12
-CXX=aarch64-linux-gnu-g++-12
-LD=aarch64-linux-gnu-ld
-# https://www.reddit.com/r/raspberry_pi/comments/13aktpk/comment/jj7hz7y/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
-# https://stackoverflow.com/questions/76193625/how-do-i-run-a-c20-program-on-a-raspberry-pi-1b?noredirect=1&lq=1
+CC=clang
+CXX=clang++
+# GCC compiler optimization for ARM-based systems ; https://gist.github.com/fm4dd/c663217935dc17f0fc73c9c81b0aa845
+CFLAGS=--target=aarch64-linux-gnu --gcc-install-dir=/usr/lib/gcc-cross/aarch64-linux-gnu/12 -march=armv8-a -mtune=cortex-a72 -O3 -flto -pipe
+CXXFLAGS=--target=aarch64-linux-gnu --gcc-install-dir=/usr/lib/gcc-cross/aarch64-linux-gnu/12 -march=armv8-a -mtune=cortex-a72 -O3 -flto -pipe
+LDFLAGS=-fuse-ld=lld -Wl,-O3 -Wl,--as-needed -Wl,--strip-all
+
 [conf]
 tools.cmake.cmaketoolchain:generator=Ninja
+
 
 
 ### ☑️ [question] preset name != profile name ; https://github.com/conan-io/conan/issues/16557 📅 2025-01-27 01:19:44

@@ -5,7 +5,7 @@
     {
       "label": "conan-raspberry_pi_4-release-clang-19-armv8 - 1. Conan Install",
       "type": "shell",
-      "command": "cd iot_server && conan install . --build=missing --profile:build profiles/linux-debug-clang-19-x86_64 --profile:host profiles/raspberry_pi_4-release-clang-19-armv8",
+      "command": "cd socket_iot_system && conan install . --build=missing --profile:build profiles/linux-debug-clang-19-x86_64 --profile:host profiles/raspberry_pi_4-release-clang-19-armv8",
       "group": {
         "kind": "build",
         "isDefault": true
@@ -19,7 +19,7 @@
     {
       "label": "conan-raspberry_pi_4-release-clang-19-armv8 - 2. Conan Configure",
       "type": "shell",
-      "command": "cd iot_server && cmake --preset conan-raspberry_pi_4-release-clang-19-armv8",
+      "command": "cd socket_iot_system && cmake --preset conan-raspberry_pi_4-release-clang-19-armv8",
       "group": {
         "kind": "build",
         "isDefault": true
@@ -33,7 +33,7 @@
     {
       "label": "conan-raspberry_pi_4-release-clang-19-armv8 - 3. Conan Build",
       "type": "shell",
-      "command": "cd iot_server && cmake --build --preset conan-raspberry_pi_4-release-clang-19-armv8 && file build/raspberry_pi_4-release-clang-19-armv8/iot_server",
+      "command": "cd socket_iot_system && cmake --build --preset conan-raspberry_pi_4-release-clang-19-armv8 && file build/raspberry_pi_4-release-clang-19-armv8/iot_server",
       "group": {
         "kind": "build",
         "isDefault": true
@@ -47,7 +47,7 @@
     {
       "label": "conan-raspberry_pi_4-release-clang-19-armv8 - Clean",
       "type": "shell",
-      "command": "cd iot_server && rm -fr build/raspberry_pi_4-release-clang-19-armv8",
+      "command": "cd socket_iot_system && rm -fr build/raspberry_pi_4-release-clang-19-armv8",
       "group": {
         "kind": "build",
         "isDefault": true
@@ -60,7 +60,7 @@
     {
       "label": "conan-linux-debug-clang-19-x86_64 - 1. Conan Install",
       "type": "shell",
-      "command": "cd iot_server && conan install . --build=missing --profile:all profiles/linux-debug-clang-19-x86_64",
+      "command": "cd socket_iot_system && conan install . --build=missing --profile:all profiles/linux-debug-clang-19-x86_64",
       "group": {
         "kind": "build",
         "isDefault": true
@@ -74,7 +74,7 @@
     {
       "label": "conan-linux-debug-clang-19-x86_64 - 2. Conan Configure",
       "type": "shell",
-      "command": "cd iot_server && cmake --preset conan-linux-debug-clang-19-x86_64",
+      "command": "cd socket_iot_system && cmake --preset conan-linux-debug-clang-19-x86_64",
       "group": {
         "kind": "build",
         "isDefault": true
@@ -88,7 +88,7 @@
     {
       "label": "conan-linux-debug-clang-19-x86_64 - 3. Conan Build",
       "type": "shell",
-      "command": "cd iot_server && cmake --build --preset conan-linux-debug-clang-19-x86_64 && file build/linux-debug-clang-19-x86_64/iot_server",
+      "command": "cd socket_iot_system && cmake --build --preset conan-linux-debug-clang-19-x86_64 && file build/linux-debug-clang-19-x86_64/iot_server",
       "group": {
         "kind": "build",
         "isDefault": true
@@ -102,7 +102,7 @@
     {
       "label": "conan-linux-debug-clang-19-x86_64 - 4. Conan Run",
       "type": "shell",
-      "command": "cd iot_server && build/linux-debug-clang-19-x86_64/iot_server",
+      "command": "cd socket_iot_system && build/linux-debug-clang-19-x86_64/iot_server",
       "group": {
         "kind": "build",
         "isDefault": true
@@ -116,7 +116,7 @@
     {
       "label": "conan-linux-debug-clang-19-x86_64 - Clean",
       "type": "shell",
-      "command": "cd iot_server && rm -fr build/linux-debug-clang-19-x86_64",
+      "command": "cd socket_iot_system && rm -fr build/linux-debug-clang-19-x86_64",
       "group": {
         "kind": "build",
         "isDefault": true
