@@ -1,11 +1,11 @@
-###
+##### Project setup and configuration
 cmake_minimum_required(VERSION 3.15)
 project(socket_iot_system CXX)
 
-###
-# For Clang: Creates `compile_commands.json` during the CMake configure step
+# Enable Clang tooling support: Creates `compile_commands.json` during the CMake configure step
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+### ✅ (how-to); Symbolic link creation for compile_commands.json after the CMake configure step 📅 2025-01-28 05:17:32
 # Define paths for compile_commands.json
 set(COMPILE_COMMANDS_SRC "${CMAKE_BINARY_DIR}/compile_commands.json")
 set(COMPILE_COMMANDS_DEST "${CMAKE_SOURCE_DIR}/build/compile_commands.json")
@@ -27,7 +27,10 @@ else()
 endif()
 
 
-###
+
+
+
+##### Define and configure executables
 set(IOT_SERVER_DIR src/app/iot_server)
 set(IOT_CLIENT_DIR src/app/iot_client)
 
@@ -35,6 +38,10 @@ add_executable(iot_server ${IOT_SERVER_DIR}/iot_server.cpp ${IOT_SERVER_DIR}/mai
 add_executable(iot_client ${IOT_CLIENT_DIR}/iot_client.cpp ${IOT_CLIENT_DIR}/main.cpp)
 
 
+
+
+
+##### Install configuration
 install(TARGETS iot_server DESTINATION "."
         RUNTIME DESTINATION bin
         ARCHIVE DESTINATION lib
