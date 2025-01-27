@@ -88,4 +88,7 @@ Wiktionary
 
 
 
-
+  - no-op ; https://en.wiktionary.org/wiki/no-op#English
+    Noun
+      no-op (plural no-ops)
+        1. (computing) An instruction or operation that has no effect; a null operation.

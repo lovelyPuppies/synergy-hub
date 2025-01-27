@@ -8,17 +8,37 @@ list of level 1 subjects
 
 ----------------------------------------------
 protobuf 🔪⚓ Docs ; https://protobuf.dev/
-  ⚓ Overview ; https://protobuf.dev/overview/
+  ⚓🖇️ Overview ; https://protobuf.dev/overview/ 📅 2025-01-28 05:52:07
     # What Problems do Protocol Buffers Solve?
+      Protocol buffers provide a serialization format for packets of typed, structured data that are 🚣 up to a few megabytes in size.
+        ⚖️ The format is suitable for both ephemeral network traffic and long-term data storage.
+        💡 Protocol buffers can be extended with new information without invalidating existing data or requiring code to be updated.
       🚣 Protocol buffers allow for the seamless support of changes, including the addition of new fields and the deletion of existing fields, to any protocol buffer without breaking existing services.
     # What are the Benefits of Using Protocol Buffers?
-      #️⃣📍 Cross-language Compa  tibility
+      #️⃣📍 Cross-language Compatibility
+      #️⃣📍 When are Protocol Buffers not a Good Fit?
+
+    #🔰 Protocol Buffers Definition Syntax
+
+  # Protobuf Editions
+    ⚓🖇️ Protobuf Editions Overview ; https://protobuf.dev/editions/overview/ 📅 2025-01-28 06:48:31
+      Instead of the hardcoded behaviors that older versions have had, editions represent a collection of features with a default value (behavior) per feature
+      
+      #⚖️ Lifecycle of a Feature
+        Using the 🪱 Prototiller tool to migrate earlier versions of proto files to edition 2033 adds explicit feature.amazing_new_feature = false entries as needed to continue to retain the previous behavior
+        ... Removing a feature will always initiate a major version bump.
+      # Migrating to Protobuf Editions
+        # Lexical Scoping
+        # Grammar Changes
+          ...
+
+  #🔰 Tutorials
+    ⚓ Protocol Buffer Basics: C++ ; https://protobuf.dev/getting-started/cpptutorial/
 
 
-
-
-
-
+  # Programming Guides
+    ⚓ Language Guide (editions) ; https://protobuf.dev/programming-guides/editions/
+  
 ----------------------------------------------
 Temp
   - Protobuf는 메시지를 메모리에 한 번에 로드하고, 객체 그래프보다 크지 않은 데이터 크기를 가정합니다.
