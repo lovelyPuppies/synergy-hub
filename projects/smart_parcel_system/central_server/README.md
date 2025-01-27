@@ -27,8 +27,8 @@
     ```bash
     #!/usr/bin/env fish
 
-    objdump --dynamic-syms ./iot_server | grep 'GLIBC_' | awk -F'[()]' '{print $2}' | sed 's/ (.*)//g' | sort -V | tail -1
-    objdump --dynamic-syms ./iot_server | grep 'GLIBCXX_' | awk -F'[()]' '{print $2}' | sed 's/ (.*)//g' | sort -V | tail -1
+    objdump --dynamic-syms ./iot_server | grep 'GLIBC_' | awk -F'[()]' '{print $2}' | sort -V | tail -1
+    objdump --dynamic-syms ./iot_server | grep 'GLIBCXX_' | awk -F'[()]' '{print $2}' | sort -V | tail -1
     # or
     readelf --syms ./iot_server | grep -E '@GLIBC_' | awk -F'@' '{print $2}' | sed 's/ (.*)//g' | sort -V | tail -1
     readelf --syms ./iot_server | grep -E '@GLIBCXX_' | awk -F'@' '{print $2}' | sed 's/ (.*)//g' | sort -V | tail -1
@@ -40,9 +40,9 @@
 
   - Check the library versions supported by the target environment (💮 on the target device)
 
-    ```
+    ```bash
     #!/usr/bin/env fish
     echo "GLIBC: $(/lib/aarch64-linux-gnu/libc.so.6 | head -n 1)" && strings /usr/lib/aarch64-linux-gnu/libstdc++.so.6 | grep GLIBCXX | sort -V | tail -2 | head -1
-    # >> GLIBC: GNU C Library (Debian GLIBC 2.36-9+rpt2+deb12u9) stable release version 2.36.
-    # >> GLIBCXX_3.4.30
+    #   >> GLIBC: GNU C Library (Debian GLIBC 2.36-9+rpt2+deb12u9) stable release version 2.36.
+    #   >> GLIBCXX_3.4.30
     ```

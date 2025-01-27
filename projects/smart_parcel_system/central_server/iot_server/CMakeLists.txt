@@ -4,7 +4,7 @@ project(iot_server CXX)
 
 
 add_executable(iot_server src/iot_server.cpp src/main.cpp)
-
+add_executable(iot_client src/iot_client.cpp src/another_main.cpp)
 
 
 install(TARGETS iot_server DESTINATION "."
