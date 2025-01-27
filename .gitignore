@@ -1057,6 +1057,11 @@ package
 !*.code-workspace
 !c_cpp_properties.json
 
+# aginst qt default value: 'Makefile*' 📅 2024-12-12 20:05:18
+!Makefile*
+
+
+
 
 #
 *.pt

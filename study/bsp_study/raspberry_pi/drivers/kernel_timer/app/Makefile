@@ -32,7 +32,7 @@ SRC_DIR := $(PWD)/$(SRC_NAME)
 INCLUDE_DIRS := $(COMMON_INCLUDE_FLAGS) -Iinclude
 CFLAGS := -Wall -Wextra $(INCLUDE_DIRS)
 
-CLANG_FLAGS := --target=$(TARGET_TOOLCHAIN) $(CPU_ARCH_FLAGS) $(CFLAGS)
+CLANG_FLAGS := --target=$(TARGET_TOOLCHAIN) $(CPU_ARCH_FLAGS) $(CFLAGS) -fuse-ld=$(LINKER)
 
 
 # Source files and object files
@@ -65,7 +65,6 @@ $(BUILD_DIR)/$(APP_NAME).out: $(OBJS)
 #		Ensure the build directory exists before generating the .o file.
 # 		Compile the source file ('$<') into an object file ('$@') using the compiler and flags.
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
-	@mkdir -p $(BUILD_DIR)
 	$(COMPILER) $(CLANG_FLAGS) -c -o $@ $<
 
 

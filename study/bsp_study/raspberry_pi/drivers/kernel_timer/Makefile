@@ -25,7 +25,7 @@ KERNEL_ARCHITECTURE := arm64
 
 ## Compiler and linker settings
 COMPILER := clang
-LINKER := ld.lld
+LINKER := lld
 
 ## Common include directory
 COMMON_INCLUDE_ROOT_DIR := $(PWD)/include

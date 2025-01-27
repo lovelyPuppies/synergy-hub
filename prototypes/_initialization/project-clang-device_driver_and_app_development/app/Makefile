@@ -32,7 +32,7 @@ SRC_DIR := $(PWD)/$(SRC_NAME)
 INCLUDE_DIRS := $(COMMON_INCLUDE_FLAGS) -Iinclude
 CFLAGS := -Wall -Wextra $(INCLUDE_DIRS)
 
-CLANG_FLAGS := --target=$(TARGET_TOOLCHAIN) $(CPU_ARCH_FLAGS) $(CFLAGS)
+CLANG_FLAGS := --target=$(TARGET_TOOLCHAIN) $(CPU_ARCH_FLAGS) $(CFLAGS) -fuse-ld=$(LINKER)
 
 
 # Source files and object files
