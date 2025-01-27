@@ -3,28 +3,21 @@
 arch=armv8
 os=Linux
 build_type=Release
-compiler=clang
-compiler.cstd=23
-compiler.cppstd=23
-compiler.version=19
-compiler.libcxx=libstdc++
+compiler=gcc
+compiler.cstd=17
+compiler.cppstd=17
+compiler.version=12
+compiler.libcxx=libstdc++11
 
 
 [buildenv]
-CC=clang
-CXX=clang++
-CFLAGS=--target=aarch64-linux-gnu
-CXXFLAGS=--target=aarch64-linux-gnu
-LDFLAGS=-fuse-ld=lld
-
+CC=aarch64-linux-gnu-gcc-12
+CXX=aarch64-linux-gnu-g++-12
+LD=aarch64-linux-gnu-ld
 # https://www.reddit.com/r/raspberry_pi/comments/13aktpk/comment/jj7hz7y/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
 # https://stackoverflow.com/questions/76193625/how-do-i-run-a-c20-program-on-a-raspberry-pi-1b?noredirect=1&lq=1
 [conf]
 tools.cmake.cmaketoolchain:generator=Ninja
-tools.build:compiler_executables={
-    "c": "/usr/bin/aarch64-linux-gnu-gcc-12",
-    "cpp": "/usr/bin/aarch64-linux-gnu-g++-12"
-}
 
 
 ### ☑️ [question] preset name != profile name ; https://github.com/conan-io/conan/issues/16557 📅 2025-01-27 01:19:44

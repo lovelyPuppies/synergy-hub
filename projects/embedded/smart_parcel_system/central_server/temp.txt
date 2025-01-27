@@ -1976,6 +1976,3 @@ https://stackoverflow.com/questions/78306968/installing-gcc13-and-g13-in-debian-
 
 ===========
 strings /usr/lib/aarch64-linux-gnu/libstdc++.so.6 | grep GLIBCXX
-
-readelf -s ./iot_server | grep -E '@GLIBC_|@GLIBCXX_' | awk -F'@' '{print $2}' | sed 's/ (.*)//g' | sort -V | tail -1
-objdump -T ./iot_server | grep -E 'GLIBC|GLIBCXX' | awk -F'[()]' '{print $2}' | sort -V | tail -1

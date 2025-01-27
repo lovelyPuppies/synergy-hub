@@ -17,9 +17,9 @@ while true
     read --local architecture
     switch $architecture
         case arm64
-
             echo "Installing AARCH64 (arm64) cross-compilation tools...: 🥞 Meta Package: crossbuild-essential-arm64"
             sudo apt install -y crossbuild-essential-arm64 libc6-dev-arm64-cross
+            # For Raspberry Pi (gcc-13, gcc-14 are not compatible 📅 2025-01-27 16:42:05)
             sudo apt install -y gcc-12-aarch64-linux-gnu g++-12-aarch64-linux-gnu
             # ❔ %shell> apt-cache show crossbuild-essential-arm64 | grep Depends:
             #   >> Depends: gcc-aarch64-linux-gnu (>= 4:10.2) | gcc:arm64, g++-aarch64-linux-gnu (>= 4:10.2) | g++:arm64, dpkg-cross
