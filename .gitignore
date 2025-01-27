@@ -1047,7 +1047,7 @@ package
 ###⚙️ USER CODE BEGIN
 
 # [Add] Conan
-# CMakeUserPresets.json
+CMakeUserPresets.json
 
 # [Subtract] CMake 📅 2024-12-17 20:19:43
 !/compile_commands.json
