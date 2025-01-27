@@ -47,5 +47,5 @@ class iot_serverRecipe(ConanFile):
         cmake.install()
 
     def validate(self):
-        check_min_cppstd(self, "23")
+        check_min_cppstd(self, "17")
         check_max_cppstd(self, "23")

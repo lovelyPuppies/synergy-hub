@@ -20,6 +20,7 @@ while true
 
             echo "Installing AARCH64 (arm64) cross-compilation tools...: 🥞 Meta Package: crossbuild-essential-arm64"
             sudo apt install -y crossbuild-essential-arm64 libc6-dev-arm64-cross
+            sudo apt install -y gcc-12-aarch64-linux-gnu g++-12-aarch64-linux-gnu
             # ❔ %shell> apt-cache show crossbuild-essential-arm64 | grep Depends:
             #   >> Depends: gcc-aarch64-linux-gnu (>= 4:10.2) | gcc:arm64, g++-aarch64-linux-gnu (>= 4:10.2) | g++:arm64, dpkg-cross
 
@@ -43,6 +44,7 @@ while true
             #   - Type 🧮 `arm-linux-gnueabi-*` and press the Tab key in Fish shell.
 
             sudo apt install -y crossbuild-essential-armhf libc6-dev-armhf-cross
+            sudo apt install -y gcc-12-arm-linux-gnueabihf g++-12-arm-linux-gnueabihf
             # ❔ %shell> apt-cache show crossbuild-essential-armhf | grep Depends:
             #   >> Depends: gcc-arm-linux-gnueabihf (>= 4:10.2) | gcc:armhf, g++-arm-linux-gnueabihf (>= 4:10.2) | g++:armhf, dpkg-cross
 

@@ -427,6 +427,10 @@ Linux 🔪 Man pages
       #️⃣ Putting the Tools Together ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Putting-the-tools-together
     #️⃣ Appendix A GNU Free Documentation License ; https://www.gnu.org/software/coreutils/manual/coreutils.html#GNU-Free-Documentation-License
     #️⃣ Index ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Concept-index
+  ⚓ GNU GNU Binutils ; https://sourceware.org/binutils/
+    ⚓ Binary Tools (binutils) ; https://sourceware.org/binutils/docs/binutils.html
+      #️⃣7🧮 strings ; https://sourceware.org/binutils/docs/binutils.html#strings
+        GNU strings prints the printable character sequences that are at least 4 characters long.
 
 
   ⚓ systemd ; https://systemd.io/

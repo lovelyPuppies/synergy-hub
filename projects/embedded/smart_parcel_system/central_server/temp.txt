@@ -1951,3 +1951,31 @@ https://docs.conan.io/2/reference/config_files/global_conf.html#information-abou
 sudo apt update
 sudo apt install gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
 sudo apt install libc6-dev-arm64-cross
+
+pi19@pi /m/host> ls /usr/lib/aarch64-linux-gnu/ | grep libstdc
+libstdc++.so.6
+libstdc++.so.6.0.30
+gcc -print-search-dirs
+sudo find /usr/lib/gcc/aarch64-linux-gnu/12/ -name "libstdc++.so*"
+
+
+
+https://gcc.gnu.org/
+  https://gcc.gnu.org/gcc-14/
+    https://gcc.gnu.org/mirrors.html
+
+    http://ftp.tsukuba.wide.ad.jp/software/gcc/
+    http://ftp.tsukuba.wide.ad.jp/software/gcc/releases/gcc-14.2.0/
+    wget http://ftp.tsukuba.wide.ad.jp/software/gcc/releases/gcc-14.2.0/gcc-14.2.0.tar.xz
+
+https://stackoverflow.com/questions/78306968/installing-gcc13-and-g13-in-debian-bookworm-rust-docker-image
+
+?아니 근데 궁금한게 gcc 를 꼭 빌드할 필요가 있어? gcc 를 사용할게 아니라, 실행환경에서 필요한 공유 라이브러리 버전 문제잔아.
+
+
+
+===========
+strings /usr/lib/aarch64-linux-gnu/libstdc++.so.6 | grep GLIBCXX
+
+readelf -s ./iot_server | grep -E '@GLIBC_|@GLIBCXX_' | awk -F'@' '{print $2}' | sed 's/ (.*)//g' | sort -V | tail -1
+objdump -T ./iot_server | grep -E 'GLIBC|GLIBCXX' | awk -F'[()]' '{print $2}' | sort -V | tail -1

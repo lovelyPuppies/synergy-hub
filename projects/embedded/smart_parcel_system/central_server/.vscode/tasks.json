@@ -32,7 +32,7 @@
     {
       "label": "[Raspberry Pi 4] [Debug Preset] 3. Conan Build",
       "type": "shell",
-      "command": "cd iot_server && cmake --build --preset conan-release-raspberry_pi_4 && file build/release-raspberry_pi_4/iot_server",
+      "command": "cd iot_server && cmake --build --preset conan-release-raspberry_pi_4 && file build/release-raspberry_pi_4/iot_server && strings build/release-raspberry_pi_4/iot_server | grep GLIBC_",
       "group": {
         "kind": "build",
         "isDefault": true
