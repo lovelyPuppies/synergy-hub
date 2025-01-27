@@ -2,7 +2,7 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "[Raspberry Pi 4] [Debug Preset] 1. Conan Install",
+      "label": "[Raspberry Pi 4] [Release Preset] 1. Conan Install",
       "type": "shell",
       "command": "cd iot_server && conan install . --build=missing --profile:build profiles/linux-debug --profile:host profiles/raspberry_pi_4-release",
       "group": {
@@ -16,7 +16,7 @@
       "problemMatcher": []
     },
     {
-      "label": "[Raspberry Pi 4] [Debug Preset] 2. Conan Configure",
+      "label": "[Raspberry Pi 4] [Release Preset] 2. Conan Configure",
       "type": "shell",
       "command": "cd iot_server && cmake --preset conan-release-raspberry_pi_4",
       "group": {
@@ -30,9 +30,23 @@
       "problemMatcher": []
     },
     {
-      "label": "[Raspberry Pi 4] [Debug Preset] 3. Conan Build",
+      "label": "[Raspberry Pi 4] [Release Preset] 3. Conan Build",
       "type": "shell",
-      "command": "cd iot_server && cmake --build --preset conan-release-raspberry_pi_4 && file build/release-raspberry_pi_4/iot_server && strings build/release-raspberry_pi_4/iot_server | grep GLIBC_",
+      "command": "cd iot_server && cmake --build --preset conan-release-raspberry_pi_4 && file build/release-raspberry_pi_4/iot_server",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always", 
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "[Raspberry Pi 4] [Release Preset] Clean",
+      "type": "shell",
+      "command": "cd iot_server && rm -fr build/release-raspberry_pi_4",
       "group": {
         "kind": "build",
         "isDefault": true

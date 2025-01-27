@@ -1976,3 +1976,18 @@ https://stackoverflow.com/questions/78306968/installing-gcc13-and-g13-in-debian-
 
 ===========
 strings /usr/lib/aarch64-linux-gnu/libstdc++.so.6 | grep GLIBCXX
+
+
+🧮 apt search libc++-dev
+🧮 apt search libc++-dev | grep arm
+
+https://en.wiktionary.org/wiki/bootstrap
+
+**ABI(Application Binary Interface)**란?
+컴파일된 바이너리 간의 인터페이스를 의미합니다. 라이브러리를 사용하는 프로그램과 그 라이브러리 간의 함수 호출, 데이터 타입, 메모리 구조 등을 정의합니다.
+https://forum.osdev.org/viewtopic.php?t=56165
+
+⚠️ libc++: LLVM 프로젝트의 일부로 별도로 관리되며, 크로스 컴파일러와 함께 배포되지 않습니다.
+  ... conan 에서 크로스컴파일할 때 libc++ 지정이 어려운 점.. 
+   %shell> ls /usr/aarch64-linux-gnu/lib/ | grep libc
+    >>.. (libc++ 이 안보인다!.)

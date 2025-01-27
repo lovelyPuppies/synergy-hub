@@ -1,13 +1,22 @@
 list of level 1 subjects
   - clang
+  - LLVM libraries
   
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
 ⚓⭕ clang ; https://clang.llvm.org/
   https://en.wikipedia.org/wiki/Clang
   Clang: a C language family frontend (C, C++, Objective C/C++, OpenCL, and CUDA) for LLVM 
 
+
 ----------------------------------------------
-⚓ clang 🔪 clangd  ; https://clangd.llvm.org/
+⚓ clang 🔪 docs ; https://clang.llvm.org/
+  ⚓ Cross-compilation using Clang ; https://clang.llvm.org/docs/CrossCompilation.html
+    # Toolchain Options
+      🔰 There are two main ways to have a cross-compiler: ...
+
+
+================================================
+⚓ clangd  ; https://clangd.llvm.org/
   https://github.com/clangd/clangd
   clangd is a language server, and provides C++ IDE features to editors.
 
@@ -16,5 +25,19 @@ list of level 1 subjects
       - project configuration: a file named 🪱 .clangd in the source tree.
       - user configuration: a 🪱 config.yaml file in an OS-specific directory:
         ...
+
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+LLVM libraries
+
+================================================
+⚓ library 🔪 libc ; https://libc.llvm.org/index.html
+  ⚠️ Warning 📅 2025-01-27 23:05:46
+    LLVM-libc is not yet ABI stable; currently only static linking is supported. ...
+  
+  # Advanced Usage
+    ⚓🔰 Full Cross Build ; https://libc.llvm.org/full_cross_build.html
+
+⚓ library 🔪 libc++ ; https://libcxx.llvm.org/
 
 
