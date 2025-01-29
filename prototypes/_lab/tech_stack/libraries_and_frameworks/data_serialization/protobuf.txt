@@ -32,15 +32,38 @@ protobuf 🔪⚓ Docs ; https://protobuf.dev/
         # Grammar Changes
           ...
 
-  #🔰 Tutorials
-    ⚓ Protocol Buffer Basics: C++ ; https://protobuf.dev/getting-started/cpptutorial/
-
-
   # Programming Guides
     ⚓ Language Guide (editions) ; https://protobuf.dev/programming-guides/editions/
   
 ----------------------------------------------
-# protobuf 🔪 Reference 🔪 C++
+⚓🔰 protobuf 🔪 C++ ; https://protobuf.dev/reference/cpp/
+  ⚓ Protocol Buffer Basics: C++ ; << https://protobuf.dev/getting-started/cpptutorial/
+    # The Problem Domain
+      Raw Binary Serialization:
+        - Issue: Lack of portability (Endianness problem)
+          - Reason: Different CPU architectures store integers in different byte orders (little-endian vs. big-endian)
+        - Issue: Memory layout dependency
+          - Reason: Changes in structure layout may cause incompatibility with previously stored data
+        - Issue: Versioning problems
+          - Reason: Adding new fields or modifying structure requires recompiling software and breaks old formats
+
+      Ad-Hoc String Encoding:
+        - Issue: Requires custom parsing logic
+          - Reason: Must manually implement parsing functions such as string splitting and type conversion
+        - Issue: Runtime performance overhead
+          - Reason: Parsing and string manipulation introduce extra computational cost
+        - Issue: Lacks explicit data typing
+          - Reason: Encoding does not explicitly distinguish between different data types like integers, floats, and strings
+
+      XML Serialization:
+        - Issue: Large file size
+          - Reason: Extensive metadata in tags increases storage and transmission overhead
+        - Issue: Performance bottlenecks
+          - Reason: Parsing an XML document requires building and traversing a DOM tree, which consumes memory and processing power
+        - Issue: Complex navigation
+          - Reason: Extracting data requires tree traversal methods, making it harder to manipulate compared to simple structured fields
+
+
   ⚓ C++ Generated Code Guide ; https://protobuf.dev/reference/cpp/cpp-generated/
     Describes exactly what C++ code the protocol buffer compiler generates for any given protocol definition.
 
@@ -53,4 +76,19 @@ protobuf 🔪⚓ Docs ; https://protobuf.dev/
   ⚓ C++ API ; https://protobuf.dev/reference/cpp/api-docs/
   ⚓ C++ Reference ; https://protobuf.dev/reference/cpp/api-docs/
     This section contains reference documentation for working with protocol buffer classes in C++.
-    
+
+
+
+----------------------------------------------
+⚓🔰 protobuf 🔪 Rust ; https://protobuf.dev/reference/rust/
+  ⚓ Rust Generated Code Guide ; https://protobuf.dev/reference/rust/rust-generated/
+    Describes the API of message objects that the protocol buffer compiler generates for any given protocol definition.
+
+  ⚓ Redaction in Rust ; https://protobuf.dev/reference/rust/rust-redaction/
+    Describes redaction in Rust.
+
+  ⚓ Building Rust Protos ; https://protobuf.dev/reference/rust/building-rust-protos/
+    Describes using Blaze to build Rust protos.
+
+  ⚓ Rust Proto Design Decisions ; https://protobuf.dev/reference/rust/rust-design-decisions/
+    Explains some of the design choices that the Rust Proto implementation makes.

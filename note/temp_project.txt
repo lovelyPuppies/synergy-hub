@@ -18479,4 +18479,49 @@ https://abseil.io/
   보통 new 연산자로 개별적으로 할당하면 메모리 단편화(fragmentation)가 발생할 수 있음
   Arena를 사용하면 메모리 재사용이 가능하고 속도가 향상됨
   예제
+
+https://medium.com/@forrestallison/my-problems-with-ros2-and-why-im-going-my-own-way-and-salty-about-it-4802146eca89
+  ⚓ protobuf + NATS ; https://en.wikipedia.org/wiki/NATS_Messaging
+  1️⃣ What is NATS?
+    NATS is a lightweight publish-subscribe messaging system.
+    Unlike ROS 2, it is language-agnostic and portable across OS platforms.
+  2️⃣ Why Use Protobuf Instead of ROS Messages?
+    ✅ Protobuf is language-neutral → Works with C++, Python, Rust, Go, Java, etc.
+    ✅ More efficient → Protobuf is binary-based, making it faster and smaller than ROS 2 messages.
+    ✅ Easier to version → Backward-compatible by design (optional and default fields).
+
+  3️⃣ How Protobuf + NATS Works
+    Protobuf defines the message structure.
+    NATS handles the publish-subscribe communication.
+    Nodes (sensors, actuators, controllers) publish & listen to messages, just like ROS 2.
+    Works across Linux, Windows, macOS, Raspberry Pi, and any cloud service.
   
+
+ROS의 기본 메시지 전달 방식도 발행/구독 패턴을 사용하지만, ROS 2의 경우 **DDS(Data Distribution Service)**를 기반으로 합니다. 따라서, NATS는 ROS 2의 기본 통신 시스템과는 별개의 메시징 시스템입니다. Action 방식은 양측 노드의 코드를 수정하여 구현할 수 있지만, 이는 서비스 호출과 피드백 메커니즘을 포함하는 별도의 통신 패턴입니다.
+
+
+2025 년 2월.
+  https://fosdem.org/2025/schedule/event/fosdem-2025-6548-programming-ros-2-with-rust/?utm_source=chatgpt.com
+  https://github.com/ros2-rust/ros2_rust
+https://docs.ros.org/en/dashing/Concepts/About-ROS-2-Client-Libraries.html?utm_source=chatgpt.com
+  JVM and Android
+  Objective C and iOS
+  C#
+  Swift
+  Node.js
+  Ada
+  _.NET Core, UWP and C#
+  Rust
+또한, ROS 2의 구조는 rcl(ROS Client Library)이라는 C 언어 기반의 공통 인터페이스를 사용하여 다양한 언어로의 확장을 용이하게 합니다. 이를 통해 C++, Python 외에도 Java, C#, Swift, Node.js, Ada 등 여러 언어로의 클라이언트 라이브러리 개발이 가능해졌습니다.
+
+
+
+❓ 메시지 로스를 막기 위해 QoS 설정이 필요 (ROS 2의 DDS에서 해결 가능)
+
+🔹:small_blue_diamond: 결론: 필요한 방식대로 쓰면 된다!
+  실시간 센서 데이터, 제어 신호, 이벤트 기반 통신 → Pub/Sub 모델 (ROS 2, Protobuf + NATS)
+  저장된 데이터 조회, 클라이언트 요청-응답 패턴 → Query 모델 (REST API, gRPC, DB Query 등)
+
+NATS (Pub/Sub)
+NATS (Request-Reply)
+소켓 (TCP/UDP)
