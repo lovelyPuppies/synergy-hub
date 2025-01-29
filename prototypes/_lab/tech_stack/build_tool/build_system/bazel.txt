@@ -16,6 +16,11 @@ https://bazel.build/install/bazelisk
   ⚓ Bazel Install ; https://bazel.build/install
     ⚓⭕ Bazelisk (recommended) ; https://bazel.build/install/bazelisk
       https://github.com/bazelbuild/bazelisk
+        #️⃣ Installation ; https://github.com/bazelbuild/bazelisk#installation
+          file 🪱 `.bazelversion` file
+        #️⃣ How does Bazelisk know which Bazel version to run? ; https://github.com/bazelbuild/bazelisk#how-does-bazelisk-know-which-bazel-version-to-run
+          If the environment variable 🪱 `USE_BAZEL_VERSION` is set, it will use the version specified in the value.
+            - 🪱 `latest`: the latest stable (LTS) version
 ----------------------------------------------
 ⚓ Bazel 🔪 Docs ; https://bazel.build/docs
   

@@ -1911,3 +1911,5 @@ https://forum.osdev.org/viewtopic.php?t=56165
 
   
 cd socket_iot_system && cmake --build --preset conan-linux-debug-clang-19-x86_64 && file build/linux-debug-clang-19-x86_64/iot_server
+
+

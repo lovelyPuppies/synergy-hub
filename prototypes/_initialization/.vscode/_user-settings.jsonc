@@ -37,11 +37,14 @@
     "**/build": true
   },
   // 🌀 Title: Terminal
+  "telemetry.telemetryLevel": "error",
   // change VScode's tile bar color
   "window.titleBarStyle": "custom",
   "terminal.integrated.env.linux": {
     //  in order to prevent from 'The "no new privileges" flag is set, which prevents sudo from running as root.' message when run sudo command in Ubuntu 📅 2024-08-31 01:29:37
-    "SUDO_ASKPASS": null
+    "SUDO_ASKPASS": null,
+    //  Telemetry is disabled for the .NET Install Tool, but we were unable to turn off the .NET SDK telemetry. To disable .NET SDK telemetry, set the environment variable DOTNET_CLI_TELEMETRY_OPTOUT to true.
+    "DOTNET_CLI_TELEMETRY_OPTOUT": "1"
   },
   "terminal.integrated.defaultProfile.linux": "fish",
   "python.defaultInterpreterPath": "${env:PYTHON_POETRY_BASE_EXECUTABLE}",

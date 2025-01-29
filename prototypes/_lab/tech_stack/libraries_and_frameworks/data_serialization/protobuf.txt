@@ -62,7 +62,27 @@ protobuf 🔪⚓ Docs ; https://protobuf.dev/
           - Reason: Parsing an XML document requires building and traversing a DOM tree, which consumes memory and processing power
         - Issue: Complex navigation
           - Reason: Extracting data requires tree traversal methods, making it harder to manipulate compared to simple structured fields
+    # Where to Find the Example Code ; https://github.com/protocolbuffers/protobuf/tree/main/examples
+    #️⃣ Defining Your Protocol Format ; https://protobuf.dev/getting-started/cpptutorial/#protocol-format
+      The " = 1", " = 2" markers on each element identify the unique field number that field uses in the binary encoding.
+      Field numbers 📍 1-15 require one less byte to encode than higher numbers
+        , so as an optimization you can decide to use those numbers for the commonly used or repeated elements
+        , leaving field numbers 16 and higher for less-commonly used optional elements.
+      Each element in a repeated field requires re-encoding the field number, so repeated fields are particularly good candidates for this optimization.
 
+      ⚠️ Important
+        Required Is Forever You should be very careful about marking fields as required. ...
+
+    #️⃣ Compiling Your Protocol Buffers ; https://protobuf.dev/getting-started/cpptutorial/#compiling-protocol-buffers
+    #️⃣ The Protocol Buffer API ; https://protobuf.dev/getting-started/cpptutorial/#protobuf-api
+      #️⃣ Enums and Nested Classes ; https://protobuf.dev/getting-started/cpptutorial/#enums-nested-classes
+      #️⃣ Standard Message Methods ; https://protobuf.dev/getting-started/cpptutorial/#standard-message-methods
+      #️⃣ Parsing and Serialization ; https://protobuf.dev/getting-started/cpptutorial/#parsing-serialization
+    #️⃣ Writing a Message ; https://protobuf.dev/getting-started/cpptutorial/#writing-a-message
+    #️⃣ Reading a Message ; https://protobuf.dev/getting-started/cpptutorial/#reading-a-message
+    #️⃣ Extending a Protocol Buffer ; https://protobuf.dev/getting-started/cpptutorial/#extending-a-protobuf
+    #️⃣ Optimization Tips ; https://protobuf.dev/getting-started/cpptutorial/#optimization
+    #️⃣ Advanced Usage ; https://protobuf.dev/getting-started/cpptutorial/#advanced-usage
 
   ⚓ C++ Generated Code Guide ; https://protobuf.dev/reference/cpp/cpp-generated/
     Describes exactly what C++ code the protocol buffer compiler generates for any given protocol definition.

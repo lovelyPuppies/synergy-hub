@@ -22,6 +22,13 @@
     "mads-hartmann.bash-ide-vscode",
     // 🌀 Build system ~
     "yocto-project.yocto-bitbake",
+    //    Bazel ; https://marketplace.visualstudio.com/items?itemName=BazelBuild.vscode-bazel
+    //    Blue Bazel ; https://marketplace.visualstudio.com/items?itemName=NVIDIA.bluebazel
+    "BazelBuild.vscode-bazel",
+    "NVIDIA.bluebazel",
+    //  *.proto (Protocal Buffers)
+    //    Tooltitude for Protobuf (proto files) ; https://marketplace.visualstudio.com/items?itemName=tooltitudeteam.tooltitude-pb
+    "tooltitudeteam.tooltitude-pb",
     // 🌀 Langauge~
     //  Web-related Extensions
     "ms-edgedevtools.vscode-edge-devtools", // https://marketplace.visualstudio.com/items?itemName=ms-edgedevtools.vscode-edge-devtools
