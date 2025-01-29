@@ -6462,8 +6462,8 @@ waydroid show-full-ui
     When using the 'Quit' button or pressing 'Alt + F4'.
   Similar Issues:
     - [BUG] Waydroid causes GNOME 46 crashes on Ubuntu 24.04; https://github.com/waydroid/waydroid/issues/1384"
-    - [BUG] Waydroid crashes gnome shell ; https://github.com/waydroid/waydroid/issues/1458?utm_source=chatgpt.com
-    - [BUG] Waydroid breaks nouveau and crash desktop ; https://github.com/waydroid/waydroid/issues/1513?utm_source=chatgpt.com
+    - [BUG] Waydroid crashes gnome shell ; https://github.com/waydroid/waydroid/issues/1458
+    - [BUG] Waydroid breaks nouveau and crash desktop ; https://github.com/waydroid/waydroid/issues/1513
   ➡️ Workaround: Close the application by sending a process signal, such as SIGINT.
 
 
@@ -14898,7 +14898,7 @@ Use Qt Quick instead of Qt Widgets
     How to create a simple Qt Quick application ; https://www.youtube.com/watch?v=Bo5Og2fb1CA
 
 
-https://doc.qt.io/Boot2Qt/b2qt-qsg-raspberry.html?utm_source=chatgpt.com
+https://doc.qt.io/Boot2Qt/b2qt-qsg-raspberry.html
 ❌ https://wiki.qt.io/Cross-Compile_Qt_6_for_Raspberry_Pi >> 커뮤니티 기반이엇음 .하.. 최신 상태가 아닐 수 있으며, 정확성과 일관성이 공식 문서보다 떨어질 수 있습니다.
 ❌ Boot to Qt 이미지를 SD 카드에 플래싱하면, 라즈베리 파이에 설치된 기존 운영 체제(예: 라즈비안)는 덮어쓰게 됩니다.
   
@@ -15395,7 +15395,7 @@ FFmpeg의 정적 빌드(static build)는 설치가 간편하지만, 라이선스
 
 
 
-TODO: 📰 DOcker devcontainer 대체..  ; https://www.redhat.com/en/blog/5-reasons-choose-podman-2025?utm_source=chatgpt.com
+TODO: 📰 DOcker devcontainer 대체..  ; https://www.redhat.com/en/blog/5-reasons-choose-podman-2025
   https://code.visualstudio.com/remote/advancedcontainers/docker-options#_podman
   
   Podman은 Docker Hub를 비롯한 다양한 컨테이너 이미지 레지스트리와 호환됩니다. 이는 Podman이 OCI(Open Container Initiative) 표준을 준수하기 때문입니다. 따라서, Podman을 사용하여 Docker Hub에서 이미지를 pull하거나 push하는 것이 가능합니다. 또한, Podman의 CLI는 Docker와 유사하여, 기존 Docker 사용자들이 큰 변경 없이 Podman으로 전환할 수 있습니다. 
@@ -17053,7 +17053,7 @@ set -gx CONFIG_LOCALVERSION -v8-synergy_hub
 이 문제
 
 
-https://inblog.ai/isehyeon258/22417?utm_source=chatgpt.com
+https://inblog.ai/isehyeon258/22417
 Android
   🪱 Toast message 
 
@@ -18501,9 +18501,9 @@ ROS의 기본 메시지 전달 방식도 발행/구독 패턴을 사용하지만
 
 
 2025 년 2월.
-  https://fosdem.org/2025/schedule/event/fosdem-2025-6548-programming-ros-2-with-rust/?utm_source=chatgpt.com
+  https://fosdem.org/2025/schedule/event/fosdem-2025-6548-programming-ros-2-with-rust/
   https://github.com/ros2-rust/ros2_rust
-https://docs.ros.org/en/dashing/Concepts/About-ROS-2-Client-Libraries.html?utm_source=chatgpt.com
+https://docs.ros.org/en/dashing/Concepts/About-ROS-2-Client-Libraries.html
   JVM and Android
   Objective C and iOS
   C#
@@ -18525,3 +18525,44 @@ https://docs.ros.org/en/dashing/Concepts/About-ROS-2-Client-Libraries.html?utm_s
 NATS (Pub/Sub)
 NATS (Request-Reply)
 소켓 (TCP/UDP)
+
+
+Bazel은 Hermetic Build(의존성을 완전히 격리한 빌드)를 지원해서 일관된 결과를 보장함.. 여러 언어가 필요한 대규모 프로젝트에서 사용..
+  https://bazel.build/basics/hermeticity
+2025년 기준, ROS 2와 외부 시스템(소켓 서버) 간의 통신 방법
+  표준 TCP/UDP 소켓 사용 (가장 일반적인 방식)
+    ✅ 간단한 요청-응답 통신을 처리할 때 가장 적합
+    ✅ ROS 2 이외의 시스템과 직접적인 네트워크 연결 가능
+    ❌ ROS 2의 메시징 시스템(DDS)과는 별개로 동작
+  Rosbridge 사용 (WebSocket 기반)
+    ✅ 비 ROS 시스템(웹 브라우저, 클라우드)과 쉽게 연결 가능
+    ✅ JSON 메시지를 사용하여 다양한 언어와 호환
+    ❌ 성능이 높은 방식은 아님 (WebSocket의 특성상 TCP 기반 통신 속도가 느릴 수 있음)
+  FastDDS 또는 RTPS 게이트웨이 사용 (DDS-RTP/TCP 변환)
+    ✅ 고성능 데이터 공유 가능 (특히 산업용 로봇, 자율 주행 시스템에서 활용)
+    ❌ 설정이 복잡하고 일반적인 사용 사례는 아님
+  MQTT 사용 (클라우드 또는 IoT 연결)
+    ✅ 클라우드 연결에 적합 (AWS IoT, Google Cloud IoT 등과 연결 가능)
+    ✅ 로봇 데이터를 외부 시스템으로 스트리밍할 때 유용
+    ❌ 실시간성이 필요할 경우 적합하지 않음 (MQTT는 기본적으로 비동기 처리)
+  NATS 또는 ZeroMQ 같은 메시징 시스템 사용
+    ✅ 고성능 네트워크 메시징 (특히 대용량 데이터 스트리밍 시 유용)
+    ❌ 기본 ROS 2 DDS 시스템과 별도로 관리해야 함
+
+
+1. Protobuf와 ROS 2의 상호 운용성
+
+  proto2ros와 같은 도구를 사용하면 Protobuf 메시지 정의를 ROS 2 메시지로 변환하고, 양방향 변환 API를 생성할 수 있습니다. 이를 통해 ROS 2 노드와 Protobuf를 사용하는 외부 시스템 간의 원활한 데이터 교환이 가능합니다
+  https://github.com/bdaiinstitute/proto2ros
+
+2. Protobuf를 통한 TCP 소켓 통신 예제
+
+  protobuf-over-tcpsocket-example 프로젝트는 TCP 소켓을 통해 Protobuf 메시지를 전송하는 예제를 제공합니다. 이 예제는 ROS 2 노드와 외부 소켓 서버 간의 통신에 적용할 수 있으며, C++로 작성되어 있습니다. 
+  
+https://docs.freedomrobotics.ai/docs/connect-with-protobuf
+
+➡️ 음.. 이거 모두 2023  버전인가는 테스트 안된거같은데  protobuf.
+그리고 내 말은 음.. ros master<-> 외부 소켓서버와 통신할떄에는 protobuf 든, 텍스트방식이든 json 이든 뭘 해도 되지만 ros master 와 다른 ros 와 통신할 떄에는 어쩔 수 없이 변환 과정이 필요한거겟지? 
+  ✅ ROS Master ↔ 외부 소켓 서버: JSON, Protobuf, YAML, 또는 단순 텍스트 등 원하는 방식 사용 가능
+  ✅ ROS Master ↔ 다른 ROS 노드: ROS 2의 DDS 기반 메시지 시스템을 따라야 함 (즉, ROS 메시지 형식으로 변환 필요)
+

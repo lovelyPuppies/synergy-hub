@@ -8,16 +8,17 @@
 
   ```bash
   #!/usr/bin/env fish
-  # Install libc++ packages for clang
+  ## Install libc++ packages for clang
   sudo apt update
   sudo apt install -y crossbuild-essential-arm64 libc6-dev-arm64-cross \
     gcc-12-aarch64-linux-gnu g++-12-aarch64-linux-gnu \
     libc++-dev libc++abi-dev
 
-  # Set environment
-  poetry init
-  poetry add conan
-  conan new cmake_exe --define name=iot_server --define version=1.0 --output iot_server
+  ## Set environment
+  poetry install
+  # poetry init
+  # poetry add conan
+  # conan new cmake_exe --define name=iot_server --define version=1.0 --output iot_server
   ```
 
 - Configure environment
