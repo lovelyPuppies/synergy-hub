@@ -4,8 +4,23 @@
 #     It is inspired from STM32 Cube MX.
 
 
-# Created by https://www.toptal.com/developers/gitignore/api/git,python,c,c++,cmake,ninja,conan,doxygen,platformio,csharp,node,svelte,yarn,rust,linux,qt,qtcreator,ros,ros2
-# Edit at https://www.toptal.com/developers/gitignore?templates=git,python,c,c++,cmake,ninja,conan,doxygen,platformio,csharp,node,svelte,yarn,rust,linux,qt,qtcreator,ros,ros2
+# Created by https://www.toptal.com/developers/gitignore/api/git,bazel,python,c,c++,cmake,ninja,conan,doxygen,platformio,csharp,node,svelte,yarn,rust,linux,qt,qtcreator,ros,ros2
+# Edit at https://www.toptal.com/developers/gitignore?templates=git,bazel,python,c,c++,cmake,ninja,conan,doxygen,platformio,csharp,node,svelte,yarn,rust,linux,qt,qtcreator,ros,ros2
+
+### Bazel ###
+# gitignore template for Bazel build system
+# website: https://bazel.build/
+
+# Ignore all bazel-* symlinks. There is no full list since this can change
+# based on the name of the directory bazel is cloned into.
+/bazel-*
+
+# Directories for the Bazel IntelliJ plugin containing the generated
+# IntelliJ project files and plugin configuration. Seperate directories are
+# for the IntelliJ, Android Studio and CLion versions of the plugin.
+/.ijwb/
+/.aswb/
+/.clwb/
 
 ### C ###
 # Prerequisites
@@ -94,6 +109,8 @@ CTestTestfile.cmake
 _deps
 
 ### CMake Patch ###
+CMakeUserPresets.json
+
 # External projects
 *-prefix/
 
@@ -1042,12 +1059,9 @@ package
 # and uncomment the following lines
 # .pnp.*
 
-# End of https://www.toptal.com/developers/gitignore/api/git,python,c,c++,cmake,ninja,conan,doxygen,platformio,csharp,node,svelte,yarn,rust,linux,qt,qtcreator,ros,ros2
+# End of https://www.toptal.com/developers/gitignore/api/git,bazel,python,c,c++,cmake,ninja,conan,doxygen,platformio,csharp,node,svelte,yarn,rust,linux,qt,qtcreator,ros,ros2
 
 ###⚙️ USER CODE BEGIN
-
-# [Add] Conan
-CMakeUserPresets.json
 
 # [Subtract] CMake 📅 2024-12-17 20:19:43
 !/compile_commands.json
