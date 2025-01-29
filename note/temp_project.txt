@@ -18580,3 +18580,12 @@ https://docs.freedomrobotics.ai/docs/connect-with-protobuf
 
 1.내가 지금, ROS 1 을 사용하고 있는데 그럴 경우에는..? 메시지 방식에 대한 구현 예시를 줘.
 2. 그리고 내가 궁금한건 단순히 프로토콜 버퍼는 메시지 컴파일/파싱 용도 아니야? 그러면 이 컴파일 후 직렬화한 바이너리 값을 ros1 메시지방식에 메시지 부분에만 끼워넣으면 사용할 수 있는거 아니야?? 통합이 쉬울 거라고 보는데.. 아닌가? 아직 안써봐서 모르겟어
+
+
+2. 정리: 보편 참조를 사용할 때 L-value와 R-value의 타입 결정
+  전달된 값	                           T의 타입         T&&의 타입
+  std::string s = "Hello"; func(s);	  std::string&	  std::string& (L-value 유지)
+  func(std::string("Hello"));	        std::string	    std::string&& (R-value 유지)
+
+L-value를 넘기면 L-value 참조(T&)가 되고,
+R-value를 넘기면 R-value 참조(T&&)가 된다.

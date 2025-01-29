@@ -28,6 +28,22 @@ protobuf 🔪⚓ Docs ; https://protobuf.dev/
         Using the 🪱 Prototiller tool to migrate earlier versions of proto files to edition 2033 adds explicit feature.amazing_new_feature = false entries as needed to continue to retain the previous behavior
         ... Removing a feature will always initiate a major version bump.
       # Migrating to Protobuf Editions
+        # Proto2 to Editions
+          // in proto2, optional fields have explicit presence
+          optional string name = 1 [default = "N/A"];
+          // proto2 still supports the problematic 🪱 "required" field rule
+          required int32 id = 2;
+        # Proto3 to Editions
+          // in proto3, optional fields have explicit presence
+          optional string name = 1 [default = "N/A"];
+          // in proto3 no specified field rule defaults to implicit 🪱 presence
+          int32 id = 2;
+
+          ⚖️ Editions syntax
+            // fields have 🪱 explicit presence, so no explicit setting needed
+            string name = 1 [default = "N/A"];
+            // to match the proto3 behavior, IMPLICIT is set at the field level
+            int32 id = 2 [features.field_presence = IMPLICIT];
         # Lexical Scoping
         # Grammar Changes
           ...
