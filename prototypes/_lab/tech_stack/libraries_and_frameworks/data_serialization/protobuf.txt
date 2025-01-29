@@ -40,7 +40,17 @@ protobuf 🔪⚓ Docs ; https://protobuf.dev/
     ⚓ Language Guide (editions) ; https://protobuf.dev/programming-guides/editions/
   
 ----------------------------------------------
-Temp
-  - Protobuf는 메시지를 메모리에 한 번에 로드하고, 객체 그래프보다 크지 않은 데이터 크기를 가정합니다.
-    수 메가바이트(MB)를 초과하는 데이터에서 Protobuf를 사용할 경우, 직렬화된 데이터를 처리하면서 여러 복사본이 생성될 수 있어 메모리 사용량이 급증할 수 있습니다.
-  - 대안: 스트리밍 프로토콜(예: Apache Avro)이나 데이터베이스 기반 솔루션을 고려.
+# protobuf 🔪 Reference 🔪 C++
+  ⚓ C++ Generated Code Guide ; https://protobuf.dev/reference/cpp/cpp-generated/
+    Describes exactly what C++ code the protocol buffer compiler generates for any given protocol definition.
+
+  ⚓ C++ Arena Allocation Guide ; https://protobuf.dev/reference/cpp/arenas/
+    Arena allocation is a C++-only feature that helps you optimize your memory usage and improve performance when working with protocol buffers.
+
+  ⚓ 🪱 Abseil Support ; https://protobuf.dev/reference/cpp/abseil/
+    The C++ implementation of Protocol Buffers has an explicit dependency on Abseil.
+
+  ⚓ C++ API ; https://protobuf.dev/reference/cpp/api-docs/
+  ⚓ C++ Reference ; https://protobuf.dev/reference/cpp/api-docs/
+    This section contains reference documentation for working with protocol buffer classes in C++.
+    
