@@ -310,7 +310,7 @@ end
 
 
 : '
-📦 p7zip ; 7-Zip (high compression file archiver) implementation📅  2024-12-04 14:42:03
+📦 p7zip ; 7-Zip (high compression file archiver) implementation 📅 2024-12-04 14:42:03
     https://repology.org/project/p7zip/versions
     https://formulae.brew.sh/formula/p7zip#default
 '
@@ -457,6 +457,25 @@ brew install nvtop
 
 
 
+
+
+: '
+📦 prettier
+  https://repology.org/project/prettier/versions
+  https://formulae.brew.sh/formula/prettier#default
+
+  Code formatter for JavaScript, CSS, JSON, GraphQL, Markdown, YAML
+'
+brew install prettier
+
+
+
+
+
+
+echo "▶️ Installing Efficient build tools ..."
+
+
 : '
 📦🚀 protobuf
   https://repology.org/project/protobuf/versions
@@ -480,20 +499,25 @@ brew install protobuf nanopb
 
 
 
-
-
-
-
 : '
-📦 prettier
-  https://repology.org/project/prettier/versions
-  https://formulae.brew.sh/formula/prettier#default
+📦 bazelisk
 
-  Code formatter for JavaScript, CSS, JSON, GraphQL, Markdown, YAML
+  https://repology.org/project/bazelisk/versions
+  https://formulae.brew.sh/formula/bazelisk#default
+
+  ❌📦 bazel
+    instead, install this from bazelisk which recommended way in official site. ; https://bazel.build/install/bazelisk
+    Bazelisk helps you manage Bazel versions.
+
+    https://repology.org/project/bazel/versions
+    https://formulae.brew.sh/formula/bazel#default
+    
+    Outdated version
 '
-brew install prettier
-
-
+brew install bazelisk
+# install latest stable bazel version
+bazelisk version
+bazel --version
 
 
 
@@ -1539,7 +1563,6 @@ sudo apt install -y crossbuild-essential-arm64 crossbuild-essential-armhf
     timg ~/Downloads/test_gif.gif
 '
 # brew install timg
-
 
 
 

@@ -1,0 +1,21 @@
+list of level 1 subjects
+  - Bazel
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ Bazel ; https://bazel.build/
+  Bazel (/ˈbeɪzəl/[3]) is a free and open-source software tool used for the automation of building and testing software.
+  https://en.wikipedia.org/wiki/Bazel_(software)
+  https://github.com/bazelbuild/bazel
+
+
+https://bazel.build/install/bazelisk
+
+
+----------------------------------------------
+⚓ Bazel 🔪 Getting started ; https://bazel.build/start
+  ⚓ Bazel Install ; https://bazel.build/install
+    ⚓⭕ Bazelisk (recommended) ; https://bazel.build/install/bazelisk
+      https://github.com/bazelbuild/bazelisk
+----------------------------------------------
+⚓ Bazel 🔪 Docs ; https://bazel.build/docs
+  
