@@ -69,4 +69,9 @@ clang++ test.pb.cc main.cpp -o test.out $(pkg-config --cflags --libs protobuf)
 clang++ test.pb.cc main.cpp -o test.out $(pkg-config --cflags --libs protobuf)
 
 fish shell 문제엿나?;;
+clang++ test.pb.cc main.cpp -o test.out (pkg-config --cflags --libs protobuf)
+https://github.com/fish-shell/fish-shell/issues/982
+
+?? 됫네.?
+eval clang++ test.pb.cc main.cpp -o test.out (pkg-config --cflags --libs protobuf)
 ```
