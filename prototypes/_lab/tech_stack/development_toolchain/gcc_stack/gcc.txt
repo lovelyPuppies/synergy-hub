@@ -1,0 +1,21 @@
+list of level 1 subjects
+  - gcc (GNU Compiler Collection)
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ gcc ; https://gcc.gnu.org/onlinedocs/
+  https://en.wikipedia.org/wiki/GNU_Compiler_Collection
+  
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+GCC libraries
+
+----------------------------------------------
+⚓ library 🔪 libstdc++ ; https://gcc.gnu.org/onlinedocs/libstdc++/
+  The GNU C++ Library
+
+  2. Setup
+    # Prerequisites
+    # Configure
+    # Make
+
+

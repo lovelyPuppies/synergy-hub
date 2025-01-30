@@ -297,14 +297,14 @@ brew install e2fsprogs
 set unique_comment "## [e2fsprogs] add binary dir to path"
 if not grep -Fxq "$unique_comment" "$FISH_CONFIG_PATH"
     echo "
-    $unique_comment
+    $unique_comment"'
     fish_add_path /home/linuxbrew/.linuxbrew/opt/e2fsprogs/bin
     fish_add_path /home/linuxbrew/.linuxbrew/opt/e2fsprogs/sbin
-    set -gx LDFLAGS \$LDFLAGS -L/home/linuxbrew/.linuxbrew/opt/e2fsprogs/lib
-    set -gx CPPFLAGS \$CPPFLAGS -I/home/linuxbrew/.linuxbrew/opt/e2fsprogs/include
+    set -gx LDFLAGS $LDFLAGS -L/home/linuxbrew/.linuxbrew/opt/e2fsprogs/lib
+    set -gx CPPFLAGS $CPPFLAGS -I/home/linuxbrew/.linuxbrew/opt/e2fsprogs/include
     set --query PKG_CONFIG_PATH; or set PKG_CONFIG_PATH ""
-    set -gx PKG_CONFIG_PATH \$PKG_CONFIG_PATH:/home/linuxbrew/.linuxbrew/opt/e2fsprogs/lib/pkgconfig
-    " | prettify_indent_via_pipe | tee -a $FISH_CONFIG_PATH >/dev/null
+    set -gx PKG_CONFIG_PATH $PKG_CONFIG_PATH:/home/linuxbrew/.linuxbrew/opt/e2fsprogs/lib/pkgconfig
+    ' | prettify_indent_via_pipe | tee -a $FISH_CONFIG_PATH >/dev/null
     echo -e "\n" >>"$FISH_CONFIG_PATH"
 end
 
@@ -473,6 +473,8 @@ brew install prettier
 
 
 
+
+
 echo "▶️ Installing Efficient build tools ..."
 
 
@@ -496,6 +498,34 @@ echo "▶️ Installing Efficient build tools ..."
 # %shell> brew uses --installed protobuf
 brew install protobuf nanopb
 
+set protobuf_prefix (brew --prefix protobuf)
+set unique_comment "## [protobuf] Add search paths for headers and libraries"
+if not grep -Fxq "$unique_comment" "$FISH_CONFIG_PATH"
+    echo "
+    $unique_comment
+    set --query CPATH; or set CPATH ''
+    set -gx CPATH \$CPATH:$protobuf_prefix/include
+    set --query LIBRARY_PATH; or set LIBRARY_PATH ''
+    set -gx LIBRARY_PATH \$LIBRARY_PATH:$protobuf_prefix/lib
+    " | prettify_indent_via_pipe | tee -a $FISH_CONFIG_PATH >/dev/null
+    echo -e "\n" >>"$FISH_CONFIG_PATH"
+end
+
+
+: '
+📦🚀 gperftools
+  https://repology.org/project/gperftools/versions
+  https://formulae.brew.sh/formula/gperftools#default
+  https://github.com/gperftools/gperftools
+
+  Formerly known as: google-perftools
+  Multi-threaded malloc() and performance analysis tools
+
+  - TCMALLOC
+    Just link in -ltcmalloc or -ltcmalloc_minimal to get the advantages of tcmalloc
+'
+brew install gperftools
+
 
 
 
@@ -518,6 +548,9 @@ brew install bazelisk
 # install latest stable bazel version
 bazelisk version
 bazel --version
+
+
+
 
 
 

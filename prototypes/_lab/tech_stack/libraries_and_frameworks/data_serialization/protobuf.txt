@@ -89,7 +89,6 @@ protobuf 🔪⚓ Docs ; https://protobuf.dev/
 
       ⚠️ Important
         Required Is Forever You should be very careful about marking fields as required. ...
-
     #️⃣ Compiling Your Protocol Buffers ; https://protobuf.dev/getting-started/cpptutorial/#compiling-protocol-buffers
     #️⃣ The Protocol Buffer API ; https://protobuf.dev/getting-started/cpptutorial/#protobuf-api
       🪱
@@ -137,12 +136,27 @@ protobuf 🔪⚓ Docs ; https://protobuf.dev/
               This will break internal mechanisms and is not good object-oriented practice anyway.
 
 
-              
     #️⃣ Writing a Message ; https://protobuf.dev/getting-started/cpptutorial/#writing-a-message
+      ... ⭕ Notice the 🪱 GOOGLE_PROTOBUF_VERIFY_VERSION macro. It is good practice
+        Also notice the call to 🪱 ShutdownProtobufLibrary() at the end of the program           
     #️⃣ Reading a Message ; https://protobuf.dev/getting-started/cpptutorial/#reading-a-message
+
+
     #️⃣ Extending a Protocol Buffer ; https://protobuf.dev/getting-started/cpptutorial/#extending-a-protobuf
-    #️⃣ Optimization Tips ; https://protobuf.dev/getting-started/cpptutorial/#optimization
+      📍 "Migration guide" ...
+        ... Note also that if you added a new repeated field, your new code will not be able to tell whether it was left empty (by new code) or never set at all (by old code) since there is no has_ flag for it.
+
+
+    #️⃣⭕ Optimization Tips ; https://protobuf.dev/getting-started/cpptutorial/#optimization
+      - Reuse message objects when possible. Messages try to keep around any memory they allocate for reuse, even when they are cleared. ...
+        However, objects can become bloated over time, especially if your messages vary in “shape” or if you occasionally construct a message that is much larger than usual.
+          You should monitor the sizes of your message objects by calling the 🪱 SpaceUsed method and delete them once they get too big.
+      - Your system’s memory allocator may not be well-optimized for allocating lots of small objects from multiple threads.
+        Try using Google’s 🪱 TCMalloc instead.
     #️⃣ Advanced Usage ; https://protobuf.dev/getting-started/cpptutorial/#advanced-usage
+      🪱 reflection
+        You can iterate over the fields of a message and manipulate their values without writing your code against any specific message type
+        A more advanced use of reflection might be to find differences between two messages of the same type, or to develop a sort of “regular expressions for protocol messages” in which you can write expressions that match certain message contents.
 
   ⚓ C++ Generated Code Guide ; https://protobuf.dev/reference/cpp/cpp-generated/
     Describes exactly what C++ code the protocol buffer compiler generates for any given protocol definition.
@@ -156,6 +170,7 @@ protobuf 🔪⚓ Docs ; https://protobuf.dev/
   ⚓ C++ API ; https://protobuf.dev/reference/cpp/api-docs/
     #📦 google::protobuf
       ⚓ google/protobuf/message.h ; https://protobuf.dev/reference/cpp/api-docs/google.protobuf.message
+        #️⃣ class Reflection ; https://protobuf.dev/reference/cpp/api-docs/google.protobuf.message/#Reflection
 
   ⚓ C++ Reference ; https://protobuf.dev/reference/cpp/api-docs/
     This section contains reference documentation for working with protocol buffer classes in C++.

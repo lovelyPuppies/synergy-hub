@@ -9,7 +9,7 @@ list of level 1 subjects
 
 
 ----------------------------------------------
-⚓ clang 🔪 docs ; https://clang.llvm.org/
+⚓ clang 🔪 docs ; https://clang.llvm.org/docs/
   ⚓🔰 Cross-compilation using Clang ; https://clang.llvm.org/docs/CrossCompilation.html
     #🪱 Target Triple
     # Toolchain Options
@@ -17,6 +17,7 @@ list of level 1 subjects
         - --sysroot=<path>
         - cross-compiler packages
 
+  ⚓ Clang Compiler User’s Manual ; https://clang.llvm.org/docs/UsersManual.html
 
 
 ================================================
@@ -31,17 +32,25 @@ list of level 1 subjects
         ...
 
 
+
+================================================
+⚓🚀 LLD - The LLVM Linker ; https://lld.llvm.org/
+  # Performance
+  # Using LLD
+    ⭕ The easiest way to do that is to overwrite the default linker. After installing LLD to somewhere on your disk
+      , you can create a symbolic link by doing ln -s /path/to/ld.lld /usr/bin/ld so that /usr/bin/ld is resolved to LLD.
+
+
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
 LLVM libraries
 
-================================================
+----------------------------------------------
 ⚓ library 🔪 libc ; https://libc.llvm.org/index.html
   ⚠️ Warning 📅 2025-01-27 23:05:46
     LLVM-libc is not yet ABI stable; currently only static linking is supported. ...
   
   # Advanced Usage
     ⚓🔰 Full Cross Build ; https://libc.llvm.org/full_cross_build.html
-
+----------------------------------------------
 ⚓ library 🔪 libc++ ; https://libcxx.llvm.org/
-
 
