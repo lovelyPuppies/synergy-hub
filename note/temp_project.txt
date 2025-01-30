@@ -18595,3 +18595,9 @@ R-value를 넘기면 R-value 참조(T&&)가 된다.
 
 
 https://gcc.gnu.org/onlinedocs/
+
+
+⚓ rPath ; https://en.wikipedia.org/wiki/Rpath
+  In computer science, rpath designates the run-time search path hard-coded in an executable file or library. Dynamic linking loaders use the rpath to find required libraries.
+
+  

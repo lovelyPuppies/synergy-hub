@@ -124,7 +124,6 @@ if not grep -Fxq "$unique_comment" "$fish_config_path"
     echo "
     $unique_comment"'
     fish_add_path /usr/local/cuda/bin
-    set --query LD_LIBRARY_PATH; or set LD_LIBRARY_PATH ""
     set -gx LD_LIBRARY_PATH $LD_LIBRARY_PATH:/usr/local/cuda/lib64
     ' | prettify_indent_via_pipe | tee -a $fish_config_path >/dev/null
     echo -e "\n" >>"$fish_config_path"

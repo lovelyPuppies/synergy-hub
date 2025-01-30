@@ -126,7 +126,7 @@ end
 
 ### FISH_CONFIG_PATH Order - 2️⃣
 ## Define the unique comment and interactive block start
-set unique_comment "# Add interactive block"
+set unique_comment "## Add interactive block"
 
 # Check if the 'if status --is-interactive' block exists
 if not grep -q "$unique_comment" $FISH_CONFIG_PATH
@@ -149,6 +149,32 @@ if not grep -q "$unique_comment" $FISH_CONFIG_PATH
     mv $tmp_file $FISH_CONFIG_PATH
 end
 
+
+
+### FISH_CONFIG_PATH Order - 3️⃣
+: '
+  In Fish Shell, if an environment variable is not set, referencing it in an expansion (🛍️ e.g, `set -gx VAR $VAR:/some/path`) does NOT default to an empty string.
+  Instead, the entire expansion fails, potentially resulting in unintended behavior.
+
+  Example issue:
+    If `PKG_CONFIG_PATH` is not defined, running:
+      `set -gx PKG_CONFIG_PATH $PKG_CONFIG_PATH:/some/path`
+    will cause `$PKG_CONFIG_PATH` to be empty.
+
+  To prevent this, explicitly initialize these variables to an empty string before appending any values.
+  This ensures that appending operations work as expected.
+'
+set unique_comment "## Prevent empty values when appending to search path variables in Fish Shell"
+if not grep -Fxq "$unique_comment" "$FISH_CONFIG_PATH"
+    echo "
+  $unique_comment"'
+  set --query CPATH; or set CPATH ""
+  set --query LIBRARY_PATH; or set LIBRARY_PATH ""
+  set --query LD_LIBRARY_PATH; or set LD_LIBRARY_PATH ""
+  set --query PKG_CONFIG_PATH; or set PKG_CONFIG_PATH ""
+  ' | prettify_indent_via_pipe | tee -a $FISH_CONFIG_PATH >/dev/null
+    echo -e "\n" >>"$FISH_CONFIG_PATH"
+end
 
 
 
@@ -302,7 +328,6 @@ if not grep -Fxq "$unique_comment" "$FISH_CONFIG_PATH"
     fish_add_path /home/linuxbrew/.linuxbrew/opt/e2fsprogs/sbin
     set -gx LDFLAGS $LDFLAGS -L/home/linuxbrew/.linuxbrew/opt/e2fsprogs/lib
     set -gx CPPFLAGS $CPPFLAGS -I/home/linuxbrew/.linuxbrew/opt/e2fsprogs/include
-    set --query PKG_CONFIG_PATH; or set PKG_CONFIG_PATH ""
     set -gx PKG_CONFIG_PATH $PKG_CONFIG_PATH:/home/linuxbrew/.linuxbrew/opt/e2fsprogs/lib/pkgconfig
     ' | prettify_indent_via_pipe | tee -a $FISH_CONFIG_PATH >/dev/null
     echo -e "\n" >>"$FISH_CONFIG_PATH"
@@ -503,13 +528,12 @@ set unique_comment "## [protobuf] Add search paths for headers and libraries"
 if not grep -Fxq "$unique_comment" "$FISH_CONFIG_PATH"
     echo "
     $unique_comment
-    set --query CPATH; or set CPATH ''
-    set -gx CPATH \$CPATH:$protobuf_prefix/include
-    set --query LIBRARY_PATH; or set LIBRARY_PATH ''
-    set -gx LIBRARY_PATH \$LIBRARY_PATH:$protobuf_prefix/lib
+    set -a CPATH $protobuf_prefix/include
+    set -a LIBRARY_PATH $protobuf_prefix/lib
     " | prettify_indent_via_pipe | tee -a $FISH_CONFIG_PATH >/dev/null
     echo -e "\n" >>"$FISH_CONFIG_PATH"
 end
+
 
 
 : '
@@ -526,6 +550,16 @@ end
 '
 brew install gperftools
 
+set gperftools_prefix (brew --prefix gperftools)
+set unique_comment "## [gperftools] Add search paths for headers and libraries"
+if not grep -Fxq "$unique_comment" "$FISH_CONFIG_PATH"
+    echo "
+    $unique_comment
+    set -a CPATH $gperftools_prefix/include
+    set -a LIBRARY_PATH $gperftools_prefix/lib
+    " | prettify_indent_via_pipe | tee -a $FISH_CONFIG_PATH >/dev/null
+    echo -e "\n" >>"$FISH_CONFIG_PATH"
+end
 
 
 

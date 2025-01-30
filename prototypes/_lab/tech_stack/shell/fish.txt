@@ -116,6 +116,16 @@ Fish 🔪⚓ Commands ; https://fishshell.com/docs/current/commands.html
     # -U or --universal
     # -export or -x
       Causes the specified shell variable to be exported to child processes (making it an 💡 “environment variable”).
+
+    # -q or --query NAME*[*INDEX]
+    # -e or --erase NAME*[*INDEX]
+
+
+    # -a or --append NAME VALUE 
+    # -p or --prepend NAME VALUE …
+
+
+
   ⚓ begin - start a new block of code ; https://fishshell.com/docs/current/cmds/begin.html
     📝 Note that: The entire block can be redirected or piped, allowing grouped I/O operations. 📅 2025-01-19 00:43:22
       ⚖️ However, it cannot be executed in the background directly.
