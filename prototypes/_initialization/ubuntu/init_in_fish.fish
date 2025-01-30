@@ -511,6 +511,11 @@ echo "▶️ Installing Efficient build tools ..."
   Also known as: protobuf@29
   Protocol buffers (Google\'s data interchange format)
 
+  %shell> brew deps protobuf
+    >>
+      abseil
+      zlib
+
 📦🚀 nanopb
   https://github.com/nanopb/nanopb?tab=readme-ov-file#nanopb---protocol-buffers-for-embedded-systems
   https://repology.org/project/nanopb/versions
@@ -533,6 +538,19 @@ if not grep -Fxq "$unique_comment" "$FISH_CONFIG_PATH"
     " | prettify_indent_via_pipe | tee -a $FISH_CONFIG_PATH >/dev/null
     echo -e "\n" >>"$FISH_CONFIG_PATH"
 end
+
+
+set abseil_prefix (brew --prefix abseil)
+set unique_comment "## [abseil] Add search paths for headers and libraries"
+if not grep -Fxq "$unique_comment" "$FISH_CONFIG_PATH"
+    echo "
+    $unique_comment
+    set -a CPATH $abseil_prefix/include
+    set -a LIBRARY_PATH $abseil_prefix/lib
+    " | prettify_indent_via_pipe | tee -a $FISH_CONFIG_PATH >/dev/null
+    echo -e "\n" >>"$FISH_CONFIG_PATH"
+end
+
 
 
 
