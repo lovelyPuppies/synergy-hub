@@ -91,8 +91,33 @@ protobuf 🔪⚓ Docs ; https://protobuf.dev/
 
     #️⃣ Compiling Your Protocol Buffers ; https://protobuf.dev/getting-started/cpptutorial/#compiling-protocol-buffers
     #️⃣ The Protocol Buffer API ; https://protobuf.dev/getting-started/cpptutorial/#protobuf-api
+      🪱
+        set_, has_, clear_
+        mutable_ 
+          ⚖️ mutable_email() even if email is not already set; it will be initialized to an empty string automatically.
+        _size, add_
+          ⚖️ If you had a repeated message field in this example, it would also have a mutable_ method but not a set_ method.
+
       #️⃣ Enums and Nested Classes ; https://protobuf.dev/getting-started/cpptutorial/#enums-nested-classes
-      #️⃣ Standard Message Methods ; https://protobuf.dev/getting-started/cpptutorial/#standard-message-methods
+        ⚖️ You can refer to this type as Person::PhoneType and its values as Person::PHONE_TYPE_MOBILE, Person::PHONE_TYPE_HOME, and Person::PHONE_TYPE_WORK
+          (the implementation details are a little more complicated, but you don’t need to understand them to use the enum).
+        📰 The compiler has also generated a nested class for you called Person::PhoneNumber.
+          If you look at the code, you can see that the “real” class is actually called Person_PhoneNumber
+          , but a typedef defined inside Person allows you to treat it as if it were a nested class.
+          The only case where this makes a difference is if you want to 🪱 forward-declare the class in another file – you cannot forward-declare nested types in C++, but you can forward-declare Person_PhoneNumber
+      
+      #️⃣💡 Standard Message Methods ; https://protobuf.dev/getting-started/cpptutorial/#standard-message-methods
+        🪱
+          - bool IsInitialized() const; 
+            checks if all the required fields have been set.
+          - string DebugString() const; 
+            returns a human-readable representation of the message, particularly useful for debugging.
+          - void CopyFrom(const Person& from);  
+            overwrites the message with the given message’s values.
+          - void Clear(); 
+            clears all the elements back to the empty state.
+
+            
       #️⃣ Parsing and Serialization ; https://protobuf.dev/getting-started/cpptutorial/#parsing-serialization
     #️⃣ Writing a Message ; https://protobuf.dev/getting-started/cpptutorial/#writing-a-message
     #️⃣ Reading a Message ; https://protobuf.dev/getting-started/cpptutorial/#reading-a-message
@@ -110,6 +135,9 @@ protobuf 🔪⚓ Docs ; https://protobuf.dev/
     The C++ implementation of Protocol Buffers has an explicit dependency on Abseil.
 
   ⚓ C++ API ; https://protobuf.dev/reference/cpp/api-docs/
+    #📦 google::protobuf
+      ⚓ google/protobuf/message.h ; https://protobuf.dev/reference/cpp/api-docs/google.protobuf.message
+
   ⚓ C++ Reference ; https://protobuf.dev/reference/cpp/api-docs/
     This section contains reference documentation for working with protocol buffer classes in C++.
 
