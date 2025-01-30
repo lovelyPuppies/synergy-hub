@@ -68,7 +68,8 @@ c+cpp
     ⚓📍 References ; https://learn.microsoft.com/en-us/cpp/cpp/references-cpp
       A reference, like a pointer, stores the address of an object that is located elsewhere in memory.
       Unlike a pointer, a reference after it's initialized can't be made to refer to a different object or set to null. 
-      🪱 universal reference (either rvalue or lvalue)
+      ⚖️ && operator signifies either an 🚣 rvalue reference, or a 🪱 universal reference (either rvalue or lvalue) depending on the context.
+        📝 Refer to 🔗 `Perfect forwarding`
     ⚓📍 Lvalues and rvalues ; https://learn.microsoft.com/en-us/cpp/cpp/lvalues-and-rvalues-visual-cpp
       🗒️ Contents
         An lvalue has an address that your program can access.
@@ -79,7 +80,13 @@ c+cpp
         #️⃣📍 Move semantics ; https://learn.microsoft.com/en-us/cpp/cpp/rvalue-reference-declarator-amp-amp#move-semantics
           ⭕ ..., which can significantly increase the performance of your applications.
         #️⃣🪱 Perfect forwarding ; https://learn.microsoft.com/en-us/cpp/cpp/rvalue-reference-declarator-amp-amp?view=msvc-170#perfect-forwarding
-
+          💡 Perfect forwarding reduces the need for overloaded functions and helps avoid the forwarding problem.
+            The 🪱 forwarding problem can occur when you write a 🚣 generic function that takes references as its parameters.
+            ```c++
+              template <typename T, typename A1, typename A2>
+              T* factory(A1&& a1, A2&& a2)
+                { return new T(std::forward<A1>(a1), std::forward<A2>(a2)); }
+            ```
     ⚓ Temporary objects ; https://learn.microsoft.com/en-us/cpp/cpp/temporary-objects
     ⚓ Alignment ; https://learn.microsoft.com/en-us/cpp/cpp/alignment-cpp-declarations
     ⚓ Trivial, standard-layout, and POD types ; https://learn.microsoft.com/en-us/cpp/cpp/trivial-standard-layout-and-pod-types
