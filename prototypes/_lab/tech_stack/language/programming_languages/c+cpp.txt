@@ -375,6 +375,8 @@ c+cpp
     ⚓ Special member functions ; https://learn.microsoft.com/en-us/cpp/cpp/special-member-functions
     ⚓ Static members ; https://learn.microsoft.com/en-us/cpp/cpp/static-members-cpp
     ⚓ User-defined type conversions ; https://learn.microsoft.com/en-us/cpp/cpp/user-defined-type-conversions-cpp
+      🪱 Implicit conversions are attempted when: ...
+      - 🪱 explicit
     ⚓ Mutable data members ; https://learn.microsoft.com/en-us/cpp/cpp/mutable-data-members-cpp
     ⚓ Nested class declarations ; https://learn.microsoft.com/en-us/cpp/cpp/nested-class-declarations
     ⚓ Anonymous class types ; https://learn.microsoft.com/en-us/cpp/cpp/anonymous-class-types
