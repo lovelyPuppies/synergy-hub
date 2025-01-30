@@ -50,7 +50,8 @@ protobuf 🔪⚓ Docs ; https://protobuf.dev/
 
   # Programming Guides
     ⚓ Language Guide (editions) ; https://protobuf.dev/programming-guides/editions/
-  
+    ⚓ Encoding ; https://protobuf.dev/programming-guides/encoding/
+      🪱 wire format
 ----------------------------------------------
 ⚓🔰 protobuf 🔪 C++ ; https://protobuf.dev/reference/cpp/
   ⚓ Protocol Buffer Basics: C++ ; << https://protobuf.dev/getting-started/cpptutorial/
@@ -107,18 +108,36 @@ protobuf 🔪⚓ Docs ; https://protobuf.dev/
           The only case where this makes a difference is if you want to 🪱 forward-declare the class in another file – you cannot forward-declare nested types in C++, but you can forward-declare Person_PhoneNumber
       
       #️⃣💡 Standard Message Methods ; https://protobuf.dev/getting-started/cpptutorial/#standard-message-methods
-        🪱
-          - bool IsInitialized() const; 
+        Each message class also contains a number of other methods that let you check or manipulate the entire message, including:          
+          -🪱 bool IsInitialized() const; 
             checks if all the required fields have been set.
-          - string DebugString() const; 
+          -🪱 string DebugString() const; 
             returns a human-readable representation of the message, particularly useful for debugging.
-          - void CopyFrom(const Person& from);  
+          -🪱 void CopyFrom(const Person& from);  
             overwrites the message with the given message’s values.
-          - void Clear(); 
+          -🪱 void Clear(); 
             clears all the elements back to the empty state.
 
-            
       #️⃣ Parsing and Serialization ; https://protobuf.dev/getting-started/cpptutorial/#parsing-serialization
+        Finally, each protocol buffer class has methods for writing and reading messages of your chosen type using the protocol buffer binary format. These include:
+          -🪱 bool SerializeToString(string* output) const;
+            serializes the message and stores the bytes in the given string. Note that the bytes are binary, not text; we only use the string class as a convenient container.
+          -🪱 bool ParseFromString(const string& data);
+            parses a message from the given string.
+          -🪱 bool SerializeToOstream(ostream* output) const;
+            writes the message to the given C++ ostream.
+          -🪱 bool ParseFromIstream(istream* input);
+            parses a message from the given C++ istream.
+        📍 Important
+          Protocol Buffers and Object Oriented Design Protocol buffer classes are basically 🪱 data holders (like structs in C) that don’t provide additional functionality
+            ; they don’t make good 🪱 first class citizens in an object model.
+          ⭕ Wrapping protocol buffers is also a good idea if you don’t have control over the design of the .proto file (if, say, you’re reusing one from another project).
+            In that case, you can use the wrapper class to craft an interface better suited to the unique environment of your application: hiding some data and methods, exposing convenience functions, etc.
+            ⚠️ You should never add behavior to the generated classes by inheriting from them.
+              This will break internal mechanisms and is not good object-oriented practice anyway.
+
+
+              
     #️⃣ Writing a Message ; https://protobuf.dev/getting-started/cpptutorial/#writing-a-message
     #️⃣ Reading a Message ; https://protobuf.dev/getting-started/cpptutorial/#reading-a-message
     #️⃣ Extending a Protocol Buffer ; https://protobuf.dev/getting-started/cpptutorial/#extending-a-protobuf
