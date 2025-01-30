@@ -89,6 +89,16 @@
 					"label": ""
 				}
 			]
+		},
+		{
+			"path": "prototypes/_lab/tech_stack/language/programming_languages/c+cpp.txt",
+			"bookmarks": [
+				{
+					"line": 67,
+					"column": 11,
+					"label": ""
+				}
+			]
 		}
 	]
 }

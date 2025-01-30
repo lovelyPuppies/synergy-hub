@@ -66,10 +66,18 @@ c+cpp
     ⚓ Program termination ; https://learn.microsoft.com/en-us/cpp/cpp/program-termination
 
     ⚓📍 References ; https://learn.microsoft.com/en-us/cpp/cpp/references-cpp
+      📝🛍️ e.g. Reference to an array ; https://stackoverflow.com/questions/43435279/what-does-const-charan-mean
+        class conststr {
+            const char* p;
+            std::size_t sz;
+        public:
+            template<std::size_t N>
+            constexpr conststr(const char(&a)[N]): p(a), sz(N - 1) {}
+        };
       A reference, like a pointer, stores the address of an object that is located elsewhere in memory.
       Unlike a pointer, a reference after it's initialized can't be made to refer to a different object or set to null. 
       ⚖️ && operator signifies either an 🚣 rvalue reference, or a 🪱 universal reference (either rvalue or lvalue) depending on the context.
-        📝 Refer to 🔗 `Perfect forwarding`
+        Refer to 🔗 `Perfect forwarding`
     ⚓📍 Lvalues and rvalues ; https://learn.microsoft.com/en-us/cpp/cpp/lvalues-and-rvalues-visual-cpp
       🗒️ Contents
         An lvalue has an address that your program can access.
@@ -323,7 +331,7 @@ c+cpp
       ⚓ Constructors ; https://learn.microsoft.com/en-us/cpp/cpp/constructors-cpp
         #️⃣ Default constructors ; https://learn.microsoft.com/en-us/cpp/cpp/constructors-cpp#default_constructors
         #️⃣ Explicit constructors ; https://learn.microsoft.com/en-us/cpp/cpp/constructors-cpp#explicit_constructors
-        #️⃣ Initializer list constructors ; https://learn.microsoft.com/en-us/cpp/cpp/constructors-cpp#init_list_constructors
+        #️⃣🪱 Initializer list constructors ; https://learn.microsoft.com/en-us/cpp/cpp/constructors-cpp#init_list_constructors
       ⚓💡 Copy constructors and copy assignment operators ; https://learn.microsoft.com/en-us/cpp/cpp/copy-constructors-and-copy-assignment-operators-cpp
 
       ⚓📍 Move constructors and move assignment operators ; https://learn.microsoft.com/en-us/cpp/cpp/move-constructors-and-move-assignment-operators-cpp
