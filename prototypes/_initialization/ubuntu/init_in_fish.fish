@@ -2071,7 +2071,7 @@ else
     end
 
     #### JetBrains Mono Nerd Font
-    # Written at 📅 2024-12-25 09:47:38
+    # 📅 Written at 2024-12-25 09:47:38
     # Fonts to download and their URLs
     set -l fonts \
         "JetBrainsMono Nerd Font https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/JetBrainsMono.zip"

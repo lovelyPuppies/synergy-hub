@@ -4,7 +4,7 @@ MediaWiki API - Wikipedia navigational templates (우측에 Table)..
 <a> tag 에서 inner_text() 에서 <span class="vector-toc-numb">4</span> 이런 부분 빼야 함.
 
 📰 update required by crawling_toc_opencv.py
-Written at 📅 2024-09-24 04:27:38
+📅 Written at 2024-09-24 04:27:38
 https://en.wikipedia.org/wiki/Systems_development_life_cycle
 
 TODO: crawling query 2: document.querySelectorAll('table[class*="sidebar"]')

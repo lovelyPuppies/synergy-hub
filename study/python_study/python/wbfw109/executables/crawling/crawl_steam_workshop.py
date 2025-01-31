@@ -143,7 +143,7 @@ echo $output | jq .
 
 
 """
-# Written at 📅 2024-10-15 00:16:41
+# 📅 Written at 2024-10-15 00:16:41
 import shutil
 from pathlib import Path
 

@@ -97,7 +97,7 @@ action_classes = [
 
 def print_dict_structure(d, indent=0):
     """
-    Written at 📅 2024-10-17 19:33:00
+    📅 Written at 2024-10-17 19:33:00
 
     🛍️ e.g. print_dict_structure(checkpoint)
     """
@@ -113,7 +113,7 @@ def print_dict_structure(d, indent=0):
 
 def execute_code_and_extract_variables(code_str: str) -> dict:
     """
-    Written at 📅 2024-10-17 19:33:00
+    📅 Written at 2024-10-17 19:33:00
 
     Executes a given string of Python code and returns the defined variables as a dictionary.
 
@@ -786,7 +786,7 @@ posec3d_model 변수가 아키텍처고 가중치를 cechkpoint_path 로부터 �
 
 
 
-Written at 📅 2024-10-17 21:48:25
+📅 Written at 2024-10-17 21:48:25
 
 # Why YOLO Returns `list[Results]`
 

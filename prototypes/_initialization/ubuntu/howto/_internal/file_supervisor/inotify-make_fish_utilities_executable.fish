@@ -1,5 +1,5 @@
 #!/usr/bin/env fish
-# Written at 📅 2025-01-12 16:39:12
+# 📅 Written at 2025-01-12 16:39:12
 
 # Set directory to be watched
 set GENERAL_FISH_SCRIPT_DIR (dirname (dirname (dirname (realpath (status filename)))))/general

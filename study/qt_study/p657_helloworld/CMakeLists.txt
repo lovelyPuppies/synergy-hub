@@ -1,4 +1,4 @@
-# Written at 📅 2024-12-30 10:21:09
+# 📅 Written at 2024-12-30 10:21:09
 cmake_minimum_required(VERSION 3.19)
 project(testQt LANGUAGES CXX)
 

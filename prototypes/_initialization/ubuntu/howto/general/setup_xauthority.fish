@@ -1,5 +1,5 @@
 #!/usr/bin/env fish
-# Written at 📅 2024-12-29 06:21:53
+# 📅 Written at 2024-12-29 06:21:53
 function on_interrupt
     echo -e "\nScript interrupted. Exiting..."
     # Kill all child processes in the same process group

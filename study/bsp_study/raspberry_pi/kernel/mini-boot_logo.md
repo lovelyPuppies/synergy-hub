@@ -1,6 +1,6 @@
 ## 🎱 Mini-Project - Customize Boot Logo for Raspberry Pi B4
 
-Written at 📅 2024-12-13 11:38:28
+📅 Written at 2024-12-13 11:38:28
 
 - [🎱 Mini-Project - Customize Boot Logo for Raspberry Pi B4](#-mini-project---customize-boot-logo-for-raspberry-pi-b4)
   - [✔️ Basic Setup](#️-basic-setup)

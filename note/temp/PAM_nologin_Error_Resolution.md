@@ -1,6 +1,6 @@
 # Understanding and Resolving PAM `pam_nologin` Errors on Linux Systems
 
-Written at 📅 2024-11-24 21:45:30
+📅 Written at 2024-11-24 21:45:30
 
 ## Overview
 
@@ -25,11 +25,12 @@ This occurs when attempting to SSH into a Raspberry Pi (or another Linux environ
 
 Network misconfigurations can indirectly cause this error. Here's how:
 
-1. **Boot Dependency on Network Services**  
+1. **Boot Dependency on Network Services**
+
    - If network settings are misconfigured, the system's boot process may not complete successfully.
    - Certain network-dependent services might fail, leading the system to consider the boot incomplete, thereby creating the `/etc/nologin` file. This file blocks non-root user logins.
 
-2. **Interaction with SSH Service**  
+2. **Interaction with SSH Service**
    - The SSH daemon (`sshd`) uses PAM (`Pluggable Authentication Modules`) for authentication. If network issues prevent `sshd` from initializing properly, PAM will enforce the restrictions defined by the `pam_nologin` module, blocking unprivileged users.
 
 ---
@@ -37,6 +38,7 @@ Network misconfigurations can indirectly cause this error. Here's how:
 ## Solution Steps
 
 ### **Temporary Fix**: Bypassing `pam_nologin` Restrictions
+
 1. Access the Raspberry Pi's file system through an SD card reader or alternate means.
 2. Navigate to the PAM SSH configuration file:
    ```bash
@@ -47,9 +49,11 @@ Network misconfigurations can indirectly cause this error. Here's how:
    account    required     pam_nologin.so
    ```
 4. Comment out the line by adding a `#` at the beginning:
+
    ```plaintext
    #account    required     pam_nologin.so
    ```
+
    > **Note**: This temporarily disables the login restriction for non-root users and should only be done during debugging.
 
 5. Reload the SSH service to apply changes:
@@ -60,15 +64,18 @@ Network misconfigurations can indirectly cause this error. Here's how:
 ### **Long-Term Fix**: Resolving Network Configuration Issues
 
 1. Verify the network settings in configuration files such as:
+
    - `/etc/network/interfaces`
    - `/etc/dhcpcd.conf`
 
 2. Correct any misconfigurations, such as:
+
    - Missing or incorrect gateway IPs.
    - DNS resolution issues.
    - Static IP conflicts.
 
 3. Restart the network service:
+
    ```bash
    sudo systemctl restart networking
    ```

@@ -1,11 +1,11 @@
 ## 🎱 Mini-Project - Customize Boot Logo for Raspberry Pi B4
 
-Written at 📅 2024-12-13 11:38:28
+📅 Written at 2024-12-13 11:38:28
 
 - [🎱 Mini-Project - Customize Boot Logo for Raspberry Pi B4](#-mini-project---customize-boot-logo-for-raspberry-pi-b4)
   - [✔️ Basic Repository Setup](#️-basic-repository-setup)
     - [Prepare a custom boot logo image](#prepare-a-custom-boot-logo-image)
-  - [✔️ Add Custom Boot Logo: include/linux/linux\_logo.h](#️-add-custom-boot-logo-includelinuxlinux_logoh)
+  - [✔️ Add Custom Boot Logo: include/linux/linux_logo.h](#️-add-custom-boot-logo-includelinuxlinux_logoh)
   - [✔️ Add Custom Boot Logo Logic: drivers/video/logo/logo.c](#️-add-custom-boot-logo-logic-driversvideologologoc)
   - [✔️ Define Custom Boot Logo Config: drivers/video/logo/Kconfig](#️-define-custom-boot-logo-config-driversvideologokconfig)
   - [✔️ Register Custom Boot Logo File: drivers/video/logo/Makefile](#️-register-custom-boot-logo-file-driversvideologomakefile)

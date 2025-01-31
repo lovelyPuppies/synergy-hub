@@ -1,5 +1,5 @@
 #!/usr/bin/bash
-# Written at 📅 2025-01-12 19:58:15
+# 📅 Written at 2025-01-12 19:58:15
 <<COMMENT
 📦 Install Fish shell
 Notes

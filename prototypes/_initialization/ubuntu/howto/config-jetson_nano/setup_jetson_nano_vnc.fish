@@ -1,5 +1,5 @@
 #!/usr/bin/env fish
-# Written at 📅 2024-11-13 14:30:23
+# 📅 Written at 2024-11-13 14:30:23
 : '
   ⚠️ Issues: Bug ; VNC get stuck at logo screen everytime I reboot jetson agx xavier with jetpack 5.0.2. ; https://forums.developer.nvidia.com/t/vnc-get-stuck-at-logo-screen-everytime-i-reboot-jetson-agx-xavier-with-jetpack-5-0-2/240204
     ➡️ solution; It requires dummy monitor settings in /etc/X11/xorg.conf
@@ -46,7 +46,7 @@ function prettify_indent_via_pipe
       { gsub(/[[:blank:]]*$/, ""); print }
     '
 end
-  
+
 # Install gawk for compatibility, as this function may require GNU Awk (gawk)
 # for expected behavior. Use `awk --version` to check if GNU Awk is installed.
 # Installing gawk will set awk to automatically call gawk, ensuring compatibility.
@@ -83,7 +83,7 @@ set gschema_file_path "/usr/share/glib-2.0/schemas/org.gnome.Vino.gschema.xml"
 if not grep -q '<key name="enabled" type="b">' $gschema_file_path
     # Insert a new key named "enabled" in the GNOME Vino schema configuration
     # This key enables remote desktop access via the VNC protocol
-    
+
 
     set replacement_text (echo '
     \ \ \ \ <key name="enabled" type="b">\
@@ -155,7 +155,7 @@ Section "ServerLayout"
     Identifier "DummyLayout"
     Screen     "DummyScreen"
 EndSection
-' | sudo tee /etc/X11/xorg.conf.d/10-dummy.conf > /dev/null
+' | sudo tee /etc/X11/xorg.conf.d/10-dummy.conf >/dev/null
 
 
 

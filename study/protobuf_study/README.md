@@ -82,6 +82,7 @@ pkg-config의 출력은 공백( )으로 구분된 여러 인자로 구성됨.
 bash에서는 자동으로 공백을 기준으로 인자를 분리하지만, fish는 기본적으로 개행(\n)을 기준으로만 분리하기 때문에, 전체 출력이 하나의 인자로 처리됨.
 결과적으로 g++에서 올바르게 처리되지 않음.
 
+string split -n " "
 ```
 
 clang++ test.pb.cc main.cpp -o test.out (pkg-config --cflags --libs protobuf)

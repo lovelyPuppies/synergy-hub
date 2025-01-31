@@ -1,4 +1,4 @@
-"""Written at 📅 2024-09-25 23:54:31
+"""📅 Written at 2024-09-25 23:54:31
 Not use BeatifulSoup. use playwright
 """
 

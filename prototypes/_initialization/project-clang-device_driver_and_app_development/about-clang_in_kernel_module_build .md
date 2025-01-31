@@ -17,7 +17,7 @@
 
 ### ➡️ Set the flag `fno-pic`
 
-Written at 📅 2024-12-23 00:35:28
+📅 Written at 2024-12-23 00:35:28
 
 #### 🆚 Comparison: Flag "fno-pic" in Clang vs. GCC
 
@@ -67,7 +67,7 @@ Written at 📅 2024-12-23 00:35:28
 
 ### 🆚 Comparison: (Hard-float vs. Soft-float)
 
-Written at 📅 2024-12-23 00:35:28
+📅 Written at 2024-12-23 00:35:28
 
 #### Hard-float
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env fish
-# Written at 📅 2024-10-28 13:48:11
+# 📅 Written at 2024-10-28 13:48:11
 
 function exit_if_no_argument_from_argv1
     : '

@@ -1,6 +1,6 @@
 # Understanding Ubuntu Package Sources, Management, and Security with GPG Keys
 
-Written at 📅 2024-10-08 11:28:37
+📅 Written at 2024-10-08 11:28:37
 
 Ubuntu, like other Debian-based distributions, uses `apt` as its package management system. The process of adding, managing, and securing packages is critical for maintaining a stable and secure system. This document provides an in-depth explanation of Ubuntu’s package sources, how packages are managed, and the role of GPG keys in ensuring integrity and security.
 
@@ -92,12 +92,13 @@ If the signature does not match, `apt` will refuse to install the package, warni
 When you download a GPG key from a repository, it is typically in **ASCII-armored** format (a human-readable text format). However, for efficient and secure usage, Ubuntu prefers storing these keys in a **binary format**. The `dearmor` command is used to convert an ASCII-armored key into this binary format.
 
 - **ASCII-Armored Format**:
+
   - This is the default format for GPG keys when they are distributed. It is designed to be human-readable and easy to transmit over text-based systems (like emails or webpages).
   - It often includes additional information such as headers and checksums, making it bulkier and less efficient for the system to parse and use directly.
 
 - **Binary Format**:
   - This format is more compact and optimized for computers to read and verify. It removes the additional text headers and compresses the key data, allowing the system to access and verify the key quickly when validating software packages.
-  
+
 #### How `dearmor` Works
 
 - The `gpg --dearmor` command reads the ASCII-armored GPG key file and converts it to a binary (or dearmored) version.
@@ -107,7 +108,7 @@ When you download a GPG key from a repository, it is typically in **ASCII-armore
 
 - **Efficiency**: The binary format is faster for the system to parse and use, which is important when `apt` needs to verify multiple packages and repositories.
 - **Security**: By storing GPG keys in a secure and compact format within the system’s keyring directory, it reduces the risk of tampering and ensures that only valid keys are used to verify packages.
-  
+
 ### Example of Using `dearmor`
 
 ```bash

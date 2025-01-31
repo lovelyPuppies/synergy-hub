@@ -11,7 +11,7 @@ trap on_interrupt SIGINT
 ##### init_nfs-client_to_server.fish
 # 🪱 NFS (Network File System) allows for file sharing between Unix/Linux systems.
 # This script configures an NFS client by dynamically taking user input for target details.
-# Written at 📅 2024-12-11 11:00:20
+# 📅 Written at 2024-12-11 11:00:20
 
 : '
 * Prerequisite

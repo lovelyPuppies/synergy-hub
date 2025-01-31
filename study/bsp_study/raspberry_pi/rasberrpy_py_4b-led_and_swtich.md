@@ -1,6 +1,6 @@
 # Raspberry Pi 4B Pin map
 
-Written at 📅 2024-12-04 11:33:28
+📅 Written at 2024-12-04 11:33:28
 
 ## Notes
 

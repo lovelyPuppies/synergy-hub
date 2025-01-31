@@ -301,12 +301,14 @@ tree [**prototypes/\_initialization/\_about**](prototypes/_initialization/_about
 │&nbsp;&nbsp;&nbsp;&nbsp;├── [kmsg_vs_journalctl.md](prototypes/_initialization/_about/compare_similar_functinalities/kmsg_vs_journalctl.md)  
 │&nbsp;&nbsp;&nbsp;&nbsp;└── [video_streaming-seraizliation_vs_compression.md](prototypes/_initialization/_about/compare_similar_functinalities/video_streaming-seraizliation_vs_compression.md)  
 └── 📂 compare_trend  
-&nbsp;&nbsp;&nbsp;&nbsp;├── [git_switch_and_restore_instead_of_git_checkout.md](prototypes/_initialization/_about/compare_trend/git_switch_and_restore_instead_of_git_checkout.md)  
-&nbsp;&nbsp;&nbsp;&nbsp;├── [netplan-efficient-usage.md](prototypes/_initialization/_about/compare_trend/netplan-efficient-usage.md)  
-&nbsp;&nbsp;&nbsp;&nbsp;├── [netplan-vs-etc_network_interfaces.md](prototypes/_initialization/_about/compare_trend/netplan-vs-etc_network_interfaces.md)  
-&nbsp;&nbsp;&nbsp;&nbsp;├── [preferring_gpiod_and_other_control_methods_over_sysfs_and_ioctl_for_device_control.md](prototypes/_initialization/_about/compare_trend/preferring_gpiod_and_other_control_methods_over_sysfs_and_ioctl_for_device_control.md)  
-&nbsp;&nbsp;&nbsp;&nbsp;├── [raspberry_pi_64bit_environment_with_qt.md](prototypes/_initialization/_about/compare_trend/raspberry_pi_64bit_environment_with_qt.md)  
-&nbsp;&nbsp;&nbsp;&nbsp;└── [why_thread_became_the_standard_in_matter.md](prototypes/_initialization/_about/compare_trend/why_thread_became_the_standard_in_matter.md)
+&nbsp;&nbsp;&nbsp;&nbsp;├── [build-compilation-cpp.md](prototypes/_initialization/_about/compare_trend/build-compilation-cpp.md)  
+&nbsp;&nbsp;&nbsp;&nbsp;├── [git-switch_and_restore_instead_of_git_checkout.md](prototypes/_initialization/_about/compare_trend/git-switch_and_restore_instead_of_git_checkout.md)  
+&nbsp;&nbsp;&nbsp;&nbsp;├── [hardware-preferring_gpiod_and_other_control_methods_over_sysfs_and_ioctl.md](prototypes/_initialization/_about/compare_trend/hardware-preferring_gpiod_and_other_control_methods_over_sysfs_and_ioctl.md)  
+&nbsp;&nbsp;&nbsp;&nbsp;├── [hardware-raspberry_pi_64bit_environment_with_qt.md](prototypes/_initialization/_about/compare_trend/hardware-raspberry_pi_64bit_environment_with_qt.md)  
+&nbsp;&nbsp;&nbsp;&nbsp;├── [iot-why_thread_became_the_standard_in_matter.md](prototypes/_initialization/_about/compare_trend/iot-why_thread_became_the_standard_in_matter.md)  
+&nbsp;&nbsp;&nbsp;&nbsp;├── [memory-dynamic_allocation-tcmalloc.md](prototypes/_initialization/_about/compare_trend/memory-dynamic_allocation-tcmalloc.md)  
+&nbsp;&nbsp;&nbsp;&nbsp;├── [network-netplan_efficient_usage.md](prototypes/_initialization/_about/compare_trend/network-netplan_efficient_usage.md)  
+&nbsp;&nbsp;&nbsp;&nbsp;└── [network-netplan_vs_etc_network_interfaces.md](prototypes/_initialization/_about/compare_trend/network-netplan_vs_etc_network_interfaces.md)
 
 ---
 

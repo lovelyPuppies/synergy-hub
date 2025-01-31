@@ -1076,7 +1076,8 @@ package
 # [Subtract] qt default value: 'Makefile*' 📅 2024-12-12 20:05:18
 !Makefile*
 
-
+# [Subtract] qt default value: '*build-*' 📅 2025-01-31 12:33:03
+!*build-*.md
 
 
 #

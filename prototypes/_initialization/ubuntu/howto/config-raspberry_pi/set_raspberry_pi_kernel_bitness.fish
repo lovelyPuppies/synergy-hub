@@ -1,6 +1,6 @@
 
 #!/usr/bin/env fish
-# Written at 📅 2025-01-01 20:06:45
+# 📅 Written at 2025-01-01 20:06:45
 
 function set_raspberry_pi_kernel_bitness
     # Prompt user to select OS bit mode

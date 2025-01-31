@@ -1,6 +1,6 @@
 ## 🎱 Mini-Project - Yocto for Raspberry Pi B4
 
-Written at 📅 2024-12-12 19:21:31
+📅 Written at 2024-12-12 19:21:31
 
 - [🎱 Mini-Project - Yocto for Raspberry Pi B4](#-mini-project---yocto-for-raspberry-pi-b4)
   - [✔️ Basic Setup](#️-basic-setup)

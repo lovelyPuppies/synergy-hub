@@ -1,5 +1,5 @@
 #!/usr/bin/env fish
-# Written at 📅 2025-01-13 18:37:33
+# 📅 Written at 2025-01-13 18:37:33
 # Handle SIGINT (Ctrl+C) to exit the script and terminate any child processes
 function on_interrupt
     echo -e "\nScript interrupted. Exiting..."

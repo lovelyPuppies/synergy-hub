@@ -1,6 +1,6 @@
 # C++ Fundamentals for Rust Learners: RAII, Move Semantics, and Smart Pointers
 
-Written at 📅 2024-09-22 06:27:29
+📅 Written at 2024-09-22 06:27:29
 
 This document provides an essential overview of key C++ concepts—RAII Pattern, Move Semantics, and Smart Pointers—which serve as foundational knowledge for understanding similar principles in Rust, such as lifetime and ownership. Through detailed examples involving vector memory allocation, it explains how move semantics efficiently manage resources when working with literal values, variables, and pointers. Additionally, it highlights the performance advantages of move semantics over copy semantics by delving into the underlying memory operations, making it easier to grasp Rust's resource management model.
 
@@ -32,11 +32,11 @@ This document provides an essential overview of key C++ concepts—RAII Pattern,
       - [Memory Efficiency:](#memory-efficiency)
       - [Key Takeaway:](#key-takeaway)
   - [3. Smart Pointers](#3-smart-pointers)
-    - [1. **std::unique\_ptr**](#1-stdunique_ptr)
+    - [1. **std::unique_ptr**](#1-stdunique_ptr)
       - [Example:](#example)
-    - [2. **std::shared\_ptr**](#2-stdshared_ptr)
+    - [2. **std::shared_ptr**](#2-stdshared_ptr)
       - [Example:](#example-1)
-    - [3. **std::weak\_ptr**](#3-stdweak_ptr)
+    - [3. **std::weak_ptr**](#3-stdweak_ptr)
       - [Example: Circular Dependency Prevention](#example-circular-dependency-prevention)
     - [Memory Layout with Circular Reference:](#memory-layout-with-circular-reference)
     - [Why `std::weak_ptr` is Important:](#why-stdweak_ptr-is-important)

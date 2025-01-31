@@ -1,5 +1,6 @@
 # Configuring IntelliSense for Ultralytics Docker Image in VSCode Devcontainer
-Written at 📅 2024-10-21 05:28:00
+
+📅 Written at 2024-10-21 05:28:00
 Written by wbfw109
 
 ## **How the path `/ultralytics` was determined**
@@ -7,11 +8,13 @@ Written by wbfw109
 The following command and its output were the key to identifying the correct installation path for Ultralytics:
 
 ### **Command Used:**
+
 ```bash
 pip freeze --all | grep ultralytics
 ```
 
 ### **Command Output:**
+
 ```
 onnxruntime-gpu @ file:///ultralytics/onnxruntime_gpu-1.8.0-cp38-cp38-linux_aarch64.whl#sha256=72d6cfc71ac9b9278ab52fac2b2589c0458f16e58b242cb8b3eeca549dedcad5
 tensorrt @ file:///ultralytics/tensorrt-8.2.0.6-cp38-none-linux_aarch64.whl#sha256=78833cfaf54789f5ef70dcb6cee5c5a125913454ad32ea500296bbfac417dca5
@@ -25,6 +28,7 @@ ultralytics-thop==2.0.9
 ### **Reasoning Behind the Path Configuration**
 
 From the output above:
+
 - The line `-e /ultralytics` indicates that the Ultralytics library was installed in **editable mode** from the `/ultralytics` directory.
 - As the code resides in this custom path, VSCode needs to be explicitly configured to recognize it for IntelliSense to function correctly.
 
@@ -35,6 +39,7 @@ From the output above:
 To ensure that IntelliSense works correctly with Ultralytics in your Devcontainer, update the `devcontainer.json` with the following configuration.
 
 ### **Updated `devcontainer.json`:**
+
 ```json
 {
   "customizations": {

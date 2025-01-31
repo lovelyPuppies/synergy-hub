@@ -1,5 +1,5 @@
 """
-Written at 📅 2024-10-14 21:39:25
+📅 Written at 2024-10-14 21:39:25
 https://github.com/kennymckormick/pyskl/blob/main/tools/data/README.md
 # Annotations
   # keypoint (np.ndarray, with shape [M x T x V x C]): The keypoint annotation. M: number of persons; T: number of frames (same as total_frames); V: number of keypoints (25 for NTURGB+D 3D skeleton, 📍 17 for CoCo, 18 for OpenPose, etc. ); C: number of dimensions for keypoint coordinates (C=2 for 2D keypoint, C=3 for 3D keypoint).

@@ -2,7 +2,7 @@
 
 ##### init_samba-client_to_server.fish
 # 🪱 Samba is an implementation of the Server Message Block (SMB)/Common Internet File System (CIFS) protocol for Unix systems, providing support for cross-platform file and printer sharing with Microsoft Windows, OS X, and other Unix
-# Written at 📅 2024-12-11 10:50:46
+# 📅 Written at 2024-12-11 10:50:46
 : '
 * 🧪 if you already mount, you can test this script after run %shell> sudo umount $local_mount_dir
 * Prerequisite

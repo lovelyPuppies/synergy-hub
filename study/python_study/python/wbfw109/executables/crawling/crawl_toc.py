@@ -1,5 +1,5 @@
 """
-Written at 📅 2024-09-28 19:20:16
+📅 Written at 2024-09-28 19:20:16
 🌪️ TODO:
     - crawl with dl, dt, dd in Python (https://docs.python.org/3/using/cmdline.html#cmdoption-c)
         add TableOfContentsType.<??> or .. add when MAIN_CONTENT_AREA_TOC

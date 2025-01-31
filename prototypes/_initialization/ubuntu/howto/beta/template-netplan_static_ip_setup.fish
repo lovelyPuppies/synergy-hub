@@ -2,7 +2,7 @@
 ## 📰 ?명령을 한 번에 실행하게 하게 ssh 연결이 끊어져도 실행되도록 바꿔야할듯.
 # sudo netplan apply, echo "Stopping $service_to_stop...", echo "Starting $service_to_start..." 할 때 각각 1번씩 총 3 번 끊김.
 
-# Written at 📅 2024-11-24 14:57:47
+# 📅 Written at 2024-11-24 14:57:47
 
 : ' ✏️ Define the default renderer. Users can change it as needed.
     🧮 set renderer_choice networkd

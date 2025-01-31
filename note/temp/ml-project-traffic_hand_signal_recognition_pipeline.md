@@ -1,7 +1,6 @@
-
 # Traffic Hand Signal Recognition Pipeline
 
-Written at 📅 2024-10-04 13:39:17
+📅 Written at 2024-10-04 13:39:17
 
 ## Pipeline Overview
 
@@ -35,7 +34,6 @@ In your project, the goal is to accurately recognize **traffic hand signals** wh
 ### **1. Depth Consideration (3D vs. 2D)**
 
 - **Initial Question**: You asked whether **3D depth** is required for gestures like **"Slow Down"** (pushing the palm toward the camera) or if **2D keypoints** would suffice. You considered that **elbow position** might change, which is critical for recognizing gestures.
-  
 - **Conclusion**: **Exact depth (z-axis)** is **important** for gestures that involve **forward-backward hand movements**, especially when the car is approaching the traffic controller or when there are **multiple controllers** present. You decided that **knowing exact depth measurements** can avoid ambiguities, especially in real-world scenarios where the vehicle's perspective and distance vary.
 
 ---
@@ -63,6 +61,7 @@ In your project, the goal is to accurately recognize **traffic hand signals** wh
 ### **4. Multiple Models and Resource Constraints**
 
 - You are running several models in the pipeline:
+
   1. **YOLOv11** for person detection.
   2. **Pose detection** for body keypoints.
   3. **Mediapipe Hand Landmark** for hand keypoints.
@@ -81,12 +80,15 @@ In your project, the goal is to accurately recognize **traffic hand signals** wh
 ### **Final Pipeline Configuration: Why These Models Were Chosen**
 
 1. **Object Detection (YOLOv11)**:
+
    - **Why YOLOv11**: Efficient for detecting people, with support for multiple classes and high performance. Better than **Mediapipe Object Detection** for your case, as it can focus specifically on people and is highly optimized for embedded systems.
 
 2. **Pose Detection (Mediapipe Pose Landmark)**:
+
    - **Why Mediapipe Pose Landmark**: Provides good-enough z-axis approximation for 3D pose estimation while maintaining **real-time speed** on Jetson Nano. Depth precision is sufficient for your project, and the model is lightweight compared to RTMPose3D.
 
 3. **Hand Detection (Mediapipe Hand Landmark)**:
+
    - **Why Mediapipe Hand Landmark**: It seamlessly integrates with **Mediapipe Pose**, ensuring consistent detection of hands and poses, especially in real-time applications.
 
 4. **Action Recognition (EfficientGCN)**:
@@ -127,13 +129,12 @@ In your project, the goal is to accurately recognize **traffic hand signals** wh
 - MS-G3D: https://ar5iv.labs.arxiv.org/html/2106.15125
 - EfficientGCN: https://deepai.org/publication/constructing-stronger-and-faster-baselines-for-skeleton-based-action-recognition
 
-
 EfficientGCNv1
-  https://github.com/zyxjtu/EfficientGCNv1
-  ACMMM 2020 ; https://dl.acm.org/doi/abs/10.1145/3394171.3413802
-  Arxiv Preprint ; https://arxiv.org/pdf/2010.09978.pdf
+https://github.com/zyxjtu/EfficientGCNv1
+ACMMM 2020 ; https://dl.acm.org/doi/abs/10.1145/3394171.3413802
+Arxiv Preprint ; https://arxiv.org/pdf/2010.09978.pdf
 
 EfficientGCN 2
-  https://github.com/attention-eq-everything/effgcn_cam
-  IEEE T-PAMI; https://ieeexplore.ieee.org/abstract/document/9729609
-  Arxiv Preprint ; https://arxiv.org/pdf/2106.15125
+https://github.com/attention-eq-everything/effgcn_cam
+IEEE T-PAMI; https://ieeexplore.ieee.org/abstract/document/9729609
+Arxiv Preprint ; https://arxiv.org/pdf/2106.15125

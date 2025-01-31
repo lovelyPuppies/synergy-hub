@@ -1,6 +1,6 @@
 #!/usr/bin/env fish
 
-# Written at 📅 2024-12-17 20:34:28 
+# 📅 Written at 2024-12-17 20:34:28 
 
 function on_interrupt
     echo -e "\nScript interrupted. Exiting..."

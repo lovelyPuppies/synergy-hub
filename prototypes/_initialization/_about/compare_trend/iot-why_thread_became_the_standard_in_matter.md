@@ -1,6 +1,6 @@
 # Why Thread Became the Standard in Matter
 
-Written at 📅 2024-11-14 13:02:40
+📅 Written at 2024-11-14 13:02:40
 
 Matter uses 🚣⭕ **Thread** and **Wi-Fi** as its main communication standards, with Thread being the primary protocol for low-power communication. Matter does not directly support Zigbee, and there are specific reasons why 📍 **Thread** was chosen over Zigbee.
 
@@ -76,6 +76,7 @@ Thread, even outside of Matter, is already emerging as the next-generation IoT m
 ## Release Dates for Zigbee and Thread
 
 1. **Zigbee**
+
    - **Release Year**: 2003
    - **Background**: Developed by the Zigbee Alliance (now the Connectivity Standards Alliance or CSA), Zigbee was initially designed for low-power wireless communication in smart homes, commercial spaces, and industrial IoT applications.
    - **Technical Evolution**: Since its release, Zigbee has undergone multiple updates. The latest major version, **Zigbee 3.0** (released in 2016), enhances interoperability and unifies various Zigbee devices under a single protocol.
@@ -86,5 +87,6 @@ Thread, even outside of Matter, is already emerging as the next-generation IoT m
    - **Technical Evolution**: Since its release, Thread has remained relatively consistent in its core architecture, becoming a primary standard in IoT and smart home communications, especially as it has been adopted within the Matter standard.
 
 **In Summary**:
+
 - **Zigbee**: Initially released in 2003 and has evolved with Zigbee 3.0 in 2016.
 - **Thread**: Released in 2014 as an IP-based low-power protocol and is now integrated as a major standard within Matter.

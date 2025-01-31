@@ -1,6 +1,6 @@
 # about-intellisense_for_c_cpp.md
 
-Written at 📅 2024-12-18 04:33:15
+📅 Written at 2024-12-18 04:33:15
 
 ## Why I use clangd instead of Microsoft's C/C++ IntelliSense
 

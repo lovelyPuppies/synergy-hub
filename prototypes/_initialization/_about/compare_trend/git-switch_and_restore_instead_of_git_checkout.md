@@ -1,6 +1,6 @@
 # ⭕ Why You Should Use `git switch` and `git restore` Instead of `git checkout`
 
-Written at 📅 2024-12-10 19:00:04
+📅 Written at 2024-12-10 19:00:04
 
 Git 2.23 introduced two experimental commands, `git switch` and `git restore`, as alternatives to `git checkout`. These commands are highly recommended because they make Git more intuitive and reduce the confusion caused by the multi-purpose nature of `git checkout`. This note explains why these commands were introduced, how they solve issues, and how to use them effectively.
 
