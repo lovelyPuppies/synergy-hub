@@ -38,8 +38,51 @@
         this name is misleading as the IFS characters are actually used as 🚣 field terminators.
       #🕵️🛡️ Exploits
 
+  ----------------------------------------------
+  ⚓🔰📎 rPath ; https://en.wikipedia.org/wiki/Rpath
+    🗒️ Contents
+      In computer science, rpath designates the run-time search path hard-coded in an executable file or library. Dynamic linking loaders use the rpath to find required libraries.
+      Specifically, it encodes a path to shared libraries into the header of an executable (or another shared library).
+        This 🪱 RPATH header value (so named in the Executable and Linkable Format header 🚣 standards) 
+      
+      The rpath of an executable or shared library is an optional entry in the 🪱 .dynamic section of the ELF executable or shared libraries, with the type 🪱 DT_RPATH, called the :DT_RPATH attribute.
+        It can be stored there at link time by the linker. Tools such as 🪱 chrpath and 🪱 patchelf can create or modify the entry later.
 
+      #📎 Use of the DT_RPATH entry by the dynamic linker
+        The different dynamic linkers for ELF implement the use of the 🪱 DT_RPATH (Dynamic Tag) attribute in different ways.
+      #📎 GNU ld.so
+        The dynamic linker of the GNU C Library searches for shared libraries in the following locations in order:
+          1. The (colon-separated) paths in the 🪱 DT_RPATH dynamic section attribute of the binary 🔘 if present and the 🪱 DT_RUNPATH attribute does not exist.
+          2. The (colon-separated) paths in the environment variable LD_LIBRARY_PATH, 🔘 unless the executable is a setuid/setgid binary, in which case it is ignored.
+            LD_LIBRARY_PATH can be overridden by calling the dynamic linker with the option 🪱 --library-path (e.g. /lib/ld-linux.so.2 --library-path $HOME/mylibs myprogram).
+          3. The (colon-separated) paths in the DT_RUNPATH dynamic section attribute of the binary if present.
+          4. Lookup based on the ldconfig cache file (often located at /etc/ld.so.cache) which contains a compiled list of candidate libraries previously found in the augmented library path (set by /etc/ld.so.conf).
+            If, however, the binary was linked with the 🔘 -z nodefaultlib linker option, libraries in the default library paths are skipped.
+          5. In the trusted default path /lib, and then /usr/lib. If the binary was linked with the 🔘 -z nodefaultlib linker option, this step is skipped.
 
+        Failing to find the shared library in all these locations will raise the "cannot open shared object file: No such file or directory" error.
+
+        Notes:
+          - 🧮 readelf -d <binary_name> | grep 'R.*PATH' displays the RPATH or RUNPATH of a binary file. In gcc, for instance, one could specify RPATH by -Wl,-rpath,/custom/rpath/.
+          - The option 🪱 --inhibit-rpath LIST of the dynamic linker instructs it to ignore DT_RPATH and DT_RUNPATH attributes of the object names in LIST.
+            To specify a main program in the LIST, give empty string.
+          - Libraries specified by the environment variable 🪱 LD_PRELOAD and then those listed in /etc/ld.so.preload are loaded before the search begins.
+            A preload can thus be used to replace some (or all) of the requested library's normal functionalities
+              , or it can simply be used to supply a library that would otherwise not be found.
+          - Static libraries are searched and linked into the ELF file at link time and are not searched at run time.
+      
+      #📎 The role of GNU ld
+        The GNU Linker (GNU ld) implements a feature which it calls 🪱 "new-dtags"
+          , which can be used to insert an rpath that has lower precedence than the LD_LIBRARY_PATH environment variable.
+
+        If the new-dtags feature is enabled in the linker (🪱 --enable-new-dtags), GNU ld
+          , besides setting the DT_RPATH attribute, also sets the DT_RUNPATH attribute to the same string.
+          At run time, if the dynamic linker finds a DT_RUNPATH attribute, it ignores the value of the DT_RPATH attribute
+          , with the effect that LD_LIBRARY_PATH is checked first and the paths in the DT_RUNPATH attribute are only searched afterwards.
+
+        💡⚖️ The ld dynamic linker does not search DT_RUNPATH locations for transitive dependencies, unlike DT_RPATH.
+
+        Instead of specifying the 🪱 -rpath to the linker, the environment variable 🪱 LD_RUN_PATH can be set to the same effect.
   ----------------------------------------------
   ⚓⭕📎 Epoll (event poll) ; https://en.wikipedia.org/wiki/Epoll
     🗒️ Contents
@@ -112,3 +155,13 @@ Wiktionary
     Noun
       no-op (plural no-ops)
         1. (computing) An instruction or operation that has no effect; a null operation.
+  
+  - deflate ; https://en.wiktionary.org/wiki/deflate#English
+    Verb
+      deflate (third-person singular simple present deflates, present participle deflating, simple past and past participle deflated)
+        6. (transitive, computing) To compress (data) according to a particular algorithm. 
+  - inflate ; https://en.wiktionary.org/wiki/inflate#English
+    Verb
+      2. inflate (third-person singular simple present inflates, present participle inflating, simple past and past participle inflated)
+        (transitive, computing) To decompress (data) that was previously deflated.
+  

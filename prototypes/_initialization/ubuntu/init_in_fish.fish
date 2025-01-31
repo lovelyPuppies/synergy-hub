@@ -534,22 +534,11 @@ if not grep -Fxq "$unique_comment" "$FISH_CONFIG_PATH"
     echo "
     $unique_comment
     set -a CPATH $protobuf_prefix/include
-    set -a LIBRARY_PATH $protobuf_prefix/lib
+    set -a LD_LIBRARY_PATH $protobuf_prefix/lib
     " | prettify_indent_via_pipe | tee -a $FISH_CONFIG_PATH >/dev/null
     echo -e "\n" >>"$FISH_CONFIG_PATH"
 end
 
-
-set abseil_prefix (brew --prefix abseil)
-set unique_comment "## [abseil] Add search paths for headers and libraries"
-if not grep -Fxq "$unique_comment" "$FISH_CONFIG_PATH"
-    echo "
-    $unique_comment
-    set -a CPATH $abseil_prefix/include
-    set -a LIBRARY_PATH $abseil_prefix/lib
-    " | prettify_indent_via_pipe | tee -a $FISH_CONFIG_PATH >/dev/null
-    echo -e "\n" >>"$FISH_CONFIG_PATH"
-end
 
 
 
@@ -574,7 +563,7 @@ if not grep -Fxq "$unique_comment" "$FISH_CONFIG_PATH"
     echo "
     $unique_comment
     set -a CPATH $gperftools_prefix/include
-    set -a LIBRARY_PATH $gperftools_prefix/lib
+    set -a LD_LIBRARY_PATH $gperftools_prefix/lib
     " | prettify_indent_via_pipe | tee -a $FISH_CONFIG_PATH >/dev/null
     echo -e "\n" >>"$FISH_CONFIG_PATH"
 end

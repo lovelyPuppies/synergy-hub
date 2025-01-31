@@ -8,6 +8,12 @@ list of level 1 subjects
   Clang: a C language family frontend (C, C++, Objective C/C++, OpenCL, and CUDA) for LLVM 
 
 
+  🧮 clang --help
+  🧮 clang++ --help
+      -Wl,<arg>               Pass the comma separated arguments in <arg> to the linker
+      
+
+
 ----------------------------------------------
 ⚓ clang 🔪 docs ; https://clang.llvm.org/docs/
   ⚓🔰 Cross-compilation using Clang ; https://clang.llvm.org/docs/CrossCompilation.html

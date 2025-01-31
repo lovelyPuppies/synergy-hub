@@ -3,37 +3,37 @@ Emoji 🔗 from VS Code Extension :emojisense: ;https://marketplace.visualstudio
   
   📏 Format
   -----
-  <emoji>  <name>             <suffix when use emoji>             Description
+  <emoji>  <name>                       <suffix when use emoji>             Description
   -----
-  📝      :memo:              ""
-  📜      :scroll:            "(how-to) fish script: <Title>"
-  ✍️      :writing_hand:      "(✍️ <Subject> 🔪 study)"
+  📝      :memo:                        ""
+  📜      :scroll:                      "(how-to) fish script: <Title>"
+  ✍️      :writing_hand:                "(✍️ <Subject> 🔪 study)"
 
 
-  🗒️      :spiral_notepad:    "Contents"                          Used to distinguish the "Contents" section within a Wikipedia article from other articles that I have logically grouped, for better clarity and organization.
-  📎      :paperclip:         ""                                  Used to indicate that the reader has skimmed only the summary or abstract portion of the content.
-  🔍      :mag:               ["FAQ", "Help"], " <Title>"         Used to view a collection of questions and answers or help topics.
-  
-
-  🚨      :rotating_light:    "(Issue: Error); <Title>"
-  🚨      :rotating_light:    "(Issue: Bug); <Title>"
-  
-  🕵️      :detective:         "Exploit: <Title>"                  Used to indicate a security vulnerability, exploit, or hacking investigation.
-  🛡️      :shield:            "Security Patch"                    Used to represent security solutions, fixes, and defense mechanisms.
+  🗒️      :spiral_notepad:              "Contents"                          Used to distinguish the "Contents" section within a Wikipedia article from other articles that I have logically grouped, for better clarity and organization.
+  📎      :paperclip:                   ""                                  Used to indicate that the reader has skimmed only the summary or abstract portion of the content.
+  🔍      :mag:                         ["FAQ", "Help"], " <Title>"         Used to view a collection of questions and answers or help topics.
 
 
+  🚨      :rotating_light:              "(Issue: Error); <Title>"
+  🚨      :rotating_light:              "(Issue: Bug); <Title>"
 
-  🆗      :ok:                ""                                  Attempt: Fail
-  📵      :no_mobile_phones:  ""                                  Attempt: Fail
-
-  🤚      :raised_hand:       "User interaction: <Title>"         User interaction required because it cannot be a completely automatic script
-
-  ⚖️      :balance_scale:     ""                                  Description for Default value
-  🗑️      :wastebasket:       "Deprecated: <Title>"
+  🕵️      :detective:                   "Exploit: <Title>"                  Used to indicate a security vulnerability, exploit, or hacking investigation.
+  🛡️      :shield:                      "Security Patch"                    Used to represent security solutions, fixes, and defense mechanisms.
 
 
-  🌳      :deciduous_tree:    ""                                  Branch. Selection.
-  ♾️      :infinity:          "<Title> Pipeline"                  Pipeline.
+
+  🆗      :ok:                          ""                                  Attempt: Fail
+  📵      :no_mobile_phones:            ""                                  Attempt: Fail
+
+  🤚      :raised_hand:                 "User interaction: <Title>"         User interaction required because it cannot be a completely automatic script
+
+  ⚖️      :balance_scale:               ""                                  Description for Default value
+  🗑️      :wastebasket:                 "Deprecated: <Title>"
+
+  🔘      :radio_button:                ""                                  if, unless
+  🌳      :deciduous_tree:              ""                                  Branch. Selection.
+  ♾️      :infinity:                    "<Title> Pipeline"                  Pipeline.
 
 
 ----------------------------------------------

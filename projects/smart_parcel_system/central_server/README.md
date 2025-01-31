@@ -56,4 +56,10 @@
     #   >> GLIBCXX_3.4.30
     ```
 
+- doing 📰
+
+  ```
+  readelf -d ./test.out  | grep 'R.*PATH'
+  ```
+
 ## [ROS Master Node](ros_master_node)
