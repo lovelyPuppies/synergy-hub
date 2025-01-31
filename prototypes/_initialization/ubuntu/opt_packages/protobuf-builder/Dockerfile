@@ -31,12 +31,14 @@ RUN git submodule update --init --recursive
 
 # Configure and build shared and static protobuf
 RUN cmake -G Ninja -S . -B build-shared -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD=17 -DCMAKE_INSTALL_PREFIX=/opt/${PACKAGE_NAME}-shared -Dprotobuf_BUILD_LIBPROTOC=ON
+#   cmake -G Ninja -S . -B build-shared -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD=17 -DCMAKE_INSTALL_PREFIX=/opt/protobuf-shared -Dprotobuf_BUILD_LIBPROTOC=ON
 RUN cmake -G Ninja -S . -B build-static -DBUILD_SHARED_LIBS=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD=17 -DCMAKE_INSTALL_PREFIX=/opt/${PACKAGE_NAME}-static 
 RUN cmake --build build-shared
 RUN cmake --build build-static
 
 # Install protobuf to custom locations using package name variable
 RUN cmake --install build-shared --prefix /opt/${PACKAGE_NAME}-shared
+#   cmake --install build-shared --prefix /opt/protobuf-shared
 RUN cmake --install build-static --prefix /opt/${PACKAGE_NAME}-static
 
 

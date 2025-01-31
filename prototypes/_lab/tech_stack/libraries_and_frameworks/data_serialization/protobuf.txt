@@ -78,6 +78,13 @@ protobuf 🔪 Installation
         # cmake --install . --prefix /opt/protobuf
         ## If want to dynamically libraries, add `-DBUILD_SHARED_LIBS=ON`
         ## https://github.com/protocolbuffers/protobuf/issues/12920
+
+cmake --debug-output -B
+grep -i "protobuf_" build/CMakeCache.txt
+
+
+
+
 https://github.com/protocolbuffers/protobuf/blob/main/cmake/README.md
 
 ## https://stackoverflow.com/a/75520170
