@@ -18596,82 +18596,15 @@ R-value를 넘기면 R-value 참조(T&&)가 된다.
 
 https://gcc.gnu.org/onlinedocs/
 
-
-  
 대체 툴..
   https://www.reddit.com/r/rust/comments/i1abpg/comment/g070nty/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
 
 
 면접.. 📰 rPath
-
-ELF는 Executable and Linkable Format의 약자로, 리눅스 및 유닉스 계열 운영체제에서 실행 파일, 오브젝트 파일, 공유 라이브러리, 코어 덤프 등을 위한 표준 파일 형식입니다.
+  ELF는 Executable and Linkable Format의 약자로, 리눅스 및 유닉스 계열 운영체제에서 실행 파일, 오브젝트 파일, 공유 라이브러리, 코어 덤프 등을 위한 표준 파일 형식입니다.
 
 
 Core dump
   https://en.wikipedia.org/wiki/Core_dump
 
-
 📰 https://grpc.io/docs/protoc-installation/#binary-install 에 포함된대로.. rpath 등록해야 함!!
-
-https://grpc.io/docs/protoc-installation/#install-pre-compiled-binaries-any-os
-  #️⃣ Install pre-compiled binaries (any OS) ; https://grpc.io/docs/protoc-installation/#install-pre-compiled-binaries-any-os
-    📝 Note that It is 100% static build executable file.; ldd $(which protoc)    >> not a dynamic executable.
-    ### To install the latest release of the protocol compiler from pre-compiled binaries, follow these instructions:
-    # Manually download from github.com/google/protobuf/releases the zip file corresponding to your operating system and computer architecture (protoc-<version>-<os>-<arch>.zip), or fetch the file using commands such as the following:
-    PB_REL="https://github.com/protocolbuffers/protobuf/releases"
-    PROTOBUF_VERSION=29.3
-    # [aarch_64, x86_64]
-    PROTOBUF_ARCH=x86_64
-
-    curl -LO $PB_REL/download/v$PROTOBUF_VERSION/protoc-$PROTOBUF_VERSION-linux-$PROTOBUF_ARCH.zip
-
-    # Unzip the file under $HOME/.local or a directory of your choice. For example:
-    unzip protoc-$PROTOBUF_VERSION-linux-$PROTOBUF_ARCH.zip -d $HOME/.local
-
-    # Update your environment’s path variable to include the path to the protoc executable. For example:
-    export PATH="$PATH:$HOME/.local/bin"
-
-
-#️⃣ Protobuf Runtime Installation ; https://github.com/protocolbuffers/protobuf#protobuf-runtime-installation
-  🔪 C++ ; https://github.com/protocolbuffers/protobuf/blob/main/src/README.md
-    📝 Note that It is static build executable file.
-    To compile or install protobuf from source using CMake, see cmake/README.md.
-      https://github.com/protocolbuffers/protobuf/blob/main/cmake/README.md
-
-
-apt update
-apt install -y git curl g++ unzip
-
-git clone --depth=1 --single-branch https://github.com/protocolbuffers/protobuf.git
-cd protobuf
-git submodule update --init --recursive
-
-# cmake . -DBUILD_SHARED_LIBS=ON
-# cmake --build . -j4
-
-bazelisk build :protoc :protobuf
-https://github.com/protocolbuffers/protobuf/issues/12920
-cp bazel-bin/protoc /usr/local/bin
-
-
-
-bazelisk
-  #️⃣ Installation
-    On Linux: You can download Bazelisk binary on our Releases page and add it to your PATH manually, which also works on macOS and Windows.
-      https://github.com/bazelbuild/bazelisk/releases
-    %shell>
-      curl -LO https://github.com/bazelbuild/bazelisk/releases/download/v1.25.0/bazelisk-linux-amd64
-      chmod u+x bazelisk-linux-amd64
-      mkdir -p $HOME/.local/bin
-      mv bazelisk-linux-amd64 $HOME/.local/bin/bazelisk
-
-      export PATH="$PATH:$HOME/.local/bin"
-
-      bazelisk version
-      #   >> Bazelisk version: 1.25.0
-      # bazelisk --version
-      #   >> bazel 8.0.1
-
-      
-
-https://stackoverflow.com/questions/77259561/how-to-build-libprotobuf-so

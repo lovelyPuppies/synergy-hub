@@ -1,5 +1,6 @@
 list of level 1 subjects
   - protobuf (Protocol Buffers)
+  - gRPC (gRPC Remote Procedure Calls)
   
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
 ⚓⭕ protobuf (Protocol Buffers) ; https://en.wikipedia.org/wiki/Protocol_Buffers 
@@ -19,6 +20,53 @@ list of level 1 subjects
     🔹 Official Documentation
       - Prebuilt packages installed via sudo apt are version-locked and often outdated.
       - Additionally, unless using one of the methods explicitly mentioned above, all installation methods referenced in the official documentation default to static builds.
+
+    //
+    #️⃣ (🗑️ may be deprecated page) Install pre-compiled binaries (any OS) ; https://grpc.io/docs/protoc-installation/#install-pre-compiled-binaries-any-os
+      📝 Note that It is 100% static build executable file.; ldd $(which protoc)    >> not a dynamic executable.
+      %shell>
+        ### To install the latest release of the protocol compiler from pre-compiled binaries, follow these instructions:
+        # Manually download from github.com/google/protobuf/releases the zip file corresponding to your operating system and computer architecture (protoc-<version>-<os>-<arch>.zip), or fetch the file using commands such as the following:
+        PB_REL="https://github.com/protocolbuffers/protobuf/releases"
+        PROTOBUF_VERSION=29.3
+        # [aarch_64, x86_64]
+        PROTOBUF_ARCH=x86_64
+
+        curl -LO $PB_REL/download/v$PROTOBUF_VERSION/protoc-$PROTOBUF_VERSION-linux-$PROTOBUF_ARCH.zip
+
+        # Unzip the file under $HOME/.local or a directory of your choice. For example:
+        unzip protoc-$PROTOBUF_VERSION-linux-$PROTOBUF_ARCH.zip -d $HOME/.local
+
+        # Update your environment’s path variable to include the path to the protoc executable. For example:
+        export PATH="$PATH:$HOME/.local/bin"
+
+
+
+----------------------------------------------
+protobuf 🔪 Installation 
+  #️⃣ Protobuf Runtime Installation ; https://github.com/protocolbuffers/protobuf#protobuf-runtime-installation
+    🔪 C++ ; https://github.com/protocolbuffers/protobuf/blob/main/src/README.md
+      📝 Note that It is static build executable file.
+      To compile or install protobuf from source using CMake, see cmake/README.md.
+        https://github.com/protocolbuffers/protobuf/blob/main/cmake/README.md
+      %shell> 
+        # 🔗 Bazel Install
+        apt update
+        apt install -y git curl g++ unzip cmake
+
+        git clone --depth=1 --single-branch https://github.com/protocolbuffers/protobuf.git
+        cd protobuf
+        git submodule update --init --recursive
+
+
+        ###📝 Note that command `bazelisk build :protoc :protobuf` not install protobuf dynamic libraries. 📅 2025-01-31 20:16:29
+        ## If want to dynamically libraries, run 
+        # cmake . -DBUILD_SHARED_LIBS=ON
+        # cmake --build . -j4
+        bazelisk build :protoc :protobuf
+        https://github.com/protocolbuffers/protobuf/issues/12920
+        cp bazel-bin/protoc /usr/local/bin
+
 
 
 ----------------------------------------------
@@ -192,16 +240,14 @@ protobuf 🔪⚓ Docs ; https://protobuf.dev/
 
 
 
-----------------------------------------------
-⚓🔰 protobuf 🔪 Rust ; https://protobuf.dev/reference/rust/
-  ⚓ Rust Generated Code Guide ; https://protobuf.dev/reference/rust/rust-generated/
-    Describes the API of message objects that the protocol buffer compiler generates for any given protocol definition.
 
-  ⚓ Redaction in Rust ; https://protobuf.dev/reference/rust/rust-redaction/
-    Describes redaction in Rust.
 
-  ⚓ Building Rust Protos ; https://protobuf.dev/reference/rust/building-rust-protos/
-    Describes using Blaze to build Rust protos.
 
-  ⚓ Rust Proto Design Decisions ; https://protobuf.dev/reference/rust/rust-design-decisions/
-    Explains some of the design choices that the Rust Proto implementation makes.
+
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+gRPC
+  https://en.wikipedia.org/wiki/GRPC
+  https://github.com/grpc
+  https://grpc.io/
+
