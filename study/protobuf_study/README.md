@@ -33,11 +33,29 @@ clang++ test.pb.cc main.cpp -o test.out \
     $(pkg-config --cflags --libs protobuf) \
     -Wl,-rpath,/home/linuxbrew/.linuxbrew/lib
 
+clang++ test.pb.cc main.cpp -o test.out \
+    $(pkg-config --cflags --libs --static protobuf)
+
+clang++ test.pb.cc main.cpp -o test.out \
+    $(pkg-config --cflags protobuf) \
+    -static -lprotobuf -pthread
+
 
 readelf -d ./test.out | grep 'RPATH\|RUNPATH'
 
 
 
+❯ fd "libprotobuf" /home/linuxbrew/.linuxbrew/opt/protobuf
+    /home/linuxbrew/.linuxbrew/opt/protobuf/lib/libprotobuf-lite.so
+    /home/linuxbrew/.linuxbrew/opt/protobuf/lib/libprotobuf-lite.so.29.3.0
+    /home/linuxbrew/.linuxbrew/opt/protobuf/lib/libprotobuf.so
+    /home/linuxbrew/.linuxbrew/opt/protobuf/lib/libprotobuf.so.29.3.0
+
+❯ fd "libprotobuf" /home/linuxbrew/.linuxbrew/lib
+    /home/linuxbrew/.linuxbrew/lib/libprotobuf-lite.so
+    /home/linuxbrew/.linuxbrew/lib/libprotobuf-lite.so.29.3.0
+    /home/linuxbrew/.linuxbrew/lib/libprotobuf.so
+    /home/linuxbrew/.linuxbrew/lib/libprotobuf.so.29.3.0
 ```
 
 clang++ test.pb.cc main.cpp -o test.out (pkg-config --cflags --libs protobuf)
