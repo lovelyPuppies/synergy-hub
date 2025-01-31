@@ -22,11 +22,13 @@ list of level 1 subjects
       - Additionally, unless using one of the methods explicitly mentioned above, all installation methods referenced in the official documentation default to static builds.
 
     //
-    #️⃣ (🗑️ may be deprecated page) Install pre-compiled binaries (any OS) ; https://grpc.io/docs/protoc-installation/#install-pre-compiled-binaries-any-os
-      📝 Note that It is 100% static build executable file.; ldd $(which protoc)    >> not a dynamic executable.
+    🧪🗑️ Install pre-compiled binaries (any OS) ; https://grpc.io/docs/protoc-installation/#install-pre-compiled-binaries-any-os
+      📝 Note that It install only `protoc` (compiler) rather than static/dynamic libraries. ; ldd $(which protoc)    >> not a dynamic executable.
       %shell>
         ### To install the latest release of the protocol compiler from pre-compiled binaries, follow these instructions:
         # Manually download from github.com/google/protobuf/releases the zip file corresponding to your operating system and computer architecture (protoc-<version>-<os>-<arch>.zip), or fetch the file using commands such as the following:
+
+        sudo apt update && sudo apt install -y curl unzip
         PB_REL="https://github.com/protocolbuffers/protobuf/releases"
         PROTOBUF_VERSION=29.3
         # [aarch_64, x86_64]
@@ -51,24 +53,30 @@ protobuf 🔪 Installation
         https://github.com/protocolbuffers/protobuf/blob/main/cmake/README.md
       %shell> 
         # 🔗 Bazel Install
-        apt update
-        apt install -y git curl g++ unzip cmake
+        sudo apt update && sudo apt install -y git g++ cmake ninja-build
 
         git clone --depth=1 --single-branch https://github.com/protocolbuffers/protobuf.git
         cd protobuf
         git submodule update --init --recursive
 
+        ###📝 Note that command `bazelisk build :protoc :protobuf` not install protobuf any libraries. 📅 2025-01-31 20:16:29
+        # bazelisk build :protoc :protobuf
+        # cp bazel-bin/protoc /usr/local/bin
+        # find / -name "libprotobuf*.so" 2>/dev/null
+        #   >> ""
+        # find / -name "libprotobuf*.a" 2>/dev/null
+        #   >> ""
+        # find bazel-bin -name "libprotobuf*"
+        #   >> ""
 
-        ###📝 Note that command `bazelisk build :protoc :protobuf` not install protobuf dynamic libraries. 📅 2025-01-31 20:16:29
-        ## If want to dynamically libraries, run 
-        # cmake . -DBUILD_SHARED_LIBS=ON
-        # cmake --build . -j4
-        bazelisk build :protoc :protobuf
-        https://github.com/protocolbuffers/protobuf/issues/12920
-        cp bazel-bin/protoc /usr/local/bin
-
-
-
+        mkdir -p build
+        cd build
+        cmake .. -Dprotobuf_BUILD_SHARED_LIBS=OFF -DCMAKE_INSTALL_PREFIX=/usr/local -DCMAKE_CXX_STANDARD=17 -G Ninja -DCMAKE_BUILD_TYPE=Release
+        cmake --build . --parallel 12
+        ## If want to dynamically libraries, add `-DBUILD_SHARED_LIBS=ON`
+        ## https://github.com/protocolbuffers/protobuf/issues/12920
+        # cmake --install .
+https://github.com/protocolbuffers/protobuf/blob/main/cmake/README.md
 ----------------------------------------------
 protobuf 🔪⚓ Docs ; https://protobuf.dev/
   ⚓🖇️ Overview ; https://protobuf.dev/overview/ 📅 2025-01-28 05:52:07

@@ -1920,3 +1920,9 @@ set DST_DIR build
 protoc -I=$SRC_DIR --cpp_out=$DST_DIR $SRC_DIR/addressbook.proto
 
 🧮 fd "runtime_version.h" (brew --prefix protobuf)
+
+
+
+내가 지금 해야 하는게.. iot_client, iot_server x86-64 용. (protobuf 로 컴파일한 cpp, h 파일 사용해야 함)
+iot_client, iot_server arm64 용. (protobuf 로 컴파일한 cpp, h 파일 사용해야 함 (크로스컴파일. 정적빌드사용 해야 함. 지금 이미 protobuf 파일 없이 서버 크로스컴파일하는것은 완성됨. (conan 2)))
+

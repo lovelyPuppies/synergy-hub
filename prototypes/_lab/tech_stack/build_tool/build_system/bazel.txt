@@ -22,6 +22,7 @@ https://bazel.build/install/bazelisk
             - 🪱 `latest`: the latest stable (LTS) version
     << https://github.com/bazelbuild/bazelisk/blob/master/README.md
       %shell>
+        # cd /
         sudo apt update && sudo apt install -y curl
         curl -LO https://github.com/bazelbuild/bazelisk/releases/download/v1.25.0/bazelisk-linux-amd64
         chmod u+x bazelisk-linux-amd64
