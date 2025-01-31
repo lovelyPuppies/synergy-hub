@@ -503,42 +503,6 @@ brew install prettier
 echo "▶️ Installing Efficient build tools ..."
 
 
-: '
-📦🚀 protobuf
-  https://repology.org/project/protobuf/versions
-  https://formulae.brew.sh/formula/protobuf#default
-
-  Also known as: protobuf@29
-  Protocol buffers (Google\'s data interchange format)
-
-  %shell> brew deps protobuf
-    >>
-      abseil
-      zlib
-
-📦🚀 nanopb
-  https://github.com/nanopb/nanopb?tab=readme-ov-file#nanopb---protocol-buffers-for-embedded-systems
-  https://repology.org/project/nanopb/versions
-  https://formulae.brew.sh/formula/nanopb#default
-
-  📝 For Embedded System
-  Formerly known as: nanopb-generator
-  C library for encoding and decoding Protocol Buffer messages
-'
-# %shell> brew uses --installed protobuf
-brew install protobuf nanopb
-
-set protobuf_prefix (brew --prefix protobuf)
-set unique_comment "## [protobuf] Add search paths for headers and libraries"
-if not grep -Fxq "$unique_comment" "$FISH_CONFIG_PATH"
-    echo "
-    $unique_comment
-    set -a CPATH $protobuf_prefix/include
-    set -a LD_LIBRARY_PATH $protobuf_prefix/lib
-    " | prettify_indent_via_pipe | tee -a $FISH_CONFIG_PATH >/dev/null
-    echo -e "\n" >>"$FISH_CONFIG_PATH"
-end
-
 
 
 
@@ -1598,6 +1562,35 @@ end
     OpenCV modules:
       Unavailable:                 cannops cudaarithm cudabgsegm cudacodec cudafeatures2d cudafilters cudaimgproc cudalegacy cudaobjdetect cudaoptflow cudastereo cudawarping cudev cvv java julia matlab ovis python2 ts
     OpenCL:                        YES (INTELVA)
+
+
+📦 protobuf
+  https://repology.org/project/protobuf/versions
+  https://formulae.brew.sh/formula/protobuf#default
+
+  ; It is not HEAD Version. and it only install dynamic libraries. no static libraries. 📅 2025-02-01 01:28:03
+
+  Also known as: protobuf@29
+  Protocol buffers (Google\'s data interchange format)
+
+  %shell> brew deps protobuf
+    >>
+      abseil
+      zlib
+      
+📦 nanopb
+  https://github.com/nanopb/nanopb?tab=readme-ov-file#nanopb---protocol-buffers-for-embedded-systems
+  https://repology.org/project/nanopb/versions
+  https://formulae.brew.sh/formula/nanopb#default
+
+  ; nanoPB depends on protobuf. but I don\' use homebrew\'s protobuf.
+
+  📝 For Embedded System
+  Formerly known as: nanopb-generator
+  C library for encoding and decoding Protocol Buffer messages
+
+  # %shell> brew uses --installed protobuf
+
 '
 
 

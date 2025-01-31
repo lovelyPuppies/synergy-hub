@@ -334,14 +334,18 @@ tree [**prototypes/\_initialization/\_about**](prototypes/_initialization/_about
 
    It automatically and additionally runs 🚣 **[init_in_fish.fish](prototypes/_initialization/ubuntu/init_in_fish.fish)** as the last line in the script.
 
-3. **[Use semi-automatic script snippets for user-interactive tasks](prototypes/_initialization/ubuntu/init_in_fish_semi_automatic.fish)**
+3. Run semi-automatic scripts for **user-interactive tasks**
 
-   ➡️ Refer to `prototypes/_initialization/ubuntu/init_in_fish_semi_automatic.fish`
+   - [init_in_fish_semi_automatic.fish](prototypes/_initialization/ubuntu/init_in_fish_semi_automatic.fish)
+   - [init_in_fish_semi_automatic-**vision**.fish](prototypes/_initialization/ubuntu/init_in_fish_semi_automatic-vision.fish)
 
-   > This file contains script snippets for user-interactive tasks.  
-   > Please **read the script carefully** and install only the necessary packages.
+     It includes **NVIDIA GPU driver**, CUDA.
 
-4. Update and upgrade your system periodically:
+4. [Install packages to /opt/ **from build** (not pre-built packages)](prototypes/_initialization/ubuntu/opt_packages/README.md)
+
+   - **protobuf** with **(static, shared)**
+
+5. Update and upgrade your system periodically:
 
    ```bash
    #!/bin/bash
