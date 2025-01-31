@@ -6,6 +6,21 @@ list of level 1 subjects
   Protocol Buffers are language-neutral, platform-neutral extensible mechanisms for serializing structured data.
   https://github.com/protocolbuffers/protobuf
 
+(✍️ protobuf 🔪 study)
+  ➡️ Unless operating in fully commercial deployment environments, static builds are recommended. 📅 2025-01-31 19:57:19
+    🔹 Building with Dynamic Libraries
+      - Although it's possible to generate shared libraries with CMake, the build process takes a long time.
+        Due to this, even in a containerized environment, unless the built image is uploaded to a repository (which is usually the case in fully commercial deployment environments), static builds are generally the better choice.
+      - Installing via brew allows the use of shared libraries, but using brew as a package manager in a deployment environment is not ideal.
+      //
+      - The command `bazelisk build :protoc :protobuf` will build statically.
+    🔹 Production Environments
+      - When not using a containerized environment, shared libraries can lead to conflicts with other executables, making them an impractical choice.
+    🔹 Official Documentation
+      - Prebuilt packages installed via sudo apt are version-locked and often outdated.
+      - Additionally, unless using one of the methods explicitly mentioned above, all installation methods referenced in the official documentation default to static builds.
+
+
 ----------------------------------------------
 protobuf 🔪⚓ Docs ; https://protobuf.dev/
   ⚓🖇️ Overview ; https://protobuf.dev/overview/ 📅 2025-01-28 05:52:07

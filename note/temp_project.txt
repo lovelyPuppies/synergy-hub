@@ -18615,6 +18615,7 @@ Core dump
 
 https://grpc.io/docs/protoc-installation/#install-pre-compiled-binaries-any-os
   #️⃣ Install pre-compiled binaries (any OS) ; https://grpc.io/docs/protoc-installation/#install-pre-compiled-binaries-any-os
+    📝 Note that It is 100% static build executable file.; ldd $(which protoc)    >> not a dynamic executable.
     ### To install the latest release of the protocol compiler from pre-compiled binaries, follow these instructions:
     # Manually download from github.com/google/protobuf/releases the zip file corresponding to your operating system and computer architecture (protoc-<version>-<os>-<arch>.zip), or fetch the file using commands such as the following:
     PB_REL="https://github.com/protocolbuffers/protobuf/releases"
@@ -18633,15 +18634,20 @@ https://grpc.io/docs/protoc-installation/#install-pre-compiled-binaries-any-os
 
 #️⃣ Protobuf Runtime Installation ; https://github.com/protocolbuffers/protobuf#protobuf-runtime-installation
   🔪 C++ ; https://github.com/protocolbuffers/protobuf/blob/main/src/README.md
+    📝 Note that It is static build executable file.
     To compile or install protobuf from source using CMake, see cmake/README.md.
       https://github.com/protocolbuffers/protobuf/blob/main/cmake/README.md
 
 
-apt install -y git curl g++
+apt update
+apt install -y git curl g++ unzip
+
 git clone --depth=1 --single-branch https://github.com/protocolbuffers/protobuf.git
 cd protobuf
 git submodule update --init --recursive
 
+# cmake . -DBUILD_SHARED_LIBS=ON
+# cmake --build . -j4
 
 bazelisk build :protoc :protobuf
 https://github.com/protocolbuffers/protobuf/issues/12920
@@ -18656,31 +18662,16 @@ bazelisk
     %shell>
       curl -LO https://github.com/bazelbuild/bazelisk/releases/download/v1.25.0/bazelisk-linux-amd64
       chmod u+x bazelisk-linux-amd64
+      mkdir -p $HOME/.local/bin
       mv bazelisk-linux-amd64 $HOME/.local/bin/bazelisk
 
       export PATH="$PATH:$HOME/.local/bin"
 
       bazelisk version
       #   >> Bazelisk version: 1.25.0
-      bazelisk --version
+      # bazelisk --version
       #   >> bazel 8.0.1
-
 
       
 
 https://stackoverflow.com/questions/77259561/how-to-build-libprotobuf-so
-  How to build libprotobuf.so
-  Asked 1 year, 3 months ago
-  Modified 1 year, 3 months ago
-  Viewed 270 times
-  2
-
-  I need to build the latest protobuf version (24.4).
-
-  I downloaded the protobuf-24.4.tar.gz and run bazel build :protoc :protobuf
-
-  It generated protoc but I can't find anywhere any .so or .a file!
-
-  Any idea how to generate libprotobuf.so ?
-
-  protocol-buffers
