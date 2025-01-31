@@ -73,5 +73,15 @@ clang++ test.pb.cc main.cpp -o test.out (pkg-config --cflags --libs protobuf)
 https://github.com/fish-shell/fish-shell/issues/982
 
 ?? 됫네.?
-eval clang++ test.pb.cc main.cpp -o test.out (pkg-config --cflags --libs protobuf)
+eval (clang++ test.pb.cc main.cpp -o test.out (pkg-config --cflags --libs protobuf))
+clang++ test.pb.cc main.cpp -o test.out (pkg-config --cflags --libs protobuf | string split " ")
+
+fish는 이것을 단순한 하나의 큰 문자열로 해석합니다
+clang++ "-L/home/linuxbrew/.linuxbrew/Cellar/protobuf/29.3/lib -lprotobuf -L/home/linuxbrew/.linuxbrew/Cellar/abseil/20240722.1/lib ..."
+pkg-config의 출력은 공백( )으로 구분된 여러 인자로 구성됨.
+bash에서는 자동으로 공백을 기준으로 인자를 분리하지만, fish는 기본적으로 개행(\n)을 기준으로만 분리하기 때문에, 전체 출력이 하나의 인자로 처리됨.
+결과적으로 g++에서 올바르게 처리되지 않음.
+
 ```
+
+clang++ test.pb.cc main.cpp -o test.out (pkg-config --cflags --libs protobuf)

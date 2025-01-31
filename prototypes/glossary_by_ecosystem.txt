@@ -21,6 +21,26 @@
       # Recovery
         The kernels of operating systems such as Linux will attempt to recover from this type of OOM condition by terminating one or more processes, a mechanism known as 🪱 the OOM Killer
 (OS 🔪 Linux)
+  ----------------------------------------------
+  ⚓🖇️ Input Field Separators (IFS) ; https://en.wikipedia.org/wiki/Input_Field_Separators
+    ; input field separators or internal field separators
+    🗒️ Contents
+      🪱 $IFS shell variable
+      The value of IFS, (in the bash shell) typically includes the space, tab, and the newline characters by default.
+        These whitespace characters can be visualized by issuing the "declare" command in the bash shell or printing IFS with commands like: (the latter two commands being only available in some shells and on some systems)
+          - printf %s "$IFS" | od -c
+          - printf "%q\n" "$IFS"
+          - printf %s "$IFS" | cat -A 
+          
+      From the Bash, version 4 man page: ...
+
+      # IFS abbreviation
+        this name is misleading as the IFS characters are actually used as 🚣 field terminators.
+      #🕵️🛡️ Exploits
+
+
+
+  ----------------------------------------------
   ⚓⭕📎 Epoll (event poll) ; https://en.wikipedia.org/wiki/Epoll
     🗒️ Contents
       epoll is a Linux kernel system call for a scalable I/O event notification mechanism, ...
@@ -28,7 +48,7 @@
       (unlike the older system calls, which operate in O(n) time, epoll operates in 🚣 O(1) time). ...
       epoll uses a 🪱 red–black tree (RB-tree) data structure to keep track of all file descriptors that are currently being monitored
 
-
+  ----------------------------------------------
   ⚓ Inotify ; https://en.wikipedia.org/wiki/Inotify
     inotify (inode notify) is a Linux kernel subsystem created by John McCutchan, which monitors changes to the filesystem, and reports those changes to applications.
 

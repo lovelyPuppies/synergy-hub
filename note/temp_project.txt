@@ -18601,3 +18601,5 @@ https://gcc.gnu.org/onlinedocs/
   In computer science, rpath designates the run-time search path hard-coded in an executable file or library. Dynamic linking loaders use the rpath to find required libraries.
 
   
+대체 툴..
+  https://www.reddit.com/r/rust/comments/i1abpg/comment/g070nty/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
