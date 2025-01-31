@@ -35,6 +35,7 @@
   ###
   # create a new container
   docker run --name protobuf-container protobuf-builder
+  # docker run -it --name protobuf-container protobuf-builder /bin/bash
 
   # copy
   sudo docker cp protobuf-container:/opt/protobuf-shared /opt/protobuf-shared
@@ -78,3 +79,4 @@
 ### References
 
 - [Building a Dual Shared and Static Library with CMake](https://alexreinking.com/blog/building-a-dual-shared-and-static-library-with-cmake.html)
+- brew install protobuf && brew edit protobuf && code /home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/homebrew/homebrew-core/Formula/p/protobuf.rb

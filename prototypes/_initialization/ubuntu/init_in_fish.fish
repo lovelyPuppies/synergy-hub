@@ -1577,7 +1577,12 @@ end
     >>
       abseil
       zlib
-      
+  🛍️ e.g. Compile and Run without set LD_LIBRARYPATH
+    %shell>
+      clang++ test.pb.cc main.cpp -o test.out \
+        $(pkg-config --cflags --libs protobuf) \
+        -Wl,-rpath,/home/linuxbrew/.linuxbrew/lib
+
 📦 nanopb
   https://github.com/nanopb/nanopb?tab=readme-ov-file#nanopb---protocol-buffers-for-embedded-systems
   https://repology.org/project/nanopb/versions

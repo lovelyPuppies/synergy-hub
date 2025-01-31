@@ -18638,3 +18638,6 @@ Why put static and dynamic libraries in the same directory? #4672
 
 
 📰 patchelf  >> 명령어...
+
+
+https://cmake.org/cmake/help/latest/command/if.html
