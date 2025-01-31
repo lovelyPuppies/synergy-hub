@@ -14,6 +14,28 @@
   docker build -t protobuf-builder -f protobuf-builder/Dockerfile protobuf-builder
   ```
 
+  - ❔ about CMake args in Dockerfile
+
+    - Build Shared Libraries
+
+      protobuf_BUILD_SHARED_LIBS:BOOL=OFF
+
+    - Build libprotoc
+
+      protobuf_BUILD_LIBPROTOC:BOOL=OFF
+
+    - Build examples
+
+      protobuf_BUILD_EXAMPLES:BOOL=OFF
+
+    - Install the examples folder
+
+      protobuf_INSTALL_EXAMPLES:BOOL=OFF
+
+    - Build tests
+
+      protobuf_BUILD_TESTS:BOOL=ON
+
 - Verify the installed packages from Docker
 
   ```bash
