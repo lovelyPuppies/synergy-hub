@@ -23,7 +23,7 @@ list of level 1 subjects
 
     //
     🧪🗑️ Install pre-compiled binaries (any OS) ; https://grpc.io/docs/protoc-installation/#install-pre-compiled-binaries-any-os
-      📝 Note that It install only `protoc` (compiler) rather than static/dynamic libraries. ; ldd $(which protoc)    >> not a dynamic executable.
+      📝 Note that it install only `protoc` (compiler) rather than any static/dynamic libraries. ; ldd $(which protoc)    >> not a dynamic executable.
       %shell>
         ### To install the latest release of the protocol compiler from pre-compiled binaries, follow these instructions:
         # Manually download from github.com/google/protobuf/releases the zip file corresponding to your operating system and computer architecture (protoc-<version>-<os>-<arch>.zip), or fetch the file using commands such as the following:
@@ -48,18 +48,19 @@ list of level 1 subjects
 protobuf 🔪 Installation 
   #️⃣ Protobuf Runtime Installation ; https://github.com/protocolbuffers/protobuf#protobuf-runtime-installation
     🔪 C++ ; https://github.com/protocolbuffers/protobuf/blob/main/src/README.md
-      📝 Note that It is static build executable file.
       To compile or install protobuf from source using CMake, see cmake/README.md.
         https://github.com/protocolbuffers/protobuf/blob/main/cmake/README.md
       %shell> 
-        # 🔗 Bazel Install
         sudo apt update && sudo apt install -y git g++ cmake ninja-build
 
         git clone --depth=1 --single-branch https://github.com/protocolbuffers/protobuf.git
         cd protobuf
         git submodule update --init --recursive
 
-        ###📝 Note that command `bazelisk build :protoc :protobuf` not install protobuf any libraries. 📅 2025-01-31 20:16:29
+        ### 📝 Note that the command `bazelisk build :protoc :protobuf` install only `protoc` (compiler) rather than any static/dynamic libraries.
+        # Where is libprotobuf.a under the bazel build? ; https://github.com/protocolbuffers/protobuf/issues/12920
+
+        # 🔗 Bazel Install
         # bazelisk build :protoc :protobuf
         # cp bazel-bin/protoc /usr/local/bin
         # find / -name "libprotobuf*.so" 2>/dev/null
@@ -71,12 +72,34 @@ protobuf 🔪 Installation
 
         mkdir -p build
         cd build
-        cmake .. -Dprotobuf_BUILD_SHARED_LIBS=OFF -DCMAKE_INSTALL_PREFIX=/usr/local -DCMAKE_CXX_STANDARD=17 -G Ninja -DCMAKE_BUILD_TYPE=Release
+        cmake .. -Dprotobuf_BUILD_SHARED_LIBS=OFF -DCMAKE_INSTALL_PREFIX=/opt/protobuf -DCMAKE_CXX_STANDARD=17 -G Ninja -DCMAKE_BUILD_TYPE=Release
         cmake --build . --parallel 12
+        cmake --install .
+        # cmake --install . --prefix /opt/protobuf
         ## If want to dynamically libraries, add `-DBUILD_SHARED_LIBS=ON`
         ## https://github.com/protocolbuffers/protobuf/issues/12920
-        # cmake --install .
 https://github.com/protocolbuffers/protobuf/blob/main/cmake/README.md
+
+## https://stackoverflow.com/a/75520170
+brew edit protobuf
+sudo nano /home/linuxbrew/.linuxbrew/opt/protobuf/.brew/protobuf.rb
+# add       -Dprotobuf_BUILD_STATIC_LIBS=ON
+# https://docs.brew.sh/FAQ#can-i-edit-formulae-myself
+export HOMEBREW_NO_INSTALL_FROM_API=1
+brew reinstall --build-from-source protobuf
+# But 이것은 매우 오래 걸린다. git clone 에서부터 오래걸린다. depth=1, single branch 를 불러오는 것이 아니라..
+
+# Also, if you want your revised formula to persist, then run `brew pin foo`
+# https://docs.brew.sh/FAQ#how-do-i-stop-certain-formulae-from-being-updated
+
+음~ 이거 되긴되는거같은데 .. homebrew 에서 그렇게 수정하면.. git clone 부터 모든 브랜치와 모든 depth 를 clone 해서 매우 오래걸려..
+
+2025년 기준 실무자들은 이걸 어떻게 설치하고잇지? 
+- host 에서 직접 정적빌드하고 /opt/protobuf/ 에 설치한다.
+- docker 로 의존성 설치후 build 후, install 하고 install 경로 그대로 호스트와 동일한 경로에 복사한다.
+- 아니면 그 외..?
+
+  
 ----------------------------------------------
 protobuf 🔪⚓ Docs ; https://protobuf.dev/
   ⚓🖇️ Overview ; https://protobuf.dev/overview/ 📅 2025-01-28 05:52:07

@@ -43,6 +43,11 @@ clang++ test.pb.cc main.cpp -o test.out \
 
 readelf -d ./test.out | grep 'RPATH\|RUNPATH'
 
+clang++ test.pb.cc main.cpp -o test.out \
+    $(pkg-config --cflags protobuf) \
+    /home/linuxbrew/.linuxbrew/opt/protobuf/lib/libupb.a \
+    -pthread -static-libstdc++ -static-libgcc
+
 
 
 ❯ fd "libprotobuf" /home/linuxbrew/.linuxbrew/opt/protobuf

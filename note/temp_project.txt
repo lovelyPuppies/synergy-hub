@@ -18608,3 +18608,33 @@ Core dump
   https://en.wikipedia.org/wiki/Core_dump
 
 📰 https://grpc.io/docs/protoc-installation/#binary-install 에 포함된대로.. rpath 등록해야 함!!
+
+
+
+
+
+wbfw109v2 in 🌐 iot-04 in synergy-hub on  main [!] is 📦 v0.1.0 via 🐍 v3.13.1 (central-server-py3.13) 
+❯ brew edit protobuf
+Warning: edit is a developer command, so Homebrew's
+developer mode has been automatically turned on.
+To turn developer mode off, run:
+  brew developer off
+
+Editing /home/linuxbrew/.linuxbrew/opt/protobuf/.brew/protobuf.rb
+Warning: Using code because no editor was set in the environment.
+This may change in the future, so we recommend setting EDITOR
+or HOMEBREW_EDITOR to your preferred text editor.
+Command is only available in WSL or inside a Visual Studio Code terminal.
+
+
+/home/linuxbrew/.linuxbrew/opt/protobuf/.brew/protobuf.r
+
+https://github.com/orgs/Homebrew/discussions/4672
+  Why put static and dynamic libraries in the same directory? #4672
+
+However, this is a HUGE pain when using clang and especially Xcode. clang's cli (or rather ld) will always link the dynamic library when specified via -lfmt as long as both live in the same directory.
+Why put static and dynamic libraries in the same directory? #4672
+
+
+
+📰 patchelf  >> 명령어...
