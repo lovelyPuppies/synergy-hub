@@ -6,7 +6,6 @@ CC := clang
 
 # Path to the nanopb root directory
 # NANOPB_DIR := $(patsubst %/,%,$(dir $(patsubst %/,%,$(dir $(lastword $(MAKEFILE_LIST))))))
-CALLER_DIR := $(dir $(abspath  $(word $(shell echo $$(($(words $(MAKEFILE_LIST)) - 1))), $(MAKEFILE_LIST))))
 NANOPB_DIR := /opt/nanopb
 NANOPB_INCLUDE_DIR := $(NANOPB_DIR)/include
 
@@ -16,15 +15,20 @@ NANOPB_CORE = $(NANOPB_INCLUDE_DIR)/pb_encode.c $(NANOPB_INCLUDE_DIR)/pb_decode.
 
 # Check whether to use binary version of nanopb_generator or the
 # system-supplied python interpreter.
-PROTOC_OPTS :=
 PROTOC := nanopb_generator
+
+
+## ❔ Is it required?
+# CALLER_DIR := $(dir $(abspath  $(word $(shell echo $$(($(words $(MAKEFILE_LIST)) - 1))), $(MAKEFILE_LIST))))
+# PROTOC_OPTS := $(CALLER_DIR)
+# --options-path=$(PROTOC_OPTS)
 
 # Rule for building .pb.c and .pb.h
 %.pb.c %.pb.h: %.proto %.options
 	@echo $(CALLER_DIR)
-	$(PROTOC) $(PROTOC_OPTS) --output-dir=. $<
+	$(PROTOC) --output-dir=. $<
 
 %.pb.c %.pb.h: %.proto
 	@echo $(CALLER_DIR)
-	$(PROTOC) $(PROTOC_OPTS) --output-dir=. $<
+	$(PROTOC) --output-dir=. $<
 

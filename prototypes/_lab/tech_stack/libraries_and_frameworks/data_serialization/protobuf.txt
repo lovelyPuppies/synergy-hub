@@ -258,8 +258,12 @@ protobuf 🔪⚓ Docs ; https://protobuf.dev/
 
 
 ※※※※※※※※※※※※※※※
-⚓ nanoPB ; https://jpa.kapsi.fi/nanopb/docs/
-
+# nanoPB 🔪 Docs
+  ⚓ Overview ; https://jpa.kapsi.fi/nanopb/docs/index.html
+  ⚓ Basic concepts ; https://jpa.kapsi.fi/nanopb/docs/concepts.html
+  ⚓ API reference ; https://jpa.kapsi.fi/nanopb/docs/reference.html
+    #️⃣ Generator options ; https://jpa.kapsi.fi/nanopb/docs/reference.html#generator-options
+  ⚓ Security model ; https://jpa.kapsi.fi/nanopb/docs/security.html
 
 
 
