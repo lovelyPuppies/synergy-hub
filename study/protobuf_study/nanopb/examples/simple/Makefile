@@ -1,5 +1,6 @@
 # Include the nanopb provided Makefile rules
-include ../../extra/nanopb.mk
+# ⚙️
+include /opt/nanopb/extra/nanopb.mk
 
 # Compiler flags to enable all warnings & debug info
 CFLAGS = -Wall -Werror -g -O0
