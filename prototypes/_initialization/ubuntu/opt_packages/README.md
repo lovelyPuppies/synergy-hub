@@ -110,6 +110,19 @@
   docker start -i protobuf-container
   ```
 
+### Pro-process
+
+- add into `.clangd` for intellisense
+
+  ```plaintxt
+  ---
+  If:
+    PathExclude: "study/bsp_study/raspberry_pi/.*"
+  CompileFlags:
+    Add:
+      - -I/opt/protobuf-static/include
+  ```
+
 ### References
 
 - [Building a Dual Shared and Static Library with CMake](https://alexreinking.com/blog/building-a-dual-shared-and-static-library-with-cmake.html)
