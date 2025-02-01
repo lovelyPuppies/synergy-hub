@@ -11,7 +11,8 @@
   ```bash
   #!/usr/bin/env fish
   cd prototypes/_initialization/ubuntu/opt_packages
-  docker build -t protobuf-builder -f protobuf-builder/Dockerfile protobuf-builder
+  ## ⚙️ Adjust the version you want 🔗 https://github.com/protocolbuffers/protobuf/tags
+  docker build --build-arg BRANCH_VERSION=v29.3 -t protobuf-builder -f protobuf-builder/Dockerfile protobuf-builder
   ```
 
   - ❔ about CMake args in Dockerfile
