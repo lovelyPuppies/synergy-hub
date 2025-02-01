@@ -1,5 +1,6 @@
 list of level 1 subjects
   - protobuf (Protocol Buffers)
+    - nanoPB
   - gRPC (gRPC Remote Procedure Calls)
   
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
@@ -252,6 +253,9 @@ protobuf 🔪⚓ Docs ; https://protobuf.dev/
 
 
 
+
+※※※※※※※※※※※※※※※
+⚓ nanoPB ; https://jpa.kapsi.fi/nanopb/docs/
 
 
 
