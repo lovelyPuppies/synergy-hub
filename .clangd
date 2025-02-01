@@ -60,5 +60,5 @@ If:
 CompileFlags:
   Add:
     - -I/opt/protobuf-static/include
-    - -I/opt/nanopb
+    - -I/opt/nanopb/include
 
