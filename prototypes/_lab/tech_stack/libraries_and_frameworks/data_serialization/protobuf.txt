@@ -79,33 +79,6 @@ protobuf 🔪 Installation
         ## If want to dynamically libraries, add `-DBUILD_SHARED_LIBS=ON`
         ## https://github.com/protocolbuffers/protobuf/issues/12920
 
-cmake --debug-output -B
-grep -i "protobuf_" build/CMakeCache.txt
-
-
-
-
-https://github.com/protocolbuffers/protobuf/blob/main/cmake/README.md
-
-## https://stackoverflow.com/a/75520170
-brew edit protobuf
-sudo nano /home/linuxbrew/.linuxbrew/opt/protobuf/.brew/protobuf.rb
-# add       -Dprotobuf_BUILD_STATIC_LIBS=ON
-# https://docs.brew.sh/FAQ#can-i-edit-formulae-myself
-export HOMEBREW_NO_INSTALL_FROM_API=1
-brew reinstall --build-from-source protobuf
-# But 이것은 매우 오래 걸린다. git clone 에서부터 오래걸린다. depth=1, single branch 를 불러오는 것이 아니라..
-
-# Also, if you want your revised formula to persist, then run `brew pin foo`
-# https://docs.brew.sh/FAQ#how-do-i-stop-certain-formulae-from-being-updated
-
-음~ 이거 되긴되는거같은데 .. homebrew 에서 그렇게 수정하면.. git clone 부터 모든 브랜치와 모든 depth 를 clone 해서 매우 오래걸려..
-
-2025년 기준 실무자들은 이걸 어떻게 설치하고잇지? 
-- host 에서 직접 정적빌드하고 /opt/protobuf/ 에 설치한다.
-- docker 로 의존성 설치후 build 후, install 하고 install 경로 그대로 호스트와 동일한 경로에 복사한다.
-- 아니면 그 외..?
-
   
 ----------------------------------------------
 protobuf 🔪⚓ Docs ; https://protobuf.dev/
