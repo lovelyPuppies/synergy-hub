@@ -1,8 +1,8 @@
 FROM ubuntu:latest
 ARG USER=root
+ARG ROOT_HOME=/root
 ARG PACKAGE_NAME=protobuf
-
-## ⚙️ Adjust the version you want 🔗 https://github.com/protocolbuffers/protobuf/tags
+## ⚙️ Adjust the "BRANCH_VERSION" you want 🔗 https://github.com/protocolbuffers/protobuf/tags
 ARG BRANCH_VERSION=v29.3
 
 
@@ -24,11 +24,11 @@ RUN localedef -i en_US -f UTF-8 en_US.UTF-8
 RUN apt install -y git g++ cmake ninja-build
 
 ## Set working directory to home
-WORKDIR $USER
+WORKDIR ${ROOT_HOME}
 
 ## Clone protobuf repository
 RUN git clone --depth=1 --single-branch --branch ${BRANCH_VERSION} https://github.com/protocolbuffers/protobuf.git ${PACKAGE_NAME}
-WORKDIR $USER/${PACKAGE_NAME}
+WORKDIR ${ROOT_HOME}/${PACKAGE_NAME}
 RUN git submodule update --init --recursive
 
 ## Configure and build shared and static protobuf

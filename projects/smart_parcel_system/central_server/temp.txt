@@ -1914,7 +1914,6 @@ cd socket_iot_system && cmake --build --preset conan-linux-debug-clang-19-x86_64
 
 
 
-
 set SRC_DIR src
 set DST_DIR build
 protoc -I=$SRC_DIR --cpp_out=$DST_DIR $SRC_DIR/addressbook.proto

@@ -11,7 +11,8 @@
   ```bash
   #!/usr/bin/env fish
   cd prototypes/_initialization/ubuntu/opt_packages
-  ## ⚙️ Adjust the version you want 🔗 https://github.com/protocolbuffers/protobuf/tags
+  ## ⚙️ Adjust the "BRANCH_VERSION" you want 🔗 https://github.com/protocolbuffers/protobuf/tags
+  # 📅 last updated version I checked: v29.3
   docker build --build-arg BRANCH_VERSION=v29.3 -t protobuf-builder -f protobuf-builder/Dockerfile protobuf-builder
   ```
 
@@ -112,4 +113,3 @@
 ### References
 
 - [Building a Dual Shared and Static Library with CMake](https://alexreinking.com/blog/building-a-dual-shared-and-static-library-with-cmake.html)
-- brew install protobuf && brew edit protobuf && code /home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/homebrew/homebrew-core/Formula/p/protobuf.rb

@@ -8,8 +8,6 @@ list of level 1 subjects
   https://github.com/bazelbuild/bazel
 
 
-https://bazel.build/install/bazelisk
-
 ----------------------------------------------
 ⚓ Bazel 🔪 Getting started ; https://bazel.build/start
   ⚓ Bazel Install ; https://bazel.build/install

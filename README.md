@@ -341,7 +341,7 @@ tree [**prototypes/\_initialization/\_about**](prototypes/_initialization/_about
 
      It includes **NVIDIA GPU driver**, CUDA.
 
-4. [Install packages to /opt/ **from build** (not pre-built packages)](prototypes/_initialization/ubuntu/opt_packages/README.md)
+4. [Install packages **to /opt directory** (Add-on application software packages) **from build** (not pre-built packages)](prototypes/_initialization/ubuntu/opt_packages/README.md)
 
    - **protobuf** with **(static, shared)**
 
