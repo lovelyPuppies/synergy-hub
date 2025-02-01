@@ -6,7 +6,6 @@ list of level 1 subjects
   CMake is the de-facto standard for building C++ code,
 
 
-
 cmake -LH -S .
 cmake -N -L | grep protobuf_
 cmake --help-variable-list

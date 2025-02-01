@@ -8,7 +8,7 @@ list of level 1 subjects
 
 
 (✍️ docker 🔪 study)
-  ❗ Docker uses default 172.17.0.0/16 subnet. 📅 2025-01-10 09:29:37
+  📍⚖️ Docker uses default 172.17.0.0/16 subnet. 📅 2025-01-10 09:29:37
     %shell> docker network inspect bridge
       >>
         "IPAM": { 
@@ -42,6 +42,18 @@ list of level 1 subjects
       It is a method for allocating IP addresses and routing Internet Protocol (IP) packets.
       📍 CIDR replaced the older system of IP address classes (Class A, B, C, etc.) and introduced a more flexible and efficient way of managing IP addresses.
 
+
+----------------------------------------------
+docker 🔪# Command Line Interface (CLI)
+  ⚓ docker cli ; https://docs.docker.com/reference/cli/docker/
+    # docker container
+      ⚓🔰 docker container start ; https://docs.docker.com/reference/cli/docker/container/start/
+        📝 Note that `docker container -i <container_name>` can run a stopped container that doesn't have a defined entrypoint.
+
+
+        Start one or more stopped containers
+        # Options
+          -i, --interactive		Attach container's STDIN
 
 ----------------------------------------------
 docker 🔪⚓ Reference ; https://docs.docker.com/reference/

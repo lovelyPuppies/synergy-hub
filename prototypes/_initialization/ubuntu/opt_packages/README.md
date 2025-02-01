@@ -59,6 +59,10 @@
   docker run --name protobuf-container protobuf-builder
   # docker run -it --name protobuf-container protobuf-builder /bin/bash
 
+  # remove previous version
+  sudo rm -fr /opt/protobuf-shared
+  sudo rm -fr /opt/protobuf-static
+
   # copy
   sudo docker cp protobuf-container:/opt/protobuf-shared /opt/protobuf-shared
   sudo docker cp protobuf-container:/opt/protobuf-static /opt/protobuf-static
@@ -96,6 +100,12 @@
       echo -e "\n" >>"$FISH_CONFIG_PATH"
   end
 
+  ```
+
+- Navigate
+
+  ```
+  docker start -i protobuf-container
   ```
 
 ### References
