@@ -18656,5 +18656,19 @@ pb.h
 pb_common.h pb_common.c pb_decode.h pb_decode.c pb_encode.h pb_encode.c
 
 
-⚓ binfmt_misc
+📰 면접: binfmt_misc
 
+
+
+CFLAGS 초기화: .. clangd 디버깅 정보에도 추가하기!! TODO: 📰
+
+  -ansi
+  : ANSI C 표준을 준수하도록 컴파일합니다.
+  -Wall
+  : 모든 경고(warnings)를 활성화합니다.
+  -Werror
+  : 경고를 모두 오류로 처리하여, 경고 발생 시 컴파일을 중단하게 합니다.
+  -g
+  : 디버깅 정보를 포함합니다.
+  -O0
+  : 최적화하지 않습니다(디버깅 시에는 최적화 없이 컴파일하는 것이 유리합니다).

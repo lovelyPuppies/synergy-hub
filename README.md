@@ -356,6 +356,8 @@ tree [**prototypes/\_initialization/\_about**](prototypes/_initialization/_about
    brew update && brew upgrade
    ```
 
+   And 🚣 check manually newer version of [installed packages in **/opt**](prototypes/_initialization/ubuntu/opt_packages/README.md)
+
 ## 📏 Rule
 
 - [Emoji rule](prototypes/_initialization/_rule/emoji.txt)

@@ -1,6 +1,6 @@
+### ⚙️
 # Include the nanopb provided Makefile rules
-# ⚙️
-include /opt/nanopb/extra/nanopb.mk
+include ../../nanopb.mk
 
 # Compiler flags to enable all warnings & debug info
 CFLAGS = -Wall -Werror -g -O0
@@ -17,7 +17,10 @@ CSRC += $(NANOPB_DIR)/pb_common.c  # The nanopb common parts
 simple: $(CSRC)
 	$(CC) $(CFLAGS) -osimple $(CSRC)
 
-# Build rule for the protocol
-simple.pb.c: simple.proto
-	$(PROTOC) $(PROTOC_OPTS) --nanopb_out=. simple.proto
+clean:
+	rm -f simple simple.pb.c simple.pb.h
+	
+## Build rule for the protocol
+# simple.pb.c: simple.proto
+# 	$(PROTOC) $(PROTOC_OPTS) --output-dir=. simple.proto
 
