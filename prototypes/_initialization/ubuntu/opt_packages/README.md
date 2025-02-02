@@ -355,4 +355,9 @@ fd compile_commands.json -I
 
 fd compile_commands.json --no-ignore
 
+
+set -a CPATH /opt/boost/debug-static/include
+set -a LD_LIBRARY_PATH /opt/boost/debug-shared/lib
+
+# cat /opt/boost/debug-static/include/boost/version.hpp | grep "#define BOOST_LIB_VERSION"
 ```

@@ -7,7 +7,7 @@
 #include "TcpConnection.hpp"
 
 class TcpClient : private TcpConnection::Observer {
- public:
+public:
   struct Observer {
     virtual void onConnected();
     virtual void onReceived(const char *data, size_t size);
@@ -20,7 +20,7 @@ class TcpClient : private TcpConnection::Observer {
   void send(const char *data, size_t size);
   void disconnect();
 
- private:
+private:
   void onReceived(int connectionId, const char *data, size_t size) override;
   void onConnectionClosed(int connectionId) override;
 

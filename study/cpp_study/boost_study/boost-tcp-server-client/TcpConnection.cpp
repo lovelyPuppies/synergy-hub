@@ -4,7 +4,7 @@
 
 namespace {
 constexpr auto f_maxPackageSize{1024};
-}  // namespace
+} // namespace
 
 void TcpConnection::Observer::onReceived([[maybe_unused]] int connectionId,
                                          [[maybe_unused]] const char *data,
@@ -15,17 +15,13 @@ void TcpConnection::Observer::onConnectionClosed(
 
 TcpConnection::TcpConnection(boost::asio::ip::tcp::socket &&socket,
                              Observer &observer, int id)
-    : m_socket{std::move(socket)},
-      m_readBuffer{},
-      m_writeBuffer{},
-      m_writeBufferMutex{},
-      m_observer{observer},
-      m_isReading{false},
-      m_isWritting{false},
-      m_id{id} {}
+    : m_socket{std::move(socket)}, m_readBuffer{}, m_writeBuffer{},
+      m_writeBufferMutex{}, m_observer{observer}, m_isReading{false},
+      m_isWritting{false}, m_id{id} {}
 
-std::shared_ptr<TcpConnection> TcpConnection::create(
-    boost::asio::ip::tcp::socket &&socket, Observer &observer, int id) {
+std::shared_ptr<TcpConnection>
+TcpConnection::create(boost::asio::ip::tcp::socket &&socket, Observer &observer,
+                      int id) {
   return std::shared_ptr<TcpConnection>(
       new TcpConnection{std::move(socket), observer, id});
 }
@@ -62,20 +58,20 @@ void TcpConnection::doRead() {
   m_isReading = true;
   auto buffers = m_readBuffer.prepare(f_maxPackageSize);
   auto self = shared_from_this();
-  m_socket.async_read_some(
-      buffers, [this, self](const auto &error, auto bytesTransferred) {
-        if (error) {
-          std::cerr << "TcpConnection::doRead() found error: " + error.message()
-                    << std::endl;
-          return close();
-        }
-        m_readBuffer.commit(bytesTransferred);
-        m_observer.onReceived(
-            m_id, static_cast<const char *>(m_readBuffer.data().data()),
-            bytesTransferred);
-        m_readBuffer.consume(bytesTransferred);
-        doRead();
-      });
+  m_socket.async_read_some(buffers, [this, self](const auto &error,
+                                                 auto bytesTransferred) {
+    if (error) {
+      std::cerr << "TcpConnection::doRead() found error: " + error.message()
+                << std::endl;
+      return close();
+    }
+    m_readBuffer.commit(bytesTransferred);
+    m_observer.onReceived(m_id,
+                          static_cast<const char *>(m_readBuffer.data().data()),
+                          bytesTransferred);
+    m_readBuffer.consume(bytesTransferred);
+    doRead();
+  });
 }
 
 void TcpConnection::doWrite() {

@@ -1,4 +1,5 @@
-cmake_minimum_required(VERSION 3.22.0)
+# https://github.com/alejandrofsevilla/boost-tcp-server-client
+cmake_minimum_required(VERSION 3.30)
 
 project(boost-tcp-server-client LANGUAGES CXX)
 
@@ -19,8 +20,17 @@ target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Wpedantic -Werror 
 
 target_include_directories(${PROJECT_NAME} PUBLIC .)
 
-find_package(Boost 1.74.0 REQUIRED)
+find_package(Boost 1.87 REQUIRED)
 if (Boost_FOUND)
+  message(STATUS "❕ Boost found successfully.")
   target_include_directories(${PROJECT_NAME} PUBLIC ${Boost_INCLUDE_DIRS})
+else()
+  message(FATAL_ERROR "Boost not found.")
 endif()
 
+
+## https://cmake.org/cmake/help/latest/module/FindBoost.html
+# study/cpp_study/boost_study/boost-tcp-server-client
+## cmake -G Ninja -S . -B build
+## cmake --build build
+## ./build/tests/boost-tcp-server-client-tests 

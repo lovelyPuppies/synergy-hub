@@ -7,7 +7,7 @@
 #include "TcpConnection.hpp"
 
 class TcpServer : private TcpConnection::Observer {
- public:
+public:
   struct Observer {
     virtual void onConnectionAccepted(int connectionId);
     virtual void onReceived(int connectionId, const char *data, size_t size);
@@ -21,7 +21,7 @@ class TcpServer : private TcpConnection::Observer {
   void send(int connectionId, const char *data, size_t size);
   void close();
 
- private:
+private:
   void doAccept();
   void onReceived(int connectionId, const char *data, size_t size) override;
   void onConnectionClosed(int connectionId) override;

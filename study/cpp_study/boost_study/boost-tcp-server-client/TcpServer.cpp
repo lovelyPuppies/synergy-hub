@@ -14,19 +14,15 @@ void TcpServer::Observer::onConnectionClosed(
     [[maybe_unused]] int connectionId) {}
 
 TcpServer::TcpServer(boost::asio::io_context &ioContext, Observer &observer)
-    : m_acceptor{ioContext},
-      m_connections{},
-      m_observer{observer},
-      m_connectionCount{0},
-      m_isAccepting{false},
-      m_isClosing{false} {}
+    : m_acceptor{ioContext}, m_connections{}, m_observer{observer},
+      m_connectionCount{0}, m_isAccepting{false}, m_isClosing{false} {}
 
 bool TcpServer::listen(const boost::asio::ip::tcp &protocol, uint16_t port) {
   try {
     m_acceptor.open(protocol);
     m_acceptor.set_option(boost::asio::ip::tcp::acceptor::reuse_address(true));
     m_acceptor.bind({protocol, port});
-    m_acceptor.listen(boost::asio::socket_base::max_connections);
+    m_acceptor.listen(boost::asio::socket_base::max_listen_connections);
   } catch (const std::exception &e) {
     std::cerr << "TcpServer::Listen() caught exception: " +
                      static_cast<std::string>(e.what())
