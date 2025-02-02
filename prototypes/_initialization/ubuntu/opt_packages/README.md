@@ -91,7 +91,7 @@
 
   #### 🌀 Title: Copy the packages to `/opt/` from Docker, and Set Environment variables
   # create a new container
-  docker run --name protobuf-container protobuf-builder
+  docker run -d --name protobuf-container -it protobuf-builder bash
 
   # remove previous version
   sudo rm -fr $protobuf_prefix
@@ -100,7 +100,7 @@
   sudo docker cp protobuf-container:$protobuf_prefix $protobuf_prefix
 
   # remove the container
-  docker rm protobuf-container
+  docker rm -f protobuf-container
 
 
   #### 🌀 Title: Add search paths for headers and libraries
@@ -129,10 +129,8 @@
   docker start -i protobuf-container
 
   ## Build log
-  # cat /root/protobuf/build-debug-static.log
-  # cat /root/protobuf/build-debug-shared.log
-  # cat /root/protobuf/build-release-static.log
-  # cat /root/protobuf/build-release-shared.log
+  mkdir -p $HOME/Downloads/build-logs/protobuf
+  docker exec protobuf-container sh -c 'tar -cf - -C /root/protobuf build-*.log' | tar -xvf - -C $HOME/Downloads/build-logs/protobuf
   ```
 
   - ❔ about CMake args in Dockerfile
@@ -299,8 +297,7 @@
 
   #### 🌀 Title: Copy the packages to `/opt/` from Docker, and Set Environment variables
   # create a new container
-  docker run --name boost-container boost-builder
-  # docker run -it --name boost-container boost-builder /bin/bash
+  docker run -d --name boost-container -it boost-builder bash
 
   # remove previous version
   sudo rm -fr $boost_prefix
@@ -309,7 +306,7 @@
   sudo docker cp boost-container:$boost_prefix $boost_prefix
 
   # remove the container
-  docker rm boost-container
+  docker rm -f boost-container
 
 
 
@@ -336,10 +333,8 @@
   docker start -i boost-container
 
   ## Build log
-  # cat /root/boost/build-debug-static.log
-  # cat /root/boost/build-debug-shared.log
-  # cat /root/boost/build-release-static.log
-  # cat /root/boost/build-release-shared.log
+  mkdir -p $HOME/Downloads/build-logs/boost
+  docker exec boost-container sh -c 'tar -cf - -C /root/boost build-*.log' | tar -xvf - -C $HOME/Downloads/build-logs/boost
   ```
 
   - ❔ about `./b2 --help` in Dockerfile

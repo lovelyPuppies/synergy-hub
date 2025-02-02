@@ -7,6 +7,7 @@ nc localhost 1234
 #include <boost/asio.hpp>
 #include <iostream>
 #include <memory>
+#include <thread>
 
 using boost::asio::ip::tcp;
 
@@ -26,6 +27,8 @@ private:
         boost::asio::buffer(buffer_),
         [this, self](boost::system::error_code ec, std::size_t length) {
           if (!ec) {
+            // std::cout << "[echo] Read request processed by thread: "
+            //           << std::this_thread::get_id() << std::endl;
             doWrite(length);
           }
         });
@@ -37,6 +40,8 @@ private:
         socket_, boost::asio::buffer(buffer_, length),
         [this, self](boost::system::error_code ec, std::size_t /*length*/) {
           if (!ec) {
+            // std::cout << "[echo] Write response processed by thread: "
+            //           << std::this_thread::get_id() << std::endl;
             doRead();
           }
         });
