@@ -19817,3 +19817,5 @@ void handle_client(std::shared_ptr<tcp::socket> socket) {
 
 
 
+📦 Boost
+  # https://www.boost.org/doc/libs/1_87_0/more/getting_started/unix-variants.html#easy-build-and-install
