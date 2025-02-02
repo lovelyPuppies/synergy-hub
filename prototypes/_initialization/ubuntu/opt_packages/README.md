@@ -11,6 +11,7 @@
     - [Pro-process](#pro-process-1)
   - [boost](#boost)
     - [Run Commands](#run-commands-2)
+    - [Pro-process](#pro-process-2)
 
 ## 🔰 Common settings
 
@@ -52,11 +53,11 @@
 
 ## protobuf-builder
 
-📅 Written at 2025-02-01 01:00:04
+📅 Written at 2025-02-03 04:07:51
 
 ### Run Commands
 
-- Build and setting for Path
+- Build and Set up
 
   ```bash
   #!/usr/bin/env fish
@@ -74,9 +75,9 @@
 
 
   #### 🌀 Title: Verify the installed packages from Docker
-  ## Check the protoc version
-  docker run --rm --name protobuf-container protobuf-builder ls /opt/protobuf/debug-static/bin/ | grep -E "protoc-[0-9]+"
-  #   >> protoc-29.3.0
+  ## Check the protobuf version
+  docker run --rm --name protobuf-container protobuf-builder ls /opt/protobuf/debug-static/bin/ | grep --extended-regexp 'protoc-[0-9]+'
+  #   🛍️ e.g. >> protoc-29.3.0
 
   ## Check the installed locations
   docker run --rm --name protobuf-container protobuf-builder find /opt/protobuf/ -mindepth 1 -maxdepth 1
@@ -91,7 +92,6 @@
   #### 🌀 Title: Copy the packages to `/opt/` from Docker, and Set Environment variables
   # create a new container
   docker run --name protobuf-container protobuf-builder
-  # docker run -it --name protobuf-container protobuf-builder /bin/bash
 
   # remove previous version
   sudo rm -fr $protobuf_prefix
@@ -120,8 +120,19 @@
 
 - Navigate
 
-  ```
+  ```bash
+  #!/usr/bin/env fish
+  # 🔘 If the named container is not created
+  docker run -it --rm --name protobuf-container protobuf-builder /bin/bash
+
+  # 🔘 If the named container is already created but stopped
   docker start -i protobuf-container
+
+  ## Build log
+  # cat /root/protobuf/build-debug-static.log
+  # cat /root/protobuf/build-debug-shared.log
+  # cat /root/protobuf/build-release-static.log
+  # cat /root/protobuf/build-release-shared.log
   ```
 
   - ❔ about CMake args in Dockerfile
@@ -165,9 +176,11 @@
 
 ## nanoPB
 
+📅 Written at 2025-02-03 04:07:51
+
 ### Run Commands
 
-- Download and setting for Path
+- Download and Set up
 
   🚣 Note that it have only static library!
 
@@ -247,92 +260,86 @@
 
 ## boost
 
-📰 Doing
+📅 Written at 2025-02-03 04:07:51
 
 ### Run Commands
 
-- Build and setting for Path
+- Build and Set up
 
-```bash
-#!/usr/bin/env fish
-sudo -v
+  ```bash
+  #!/usr/bin/env fish
+  sudo -v
 
+  set boost_prefix /opt/boost
 
-#### 🌀 Title: Build boost
-cd prototypes/_initialization/ubuntu/opt_packages
-## ⚙️ Adjust the "BOOST_VERSION" you want 🔗 https://github.com/protocolbuffers/protobuf/tags
-# last updated version I checked: 1.87.0 📅 2025-02-03 02:36:08
-docker build --build-arg BOOST_VERSION=1.87.0 -t boost-builder -f boost-builder/Dockerfile boost-builder
-
-
-boost_prefix=/opt/boost
-
-
-
-#### 🌀 Title: Verify the installed packages from Docker
-## Check the protoc version
-docker run --rm --name protobuf-container protobuf-builder ls /opt/protobuf-static/bin/ | grep -E "protoc-[0-9]+"
-#   >> protoc-30.0.0
-
-## Check the installed locations
-docker run --rm --name protobuf-container protobuf-builder ls /opt/
-#   >> protobuf-shared
-#   >> protobuf-static
+  #### 🌀 Title: Build boost
+  cd prototypes/_initialization/ubuntu/opt_packages
+  ## ⚙️ Adjust the "BOOST_VERSION" you want 🔗 https://github.com/protocolbuffers/protobuf/tags
+  # last updated version I checked: 1.87.0 📅 2025-02-03 02:36:08
+  docker build --build-arg BOOST_VERSION=1.87.0 -t boost-builder -f boost-builder/Dockerfile boost-builder
 
 
 
 
-#### 🌀 Title: Copy the packages to `/opt/` from Docker, and Set Environment variables
-# create a new container
-docker run --name protobuf-container protobuf-builder
-# docker run -it --name protobuf-container protobuf-builder /bin/bash
+  #### 🌀 Title: Verify the installed packages from Docker
+  ## Check the boost version
+  docker run --rm --name boost-container boost-builder cat /opt/boost/debug-static/include/boost/version.hpp | grep --fixed-strings '#define BOOST_LIB_VERSION'
+  #   🛍️ e.g. >> define BOOST_LIB_VERSION "1_87"
 
-# remove previous version
-sudo rm -fr $protobuf_shared_prefix
-sudo rm -fr $protobuf_static_prefix
-
-# copy
-sudo docker cp protobuf-container:$protobuf_shared_prefix $protobuf_shared_prefix
-sudo docker cp protobuf-container:$protobuf_static_prefix $protobuf_static_prefix
-
-# remove the container
-docker rm protobuf-container
+  ## Check the installed locations
+  docker run --rm --name boost-container boost-builder find /opt/boost/ -mindepth 1 -maxdepth 1
+  #   >> /opt/boost/debug-static
+  #   >> /opt/boost/release-shared
+  #   >> /opt/boost/release-static
+  #   >> /opt/boost/debug-shared
 
 
 
 
-#### 🌀 Title: Add search paths for headers and libraries
-set unique_comment "## [protobuf] Add search paths for headers and libraries"
-if not grep -Fxq "$unique_comment" "$FISH_CONFIG_PATH"
-    echo "
-    $unique_comment
-    #⚖️ Default: Using the static build for simplicity, portability, and independence.
-    # For larger projects requiring shared libraries, consider using CMake, Conan, or pkg-config to manage dependencies and configure linking more flexibly.
-    fish_add_path $protobuf_static_prefix/bin
-    set -a PKG_CONFIG_PATH $protobuf_static_prefix/lib/pkgconfig
-    set -a LD_LIBRARY_PATH $protobuf_shared_prefix/lib
-    " | prettify_indent_via_pipe | tee -a $FISH_CONFIG_PATH >/dev/null
-    echo -e "\n" >>"$FISH_CONFIG_PATH"
-end
+
+  #### 🌀 Title: Copy the packages to `/opt/` from Docker, and Set Environment variables
+  # create a new container
+  docker run --name boost-container boost-builder
+  # docker run -it --name boost-container boost-builder /bin/bash
+
+  # remove previous version
+  sudo rm -fr $boost_prefix
+
+  # copy
+  sudo docker cp boost-container:$boost_prefix $boost_prefix
+
+  # remove the container
+  docker rm boost-container
 
 
-sudo docker cp gracious_hertz:/opt/boost /opt/boost
 
-set -a CPATH /opt/boost/debug-static/include
-set -a LD_LIBRARY_PATH /opt/boost/debug-shared/lib
-
-# cat /opt/boost/debug-static/include/boost/version.hpp | grep "#define BOOST_LIB_VERSION"
-```
+  #### 🌀 Title: Add search paths for headers and libraries
+  set unique_comment "## [boost] Add search paths for headers and libraries"
+  if not grep -Fxq "$unique_comment" "$FISH_CONFIG_PATH"
+      echo "
+      $unique_comment
+      set -a CPATH $boost_prefix/debug-static/include
+      set -a LD_LIBRARY_PATH $boost_prefix/debug-shared/lib
+      " | prettify_indent_via_pipe | tee -a $FISH_CONFIG_PATH >/dev/null
+      echo -e "\n" >>"$FISH_CONFIG_PATH"
+  end
+  ```
 
 - Navigate
 
-  ```
+  ```bash
+  #!/usr/bin/env fish
+  # 🔘 If the named container is not created
+  docker run -it --rm --name boost-container boost-builder /bin/bash
+
+  # 🔘 If the named container is already created but stopped
   docker start -i boost-container
 
-  build-debug-static.log
-  build-debug-shared.log
-  build-release-static.log
-  build-release-shared.log
+  ## Build log
+  # cat /root/boost/build-debug-static.log
+  # cat /root/boost/build-debug-shared.log
+  # cat /root/boost/build-release-static.log
+  # cat /root/boost/build-release-shared.log
   ```
 
   - ❔ about `./b2 --help` in Dockerfile
@@ -358,3 +365,16 @@ set -a LD_LIBRARY_PATH /opt/boost/debug-shared/lib
     - runtime-link=static|shared
 
       Whether to link to static or shared C and C++ runtime.
+
+### Pro-process
+
+- Add into `.clangd` for intellisense
+
+  ```plaintxt
+  ---
+  If:
+    PathExclude: "study/bsp_study/raspberry_pi/.*"
+  CompileFlags:
+    Add:
+      - -I/opt/boost/debug-static/include
+  ```

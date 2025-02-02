@@ -38,6 +38,7 @@ RUN cmake -G Ninja -S . -B build-debug-static -DCMAKE_INSTALL_PREFIX=/opt/${PACK
     -Dprotobuf_BUILD_LIBPROTOC=ON -DABSL_PROPAGATE_CXX_STD=ON \
     -Dprotobuf_BUILD_EXAMPLES=ON Dprotobuf_INSTALL_EXAMPLES:BOOL=ON
 
+
 RUN cmake -G Ninja -S . -B build-debug-shared -DCMAKE_INSTALL_PREFIX=/opt/${PACKAGE_NAME}/debug-shared \
     -DCMAKE_BUILD_TYPE=Debug -DBUILD_SHARED_LIBS=YES -DCMAKE_CXX_STANDARD=17  \
     -Dprotobuf_BUILD_LIBPROTOC=ON -DABSL_PROPAGATE_CXX_STD=ON \
@@ -54,6 +55,7 @@ RUN cmake -G Ninja -S . -B build-release-shared -DCMAKE_INSTALL_PREFIX=/opt/${PA
     -Dprotobuf_BUILD_EXAMPLES=ON Dprotobuf_INSTALL_EXAMPLES:BOOL=ON
 
 
+
 RUN cmake --build build-debug-static > build-debug-static.log
 RUN cmake --build build-debug-shared > build-debug-shared.log
 RUN cmake --build build-release-static > build-release-static.log
@@ -66,3 +68,9 @@ RUN cmake --install build-release-static --prefix /opt/${PACKAGE_NAME}/release-s
 RUN cmake --install build-release-shared --prefix /opt/${PACKAGE_NAME}/release-shared
 
 
+## 🚨 (Issue: Bug); `debug-static` pkg-config indicates Release Protobuf Library 📅 2025-02-03 05:24:06
+RUN  sed -i '0,/ -lprotobuf /s// -lprotobufd /' /opt/protobuf/debug-static/lib/pkgconfig/protobuf.pc; \
+    sed -i '0,/ -lprotobuf-lite /s// -lprotobuf-lited /' /opt/protobuf/debug-shared/lib/pkgconfig/protobuf-lite.pc
+
+
+CMD ["bash"]

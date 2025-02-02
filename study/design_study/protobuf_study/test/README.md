@@ -10,7 +10,7 @@ protoc -I=. --cpp_out=. ./test.proto
 
 ## 🧪🆗 Using Static library
 clang++ ./test.pb.cc ./main.cpp -o ./test-static.out \
-    $(pkg-config --cflags --libs protobuf) \
+    $(pkg-config --cflags --libs protobuf | string split -n " ") \
     -static
 ls -lh test-static.out
 ./test-static.out

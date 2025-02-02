@@ -343,8 +343,9 @@ tree [**prototypes/\_initialization/\_about**](prototypes/_initialization/_about
 
 4. [Install packages **to /opt directory** (Add-on application software packages)](prototypes/_initialization/ubuntu/opt_packages/README.md)
 
-   - **protobuf** with **(static, shared)**
-   - **nanoPB**
+   - **protobuf** (c++)
+   - **nanoPB** (c)
+   - **boost** (c++)
 
 5. Update and upgrade your system periodically:
 
