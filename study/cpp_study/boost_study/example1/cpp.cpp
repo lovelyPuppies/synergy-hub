@@ -68,9 +68,31 @@ int main() {
   try {
     boost::asio::io_context io_context;
     Server server(io_context, 1234);
-    io_context.run();
+
+    // Get hardware's available thread count
+    unsigned int thread_count = std::thread::hardware_concurrency();
+    thread_count = (thread_count > 1) ? (thread_count / 2) : 1;
+
+    std::vector<std::thread> threads;
+    for (unsigned int i = 0; i < thread_count; ++i) {
+      threads.emplace_back([&io_context]() { io_context.run(); });
+    }
+
+    for (auto &t : threads) {
+      t.join();
+    }
   } catch (std::exception &e) {
     std::cerr << "Exception: " << e.what() << "\n";
   }
   return 0;
 }
+// int main() {
+//   try {
+//     boost::asio::io_context io_context;
+//     Server server(io_context, 1234);
+//     io_context.run();
+//   } catch (std::exception &e) {
+//     std::cerr << "Exception: " << e.what() << "\n";
+//   }
+//   return 0;
+// }
