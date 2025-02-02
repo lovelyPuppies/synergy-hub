@@ -14,7 +14,11 @@
 
 ## 🔰 Common settings
 
-📝 Note that all installed libraries is **for Release**. not DEBUG.
+- 📝 Note that Almost builded libraries have Version
+  - \<package_name\>/**debug-static**
+  - \<package_name\>/**debug-shared**
+  - \<package_name\>/**release-static**
+  - \<package_name\>/**release-shared**
 
 ```bash
 #!/usr/bin/env fish

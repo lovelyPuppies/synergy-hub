@@ -20,9 +20,9 @@ RUN localedef -i en_US -f UTF-8 en_US.UTF-8
 
 
 
-##### 📅 Written at 2025-02-01 14:04:11
-RUN apt install -y curl cmake ninja-build \
-    libicu-dev libopenmpi-dev
+##### 📅 Written at 2025-02-03 02:38:36
+RUN apt install -y git curl cmake ninja-build \
+    build-essential libicu-dev libopenmpi-dev
 
 ## Set working directory to home
 WORKDIR ${ROOT_HOME}
@@ -47,9 +47,14 @@ RUN ./b2 install --user-config=user-config.jam --without-python --prefix=/opt/${
 
 
 ## ☑️ when run `./bootstrap.sh`
+#   >> Could not find a suitable toolset.
+#     Toolsets supported by this script are:
+#       acc, clang, como, gcc, intel-darwin, intel-linux, kcc, kylix, mipspro,
+#       pathscale, pgi, qcc, sun, sunpro, tru64cxx, vacpp
+#     ➡️ Install `build-essential`
 #   >> Unicode/ICU support for Boost.Regex?... not found.
-#   ➡️ The package `libicu-dev` is required. 🪱 ICU(International Components for Unicode)
-#     After install that, >> Unicode/ICU support for Boost.Regex?... /usr
+#     ➡️ The package `libicu-dev` is required. 🪱 ICU(International Components for Unicode)
+#       After install that, >> Unicode/ICU support for Boost.Regex?... /usr
 ## ☑️ when run `b2 install`
 #   >> error: No best alternative for /boost/libs/mpi/build/boost_mpi with ...
 #     matched: (empty)
