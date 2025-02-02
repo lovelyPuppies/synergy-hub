@@ -62,4 +62,12 @@
   readelf -d ./test.out  | grep 'R.*PATH'
   ```
 
-## [ROS Master Node](ros_master_node)
+## [Interconnection Protocol](interconnection_protocol)
+
+- Optimization (📰 TODO)
+
+  - **[nanoPB]** Using Callback type instead of default
+
+    🛍️ e.g. ListFilesResponse.file type:FT_CALLBACK, callback_datatype:"DIR\*"
+
+  - **[protobuf]** compile with argument -ltcmalloc_minimal

@@ -105,6 +105,7 @@ void handle_connection(int connfd) {
     } else {
       /* Directory was found, transmit filenames */
       response.has_path_error = false;
+      /* ⚙️ */
       response.file = directory;
     }
 

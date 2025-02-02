@@ -1,12 +1,12 @@
 /* Simple binding of nanopb streams to TCP sockets.
  */
 
-#include "common.h"
 #include <pb_decode.h>
 #include <pb_encode.h>
-#include <stdio.h>
 #include <sys/socket.h>
 #include <sys/types.h>
+
+#include "common.h"
 
 static bool write_callback(pb_ostream_t *stream, const uint8_t *buf,
                            size_t count) {
@@ -25,12 +25,7 @@ static bool read_callback(pb_istream_t *stream, uint8_t *buf, size_t count) {
 
   if (result == 0)
     stream->bytes_left = 0; /* EOF */
-  printf("Received %d bytes: ", result);
-  int i = 0;
-  for (i = 0; i < result; i++) {
-    printf("%02x ", buf[i]);
-  }
-  printf("\n");
+
   return result == count;
 }
 

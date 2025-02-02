@@ -12,13 +12,14 @@ If:
   PathMatch: "study/c.*_study/.*\\.(c|cpp|h|hpp)$"
 CompileFlags:
   Add:
+    - -I/home/linuxbrew/.linuxbrew/opt/llvm/include
+    - -I/home/linuxbrew/.linuxbrew/opt/llvm/include/c++/v1
+    - -L/home/linuxbrew/.linuxbrew/opt/llvm/lib
     - -Wall
     - -Wextra
     - -pedantic
-    - -I/home/linuxbrew/.linuxbrew/opt/llvm/include/c++/v1 # For C++ standard library
-    - -L/home/linuxbrew/.linuxbrew/opt/llvm/lib
-    - -O2
-    - -lunwind
+    # - -O2
+    # - -lunwind
 
 # Specific settings for C files
 ---
@@ -40,9 +41,14 @@ CompileFlags:
   Add:
     - -std=c++23
     - -stdlib=libc++
+    # - -fms-extensions
     # treat all files as C++
-    - -xc++
-
+    # - -xc++
+Diagnostics:
+  Suppress:
+    - module_odr_violation_function
+#     - undeclared_var_use
+#    - use_of_empty_using_if_exists
 
 ### Common includes/libraries settings 📅 2025-01-30 14:56:36
 ---
@@ -52,5 +58,6 @@ CompileFlags:
   Add:
     - -I/opt/protobuf-static/include
     - -I/opt/nanopb/include
+    - -I/opt/boost/debug-static/include
 
     

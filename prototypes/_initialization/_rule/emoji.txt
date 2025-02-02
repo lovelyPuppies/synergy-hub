@@ -8,6 +8,7 @@ Emoji 🔗 from VS Code Extension :emojisense: ;https://marketplace.visualstudio
   📝      :memo:                        ""
   📜      :scroll:                      "(how-to) fish script: <Title>"
   ✍️      :writing_hand:                "(✍️ <Subject> 🔪 study)"
+  🏛      :classical_building:          "Standards for: <Title>"
 
 
   🗒️      :spiral_notepad:              "Contents"                          Used to distinguish the "Contents" section within a Wikipedia article from other articles that I have logically grouped, for better clarity and organization.

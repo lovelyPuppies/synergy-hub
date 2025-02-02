@@ -3,7 +3,7 @@ https://www.mermaidchart.com/app/projects/638a6e76-1714-4b3d-93c1-a0fa3196a871/d
 ```
 flowchart TD
     %% Declaration with styling
-    
+
     subgraph "User Access Group"
         MobileApp["TCP Connector (Mobile App)"]:::user
         WebBrowser["Web Browser"]:::user

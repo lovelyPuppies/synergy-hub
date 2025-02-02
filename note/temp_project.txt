@@ -7036,6 +7036,980 @@ STM32의 ITM (Instrumentation Trace Macrocell)을 통해 디버깅 메시지 출
   https://marketplace.visualstudio.com/items?itemName=thecreativedodo.usbip-connect
 
 
+
+
+----------------------------------------------
+Temp
+  ⚓ C++ language reference ; https://learn.microsoft.com/en-us/cpp/cpp/cpp-language-reference
+    ⚓ Welcome back to C++ (Modern C++) ; https://learn.microsoft.com/en-us/cpp/cpp/welcome-back-to-cpp-modern-cpp
+    # Built-in types
+      ⚓🚣 Data type ranges ; https://learn.microsoft.com/en-us/cpp/cpp/data-type-ranges
+    # Statements
+    ⚓ Namespaces ; https://learn.microsoft.com/en-us/cpp/cpp/namespaces-cpp
+    ⚓ Enumerations ; https://learn.microsoft.com/en-us/cpp/cpp/enumerations-cpp
+    ⚓ Unions ; https://learn.microsoft.com/en-us/cpp/cpp/unions
+
+    ⚓ Arrays ; https://learn.microsoft.com/en-us/cpp/cpp/arrays-cpp
+
+  ⚓ C Docs ; https://learn.microsoft.com/en-us/cpp/c-language
+    ⚓ C language reference ; https://learn.microsoft.com/en-us/cpp/c-language/c-language-reference
+      # Elements of C
+      # Program structure
+      # Declarations and types
+      # Expressions and assignments
+        # C operators
+          ⚓ C operators ; https://learn.microsoft.com/en-us/cpp/c-language/c-operators
+          # C additive operators
+            ⚓💡 Pointer arithmetic ; https://learn.microsoft.com/en-us/cpp/c-language/pointer-arithmetic
+
+      # Statements
+      # Functions
+      # C language syntax summary
+      # Implementation-defined behavior
+      # C/C++ preprocessor reference
+
+
+    ⚓ C runtime library (CRT) reference ; https://learn.microsoft.com/en-us/cpp/c-runtime-library/c-run-time-library-reference
+      # Function family overviews
+        ⚓🚣 Format specification syntax: printf and wprintf functions ; https://learn.microsoft.com/en-us/cpp/c-runtime-library/format-specification-syntax-printf-and-wprintf-functions#flags
+        ⚓🚣 Format specification fields: scanf and wscanf functions ; https://learn.microsoft.com/en-us/cpp/c-runtime-library/format-specification-fields-scanf-and-wscanf-functions
+          ... White-space characters: blank ( ); tab (\t); or newline (\n). A white-space character causes scanf to read, but not store, all consecutive white-space characters in the input up to the next non-white-space character.
+      # CRT alphabetical function refernce
+        ⚓ _countof Macro ; https://learn.microsoft.com/en-us/cpp/c-runtime-library/reference/countof-macro
+
+
+        ⚓ scanf_s, _scanf_s_l, wscanf_s, _wscanf_s_l ; https://learn.microsoft.com/en-us/cpp/c-runtime-library/reference/scanf-s-scanf-s-l-wscanf-s-wscanf-s-l
+          ... Unlike scanf and wscanf, scanf_s and wscanf_s require you to specify buffer sizes for some parameters. Specify the sizes for all c, C, s, S, or string control set [] parameters.
+        ⚓ div, ldiv, lldiv ; https://learn.microsoft.com/en-us/cpp/c-runtime-library/reference/div
+
+  C언어
+    이식성을 갖춘 프로그램을 만들 수 잇다.
+    함수 사용 가능.. ISO/IEC 9899:1999 -> C99 .... 버전 23 찾기 .
+  임베디드는 특수목적. <-> 범용
+    하드웨어를 제어하는 드라이버를 만드는 것.
+  Source file -> Preprocess -> Compile -> object file? 파일? -> 링크... Soulution build 안에 포함되나?.. -> Debugging.. -> 실행 파일 작성.
+    개체파일은 CPU가 해석할 수 있는 instructino 들로 이루어진 기계어 파일이지만, 바로 실행하는 것은 불가능??.
+    운영체제에 의해서 실행되므로 설치된 운영체제에서 인식할 수 있는 형태의 실행 파일로 바꿔야 한다.
+    포인터는 메모리 주소 제어 떄문에 사용한다.
+    Win32bit 7 -> 4Gvb 밖예 사용을 못햇엇음.. 2^32 = 4GB. 32비트가 물리적인 길이.
+  메모리의 최소 단위는 1 Byte
+    0x01 0x02 0x03 ... 
+    메모리 주소는 고유하고 연속적. 
+    RAM: Random! 접근시간 동일, 임의로 접근 가능. 주소가 있기 때문.
+
+Book
+  C++ 시작  
+    컴퓨터와 프로그래밍
+      🆚 기계어 Machine language, 어셈블리어.. 니모닉 기호 (mnemonic symbol),  
+      소프트웨어는 CPU가 이해할 수 있는 일련의 명령들과 데이터로 구성되어 CPU는 이 명령을  실행하여 요구된 기능을 수행한다.
+
+    컴파일->링킹->;.. 목적 파일 관련해서 ..
+    `컴파일.. 전처리기.. 해더 파일의 확장..; #include 문이 있던 그 자리에 삽입..
+      컴파일 후 생성된 object file 은 라이브러리에 대한 참조 표시만 있을 뿐 코드를 포함하지 않아서 결합되도록 한다.
+      ??? 링킹이 항상 "실행 파일"을 만드는 과정?은 아니지 않나. .lib 도 실행파일인가??
+        어떤 목적 파일이 참조하는 c++ 표준 라이ㅡㅂ러리나 다른 목적 파일 속에 있는 함수 ,객체, 데이터를 포함하여 실행에 필요한 모든 기계어 코드를 확ㅇ보하여, 하나의 실행 파일로 만드는 과정
+      목적 파일은 윈도우에서는 .obj 이며 유닉스는 .o 를 사용한다. 실행파일은 윈도우에서는 .exe 이며, unix-like 에서는 정해진 확장자가 없다!🚣
+      디버깅이란? 프로그램 내 오류 위치를 발견하거나 문제의 원인을 찾아 수정하는 과정.// beakpoint..  . 실행파일 실행할떄 나타나는 오류 발견/수정 과정이 아님!
+      
+    C++ 표준 -> ISO/IEC14882 
+    🆚 C, C++
+      C언어와의 호환성; C언어의 문법척 체계를 그대로 계승. C언어로 작성되어 컴파일된 목적파일과 라이브러리를  C++ 에서 링크하여 사용 가능
+      객체 지향 개념 도입
+        Default parameter, Reference
+        generic
+        new, delete
+
+        ❔OOP: 실제 세상과 가깝게 모델링하기 위해, 응용에 필요한 물체(객체)를 모델링하고, 이들 간의 관계, 상호작용을 표현하는 프로그래밍 기법
+        특징 OOP 🗺️
+          Capsulation : 데이터를 캡슐로 감싸서 외부의 접근으로부터 데이터를 보호
+            namspace
+          Inheritance:: 자식이 부모의 유전자를 물려받는 개념.
+          📍 Polymorphism: 하나의 기능이 경우에 따라서 서로 다르게 보이거나 다르게 작동하는 것???
+            Function overloading, Operator overloading
+          Generic: ... template.. 📰
+      엄격한 타입 체크.
+    C++ 라이브러리를 구성하느 ㄴ헤더 파일들
+      STL library: alg`orithm, complex, exception, list, stack, bitset, locale, stdexcept, functional, map, memory, string, numeric, typeinfo, utility, queue, valarray, iterator, set, vector, deque, limits
+      new (STL에 포함되지 않은 기타 기능 구현?)
+      C++ 입출력 라이브러리: fstream, strstream, streambuf, iomainip, ios, iosfwd, iostream, ostream, istream
+      C 라이브러리: csetjmp, cassert, csignal, cctype, cstdarg, cerrno, cstddef, cfloat, cstdio, ciso646, cstdlib, climits, cstring, clocale, ctime, camth
+
+  C++ 프로그래밍의 기본
+    🆚 주석문 (Comment).. annotation
+    📍 표준 C++ 파일은 확장자가 없고, c++ 표준에서 지원되는 모든 라이브러리는 std 이름 공간 안에 구현되어있다.
+    🆚 #include < >  vs.  #include " "
+    ❓ 헫 ㅓ파일에는 무엇이 들어ㅡ있나?.. e.g. string 객체를 사용하려면 string.h 를 include 하는데, string 정확히는 함수의 코드가  들어가 잇는것ㅇ ㅣ아니다? 이미 컴파일된 기계어 형태로 들어가잇는것??.. 이거는 C 라이브러리에만 해당되는건가? <cstring> strcpy()?
+      헤더 파일에 선언된 객체들?
+    c++ 에서는 int main() 에서는 에외적으로 return 문을 생략할 수 있도록 하였다? return 0; 가 기본값인듯.>
+    std::cin, std::cout, std::endl
+      <<: 🪱 stream insertion operator 오른쪽 피연산자 데이터를 🪱 왼쪽 스트림 객체에 삽입.. <iostream> 헤더 파일에 연산자가 재정의됨. 여러 개를 쓸 수 있다. std::cout << "Hello" << ": Hi"; // (근데 성능 문제 있는것으로 앎.)
+        
+        std::cout '\n'; 문장은 << 연산자가 '\n' 문자를 cout 의 🪱 스트림 버퍼에 단순히 삽입하고 끝난다. 그 후 cout 스트림 버퍼가 꽉 차거나 강제 출력 지시가 있는 경우 🚣 cout은 'n' 을 해석하여 다음 줄로 넘긴다.
+        std::endl; 은 '\n' 을 스트림 버퍼에 넣고, cout에게 현재 스트림 버퍼에 있는 데이터를 즉각 장치에 출력하도록 지시한다. endl을 사용하면 커서를 다음 줄로 넘기는 것고 ㅏ동시에 현재 cout의 스트림 버퍼에 있는 모든 데이터를 출력시킨다.
+      >>: cin.. 표준 입력 스트림인 >> 연산자. 🪱Stream Extraction operator
+        cin >> coffee >> num; // 처럼 한 줄에 가능
+      cin.getline() 공백이 포함된 문자열 입력
+      문자열 입력방법
+        C-string
+        #include <string.h> // string class
+    #include <iostream>..
+    ❓ Boolean 값을 1, 0 이 아닌 "true", "false" 문자열로 출력 방법?
+    ❔ namespace.. 이름공간.. identifier... scope 와 관련해서 설명하기. https://learn.microsoft.com/en-us/cpp/cpp/namespaces-cpp?view=msvc-170
+      충돌을 막기 위해.
+      using diretives ; https://learn.microsoft.com/en-us/cpp/cpp/namespaces-cpp?view=msvc-170#using_directives
+    ⚓📍Keywords ; https://learn.microsoft.com/en-us/cpp/cpp/keywords-cpp?view=msvc-170
+      using
+    Operators
+      Scope resolution operator: :: ; https://learn.microsoft.com/en-us/cpp/cpp/scope-resolution-operator?view=msvc-170
+    
+    실행문 중간에 변수를 선언하는 방식
+      사용하는 코드 바로 위에 변수를 선언할 수 있어 코드를 읽기 쉽게 만든다.
+      선언된 변수들이 코드 사이에 흩어져 있으므로 선언된 모든 변수를 한 눈에 보기 어렵다.
+    🚣 C언어에서 전역 변수는 상수로만 초기화 가능.. C++ 에서는?     
+    C++ 초기화 방법. Foo bar(arguments...)
+  # Classes and structs
+    🆚 객체, 클래스, 인스턴스
+      클래스는 객체를 정의하는 틀 혹은 설계도.: 붕어빵 틀과 붕어빵과의 관계와 비슷하다.
+      객체는 멤버 변수 메모리, 멤버 함수 코드를 실제 카지고 실체화된 데이터 구조나 개체.
+        객체 = 인스턴스. 인스턴스는 어떤 클래스의 구현체인지를 강조할 때 사용되는 용어
+      
+      클래스 정의 시
+        클래스 자체의 클래스의 코드(메서드, 클래스 변수 등)는 메모리에 로드되지만, 이는 객체 생성과는 별개로 프로그램 전체에서 공유됩니다.
+      객체 생성 시
+        객체가 생성되면 그 객체의 인스턴스 변수를 저장하기 위한 메모리가 할당된다. 클래스의 크기만큼 메모리가 할당되는것이 아님!
+    객체들은 서로 정보를 교환하고 통신하기 위해 일부 요소의 공개 노출이 필요할 수 있따.: TV on/off button, 밝기 조절, 채널 조절, 음량 조절 등. 사람도 귀 눈, 코 등.
+    객체는 🪱 State (상태), 행동 (behavior) 으로 구성된다.
+    선언부와 구현부로 나뉜다: class delcaration, class implementation
+      🚣 !! 이를 분리하는 이유는 클래스의 재사용을 위함. . 클래스를 사용하고자 하는 다른 c++ 파일에서는 컴파일 시 클래스의 선언부만 필요하기 때문.
+    함수 사용 이유.. 재사용성을 위함
+      📰 위임 생성자에서는 이니셜라이저 리스트에 다른 생성자 호출 외에 멤버 초기화를 포함할 수 없다는듯?
+      Delegating constructors
+        자신의 코드를 실행하기 전 위임생성자를 호출함.
+      소멸자 필요 이유:
+        객체가 소멸할 때, 동적으로 할당받은 메모리를 운영체제에 돌려주거나, 열어 놓은 파일을 저장하거나 닫거나, 연결된 네트워크를 해제하는 등 객체가 사라지기 전에 필요한 조치를 하도록 하기 위함.
+        소멸자는 리턴 타입이 없고 어떤 타입도 리턴해서는 안된다.
+        객체 소멸 순서: 지역 객체 -> 전역 객체
+        ⚠️ 특히 얕은 복사에서 포인터타입이 있는 경우. char* name 을 동적할당할 경우, 멤버 변수 포인터가 그대로 복사되므로 객체 소멸 시 이미 소멸된 변수의 메모리를 반환하려는 오류가 발생할 수 있으니 주의해야 함.
+          사용자 복사 생성자를 생성해서 새로 동일한 길이만큼 new ~ 및 strcpy 를 this->name 에 할당해야 한다.
+          🚣 복사 생성자 호출 시기: 객체 초기화하여 생성될 때, 값에 의한 호출로 객체가 전달될 때ㅐ, 함수가 객체를 리턴할 때
+
+      생성자의 목적은 객체가 생성될 때 필요한 초기작업을 하기 위함.
+      생성자 함수는 오직 한 번만 실행되고, 생성자 함수의 이름은 클래스 이름과 동일하게 작성되어야 한다.
+      생성자 함수의 원형에 리턴 타입을 선언하지 않음.
+      📰 속도 벤치마킹 필요: Initializer list constructors
+      위임 생성자는 속도 향상과 관련 없다는 듯.
+  객체 포인터와 객체 배열, 객체의 동적 생성
+    객체 배열 선언문은 오직 매개 변수 없는 기본 생성자를 호출한다. 소멸 시, 높은 인덱스부터 원소 객체가 소멸된다.
+    💡 동적 메모리 할당. new, delete
+    news 로 배열 동적 할당을 때 생성자를 통해 직접 초깃값을 지정할 수 없다.
+    ?매개 변수 없는 생성자 호출..
+      Circle waffle;  // o
+      Circle waffle();  // x. waffle 을 함수로 인지함.
+    그러나 다음 두 라인은 문제없다.
+    Circle *p = new Circle; // o
+    Circle *q = new Circle(); // o
+
+    ⚠️ Memroy leak
+      char n = 'a';
+      char *p = new char[1024];
+      p = &n;
+    
+    Design pattern.. ?  현재 객체의 주소를 리턴하는..
+    public:
+      Smaple* f(){
+          ...
+          return this;
+      }
+    내부 컴파일러에 의해 this 가 묵시적으로 멤버 함수에 포함된다.
+      public:
+        void setA(int x)
+      -->
+      public: // 묵시적으로 삽입된 매개 변수.
+        void setA(Sample* this, int x)
+    string class
+      >> 으로 문자열 입력 가능.
+
+  함수와 참조, 복사 생성자
+    값에 의한 호출로 객체를 전달하면, 함수 내부에서는 복사 생성자가 호출되고 이후 소멸자만 실행되도록 컴파일된다고 함.
+    📍 참조 리턴
+      1.
+        char c = 'a';
+        char get() {  // char 값 리턴
+          return c; // 변수 c의 값 리턴
+        }
+        char a = get(); // a = 'a' 가 됨.
+        get() = 'b'; // 컴파일 오류
+      2.
+        char c = 'a';
+        char& find() { // char 타입의 참조 리턴
+          return c; // 변수 c 에 대한 참조 리턴.
+        }
+        char a = find(); // a = 'a' 가 됨.
+        char &ref = find();   //ref 는 c 에 대한 참조.
+        ref = 'M';  // c = 'M'
+        find() = 'b'; // c = 'b' 가 됨.
+    객체 치환 시 모든 데이터가 🚣 비트 단위로 복사된다. Assignment?
+  함수 중복과 static 멤버
+    묵시적 형 변환으로 인해 int형과 실수형 간의 함수 오버로딩에서 모호성에 의해 컴파일 오류가 발생할 수 있다.
+    reference 형 변수, default 변수로 인해서도 발생 가능함.
+    static
+      static 멤버 함수는 객체가 생성되지 안ㅇ흔 어떤 시점에서도 호출될 수 있고, 클래스 이름으로 직접 호출될 수 있기 때문에, static 멤버 함수에서 non-static 멤버에 접근하는 것은 허용되지 않는다.
+  프렌드와 연산자 중복
+    friend 클래스의 멤버 함수로는 적합하지 않지만, 클래스의 private, protected 멤버를 접근해야 하는 특별한 경우 사용.
+    --- 각 연산자 중복 어떻게 구현할 지 생각해보기. 전위, 후위 연산자나. <iostream> 의 cout 의 << n
+  상속
+    🚣 기본 클래스의 생성자가 파생 클래스의 생성자보다 먼저 실행된다.
+    💡 기본적으로 파생 클래스는 생성자 호출 시 기본 클래스의 기본 생성자를 호출한다. 명시적으로 지정하고 싶으면, : ... 으로 위임해야 한다. 컴파일러가 묵시적으로 삽입하지 않도록.
+    🚣 iostream, ostream 도 virtual public ios 를 상속받고, class iostream 은 istream, ostream 을 상속받는다.
+    e.g.
+      Product
+      └ Book
+        └ ConversationBook
+      └ CompactDisk
+
+      AirlineBook
+        └ Schedule
+          └ Seat
+        └ Console
+
+      
+
+  가상 함수와 추상 클래스
+    가상 함수는 상속받는 파생 클에서 구현해야 할 일종의 함수 인터페이스를 제공. 
+      컴파일러의 Dynamic binding. 실행 중에 객체 내에 오버라이딩한 가상 함수를 동적으로 찾아 호출한다.
+        = run-time binding. late binding ?; 오버라이딩된 함수가 무조건 호출됨.
+        !! 동적 바인딩은, 파생 클래스 객체에 대해, 기본 클래스의 포인터로 가상 함수가 호출될 때 일어난다.; 업캐스팅?
+    ; 오버라이딩 시 virtual 지시어를 생략해도 자동으로 virtual 로 간주된다.
+    vs. 정적 바인딩 // 사용예씨.
+
+    Scope rule; 동일한 identfier (이름)의 변수나 함수가 여러 곳에 선언되어 있을 때 가장 안쪽에 속하는 선언된 이름을 사용하는 규칙.
+
+    !! 가상 소멸자.; 파생 클래스의 객체가 기본 클래스에 대한 포인터로 delete 되는 상황에서도 정상적인 소이 되도록 하기 위해서.
+    오버라이딩: 런타임 다형성. 오버로딩: 컴파일 시간 다형성.
+    * 동적 바인딩이 제대로 되었는지 확인하는 패턴?
+      Shape * p = pStart;
+      while(p != NULL) {
+        p->paint();
+        p = p->getNext();
+      }
+    // p.paint() p.getNext(), p.add(), Shape *pStart , Shape *pLast 로 연결 리스트를 만드는 예시코드.
+
+    순수가상함수? pure virtual function
+      >> 설계와 구현을 분리할 수 있다. 계층적 상속 관계를 가진 구조를 만들 때 적합
+      추상클래스를 상속받는 파생 클래스는 추상함수를 구현하지 않으면 자동으로 추상 클래스가 된다. (순수 가상 함수 상속받기 떄문).
+      추상클래스는 불완전한 클래스.
+      파생 클래스가 온전한 클래스가 되려면 추상 클래스의 구현을 해야 한다.
+        //
+      추상 클래스에 대한 포인터 생성 불가.
+
+    함수 오버라이딩 조건
+      virtual? 컴파일러에게 자신의 대한 호출을 실행 시간까지 미루도록 한다.?
+      시그니쳐 일치.
+      상속 DEFAULT 규칙.
+        소멸자, ...
+        
+    구현 예시:
+      Printer - 잉크젯 프린터, 레이저 프린터.
+      GraphicEditor - Shape - ...
+      abstract class Compareable ... Shape 에 대해서.
+  템플릿과 표준 템플릿 라이브러리
+    템플릿은 타입이나 값에 의존적인 코드를 일반화하여, 여러 타입이나 값에 대해 재사용 가능한 코드를 작성할 수 있게 해주는 
+    🆚 #define, template
+      매크로는 복잡한 함수나 클래스는 표현하는 데 한계까 있으며, 타입 안정성이 확보되지 않아서, side-effect 를 초래할 가능성이 높다.
+      반면에 템플릿은 정적 타입 검사를 한다는 장점
+    🚣 "new" 를 동적 생성하여 스택에 .add(new Point(10, 20)) 이런 식으로도 넣을 수 있다.
+    Standard Template Library; STL
+      container; 데이터를 검색하고 담아둘 수 있는 자료구조를 구현한 클래싀.
+      🆚 vector, list
+        vector: 가변 크기의 배열을 일반화한 클래스 (동적 배열). 파이썬의 list 와 유사. 원소를 맨 뒤에서 추가하거나 삭제하는 작업이 O(1)
+        list: 임의의 위치에서 빠른 삽입/삭제가 가능한 이중 연결 리스트 클래스
+      📰🆚 .at(), indexing operator []
+        인덱스 범위를 벗어나도 오류가 발생하지 않고, 정의되지 않는 동작을 초래할 수 있다 ?? (Undefined Behavior)
+        .at 은 인덱스 범위를 벗어날 경우 std::out_of_range 예외를 던져서 오류를 처리할 수 있도록 한다.
+      erase(iterator it) // 🚣  iterator 가 가리키는 원소 삭제, 삭제 후 자동으로 벡터 조절.
+        vector 의 중간 원소를 삭제했을 때 vector 는 메모리가 연속적으로 위치해야 하는데 이 내부과정은 vector 내부에서 이루어진다.
+      insert(iterator it, element)  // 벡터 내 it 위치에 element 삽입.
+        map, set
+          make_pair()
+          /// find() 있나? 못찾았을 경우 뭘 반환하지?
+          insert(pair <> &element)
+          operator[key_type& key]()
+          operat=()
+      Iterator: 컨테이너의 원소들을 순회 접근할 수 있는 클래스.
+
+
+  C++ 입출력 시스템
+    stream: 연속적인 데이터의 흐름 혹은 데이터를 전송하는 소프트웨어 모듈.
+    c++ 에서는 입력 스트림, 출려 스트림으로 나뉨.
+      입력 스트림: 키보드, 네트워크, 파일 등 입력 장치로부터 입력된 데이터를 순서대로 프로그램에 전달하는 "객체"
+      출력 스트림: 프로그램에서 출력한 데이터를 프린터나 하드 디스크, 스크린, 네트워크, 파일 등과 같은 목적 장치로 순서대로 보내는 객체.
+    c++ 응용 프로그램은 출력 장치에 직접 출력하는 대신, 출력 스트림에서 출력하고, 입력 장치로부터 직접 입력받는 대신, 입력 스트림으로부터 입력 받는다.
+      표준 입력 스트림 객체는 cin, 표준 출력 스트림 객체는 cout.
+    각 객체는 "버퍼"를 가진다.
+      입력 스트림 버퍼는 입력된 데이터를 프로그램에 전달하기 전에 일시 저장하는 공간이며, 출력 스트림 버퍼는 출력 장치로 보내기 전에 데이터를 일시 저장하는 공간.
+      Backspace.. 버퍼에서 가장 최근된 입력 데이터를 지우는 제어키 역할.
+      Enter ...
+    cout.flush(). 출력 스트림은 버퍼에 있는 데이터를 모두 장치에 출력.
+    ❔📰 버퍼가 없으면, OS kernel 단의 파일 입출력이 잦아져 시스템 효율이 나빠진다.
+    🆚 저수준 입출력 방식. vs 버퍼가 있는 방식. (버퍼가 없는 방식)
+    문자를 한 바이트로만 다루는 클래스 (2바이트로 구성되는 문자를 읽을 수 없음):
+      iostream, ifstream, ofstream, fstream 
+    한 문자를 여러 바이트로 표현하는 다국어의 입출력
+      basic_ios, basic_iostream, basic_ifstream, basic_ofstream, basic_fstream
+    istream
+      int get() // 입력 스트림에서 문자를 읽어 리턴. 오류나 EOF 를 만나면 -1 EOF 리턴.
+      istream& get(char& ch)  // 입력 스트림에서 문자를 읽어 ch에 저장. 현재 입력 스트림 객체(*this) 의 참조 리턴. 오류나 EOF 르 만나면 스트림 내부의 오류 플래그(failbit) 세팅.
+      istream& get(char* s, int n)  // 스트림으로부터 문자열 읽어서 배열 s 에 저장. EOF 를 만나거나 오류가 발생하면 읽기를 중단하고, '\0' 를 배열에 삽입하고 리턴한다.
+      ⚠️ // 한글 문자열을 위해 get(char* strl, int n) 함수를 호출해서 문자 개수의 2배의 크기의 배열을 str 에 넘겨주면 한글 문자열을 읽을 수 있다. get() 는 2바이트 구성되는 한글 문자 못읽음.
+      istream& get(char* s, int n, char delim='\n')
+      istream& getline(char* s, int n, char delim='\n') // ❓ 위와 동일하지만 dlim 에 지정된 구분 문자를 스트림에서 제거한다는 차이.
+      istream& ignore(int n=1, int delim=EOF) // 제거 도중 delim 문자를 만나면 delim 문자레르 제거하고 리턴.
+    C와 마찬가지로 마찬가지로 버퍼에 남은 "\n" 문자에 주의해야 함.
+    insertion operator (<<) overloading; 스트르림에 데이터를 출력하기 위해 ostream 클래스에 작성된 연산자.
+      operator overloading. ostream& operator << (ostream& stream, Book a) {return stream} ...  
+        //❓ friend 키워드를 사용해서 외부함수로 작성해야 사용 가능하다.
+      operator overloading. ostream& operator << (ostream& stream, Book a) {reurn *this} ...
+      e.g. cout << book
+    // extraction operator (>>) overloading; 스트림으로부터 데이터를 입력받기 위해 istream 클래스에 작성된 연ㅅ나자
+      operator overloading. istream& >> (istream& ins, UserCalss& obj);
+    ostream& ostream::operator << (ostream& (* _f)(ostream&)) {
+      (*_f)(*this); // *this is cout. call (*_f) function, which is the manipulator
+      return *this;
+    }
+    //❓ 원형이 (ostream& stream, Point a) {reurn *this} 이런거였는데 인수가 달라도 되나보네? 인수가 포인터일 경우? 함수일경우? 오버로딩하느 ㄴ것인가?
+    사용자 조작자
+    istream& manipulatorFunction (istream&^ ins)
+    ostream&^ manipulatorFunction (ostream& outs)
+    e.g.
+      string answer;
+      cin >> question >> answer;
+      istream& question(istream& ins){
+        cout << "거울아 거울아 누가 제일 예쁘니?";
+        return ins;
+      }
+
+        
+  C++ 파일 입출력
+    기록되는 데이터는 데이터의 종류에 따라 텍스트 파일과 바이너리 파일로 나뉜다.
+      텍스트 파일: letter/character (글자/문자) 만으로 구성되는 문서 파일. 🆚 letter 은 알파벳 문자로 한정된 개념. character 는 모든 기호를 포함하는 더 넓은 개념???
+        사용자들이 사용하는 글자에는 각 기호/글자마다 고유한 바이너리 코드(이진 코드)가 주어진다. e.g. ASCII 코드 (1바이트), Unicode (2바이트~)
+        e.g. 파일의 마지막 부분의 1961에서 '1'은 문자로서 0x31로 저장. 0x01로 저장되지 않음.
+          ⚠️ 텍스트 파일은 문자들만 다루는 파일이기 때문. 문자 코드가 아닌 어떤 값도 존재할 수 없다.
+        line feed, carriage return.
+      바이너리 파일: 이미지, 오디오, 그래픽 이미지, 컴파일된 코드와 같은 문자로 표현되지 않는 바이너리 정보들을 저장하는 파일.
+        바이너리 파일의 각 바이트는 다르게 해석될 수 있다.
+          jpeg, mp 등의 이미지 파일
+            mp3 등의 오디오 파일
+              hwp, doc, ppt 등의 확장자를 가진 멀티미디어 문서 파일. // 📝 hwp 는 문서/텍스트에 대한 포매팅을 제공하기 때문에 텍스트 파일이 아니다.
+                obj, exe 등의 확장를 가진 컴파일된 코드나 실행 파일.
+    https://en.cppreference.com/w/cpp/io 
+      파일을 프로그램과 연결하는 스트림: ifstream, ofstream
+      ifstream  // 파일 읽기 시 사용
+        get(); 스트림이 키보드에 연결되어 있따면 키보드에서 문자 하나를 읽고, 스트림이 파일에 연결되어 있따면 파일에서 문자 하나를 읽음.
+          ㅍ한 바이트를 읽고 파일 포인터를 다음 바이트 위치로 전진시킨다. 이후 eof 함수를 호출하는데파일 끝에 도달하면 -1 을 리턴한다. ??
+        eof();  // eofbit 플래그의 값이 1인지만 확인하여 리턴하므로 while(!fin.eof()) 이런 식으로 코드를 짜면 안된다. -1 도 true 이기 때문.
+      ofstream; 파일 쓰기 시 사용
+      fstream ; 하나의 파일에 대해 읽기와 쓰기를 동시에 할 때 사용
+      getline(), put(), read(), write()
+    fout.open()
+      // if (!fcout) ... 파일 열기 성공 검사. or fout.is_open()
+      파일명 존재하는지, 작성에 필요한 충분한 디스크 공간, 읽기 전용 파일에 쓰기를 하는지, 접근 금지 파일을 읽고자 하는지 등에 대한 검사를 하는 과정.
+      void open(const char * filename, ios::openmode mode)
+    🚣 // "<<" 연산자를 이용한 파일 쓰기. ofstream fout("file_path"); //default open mode 가 text 모드인듯?
+    fout.close()
+      파일 열기 시에 구성한 자료 구조를 해제??? 하여 읽기/쓰기를 끝내는 작업. 버퍼에 남아있는 데이터를 물리적으로 장치에 기록하는 마무리 작업도 포함.
+    🚣 // ">>" 연산자를 이용한 텍스트 파일 읽기.
+    file mode // 여러 개를 동시에 사용할 때 💡 OR 연산자 | 를 사용하면 된다. e.g. ios::out | ios::app | ios::binary
+      ios::in
+      ios::out
+      ios::ate  // at end. 쓰기 위해서 파일을 열고 열기 후 파일 포인터를 파일 끝에 둔다.
+      ios::app; // 파일 쓰기 시에만 적용된다. 파일 쓰기 시마다, 자동으로 파일 포인터가 파일 끙트로 옮겨져서 항상 파일의 끝에 쓰기가 이루어진다.
+      ios::trunc // 파일을 열 때, 파일이 존재하면 파일의 내용을 모두 지워 파일의 크기가 0인 상태로 만든다. ios::out 모드를 지정하면 default 값이다.
+      ios::binary // 이 파일모드가 지정되지 않으면 디폴트는 text i/o mode.
+    파일 포인터를 파일 내에 읽거나 쓸 위치를 가리키는 특별한 마크.
+    fbinout.write(buf, 128) //..
+    // ❔ ios::app 로 텍스트 파일을 다른 파일에 덧붙여 써보기
+
+    라인 단위로 읽기.
+      istream getline(char* line, int n)
+      👍 getline(ifstream& fin, string& line)
+    binary i/o: 파일의 각 바이트를 바이너리 값 그대로 읽거나 변수나 버퍼의 바인너리 값을 그대로 파일에 저장하는 raw level (저수준?) 입출력ㅂ ㅏㅇ식.
+    🚣 텍스트 파일은 I/O 나 바이너리 I/O 로 읽고 쓰는 것이 둘 다 가능하지만, 바이너리 파일은 반드시 바이너리 I/O 를 사용해야 한다.
+      🚣 1 바이트 단위로 입출력
+        get(), put() 으로 바이너리 입출력 가능.
+          // 소스 파일에서 목적 파일로 복사하기.
+          int c;
+          while((c=fsrc.get()) != EOF){
+            fdest.pupt(c)
+          }
+      👍 Block 단위로 입출력.
+        istream& read(char* s, int n)
+        ostream& write(cahr* s, int n)
+        int gcount()
+        🛍️ e.g.
+          char buffer[100];
+          // 파일을 읽는 도중에 실패하거나 끝에 도달할 때까지 반복
+          while (fin.read(buffer, sizeof(buffer))) {
+              // 데이터를 처리하는 코드
+          }
+
+          // 마지막에 읽은 데이터가 파일의 끝에 도달했는지 확인
+          if (fin.eof()) {
+              cout << "End of file reached." << endl;
+          } else if (fin.fail()) {
+              cerr << "Error occurred while reading the file!" << endl;
+          }
+
+          fin.close();
+    📍 직렬화를 할 때, 부동소수점 같은 복잡한 데이터를 정확하게 직렬화하기 위해서는 binary 모드를 사용해야 한다.
+    ❓ text/io, binary i/o 는 '\n' 을 읽고 쓸 때 서로 다르게 작동한다?; get(), put()
+      put(); 출력: '\r', \n' 두 문자가 기록된다.
+      get() 입력: '\r', \n' 두 문자를 읽고 '\n' 하나만 리턴한다.
+    stream state
+      member function
+        eof()
+        faizXar() // 스트림 상태 변수를 0으로 지움.
+      
+      Sequential file access // default. ? 용어...ㄴ
+      get, put 모두 읽은/쓴 바이트 수만큼 파일 포인터 진전시킴.
+  예외 처리와 C 언어와의 링크 지정
+    예외 처리 방법
+      조건문/매개변수를 이용하는 예외 처리
+      리턴 값을 이용하는 예외 처리
+    Exception. 예상치 못한 상황 발생을 예외.
+    try-throw-catch ; https://learn.microsoft.com/en-us/cpp/cpp/try-throw-and-catch-statements-cpp?view=msvc-170
+      trhow 3.5 이런식으로 double 형 예외도 던질 수 있긴 하다.
+      다수의 catch() {} 블록 가능.
+      예외 전파 >>> ❓ propgation.. 외부에 계속 전파.
+      ❓⭕함수 선언 시, trhow(~) 로 어떤 예외를 발생시켜주는지 컴파일러에게 알릴 수 있다. 프로그램의 작동을 명확히 하여 가독성을 높인다.
+    ⭕ 예외 클래스 만들기.. 패턴 있엇는데
+      MyException{
+        int lineNo;
+        string func, msg;
+        ...
+      }
+      class DividedByZeroException: public MyException {
+        public:
+        DividedZeroException(int lineNo, string func, string msg): MyException(lineNo, func, msg) {}
+      }
+    💡 C 컴파일러에서는 소스도크를 컴파일하여 목적 코드 obj 파일을 만들 때 함수 이름 앞에 밑줄표시문자를 붙인다.
+      int f(int x, int y)
+      int main()
+      --> 
+        _f
+        _main
+      때문에 C언어에서 함수 오버로딩이 불가능하다.
+    C++ 컴파일러는 목적 코드를 만들 때, 함수의 매개 변수 개수와 타입, 리턴 타입 등을 참조하여 복잡한 기호를 포함하는 이름으 붙인다.
+      >> ❓ 이름 규칙. name mangling 에는 표준이 없다!! 
+    C, c++ 의 이름 규칙이 다르기 때문에, c++ 에서 C 파일을 링킹할 때  C언어로 작성된 것임을 알려야 한다.
+      extern "C" int f(int x, int y)
+      extern "C" {
+        int f(int x, int y);
+        void g();
+        #include "mycfunction.h"
+        // 한 번에 여러 개 선언 가능
+      }
+
+
+
+[Embedded programming]
+*✅🚨  Flexible Numeric Display (FND)'s 4th digit is bright other than 1 ~ 3digit.
+  - when: use for-loop statement to display number (it is used in ISP), and +1 _dealy_ms(100).
+  - solution: one function must print one digit. so use enum or array with switch-case statement, and accees by using Index. 
+  - why: for-loop causes unbalanced displayed time for each digit in FND.
+
+🚨• can not recognize target voltage... JMOD-128-1 : ATmega128(AVR) "board" is problem..
+
+=================================
+Preprocessor
+  #if, #elif, #else, and #endif directives ; https://learn.microsoft.com/en-us/cpp/preprocessor/hash-if-hash-elif-hash-else-and-hash-endif-directives-c-cpp ... defined() ...
+  https://learn.microsoft.com/en-us/cpp/preprocessor/warning
+ pragma pack https://learn.microsoft.com/en-us/cpp/preprocessor/pack
+  pragmatic, https://learn.microsoft.com/en-us/cpp/preprocessor/pragma-directives-and-the-pragma-keyword 
+ cpp...  https://learn.microsoft.com/en-us/cpp/preprocessor/pragma-directives-and-the-pragma-keyword
+ #@ https://learn.microsoft.com/en-us/cpp/preprocessor/charizing-operator-hash-at
+  # https://learn.microsoft.com/en-us/cpp/preprocessor/stringizing-operator-hash
+  ## https://learn.microsoft.com/en-us/cpp/preprocessor/token-pasting-operator-hash-hash
+
+https://learn.microsoft.com/en-us/cpp/c-runtime-library/reference/fseek-fseeki64
+  SEEK_SET, SEEK_CUR, SEEK_END
+https://learn.microsoft.com/en-us/cpp/c-runtime-library/reference/rewind
+
+https://learn.microsoft.com/en-us/cpp/c-runtime-library/reference/feof
+
+https://learn.microsoft.com/en-us/cpp/c-runtime-library/reference/fclose-fcloseall
+  Both
+
+https://learn.microsoft.com/en-us/cpp/c-runtime-library/reference/fopen-wfopen
+  A null pointer value indicates an error
+Command line argument: *argument count and argv stands for argument values
+
+calloc ; https://learn.microsoft.com/en-us/cpp/c-runtime-library/reference/calloc ... https://stackoverflow.com/questions/31888422/what-does-the-first-c-stand-for-in-calloc
+
+https://learn.microsoft.com/en-us/cpp/c-runtime-library/reference/malloc
+  malloc returns a void pointer to the allocated space, or NULL if there's insufficient memory available. NULL!
+
+
+★ ??? STate diagram... ? https://github.com/StateSmith/StateSmith/
+....https://www.google.com/amp/s/blogs.itemis.com/en/advanced-state-machine-modeling-with-entry-exit-final-states%3fhs_amp=true
+종료 포인트가 종료 시 어떤 상태를 반환하여 이 값에 따라 처리하고 싶을 때 사용하는듯
+
+
+https://www.chiark.greenend.org.uk/~sgtatham/coroutines.html
+
+??? C언어 코루틴구현방법?? https://www.chiark.greenend.org.uk/~sgtatham/coroutines.html
+
+int * const ptr  라고한다면 포인터 자신의 값을 변경못하게하는것이고
+
+const int * ptr 이라고 한다면 포인터가 가리키는 대상의 값을 변경하지못하게하고
+
+const int * const ptr 이라고 하면 포인터자신과 자신이 가리키는 대상의값을 둘다 변경할수없다.
+
+이러 문제가..
+https://stackoverflow.com/questions/44621553/is-there-a-way-for-countof-to-test-if-its-argument-is-an-array
+
+#define countof(a)  (sizeof(a) / sizeof(*(a)))
+The problem with this is it fails silently if the argument is a pointer instead of an array. Is there a portable way to ensure this macro is only used with an actual array by generating a compile time error if a is not an array?
+
+https://en.wikipedia.org/wiki/C_syntax
+  Designated initializers
+
+
+
+volatile 키워드는 주로 하드웨어 레지스터나 멀티스레드 환경에서 사용됩니다. UART 통신의 경우, 인터럽트 서비스 루틴(ISR)에서 데이터를 수신하고 메인 코드에서 이를 처리할 때 변수를 보호하기 위해 volatile 키워드를 사용하는 것이 일반적입니다. 이는 컴파일러가 해당 변수를 최적화하지 않도록 하여 ISR과 메인 코드 간의 데이터 일관성을 유지하는 데 도움이 됩니다.
+
+하지만 volatile 키워드가 항상 필요한 것은 아닙니다. 예를 들어, 만약 당신이 단일 스레드 환경에서 작업하고 있고 인터럽트를 사용하지 않는다면 volatile 없이도 잘 작동할 수 있습니다. 그러나 대부분의 UART 통신 구현에서는 인터럽트를 사용하기 때문에 volatile 키워드를 사용하는 것이 좋습니다.
+
+
+모터 드라이버 소리나는것.. 50000 헤르츠~ 사용하는 것이 소리가 안난다고 한다. ㅁㅁ 
+
+https://en.wikipedia.org/wiki/Jump_wire
+
+★ https://code.visualstudio.com/docs/cpp/config-wsl
+프리오피스 ! 프레텐테이션 무료; https://www.freeoffice.com/de/
+
+!!! prev !! https://en.wiktionary.org/wiki/prev
+
+https://en.wikipedia.org/wiki/Dynamic_dispatch
+ >> 함수형 포인터!
+
+https://en.wikipedia.org/wiki/Nibble .. High nIbble, Low nibble.
+Data Structure - Circular buffer ; https://en.wikipedia.org/wiki/Circular_buffer
+
+https://learn.microsoft.com/en-us/cpp/c-runtime-library/reference/va-arg-va-copy-va-end-va-start
+★ C23 typeof https://learn.microsoft.com/en-us/cpp/c-language/typeof-c
+
+https://en.wiktionary.org/wiki/RX
+https://en.wiktionary.org/wiki/Tx
+
+https://en.wikipedia.org/wiki/Variadic_function
+
+https://en.wikipedia.org/wiki/Learning_management_system
+
+ UART + 프로젝트
+
+PWM.. (Purse Width Modulation)
+https://en.wikipedia.org/wiki/Duty_cycle
+
+
+https://learn.microsoft.com/en-us/cpp/c-runtime-library/reference/sprintf-sprintf-l-swprintf-swprintf-l-swprintf-l
+
+https://stackoverflow.com/questions/459743/is-null-always-false
+Yes. NULL evaluates to false, since C considers any non-zero value true and any zero value false. NULL is essentially the zero address and is treated as such in comparisons, and I believe would be promoted to an int for the boolean check. I would expect that your code is readable to anyone familiar with C although I would probably make the check explicit.
+
+In C and C++ programming, two null pointers are guaranteed to comp
+
+7-segment 4 FND (Flexible Numeric  Display) - ? common-Cathode  + common-Anode
+https://en.wikipedia.org/wiki/Prescaler
+
+>>> 솔루션 만들 때 가장 먼저? 고려해야하는것.. 에ㅣ시를 보자. [...한 곳에 정리 필요..
+. 어디다가..devops 파일 하나 만들고 여기에다가 정리?)● https://en.m.wikipedia.org/wiki/Solution_stack
+  ㅡhttps://www.techtarget.com/searchapparchitecture/definition/software-stack
+● https://en.wikipedia.org/wiki/Finite-state_machine
+  UML state machines; state, transition, transition condition, entry actcion
+// ★ 무조건 소스 짤 때 FSM STATE machine .. 그려보기.. 유한 상태 머신. 그림을 그리고 코드로 옮겨야 한다. 이벤트에 의해 상태 변경 시 Context Switching 이 발생한다.
+
+폴링방식 말고 인터러븥 방식을 써아햔다.
+https://gyeonghokim.github.io/embedded/interrupt/
+Interrupt Sense Contrl: ISC
+★ 택트 스위치 버튼 이벤트 처리... ?? 바운스 현상 처리 필요.? 채터링? (Hardware 적으로: 커페시터 1마이크로 패럿 정도 용량을 달아주기 or Software 적으로 또는 눌렀을 때 delay 10ms 정도 줘서 해결할 수 있다고 한다. 디바운싱 시키기)
+ https://namu.wiki/w/%EC%B1%84%ED%84%B0%EB%A7%81
+?? 인터럽트 처리 필요.
+  External Interrupt Control Register (EICR) A ~ C?B?D?
+?? pull up 방식으로 하드웨어 구성 vs pull down 으로 하드웨어 구성 방법?
+// Delay 함수는 컴파일 시간 동안 루프를 계산하며 컨트롤러에서 동적으로 사용할 수 없습니다/.... https://stackoverflow.com/questions/64850098/how-can-i-fix-this-builtin-avr-delay-cycles-expects-a-compile-time-integer-c
+
+
+??? C언어 코딩 컨벤션.. 대문자? 소문자?ㅋ ㅏ멜케이스?
+Tact Switch. 버튼 스위치.
+??? 임피던스?.. 택트 스위치..? 안눌러졌을떄 VCc -> PA 핀으로 1.. 
+  ㅇㅎ... 택트스위치를 누르면 회로가 닫혀서 VCC 에서 GND 로 빠지므로 PA 로 가지 않아서 PA 는 값이 0이 된다. ㅇㅇ
+/// >> 풀업저항 풀다운저항 방식이라고 한다.
+??? 플로팅 현상; 
+  버튼이 눌러지지 않았을 때는 왼쪽 다리와 오른쪽 다리가 연결되지 않은 "열린 회로"가 되죠? 그래서 3번핀은 HIGH도 아니고, LOW도 아닌 불안정한 상태가 됩니다. 저희는 이 상태를 플로팅 현상이라고 불러요. (floating). 이를 없애주려고 PORTA = 0xff; 와 같이 준다. ㅣ.. 플로팅 현상으루해결 하기 위한 것이 풀업/풀다운 저항인듯..https://k96-ozon.tistory.com/m/59
+
+AVR .. wiki: The creators of the AVR give no definitive answer as to what the term "AVR" stands for.[3] However, it is commonly accepted that AVR stands for Alf and Vegard's RISC processor
+// RISC(Reduced Instruction Set Computer)
+// CISC(Complex Instruction Set Computer)
+// DDRD: Data Direction Register's port D. DDRC. DDRA .. -> GPIO . Pin. //
+   핀은 개발자의 의도에 따라서 핀을 사용할 수 있는 있다는 의미로 다목적 용도의 GPIO(General Purpose Input Output : 범용입출력) 라고도 한다.
+... " 53 general purpose I/O lines"
+
+//  https://m.blog.naver.com/crucian2k3/222642389070
+- Universal Asynchronous Receiver/Transmitter (UART ) 비동기 병렬 통신 !!! 면접 준비. RS-232 표준  RS-422/485
+- I2C (Inter-Integrated Circuit)
+- 
+- https://en.wikipedia.org/wiki/Serial_Peripheral_Interface
+https://en.wikipedia.org/wiki/Electronic_oscillator
+ I2C(Inter-Integrated Circuit), UART 통신??, SPI 통신 한다?
+ 예를들어 SPI 는 4개의 핀을 연결해야 한다. SS* SCK, MOSI, MISO.. 즉 각각의 핀이 역할이 있다고 함.  GPIO 에 더해서 각각의 부가 역할이 있는데 여기에 맞춰서 설치해야 한다.
+// 사용중인 보드: https://www.eleparts.co.kr/goods/view?no=528130 JMOD-128-1] ISP다운로더내장 atmega128(AVR) 개발/실습 모델 .. 사양서 여기 안에있음.
+>> "Maximum frequency vs. VCC" Safe Operating Area ,참고.
+https://learn.microsoft.com/en-us/cpp/c-runtime-library/standard-types
+  uint8_t -> unsigned char
+
+
+// “Register Description for I/O Ports” 86page
+  + https://blog.naver.com/85mighty/221139265535
+  각각 Data Register, Data Direction Register, Input Pins 를 가지고 있다.
+  DDR: 포트의 입출력 방향을 제어하는 레지스터;  만약 특정 핀에 해당하는 DDR 레지스터 값이 1이면 출력 용도로 사용 할 핀임을 의미하며,  반대로 0이면 입력 용도로 사용 할 핀임을 의미합니다.
+입출력포트에 필요한 레지스터들 중 출력데이터를 저장하는 레지스터는 DDRx
+입력된 데이터를 저장하고 있는 레지스터는 PinX
+//  PORT x 레지스터는 읽기/쓰기가 모두 가능하지만 PINx 는 일기만 가능하고 쓰끼가 불가능하다. DDRx 레지스터도 읽기쓰기가 모두 ㄱ능하다.//소프트웨어살 말하는듯?
+DDRxn=0: PORTxn=입력 -> 입력된 데이터가 PINxn에 저장됨.
+DDRxn=1: PORTxn=출력 -> PORTxn  의 데이터가 출력됨. (N 은 0 또는 1. 0도 출력이다) LED 의 경우 1이면 빛이 난다.
+(N은 비트. 핀.)
+
+
+>>>> Breadboard 사용법 + 깔끔하게 회로 구성하는 방법; .. 핀셋을 사용하지않으면 전건이 자꾸 휘어져ㅜ브레드보드에 끼우기 힘들어진다고 한다..
+  선을 적당한 길이로 대략적으로 자른다.
+  한쪽 끝단의 피복을 적당히 벗기고 빵판에 구리선을 넣어본다. 잘 들어가면,  반대쪽까지 최대한 직선으로 구성하기 위해 빵판에 피복을 붙여서 어디부터 빵판에 구리선이 들어가야하는지 손톱으로 찍는다. 그리고 다시 빵판에서 이 선을 빼고 반대쪽 피복을 다 벗겨낸다.  많이 벗겨내서 너무 길어도 자르면ㅍ 되기때문에 상관없다.; LED 8개 + 저항 + Character LCD 까지 구성. >> 하드웨어마다도 사양서가 있으니 여기서 사용방법을 찾야아 한다.
+// Warning: 피복을 벗길 떄도 플라이어, 피복의 구리선의 양 끝을 수직으로 휘게 할 떄도,  이 구리선을 브레드보드에 넣을 떄도, 뺼 떄도 플라이어를 사용해야 한다. 손으로 하면 구리선이 휘어서 들어가지를 않는다. 플라이어 끝부분의 평평한 부분을 이용.
+
+
+>>>> MPU (Microprocess Unit)  vs MCU (Micro Controll Unit) ? = MPU 는 CPU 만 내장, MCU 는 CPU + @
+https://developerhelp.microchip.com/xwiki/bin/view/products/mcu-mpu/32bit-mpu/differences-between-mcu-and-mpu-development/
+    major difference is that MCUs are generally all-in-one devices containing CPU, ALU, programmable Non-Volatile Memory (NVM) (Flash), volatile Static Memory (SRAM), and a host of peripherals (UART, ADC, etc.) in a single package.
+...
+MPU: 단일 IC칩. 범용목적
+MCU: CPU+@. 특수한 목적.
+
+>>> 하버드 vs 폰 노이만 구조 // 면접준비..
+ 폰 노이만 구조가 모든 프로그램은 메모리에 올려놓아서(Load) 실행된다.
+  AVR 은 하버드 구조이다. 프로그램 메모리와 데이터 메모리가 분리되어있다.
+https://en.wikipedia.org/wiki/Harvard_architecture
+https://en.wikipedia.org/wiki/Von_Neumann_architecture
+
+Atemga 에서 만든 MCU: AVR Atemgea28
+ 8-bit AVR® RISC-based microcontroller 
+
+MIcrochip Studio 프로그램 - create GCC C Excuetable Project . name GPIO
+- ATmega128A 
+// general-purpose input/output, GPIO
+
+https://onlinedocs.microchip.com/
+
+준비물: Breadboard Wanjie BB-4T7D -> SMD 타입?
+.. 카메라 사진 찍은거 참고..
+VEXT: 외부전원. Voltage External?.. 인둣.? (VCC: Voltage Circuit), GND
+
+Breadboard 사용법?
+https://www.devicemart.co.kr/mart7/upload/fd_html_img/32749/JMOD-128-1.pdf
+회로 구성하고 
++ CP210x_Universal_Windows_Driver 설치
+
+>> Debug 메뉴 - Properties ... 설정하고 메인메뉴의 시작버튼 눌러도 안됨.
+Tools - ADd target- Select tool - SKT500 - COM(x); x is driver number from CP210x_Universal_Windows_Driver.
+Microchip Studio 에서 솔루션 빌드. -  
+Tools - Device Programming Tools -STK500- COm(x) - ATMEga128A - ISP - apply 버튼 - Memories 메뉴 - Flash 파일 선택 (솔루션 빌드한 파일) - Program 버튼 클릭. (>> MCU 내에 프로그램 메모리에 업로드하는 것.).
+/ 
+// Flash (128 KB) 라고 되어있다. 이름이. Atemga128 인 이유.
+
+Atmega18A 기기에서 ISP/UART 선택 스위치 ISP 로 변경. 
+LED 개수 제어: https://deumdroid.tistory.com/entry/ATmega128-LED8%EA%B0%9C%EB%A5%BC-%EC%A0%9C%EC%96%B4%ED%95%98%EA%B8%B0
+   >> DDRD = 0b10100000; ㅇㅇ비트  8개 각각 LED 8개 제어.
+What is DDRD: https://www.quora.com/What-is-DDRB-PORTB-and-PINB-and-what-do-they-do-What-does-it-mean-if-a-port-or-pin-is-an-output-pin
+
+★ 교재가 이것; atmega128 L datasheet ; https://ww1.microchip.com/downloads/en/devicedoc/doc2467.pdf
+   // 여기서 나오는 REgister 가 메모리 저장보다는 데이터를 제어하기 위한 용도에 가깝다고 한다. 검색 필요.
+==> 재료를 가지고 요리를 하는 것. 하드웨어 드라이버를 만드는 것.
+데이터 시트 = 사양서
+ // 면접 ★ 플래시메모리 얼마짜리 램은 얼마짜리 썻나요? 사양 물어봣다고 한다. 그냥 얼마나 깊게 파봣는지 물어봣는듯.
+ //  SRAM 
+  //Up to 16MIPS Throughput at 16MHz ? MIPS?   // Million Instructions Per Second
+    주파수를 낮추면 LED 가 설정한 초에 비해 매우 빨리 깜빡거린다.
+    #define F_CPU 16000000UL
+ // refer to  "Register Summary"
+
+AVR ATmega128
+
+
+
+Try 'uname --help' for more information.
+wbfw109@home ~/r/study-_all (main) [1]> uname -a
+Linux home 5.15.153.1-microsoft-standard-WSL2 #1 SMP Fri Mar 29 23:14:13 UTC 2024 x86_64 x86_64 x86_64 GNU/Linux
+
+check version for prerequiste
+Install USBIPD on WSL
+  %pwsh (admin)> winget install --interactive --exact dorssel.usbipd-win
+  # A service called usbipd (display name: USBIP Device Host). ...
+Restart Powershell
+  %pwsh> usbipd list
+  usbipd bind --busid <Camera BUSID>
+Reboot
+
+⚠️ To attach the USB device, run the following command. (You no longer need to use an elevated administrator prompt.)
+  Ensure that a WSL command prompt is open in order to keep the WSL 2 lightweight VM active.
+  Note that as long as the USB device is attached to WSL, it cannot be used by Windows.
+  Once attached to WSL, the USB device can be used by any distribution running as WSL 2.
+  
+  Verify that the device is attached using usbipd list.
+  From the WSL prompt, run lsusb to verify that the USB device is listed and can be interacted with using Linux tools.
+  프롬프트를 닫으면 WSL 2의 가상 머신이 중단될 수 있으며, 이 경우 USB 장치가 더 이상 WSL 2에서 인식되지 않을 수 있습니다. 
+  프롬프트를 열고 명령어를 실행한 후에도 계속해서 WSL 2의 가상 머신이 활성화된 상태로 유지되기 때문에, 프롬프트는 계속 열려 있어야 합니다
+
+USB2.0 PC CAMERA가 목록에 표시되면, 카메라가 WSL 2에서 인식된 것이지만, /dev/video* 장치가 없는 경우 OpenCV와 같은 도구에서 사용할 수 없게 됩니다.
+https://www.linuxquestions.org/questions/linux-hardware-18/no-dev-video%2A-despite-usb-webcam-being-detected-4175465187/
+  Try installing Cheese webcam booth in the Vinux install. It usually adds the required webcam dependencies.
+
+
+Orders
+  1. connect USB into Computer.
+    1.1. check It is recgonized by Windows 11
+      - in Device Manger
+      - in Bluetooth & device - Camera
+    1.2. check it is operated well in Camera app in Microsoft Store.
+      and exit the app.
+  
+  2. find BUSID and attach into WSL.
+    2.1. find BUSID of a "*USB CAMERA*"
+      %pwsh (administrator)>
+        usbipd list
+      >> e.g. 4-4    1908:2310  USB2.0 PC CAMERA, USB2.0 MIC                                  Not shared
+    2.1. share device
+      %pwsh (administrator)>
+        usbipd bind --busid 4-4
+
+    2.2. attach into WSL
+      %pwsh>usbipd attach --wsl --busid 4-4
+
+    2.3. find attached device
+      %bash> lsusb
+
+  3. 🚨 https://askubuntu.com/questions/1405903/capturing-webcam-video-with-opencv-in-wsl2
+    https://github.com/PINTO0309/wsl2_linux_kernel_usbcam_enable_conf
+    Problem
+      WSL2에서 USB 장치를 연결하면 lsusb 명령어로는 장치가 보이지만, 실제로는 /dev 디렉토리에 장치가 나타나지 않아서 사용할 수 없다는 문제가 발생합니다.
+      이는 WSL2의 기본 커널이 USB 대용량 저장 장치(USB Mass Storage)를 기본적으로 지원하지 않기 때문에 발생하는 문제입니다.
+
+      https://www.reddit.com/r/bashonubuntuonwindows/comments/17chaed/how_to_mount_usb_device_after_installing_usbipdwin/
+        >>> Edit: Note that the USB over IP performance is *really* slow, but it does work.
+      https://dongle94.github.io/windows/windows-wsl2-use-usbdevice/
+        >>> VideoCapture('/dev/video0', cv2.CAP_V4L), VideoCapture('/dev/video0', cv2.CAP_FFMPEG) 등으로 바꿔본 결과 비디오캡처 객체가 영상을 가져올 때 타임아웃 에러를 일으킨 다는 것을 일부 확인
+        Timeout Error ...
+      
+    3.1 check wsl kernerl version     
+      https://github.com/microsoft/WSL2-Linux-Kernel/tags
+
+      %bash >
+        sudo apt update && sudo apt upgrade -y
+        sudo apt install -y \
+          build-essential flex bison \
+          libgtk-3-dev libelf-dev libncurses-dev autoconf \
+          libudev-dev libtool zip unzip v4l-utils libssl-dev \
+          python3-pip cmake git iputils-ping net-tools dwarves \
+          guvcview python-is-python3 bc
+
+        cd /usr/src
+        # --kernel-release.  -d: delimiter. -f1: field 1
+        # kernel_version=$(uname -r | cut -d'-' -f1) \
+        kernel_version=6.6.36.3 \
+          && TAGVER=linux-msft-wsl-${kernel_version} \
+          && WINUSERNAME=wbfw1
+        sudo git clone --depth 1 -b ${TAGVER} \
+            https://github.com/microsoft/WSL2-Linux-Kernel.git \
+            ${kernel_version}-microsoft-standard \
+          && cd ${kernel_version}-microsoft-standard
+
+sudo cp /proc/config.gz ./
+sudo gunzip config.gz
+sudo mv config .config
+sudo make menuconfig
+
+https://medium.com/software-dev-explore/wsl2-webcam-23c1dc9408ae
+# Build WSL2 kernel with usb camera support
+# 📝 Device Drivers is in 1 page.  Multimedia support is in 3 page (press 2 page down key)
+# 📝 USB support is in 3 page.
+# 📝 Network device support is in 2 page.
+#   USB Network Adapters is in last page of Network device support .
+# 📝 press Y key at Multimedia support cursor.
+# 📝 press Y key at <last menu Item>
+https://github.com/phuoctan4141/WSL/blob/main/Connect%20USB%20devices/USB%20Camera.md
+These are the necessary additional features in menuconfig.
+  Device Drivers->USB support[*]
+  Device Drivers->USB support->Support for Host-side USB[M]
+  Device Drivers->USB support->Enable USB persist by default[*]
+  Device Drivers->USB support->USB Modem (CDC ACM) support[M]
+  Device Drivers->USB support->USB Mass Storage support[M]
+  Device Drivers->USB support->USB/IP support[M]
+  Device Drivers->USB support->VHCI hcd[M]
+  Device Drivers->USB support->VHCI hcd->Number of ports per USB/IP virtual host controller(8)
+  Device Drivers->USB support->Number of USB/IP virtual host controllers(1)
+  Device Drivers->USB support->USB Serial Converter support[M]
+  Device Drivers->USB support->USB Serial Converter support->USB FTDI Single Port Serial Driver[M]
+  Device Drivers->USB support->USB Physical Layer drivers->NOP USB Transceiver Driver[M]
+  Device Drivers->Network device support->USB Network Adapters[M]
+  Device Drivers->Network device support->USB Network Adapters->[Deselect everything you dont care about]
+  Device Drivers->Network device support->USB Network Adapters->Multi-purpose USB Networking Framework[M]
+  Device Drivers->Network device support->USB Network Adapters->CDC Ethernet support (smart devices such as cable modems)[M]
+  Device Drivers->Network device support->USB Network Adapters->Multi-purpose USB Networking Framework->Host for RNDIS and ActiveSync devices[M]
+These are additional features required for the camera.
+  Device Drivers->Multimedia support[M]
+  Device Drivers->Multimedia support[M]->Filter media drivers[*]
+  Device Drivers->Multimedia support[M]->Auto ancillary drivers[*]
+  Device Drivers->Multimedia support[M]->Media device types->Camera and video grabbers[*]
+  Device Drivers->Multimedia support[M]->Video4Linux options->V4L2 sub-device userspace API[*]
+  Device Drivers->Multimedia support[M]->Media drivers->Media USB Adapters[*]
+  Device Drivers->Multimedia support[M]->Media drivers->Media USB Adapters[*]->USB Video Class(UVC)[*]
+  Device Drivers->Multimedia support[M]->Media drivers->Media USB Adapters[*]->UVC input evnets device support[*]
+
+
+sudo make -j $(nproc)
+sudo make modules_install -j $(nproc)
+sudo make install -j$(nproc)
+
+💡 A little tip here. After build process either completed or fail, there are some files will be generated. In order to make a clean rebuild we can run these commands to clean it up. Then you start from where you copy configuration file step.
+  sudo make clean
+  sudo make mrproper
+  sudo make distclean
+
+
+new_kernel_path="/mnt/c/users/${WINUSERNAME}/wsl-dist-ubuntu-kernel-${kernel_version}"
+new_kernel_windows_path=$(echo $new_kernel_path | sed 's|/mnt/c|c:|;')
+
+sudo cp vmlinux $new_kernel_path
+
+cat << EOT > /mnt/c/Users/${WINUSERNAME}/.wslconfig
+[wsl2]
+kernel=${new_kernel_windows_path}
+EOT
+
+
+wget https://github.com/microsoft/WSL2-Linux-Kernel/archive/refs/tags/linux-msft-wsl-5.15.90.1.tar.gz
+$ tar zxf linux-msft-wsl-5.15.90.1.tar.gz
+$ cd WSL2-Linux-Kernel-linux-msft-wsl-5.15.90.1
+
+
+sudo apt install -y build-essential flex bison dwarves libssl-dev libelf-dev bc libncurses-dev
+
+
+https://www.youtube.com/watch?v=I2jOuLU4o8E
+@adamryason5509
+1년 전(수정됨) translate
+The USB device shows up when I run lsusb but I don't see anything under dev (i.e. dev/video, dev/ttyusb0). What would I have to do to be able to access it under dev? In my case, the device is a USB Webcam.
+
+https://www.reddit.com/r/bashonubuntuonwindows/comments/17chaed/how_to_mount_usb_device_after_installing_usbipdwin/
+
+현재 상황:
+
+
+sudo mv config .config
+sudo make menuconfig
+# save as .config
+sudo sed -i 's/^CONFIG_USB=m/CONFIG_USB=y/' .config
+
+
+cd /usr/src/5.15.153.1-microsoft-standard   # root
+cp arch/x86/boot/bzImage /mnt/c/Users/wbfw1/usbip-bzImage
+
+sudo usbipd wsl list
+
+Video4Linux options -> Enable old-style fixed minor ranges on drivers/video devices /// cehcked..
+Video4Linux options -> V4L2 sub-device userspace API
+
+
+이거 한뒤로..
+https://github.com/phuoctan4141/WSL/blob/main/Connect%20USB%20devices/USB%20Camera.md
+
+PS C:\Windows\system32> usbipd attach -w -b 4-4
+  usbipd: info: Using WSL distribution 'Ubuntu' to attach; the device will be available in all WSL 2 distributions.
+  usbipd: info: Loading vhci_hcd module.
+  usbipd: error: Loading vhci_hcd failed.
+
+============ 커널 빌드 방식 안됨 ============
+>>>>>>>>> https://blog.naver.com/112fkdldjs/223427966518?trackingCode=rss
+
+Windows - Hyper-V Manager
+  Home 
+    Actions - Virtual Switch Manager...
+      Virtual Switches
+        1. New virtual network switch - Create virtual switch - External - Create Virtual Switch
+        2. <New Virtual Swtich>
+          rename as wsl2
+        
+
+
+윈도우에 wsl을 설치하고 ifconfig를 치면 172로 시작하는 ip가 보인다. 이 ip는 내부 ip로, 내 윈도우 PC의 ip와 정말 떨어져 있는 주소라서 이 wsl을 활용하여 라즈베리파이에 연결한다던가 등을 할 수가 없다. 그래서 ip 주소를 윈도우PC랑 동일한 192.로 시작하는 주소로 맞춰 줘야 한다.
+구글링을 해보면 hyper-v를 통해서 하라는 말들이 많다. 그 방법을 그대로 따라 해도 나는 죽어도 되지 않아서 별 해 별 이상한 방법을 다 하다가 운 좋게 성공하고 그 과정을 공유하고자 한다.
+from 🔗 https://blog.naver.com/112fkdldjs/223426191186
+  https://blog.naver.com/112fkdldjs/223427966518?trackingCode=rss
+
+wbfw109@home:~/repository/study-core$ ifconfig
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.23.44.237  netmask 255.255.240.0  broadcast 172.23.47.255
+        inet6 fe80::215:5dff:fe96:df7b  prefixlen 64  scopeid 0x20<link>
+        ether 00:15:5d:96:df:7b  txqueuelen 1000  (Ethernet)
+        RX packets 385  bytes 192780 (192.7 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 307  bytes 94571 (94.5 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 13552  bytes 48368656 (48.3 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 13552  bytes 48368656 (48.3 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+
+cat << EOT > /mnt/c/Users/${WINUSERNAME}/.wslconfig
+[wsl2]
+networkingMode = bridged
+vmSwitch = wsl2
+EOT
+
+
+[wsl2]
+kernel=c:/users/wbfw1/usbip-bzImage
+
+wbfw109@home ~/r/study-core (dev) [127]> ifconfig
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.0.42  netmask 255.255.255.0  broadcast 192.168.0.255
+        ether 5e:bb:f6:9e:ee:fa  txqueuelen 1000  (Ethernet)
+        RX packets 354  bytes 181440 (181.4 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 249  bytes 89720 (89.7 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 2526  bytes 38969493 (38.9 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 2526  bytes 38969493 (38.9 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collision
+
+%shell> nvidia-smi  # check whether you can use CUDA
+
+
+
+
+
+
+https://blog.naver.com/112fkdldjs/223427966518?trackingCode=rss
+
 ❯ cat build_bt.sh 
 #sudo apt-get install libbluetooth-dev
 gcc iot_client_bluetooth.c -o iot_client_bluetooth -lbluetooth -pthread
@@ -18681,4 +19655,14 @@ protobuf..
   0a (1바이트): 문자열의 길이를 나타내는 바이트.
   17 (1바이트): 문자열의 길이인 23을 나타내는 바이트.
   2f 75 73 72 2f 61 61 72 63 68 36 34 2d 6c 69 6e 75 78 2d 67 6e 75 2f (23바이트): /usr/aarch64-linux-gnu/ 경로의 UTF-8 인코딩.
+
+
+
+결론부터 말하면, C++ 표준 라이브러리에는 unistd.h, sys/epoll.h, sys/socket.h, netinet/in.h, arpa/inet.h 같은 네트워크 및 시스템 호출 관련 헤더 파일이 없어.
+  이 헤더들은 C 기반의 POSIX(Portable Operating System Interface) 표준을 따르는 Unix/Linux 시스템 API야. 따라서, C++에서도 이런 기능을 사용하려면 C의 헤더 파일을 그대로 가져와야 해.
+
   
+
+https://www.boost.org/doc/libs/1_87_0/more/getting_started/unix-variants.html
+
+https://en.wikipedia.org/wiki/Message_Passing_Interface

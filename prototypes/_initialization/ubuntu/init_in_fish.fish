@@ -691,6 +691,19 @@ echo "❔ You can check the list of binaries with the command 🧮 'ls /home/lin
 brew install compiledb
 
 
+: '
+📦 boost
+  https://repology.org/project/boost/versions
+  https://formulae.brew.sh/formula/boost#default
+  https://github.com/boostorg/boost
+  https://en.wikipedia.org/wiki/Boost_(C%2B%2B_libraries)
+
+  Collection of portable C++ source libraries
+'
+brew install boost
+
+
+
 
 
 
