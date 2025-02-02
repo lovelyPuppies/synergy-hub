@@ -621,6 +621,7 @@ Linux 🔪 Man pages
 
     ⚓🧮💡 ip ; https://www.mankier.com/8/ip
 
+  ⚓ netcat (🧮 nc) (📦 netcat-openbsd) ; https://netcat.sourceforge.net/
 
 
 ----------------------------------------------

@@ -415,6 +415,9 @@ update_fish_interactive_block --unique-comment="$unique_comment" --contents="$ll
 brew install ripgrep
 
 
+
+
+
 : '
 📦🚀 🧮 procs
   https://github.com/dalance/procs
@@ -1343,7 +1346,6 @@ brew install tio
 
 
 
-
 echo "▶️  Installing tools related to Image processing ..."
 : '
 📦 gm (graphicsmagick)
@@ -1601,6 +1603,8 @@ end
 
   # %shell> brew uses --installed protobuf
 
+
+
 📦 boost
   https://repology.org/project/boost/versions
   https://formulae.brew.sh/formula/boost#default
@@ -1610,6 +1614,17 @@ end
   Collection of portable C++ source libraries
 
   it only install dynamic libraries. no static libraries. 
+📦 netcat (🧮 nc), rustcat (🧮 rcat) not works from homebrew. 🧪 tested by TCP echo server
+  https://repology.org/project/netcat-openbsd/versions
+  https://formulae.brew.sh/formula/netcat#default
+  https://en.wikipedia.org/wiki/Netcat
+    Final release: 1.10 / March 1996; 28 years ago
+  https://netcat.sourceforge.net/
+  
+  Utility for managing network connections
+    
+  https://repology.org/project/rustcat/versions
+  https://formulae.brew.sh/formula/rustcat#default
 '
 
 
@@ -1711,6 +1726,10 @@ echo "❗ Reboot required. locale update completed."
 # Check your current locale in "/etc/default/locale" or run command "locale"
 
 
+
+#### 📦 netcat (🧮 nc)
+sudo apt install -y netcat-openbsd
+# 🛍️ e.g. %shell> nc localhost 1234
 
 
 
