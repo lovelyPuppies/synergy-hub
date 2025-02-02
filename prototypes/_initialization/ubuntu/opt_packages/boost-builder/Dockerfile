@@ -6,7 +6,7 @@ ARG PACKAGE_NAME=boost
 ARG BOOST_VERSION=1.87.0
 
 
-# 📍 Set environment variables for timezone and to suppress interactive prompts during package installation 📅 2025-01-09 00:34:14
+# 📍 Set environment variables for timezone and to suppress interactive prompts during package installation 📅 2025-02-03 07:11:41
 ENV DEBIAN_FRONTEND=noninteractive
 # 🌏 Set the system timezone to Asia/Seoul
 ENV TZ=Asia/Seoul
