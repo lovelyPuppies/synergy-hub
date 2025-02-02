@@ -1,4 +1,4 @@
-// clang++ -o cpp.out cpp.cpp
+// clang++ -std=c++23 -o cpp.out cpp.cpp
 /*
 nc localhost 1234
 

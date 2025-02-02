@@ -329,32 +329,6 @@ error: No best alternative for /boost/libs/mpi/build/boost_mpi with <abi>sysv <a
 
 sudo docker cp gracious_hertz:/opt/boost /opt/boost
 
-```
-
-```
-TZ=Asia/Seoul
-ln -snf /usr/share/zoneinfo/$TZ /etc/localtime
-apt install -y locales && localedef -i en_US -f UTF-8 en_US.UTF-8
-
-+ needed_binaries=(lsb_release wget add-apt-repository gpg)
-sudo apt install -y software-properties-common
-
-// python3-launchpadlib
-
-clang..
-wget https://apt.llvm.org/llvm.sh
-chmod +x llvm.sh
-./llvm.sh 19 all
-
-https://apt.llvm.org/
-  bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
-    >> + CURRENT_LLVM_STABLE=18
-
-
-fd compile_commands.json -I
-
-fd compile_commands.json --no-ignore
-
 
 set -a CPATH /opt/boost/debug-static/include
 set -a LD_LIBRARY_PATH /opt/boost/debug-shared/lib

@@ -45,7 +45,8 @@ CompileFlags:
 
 
 ## 🚨 Never manually add "-I/home/linuxbrew/.linuxbrew/opt/llvm/include/c++/v1 only for c+ intellisense" 📅 2025-02-03 00:00:30
-#🧪📵 🚣 Both `clangd` and the `C/C++` VSCode extension in 🚣 Makefile with compiledb and CMakeLists.txt create many intelliSense errors 🚣 only for C++ targets (but 🚣 compile successfully).
+#🧪📵 🚣 Both (`clangd` and the `C/C++` VSCode extension) in both (🚣 Makefile with compiledb and CMakeLists.txt), clang version installed from both (🚣 homebrew (19.1.7), apt)
+#  create many intelliSense errors 🚣 only for C++ targets (but 🚣 compile successfully).
 # When compile if the include path is not added, it automatically explores candidate GCC installations and selects the GCC installation to complement header files.
 #   I think the reason why compilation with the prepended path does not fail is that during compilation, clang automatically falls back, but `compile_commands.json` does not do that.
 # You can test by running the command `clang++-19 -stdlib=libc++ -I/usr/lib/llvm-19/include/c++/v1 -v cpp.cpp`

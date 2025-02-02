@@ -19672,3 +19672,23 @@ https://repology.org/project/rustcat/versions
 https://formulae.brew.sh/formula/rustcat#default
 
 https://github.com/robiot/rustcat
+
+epoll이나 select는 기본적으로 동기 방식이므로, 직접 epoll_wait()을 호출하는 동안 다른 작업을 수행하기 어려움.
+  ⚡ select()와 epoll()의 한계
+  🔹 select() 방식 (낮은 성능, 제한적 비동기)
+  select()는 동기 방식이며, 소켓이 준비될 때까지 블로킹됨.
+  epoll()로 개선할 수 있지만, 여전히 직접 상태를 관리해야 하고 복잡한 코드가 필요.
+  🔹 epoll() 방식 (성능 향상, 하지만 수동 관리 필요)
+
+  epoll_wait()을 호출하면, 이벤트가 발생할 때까지 대기함.
+  이벤트가 오면 해당 소켓을 수동으로 관리해야 함.
+  비동기처럼 보이지만 사실상 이벤트 루프 기반의 동기 방식.
+
+  기본적으로 select()와 epoll()은 동기 방식이며, 이를 비동기적으로 사용하려면 추가적인 로직(스레드, 상태 관리 등)을 직접 구현해야 합니다.
+  하지만 Boost.Asio는 완전한 비동기 모델을 제공하여 비동기 호출을 자연스럽게 사용할 수 있으며, 코루틴(co_await)과도 쉽게 연동됩니다.
+
+Boost.Asio는 완전한 비동기 모델을 제공하여, 코루틴(co_await) 또는 std::future와도 연동 가능.
+Boost.Asio는 내부적으로 io_context를 사용하여 멀티스레드 환경에서도 쉽게 확장할 수 있도록 설계되어 있음.
+ 크로스플랫폼 지원
+
+ co_await c++20
