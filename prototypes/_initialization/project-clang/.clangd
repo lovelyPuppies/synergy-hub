@@ -1,3 +1,4 @@
+## 📅 Written at 2025-02-02 21:09:06
 # Add ARM cross-compilation flags for files under "drivers/" (For 🚣 64bit)
 If:
   PathMatch: "study/bsp_study/raspberry_pi/drivers/.*\\.(c|h)$"
@@ -12,8 +13,6 @@ If:
   PathMatch: "study/c.*_study/.*\\.(c|cpp|h|hpp)$"
 CompileFlags:
   Add:
-    - -I/home/linuxbrew/.linuxbrew/opt/llvm/include
-    - -I/home/linuxbrew/.linuxbrew/opt/llvm/include/c++/v1
     - -L/home/linuxbrew/.linuxbrew/opt/llvm/lib
     - -Wall
     - -Wextra
@@ -27,10 +26,16 @@ If:
   PathMatch: "study/c.*_study/.*\\.(c|h)$"
 CompileFlags:
   Add:
+    ## Output of `llvm-config --cflags`. Never manually add only "-I/home/linuxbrew/.linuxbrew/llvm/include" which causes error of intellisense.
     - -std=c23
+    - -I/home/linuxbrew/.linuxbrew/llvm/include
+    - -D_GNU_SOURCE
+    - -D__STDC_CONSTANT_MACROS
+    - -D__STDC_FORMAT_MACROS
+    - -D__STDC_LIMIT_MACROS
+    ##
     - -I/home/linuxbrew/.linuxbrew/opt/mariadb-connector-c/include
     - -L/home/linuxbrew/.linuxbrew/opt/mariadb-connector-c/lib
-
 
 # Specific settings for C++ files
 ---
@@ -39,16 +44,17 @@ If:
 CompileFlags:
   Compiler: clang++
   Add:
+    ## Output of `llvm-config --cxxflags`. Never manually add only "-I/home/linuxbrew/.linuxbrew/llvm/include" which causes error of intellisense.
     - -std=c++23
+    - -I/home/linuxbrew/.linuxbrew/Cellar/llvm/19.1.7/include
+    - -D_GNU_SOURCE
+    - -D__STDC_CONSTANT_MACROS
+    - -D__STDC_FORMAT_MACROS
+    - -D__STDC_LIMIT_MACROS
+    ##
     - -stdlib=libc++
-    # - -fms-extensions
     # treat all files as C++
     # - -xc++
-Diagnostics:
-  Suppress:
-    - module_odr_violation_function
-#     - undeclared_var_use
-#    - use_of_empty_using_if_exists
 
 ### Common includes/libraries settings 📅 2025-01-30 14:56:36
 ---
@@ -60,4 +66,3 @@ CompileFlags:
     - -I/opt/nanopb/include
     - -I/opt/boost/debug-static/include
 
-    

@@ -350,4 +350,9 @@ https://apt.llvm.org/
   bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
     >> + CURRENT_LLVM_STABLE=18
 
+
+fd compile_commands.json -I
+
+fd compile_commands.json --no-ignore
+
 ```
