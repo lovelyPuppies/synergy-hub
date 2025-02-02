@@ -1,4 +1,4 @@
-## 📅 Written at 2025-02-02 21:09:06
+## 📅 Written at 2025-02-03 00:13:20
 # Add ARM cross-compilation flags for files under "drivers/" (For 🚣 64bit)
 If:
   PathMatch: "study/bsp_study/raspberry_pi/drivers/.*\\.(c|h)$"
@@ -26,14 +26,8 @@ If:
   PathMatch: "study/c.*_study/.*\\.(c|h)$"
 CompileFlags:
   Add:
-    ## Output of `llvm-config --cflags`. Never manually add only "-I/home/linuxbrew/.linuxbrew/llvm/include" which causes error of intellisense.
     - -std=c23
-    - -I/home/linuxbrew/.linuxbrew/llvm/include
-    - -D_GNU_SOURCE
-    - -D__STDC_CONSTANT_MACROS
-    - -D__STDC_FORMAT_MACROS
-    - -D__STDC_LIMIT_MACROS
-    ##
+    - -I/home/linuxbrew/.linuxbrew/opt/llvm/include/c++/v1
     - -I/home/linuxbrew/.linuxbrew/opt/mariadb-connector-c/include
     - -L/home/linuxbrew/.linuxbrew/opt/mariadb-connector-c/lib
 
@@ -44,17 +38,18 @@ If:
 CompileFlags:
   Compiler: clang++
   Add:
-    ## Output of `llvm-config --cxxflags`. Never manually add only "-I/home/linuxbrew/.linuxbrew/llvm/include" which causes error of intellisense.
     - -std=c++23
-    - -I/home/linuxbrew/.linuxbrew/Cellar/llvm/19.1.7/include
-    - -D_GNU_SOURCE
-    - -D__STDC_CONSTANT_MACROS
-    - -D__STDC_FORMAT_MACROS
-    - -D__STDC_LIMIT_MACROS
-    ##
     - -stdlib=libc++
     # treat all files as C++
     # - -xc++
+
+
+## 🚨 Never manually add "-I/home/linuxbrew/.linuxbrew/opt/llvm/include/c++/v1 only for c+ intellisense" 📅 2025-02-03 00:00:30
+#🧪📵 🚣 Both `clangd` and the `C/C++` VSCode extension in 🚣 Makefile with compiledb and CMakeLists.txt create many intelliSense errors 🚣 only for C++ targets (but 🚣 compile successfully).
+# When compile if the include path is not added, it automatically explores candidate GCC installations and selects the GCC installation to complement header files.
+#   I think the reason why compilation with the prepended path does not fail is that during compilation, clang automatically falls back, but `compile_commands.json` does not do that.
+# You can test by running the command `clang++-19 -stdlib=libc++ -I/usr/lib/llvm-19/include/c++/v1 -v cpp.cpp`
+# It seems that this issue arises because LLVM's library is not yet fully complete.
 
 ### Common includes/libraries settings 📅 2025-01-30 14:56:36
 ---

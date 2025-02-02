@@ -1,7 +1,13 @@
 list of level 1 subjects
   - clang
-  - LLVM libraries
-  
+
+🚧 Prerequisite
+  - [IntelliSense] Add the output of the following commands to `.clangd` file (configuration):
+    📝 Note that Never manually add only "-I/home/linuxbrew/.linuxbrew/opt/llvm/include" which causes error of intellisense.
+    - llvm-config --cxxflags
+    - llvm-config --cflags
+
+
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
 ⚓⭕ clang ; https://clang.llvm.org/
   https://en.wikipedia.org/wiki/Clang
@@ -11,8 +17,6 @@ list of level 1 subjects
   🧮 clang --help
   🧮 clang++ --help
       -Wl,<arg>               Pass the comma separated arguments in <arg> to the linker
-      
-
 
 ----------------------------------------------
 ⚓ clang 🔪 docs ; https://clang.llvm.org/docs/
@@ -27,7 +31,7 @@ list of level 1 subjects
 
 
 ================================================
-⚓ clangd  ; https://clangd.llvm.org/
+⚓ clangd ; https://clangd.llvm.org/
   https://github.com/clangd/clangd
   clangd is a language server, and provides C++ IDE features to editors.
 
@@ -38,25 +42,9 @@ list of level 1 subjects
         ...
 
 
-
 ================================================
 ⚓🚀 LLD - The LLVM Linker ; https://lld.llvm.org/
   # Performance
   # Using LLD
     ⭕ The easiest way to do that is to overwrite the default linker. After installing LLD to somewhere on your disk
       , you can create a symbolic link by doing ln -s /path/to/ld.lld /usr/bin/ld so that /usr/bin/ld is resolved to LLD.
-
-
-※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
-LLVM libraries
-
-----------------------------------------------
-⚓ library 🔪 libc ; https://libc.llvm.org/index.html
-  ⚠️ Warning 📅 2025-01-27 23:05:46
-    LLVM-libc is not yet ABI stable; currently only static linking is supported. ...
-  
-  # Advanced Usage
-    ⚓🔰 Full Cross Build ; https://libc.llvm.org/full_cross_build.html
-----------------------------------------------
-⚓ library 🔪 libc++ ; https://libcxx.llvm.org/
-

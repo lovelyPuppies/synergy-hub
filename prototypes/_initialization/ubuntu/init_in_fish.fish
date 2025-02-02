@@ -683,6 +683,7 @@ echo "❔ You can check the list of binaries with the command 🧮 'ls /home/lin
   https://formulae.brew.sh/formula/compiledb#default
 
   Generate a Clang compilation database for Make-based build systems
+    - It\'s aimed mainly at ❗ non-cmake (cmake already generates compilation database) large codebases. 
 
   Refer to 🔗 _about/about-intellisense_for_c_cpp.md
 
