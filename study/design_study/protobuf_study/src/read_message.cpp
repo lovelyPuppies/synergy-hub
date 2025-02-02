@@ -1,7 +1,6 @@
 #include "addressbook.pb.h"
 #include <fstream>
 #include <iostream>
-#include <string>
 using namespace std;
 
 // Iterates though all people in the AddressBook and prints info about them.
@@ -50,16 +49,21 @@ int main(int argc, char *argv[]) {
 
   {
     // Read the existing address book.
+
     fstream input(argv[1], ios::in | ios::binary);
+    cerr << "Debug: First byte in file: " << input.peek() << endl;
+    cout << "??1" << endl;
     if (!address_book.ParseFromIstream(&input)) {
       cerr << "Failed to parse address book." << endl;
       return -1;
     }
+    cout << "??2" << endl;
   }
 
-  ListPeople(address_book);
+  // ListPeople(address_book);
 
   // Optional:  Delete all global objects allocated by libprotobuf.
+  // ❗
   google::protobuf::ShutdownProtobufLibrary();
 
   return 0;

@@ -67,7 +67,7 @@ If:
   PathExclude: "study/bsp_study/raspberry_pi/.*"
 CompileFlags:
   Add:
-    - -I/opt/protobuf-static/include
+    - -I/opt/protobuf/debug-static/include
     - -I/opt/nanopb/include
     - -I/opt/boost/debug-static/include
 

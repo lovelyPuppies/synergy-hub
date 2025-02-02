@@ -2,7 +2,7 @@
 
 ## [Socket IoT System](socket_iot_system)
 
-🏷️ C++, ePoll, Multithreading, Protocol Buffers (Nano PB), Conan, CMake, Cross-compilation
+🏷️ C++, boost, Asynchronous, Multithreading, Conan, CMake, Cross-compilation
 
 - Initialize
 
@@ -63,6 +63,8 @@
   ```
 
 ## [Interconnection Protocol](interconnection_protocol)
+
+🏷️ tag: protobuf, nanopb
 
 - Optimization (📰 TODO)
 

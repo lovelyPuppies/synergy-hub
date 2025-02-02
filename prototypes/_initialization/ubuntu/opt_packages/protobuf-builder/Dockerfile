@@ -38,7 +38,6 @@ RUN cmake -G Ninja -S . -B build-debug-static -DCMAKE_INSTALL_PREFIX=/opt/${PACK
     -Dprotobuf_BUILD_LIBPROTOC=ON -DABSL_PROPAGATE_CXX_STD=ON \
     -Dprotobuf_BUILD_EXAMPLES=ON -Dprotobuf_INSTALL_EXAMPLES:BOOL=ON
 
-
 RUN cmake -G Ninja -S . -B build-debug-shared -DCMAKE_INSTALL_PREFIX=/opt/${PACKAGE_NAME}/debug-shared \
     -DCMAKE_BUILD_TYPE=Debug -DBUILD_SHARED_LIBS=YES -DCMAKE_CXX_STANDARD=17  \
     -Dprotobuf_BUILD_LIBPROTOC=ON -DABSL_PROPAGATE_CXX_STD=ON \

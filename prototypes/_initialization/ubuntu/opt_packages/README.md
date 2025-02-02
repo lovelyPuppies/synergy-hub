@@ -90,16 +90,19 @@
 
 
   #### 🌀 Title: Copy the packages to `/opt/` from Docker, and Set Environment variables
-  # create a new container
+
+  ## create a new container
+  # if the same name container exists, remove it.
+  docker rm -f protobuf-container &> /dev/null
   docker run -d --name protobuf-container -it protobuf-builder bash
 
-  # remove previous version
+  ## remove previous version
   sudo rm -fr $protobuf_prefix
 
-  # copy
+  ## copy
   sudo docker cp protobuf-container:$protobuf_prefix $protobuf_prefix
 
-  # remove the container
+  ## remove the container
   docker rm -f protobuf-container
 
 
@@ -165,7 +168,7 @@
     PathExclude: "study/bsp_study/raspberry_pi/.*"
   CompileFlags:
     Add:
-      - -I/opt/protobuf-static/include
+      - -I/opt/protobuf/debug-static/include
   ```
 
 ### References
@@ -296,19 +299,19 @@
 
 
   #### 🌀 Title: Copy the packages to `/opt/` from Docker, and Set Environment variables
-  # create a new container
+  ## create a new container
+  # if the same name container exists, remove it.
+  docker rm -f boost-container &> /dev/null
   docker run -d --name boost-container -it boost-builder bash
 
-  # remove previous version
+  ## remove previous version
   sudo rm -fr $boost_prefix
 
-  # copy
+  ## copy
   sudo docker cp boost-container:$boost_prefix $boost_prefix
 
-  # remove the container
+  ## remove the container
   docker rm -f boost-container
-
-
 
   #### 🌀 Title: Add search paths for headers and libraries
   set unique_comment "## [boost] Add search paths for headers and libraries"

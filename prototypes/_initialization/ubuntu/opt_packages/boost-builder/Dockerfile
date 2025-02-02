@@ -43,6 +43,7 @@ RUN ./b2 install --user-config=user-config.jam --without-python --prefix=/opt/${
 RUN ./b2 install --user-config=user-config.jam --without-python --prefix=/opt/${PACKAGE_NAME}/release-shared --build-dir=build/release-shared threading=multi variant=release link=shared runtime-link=shared > build-release-shared.log
 
 
+CMD ["bash"]
 
 
 ### https://www.boost.org/doc/libs/1_87_0/more/getting_started/unix-variants.html#easy-build-and-install
