@@ -252,86 +252,149 @@ end
 ```bash
 #!/usr/bin/env fish
 sudo -v
-sudo apt update && sudo apt install -y curl libicu-dev libopenmpi-dev libopenmpi-dev
+
+set protobuf_shared_prefix /opt/protobuf-shared
+set protobuf_static_prefix /opt/protobuf-static
+
+#### 🌀 Title: Build boost
+cd prototypes/_initialization/ubuntu/opt_packages
+## ⚙️ Adjust the "BRANCH_VERSION" you want 🔗 https://github.com/protocolbuffers/protobuf/tags
+# last updated version I checked: 1.87.0 📅 2025-02-03 02:36:08
+docker build --build-arg BOOST_VERSION=1.87.0 -t boost-builder -f boost-builder/Dockerfile boost-builder
+
+
+
+
+sudo apt update && sudo apt install -y curl libicu-dev libopenmpi-dev
 
 boost_prefix=/opt/boost
 
-## when run `./bootstrap.sh`
+## ☑️ when run `./bootstrap.sh`
 #   >> Unicode/ICU support for Boost.Regex?... not found.
-#   The package `libicu-dev` is required. 🪱 ICU(International Components for Unicode)
-#   After install that, >> Unicode/ICU support for Boost.Regex?... /usr
-## when run `b2 install`
+#   ➡️ The package `libicu-dev` is required. 🪱 ICU(International Components for Unicode)
+#     After install that, >> Unicode/ICU support for Boost.Regex?... /usr
+## ☑️ when run `b2 install`
 #   >> error: No best alternative for /boost/libs/mpi/build/boost_mpi with ...
-MPI auto-detection failed: unknown wrapper compiler mpic++
-You will need to manually configure MPI support.
->>> install libopenmpi-dev
-
-
-
+#     matched: (empty)
+#     ...
+#     MPI auto-detection failed: unknown wrapper compiler mpic++
+#     You will need to manually configure MPI support.
+#     ...
+#     warning: Graph library does not contain MPI-based parallel components.
+#     note: to enable them, add "using mpi ;" to your user-config.jam.
+#     note: to suppress this message, pass "--without-graph_parallel" to bjam.
+#   ➡️ The package `libopenmpi-dev` is required and to run command `echo "using mpi ;" > user-config.jam`  is required.
+## ❔ warning: No python installation configured and autoconfiguration
+#   note: failed.  See http://www.boost.org/libs/python/doc/building.html
+#   note: for configuration instructions or pass --without-python to
+#   note: suppress this message and silently skip all Boost.Python targets
+#       - BOOST_ARCH_WORD_BITS == 0.0.16 : no [4]
+#   ➡️ For this builder, Python wrapping is not required.
 
 cd $HOME/Downloads
 ## ⚙️ Adjust the version you want 🔗 https://jpa.kapsi.fi/nanopb/download/
 # last updated version I checked: 0.4.9.1 📅 2025-02-01 23:17:48
 curl -L https://github.com/boostorg/boost/releases/download/boost-1.87.0/boost-1.87.0-cmake.tar.gz -o boost.tar.gz
-mkdir -p boost
-tar -xf boost.tar.gz -C boost --strip-component=1
-
-# https://www.boost.org/doc/libs/1_87_0/more/getting_started/unix-variants.html#easy-build-and-install
-./bootstrap.sh --prefix=$boost_prefix
-
-## ./b2 --help
-
-  --prefix=<PREFIX>       Install architecture independent files here.
-                          Default: C:\Boost on Windows
-                          Default: /usr/local on Unix, Linux, etc.
-
-  --build-dir=DIR         Build in this location instead of building within
-                          the distribution tree. Recommended!
-
-
-  variant=debug|release   Select the build variant
-
-  link=static|shared      Whether to build static or shared libraries
-
-  runtime-link=static|shared
-                          Whether to link to static or shared C and C++
-                          runtime.
-
-warning: Graph library does not contain MPI-based parallel components.
-note: to enable them, add "using mpi ;" to your user-config.jam.
-note: to suppress this message, pass "--without-graph_parallel" to bjam.
+mkdir -p boost && tar -xf boost.tar.gz -C boost --strip-component=1
+cd boost
 echo "using mpi ;" > user-config.jam
 
+# https://www.boost.org/doc/libs/1_87_0/more/getting_started/unix-variants.html#easy-build-and-install
 ./bootstrap.sh
 ./b2 install --user-config=user-config.jam --without-python --prefix=$boost_prefix/debug-static --build-dir=build/debug-static threading=multi variant=debug link=static runtime-link=shared
 ./b2 install --user-config=user-config.jam --without-python --prefix=$boost_prefix/debug-shared --build-dir=build/debug-shared threading=multi variant=debug link=shared runtime-link=shared
 ./b2 install --user-config=user-config.jam --without-python --prefix=$boost_prefix/release-static --build-dir=build/release-static threading=multi variant=release link=static runtime-link=shared
 ./b2 install --user-config=user-config.jam --without-python --prefix=$boost_prefix/release-shared --build-dir=build/release-shared threading=multi variant=release link=shared runtime-link=shared
 
-https://www.boost.org/doc/libs/1_62_0/doc/html/mpi/getting_started.html
-    - cxx11_explicit_conversion_operators : yes [2]
-warning: No python installation configured and autoconfiguration
-note: failed.  See http://www.boost.org/libs/python/doc/building.html
-note: for configuration instructions or pass --without-python to
-note: suppress this message and silently skip all Boost.Python targets
-    - BOOST_ARCH_WORD_BITS == 0.0.16 : no [4]
-
-error: No best alternative for /boost/libs/mpi/build/boost_mpi with <abi>sysv <address-model>64 <architecture>x86 <asynch-exceptions>off <binary-format>elf <boost.beast.allow-deprecated>on <boost.beast.separate-compilation>on <boost.cobalt.executor>any_io_executor <boost.cobalt.pmr>std <context-impl>fcontext <coverage>off <debug-symbols>on <exception-handling>on <extern-c-nothrow>off <inlining>off <known-warnings>hide <link>static <optimization>off <os>LINUX <pch>on <preserve-test-targets>on <profiling>off <python-debugging>off <rtti>on <runtime-debugging>on <runtime-link>shared <stdlib>native <strip>off <target-os>linux <testing.execute>on <threadapi>pthread <threading>multi <toolset-gcc:version>13 <toolset>gcc <variant>debug <vectorize>off <visibility>hidden <warnings-as-errors>off <warnings>on <x-deduced-platform>x86_64
-    matched: (empty)
-    matched: (empty)
 
 
-error: No best alternative for /boost/libs/mpi/build/boost_mpi with <abi>sysv <address-model>64 <architecture>x86 <asynch-exceptions>off <binary-format>elf <boost.beast.allow-deprecated>on <boost.beast.separate-compilation>on <boost.cobalt.executor>any_io_executor <boost.cobalt.pmr>std <context-impl>fcontext <coverage>off <debug-symbols>on <exception-handling>on <extern-c-nothrow>off <inlining>off <known-warnings>hide <link>shared <optimization>off <os>LINUX <pch>on <preserve-test-targets>on <profiling>off <python-debugging>off <rtti>on <runtime-debugging>on <runtime-link>shared <stdlib>native <strip>off <target-os>linux <testing.execute>on <threadapi>pthread <threading>multi <toolset-gcc:version>13 <toolset>gcc <variant>debug <vectorize>off <visibility>hidden <warnings-as-errors>off <warnings>on <x-deduced-platform>x86_64
-    matched: (empty)
-    matched: (empty)
-error: No best alternative for /boost/libs/mpi/build/boost_mpi with <abi>sysv <address-model>64 <architecture>x86 <asynch-exceptions>off <binary-format>elf <boost.beast.allow-deprecated>on <boost.beast.separate-compilation>on <boost.cobalt.executor>any_io_executor <boost.cobalt.pmr>std <coverage>off <debug-symbols>on <exception-handling>on <extern-c-nothrow>off <inlining>off <known-warnings>hide <link>shared <optimization>off <os>LINUX <pch>on <preserve-test-targets>on <profiling>off <python-debugging>off <rtti>on <runtime-debugging>on <runtime-link>shared <stdlib>native <strip>off <target-os>linux <testing.execute>on <threadapi>pthread <threading>multi <toolset-gcc:version>13 <toolset>gcc <variant>debug <vectorize>off <visibility>hidden <warnings-as-errors>off <warnings>on <x-deduced-platform>x86_64
-    matched: (empty)
+
+#### 🌀 Title: Verify the installed packages from Docker
+## Check the protoc version
+docker run --rm --name protobuf-container protobuf-builder ls /opt/protobuf-static/bin/ | grep -E "protoc-[0-9]+"
+#   >> protoc-30.0.0
+
+## Check the installed locations
+docker run --rm --name protobuf-container protobuf-builder ls /opt/
+#   >> protobuf-shared
+#   >> protobuf-static
+
+
+
+
+#### 🌀 Title: Copy the packages to `/opt/` from Docker, and Set Environment variables
+# create a new container
+docker run --name protobuf-container protobuf-builder
+# docker run -it --name protobuf-container protobuf-builder /bin/bash
+
+# remove previous version
+sudo rm -fr $protobuf_shared_prefix
+sudo rm -fr $protobuf_static_prefix
+
+# copy
+sudo docker cp protobuf-container:$protobuf_shared_prefix $protobuf_shared_prefix
+sudo docker cp protobuf-container:$protobuf_static_prefix $protobuf_static_prefix
+
+# remove the container
+docker rm protobuf-container
+
+
+
+
+#### 🌀 Title: Add search paths for headers and libraries
+set unique_comment "## [protobuf] Add search paths for headers and libraries"
+if not grep -Fxq "$unique_comment" "$FISH_CONFIG_PATH"
+    echo "
+    $unique_comment
+    #⚖️ Default: Using the static build for simplicity, portability, and independence.
+    # For larger projects requiring shared libraries, consider using CMake, Conan, or pkg-config to manage dependencies and configure linking more flexibly.
+    fish_add_path $protobuf_static_prefix/bin
+    set -a PKG_CONFIG_PATH $protobuf_static_prefix/lib/pkgconfig
+    set -a LD_LIBRARY_PATH $protobuf_shared_prefix/lib
+    " | prettify_indent_via_pipe | tee -a $FISH_CONFIG_PATH >/dev/null
+    echo -e "\n" >>"$FISH_CONFIG_PATH"
+end
+
 
 sudo docker cp gracious_hertz:/opt/boost /opt/boost
-
 
 set -a CPATH /opt/boost/debug-static/include
 set -a LD_LIBRARY_PATH /opt/boost/debug-shared/lib
 
 # cat /opt/boost/debug-static/include/boost/version.hpp | grep "#define BOOST_LIB_VERSION"
 ```
+
+- Navigate
+
+  ```
+  docker start -i boost-container
+
+  build-debug-static.log
+  build-debug-shared.log
+  build-release-static.log
+  build-release-shared.log
+  ```
+
+  - ❔ about `./b2 --help` in Dockerfile
+
+    - --prefix=\<PREFIX\>
+
+      Install architecture independent files here.
+      Default: C:\Boost on Windows
+      Default: /usr/local on Unix, Linux, etc.
+
+    - --build-dir=DIR
+
+      Build in this location instead of building within the distribution tree. Recommended!
+
+    - variant=debug|release
+
+      Select the build variant
+
+    - link=static|shared
+
+      Whether to build static or shared libraries
+
+    - runtime-link=static|shared
+
+      Whether to link to static or shared C and C++ runtime.
