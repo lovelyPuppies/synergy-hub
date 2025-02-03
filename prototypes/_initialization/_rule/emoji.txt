@@ -24,7 +24,7 @@ Emoji 🔗 from VS Code Extension :emojisense: ;https://marketplace.visualstudio
 
 
 
-  🆗      :ok:                          ""                                  Attempt: Fail
+  🆗      :ok:                          ""                                  Attempt: Success
   📵      :no_mobile_phones:            ""                                  Attempt: Fail
 
   🤚      :raised_hand:                 "User interaction: <Title>"         User interaction required because it cannot be a completely automatic script

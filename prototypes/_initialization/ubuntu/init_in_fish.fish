@@ -1638,6 +1638,35 @@ end
 
 
 echo "🥞 Installing available stable versions from apt in fish shell ..."
+: ' 📦 hexyl
+  🧮 hexyl --help
+    -b, --base <B>
+      Sets the base used for the bytes. The possible options are binary, octal, decimal, and hexadecimal
+    %shell> apt-cache show hexyl | grep -i version
+      >> Version: 0.8.0-2build1
+
+  🚨 Unknown error 📅 2025-02-03 15:28:45
+    brew install hexyl
+    ==> Verifying attestation for hexyl
+    Error: The bottle for hexyl could not be verified.
+
+    This typically indicates an outdated or incompatible `gh` CLI.
+
+    Please confirm that you\'re running the latest version of `gh`
+    by performing an upgrade before retrying:
+
+      brew update
+      brew upgrade gh
+
+    sudo apt install hexyl
+'
+# ⚙️ Last checked version is 0.16.0 📅 2025-02-03 15:30:14
+cd ~/Downloads
+curl -L https://github.com/sharkdp/hexyl/releases/download/v0.16.0/hexyl-musl_0.16.0_amd64.deb -o hexyl.deb
+sudo dpkg -i hexyl.deb && rm hexyl.deb
+cd -
+
+
 ## ☑️ Issue: Bug; Ubuntu VScode PlatformIO extension messages 'PlatformIO: Can not find working Python 3.6+ Interpreter' 📅 2024-11-22 14:12:31
 #   https://community.platformio.org/t/ubuntu-vscode-pio-extension-install-platformio-can-not-find-working-python-3-6-interpreter/27853
 sudo apt install -y python3-venv
