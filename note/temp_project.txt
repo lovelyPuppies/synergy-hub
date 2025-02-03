@@ -19823,3 +19823,6 @@ https://mariadb.com/downloads/connectors/connectors-data-access/cpp-connector/
 
 📰 TODO: ❓ docker.. container 최적화?.. 바로 꺼지도록 하고 필요할때만 detatch 하기? https://stackoverflow.com/questions/25775266/how-to-keep-docker-container-running-after-starting-services
 
+
+
+10시반
