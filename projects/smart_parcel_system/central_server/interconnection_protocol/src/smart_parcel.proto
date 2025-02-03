@@ -2,30 +2,14 @@ edition = "2023";
 
 package smart.parcel;
 
-message Request {
-  string source = 1;
-  string destination = 2;
-  string command = 3;
-  map<string, string> payload = 4;
-  string status = 5;
-  // repeated Link links = 6;
-}
-
-
-message Elevator {
-  string elevator_id = 1;
-  Status elevator_status = 2;
-
-  enum DoorStatus {
-    CLOSED = 0;
-    OPEN = 1;
-  }
-
-  message Status {
-    string current_floor = 1;
-    string door_open_status = 2;
-  }
-}
+// message Request {
+// string source = 1;
+// string destination = 2;
+// string command = 3;
+// map<string, string> payload = 4;
+// string status = 5;
+// // repeated Link links = 6;
+// }
 
 
 
@@ -33,17 +17,16 @@ message Elevator {
   string elevator_id = 1;
   Status elevator_status = 2;
 
-  enum DoorStatus {
+  enum DoorOpenStatus {
     CLOSED = 0;
     OPEN = 1;
   }
 
   message Status {
     string current_floor = 1;
-    string door_open_status = 2;
+    DoorOpenStatus door_open_status = 2;
   }
 }
-
 
 
 message DeliveryRobot {
