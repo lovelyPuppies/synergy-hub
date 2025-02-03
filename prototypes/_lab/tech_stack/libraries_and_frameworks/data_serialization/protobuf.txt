@@ -13,14 +13,23 @@ list of level 1 subjects
   🚨 (Issue: Bug); `debug-static` pkg-config indicates Release Protobuf Library 📅 2025-02-03 05:24:06
     sed -i '0,/ -lprotobuf /s// -lprotobufd /' /opt/protobuf/debug-static/lib/pkgconfig/protobuf.pc; \
     sed -i '0,/ -lprotobuf-lite /s// -lprotobuf-lited /' /opt/protobuf/debug-shared/lib/pkgconfig/protobuf-lite.pc
-  🚨 (Issue: Bug); Undefined symbol referenced from absl::lts_20240722::log_internal::LogMessage::operator<<(unsigned long) 📅 2025-02-03 06:52:07
-    ➡️ Solution
-      Select one of 
-        - 👍 Add the `-fclang-abi-compat=17` flag during compilation.
-        - Explicitly instantiate the operator overloading for `absl::log_internal::LogMessage`; see: https://github.com/abseil/abseil-cpp/issues/1747#issuecomment-2325811064
-        - Downgrade to GCC 13 or LLVM 17 (confirmed to work correctly with LLVM 17.0.6 and GCC 13.3.0 in the GitHub issue).
+
+  🚨 (Issue: Error); compile and binary Undefined symbol referenced from absl::lts_20240722::log_internal::LogMessage::operator<<(unsigned long) 📅 2025-02-03 06:52:07
     When
       compile the tutorial .protobuf with executable cpp file, https://protobuf.dev/getting-started/cpptutorial/#compiling-protocol-buffers
+      
+      ```bash
+      #!/usr/bin/env fish
+      clang++ ./addressbook.pb.cc ./write_message.cpp -o ./write_message.out \
+          $(pkg-config --libs --cflags protobuf | string split -n " ") -fclang-abi-compat=17
+      ```
+    🧪📵 Add the `-fclang-abi-compat=17` flag during compilation
+    ➡️ Solution
+
+      Select one of 
+        - Add the `-fclang-abi-compat=17` flag during compilation.
+        - Explicitly instantiate the operator overloading for `absl::log_internal::LogMessage`; see: https://github.com/abseil/abseil-cpp/issues/1747#issuecomment-2325811064
+        - Downgrade to GCC 13 or LLVM 17 (confirmed to work correctly with LLVM 17.0.6 and GCC 13.3.0 in the GitHub issue).
     Description
       This issue occurs due to ABI compatibility problems when using LLVM 18+ or GCC 14+.
     References

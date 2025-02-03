@@ -12,29 +12,35 @@ clang++ ./addressbook.pb.cc ./read_message.cpp -o ./read_message.out \
     -static
 
 
-
 clang++ ./addressbook.pb.cc ./write_message.cpp -o ./write_message.out \
     $(pkg-config --libs --cflags protobuf | string split -n " ") -fclang-abi-compat=17
 
 
-clang++ ./addressbook.pb.cc ./read_message.cpp -o ./read_message.out \
-    $(pkg-config --libs --cflags protobuf | string split -n " ") -fclang-abi-compat=17
+
+🧮 clang-18
+
+clang++-17 ./addressbook.pb.cc ./read_message.cpp -o ./read_message.out \
+    $(pkg-config --libs --cflags protobuf | string split -n " ") -fuse-ld=lld
+
+clang++-17 ./addressbook.pb.cc ./write_message.cpp -o ./write_message.out \
+    $(pkg-config --libs --cflags protobuf | string split -n " ") -fuse-ld=lld
+
 
 
 🧪🆗 g++-12, g++-14
-g++-14 ./addressbook.pb.cc ./write_message.cpp -o ./write_message.out \
+g++-14 -flto=auto -pipe ./addressbook.pb.cc ./write_message.cpp -o ./write_message.out \
     $(pkg-config --libs --cflags protobuf | string split -n " ") -lstdc++
 
-g++-14 ./addressbook.pb.cc ./read_message.cpp -o ./read_message.out \
+g++-14 -flto=auto -pipe ./addressbook.pb.cc ./read_message.cpp -o ./read_message.out \
     $(pkg-config --libs --cflags protobuf | string split -n " ") -lstdc++
 
 ./read_message.out addressbook.log
 
 🧪
-g++-14 -flto=auto -pipe ./addressbook.pb.cc ./write_message.cpp -o ./write_message.out \
+clang++ ./addressbook.pb.cc ./write_message.cpp -o ./write_message.out \
     $(pkg-config --libs --cflags protobuf | string split -n " ") -lstdc++
-g++-14 -flto=auto -pipe ./addressbook.pb.cc ./read_message.cpp -o ./read_message.out \
-    $(pkg-config --libs --cflags protobuf | string split -n " ")  -lstdc++
+clang++ ./addressbook.pb.cc ./read_message.cpp -o ./read_message.out \
+    $(pkg-config --libs --cflags protobuf | string split -n " ") -lstdc++
 
 clang++ ./addressbook.pb.cc ./write_message.cpp -o ./write_message.out \
     $(pkg-config --libs --cflags protobuf | string split -n " ") -fclang-abi-compat=17

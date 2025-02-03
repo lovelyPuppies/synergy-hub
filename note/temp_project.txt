@@ -19838,4 +19838,23 @@ https://github.com/abseil/abseil-cpp/issues/1747
   Clang 17로 다운그레이드 (가장 확실한 해결책)
   링크 순서 및 libstdc++ 추가 확인
   GoogleTest 관련 absl=1 제거
-  
+
+
+근데 ABI 가 뭐길래, -fclang-abi-compat=17 를 설정햇을때 컴파일 시 오류는 사라지지만, SerializeToOstream 이후 ParseFromIstream 를 사용하면 Segmentation fault 오류가 있던거야? 있던거야?
+
+
+
+/usr/bin/ld: /tmp/addressbook-3eae9c.o: in function `absl::lts_20240116::log_internal::LogMessage::operator<<(unsigned long)':
+addressbook.pb.cc:(.text._ZN4absl12lts_2024011612log_internal10LogMessagelsEm[_ZN4absl12lts_2024011612log_internal10LogMessagelsEm]+0x19): undefined reference to `_ZN4absl12lts_2024011612log_internal10LogMessagelsImTnNSt9enable_ifIXntsr4absl16HasAbslStringifyIT_EE5valueEiE4typeELi0EEERS2_RKS5_'
+clang++-18: error: linker command failed with exit code 1 (use -v to see invocation)
+
+
+
+Protobuf 바이너리는 clang 으로 빌드하지는 않앗어. 그리고 read_message.out, write_message.out 모두 -fclang-abi-compat=17 으로 지정해서 컴파일하면, 
+```
+/usr/bin/ld: /tmp/addressbook-3eae9c.o: in function `absl::lts_20240116::log_internal::LogMessage::operator<<(unsigned long)':
+addressbook.pb.cc:(.text._ZN4absl12lts_2024011612log_internal10LogMessagelsEm[_ZN4absl12lts_2024011612log_internal10LogMessagelsEm]+0x19): undefined reference to `_ZN4absl12lts_2024011612log_internal10LogMessagelsImTnNSt9enable_ifIXntsr4absl16HasAbslStringifyIT_EE5valueEiE4typeELi0EEERS2_RKS5_'
+clang++-18: error: linker command failed with exit code 1 (use -v to see invocation)
+```
+이 오류가 사라지지만, 런타임 중에
+SerializeToOstream 이후 ParseFromIstream 를 사용하면 Segmentation fault 오류가 발생해. (쓰여진 파일 읽을 때)
