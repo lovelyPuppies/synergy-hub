@@ -28,6 +28,7 @@ message Elevator {
   }
 }
 
+// command: set, Ack
 
 message DeliveryRobot {
   string elevator_id = 1;
