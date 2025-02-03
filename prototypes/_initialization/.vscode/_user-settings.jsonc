@@ -107,6 +107,9 @@
   // 🌀 Title: Protocal Buffers
   // https://marketplace.visualstudio.com/items?itemName=tooltitudeteam.tooltitude-pb
   "tooltitude.pb.includes": ["/opt/protobuf/debug-static/include"],
+  "[protobuf]": {
+    "editor.defaultFormatter": "tooltitudeteam.tooltitude-pb"
+  },
   // 🌀 Title: Rust
   // rust-analyzer ; https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer
   // ☑️ To ensure Rust Analyzer's debug functionality works without errors, both "build-essential" and "cmake" must be installed.
