@@ -11,7 +11,7 @@ message Request {
   // repeated Link links = 6;
 }
 
-// 처음 접속할떄 아이디 할당하는 것.
+// 🔰 처음 접속할떄 아이디 할당하는 것. 필요.
 
 
 message Elevator {
