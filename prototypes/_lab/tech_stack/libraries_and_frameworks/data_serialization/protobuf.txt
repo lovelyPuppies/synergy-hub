@@ -14,24 +14,44 @@ list of level 1 subjects
     sed -i '0,/ -lprotobuf /s// -lprotobufd /' /opt/protobuf/debug-static/lib/pkgconfig/protobuf.pc; \
     sed -i '0,/ -lprotobuf-lite /s// -lprotobuf-lited /' /opt/protobuf/debug-shared/lib/pkgconfig/protobuf-lite.pc
 
-  🚨 (Issue: Error); compile and binary Undefined symbol referenced from absl::lts_20240722::log_internal::LogMessage::operator<<(unsigned long) 📅 2025-02-03 06:52:07
-    When
-      compile the tutorial .protobuf with executable cpp file, https://protobuf.dev/getting-started/cpptutorial/#compiling-protocol-buffers
-      
-      ```bash
-      #!/usr/bin/env fish
-      clang++ ./addressbook.pb.cc ./write_message.cpp -o ./write_message.out \
-          $(pkg-config --libs --cflags protobuf | string split -n " ") -fclang-abi-compat=17
-      ```
-    🧪📵 Add the `-fclang-abi-compat=17` flag during compilation
-    ➡️ Solution
+  🚨 (Issue: Error); Issues that occurs due to ABI compatibility problems when using LLVM 18+ because ABI .. 가 바뀌어서? 18부터?
+    🧪
+      When
+        compile tutorial files ; https://protobuf.dev/getting-started/cpptutorial/#compiling-protocol-buffers
 
-      Select one of 
-        - Add the `-fclang-abi-compat=17` flag during compilation.
-        - Explicitly instantiate the operator overloading for `absl::log_internal::LogMessage`; see: https://github.com/abseil/abseil-cpp/issues/1747#issuecomment-2325811064
-        - Downgrade to GCC 13 or LLVM 17 (confirmed to work correctly with LLVM 17.0.6 and GCC 13.3.0 in the GitHub issue).
-    Description
-      This issue occurs due to ABI compatibility problems when using LLVM 18+ or GCC 14+.
+        ```bash
+        #!/usr/bin/env fish
+        clang++ ./addressbook.pb.cc ./write_message.cpp -o ./write_message.out \
+            $(pkg-config --libs --cflags protobuf | string split -n " ") -fclang-abi-compat=17
+        ```
+      Error
+        /usr/bin/ld: /tmp/addressbook-3eae9c.o: in function `absl::lts_20240116::log_internal::LogMessage::operator<<(unsigned long)':
+        addressbook.pb.cc:(.text._ZN4absl12lts_2024011612log_internal10LogMessagelsEm[_ZN4absl12lts_2024011612log_internal10LogMessagelsEm]+0x19): undefined reference to `_ZN4absl12lts_2024011612log_internal10LogMessagelsImTnNSt9enable_ifIXntsr4absl16HasAbslStringifyIT_EE5valueEiE4typeELi0EEERS2_RKS5_'
+        clang++-19: error: linker command failed with exit code 1 (use -v to see invocation)
+
+      Solutions
+        - 🧪📵
+          ; Explicitly instantiate the operator overloading for `absl::log_internal::LogMessage`; see: https://github.com/abseil/abseil-cpp/issues/1747#issuecomment-2325811064
+            not works.
+        - 🧪📵
+          ; Add the `-fclang-abi-compat=17` flag during compilation
+            - clang 17 ABI를 적용하도록 -fclang-abi-compat=17을 설정하면 이 심볼이 정상적으로 링크됨.
+            - 이 방법은 단순히 컴파일 단계에서 링크 오류를 해결할 뿐, 런타임에서는 문제가 발생할 수 있음.
+          When 
+            Run write_message.cpp and read_message.cpp 을 이어서 실행.
+            - SerializeToOstream 이후 ParseFromIstream 를 사용하면 Segmentation fault 오류가 발생. (쓰여진 파일 읽을 때)
+          Error
+            if fish shell
+              fish: Job 1, './write_message.out addressbook…' terminated by signal SIGSEGV (Address boundary error)
+            if bash shell
+              Segmentation fault (core dumped)
+
+    ➡️ Solution
+      - 👍 Downgrade to Clang 19 to Clang 17. 
+        🛍️ e.g. %shell> clang++-17 ./addressbook.pb.cc ./read_message.cpp -o ./read_message.out \
+          $(pkg-config --libs --cflags protobuf | string split -n " ") -fuse-ld=lld
+      - use gcc instead of clang. gcc-12, gcc -14 works well, but compilation and linking speed is low as 2* than in the case of using clang
+    
     References
       https://github.com/abseil/abseil-cpp/issues/1747
       https://github.com/llvm/llvm-project/issues/102443
