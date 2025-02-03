@@ -19826,3 +19826,66 @@ https://mariadb.com/downloads/connectors/connectors-data-access/cpp-connector/
 
 
 10시반
+
+❗❗❗❗❗ protobuf cross comile: https://assil.me/2017/10/21/cross-compile-protobuf-arm-zynq.html
+https://www.boost.org/build/doc/html/bbv2/tasks/crosscompile.html
+
+
+Boost를 크로스 컴파일할 때 arm-none-linux-gnueabi-g++ 와 b2 toolset=gcc-arm을 지정하는 방법의 차이를 정리해 줄게.
+
+    🔹 1. arm-none-linux-gnueabi-g++ 지정 (user-config.jam)
+    jam
+    Copy
+    Edit
+    using gcc : arm : arm-none-linux-gnueabi-g++ ;
+    user-config.jam 파일에서 크로스 컴파일러를 미리 등록하는 방법이야.
+    여기서 "gcc" 는 Boost.Build 에서의 툴체인 이름이고, "arm"은 툴체인의 버전(또는 별칭) 역할을 해.
+    "arm-none-linux-gnueabi-g++" 가 실제 사용할 크로스 컴파일러야.
+    이렇게 설정하면 b2 실행 시 해당 컴파일러를 사용하도록 설정할 수 있음.
+    🔸 장점:
+    b2 toolset=gcc-arm 과 같이 간단한 명령으로 사용할 수 있음.
+    여러 개의 툴체인을 사용할 경우 user-config.jam 에 추가해서 쉽게 관리 가능.
+    🔹 2. b2 toolset=gcc-arm 지정
+    sh
+    Copy
+    Edit
+    b2 toolset=gcc-arm
+    위에서 user-config.jam 파일에 using gcc : arm : arm-none-linux-gnueabi-g++ ; 를 설정했다면, toolset=gcc-arm 은 이 설정을 가져와서 사용함.
+    즉, b2 가 내부적으로 arm-none-linux-gnueabi-g++ 를 사용하도록 지정하는 역할을 함.
+    만약 user-config.jam 파일에서 별도로 크로스 컴파일러를 지정하지 않았다면, b2 toolset=gcc-arm 이 작동하지 않을 수도 있음.
+    🔹 3. 라즈베리파이 64비트용 크로스 컴파일 방법
+    라즈베리파이 64비트 (aarch64) 용으로 Boost 를 크로스 컴파일하려면 적절한 크로스 컴파일러를 선택해야 해.
+
+    ✅ 1) 크로스 컴파일러 확인
+    라즈베리파이 64비트 (aarch64) 용 크로스 컴파일러는 일반적으로 아래와 같은 이름을 가짐:
+    sh
+    Copy
+    Edit
+    aarch64-linux-gnu-g++
+    만약 32비트라면 arm-none-linux-gnueabi-g++ 또는 arm-linux-gnueabihf-g++ 을 사용하지만, 64비트용 빌드이므로 aarch64-linux-gnu-g++ 를 사용해야 함.
+    ✅ 2) user-config.jam 설정
+    user-config.jam 파일을 열어서 다음과 같이 설정해:
+
+    jam
+    Copy
+    Edit
+    using gcc : arm64 : aarch64-linux-gnu-g++ ;
+    "arm64": 툴체인의 별칭 (사용자가 원하는 대로 설정 가능)
+    "aarch64-linux-gnu-g++": 실제 사용할 크로스 컴파일러
+    ✅ 3) b2 실행
+    이제 아래 명령으로 Boost 를 크로스 컴파일하면 됨:
+
+    sh
+    Copy
+    Edit
+    b2 toolset=gcc-arm64 target-os=linux
+    toolset=gcc-arm64: 위에서 설정한 user-config.jam 의 "arm64" 를 가리킴.
+    target-os=linux: 리눅스용 빌드를 명확히 지정.
+    ✅ 4) 만약 user-config.jam 설정을 사용하지 않고 직접 실행하려면?
+    b2 실행 시 직접 크로스 컴파일러를 지정할 수도 있음:
+
+    sh
+    Copy
+    Edit
+    b2 toolset=gcc target-os=linux cxx=aarch64-linux-gnu-g++
+    cxx=aarch64-linux-gnu-g++ 를 명시적으로 지정해서 user-config.jam 설정 없이도 크로스 컴파일 가능.
