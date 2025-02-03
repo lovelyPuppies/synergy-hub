@@ -13,22 +13,22 @@
 
 #include "google/protobuf/runtime_version.h"
 #if PROTOBUF_VERSION != 5029003
-#error "Protobuf C++ gencode is built with an incompatible version of"
-#error "Protobuf C++ headers/runtime. See"
-#error "https://protobuf.dev/support/cross-version-runtime-guarantee/#cpp"
+  #error "Protobuf C++ gencode is built with an incompatible version of"
+  #error "Protobuf C++ headers/runtime. See"
+  #error "https://protobuf.dev/support/cross-version-runtime-guarantee/#cpp"
 #endif
-#include "google/protobuf/io/coded_stream.h"
 #include "google/protobuf/arena.h"
 #include "google/protobuf/arenastring.h"
+#include "google/protobuf/extension_set.h" // IWYU pragma: export
+#include "google/protobuf/generated_enum_reflection.h"
+#include "google/protobuf/generated_message_reflection.h"
 #include "google/protobuf/generated_message_tctable_decl.h"
 #include "google/protobuf/generated_message_util.h"
-#include "google/protobuf/metadata_lite.h"
-#include "google/protobuf/generated_message_reflection.h"
+#include "google/protobuf/io/coded_stream.h"
 #include "google/protobuf/message.h"
 #include "google/protobuf/message_lite.h"
-#include "google/protobuf/repeated_field.h"  // IWYU pragma: export
-#include "google/protobuf/extension_set.h"  // IWYU pragma: export
-#include "google/protobuf/generated_enum_reflection.h"
+#include "google/protobuf/metadata_lite.h"
+#include "google/protobuf/repeated_field.h" // IWYU pragma: export
 #include "google/protobuf/unknown_field_set.h"
 // @@protoc_insertion_point(includes)
 
@@ -40,11 +40,10 @@
 namespace google {
 namespace protobuf {
 namespace internal {
-template <typename T>
-::absl::string_view GetAnyMessageName();
-}  // namespace internal
-}  // namespace protobuf
-}  // namespace google
+template <typename T>::absl::string_view GetAnyMessageName();
+} // namespace internal
+} // namespace protobuf
+} // namespace google
 
 // Internal implementation detail -- do not use these members.
 struct TableStruct_addressbook_2eproto {
@@ -61,12 +60,12 @@ struct PersonDefaultTypeInternal;
 extern PersonDefaultTypeInternal _Person_default_instance_;
 class Person_PhoneNumber;
 struct Person_PhoneNumberDefaultTypeInternal;
-extern Person_PhoneNumberDefaultTypeInternal _Person_PhoneNumber_default_instance_;
-}  // namespace tutorial
+extern Person_PhoneNumberDefaultTypeInternal
+    _Person_PhoneNumber_default_instance_;
+} // namespace tutorial
 namespace google {
-namespace protobuf {
-}  // namespace protobuf
-}  // namespace google
+namespace protobuf {} // namespace protobuf
+} // namespace google
 
 namespace tutorial {
 enum Person_PhoneType : int {
@@ -82,61 +81,63 @@ enum Person_PhoneType : int {
 
 bool Person_PhoneType_IsValid(int value);
 extern const uint32_t Person_PhoneType_internal_data_[];
-constexpr Person_PhoneType Person_PhoneType_PhoneType_MIN = static_cast<Person_PhoneType>(0);
-constexpr Person_PhoneType Person_PhoneType_PhoneType_MAX = static_cast<Person_PhoneType>(3);
+constexpr Person_PhoneType Person_PhoneType_PhoneType_MIN =
+    static_cast<Person_PhoneType>(0);
+constexpr Person_PhoneType Person_PhoneType_PhoneType_MAX =
+    static_cast<Person_PhoneType>(3);
 constexpr int Person_PhoneType_PhoneType_ARRAYSIZE = 3 + 1;
-const ::google::protobuf::EnumDescriptor*
-Person_PhoneType_descriptor();
-template <typename T>
-const std::string& Person_PhoneType_Name(T value) {
+const ::google::protobuf::EnumDescriptor *Person_PhoneType_descriptor();
+template <typename T> const std::string &Person_PhoneType_Name(T value) {
   static_assert(std::is_same<T, Person_PhoneType>::value ||
                     std::is_integral<T>::value,
                 "Incorrect type passed to PhoneType_Name().");
   return Person_PhoneType_Name(static_cast<Person_PhoneType>(value));
 }
 template <>
-inline const std::string& Person_PhoneType_Name(Person_PhoneType value) {
-  return ::google::protobuf::internal::NameOfDenseEnum<Person_PhoneType_descriptor,
-                                                 0, 3>(
-      static_cast<int>(value));
+inline const std::string &Person_PhoneType_Name(Person_PhoneType value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<
+      Person_PhoneType_descriptor, 0, 3>(static_cast<int>(value));
 }
-inline bool Person_PhoneType_Parse(absl::string_view name, Person_PhoneType* value) {
+inline bool Person_PhoneType_Parse(absl::string_view name,
+                                   Person_PhoneType *value) {
   return ::google::protobuf::internal::ParseNamedEnum<Person_PhoneType>(
       Person_PhoneType_descriptor(), name, value);
 }
 
 // ===================================================================
 
-
 // -------------------------------------------------------------------
 
 class Person_PhoneNumber final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:tutorial.Person.PhoneNumber) */ {
- public:
+public:
   inline Person_PhoneNumber() : Person_PhoneNumber(nullptr) {}
   ~Person_PhoneNumber() PROTOBUF_FINAL;
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(Person_PhoneNumber* msg, std::destroying_delete_t) {
+  void operator delete(Person_PhoneNumber *msg, std::destroying_delete_t) {
     SharedDtor(*msg);
     ::google::protobuf::internal::SizedDelete(msg, sizeof(Person_PhoneNumber));
   }
 #endif
 
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR Person_PhoneNumber(
-      ::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR
+      Person_PhoneNumber(::google::protobuf::internal::ConstantInitialized);
 
-  inline Person_PhoneNumber(const Person_PhoneNumber& from) : Person_PhoneNumber(nullptr, from) {}
-  inline Person_PhoneNumber(Person_PhoneNumber&& from) noexcept
+  inline Person_PhoneNumber(const Person_PhoneNumber &from)
+      : Person_PhoneNumber(nullptr, from) {}
+  inline Person_PhoneNumber(Person_PhoneNumber &&from) noexcept
       : Person_PhoneNumber(nullptr, std::move(from)) {}
-  inline Person_PhoneNumber& operator=(const Person_PhoneNumber& from) {
+  inline Person_PhoneNumber &operator=(const Person_PhoneNumber &from) {
     CopyFrom(from);
     return *this;
   }
-  inline Person_PhoneNumber& operator=(Person_PhoneNumber&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+  inline Person_PhoneNumber &operator=(Person_PhoneNumber &&from) noexcept {
+    if (this == &from)
+      return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(
+            GetArena(), from.GetArena())) {
       InternalSwap(&from);
     } else {
       CopyFrom(from);
@@ -144,113 +145,124 @@ class Person_PhoneNumber final : public ::google::protobuf::Message
     return *this;
   }
 
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  inline const ::google::protobuf::UnknownFieldSet &
+  unknown_fields() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_
+        .unknown_fields<::google::protobuf::UnknownFieldSet>(
+            ::google::protobuf::UnknownFieldSet::default_instance);
   }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  inline ::google::protobuf::UnknownFieldSet *
+  mutable_unknown_fields() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_
+        .mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
   }
 
-  static const ::google::protobuf::Descriptor* descriptor() {
+  static const ::google::protobuf::Descriptor *descriptor() {
     return GetDescriptor();
   }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
+  static const ::google::protobuf::Descriptor *GetDescriptor() {
     return default_instance().GetMetadata().descriptor;
   }
-  static const ::google::protobuf::Reflection* GetReflection() {
+  static const ::google::protobuf::Reflection *GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const Person_PhoneNumber& default_instance() {
+  static const Person_PhoneNumber &default_instance() {
     return *internal_default_instance();
   }
-  static inline const Person_PhoneNumber* internal_default_instance() {
-    return reinterpret_cast<const Person_PhoneNumber*>(
+  static inline const Person_PhoneNumber *internal_default_instance() {
+    return reinterpret_cast<const Person_PhoneNumber *>(
         &_Person_PhoneNumber_default_instance_);
   }
   static constexpr int kIndexInFileMessages = 0;
-  friend void swap(Person_PhoneNumber& a, Person_PhoneNumber& b) { a.Swap(&b); }
-  inline void Swap(Person_PhoneNumber* other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+  friend void swap(Person_PhoneNumber &a, Person_PhoneNumber &b) { a.Swap(&b); }
+  inline void Swap(Person_PhoneNumber *other) {
+    if (other == this)
+      return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(),
+                                                         other->GetArena())) {
       InternalSwap(other);
     } else {
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(Person_PhoneNumber* other) {
-    if (other == this) return;
+  void UnsafeArenaSwap(Person_PhoneNumber *other) {
+    if (other == this)
+      return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
   }
 
   // implements Message ----------------------------------------------
 
-  Person_PhoneNumber* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<Person_PhoneNumber>(arena);
+  Person_PhoneNumber *New(::google::protobuf::Arena *arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<Person_PhoneNumber>(
+        arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const Person_PhoneNumber& from);
+  void CopyFrom(const Person_PhoneNumber &from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const Person_PhoneNumber& from) { Person_PhoneNumber::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
+  void MergeFrom(const Person_PhoneNumber &from) {
+    Person_PhoneNumber::MergeImpl(*this, from);
   }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* _InternalSerialize(
-      const MessageLite& msg, ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream);
 
-  public:
+private:
+  static void MergeImpl(::google::protobuf::MessageLite &to_msg,
+                        const ::google::protobuf::MessageLite &from_msg);
+
+public:
+  bool IsInitialized() const { return true; }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite &msg);
+  static ::uint8_t *
+  _InternalSerialize(const MessageLite &msg, ::uint8_t *target,
+                     ::google::protobuf::io::EpsCopyOutputStream *stream);
+
+public:
   ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  ::uint8_t *_InternalSerialize(
+      ::uint8_t *target,
+      ::google::protobuf::io::EpsCopyOutputStream *stream) const {
     return _InternalSerialize(*this, target, stream);
   }
-  #else   // PROTOBUF_CUSTOM_VTABLE
+#else  // PROTOBUF_CUSTOM_VTABLE
   ::size_t ByteSizeLong() const final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
+  ::uint8_t *_InternalSerialize(
+      ::uint8_t *target,
+      ::google::protobuf::io::EpsCopyOutputStream *stream) const final;
+#endif // PROTOBUF_CUSTOM_VTABLE
   int GetCachedSize() const { return _impl_._cached_size_.Get(); }
 
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(Person_PhoneNumber* other);
- private:
-  template <typename T>
-  friend ::absl::string_view(
-      ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "tutorial.Person.PhoneNumber"; }
+private:
+  void SharedCtor(::google::protobuf::Arena *arena);
+  static void SharedDtor(MessageLite &self);
+  void InternalSwap(Person_PhoneNumber *other);
 
- protected:
-  explicit Person_PhoneNumber(::google::protobuf::Arena* arena);
-  Person_PhoneNumber(::google::protobuf::Arena* arena, const Person_PhoneNumber& from);
-  Person_PhoneNumber(::google::protobuf::Arena* arena, Person_PhoneNumber&& from) noexcept
+private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() {
+    return "tutorial.Person.PhoneNumber";
+  }
+
+protected:
+  explicit Person_PhoneNumber(::google::protobuf::Arena *arena);
+  Person_PhoneNumber(::google::protobuf::Arena *arena,
+                     const Person_PhoneNumber &from);
+  Person_PhoneNumber(::google::protobuf::Arena *arena,
+                     Person_PhoneNumber &&from) noexcept
       : Person_PhoneNumber(arena) {
     *this = ::std::move(from);
   }
-  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static void* PlacementNew_(const void*, void* mem,
-                             ::google::protobuf::Arena* arena);
+  const ::google::protobuf::internal::ClassData *
+  GetClassData() const PROTOBUF_FINAL;
+  static void *PlacementNew_(const void *, void *mem,
+                             ::google::protobuf::Arena *arena);
   static constexpr auto InternalNewImpl_();
   static const ::google::protobuf::internal::ClassDataFull _class_data_;
 
- public:
+public:
   ::google::protobuf::Metadata GetMetadata() const;
   // nested types ----------------------------------------------------
 
@@ -261,93 +273,95 @@ class Person_PhoneNumber final : public ::google::protobuf::Message
   };
   // string number = 1;
   bool has_number() const;
-  void clear_number() ;
-  const std::string& number() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_number(Arg_&& arg, Args_... args);
-  std::string* mutable_number();
-  PROTOBUF_NODISCARD std::string* release_number();
-  void set_allocated_number(std::string* value);
+  void clear_number();
+  const std::string &number() const;
+  template <typename Arg_ = const std::string &, typename... Args_>
+  void set_number(Arg_ &&arg, Args_... args);
+  std::string *mutable_number();
+  PROTOBUF_NODISCARD std::string *release_number();
+  void set_allocated_number(std::string *value);
 
-  private:
-  const std::string& _internal_number() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_number(
-      const std::string& value);
-  std::string* _internal_mutable_number();
+private:
+  const std::string &_internal_number() const;
+  inline PROTOBUF_ALWAYS_INLINE void
+  _internal_set_number(const std::string &value);
+  std::string *_internal_mutable_number();
 
-  public:
+public:
   // .tutorial.Person.PhoneType type = 2;
   bool has_type() const;
-  void clear_type() ;
+  void clear_type();
   ::tutorial::Person_PhoneType type() const;
   void set_type(::tutorial::Person_PhoneType value);
 
-  private:
+private:
   ::tutorial::Person_PhoneType _internal_type() const;
   void _internal_set_type(::tutorial::Person_PhoneType value);
 
-  public:
+public:
   // @@protoc_insertion_point(class_scope:tutorial.Person.PhoneNumber)
- private:
+private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      1, 2, 0,
-      42, 2>
+  static const ::google::protobuf::internal::TcParseTable<1, 2, 0, 42, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   using InternalArenaConstructable_ = void;
   using DestructorSkippable_ = void;
   struct Impl_ {
     inline explicit constexpr Impl_(
         ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const Person_PhoneNumber& from_msg);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena *arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena *arena, const Impl_ &from,
+        const Person_PhoneNumber &from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::ArenaStringPtr number_;
     int type_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
-  union { Impl_ _impl_; };
+  union {
+    Impl_ _impl_;
+  };
   friend struct ::TableStruct_addressbook_2eproto;
 };
 // -------------------------------------------------------------------
 
 class Person final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:tutorial.Person) */ {
- public:
+public:
   inline Person() : Person(nullptr) {}
   ~Person() PROTOBUF_FINAL;
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(Person* msg, std::destroying_delete_t) {
+  void operator delete(Person *msg, std::destroying_delete_t) {
     SharedDtor(*msg);
     ::google::protobuf::internal::SizedDelete(msg, sizeof(Person));
   }
 #endif
 
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR Person(
-      ::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR
+      Person(::google::protobuf::internal::ConstantInitialized);
 
-  inline Person(const Person& from) : Person(nullptr, from) {}
-  inline Person(Person&& from) noexcept
-      : Person(nullptr, std::move(from)) {}
-  inline Person& operator=(const Person& from) {
+  inline Person(const Person &from) : Person(nullptr, from) {}
+  inline Person(Person &&from) noexcept : Person(nullptr, std::move(from)) {}
+  inline Person &operator=(const Person &from) {
     CopyFrom(from);
     return *this;
   }
-  inline Person& operator=(Person&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+  inline Person &operator=(Person &&from) noexcept {
+    if (this == &from)
+      return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(
+            GetArena(), from.GetArena())) {
       InternalSwap(&from);
     } else {
       CopyFrom(from);
@@ -355,119 +369,124 @@ class Person final : public ::google::protobuf::Message
     return *this;
   }
 
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  inline const ::google::protobuf::UnknownFieldSet &
+  unknown_fields() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_
+        .unknown_fields<::google::protobuf::UnknownFieldSet>(
+            ::google::protobuf::UnknownFieldSet::default_instance);
   }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  inline ::google::protobuf::UnknownFieldSet *
+  mutable_unknown_fields() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_
+        .mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
   }
 
-  static const ::google::protobuf::Descriptor* descriptor() {
+  static const ::google::protobuf::Descriptor *descriptor() {
     return GetDescriptor();
   }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
+  static const ::google::protobuf::Descriptor *GetDescriptor() {
     return default_instance().GetMetadata().descriptor;
   }
-  static const ::google::protobuf::Reflection* GetReflection() {
+  static const ::google::protobuf::Reflection *GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const Person& default_instance() {
+  static const Person &default_instance() {
     return *internal_default_instance();
   }
-  static inline const Person* internal_default_instance() {
-    return reinterpret_cast<const Person*>(
-        &_Person_default_instance_);
+  static inline const Person *internal_default_instance() {
+    return reinterpret_cast<const Person *>(&_Person_default_instance_);
   }
   static constexpr int kIndexInFileMessages = 1;
-  friend void swap(Person& a, Person& b) { a.Swap(&b); }
-  inline void Swap(Person* other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+  friend void swap(Person &a, Person &b) { a.Swap(&b); }
+  inline void Swap(Person *other) {
+    if (other == this)
+      return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(),
+                                                         other->GetArena())) {
       InternalSwap(other);
     } else {
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(Person* other) {
-    if (other == this) return;
+  void UnsafeArenaSwap(Person *other) {
+    if (other == this)
+      return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
   }
 
   // implements Message ----------------------------------------------
 
-  Person* New(::google::protobuf::Arena* arena = nullptr) const {
+  Person *New(::google::protobuf::Arena *arena = nullptr) const {
     return ::google::protobuf::Message::DefaultConstruct<Person>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const Person& from);
+  void CopyFrom(const Person &from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const Person& from) { Person::MergeImpl(*this, from); }
+  void MergeFrom(const Person &from) { Person::MergeImpl(*this, from); }
 
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
+private:
+  static void MergeImpl(::google::protobuf::MessageLite &to_msg,
+                        const ::google::protobuf::MessageLite &from_msg);
 
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
+public:
+  bool IsInitialized() const { return true; }
   ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* _InternalSerialize(
-      const MessageLite& msg, ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream);
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite &msg);
+  static ::uint8_t *
+  _InternalSerialize(const MessageLite &msg, ::uint8_t *target,
+                     ::google::protobuf::io::EpsCopyOutputStream *stream);
 
-  public:
+public:
   ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  ::uint8_t *_InternalSerialize(
+      ::uint8_t *target,
+      ::google::protobuf::io::EpsCopyOutputStream *stream) const {
     return _InternalSerialize(*this, target, stream);
   }
-  #else   // PROTOBUF_CUSTOM_VTABLE
+#else  // PROTOBUF_CUSTOM_VTABLE
   ::size_t ByteSizeLong() const final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
+  ::uint8_t *_InternalSerialize(
+      ::uint8_t *target,
+      ::google::protobuf::io::EpsCopyOutputStream *stream) const final;
+#endif // PROTOBUF_CUSTOM_VTABLE
   int GetCachedSize() const { return _impl_._cached_size_.Get(); }
 
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(Person* other);
- private:
+private:
+  void SharedCtor(::google::protobuf::Arena *arena);
+  static void SharedDtor(MessageLite &self);
+  void InternalSwap(Person *other);
+
+private:
   template <typename T>
-  friend ::absl::string_view(
-      ::google::protobuf::internal::GetAnyMessageName)();
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
   static ::absl::string_view FullMessageName() { return "tutorial.Person"; }
 
- protected:
-  explicit Person(::google::protobuf::Arena* arena);
-  Person(::google::protobuf::Arena* arena, const Person& from);
-  Person(::google::protobuf::Arena* arena, Person&& from) noexcept
+protected:
+  explicit Person(::google::protobuf::Arena *arena);
+  Person(::google::protobuf::Arena *arena, const Person &from);
+  Person(::google::protobuf::Arena *arena, Person &&from) noexcept
       : Person(arena) {
     *this = ::std::move(from);
   }
-  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static void* PlacementNew_(const void*, void* mem,
-                             ::google::protobuf::Arena* arena);
+  const ::google::protobuf::internal::ClassData *
+  GetClassData() const PROTOBUF_FINAL;
+  static void *PlacementNew_(const void *, void *mem,
+                             ::google::protobuf::Arena *arena);
   static constexpr auto InternalNewImpl_();
   static const ::google::protobuf::internal::ClassDataFull _class_data_;
 
- public:
+public:
   ::google::protobuf::Metadata GetMetadata() const;
   // nested types ----------------------------------------------------
   using PhoneNumber = Person_PhoneNumber;
   using PhoneType = Person_PhoneType;
-  static constexpr PhoneType PHONE_TYPE_UNSPECIFIED = Person_PhoneType_PHONE_TYPE_UNSPECIFIED;
-  static constexpr PhoneType PHONE_TYPE_MOBILE = Person_PhoneType_PHONE_TYPE_MOBILE;
+  static constexpr PhoneType PHONE_TYPE_UNSPECIFIED =
+      Person_PhoneType_PHONE_TYPE_UNSPECIFIED;
+  static constexpr PhoneType PHONE_TYPE_MOBILE =
+      Person_PhoneType_PHONE_TYPE_MOBILE;
   static constexpr PhoneType PHONE_TYPE_HOME = Person_PhoneType_PHONE_TYPE_HOME;
   static constexpr PhoneType PHONE_TYPE_WORK = Person_PhoneType_PHONE_TYPE_WORK;
   static inline bool PhoneType_IsValid(int value) {
@@ -475,15 +494,17 @@ class Person final : public ::google::protobuf::Message
   }
   static constexpr PhoneType PhoneType_MIN = Person_PhoneType_PhoneType_MIN;
   static constexpr PhoneType PhoneType_MAX = Person_PhoneType_PhoneType_MAX;
-  static constexpr int PhoneType_ARRAYSIZE = Person_PhoneType_PhoneType_ARRAYSIZE;
-  static inline const ::google::protobuf::EnumDescriptor* PhoneType_descriptor() {
+  static constexpr int PhoneType_ARRAYSIZE =
+      Person_PhoneType_PhoneType_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor *
+  PhoneType_descriptor() {
     return Person_PhoneType_descriptor();
   }
   template <typename T>
-  static inline const std::string& PhoneType_Name(T value) {
+  static inline const std::string &PhoneType_Name(T value) {
     return Person_PhoneType_Name(value);
   }
-  static inline bool PhoneType_Parse(absl::string_view name, PhoneType* value) {
+  static inline bool PhoneType_Parse(absl::string_view name, PhoneType *value) {
     return Person_PhoneType_Parse(name, value);
   }
 
@@ -496,129 +517,139 @@ class Person final : public ::google::protobuf::Message
   };
   // repeated .tutorial.Person.PhoneNumber phones = 4;
   int phones_size() const;
-  private:
+
+private:
   int _internal_phones_size() const;
 
-  public:
-  void clear_phones() ;
-  ::tutorial::Person_PhoneNumber* mutable_phones(int index);
-  ::google::protobuf::RepeatedPtrField<::tutorial::Person_PhoneNumber>* mutable_phones();
+public:
+  void clear_phones();
+  ::tutorial::Person_PhoneNumber *mutable_phones(int index);
+  ::google::protobuf::RepeatedPtrField<::tutorial::Person_PhoneNumber> *
+  mutable_phones();
 
-  private:
-  const ::google::protobuf::RepeatedPtrField<::tutorial::Person_PhoneNumber>& _internal_phones() const;
-  ::google::protobuf::RepeatedPtrField<::tutorial::Person_PhoneNumber>* _internal_mutable_phones();
-  public:
-  const ::tutorial::Person_PhoneNumber& phones(int index) const;
-  ::tutorial::Person_PhoneNumber* add_phones();
-  const ::google::protobuf::RepeatedPtrField<::tutorial::Person_PhoneNumber>& phones() const;
+private:
+  const ::google::protobuf::RepeatedPtrField<::tutorial::Person_PhoneNumber> &
+  _internal_phones() const;
+  ::google::protobuf::RepeatedPtrField<::tutorial::Person_PhoneNumber> *
+  _internal_mutable_phones();
+
+public:
+  const ::tutorial::Person_PhoneNumber &phones(int index) const;
+  ::tutorial::Person_PhoneNumber *add_phones();
+  const ::google::protobuf::RepeatedPtrField<::tutorial::Person_PhoneNumber> &
+  phones() const;
   // string name = 1;
   bool has_name() const;
-  void clear_name() ;
-  const std::string& name() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_name(Arg_&& arg, Args_... args);
-  std::string* mutable_name();
-  PROTOBUF_NODISCARD std::string* release_name();
-  void set_allocated_name(std::string* value);
+  void clear_name();
+  const std::string &name() const;
+  template <typename Arg_ = const std::string &, typename... Args_>
+  void set_name(Arg_ &&arg, Args_... args);
+  std::string *mutable_name();
+  PROTOBUF_NODISCARD std::string *release_name();
+  void set_allocated_name(std::string *value);
 
-  private:
-  const std::string& _internal_name() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
-      const std::string& value);
-  std::string* _internal_mutable_name();
+private:
+  const std::string &_internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void
+  _internal_set_name(const std::string &value);
+  std::string *_internal_mutable_name();
 
-  public:
+public:
   // string email = 3;
   bool has_email() const;
-  void clear_email() ;
-  const std::string& email() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_email(Arg_&& arg, Args_... args);
-  std::string* mutable_email();
-  PROTOBUF_NODISCARD std::string* release_email();
-  void set_allocated_email(std::string* value);
+  void clear_email();
+  const std::string &email() const;
+  template <typename Arg_ = const std::string &, typename... Args_>
+  void set_email(Arg_ &&arg, Args_... args);
+  std::string *mutable_email();
+  PROTOBUF_NODISCARD std::string *release_email();
+  void set_allocated_email(std::string *value);
 
-  private:
-  const std::string& _internal_email() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_email(
-      const std::string& value);
-  std::string* _internal_mutable_email();
+private:
+  const std::string &_internal_email() const;
+  inline PROTOBUF_ALWAYS_INLINE void
+  _internal_set_email(const std::string &value);
+  std::string *_internal_mutable_email();
 
-  public:
+public:
   // int32 id = 2;
   bool has_id() const;
-  void clear_id() ;
+  void clear_id();
   ::int32_t id() const;
   void set_id(::int32_t value);
 
-  private:
+private:
   ::int32_t _internal_id() const;
   void _internal_set_id(::int32_t value);
 
-  public:
+public:
   // @@protoc_insertion_point(class_scope:tutorial.Person)
- private:
+private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      2, 4, 1,
-      33, 2>
+  static const ::google::protobuf::internal::TcParseTable<2, 4, 1, 33, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   using InternalArenaConstructable_ = void;
   using DestructorSkippable_ = void;
   struct Impl_ {
     inline explicit constexpr Impl_(
         ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const Person& from_msg);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena *arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena *arena, const Impl_ &from,
+        const Person &from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::RepeatedPtrField< ::tutorial::Person_PhoneNumber > phones_;
+    ::google::protobuf::RepeatedPtrField<::tutorial::Person_PhoneNumber>
+        phones_;
     ::google::protobuf::internal::ArenaStringPtr name_;
     ::google::protobuf::internal::ArenaStringPtr email_;
     ::int32_t id_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
-  union { Impl_ _impl_; };
+  union {
+    Impl_ _impl_;
+  };
   friend struct ::TableStruct_addressbook_2eproto;
 };
 // -------------------------------------------------------------------
 
 class AddressBook final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:tutorial.AddressBook) */ {
- public:
+public:
   inline AddressBook() : AddressBook(nullptr) {}
   ~AddressBook() PROTOBUF_FINAL;
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(AddressBook* msg, std::destroying_delete_t) {
+  void operator delete(AddressBook *msg, std::destroying_delete_t) {
     SharedDtor(*msg);
     ::google::protobuf::internal::SizedDelete(msg, sizeof(AddressBook));
   }
 #endif
 
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR AddressBook(
-      ::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR
+      AddressBook(::google::protobuf::internal::ConstantInitialized);
 
-  inline AddressBook(const AddressBook& from) : AddressBook(nullptr, from) {}
-  inline AddressBook(AddressBook&& from) noexcept
+  inline AddressBook(const AddressBook &from) : AddressBook(nullptr, from) {}
+  inline AddressBook(AddressBook &&from) noexcept
       : AddressBook(nullptr, std::move(from)) {}
-  inline AddressBook& operator=(const AddressBook& from) {
+  inline AddressBook &operator=(const AddressBook &from) {
     CopyFrom(from);
     return *this;
   }
-  inline AddressBook& operator=(AddressBook&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+  inline AddressBook &operator=(AddressBook &&from) noexcept {
+    if (this == &from)
+      return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(
+            GetArena(), from.GetArena())) {
       InternalSwap(&from);
     } else {
       CopyFrom(from);
@@ -626,113 +657,121 @@ class AddressBook final : public ::google::protobuf::Message
     return *this;
   }
 
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  inline const ::google::protobuf::UnknownFieldSet &
+  unknown_fields() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_
+        .unknown_fields<::google::protobuf::UnknownFieldSet>(
+            ::google::protobuf::UnknownFieldSet::default_instance);
   }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  inline ::google::protobuf::UnknownFieldSet *
+  mutable_unknown_fields() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_
+        .mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
   }
 
-  static const ::google::protobuf::Descriptor* descriptor() {
+  static const ::google::protobuf::Descriptor *descriptor() {
     return GetDescriptor();
   }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
+  static const ::google::protobuf::Descriptor *GetDescriptor() {
     return default_instance().GetMetadata().descriptor;
   }
-  static const ::google::protobuf::Reflection* GetReflection() {
+  static const ::google::protobuf::Reflection *GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const AddressBook& default_instance() {
+  static const AddressBook &default_instance() {
     return *internal_default_instance();
   }
-  static inline const AddressBook* internal_default_instance() {
-    return reinterpret_cast<const AddressBook*>(
+  static inline const AddressBook *internal_default_instance() {
+    return reinterpret_cast<const AddressBook *>(
         &_AddressBook_default_instance_);
   }
   static constexpr int kIndexInFileMessages = 2;
-  friend void swap(AddressBook& a, AddressBook& b) { a.Swap(&b); }
-  inline void Swap(AddressBook* other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+  friend void swap(AddressBook &a, AddressBook &b) { a.Swap(&b); }
+  inline void Swap(AddressBook *other) {
+    if (other == this)
+      return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(),
+                                                         other->GetArena())) {
       InternalSwap(other);
     } else {
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(AddressBook* other) {
-    if (other == this) return;
+  void UnsafeArenaSwap(AddressBook *other) {
+    if (other == this)
+      return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
   }
 
   // implements Message ----------------------------------------------
 
-  AddressBook* New(::google::protobuf::Arena* arena = nullptr) const {
+  AddressBook *New(::google::protobuf::Arena *arena = nullptr) const {
     return ::google::protobuf::Message::DefaultConstruct<AddressBook>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const AddressBook& from);
+  void CopyFrom(const AddressBook &from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const AddressBook& from) { AddressBook::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
+  void MergeFrom(const AddressBook &from) {
+    AddressBook::MergeImpl(*this, from);
   }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* _InternalSerialize(
-      const MessageLite& msg, ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream);
 
-  public:
+private:
+  static void MergeImpl(::google::protobuf::MessageLite &to_msg,
+                        const ::google::protobuf::MessageLite &from_msg);
+
+public:
+  bool IsInitialized() const { return true; }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite &msg);
+  static ::uint8_t *
+  _InternalSerialize(const MessageLite &msg, ::uint8_t *target,
+                     ::google::protobuf::io::EpsCopyOutputStream *stream);
+
+public:
   ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+  ::uint8_t *_InternalSerialize(
+      ::uint8_t *target,
+      ::google::protobuf::io::EpsCopyOutputStream *stream) const {
     return _InternalSerialize(*this, target, stream);
   }
-  #else   // PROTOBUF_CUSTOM_VTABLE
+#else  // PROTOBUF_CUSTOM_VTABLE
   ::size_t ByteSizeLong() const final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
+  ::uint8_t *_InternalSerialize(
+      ::uint8_t *target,
+      ::google::protobuf::io::EpsCopyOutputStream *stream) const final;
+#endif // PROTOBUF_CUSTOM_VTABLE
   int GetCachedSize() const { return _impl_._cached_size_.Get(); }
 
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(AddressBook* other);
- private:
-  template <typename T>
-  friend ::absl::string_view(
-      ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "tutorial.AddressBook"; }
+private:
+  void SharedCtor(::google::protobuf::Arena *arena);
+  static void SharedDtor(MessageLite &self);
+  void InternalSwap(AddressBook *other);
 
- protected:
-  explicit AddressBook(::google::protobuf::Arena* arena);
-  AddressBook(::google::protobuf::Arena* arena, const AddressBook& from);
-  AddressBook(::google::protobuf::Arena* arena, AddressBook&& from) noexcept
+private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() {
+    return "tutorial.AddressBook";
+  }
+
+protected:
+  explicit AddressBook(::google::protobuf::Arena *arena);
+  AddressBook(::google::protobuf::Arena *arena, const AddressBook &from);
+  AddressBook(::google::protobuf::Arena *arena, AddressBook &&from) noexcept
       : AddressBook(arena) {
     *this = ::std::move(from);
   }
-  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static void* PlacementNew_(const void*, void* mem,
-                             ::google::protobuf::Arena* arena);
+  const ::google::protobuf::internal::ClassData *
+  GetClassData() const PROTOBUF_FINAL;
+  static void *PlacementNew_(const void *, void *mem,
+                             ::google::protobuf::Arena *arena);
   static constexpr auto InternalNewImpl_();
   static const ::google::protobuf::internal::ClassDataFull _class_data_;
 
- public:
+public:
   ::google::protobuf::Metadata GetMetadata() const;
   // nested types ----------------------------------------------------
 
@@ -742,64 +781,66 @@ class AddressBook final : public ::google::protobuf::Message
   };
   // repeated .tutorial.Person people = 1;
   int people_size() const;
-  private:
+
+private:
   int _internal_people_size() const;
 
-  public:
-  void clear_people() ;
-  ::tutorial::Person* mutable_people(int index);
-  ::google::protobuf::RepeatedPtrField<::tutorial::Person>* mutable_people();
+public:
+  void clear_people();
+  ::tutorial::Person *mutable_people(int index);
+  ::google::protobuf::RepeatedPtrField<::tutorial::Person> *mutable_people();
 
-  private:
-  const ::google::protobuf::RepeatedPtrField<::tutorial::Person>& _internal_people() const;
-  ::google::protobuf::RepeatedPtrField<::tutorial::Person>* _internal_mutable_people();
-  public:
-  const ::tutorial::Person& people(int index) const;
-  ::tutorial::Person* add_people();
-  const ::google::protobuf::RepeatedPtrField<::tutorial::Person>& people() const;
+private:
+  const ::google::protobuf::RepeatedPtrField<::tutorial::Person> &
+  _internal_people() const;
+  ::google::protobuf::RepeatedPtrField<::tutorial::Person> *
+  _internal_mutable_people();
+
+public:
+  const ::tutorial::Person &people(int index) const;
+  ::tutorial::Person *add_people();
+  const ::google::protobuf::RepeatedPtrField<::tutorial::Person> &
+  people() const;
   // @@protoc_insertion_point(class_scope:tutorial.AddressBook)
- private:
+private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      0, 1, 1,
-      0, 2>
+  static const ::google::protobuf::internal::TcParseTable<0, 1, 1, 0, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
   friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
+  template <typename T> friend class ::google::protobuf::Arena::InternalHelper;
   using InternalArenaConstructable_ = void;
   using DestructorSkippable_ = void;
   struct Impl_ {
     inline explicit constexpr Impl_(
         ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const AddressBook& from_msg);
-    ::google::protobuf::RepeatedPtrField< ::tutorial::Person > people_;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena *arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena *arena, const Impl_ &from,
+        const AddressBook &from_msg);
+    ::google::protobuf::RepeatedPtrField<::tutorial::Person> people_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
-  union { Impl_ _impl_; };
+  union {
+    Impl_ _impl_;
+  };
   friend struct ::TableStruct_addressbook_2eproto;
 };
 
 // ===================================================================
 
-
-
-
 // ===================================================================
 
-
 #ifdef __GNUC__
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wstrict-aliasing"
-#endif  // __GNUC__
+  #pragma GCC diagnostic push
+  #pragma GCC diagnostic ignored "-Wstrict-aliasing"
+#endif // __GNUC__
 // -------------------------------------------------------------------
 
 // Person_PhoneNumber
@@ -814,52 +855,53 @@ inline void Person_PhoneNumber::clear_number() {
   _impl_.number_.ClearToEmpty();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const std::string& Person_PhoneNumber::number() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline const std::string &
+Person_PhoneNumber::number() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_get:tutorial.Person.PhoneNumber.number)
   return _internal_number();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void Person_PhoneNumber::set_number(Arg_&& arg,
-                                                     Args_... args) {
+inline PROTOBUF_ALWAYS_INLINE void
+Person_PhoneNumber::set_number(Arg_ &&arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
-  _impl_.number_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  _impl_.number_.Set(static_cast<Arg_ &&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:tutorial.Person.PhoneNumber.number)
 }
-inline std::string* Person_PhoneNumber::mutable_number() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_number();
+inline std::string *
+Person_PhoneNumber::mutable_number() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string *_s = _internal_mutable_number();
   // @@protoc_insertion_point(field_mutable:tutorial.Person.PhoneNumber.number)
   return _s;
 }
-inline const std::string& Person_PhoneNumber::_internal_number() const {
+inline const std::string &Person_PhoneNumber::_internal_number() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.number_.Get();
 }
-inline void Person_PhoneNumber::_internal_set_number(const std::string& value) {
+inline void Person_PhoneNumber::_internal_set_number(const std::string &value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
   _impl_.number_.Set(value, GetArena());
 }
-inline std::string* Person_PhoneNumber::_internal_mutable_number() {
+inline std::string *Person_PhoneNumber::_internal_mutable_number() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
-  return _impl_.number_.Mutable( GetArena());
+  return _impl_.number_.Mutable(GetArena());
 }
-inline std::string* Person_PhoneNumber::release_number() {
+inline std::string *Person_PhoneNumber::release_number() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   // @@protoc_insertion_point(field_release:tutorial.Person.PhoneNumber.number)
   if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
     return nullptr;
   }
   _impl_._has_bits_[0] &= ~0x00000001u;
-  auto* released = _impl_.number_.Release();
+  auto *released = _impl_.number_.Release();
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
     _impl_.number_.Set("", GetArena());
   }
   return released;
 }
-inline void Person_PhoneNumber::set_allocated_number(std::string* value) {
+inline void Person_PhoneNumber::set_allocated_number(std::string *value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
@@ -867,7 +909,8 @@ inline void Person_PhoneNumber::set_allocated_number(std::string* value) {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
   _impl_.number_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.number_.IsDefault()) {
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() &&
+      _impl_.number_.IsDefault()) {
     _impl_.number_.Set("", GetArena());
   }
   // @@protoc_insertion_point(field_set_allocated:tutorial.Person.PhoneNumber.number)
@@ -896,7 +939,8 @@ inline ::tutorial::Person_PhoneType Person_PhoneNumber::_internal_type() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return static_cast<::tutorial::Person_PhoneType>(_impl_.type_);
 }
-inline void Person_PhoneNumber::_internal_set_type(::tutorial::Person_PhoneType value) {
+inline void
+Person_PhoneNumber::_internal_set_type(::tutorial::Person_PhoneType value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.type_ = value;
 }
@@ -915,52 +959,50 @@ inline void Person::clear_name() {
   _impl_.name_.ClearToEmpty();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const std::string& Person::name() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline const std::string &Person::name() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_get:tutorial.Person.name)
   return _internal_name();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void Person::set_name(Arg_&& arg,
-                                                     Args_... args) {
+inline PROTOBUF_ALWAYS_INLINE void Person::set_name(Arg_ &&arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
-  _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  _impl_.name_.Set(static_cast<Arg_ &&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:tutorial.Person.name)
 }
-inline std::string* Person::mutable_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_name();
+inline std::string *Person::mutable_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string *_s = _internal_mutable_name();
   // @@protoc_insertion_point(field_mutable:tutorial.Person.name)
   return _s;
 }
-inline const std::string& Person::_internal_name() const {
+inline const std::string &Person::_internal_name() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.name_.Get();
 }
-inline void Person::_internal_set_name(const std::string& value) {
+inline void Person::_internal_set_name(const std::string &value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
   _impl_.name_.Set(value, GetArena());
 }
-inline std::string* Person::_internal_mutable_name() {
+inline std::string *Person::_internal_mutable_name() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
-  return _impl_.name_.Mutable( GetArena());
+  return _impl_.name_.Mutable(GetArena());
 }
-inline std::string* Person::release_name() {
+inline std::string *Person::release_name() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   // @@protoc_insertion_point(field_release:tutorial.Person.name)
   if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
     return nullptr;
   }
   _impl_._has_bits_[0] &= ~0x00000001u;
-  auto* released = _impl_.name_.Release();
+  auto *released = _impl_.name_.Release();
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
     _impl_.name_.Set("", GetArena());
   }
   return released;
 }
-inline void Person::set_allocated_name(std::string* value) {
+inline void Person::set_allocated_name(std::string *value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
@@ -968,7 +1010,8 @@ inline void Person::set_allocated_name(std::string* value) {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
   _impl_.name_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.name_.IsDefault()) {
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() &&
+      _impl_.name_.IsDefault()) {
     _impl_.name_.Set("", GetArena());
   }
   // @@protoc_insertion_point(field_set_allocated:tutorial.Person.name)
@@ -1012,52 +1055,51 @@ inline void Person::clear_email() {
   _impl_.email_.ClearToEmpty();
   _impl_._has_bits_[0] &= ~0x00000002u;
 }
-inline const std::string& Person::email() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline const std::string &Person::email() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_get:tutorial.Person.email)
   return _internal_email();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void Person::set_email(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void Person::set_email(Arg_ &&arg,
                                                      Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000002u;
-  _impl_.email_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  _impl_.email_.Set(static_cast<Arg_ &&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:tutorial.Person.email)
 }
-inline std::string* Person::mutable_email() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_email();
+inline std::string *Person::mutable_email() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string *_s = _internal_mutable_email();
   // @@protoc_insertion_point(field_mutable:tutorial.Person.email)
   return _s;
 }
-inline const std::string& Person::_internal_email() const {
+inline const std::string &Person::_internal_email() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.email_.Get();
 }
-inline void Person::_internal_set_email(const std::string& value) {
+inline void Person::_internal_set_email(const std::string &value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000002u;
   _impl_.email_.Set(value, GetArena());
 }
-inline std::string* Person::_internal_mutable_email() {
+inline std::string *Person::_internal_mutable_email() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000002u;
-  return _impl_.email_.Mutable( GetArena());
+  return _impl_.email_.Mutable(GetArena());
 }
-inline std::string* Person::release_email() {
+inline std::string *Person::release_email() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   // @@protoc_insertion_point(field_release:tutorial.Person.email)
   if ((_impl_._has_bits_[0] & 0x00000002u) == 0) {
     return nullptr;
   }
   _impl_._has_bits_[0] &= ~0x00000002u;
-  auto* released = _impl_.email_.Release();
+  auto *released = _impl_.email_.Release();
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
     _impl_.email_.Set("", GetArena());
   }
   return released;
 }
-inline void Person::set_allocated_email(std::string* value) {
+inline void Person::set_allocated_email(std::string *value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000002u;
@@ -1065,7 +1107,8 @@ inline void Person::set_allocated_email(std::string* value) {
     _impl_._has_bits_[0] &= ~0x00000002u;
   }
   _impl_.email_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.email_.IsDefault()) {
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() &&
+      _impl_.email_.IsDefault()) {
     _impl_.email_.Set("", GetArena());
   }
   // @@protoc_insertion_point(field_set_allocated:tutorial.Person.email)
@@ -1075,46 +1118,47 @@ inline void Person::set_allocated_email(std::string* value) {
 inline int Person::_internal_phones_size() const {
   return _internal_phones().size();
 }
-inline int Person::phones_size() const {
-  return _internal_phones_size();
-}
+inline int Person::phones_size() const { return _internal_phones_size(); }
 inline void Person::clear_phones() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.phones_.Clear();
 }
-inline ::tutorial::Person_PhoneNumber* Person::mutable_phones(int index)
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::tutorial::Person_PhoneNumber *
+Person::mutable_phones(int index) ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_mutable:tutorial.Person.phones)
   return _internal_mutable_phones()->Mutable(index);
 }
-inline ::google::protobuf::RepeatedPtrField<::tutorial::Person_PhoneNumber>* Person::mutable_phones()
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::google::protobuf::RepeatedPtrField<::tutorial::Person_PhoneNumber> *
+Person::mutable_phones() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_mutable_list:tutorial.Person.phones)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _internal_mutable_phones();
 }
-inline const ::tutorial::Person_PhoneNumber& Person::phones(int index) const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline const ::tutorial::Person_PhoneNumber &
+Person::phones(int index) const ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_get:tutorial.Person.phones)
   return _internal_phones().Get(index);
 }
-inline ::tutorial::Person_PhoneNumber* Person::add_phones() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::tutorial::Person_PhoneNumber *
+Person::add_phones() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  ::tutorial::Person_PhoneNumber* _add = _internal_mutable_phones()->Add();
+  ::tutorial::Person_PhoneNumber *_add = _internal_mutable_phones()->Add();
   // @@protoc_insertion_point(field_add:tutorial.Person.phones)
   return _add;
 }
-inline const ::google::protobuf::RepeatedPtrField<::tutorial::Person_PhoneNumber>& Person::phones() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline const ::google::protobuf::RepeatedPtrField<
+    ::tutorial::Person_PhoneNumber> &
+Person::phones() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_list:tutorial.Person.phones)
   return _internal_phones();
 }
-inline const ::google::protobuf::RepeatedPtrField<::tutorial::Person_PhoneNumber>&
+inline const ::google::protobuf::RepeatedPtrField<
+    ::tutorial::Person_PhoneNumber> &
 Person::_internal_phones() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.phones_;
 }
-inline ::google::protobuf::RepeatedPtrField<::tutorial::Person_PhoneNumber>*
+inline ::google::protobuf::RepeatedPtrField<::tutorial::Person_PhoneNumber> *
 Person::_internal_mutable_phones() {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return &_impl_.phones_;
@@ -1128,58 +1172,56 @@ Person::_internal_mutable_phones() {
 inline int AddressBook::_internal_people_size() const {
   return _internal_people().size();
 }
-inline int AddressBook::people_size() const {
-  return _internal_people_size();
-}
+inline int AddressBook::people_size() const { return _internal_people_size(); }
 inline void AddressBook::clear_people() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.people_.Clear();
 }
-inline ::tutorial::Person* AddressBook::mutable_people(int index)
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::tutorial::Person *
+AddressBook::mutable_people(int index) ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_mutable:tutorial.AddressBook.people)
   return _internal_mutable_people()->Mutable(index);
 }
-inline ::google::protobuf::RepeatedPtrField<::tutorial::Person>* AddressBook::mutable_people()
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::google::protobuf::RepeatedPtrField<::tutorial::Person> *
+AddressBook::mutable_people() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_mutable_list:tutorial.AddressBook.people)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _internal_mutable_people();
 }
-inline const ::tutorial::Person& AddressBook::people(int index) const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline const ::tutorial::Person &
+AddressBook::people(int index) const ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_get:tutorial.AddressBook.people)
   return _internal_people().Get(index);
 }
-inline ::tutorial::Person* AddressBook::add_people() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::tutorial::Person *
+AddressBook::add_people() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  ::tutorial::Person* _add = _internal_mutable_people()->Add();
+  ::tutorial::Person *_add = _internal_mutable_people()->Add();
   // @@protoc_insertion_point(field_add:tutorial.AddressBook.people)
   return _add;
 }
-inline const ::google::protobuf::RepeatedPtrField<::tutorial::Person>& AddressBook::people() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline const ::google::protobuf::RepeatedPtrField<::tutorial::Person> &
+AddressBook::people() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_list:tutorial.AddressBook.people)
   return _internal_people();
 }
-inline const ::google::protobuf::RepeatedPtrField<::tutorial::Person>&
+inline const ::google::protobuf::RepeatedPtrField<::tutorial::Person> &
 AddressBook::_internal_people() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.people_;
 }
-inline ::google::protobuf::RepeatedPtrField<::tutorial::Person>*
+inline ::google::protobuf::RepeatedPtrField<::tutorial::Person> *
 AddressBook::_internal_mutable_people() {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return &_impl_.people_;
 }
 
 #ifdef __GNUC__
-#pragma GCC diagnostic pop
-#endif  // __GNUC__
+  #pragma GCC diagnostic pop
+#endif // __GNUC__
 
 // @@protoc_insertion_point(namespace_scope)
-}  // namespace tutorial
-
+} // namespace tutorial
 
 namespace google {
 namespace protobuf {
@@ -1187,15 +1229,15 @@ namespace protobuf {
 template <>
 struct is_proto_enum<::tutorial::Person_PhoneType> : std::true_type {};
 template <>
-inline const EnumDescriptor* GetEnumDescriptor<::tutorial::Person_PhoneType>() {
+inline const EnumDescriptor *GetEnumDescriptor<::tutorial::Person_PhoneType>() {
   return ::tutorial::Person_PhoneType_descriptor();
 }
 
-}  // namespace protobuf
-}  // namespace google
+} // namespace protobuf
+} // namespace google
 
 // @@protoc_insertion_point(global_scope)
 
 #include "google/protobuf/port_undef.inc"
 
-#endif  // addressbook_2eproto_2epb_2eh
+#endif // addressbook_2eproto_2epb_2eh

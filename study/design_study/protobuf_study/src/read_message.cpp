@@ -60,7 +60,7 @@ int main(int argc, char *argv[]) {
     cout << "??2" << endl;
   }
 
-  // ListPeople(address_book);
+  ListPeople(address_book);
 
   // Optional:  Delete all global objects allocated by libprotobuf.
   // ❗

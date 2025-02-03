@@ -84,6 +84,7 @@ int main(int argc, char *argv[]) {
       cerr << "Failed to write address book." << endl;
       return -1;
     }
+    
   }
 
   // Optional:  Delete all global objects allocated by libprotobuf.

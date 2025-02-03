@@ -19824,3 +19824,18 @@ https://mariadb.com/downloads/connectors/connectors-data-access/cpp-connector/
 
 📰 TODO: ❓ docker.. container 최적화?.. 바로 꺼지도록 하고 필요할때만 detatch 하기? https://stackoverflow.com/questions/25775266/how-to-keep-docker-container-running-after-starting-services
 
+
+
+https://github.com/abseil/abseil-cpp/issues/1747
+https://github.com/llvm/llvm-project/issues/102443  
+https://github.com/abseil/abseil-cpp/issues/1747
+현재 Clang 18+에서 발생하는 absl::log_internal::LogMessage::operator<< 관련 심볼 누락 문제는 Clang ABI 변경으로 인한 것으로 보이며, 현재까지 알려진 해결 방법은 다음과 같습니다.
+
+✅ 해결책 요약
+  템플릿 명시적 인스턴스화 추가 (Recommended)
+  컴파일러 옵션 -fclang-abi-compat=17 적용
+  Abseil-cpp 최신 버전(20240722.0)으로 업데이트
+  Clang 17로 다운그레이드 (가장 확실한 해결책)
+  링크 순서 및 libstdc++ 추가 확인
+  GoogleTest 관련 absl=1 제거
+  

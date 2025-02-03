@@ -22,8 +22,17 @@
     "mads-hartmann.bash-ide-vscode",
     // 🌀 Build system ~
     "yocto-project.yocto-bitbake",
+    //    Bazel ; https://marketplace.visualstudio.com/items?itemName=BazelBuild.vscode-bazel
+    //    Blue Bazel ; https://marketplace.visualstudio.com/items?itemName=NVIDIA.bluebazel
+    "BazelBuild.vscode-bazel",
+    "NVIDIA.bluebazel",
+    //  *.proto (Protocal Buffers)
+    //    Tooltitude for Protobuf (proto files) ; https://marketplace.visualstudio.com/items?itemName=tooltitudeteam.tooltitude-pb
+    "tooltitudeteam.tooltitude-pb",
     // 🌀 Langauge~
-    //   * (Intellisense)
+    //  Web-related Extensions
+    "ms-edgedevtools.vscode-edge-devtools", // https://marketplace.visualstudio.com/items?itemName=ms-edgedevtools.vscode-edge-devtools
+    //  * (Intellisense)
     "VisualStudioExptTeam.vscodeintellicode",
     //      IntelliCode ; https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode
     //        Tags: java, javascript, javascriptreact, python, sql, typescript, typescriptreact
@@ -38,6 +47,10 @@
     "ms-vscode.cpptools-extension-pack",
     "josetr.cmake-language-support-vscode",
     "llvm-vs-code-extensions.vscode-clangd",
+    "cschlosser.doxdocgen",
+    //  *.cs, .csx (C#)
+    //  CMake Language Support (josetr.cmake-language-support-vscode) depends on .NET Install Tool (ms-dotnettools.vscode-dotnet-runtime)
+    "ms-dotnettools.vscode-dotnet-runtime",
     // 📰 .. stm32 extension.. conflict "llvm-vs-code-extensions.vscode-clangd",
     //  *.py (Python)
     "ms-python.python",

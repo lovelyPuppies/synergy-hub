@@ -4,18 +4,49 @@
 protoc -I=. --cpp_out=. ./addressbook.proto
 
 clang++ ./addressbook.pb.cc ./write_message.cpp -o ./write_message.out \
-    $(pkg-config --libs --cflags protobuf| string split -n " ") -std=c++23 -fclang-abi-compat=17 \
+    $(pkg-config --libs --cflags protobuf | string split -n " ") -fclang-abi-compat=17 \
     -static
 
 clang++ ./addressbook.pb.cc ./read_message.cpp -o ./read_message.out \
-    $(pkg-config --libs --cflags protobuf| string split -n " ") -std=c++23 -fclang-abi-compat=17 \
+    $(pkg-config --libs --cflags protobuf | string split -n " ") -fclang-abi-compat=17 \
     -static
 
 
-./write_message.out addressbook.bin
-./read_message.out addressbook.bin
 
- hexdump -C addressbook.bin | head
+clang++ ./addressbook.pb.cc ./write_message.cpp -o ./write_message.out \
+    $(pkg-config --libs --cflags protobuf | string split -n " ") -fclang-abi-compat=17
+
+
+clang++ ./addressbook.pb.cc ./read_message.cpp -o ./read_message.out \
+    $(pkg-config --libs --cflags protobuf | string split -n " ") -fclang-abi-compat=17
+
+
+🧪🆗 g++-12, g++-14
+g++-14 ./addressbook.pb.cc ./write_message.cpp -o ./write_message.out \
+    $(pkg-config --libs --cflags protobuf | string split -n " ") -lstdc++
+
+g++-14 ./addressbook.pb.cc ./read_message.cpp -o ./read_message.out \
+    $(pkg-config --libs --cflags protobuf | string split -n " ") -lstdc++
+
+./read_message.out addressbook.log
+
+🧪
+g++-14 -flto=auto -pipe ./addressbook.pb.cc ./write_message.cpp -o ./write_message.out \
+    $(pkg-config --libs --cflags protobuf | string split -n " ") -lstdc++
+g++-14 -flto=auto -pipe ./addressbook.pb.cc ./read_message.cpp -o ./read_message.out \
+    $(pkg-config --libs --cflags protobuf | string split -n " ")  -lstdc++
+
+clang++ ./addressbook.pb.cc ./write_message.cpp -o ./write_message.out \
+    $(pkg-config --libs --cflags protobuf | string split -n " ") -fclang-abi-compat=17
+
+
+./read_message.out addressbook.log
+
+
+
+./write_message.out addressbook.log
+
+ hexdump -C addressbook.log | head
 
 00000000  0a 2b 0a 05 6e 61 6d 65  31 10 01 1a 06 65 6d 61  |.+..name1....ema|
 00000010  69 6c 32 22 0b 0a 07 31  30 31 30 31 30 31 10 01  |il2"...1010101..|
@@ -39,4 +70,18 @@ fish: Job 1, './read_message.out addressbook.…' terminated by signal SIGSEGV (
 
 ❓ protobuf SerializeToOstream and parse segmentation fault
 
+hexdump >>>
+brew install hexyl
+==> Verifying attestation for hexyl
+Error: The bottle for hexyl could not be verified.
+
+This typically indicates an outdated or incompatible `gh` CLI.
+
+Please confirm that you're running the latest version of `gh`
+by performing an upgrade before retrying:
+
+  brew update
+  brew upgrade gh
+
+sudo apt install hexyl
 ```
