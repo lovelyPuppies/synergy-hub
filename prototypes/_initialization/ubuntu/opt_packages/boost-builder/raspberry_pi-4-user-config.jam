@@ -18,13 +18,57 @@ https://gcc.gnu.org/onlinedocs/gcc/Option-Index.html
   * --help-internal B2 implementation details.
   * --help-doc-options Implementation details doc formatting.
 https://github.com/boostorg/context/issues/254
+./bootstrap.sh --with-toolset=aarch64-linux-gnu-g++-12  ❌
 
 🧮 apt install clang
   ./bootstrap.sh --with-toolset=clang --target=aarch64-linux-gnu --gcc-install-dir=/usr/lib/gcc-cross/aarch64-linux-gnu/12 -march=armv8-a -mtune=cortex-a72 -O3 -flto -pipe -fuse-ld=lld -Wl,-O3 -Wl,--as-needed -Wl,--strip-all
 
-  ./b2 install --user-config=user-config.jam --without-python --prefix=/opt/boost/aarch64-linux-gnu/release-shared --build-dir=build/aarch64-linux-gnu/release-shared \
-      toolset=clang-arm threading=multi variant=release link=shared runtime-link=shared \
-      abi=aapcs
+  ./b2 install --user-config=user-config.jam --without-python --prefix=/opt/boost/aarch64-linux-gnu/release-static --build-dir=build/aarch64-linux-gnu/release-static \
+      toolset=gcc-arm threading=multi variant=release link=static runtime-link=shared \
+      target-os=linux abi=aapcs
+
+🧮 readelf -d /opt/boost/aarch64-linux-gnu/release-shared/lib/libboost_system.so | grep "NEEDED"
+ ldd /opt/boost/aarch64-linux-gnu/release-static/lib/libboost_system.so.1.87.0
+        not a dynamic executable
+
+
+echo -e 'using mpi ;\nusing gcc : arm : aarch64-linux-gnu-g++-12 : <cxxflags>-std=c++20 <cxxflags>-march=armv8-a <cxxflags>-mtune=cortex-a72 <cxxflags>-mabi=lp64 ;' > user2-config.jam
+
+./b2 install --user-config=user2-config.jam --without-python \
+      --prefix=/opt/boost/aarch64-linux-gnu/release-shared \
+      --build-dir=build/aarch64-linux-gnu/release-shared \
+      toolset=gcc-arm threading=multi variant=release link=shared runtime-link=shared \
+      target-os=linux abi=aapcs architecture=arm address-model=64
+
+🧪🆗 ./boostrap --with-icu
+grep -qxF 'using gcc : : g++ : <cxxflags>-std=c++20 ;' project-config.jam || echo 'using gcc : : g++ : <cxxflags>-std=c++20 ;' >> project-config.jam
+
+./b2 install --user-config=user-config.jam --without-python --prefix=/opt/boost/release-shared --build-dir=build/release-shared threading=multi variant=release link=shared runtime-link=shared cxxflags="-std=c++20"
+
+    - cxx20_hdr_concepts       : yes [2]
+    - cpp_lib_memory_resource  : yes [2]
+warning: non-free usage requirements <boost.cobalt.pmr>std ignored
+warning: in main-target boost_cobalt at /root/boost/libs/cobalt/build/Jamfile:66
+    - GCC libquadmath and __float128 support : no [2]
+🧪🆗
+  ./b2 cxxflags="-std=c++20"
+    - cxx20_hdr_concepts       : yes [2]
+    - cpp_lib_memory_resource  : yes [2]
+
+🧪🆗
+libbz2-dev liblzma-dev libzstd-dev
+  - bzip2                    : no [2]
+  - lzma                     : no [2]
+  - zstd                     : no [2]
+
+🧪🆗
+  root@89533b76c53a:~/boost# cat user-config.jam 
+  #   >> using mpi ;
+  #   >> using gcc : arm : aarch64-linux-gnu-g++-12 ;
+  ./b2 install --user-config=user-config.jam --without-python --prefix=/opt/boost/aarch64-linux-gnu/release-shared --build-dir=build/aarch64-linux-gnu/release-shared toolset=gcc-arm threading=multi variant=release link=shared runtime-link=shared target-os=linux abi=aapcs
+
+  icu 빌드가 안된다.. has stat 기능 지원 안함..
+  문제는..동적으로 빌드되지 않는다. 
 
 --cxxflags=--target=aarch64-linux-gnu --gcc-install-dir=/usr/lib/gcc-cross/aarch64-linux-gnu/12 -march=armv8-a -mtune=cortex-a72 -O3 -flto -pipe \
   -fuse-ld=lld -Wl,-O3 -Wl,--as-needed -Wl,--strip-all 
