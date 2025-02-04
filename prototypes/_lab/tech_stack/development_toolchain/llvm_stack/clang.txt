@@ -18,38 +18,6 @@ list of level 1 subjects
   🧮 clang++ --help
       -Wl,<arg>               Pass the comma separated arguments in <arg> to the linker
 
-  clang option
-Flags
-    https://clang.llvm.org/docs/ClangCommandLineReference.html
-
-      #️⃣ Introduction ; https://clang.llvm.org/docs/ClangCommandLineReference.html#introduction
-        This page lists the command line arguments currently supported by the ❗ GCC-compatible clang and clang++ drivers.
-
-        --target=<arg>, -target <arg>
-          Generate code for the given target
-        --gcc-install-dir=<arg>
-          Use GCC installation in the specified directory. The directory ends with path components like ‘lib{,32,64}/gcc{,-cross}/$triple/$version’.
-          Note: executables (e.g. ld) used by the compiler are not overridden by the selected GCC installation
-
-      #️⃣ Target-independent compilation options ; https://clang.llvm.org/docs/ClangCommandLineReference.html#target-independent-compilation-options
-        -fPIC, -fno-PIC
-        -march=<arg>
-          For a list of available architectures for the target use ‘-mcpu=help’
-        -mtune=<arg>
-          Only supported on AArch64, PowerPC, RISC-V, SPARC, SystemZ, and X86
-
-      #️⃣ Linker options ; https://clang.llvm.org/docs/ClangCommandLineReference.html#linker-options
-        -Wl,<arg>,<arg2>...
-          Pass the comma separated arguments in <arg> to the linker
-
-      #️⃣ Target-dependent compilation options ; https://clang.llvm.org/docs/ClangCommandLineReference.html#target-dependent-compilation-options
-        -fuse-ld                              🔗 https://gcc.gnu.org/onlinedocs/gcc/Link-Options.html#index-fuse-ld_003dlld
-          Use the LLVM lld linker instead of the default linker.
-
-
-
-    https://clang.llvm.org/docs/ClangCommandLineReference.html#optimization-level
-    https://gcc.gnu.org/onlinedocs/gcc/Option-Index.html
 ----------------------------------------------
 ⚓ clang 🔪 docs ; https://clang.llvm.org/docs/
   ⚓🔰 Cross-compilation using Clang ; https://clang.llvm.org/docs/CrossCompilation.html
@@ -59,8 +27,39 @@ Flags
         - --sysroot=<path>
         - cross-compiler packages
 
+----------------------------------------------
+clang 🔪 docs 🔪 Using Clang as a Compiler
+  ----------------------------------------------
   ⚓ Clang Compiler User’s Manual ; https://clang.llvm.org/docs/UsersManual.html
 
+  ----------------------------------------------
+  ⚓ Clang command line argument reference ; https://clang.llvm.org/docs/ClangCommandLineReference.html
+    #️⃣ Introduction ; https://clang.llvm.org/docs/ClangCommandLineReference.html#introduction
+      This page lists the command line arguments currently supported by the ❗ GCC-compatible clang and clang++ drivers.
+        📝📖 Refer https://gcc.gnu.org/onlinedocs/gcc/Option-Index.html for some descriptions
+
+      --target=<arg>, -target <arg>
+        Generate code for the given target
+      --gcc-install-dir=<arg>
+        Use GCC installation in the specified directory. The directory ends with path components like ‘lib{,32,64}/gcc{,-cross}/$triple/$version’.
+        Note: executables (e.g. ld) used by the compiler are not overridden by the selected GCC installation
+    # Compilation options
+      #️⃣ Target-independent compilation options ; https://clang.llvm.org/docs/ClangCommandLineReference.html#target-independent-compilation-options
+        -fpic, -fno-pic,    -fPIC, -fno-PIC
+          🔗 https://gcc.gnu.org/onlinedocs/gcc/Code-Gen-Options.html#index-fpic
+        -march=<arg>
+          For a list of available architectures for the target use ‘-mcpu=help’
+        -mtune=<arg>
+          Only supported on AArch64, PowerPC, RISC-V, SPARC, SystemZ, and X86
+      #️⃣ Target-dependent compilation options ; https://clang.llvm.org/docs/ClangCommandLineReference.html#target-dependent-compilation-options
+        -fuse-ld                              🔗 https://gcc.gnu.org/onlinedocs/gcc/Link-Options.html#index-fuse-ld_003dlld
+          Use the LLVM lld linker instead of the default linker.
+      #️⃣ Optimization level ; https://clang.llvm.org/docs/ClangCommandLineReference.html#optimization-level
+        -O<arg>, -O (equivalent to -O1), --optimize, --optimize=<arg>
+          🔗 https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html#index-O
+    #️⃣ Linker options ; https://clang.llvm.org/docs/ClangCommandLineReference.html#linker-options
+      -Wl,<arg>,<arg2>...
+        Pass the comma separated arguments in <arg> to the linker
 
 ================================================
 ⚓ clangd ; https://clangd.llvm.org/
