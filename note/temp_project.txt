@@ -19889,3 +19889,9 @@ Boost를 크로스 컴파일할 때 arm-none-linux-gnueabi-g++ 와 b2 toolset=gc
     Edit
     b2 toolset=gcc target-os=linux cxx=aarch64-linux-gnu-g++
     cxx=aarch64-linux-gnu-g++ 를 명시적으로 지정해서 user-config.jam 설정 없이도 크로스 컴파일 가능.
+
+Lobotomy Corporation OST - Maya (Story Theme)
+
+Target Triple naming
+  aarch64-linux-gnu     // 라즈베리파이 64
+  x86_64-linux-gnu      // 우분투 pc

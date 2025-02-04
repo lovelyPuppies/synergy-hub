@@ -363,3 +363,4 @@ tree [**prototypes/\_initialization/\_about**](prototypes/_initialization/_about
 
 - [Emoji rule](prototypes/_initialization/_rule/emoji.txt)
 - [Badge rule](prototypes/_initialization/_rule/badge.txt)
+- [Build Target naming rule](prototypes/_initialization/_rule/build_target.txt)
