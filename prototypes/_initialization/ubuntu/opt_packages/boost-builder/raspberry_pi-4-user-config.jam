@@ -40,6 +40,20 @@ echo -e 'using mpi ;\nusing gcc : arm : aarch64-linux-gnu-g++-12 : <cxxflags>-st
       toolset=gcc-arm threading=multi variant=release link=shared runtime-link=shared \
       target-os=linux abi=aapcs architecture=arm address-model=64
 
+🧪
+dpkg --add-architecture aarch64-linux-gnu
+apt update
+
+sudo apt install libicu-dev:aarch64-linux-gnu \
+                 zlib1g-dev:aarch64-linux-gnu \
+                 libbz2-dev:aarch64-linux-gnu \
+                 liblzma-dev:aarch64-linux-gnu \
+                 libzstd-dev:aarch64-linux-gnu
+dpkg --print-foreign-architectures
+apt install software-properties-common
+
+https://askubuntu.com/questions/1156570/how-to-install-zlib1g-devarmhf
+
 🧪🆗 ./boostrap --with-icu
 grep -qxF 'using gcc : : g++ : <cxxflags>-std=c++20 ;' project-config.jam || echo 'using gcc : : g++ : <cxxflags>-std=c++20 ;' >> project-config.jam
 
