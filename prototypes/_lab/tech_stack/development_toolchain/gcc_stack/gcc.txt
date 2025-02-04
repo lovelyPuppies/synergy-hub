@@ -1,6 +1,8 @@
 list of level 1 subjects
   - gcc (GNU Compiler Collection)
   
+📝 gcc 🔪 Options Index   ➡️ Move to "clang.txt"
+
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
 ⚓ gcc ; https://gcc.gnu.org/onlinedocs/
   https://en.wikipedia.org/wiki/GNU_Compiler_Collection

@@ -35,13 +35,24 @@
     //  * (Intellisense)
     "VisualStudioExptTeam.vscodeintellicode",
     //      IntelliCode ; https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode
-    //        Tags: java, javascript, javascriptreact, python, sql, typescript, typescriptreact
+    //        Supported Languages: java, javascript, javascriptreact, python, sql, typescript, typescriptreact
     "VisualStudioExptTeam.vscodeintellicode-completions",
     //      IntelliCode Completions ; https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode-completions
-    //        Tags: javascript, javascriptreact, python, typescript, typescriptreact
+    //        Supported Languages: javascript, javascriptreact, python, typescript, typescriptreact
     "VisualStudioExptTeam.intellicode-api-usage-examples",
     //      IntelliCode API Usage Examples ; https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.intellicode-api-usage-examples
-    //        javascript, javascriptreact, python, typescript, typescriptreact
+    //        Supported Languages: javascript, javascriptreact, python, typescript, typescriptreact
+    //  * (Linter)
+    "SonarSource.sonarlint-vscode",
+    //      SonarQube for IDE ; https://marketplace.visualstudio.com/items?itemName=SonarSource.sonarlint-vscode
+    //        Supported Languages: JS/TS, Python, PHP, Java, C, C++, C#, Go, IaC
+    //  *.js (JavaScript)     // recommeded from https://code.visualstudio.com/docs/nodejs/extensions
+    "dbaeumer.vscode-eslint",
+    "xabikos.JavaScriptSnippets",
+    //      📖 JavaScript (ES6) code snippets ; https://marketplace.visualstudio.com/items?itemName=xabikos.JavaScriptSnippets
+    //        Supported language: JavaScript (.js) TypeScript (.ts) JavaScript React (.jsx) TypeScript React (.tsx) Html (.html) Vue (.vue) Snippets
+    "christian-kohler.npm-intellisense",
+    //      npm Intellisense ; https://marketplace.visualstudio.com/items?itemName=christian-kohler.npm-intellisense
     //  *.cpp, .hpp, CMakeList.txt (C++)
     "ms-vscode.cmake-tools",
     "ms-vscode.cpptools-extension-pack",

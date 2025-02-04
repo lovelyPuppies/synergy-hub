@@ -4,7 +4,8 @@ ARG ROOT_HOME=/root
 ARG PACKAGE_NAME=boost
 ## ⚙️ Adjust the "BOOST_VERSION" you want 🔗 https://github.com/boostorg/boost/releases
 ARG BOOST_VERSION=1.87.0
-
+# Copy the entire build context (all files and folders) into the /workspace directory in the Docker image
+COPY . /workspace
 
 # 📍 Set environment variables for timezone and to suppress interactive prompts during package installation 📅 2025-02-03 07:11:41
 ENV DEBIAN_FRONTEND=noninteractive
@@ -22,27 +23,49 @@ RUN localedef -i en_US -f UTF-8 en_US.UTF-8
 
 ##### 📅 Written at 2025-02-03 02:38:36
 RUN apt install -y git curl cmake ninja-build \
-    build-essential libicu-dev libopenmpi-dev
+    crossbuild-essential-arm64 \
+    build-essential libicu-dev libopenmpi-dev clang
 
 ## Set working directory to home
 WORKDIR ${ROOT_HOME}
+RUN mkdir -p log log/x86_64-linux-gnu log/aarch64-linux-gnu
 
 ## Download boost release
 RUN curl -L https://github.com/boostorg/boost/releases/download/boost-${BOOST_VERSION}/boost-${BOOST_VERSION}-cmake.tar.gz -o boost.tar.gz
 RUN mkdir -p ${PACKAGE_NAME} && tar -xf ${PACKAGE_NAME}.tar.gz -C ${PACKAGE_NAME} --strip-component=1
 WORKDIR ${ROOT_HOME}/${PACKAGE_NAME}
+
+
+### 🎯 Target Triple: x86_64-linux-gnu
 RUN echo "using mpi ;" > user-config.jam
 
 ## Configure
 RUN ./bootstrap.sh
 
 ## Install
-RUN ./b2 install --user-config=user-config.jam --without-python --prefix=/opt/${PACKAGE_NAME}/debug-static --build-dir=build/debug-static threading=multi variant=debug link=static runtime-link=shared > build-debug-static.log
-RUN ./b2 install --user-config=user-config.jam --without-python --prefix=/opt/${PACKAGE_NAME}/debug-shared --build-dir=build/debug-shared threading=multi variant=debug link=shared runtime-link=shared > build-debug-shared.log
-RUN ./b2 install --user-config=user-config.jam --without-python --prefix=/opt/${PACKAGE_NAME}/release-static --build-dir=build/release-static threading=multi variant=release link=static runtime-link=shared > build-release-static.log
-RUN ./b2 install --user-config=user-config.jam --without-python --prefix=/opt/${PACKAGE_NAME}/release-shared --build-dir=build/release-shared threading=multi variant=release link=shared runtime-link=shared > build-release-shared.log
+RUN ./b2 install --user-config=user-config.jam --without-python --prefix=/opt/${PACKAGE_NAME}/debug-shared --build-dir=build/debug-shared \
+    threading=multi variant=debug link=shared runtime-link=shared > build-debug-shared.log
+RUN ./b2 install --user-config=user-config.jam --without-python --prefix=/opt/${PACKAGE_NAME}/release-static --build-dir=build/release-static \
+    threading=multi variant=release link=static runtime-link=shared > build-release-static.log
+RUN ./b2 install --user-config=user-config.jam --without-python --prefix=/opt/${PACKAGE_NAME}/release-shared --build-dir=build/release-shared \
+    threading=multi variant=release link=shared runtime-link=shared > build-release-shared.log
 
 
+### 🎯 Target Triple: aarch64-linux-gnu
+# https://www.boost.org/build/doc/html/bbv2/tasks/crosscompile.html
+RUN ln --symbolic --force user-config.jam /workspace/raspberry_pi-4-user-config.jam
+## Configure
+RUN ./bootstrap.sh
+
+## Install
+RUN ./b2 install --user-config=user-config.jam --without-python --prefix=/opt/${PACKAGE_NAME}/release-static --build-dir=build/release-static \
+    toolset=gcc-aarch64 threading=multi variant=release link=static runtime-link=shared > build-release-static.log
+RUN ./b2 install --user-config=user-config.jam --without-python --prefix=/opt/${PACKAGE_NAME}/release-shared --build-dir=build/release-shared \
+    toolset=gcc-aarch64 threading=multi variant=release link=shared runtime-link=shared > build-release-shared.log
+
+./b2 install --user-config=user-config.jam --without-python --prefix=/opt/boost/aarch64-linux-gnu/release-shared --build-dir=build/aarch64-linux-gnu/release-shared \
+    threading=multi variant=release link=shared runtime-link=shared
+###
 CMD ["bash"]
 
 
