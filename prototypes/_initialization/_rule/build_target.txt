@@ -5,8 +5,7 @@ Compiled Package Path naming
       ├── x86_64-linux-gnu
       │   ├── debug-shared
       │   ├── debug-static
-      │   ├── release-shared
-      │   ├── release-static
+      │   └── release-shared
       └── aarch64-linux-gnu
           └── release-shared
 

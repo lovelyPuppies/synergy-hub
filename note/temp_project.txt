@@ -19892,6 +19892,15 @@ Boost를 크로스 컴파일할 때 arm-none-linux-gnueabi-g++ 와 b2 toolset=gc
 
 Lobotomy Corporation OST - Maya (Story Theme)
 
-Target Triple naming
-  aarch64-linux-gnu     // 라즈베리파이 64
-  x86_64-linux-gnu      // 우분투 pc
+
+TODO: 🎯 Target Triple naming
+  🛍️ e.g. 
+    /opt/protobuf
+    ├── x86_64-linux-gnu
+    │   ├── debug-shared
+    │   ├── debug-static
+    │   └── release-shared
+    └── aarch64-linux-gnu
+        └── release-shared
+
+nano
