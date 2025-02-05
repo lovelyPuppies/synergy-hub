@@ -28,9 +28,6 @@ endif()
 
 
 
-# // clang++ -std=c++23 -o cpp.out cpp.cpp
-
-
 ##### Define and configure executables
 set(IOT_SERVER_DIR src/app/iot_server)
 set(IOT_CLIENT_DIR src/app/iot_client)

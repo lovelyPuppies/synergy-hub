@@ -1,4 +1,3 @@
-
 #pragma once // Include guard
 
 #include <boost/asio.hpp>

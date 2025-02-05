@@ -9,6 +9,7 @@
   ],
   "files.associations": {
     ".clangd": "yaml",
+    "CMakeLists.txt": "CMake",
     "*.conf": "bitbake",
     "*.inc": "bitbake"
   }
