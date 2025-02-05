@@ -14,6 +14,7 @@ compiler.libcxx=libc++
 # tools.build:compiler_executables={"c": "clang", "cpp": "clang++"}
 CC=clang
 CXX=clang++
+CXXFLAGS=-std=c++23
 ## If in [conf]
 # tools.build:exelinkflags=["-fuse-ld=lld"]
 LDFLAGS=-fuse-ld=lld

@@ -12,7 +12,8 @@
   "debug.allowBreakpointsEverywhere": true,
   "files.associations": {
     // "*.S": "arm",
-    ".clangd": "yaml"
+    ".clangd": "yaml",
+    "CMakeLists.txt": "CMake"
   },
   // 🌀 Title: Indexing
   "files.exclude": {

@@ -14,7 +14,7 @@
   "files.associations": {
     ".clangd": "ini",
     "*.S": "arm",
-    "*.txt": "plaintext",
+    "*.txt": "cmake",
     "iostream": "cpp",
     "vector": "cpp",
     "string": "cpp",

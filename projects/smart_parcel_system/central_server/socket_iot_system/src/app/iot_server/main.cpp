@@ -1,12 +1,22 @@
-#include "iot_server.h"
+#include "iot_server.hpp"
 #include <vector>
-#include <string>
 
 int main() {
-    iot_server();
+  iot::start_iot_server();
 
-    std::vector<std::string> vec;
-    vec.push_back("test_package");
+  std::vector<std::string> vec = {"test_package", "iot_server"};
+  iot::print_vector(vec);
 
-    iot_server_print_vector(vec);
+  return 0;
 }
+
+// int main() {
+//   try {
+//     boost::asio::io_context io_context;
+//     Server server(io_context, 1234);
+//     io_context.run();
+//   } catch (std::exception &e) {
+//     std::cerr << "Exception: " << e.what() << "\n";
+//   }
+//   return 0;
+// }

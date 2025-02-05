@@ -1,120 +1,94 @@
+// clang++ -std=c++23 -o cpp.out cpp.cpp
+/*
+nc localhost 1234
+
+*/
+#include "iot_server.hpp"
+#include <boost/asio.hpp>
 #include <iostream>
-#include "iot_server.h"
+#include <memory>
+#include <thread>
 
+namespace iot {
+using boost::asio::ip::tcp;
 
+// 🚀 Session 클래스 (내부 클래스)
+class Session : public std::enable_shared_from_this<Session> {
+public:
+  explicit Session(tcp::socket socket) : socket_(std::move(socket)) {}
 
-void iot_server(){
-    
+  void start() { doRead(); }
 
-    #ifdef NDEBUG
-    std::cout << "iot_server/1.0: Hello World Release!\n";
-    #else
-    std::cout << "iot_server/1.0: Hello World Debug!\n";
-    #endif
+private:
+  tcp::socket socket_;
+  char buffer_[1024];
 
-    // ARCHITECTURES
-    #ifdef _M_X64
-    std::cout << "  iot_server/1.0: _M_X64 defined\n";
-    #endif
+  void doRead() {
+    auto self(shared_from_this());
+    socket_.async_read_some(
+        boost::asio::buffer(buffer_),
+        [this, self](boost::system::error_code ec, std::size_t length) {
+          if (!ec) {
+            doWrite(length);
+          }
+        });
+  }
 
-    #ifdef _M_IX86
-    std::cout << "  iot_server/1.0: _M_IX86 defined\n";
-    #endif
+  void doWrite(std::size_t length) {
+    auto self(shared_from_this());
+    boost::asio::async_write(
+        socket_, boost::asio::buffer(buffer_, length),
+        [this, self](boost::system::error_code ec, std::size_t) {
+          if (!ec) {
+            doRead();
+          }
+        });
+  }
+};
 
-    #ifdef _M_ARM64
-    std::cout << "  iot_server/1.0: _M_ARM64 defined\n";
-    #endif
-
-    #if __i386__
-    std::cout << "  iot_server/1.0: __i386__ defined\n";
-    #endif
-
-    #if __x86_64__
-    std::cout << "  iot_server/1.0: __x86_64__ defined\n";
-    #endif
-
-    #if __aarch64__
-    std::cout << "  iot_server/1.0: __aarch64__ defined\n";
-    #endif
-
-    // Libstdc++
-    #if defined _GLIBCXX_USE_CXX11_ABI
-    std::cout << "  iot_server/1.0: _GLIBCXX_USE_CXX11_ABI "<< _GLIBCXX_USE_CXX11_ABI << "\n";
-    #endif
-
-    // MSVC runtime
-    #if defined(_DEBUG)
-        #if defined(_MT) && defined(_DLL)
-        std::cout << "  iot_server/1.0: MSVC runtime: MultiThreadedDebugDLL\n";
-        #elif defined(_MT)
-        std::cout << "  iot_server/1.0: MSVC runtime: MultiThreadedDebug\n";
-        #endif
-    #else
-        #if defined(_MT) && defined(_DLL)
-        std::cout << "  iot_server/1.0: MSVC runtime: MultiThreadedDLL\n";
-        #elif defined(_MT)
-        std::cout << "  iot_server/1.0: MSVC runtime: MultiThreaded\n";
-        #endif
-    #endif
-
-    // COMPILER VERSIONS
-    #if _MSC_VER
-    std::cout << "  iot_server/1.0: _MSC_VER" << _MSC_VER<< "\n";
-    #endif
-
-    #if _MSVC_LANG
-    std::cout << "  iot_server/1.0: _MSVC_LANG" << _MSVC_LANG<< "\n";
-    #endif
-
-    #if __cplusplus
-    std::cout << "  iot_server/1.0: __cplusplus" << __cplusplus<< "\n";
-    #endif
-
-    #if __INTEL_COMPILER
-    std::cout << "  iot_server/1.0: __INTEL_COMPILER" << __INTEL_COMPILER<< "\n";
-    #endif
-
-    #if __GNUC__
-    std::cout << "  iot_server/1.0: __GNUC__" << __GNUC__<< "\n";
-    #endif
-
-    #if __GNUC_MINOR__
-    std::cout << "  iot_server/1.0: __GNUC_MINOR__" << __GNUC_MINOR__<< "\n";
-    #endif
-
-    #if __clang_major__
-    std::cout << "  iot_server/1.0: __clang_major__" << __clang_major__<< "\n";
-    #endif
-
-    #if __clang_minor__
-    std::cout << "  iot_server/1.0: __clang_minor__" << __clang_minor__<< "\n";
-    #endif
-
-    #if __apple_build_version__
-    std::cout << "  iot_server/1.0: __apple_build_version__" << __apple_build_version__<< "\n";
-    #endif
-
-    // SUBSYSTEMS
-
-    #if __MSYS__
-    std::cout << "  iot_server/1.0: __MSYS__" << __MSYS__<< "\n";
-    #endif
-
-    #if __MINGW32__
-    std::cout << "  iot_server/1.0: __MINGW32__" << __MINGW32__<< "\n";
-    #endif
-
-    #if __MINGW64__
-    std::cout << "  iot_server/1.0: __MINGW64__" << __MINGW64__<< "\n";
-    #endif
-
-    #if __CYGWIN__
-    std::cout << "  iot_server/1.0: __CYGWIN__" << __CYGWIN__<< "\n";
-    #endif
+// 🚀 Server 클래스 구현 (정의는 .cpp에서!)
+Server::Server(boost::asio::io_context &io_context, short port)
+    : acceptor_(io_context, tcp::endpoint(tcp::v4(), port)) {
+  doAccept();
 }
 
-void iot_server_print_vector(const std::vector<std::string> &strings) {
-    for(std::vector<std::string>::const_iterator it = strings.begin(); it != strings.end(); ++it) {
-        std::cout << "iot_server/1.0 " << *it << std::endl;
+void Server::doAccept() {
+  acceptor_.async_accept(
+      [this](boost::system::error_code ec, tcp::socket socket) {
+        if (!ec) {
+          std::make_shared<Session>(std::move(socket))->start();
+        }
+        doAccept();
+      });
+}
+
+// 🚀 IoT 서버 실행 함수
+void start_iot_server() {
+  try {
+    boost::asio::io_context io_context;
+    Server server(io_context, 1234);
+
+    unsigned int thread_count = std::thread::hardware_concurrency();
+    thread_count = (thread_count > 1) ? (thread_count / 2) : 1;
+
+    std::vector<std::thread> threads;
+    for (unsigned int i = 0; i < thread_count; ++i) {
+      threads.emplace_back([&io_context]() { io_context.run(); });
     }
+
+    for (auto &t : threads) {
+      t.join();
+    }
+  } catch (std::exception &e) {
+    std::cerr << "Exception: " << e.what() << "\n";
+  }
 }
+
+// 🚀 벡터 출력 함수
+void print_vector(const std::vector<std::string> &strings) {
+  for (const auto &str : strings) {
+    std::cout << str << std::endl;
+  }
+}
+
+} // namespace iot

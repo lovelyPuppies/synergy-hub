@@ -28,6 +28,7 @@ endif()
 
 
 
+# // clang++ -std=c++23 -o cpp.out cpp.cpp
 
 
 ##### Define and configure executables
@@ -36,6 +37,8 @@ set(IOT_CLIENT_DIR src/app/iot_client)
 
 add_executable(iot_server ${IOT_SERVER_DIR}/iot_server.cpp ${IOT_SERVER_DIR}/main.cpp)
 add_executable(iot_client ${IOT_CLIENT_DIR}/iot_client.cpp ${IOT_CLIENT_DIR}/main.cpp)
+
+set_target_properties(iot_server PROPERTIES CXX_STANDARD 23 CXX_STANDARD_REQUIRED YES)
 
 
 
