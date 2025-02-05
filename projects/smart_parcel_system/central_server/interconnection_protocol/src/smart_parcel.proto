@@ -15,7 +15,7 @@ package smart.parcel;
 
 
 // -------------------------
-// 🌀 Request and Response
+// 🌀 Request, Response, Event (like Notification)
 // -------------------------
 // 📨 A request message that expects a response from the destination.
 message Request {
@@ -27,32 +27,48 @@ message Request {
   }
 }
 
-// 📩 A response message that does not expect further replies. with ✅ ACK,
+// 📩 A response message to a request that does not expect further replies, including ✅ ACK.
 message Response {
   string source = 1;
   string destination = 2;
   AckStatus ack_status = 3;
+  ExecutionStatus execution_status = 4;
   oneof command {
-    SetElevatorStatusResponse set_elevator_status_response = 4;
-    MoveDeliveryRobotResponse move_delivery_robot_response = 5;
-    ErrorResponse error = 6;
+    SetElevatorStatusResponse set_elevator_status_response = 5;
+    MoveDeliveryRobotResponse move_delivery_robot_response = 6;
   }
 }
 
+// ⏬ A one-way message that notifies the system about status updates without expecting any response.
+message NodeEvent {
+  string source = 1;
+  string destination = 2;
+  oneof event {
+    ElevatorStatusEvent elevator_status_event = 3;
+  }
+}
+
+// -------------------------
+// -------------------------
+// Indicates whether a Request has been successfully received by the Destination from the Source.
 message AckStatus {
   enum StatusCode {
     ACK_RECEIVED = 0;
-    ACK_ERROR = 1;
+    ACK_INVALID = 1;
   }
   StatusCode code = 1;
   string message = 2;
 }
 
-message ErrorResponse {
-  string error_message = 1;
+// Indicates the execution result of the received Request.
+message ExecutionStatus {
+  enum StatusCode {
+    EXECUTION_SUCCESS = 0;
+    EXECUTION_FAILED = 1;
+  }
+  StatusCode code = 1;
+  string message = 2;
 }
-
-
 
 // -------------------------
 // 🌀 Request and Response 🔪 Details
@@ -75,6 +91,15 @@ message MoveDeliveryRobotRequest {
 message MoveDeliveryRobotResponse {
   uint32 delivery_robot_id = 1;
 }
+
+// -------------------------
+// -------------------------
+
+message ElevatorStatusEvent {
+  uint32 elevator_id = 1;
+  Elevator.Status elevator_status = 2;
+}
+
 
 
 // -------------------------
@@ -114,16 +139,38 @@ message DeliveryRobot {
 }
 
 
+// 🏬
 message Storage {
   uint32 id = 1;
   repeated Locker lockers = 2;
 
+  // 🔒
   message Locker {
     uint32 locker_id = 1;
     string access_code = 2;
     uint32 parcel_id = 3;
   }
 }
+
+
+// 👤 User
+message User {
+  uint32 id = 1;
+
+
+}
+
+// 📦
+message Parcel {
+  uint32 id = 1;
+
+}
+
+// TODO
+// 보관소 -> 서버. 에 parcel 만들어라 요청
+// User -> parcel 정보 달라 요청. (QT)
+// User -> parcel 배달해달라 요청. (QT)
+// 
 
 // 택배보관소와, 집 주소
 // 서버와 교환하는 것
@@ -135,20 +182,15 @@ message Storage {
 // 사용자가 서버에 요청하면, 있는지부터 체크 해야 함.
 
 // Wall Pad
-message User {
-  uint32 id = 1;
+// 사용자가 배달 요청.    --> 1️⃣ 서버가 터틀봇, 스토리지 움직이게 (택배를 밀어서 레일에 실음) 명령 전달, 터틀봇이 해당 동호수 이동하라고 명령.
+// 유저의 주소 정보와
+// 유저의 id.
+//
+// ❗ 서버 -> 터틀봇 한테 준비완료: ready? ACK ㅇㅋ 안되면 pending 상태.
+// 사용자는 서버의 DB에 접긓내서 택배 있는지 확인 해야 함.
 
-  // 사용자가 배달 요청.    --> 1️⃣ 서버가 터틀봇, 스토리지 움직이게 (택배를 밀어서 레일에 실음) 명령 전달, 터틀봇이 해당 동호수 이동하라고 명령.
-  // 유저의 주소 정보와
-  // 유저의 id.
-  //
-  // ❗ 서버 -> 터틀봇 한테 준비완료: ready? ACK ㅇㅋ 안되면 pending 상태.
-  // 사용자는 서버의 DB에 접긓내서 택배 있는지 확인 해야 함.
-
-  // tutrlebot 상태: 고정 : ready, ❗진행~. busy, complete (배송 완료. 돌아올때까지는 계속 이 상태 유지.)
-  // 2️⃣ 일단은 사진을 base64 인코딩.
-}
-
+// tutrlebot 상태: 고정 : ready, ❗진행~. busy, complete (배송 완료. 돌아올때까지는 계속 이 상태 유지.)
+// 2️⃣ 일단은 사진을 base64 인코딩.
 
 // -------------------------
 // 🌀 Nodes 🔪 Sub-nodes
