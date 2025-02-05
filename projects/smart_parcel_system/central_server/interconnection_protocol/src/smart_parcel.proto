@@ -64,7 +64,6 @@ message SetElevatorStatusRequest {
 
 message SetElevatorStatusResponse {
   uint32 elevator_id = 1;
-  Elevator.Status elevator_status = 2;
 }
 
 message MoveDeliveryRobotRequest {
@@ -75,9 +74,8 @@ message MoveDeliveryRobotRequest {
 
 message MoveDeliveryRobotResponse {
   uint32 delivery_robot_id = 1;
-  DeliveryRobot delivery_robot = 2;
-  Address.ApartmentAddress destination_address = 3;
 }
+
 
 // -------------------------
 // 🌀 Nodes
