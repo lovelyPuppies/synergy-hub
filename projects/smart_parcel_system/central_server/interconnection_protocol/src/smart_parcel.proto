@@ -24,21 +24,35 @@ message Request {
   oneof command {
     SetElevatorStatusRequest set_elevator_status_request = 3;
     MoveDeliveryRobotRequest move_delivery_robot_request = 4;
-    StartDeliveryRequest start_delivery = 6;
   }
 }
 
-// 📩 A response message that does not expect further replies.
+// 📩 A response message that does not expect further replies. with ✅ ACK,
 message Response {
   string source = 1;
   string destination = 2;
+  AckStatus ack_status = 3;
   oneof command {
-    AckElevatorStatusResponse ack_elevator_status = 3;
-    AckRobotStatusResponse ack_robot_status = 4;
-    AckDeliveryRobotResponse move_delivery_robot_request = 4;
-    ErrorResponse error_response = 5;
+    SetElevatorStatusResponse set_elevator_status_response = 4;
+    MoveDeliveryRobotResponse move_delivery_robot_response = 5;
+    ErrorResponse error = 6;
   }
 }
+
+message AckStatus {
+  enum StatusCode {
+    ACK_RECEIVED = 0;
+    ACK_ERROR = 1;
+  }
+  StatusCode code = 1;
+  string message = 2;
+}
+
+message ErrorResponse {
+  string error_message = 1;
+}
+
+
 
 // -------------------------
 // 🌀 Request and Response 🔪 Details
@@ -48,7 +62,7 @@ message SetElevatorStatusRequest {
   Elevator.Status elevator_status = 2;
 }
 
-message AckElevatorStatusResponse {
+message SetElevatorStatusResponse {
   uint32 elevator_id = 1;
   Elevator.Status elevator_status = 2;
 }
@@ -59,11 +73,11 @@ message MoveDeliveryRobotRequest {
   Address.ApartmentAddress destination_address = 3;
 }
 
-
-message ErrorResponse {
-  string error_message = 1;
+message MoveDeliveryRobotResponse {
+  uint32 delivery_robot_id = 1;
+  DeliveryRobot delivery_robot = 2;
+  Address.ApartmentAddress destination_address = 3;
 }
-
 
 // -------------------------
 // 🌀 Nodes
