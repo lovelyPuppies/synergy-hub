@@ -73,3 +73,9 @@
     🛍️ e.g. ListFilesResponse.file type:FT_CALLBACK, callback_datatype:"DIR\*"
 
   - **[protobuf]** compile with argument -ltcmalloc_minimal
+
+- doing 📰
+  ```
+  gRPC 를 함께 사용하려 했으나 소켓통신에 사용하는 용도가 아님.
+  proto 가 조건적으로 
+  ```

@@ -1,18 +1,37 @@
 edition = "2023";
-
+// source /home/wbfw109v2/.cache/pypoetry/virtualenvs/python-study-WVteXKC2-py3.13/bin/activate.fish
+// nanopb_generator smart_parcel.proto
 package smart.parcel;
 // 소자의 특성, RLC ghlfh. 
 // 🔰 처음 접속할떄 아이디 할당하는 것. 필요.
 // gRPC 를 사용하지 않기 때문에, 해당 요청에 대해서 자동으로 코드를 만들 수 없다. c 에서는 어떻게 해야하지?..
 
+
+// map<string, string> payload = 4;
+// string status = 5;
+// repeated Link links = 6; 
 message Request {
   string source = 1;
   string destination = 2;
-  string command = 3;
-  map<string, string> payload = 4;
-  // string status = 5;
-  // repeated Link links = 6;
+  Command command = 3;
 }
+
+// 🎯 Command 메시지 (명령 이름 + 필요한 payload 정보)
+message Command {
+  string command_name = 1;// 예: "set_status", "ack_status"
+  string payload_type = 2;// 예: "elevator", "delivery_robot", "storage"
+  Payload payload = 3;// 명령에 필요한 데이터
+}
+
+// 🎯 destination 에 따라 payload 타입이 달라지는 구조
+message Payload {
+  oneof payload_type {
+    Elevator elevator = 1;
+    DeliveryRobot delivery_robot = 2;
+    Storage storage = 3;
+  }
+}
+
 
 
 // ❔ Naming Convention
