@@ -173,9 +173,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 inline constexpr Elevator_Status::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
-        current_floor_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
+        current_floor_{0u},
         door_open_status_{static_cast< ::smart::parcel::Elevator_DoorOpenStatus >(0)} {}
 
 template <typename>
@@ -1058,7 +1056,7 @@ const char descriptor_table_protodef_smart_5fparcel_2eproto[] ABSL_ATTRIBUTE_SEC
     "ator.Status\"&\n\021ParcelStatusEvent\022\021\n\tparc"
     "el_id\030\001 \001(\r\"\317\001\n\010Elevator\022\n\n\002id\030\001 \001(\r\022-\n\006"
     "status\030\002 \001(\0132\035.smart.parcel.Elevator.Sta"
-    "tus\032`\n\006Status\022\025\n\rcurrent_floor\030\001 \001(\t\022\?\n\020"
+    "tus\032`\n\006Status\022\025\n\rcurrent_floor\030\001 \001(\r\022\?\n\020"
     "door_open_status\030\002 \001(\0162%.smart.parcel.El"
     "evator.DoorOpenStatus\"&\n\016DoorOpenStatus\022"
     "\n\n\006CLOSED\020\000\022\010\n\004OPEN\020\001\"\033\n\rDeliveryRobot\022\n"
@@ -5191,39 +5189,24 @@ Elevator_Status::Elevator_Status(::google::protobuf::Arena* arena)
   SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:smart.parcel.Elevator.Status)
 }
-inline PROTOBUF_NDEBUG_INLINE Elevator_Status::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from, const ::smart::parcel::Elevator_Status& from_msg)
-      : _has_bits_{from._has_bits_},
-        _cached_size_{0},
-        current_floor_(arena, from.current_floor_) {}
-
 Elevator_Status::Elevator_Status(
-    ::google::protobuf::Arena* arena,
-    const Elevator_Status& from)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, _class_data_.base()) {
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(arena) {
-#endif  // PROTOBUF_CUSTOM_VTABLE
-  Elevator_Status* const _this = this;
-  (void)_this;
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
-  _impl_.door_open_status_ = from._impl_.door_open_status_;
-
-  // @@protoc_insertion_point(copy_constructor:smart.parcel.Elevator.Status)
+    ::google::protobuf::Arena* arena, const Elevator_Status& from)
+    : Elevator_Status(arena) {
+  MergeFrom(from);
 }
 inline PROTOBUF_NDEBUG_INLINE Elevator_Status::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : _cached_size_{0},
-        current_floor_(arena) {}
+      : _cached_size_{0} {}
 
 inline void Elevator_Status::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.door_open_status_ = {};
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, current_floor_),
+           0,
+           offsetof(Impl_, door_open_status_) -
+               offsetof(Impl_, current_floor_) +
+               sizeof(Impl_::door_open_status_));
 }
 Elevator_Status::~Elevator_Status() {
   // @@protoc_insertion_point(destructor:smart.parcel.Elevator.Status)
@@ -5233,7 +5216,6 @@ inline void Elevator_Status::SharedDtor(MessageLite& self) {
   Elevator_Status& this_ = static_cast<Elevator_Status&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
-  this_._impl_.current_floor_.Destroy();
   this_._impl_.~Impl_();
 }
 
@@ -5242,7 +5224,7 @@ inline void* Elevator_Status::PlacementNew_(const void*, void* mem,
   return ::new (mem) Elevator_Status(arena);
 }
 constexpr auto Elevator_Status::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(Elevator_Status),
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(Elevator_Status),
                                             alignof(Elevator_Status));
 }
 PROTOBUF_CONSTINIT
@@ -5273,7 +5255,7 @@ const ::google::protobuf::internal::ClassData* Elevator_Status::GetClassData() c
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 50, 2> Elevator_Status::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> Elevator_Status::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(Elevator_Status, _impl_._has_bits_),
     0, // no _extensions_
@@ -5294,24 +5276,21 @@ const ::_pbi::TcParseTable<1, 2, 0, 50, 2> Elevator_Status::_table_ = {
     // .smart.parcel.Elevator.DoorOpenStatus door_open_status = 2;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Elevator_Status, _impl_.door_open_status_), 1>(),
      {16, 1, 0, PROTOBUF_FIELD_OFFSET(Elevator_Status, _impl_.door_open_status_)}},
-    // string current_floor = 1;
-    {::_pbi::TcParser::FastUS1,
-     {10, 0, 0, PROTOBUF_FIELD_OFFSET(Elevator_Status, _impl_.current_floor_)}},
+    // uint32 current_floor = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Elevator_Status, _impl_.current_floor_), 0>(),
+     {8, 0, 0, PROTOBUF_FIELD_OFFSET(Elevator_Status, _impl_.current_floor_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // string current_floor = 1;
+    // uint32 current_floor = 1;
     {PROTOBUF_FIELD_OFFSET(Elevator_Status, _impl_.current_floor_), _Internal::kHasBitsOffset + 0, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    (0 | ::_fl::kFcOptional | ::_fl::kUInt32)},
     // .smart.parcel.Elevator.DoorOpenStatus door_open_status = 2;
     {PROTOBUF_FIELD_OFFSET(Elevator_Status, _impl_.door_open_status_), _Internal::kHasBitsOffset + 1, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kOpenEnum)},
   }},
   // no aux_entries
   {{
-    "\34\15\0\0\0\0\0\0"
-    "smart.parcel.Elevator.Status"
-    "current_floor"
   }},
 };
 
@@ -5323,10 +5302,11 @@ PROTOBUF_NOINLINE void Elevator_Status::Clear() {
   (void) cached_has_bits;
 
   cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    _impl_.current_floor_.ClearNonDefaultToEmpty();
+  if (cached_has_bits & 0x00000003u) {
+    ::memset(&_impl_.current_floor_, 0, static_cast<::size_t>(
+        reinterpret_cast<char*>(&_impl_.door_open_status_) -
+        reinterpret_cast<char*>(&_impl_.current_floor_)) + sizeof(_impl_.door_open_status_));
   }
-  _impl_.door_open_status_ = 0;
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -5347,12 +5327,11 @@ PROTOBUF_NOINLINE void Elevator_Status::Clear() {
           (void)cached_has_bits;
 
           cached_has_bits = this_._impl_._has_bits_[0];
-          // string current_floor = 1;
+          // uint32 current_floor = 1;
           if (cached_has_bits & 0x00000001u) {
-            const std::string& _s = this_._internal_current_floor();
-            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "smart.parcel.Elevator.Status.current_floor");
-            target = stream->WriteStringMaybeAliased(1, _s, target);
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+                1, this_._internal_current_floor(), target);
           }
 
           // .smart.parcel.Elevator.DoorOpenStatus door_open_status = 2;
@@ -5388,10 +5367,10 @@ PROTOBUF_NOINLINE void Elevator_Status::Clear() {
           ::_pbi::Prefetch5LinesFrom7Lines(&this_);
           cached_has_bits = this_._impl_._has_bits_[0];
           if (cached_has_bits & 0x00000003u) {
-            // string current_floor = 1;
+            // uint32 current_floor = 1;
             if (cached_has_bits & 0x00000001u) {
-              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                              this_._internal_current_floor());
+              total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+                  this_._internal_current_floor());
             }
             // .smart.parcel.Elevator.DoorOpenStatus door_open_status = 2;
             if (cached_has_bits & 0x00000002u) {
@@ -5414,7 +5393,7 @@ void Elevator_Status::MergeImpl(::google::protobuf::MessageLite& to_msg, const :
   cached_has_bits = from._impl_._has_bits_[0];
   if (cached_has_bits & 0x00000003u) {
     if (cached_has_bits & 0x00000001u) {
-      _this->_internal_set_current_floor(from._internal_current_floor());
+      _this->_impl_.current_floor_ = from._impl_.current_floor_;
     }
     if (cached_has_bits & 0x00000002u) {
       _this->_impl_.door_open_status_ = from._impl_.door_open_status_;
@@ -5434,12 +5413,14 @@ void Elevator_Status::CopyFrom(const Elevator_Status& from) {
 
 void Elevator_Status::InternalSwap(Elevator_Status* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* arena = GetArena();
-  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.current_floor_, &other->_impl_.current_floor_, arena);
-  swap(_impl_.door_open_status_, other->_impl_.door_open_status_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Elevator_Status, _impl_.door_open_status_)
+      + sizeof(Elevator_Status::_impl_.door_open_status_)
+      - PROTOBUF_FIELD_OFFSET(Elevator_Status, _impl_.current_floor_)>(
+          reinterpret_cast<char*>(&_impl_.current_floor_),
+          reinterpret_cast<char*>(&other->_impl_.current_floor_));
 }
 
 ::google::protobuf::Metadata Elevator_Status::GetMetadata() const {

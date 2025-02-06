@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS storages (
 CREATE TABLE IF NOT EXISTS lockers (
     id                  INT AUTO_INCREMENT PRIMARY KEY    COMMENT '택배 보관함 고유 식별자',
     storage_id          INT                               COMMENT '택배 저장소의 외래키 (storages.id 참조)',
+    -- TODO: password_hash VARCHAR(72)                        COMMENT 'bcrypt 해시 저장 (최대 72자)',
     is_deleted          BOOLEAN DEFAULT FALSE             COMMENT 'SOFT DELETE (TRUE = 삭제됨)',
     FOREIGN KEY (storage_id) REFERENCES storages(id) ON DELETE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

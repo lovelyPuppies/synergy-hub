@@ -84,7 +84,8 @@ typedef struct _smart_parcel_ParcelStatusEvent {
 } smart_parcel_ParcelStatusEvent;
 
 typedef struct _smart_parcel_Elevator_Status {
-    pb_callback_t current_floor;
+    bool has_current_floor;
+    uint32_t current_floor;
     bool has_door_open_status;
     smart_parcel_Elevator_DoorOpenStatus door_open_status;
 } smart_parcel_Elevator_Status;
@@ -125,7 +126,7 @@ typedef struct _smart_parcel_Elevator {
     smart_parcel_Elevator_Status status;
 } smart_parcel_Elevator;
 
-/* 🚗 */
+/* 🚛 */
 typedef struct _smart_parcel_DeliveryRobot {
     bool has_id;
     uint32_t id; /* Status status = 2; */
@@ -277,7 +278,7 @@ extern "C" {
 #define smart_parcel_ElevatorStatusEvent_init_default {false, 0, false, smart_parcel_Elevator_Status_init_default}
 #define smart_parcel_ParcelStatusEvent_init_default {false, 0}
 #define smart_parcel_Elevator_init_default       {false, 0, false, smart_parcel_Elevator_Status_init_default}
-#define smart_parcel_Elevator_Status_init_default {{{NULL}, NULL}, false, _smart_parcel_Elevator_DoorOpenStatus_MIN}
+#define smart_parcel_Elevator_Status_init_default {false, 0, false, _smart_parcel_Elevator_DoorOpenStatus_MIN}
 #define smart_parcel_DeliveryRobot_init_default  {false, 0}
 #define smart_parcel_Storage_init_default        {false, 0, {{NULL}, NULL}}
 #define smart_parcel_Storage_Locker_init_default {false, 0, {{NULL}, NULL}, false, 0}
@@ -301,7 +302,7 @@ extern "C" {
 #define smart_parcel_ElevatorStatusEvent_init_zero {false, 0, false, smart_parcel_Elevator_Status_init_zero}
 #define smart_parcel_ParcelStatusEvent_init_zero {false, 0}
 #define smart_parcel_Elevator_init_zero          {false, 0, false, smart_parcel_Elevator_Status_init_zero}
-#define smart_parcel_Elevator_Status_init_zero   {{{NULL}, NULL}, false, _smart_parcel_Elevator_DoorOpenStatus_MIN}
+#define smart_parcel_Elevator_Status_init_zero   {false, 0, false, _smart_parcel_Elevator_DoorOpenStatus_MIN}
 #define smart_parcel_DeliveryRobot_init_zero     {false, 0}
 #define smart_parcel_Storage_init_zero           {false, 0, {{NULL}, NULL}}
 #define smart_parcel_Storage_Locker_init_zero    {false, 0, {{NULL}, NULL}, false, 0}
@@ -474,9 +475,9 @@ X(a, STATIC,   OPTIONAL, MESSAGE,  status,            2)
 #define smart_parcel_Elevator_status_MSGTYPE smart_parcel_Elevator_Status
 
 #define smart_parcel_Elevator_Status_FIELDLIST(X, a) \
-X(a, CALLBACK, OPTIONAL, STRING,   current_floor,     1) \
+X(a, STATIC,   OPTIONAL, UINT32,   current_floor,     1) \
 X(a, STATIC,   OPTIONAL, UENUM,    door_open_status,   2)
-#define smart_parcel_Elevator_Status_CALLBACK pb_default_field_callback
+#define smart_parcel_Elevator_Status_CALLBACK NULL
 #define smart_parcel_Elevator_Status_DEFAULT NULL
 
 #define smart_parcel_DeliveryRobot_FIELDLIST(X, a) \
@@ -587,23 +588,23 @@ extern const pb_msgdesc_t smart_parcel_ApartmentAddress_msg;
 /* smart_parcel_ExecutionStatus_size depends on runtime parameters */
 /* smart_parcel_CreateParcelRequest_size depends on runtime parameters */
 /* smart_parcel_GetParcelInfoResponse_size depends on runtime parameters */
-/* smart_parcel_SetElevatorStatusRequest_size depends on runtime parameters */
 /* smart_parcel_MoveDeliveryRobotRequest_size depends on runtime parameters */
-/* smart_parcel_ElevatorStatusEvent_size depends on runtime parameters */
-/* smart_parcel_Elevator_size depends on runtime parameters */
-/* smart_parcel_Elevator_Status_size depends on runtime parameters */
 /* smart_parcel_Storage_size depends on runtime parameters */
 /* smart_parcel_Storage_Locker_size depends on runtime parameters */
 /* smart_parcel_User_size depends on runtime parameters */
 /* smart_parcel_Parcel_size depends on runtime parameters */
 /* smart_parcel_Address_size depends on runtime parameters */
 /* smart_parcel_ApartmentAddress_size depends on runtime parameters */
-#define SMART_PARCEL_SMART_PARCEL_PB_H_MAX_SIZE  smart_parcel_GetParcelInfosRequest_size
+#define SMART_PARCEL_SMART_PARCEL_PB_H_MAX_SIZE  smart_parcel_SetElevatorStatusRequest_size
 #define smart_parcel_CreateParcelResponse_size   0
 #define smart_parcel_DeliveryRobot_size          6
+#define smart_parcel_ElevatorStatusEvent_size    16
+#define smart_parcel_Elevator_Status_size        8
+#define smart_parcel_Elevator_size               16
 #define smart_parcel_GetParcelInfosRequest_size  6
 #define smart_parcel_MoveDeliveryRobotResponse_size 0
 #define smart_parcel_ParcelStatusEvent_size      6
+#define smart_parcel_SetElevatorStatusRequest_size 16
 #define smart_parcel_SetElevatorStatusResponse_size 0
 
 #ifdef __cplusplus

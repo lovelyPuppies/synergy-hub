@@ -37,9 +37,9 @@ add_executable(iot_server ${IOT_SERVER_DIR}/iot_server.cpp ${IOT_SERVER_DIR}/mai
 add_executable(iot_client_cpp ${IOT_CLIENT_CPP_DIR}/iot_client_cpp.cpp ${IOT_CLIENT_CPP_DIR}/main.cpp)
 add_executable(iot_client_c ${IOT_CLIENT_C_DIR}/main.c)
 
-set_target_properties(iot_server PROPERTIES CXX_STANDARD 23 CXX_STANDARD_REQUIRED YES)
-set_target_properties(iot_client_cpp PROPERTIES CXX_STANDARD 23 CXX_STANDARD_REQUIRED YES)
-set_target_properties(iot_client_c PROPERTIES C_STANDARD 23 C_STANDARD_REQUIRED YES)
+# set_target_properties(iot_server PROPERTIES CXX_STANDARD 23 CXX_STANDARD_REQUIRED YES)
+# set_target_properties(iot_client_cpp PROPERTIES CXX_STANDARD 23 CXX_STANDARD_REQUIRED YES)
+# set_target_properties(iot_client_c PROPERTIES C_STANDARD 23 C_STANDARD_REQUIRED YES)
 
 
 # Common include directory

@@ -5,13 +5,12 @@ package smart.parcel;
 //     Database
 //       - The `User` table must contain actual records (rows).
 //       - The `Storage` table must contain actual records (rows).
-//       - 
 // ❔ Naming Convention
 //    Request: <resource>/<action>
 // 📝 클라이언트에서는 동기적인 요청을 가정하고 만든 것이라 비동기 요청인 경우, 클라이언트측에서 
 // 🧮
-//    protoc -I=. --cpp_out=generated/protobuf smart_parcel.proto
-//    nanopb_generator --output-dir=generated/nanopb smart_parcel.proto
+//    protoc -I=. --cpp_out=../../socket_iot_system/src/common/protobuf_cpp smart_parcel.proto
+//    nanopb_generator --output-dir=../../socket_iot_system/src/common/protobuf_c smart_parcel.proto
 
 // source /home/wbfw109v2/.cache/pypoetry/virtualenvs/python-study-WVteXKC2-py3.13/bin/activate.fish
 // 소자의 특성, RLC ghlfh. 
@@ -147,7 +146,7 @@ message Elevator {
   }
 
   message Status {
-    string current_floor = 1;
+    uint32 current_floor = 1;
     DoorOpenStatus door_open_status = 2;
   }
 }

@@ -1518,21 +1518,15 @@ class Elevator_Status final : public ::google::protobuf::Message
     kCurrentFloorFieldNumber = 1,
     kDoorOpenStatusFieldNumber = 2,
   };
-  // string current_floor = 1;
+  // uint32 current_floor = 1;
   bool has_current_floor() const;
   void clear_current_floor() ;
-  const std::string& current_floor() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_current_floor(Arg_&& arg, Args_... args);
-  std::string* mutable_current_floor();
-  PROTOBUF_NODISCARD std::string* release_current_floor();
-  void set_allocated_current_floor(std::string* value);
+  ::uint32_t current_floor() const;
+  void set_current_floor(::uint32_t value);
 
   private:
-  const std::string& _internal_current_floor() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_current_floor(
-      const std::string& value);
-  std::string* _internal_mutable_current_floor();
+  ::uint32_t _internal_current_floor() const;
+  void _internal_set_current_floor(::uint32_t value);
 
   public:
   // .smart.parcel.Elevator.DoorOpenStatus door_open_status = 2;
@@ -1552,7 +1546,7 @@ class Elevator_Status final : public ::google::protobuf::Message
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       1, 2, 0,
-      50, 2>
+      0, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -1571,7 +1565,7 @@ class Elevator_Status final : public ::google::protobuf::Message
                           const Elevator_Status& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::internal::ArenaStringPtr current_floor_;
+    ::uint32_t current_floor_;
     int door_open_status_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -7316,73 +7310,32 @@ inline void ParcelStatusEvent::_internal_set_parcel_id(::uint32_t value) {
 
 // Elevator_Status
 
-// string current_floor = 1;
+// uint32 current_floor = 1;
 inline bool Elevator_Status::has_current_floor() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   return value;
 }
 inline void Elevator_Status::clear_current_floor() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.current_floor_.ClearToEmpty();
+  _impl_.current_floor_ = 0u;
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const std::string& Elevator_Status::current_floor() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::uint32_t Elevator_Status::current_floor() const {
   // @@protoc_insertion_point(field_get:smart.parcel.Elevator.Status.current_floor)
   return _internal_current_floor();
 }
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void Elevator_Status::set_current_floor(Arg_&& arg,
-                                                     Args_... args) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
+inline void Elevator_Status::set_current_floor(::uint32_t value) {
+  _internal_set_current_floor(value);
   _impl_._has_bits_[0] |= 0x00000001u;
-  _impl_.current_floor_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:smart.parcel.Elevator.Status.current_floor)
 }
-inline std::string* Elevator_Status::mutable_current_floor() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_current_floor();
-  // @@protoc_insertion_point(field_mutable:smart.parcel.Elevator.Status.current_floor)
-  return _s;
-}
-inline const std::string& Elevator_Status::_internal_current_floor() const {
+inline ::uint32_t Elevator_Status::_internal_current_floor() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.current_floor_.Get();
+  return _impl_.current_floor_;
 }
-inline void Elevator_Status::_internal_set_current_floor(const std::string& value) {
+inline void Elevator_Status::_internal_set_current_floor(::uint32_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_._has_bits_[0] |= 0x00000001u;
-  _impl_.current_floor_.Set(value, GetArena());
-}
-inline std::string* Elevator_Status::_internal_mutable_current_floor() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_._has_bits_[0] |= 0x00000001u;
-  return _impl_.current_floor_.Mutable( GetArena());
-}
-inline std::string* Elevator_Status::release_current_floor() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:smart.parcel.Elevator.Status.current_floor)
-  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
-    return nullptr;
-  }
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  auto* released = _impl_.current_floor_.Release();
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
-    _impl_.current_floor_.Set("", GetArena());
-  }
-  return released;
-}
-inline void Elevator_Status::set_allocated_current_floor(std::string* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-  _impl_.current_floor_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.current_floor_.IsDefault()) {
-    _impl_.current_floor_.Set("", GetArena());
-  }
-  // @@protoc_insertion_point(field_set_allocated:smart.parcel.Elevator.Status.current_floor)
+  _impl_.current_floor_ = value;
 }
 
 // .smart.parcel.Elevator.DoorOpenStatus door_open_status = 2;

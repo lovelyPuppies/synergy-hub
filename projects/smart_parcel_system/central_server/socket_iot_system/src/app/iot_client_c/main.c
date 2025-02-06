@@ -6,7 +6,7 @@
 // 📅 2025-02-07 05:20:22
 
 // Library inclusions for necessary functionalities
-#include "common/protobuf_c/smart_parcel.pb.h"
+#include "protobuf_c/smart_parcel.pb.h"
 #include <arpa/inet.h> // Defines functions for internet operations, such as inet_addr.
 #include <pb_decode.h>
 #include <pb_encode.h>
@@ -100,6 +100,13 @@ int main(int argc, char *argv[]) {
  * ========================= */
 // ---- Send Message Function ----
 void *send_msg(void *arg) {
+  // 🌀 Declare variables for nanoPB
+  uint8_t buffer[256];
+  size_t message_length;
+  bool status;
+  //
+  //
+
   // Extract the socket descriptor from the argument
   int *sock = (int *)arg;
 
@@ -156,14 +163,18 @@ void *send_msg(void *arg) {
       if (!strncmp(msg, "quit\n", 5)) {
         *sock = -1;
         return NULL;
-      } else if (msg[0] != '[') {
-        strcat(name_msg, "[ALLMSG]");
-        strcat(name_msg, msg);
-      } else
+      } else {
         strcpy(name_msg, msg);
+      }
+      // 📰
+      smart_parcel_Elevator_Status message =
+          smart_parcel_Elevator_Status_init_zero;
 
-      // Send the message to the server, exit on failure.
-      if (write(*sock, name_msg, strlen(name_msg)) <= 0) {
+      pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
+      message.current_floor.arg
+
+          // Send the message to the server, exit on failure.
+          if (write(*sock, name_msg, strlen(name_msg)) <= 0) {
         *sock = -1;
         return NULL;
       }
