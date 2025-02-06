@@ -96,31 +96,56 @@ int main(int argc, char *argv[]) {
  * ========================= */
 // ---- Send Message Function ----
 void *send_msg(void *arg) {
-  // Variable definitions for socket, file descriptors, and timeouts
+  // Extract the socket descriptor from the argument
   int *sock = (int *)arg;
+
+  // File descriptor sets for select() and timeout settings
   fd_set initset, newset;
   struct timeval tv;
   char name_msg[NAME_SIZE + BUF_SIZE + 2];
 
-  // Initialize the file descriptor set and add standard input to it.
-  FD_ZERO(&initset);
-  FD_SET(STDIN_FILENO, &initset);
+  // 📍 fd_set (File Descriptor Set) is a bitmask-based structure that tracks multiple file descriptors
+  // Each bit in fd_set represents a file descriptor (FD)
+  // Example representation:
+  // [ 0 1 2 3 4 5 6 7 ... ]
+  // [ 1 0 0 1 0 0 0 0 ... ]  // FD 0(STDIN) and 3(sock) are being monitored
 
-  // Prompt the user for input
+  // Initialize fd_set and add standard input (keyboard) to the set
+  FD_ZERO(&initset);              // Clear fd_set to remove any garbage values
+  FD_SET(STDIN_FILENO, &initset); // Add stdin (keyboard input) to the set
+
+  // Prompt the user for input format
   fputs("Input a message! [ID]msg (Default ID:ALLMSG)\n", stdout);
+
   while (1) {
     // Clear buffers before use
     memset(msg, 0, sizeof(msg));
     name_msg[0] = '\0';
+
+    // Set timeout for select() - 1 second
     tv.tv_sec = 1;
     tv.tv_usec = 0;
 
-    // Set new file descriptor set for select call and wait for input.
+    // 🔥 `select()` modifies `fd_set`, so always copy `initset` to `newset` before calling it
     newset = initset;
-    int ret = select(STDIN_FILENO + 1, &newset, NULL, NULL, &tv);
+    // Example before `select()`:
+    // [ 0 1 2 3 4 5 6 7 ... ]
+    // [ 1 0 0 1 0 0 0 0 ... ]  // FD 0(STDIN) and 3(sock) are set
 
-    // Check if input is available from stdin (user).
+    // 💡 Wait for input with a timeout
+    int ret = select(STDIN_FILENO + 1, &newset, NULL, NULL, &tv);
+    // 🪱 nfds is just "max FD + 1"; the actual set of monitored FDs is determined by fd_set.
+    // 🔥 select() modifies `newset`, keeping only FDs that have input available
+    // If input is detected:
+    // [ 0 1 2 3 4 5 6 7 ... ]
+    // [ 1 0 0 0 0 0 0 0 ... ]  // FD 3 (socket) was removed since no input
+    // If no input is detected (timeout occurs):
+    // `select()` returns 0, and `newset` is emptied
+
+    // Check if the standard input (keyboard) has data ready to be read
     if (FD_ISSET(STDIN_FILENO, &newset)) {
+      // 🔥 `FD_ISSET(fd, &set)` checks if the given FD has input ready
+      // Only FDs that had input remain in `newset`
       fgets(msg, BUF_SIZE, stdin);
 
       // If "quit" command is detected, close the connection.

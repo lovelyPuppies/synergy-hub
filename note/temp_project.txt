@@ -19939,3 +19939,5 @@ https://mariadb.com/kb/en/window-functions/
 
 temp.
   sprintf
+
+🔥 :fire: emoji 용도..
