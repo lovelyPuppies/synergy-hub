@@ -171,10 +171,10 @@ void *send_msg(void *arg) {
           smart_parcel_Elevator_Status_init_zero;
 
       pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
-      message.current_floor.arg
+      message.current_floor = 1;
 
-          // Send the message to the server, exit on failure.
-          if (write(*sock, name_msg, strlen(name_msg)) <= 0) {
+      // Send the message to the server, exit on failure.
+      if (write(*sock, name_msg, strlen(name_msg)) <= 0) {
         *sock = -1;
         return NULL;
       }
