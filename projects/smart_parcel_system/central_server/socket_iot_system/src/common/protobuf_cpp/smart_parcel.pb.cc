@@ -489,7 +489,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 inline constexpr Parcel::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
-        photo_base64_(
+        photo_bytes_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
         address_{nullptr},
@@ -926,7 +926,7 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::smart::parcel::Parcel, _impl_.address_),
         PROTOBUF_FIELD_OFFSET(::smart::parcel::Parcel, _impl_.shipper_id_),
         PROTOBUF_FIELD_OFFSET(::smart::parcel::Parcel, _impl_.recipient_id_),
-        PROTOBUF_FIELD_OFFSET(::smart::parcel::Parcel, _impl_.photo_base64_),
+        PROTOBUF_FIELD_OFFSET(::smart::parcel::Parcel, _impl_.photo_bytes_),
         2,
         1,
         3,
@@ -1065,21 +1065,21 @@ const char descriptor_table_protodef_smart_5fparcel_2eproto[] ABSL_ATTRIBUTE_SEC
     "r\032C\n\006Locker\022\021\n\tlocker_id\030\001 \001(\r\022\023\n\013access"
     "_code\030\002 \001(\t\022\021\n\tparcel_id\030\003 \001(\r\":\n\004User\022\n"
     "\n\002id\030\001 \001(\r\022&\n\007address\030\002 \001(\0132\025.smart.parc"
-    "el.Address\"|\n\006Parcel\022\n\n\002id\030\001 \001(\r\022&\n\007addr"
+    "el.Address\"{\n\006Parcel\022\n\n\002id\030\001 \001(\r\022&\n\007addr"
     "ess\030\002 \001(\0132\025.smart.parcel.Address\022\022\n\nship"
-    "per_id\030\003 \001(\r\022\024\n\014recipient_id\030\004 \001(\r\022\024\n\014ph"
-    "oto_base64\030\005 \001(\t\"V\n\007Address\022;\n\021apartment"
-    "_address\030\001 \001(\0132\036.smart.parcel.ApartmentA"
-    "ddressH\000B\016\n\014address_type\"`\n\020ApartmentAdd"
-    "ress\022\031\n\021apartment_complex\030\001 \001(\t\022\027\n\017build"
-    "ing_number\030\002 \001(\r\022\030\n\020apartment_number\030\003 \001"
-    "(\rb\010editionsp\350\007"
+    "per_id\030\003 \001(\r\022\024\n\014recipient_id\030\004 \001(\r\022\023\n\013ph"
+    "oto_bytes\030\005 \001(\014\"V\n\007Address\022;\n\021apartment_"
+    "address\030\001 \001(\0132\036.smart.parcel.ApartmentAd"
+    "dressH\000B\016\n\014address_type\"`\n\020ApartmentAddr"
+    "ess\022\031\n\021apartment_complex\030\001 \001(\t\022\027\n\017buildi"
+    "ng_number\030\002 \001(\r\022\030\n\020apartment_number\030\003 \001("
+    "\rb\010editionsp\350\007"
 };
 static ::absl::once_flag descriptor_table_smart_5fparcel_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_smart_5fparcel_2eproto = {
     false,
     false,
-    2415,
+    2414,
     descriptor_table_protodef_smart_5fparcel_2eproto,
     "smart_parcel.proto",
     &descriptor_table_smart_5fparcel_2eproto_once,
@@ -6834,7 +6834,7 @@ inline PROTOBUF_NDEBUG_INLINE Parcel::Impl_::Impl_(
     const Impl_& from, const ::smart::parcel::Parcel& from_msg)
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
-        photo_base64_(arena, from.photo_base64_) {}
+        photo_bytes_(arena, from.photo_bytes_) {}
 
 Parcel::Parcel(
     ::google::protobuf::Arena* arena,
@@ -6867,7 +6867,7 @@ inline PROTOBUF_NDEBUG_INLINE Parcel::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : _cached_size_{0},
-        photo_base64_(arena) {}
+        photo_bytes_(arena) {}
 
 inline void Parcel::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
@@ -6886,7 +6886,7 @@ inline void Parcel::SharedDtor(MessageLite& self) {
   Parcel& this_ = static_cast<Parcel&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
-  this_._impl_.photo_base64_.Destroy();
+  this_._impl_.photo_bytes_.Destroy();
   delete this_._impl_.address_;
   this_._impl_.~Impl_();
 }
@@ -6927,7 +6927,7 @@ const ::google::protobuf::internal::ClassData* Parcel::GetClassData() const {
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 5, 1, 40, 2> Parcel::_table_ = {
+const ::_pbi::TcParseTable<3, 5, 1, 0, 2> Parcel::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(Parcel, _impl_._has_bits_),
     0, // no _extensions_
@@ -6958,9 +6958,9 @@ const ::_pbi::TcParseTable<3, 5, 1, 40, 2> Parcel::_table_ = {
     // uint32 recipient_id = 4;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Parcel, _impl_.recipient_id_), 4>(),
      {32, 4, 0, PROTOBUF_FIELD_OFFSET(Parcel, _impl_.recipient_id_)}},
-    // string photo_base64 = 5;
-    {::_pbi::TcParser::FastUS1,
-     {42, 0, 0, PROTOBUF_FIELD_OFFSET(Parcel, _impl_.photo_base64_)}},
+    // bytes photo_bytes = 5;
+    {::_pbi::TcParser::FastBS1,
+     {42, 0, 0, PROTOBUF_FIELD_OFFSET(Parcel, _impl_.photo_bytes_)}},
     {::_pbi::TcParser::MiniParse, {}},
     {::_pbi::TcParser::MiniParse, {}},
   }}, {{
@@ -6978,15 +6978,12 @@ const ::_pbi::TcParseTable<3, 5, 1, 40, 2> Parcel::_table_ = {
     // uint32 recipient_id = 4;
     {PROTOBUF_FIELD_OFFSET(Parcel, _impl_.recipient_id_), _Internal::kHasBitsOffset + 4, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kUInt32)},
-    // string photo_base64 = 5;
-    {PROTOBUF_FIELD_OFFSET(Parcel, _impl_.photo_base64_), _Internal::kHasBitsOffset + 0, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // bytes photo_bytes = 5;
+    {PROTOBUF_FIELD_OFFSET(Parcel, _impl_.photo_bytes_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kBytes | ::_fl::kRepAString)},
   }}, {{
     {::_pbi::TcParser::GetTable<::smart::parcel::Address>()},
   }}, {{
-    "\23\0\0\0\0\14\0\0"
-    "smart.parcel.Parcel"
-    "photo_base64"
   }},
 };
 
@@ -7000,7 +6997,7 @@ PROTOBUF_NOINLINE void Parcel::Clear() {
   cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000003u) {
     if (cached_has_bits & 0x00000001u) {
-      _impl_.photo_base64_.ClearNonDefaultToEmpty();
+      _impl_.photo_bytes_.ClearNonDefaultToEmpty();
     }
     if (cached_has_bits & 0x00000002u) {
       ABSL_DCHECK(_impl_.address_ != nullptr);
@@ -7060,12 +7057,10 @@ PROTOBUF_NOINLINE void Parcel::Clear() {
                 4, this_._internal_recipient_id(), target);
           }
 
-          // string photo_base64 = 5;
+          // bytes photo_bytes = 5;
           if (cached_has_bits & 0x00000001u) {
-            const std::string& _s = this_._internal_photo_base64();
-            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "smart.parcel.Parcel.photo_base64");
-            target = stream->WriteStringMaybeAliased(5, _s, target);
+            const std::string& _s = this_._internal_photo_bytes();
+            target = stream->WriteBytesMaybeAliased(5, _s, target);
           }
 
           if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
@@ -7094,10 +7089,10 @@ PROTOBUF_NOINLINE void Parcel::Clear() {
           ::_pbi::Prefetch5LinesFrom7Lines(&this_);
           cached_has_bits = this_._impl_._has_bits_[0];
           if (cached_has_bits & 0x0000001fu) {
-            // string photo_base64 = 5;
+            // bytes photo_bytes = 5;
             if (cached_has_bits & 0x00000001u) {
-              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                              this_._internal_photo_base64());
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
+                                              this_._internal_photo_bytes());
             }
             // .smart.parcel.Address address = 2;
             if (cached_has_bits & 0x00000002u) {
@@ -7136,7 +7131,7 @@ void Parcel::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::
   cached_has_bits = from._impl_._has_bits_[0];
   if (cached_has_bits & 0x0000001fu) {
     if (cached_has_bits & 0x00000001u) {
-      _this->_internal_set_photo_base64(from._internal_photo_base64());
+      _this->_internal_set_photo_bytes(from._internal_photo_bytes());
     }
     if (cached_has_bits & 0x00000002u) {
       ABSL_DCHECK(from._impl_.address_ != nullptr);
@@ -7175,7 +7170,7 @@ void Parcel::InternalSwap(Parcel* PROTOBUF_RESTRICT other) {
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.photo_base64_, &other->_impl_.photo_base64_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.photo_bytes_, &other->_impl_.photo_bytes_, arena);
   ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(Parcel, _impl_.recipient_id_)
       + sizeof(Parcel::_impl_.recipient_id_)

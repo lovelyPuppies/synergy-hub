@@ -1,0 +1,30 @@
+# This file defines the nanopb-specific options for the messages defined
+# in fileproto.proto.
+#
+# If you come from high-level programming background, the hardcoded
+# maximum lengths may disgust you. However, if your microcontroller only
+# has a few kB of ram to begin with, setting reasonable limits for
+# filenames is ok.
+#
+# On the other hand, using the callback interface, it is not necessary
+# to set a limit on the number of files in the response.
+
+# * include:"sys/types.h"
+# * include:"dirent.h"
+
+smart.parcel.Request.source                      max_size:64
+smart.parcel.Request.destination                 max_size:64
+
+smart.parcel.Response.source                     max_size:64
+smart.parcel.Response.destination                max_size:64
+
+smart.parcel.AckStatus.message                   max_size:256
+smart.parcel.ExecutionStatus.message             max_size:256
+
+smart.parcel.Storage.Locker.access_code          max_size:32
+
+# + 10%
+smart.parcel.Parcel.photo_bytes                  max_size:688128
+smart.parcel.Parcel.photo_bytes                  type:FT_IGNORE
+
+smart.parcel.ApartmentAddress.apartment_complex  max_size:128

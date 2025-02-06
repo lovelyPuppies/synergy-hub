@@ -10,7 +10,7 @@ package smart.parcel;
 // 📝 클라이언트에서는 동기적인 요청을 가정하고 만든 것이라 비동기 요청인 경우, 클라이언트측에서 
 // 🧮
 //    protoc -I=. --cpp_out=../../socket_iot_system/src/common/protobuf_cpp smart_parcel.proto
-//    nanopb_generator --output-dir=../../socket_iot_system/src/common/protobuf_c smart_parcel.proto
+//    nanopb_generator --options-file=smart_parcel-nanopb.options --output-dir=../../socket_iot_system/src/common/protobuf_c smart_parcel.proto
 
 // source /home/wbfw109v2/.cache/pypoetry/virtualenvs/python-study-WVteXKC2-py3.13/bin/activate.fish
 // 소자의 특성, RLC ghlfh. 
@@ -195,8 +195,8 @@ message Parcel {
   Address address = 2;
   uint32 shipper_id = 3;
   uint32 recipient_id = 4;
-  // Base64 Size for JPEG: 1920x1080  ->  (1920 * 1080 * 3) / 10 (JPEG compression) * 4/3 (Base64) = 810 KB
-  string photo_base64 = 5;
+  // 🖼️ Raw JPEG Image Data (Binary); Estimated size for 1920x1080 JPEG: (1920 * 1080 * 3) / 10 (JPEG compression) ≈ 622 KB
+  bytes photo_bytes = 5;
 }
 
 // -------------------------

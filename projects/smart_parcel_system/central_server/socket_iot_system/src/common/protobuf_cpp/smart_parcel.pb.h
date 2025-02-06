@@ -4101,27 +4101,27 @@ class Parcel final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kPhotoBase64FieldNumber = 5,
+    kPhotoBytesFieldNumber = 5,
     kAddressFieldNumber = 2,
     kIdFieldNumber = 1,
     kShipperIdFieldNumber = 3,
     kRecipientIdFieldNumber = 4,
   };
-  // string photo_base64 = 5;
-  bool has_photo_base64() const;
-  void clear_photo_base64() ;
-  const std::string& photo_base64() const;
+  // bytes photo_bytes = 5;
+  bool has_photo_bytes() const;
+  void clear_photo_bytes() ;
+  const std::string& photo_bytes() const;
   template <typename Arg_ = const std::string&, typename... Args_>
-  void set_photo_base64(Arg_&& arg, Args_... args);
-  std::string* mutable_photo_base64();
-  PROTOBUF_NODISCARD std::string* release_photo_base64();
-  void set_allocated_photo_base64(std::string* value);
+  void set_photo_bytes(Arg_&& arg, Args_... args);
+  std::string* mutable_photo_bytes();
+  PROTOBUF_NODISCARD std::string* release_photo_bytes();
+  void set_allocated_photo_bytes(std::string* value);
 
   private:
-  const std::string& _internal_photo_base64() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_photo_base64(
+  const std::string& _internal_photo_bytes() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_photo_bytes(
       const std::string& value);
-  std::string* _internal_mutable_photo_base64();
+  std::string* _internal_mutable_photo_bytes();
 
   public:
   // .smart.parcel.Address address = 2;
@@ -4178,7 +4178,7 @@ class Parcel final : public ::google::protobuf::Message
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       3, 5, 1,
-      40, 2>
+      0, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -4197,7 +4197,7 @@ class Parcel final : public ::google::protobuf::Message
                           const Parcel& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::internal::ArenaStringPtr photo_base64_;
+    ::google::protobuf::internal::ArenaStringPtr photo_bytes_;
     ::smart::parcel::Address* address_;
     ::uint32_t id_;
     ::uint32_t shipper_id_;
@@ -8048,73 +8048,73 @@ inline void Parcel::_internal_set_recipient_id(::uint32_t value) {
   _impl_.recipient_id_ = value;
 }
 
-// string photo_base64 = 5;
-inline bool Parcel::has_photo_base64() const {
+// bytes photo_bytes = 5;
+inline bool Parcel::has_photo_bytes() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   return value;
 }
-inline void Parcel::clear_photo_base64() {
+inline void Parcel::clear_photo_bytes() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.photo_base64_.ClearToEmpty();
+  _impl_.photo_bytes_.ClearToEmpty();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const std::string& Parcel::photo_base64() const
+inline const std::string& Parcel::photo_bytes() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:smart.parcel.Parcel.photo_base64)
-  return _internal_photo_base64();
+  // @@protoc_insertion_point(field_get:smart.parcel.Parcel.photo_bytes)
+  return _internal_photo_bytes();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void Parcel::set_photo_base64(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void Parcel::set_photo_bytes(Arg_&& arg,
                                                      Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
-  _impl_.photo_base64_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:smart.parcel.Parcel.photo_base64)
+  _impl_.photo_bytes_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:smart.parcel.Parcel.photo_bytes)
 }
-inline std::string* Parcel::mutable_photo_base64() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_photo_base64();
-  // @@protoc_insertion_point(field_mutable:smart.parcel.Parcel.photo_base64)
+inline std::string* Parcel::mutable_photo_bytes() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_photo_bytes();
+  // @@protoc_insertion_point(field_mutable:smart.parcel.Parcel.photo_bytes)
   return _s;
 }
-inline const std::string& Parcel::_internal_photo_base64() const {
+inline const std::string& Parcel::_internal_photo_bytes() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.photo_base64_.Get();
+  return _impl_.photo_bytes_.Get();
 }
-inline void Parcel::_internal_set_photo_base64(const std::string& value) {
+inline void Parcel::_internal_set_photo_bytes(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
-  _impl_.photo_base64_.Set(value, GetArena());
+  _impl_.photo_bytes_.Set(value, GetArena());
 }
-inline std::string* Parcel::_internal_mutable_photo_base64() {
+inline std::string* Parcel::_internal_mutable_photo_bytes() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
-  return _impl_.photo_base64_.Mutable( GetArena());
+  return _impl_.photo_bytes_.Mutable( GetArena());
 }
-inline std::string* Parcel::release_photo_base64() {
+inline std::string* Parcel::release_photo_bytes() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:smart.parcel.Parcel.photo_base64)
+  // @@protoc_insertion_point(field_release:smart.parcel.Parcel.photo_bytes)
   if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
     return nullptr;
   }
   _impl_._has_bits_[0] &= ~0x00000001u;
-  auto* released = _impl_.photo_base64_.Release();
+  auto* released = _impl_.photo_bytes_.Release();
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
-    _impl_.photo_base64_.Set("", GetArena());
+    _impl_.photo_bytes_.Set("", GetArena());
   }
   return released;
 }
-inline void Parcel::set_allocated_photo_base64(std::string* value) {
+inline void Parcel::set_allocated_photo_bytes(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  _impl_.photo_base64_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.photo_base64_.IsDefault()) {
-    _impl_.photo_base64_.Set("", GetArena());
+  _impl_.photo_bytes_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.photo_bytes_.IsDefault()) {
+    _impl_.photo_bytes_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:smart.parcel.Parcel.photo_base64)
+  // @@protoc_insertion_point(field_set_allocated:smart.parcel.Parcel.photo_bytes)
 }
 
 // -------------------------------------------------------------------

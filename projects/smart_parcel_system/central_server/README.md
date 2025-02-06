@@ -98,3 +98,4 @@
 ## TODO
 
 - Cross compile: Protobuf, Boost
+- Callback Implementation for nanoPB instead of fixed message size

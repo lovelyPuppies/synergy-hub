@@ -32,14 +32,16 @@ typedef enum _smart_parcel_Elevator_DoorOpenStatus {
 typedef struct _smart_parcel_AckStatus {
     bool has_code;
     smart_parcel_AckStatus_StatusCode code;
-    pb_callback_t message;
+    bool has_message;
+    char message[256];
 } smart_parcel_AckStatus;
 
 /* Indicates the execution result of the received Request. */
 typedef struct _smart_parcel_ExecutionStatus {
     bool has_code;
     smart_parcel_ExecutionStatus_StatusCode code;
-    pb_callback_t message;
+    bool has_message;
+    char message[256];
 } smart_parcel_ExecutionStatus;
 
 typedef struct _smart_parcel_CreateParcelResponse {
@@ -65,8 +67,10 @@ typedef struct _smart_parcel_MoveDeliveryRobotResponse {
 
 /* 📩 A response message to a request that does not expect further replies, including ✅ ACK. */
 typedef struct _smart_parcel_Response {
-    pb_callback_t source;
-    pb_callback_t destination;
+    bool has_source;
+    char source[64];
+    bool has_destination;
+    char destination[64];
     bool has_ack_status;
     smart_parcel_AckStatus ack_status;
     bool has_execution_status;
@@ -143,13 +147,15 @@ typedef struct _smart_parcel_Storage {
 typedef struct _smart_parcel_Storage_Locker {
     bool has_locker_id;
     uint32_t locker_id;
-    pb_callback_t access_code;
+    bool has_access_code;
+    char access_code[32];
     bool has_parcel_id;
     uint32_t parcel_id;
 } smart_parcel_Storage_Locker;
 
 typedef struct _smart_parcel_ApartmentAddress {
-    pb_callback_t apartment_complex;
+    bool has_apartment_complex;
+    char apartment_complex[128];
     bool has_building_number;
     uint32_t building_number;
     bool has_apartment_number;
@@ -175,9 +181,11 @@ typedef struct _smart_parcel_MoveDeliveryRobotRequest {
  -------------------------
  📨 A request message that expects a response from the destination. */
 typedef struct _smart_parcel_Request {
-    pb_callback_t source;
+    bool has_source;
+    char source[64];
     /* 🔘 If the `destination` field is omitted, the request is assumed to be directed to the server; otherwise, it is sent to the specified node. */
-    pb_callback_t destination;
+    bool has_destination;
+    char destination[64];
     pb_size_t which_command;
     union {
         smart_parcel_SetElevatorStatusRequest set_elevator_status_request;
@@ -203,8 +211,6 @@ typedef struct _smart_parcel_Parcel {
     uint32_t shipper_id;
     bool has_recipient_id;
     uint32_t recipient_id;
-    /* Base64 Size for JPEG: 1920x1080  ->  (1920 * 1080 * 3) / 10 (JPEG compression) * 4/3 (Base64) = 810 KB */
-    pb_callback_t photo_base64;
 } smart_parcel_Parcel;
 
 /* -------------------------
@@ -262,11 +268,11 @@ extern "C" {
 
 
 /* Initializer values for message structs */
-#define smart_parcel_Request_init_default        {{{NULL}, NULL}, {{NULL}, NULL}, 0, {smart_parcel_SetElevatorStatusRequest_init_default}}
-#define smart_parcel_Response_init_default       {{{NULL}, NULL}, {{NULL}, NULL}, false, smart_parcel_AckStatus_init_default, false, smart_parcel_ExecutionStatus_init_default, 0, {smart_parcel_SetElevatorStatusResponse_init_default}}
+#define smart_parcel_Request_init_default        {false, "", false, "", 0, {smart_parcel_SetElevatorStatusRequest_init_default}}
+#define smart_parcel_Response_init_default       {false, "", false, "", false, smart_parcel_AckStatus_init_default, false, smart_parcel_ExecutionStatus_init_default, 0, {smart_parcel_SetElevatorStatusResponse_init_default}}
 #define smart_parcel_NodeEvent_init_default      {{{NULL}, NULL}, {{NULL}, NULL}, 0, {smart_parcel_ElevatorStatusEvent_init_default}}
-#define smart_parcel_AckStatus_init_default      {false, _smart_parcel_AckStatus_StatusCode_MIN, {{NULL}, NULL}}
-#define smart_parcel_ExecutionStatus_init_default {false, _smart_parcel_ExecutionStatus_StatusCode_MIN, {{NULL}, NULL}}
+#define smart_parcel_AckStatus_init_default      {false, _smart_parcel_AckStatus_StatusCode_MIN, false, ""}
+#define smart_parcel_ExecutionStatus_init_default {false, _smart_parcel_ExecutionStatus_StatusCode_MIN, false, ""}
 #define smart_parcel_CreateParcelRequest_init_default {false, smart_parcel_Parcel_init_default}
 #define smart_parcel_CreateParcelResponse_init_default {0}
 #define smart_parcel_GetParcelInfosRequest_init_default {false, 0}
@@ -281,16 +287,16 @@ extern "C" {
 #define smart_parcel_Elevator_Status_init_default {false, 0, false, _smart_parcel_Elevator_DoorOpenStatus_MIN}
 #define smart_parcel_DeliveryRobot_init_default  {false, 0}
 #define smart_parcel_Storage_init_default        {false, 0, {{NULL}, NULL}}
-#define smart_parcel_Storage_Locker_init_default {false, 0, {{NULL}, NULL}, false, 0}
+#define smart_parcel_Storage_Locker_init_default {false, 0, false, "", false, 0}
 #define smart_parcel_User_init_default           {false, 0, false, smart_parcel_Address_init_default}
-#define smart_parcel_Parcel_init_default         {false, 0, false, smart_parcel_Address_init_default, false, 0, false, 0, {{NULL}, NULL}}
+#define smart_parcel_Parcel_init_default         {false, 0, false, smart_parcel_Address_init_default, false, 0, false, 0}
 #define smart_parcel_Address_init_default        {0, {smart_parcel_ApartmentAddress_init_default}}
-#define smart_parcel_ApartmentAddress_init_default {{{NULL}, NULL}, false, 0, false, 0}
-#define smart_parcel_Request_init_zero           {{{NULL}, NULL}, {{NULL}, NULL}, 0, {smart_parcel_SetElevatorStatusRequest_init_zero}}
-#define smart_parcel_Response_init_zero          {{{NULL}, NULL}, {{NULL}, NULL}, false, smart_parcel_AckStatus_init_zero, false, smart_parcel_ExecutionStatus_init_zero, 0, {smart_parcel_SetElevatorStatusResponse_init_zero}}
+#define smart_parcel_ApartmentAddress_init_default {false, "", false, 0, false, 0}
+#define smart_parcel_Request_init_zero           {false, "", false, "", 0, {smart_parcel_SetElevatorStatusRequest_init_zero}}
+#define smart_parcel_Response_init_zero          {false, "", false, "", false, smart_parcel_AckStatus_init_zero, false, smart_parcel_ExecutionStatus_init_zero, 0, {smart_parcel_SetElevatorStatusResponse_init_zero}}
 #define smart_parcel_NodeEvent_init_zero         {{{NULL}, NULL}, {{NULL}, NULL}, 0, {smart_parcel_ElevatorStatusEvent_init_zero}}
-#define smart_parcel_AckStatus_init_zero         {false, _smart_parcel_AckStatus_StatusCode_MIN, {{NULL}, NULL}}
-#define smart_parcel_ExecutionStatus_init_zero   {false, _smart_parcel_ExecutionStatus_StatusCode_MIN, {{NULL}, NULL}}
+#define smart_parcel_AckStatus_init_zero         {false, _smart_parcel_AckStatus_StatusCode_MIN, false, ""}
+#define smart_parcel_ExecutionStatus_init_zero   {false, _smart_parcel_ExecutionStatus_StatusCode_MIN, false, ""}
 #define smart_parcel_CreateParcelRequest_init_zero {false, smart_parcel_Parcel_init_zero}
 #define smart_parcel_CreateParcelResponse_init_zero {0}
 #define smart_parcel_GetParcelInfosRequest_init_zero {false, 0}
@@ -305,11 +311,11 @@ extern "C" {
 #define smart_parcel_Elevator_Status_init_zero   {false, 0, false, _smart_parcel_Elevator_DoorOpenStatus_MIN}
 #define smart_parcel_DeliveryRobot_init_zero     {false, 0}
 #define smart_parcel_Storage_init_zero           {false, 0, {{NULL}, NULL}}
-#define smart_parcel_Storage_Locker_init_zero    {false, 0, {{NULL}, NULL}, false, 0}
+#define smart_parcel_Storage_Locker_init_zero    {false, 0, false, "", false, 0}
 #define smart_parcel_User_init_zero              {false, 0, false, smart_parcel_Address_init_zero}
-#define smart_parcel_Parcel_init_zero            {false, 0, false, smart_parcel_Address_init_zero, false, 0, false, 0, {{NULL}, NULL}}
+#define smart_parcel_Parcel_init_zero            {false, 0, false, smart_parcel_Address_init_zero, false, 0, false, 0}
 #define smart_parcel_Address_init_zero           {0, {smart_parcel_ApartmentAddress_init_zero}}
-#define smart_parcel_ApartmentAddress_init_zero  {{{NULL}, NULL}, false, 0, false, 0}
+#define smart_parcel_ApartmentAddress_init_zero  {false, "", false, 0, false, 0}
 
 /* Field tags (for use in manual encoding/decoding) */
 #define smart_parcel_AckStatus_code_tag          1
@@ -359,28 +365,27 @@ extern "C" {
 #define smart_parcel_Parcel_address_tag          2
 #define smart_parcel_Parcel_shipper_id_tag       3
 #define smart_parcel_Parcel_recipient_id_tag     4
-#define smart_parcel_Parcel_photo_base64_tag     5
 #define smart_parcel_CreateParcelRequest_parcel_tag 1
 
 /* Struct field encoding specification for nanopb */
 #define smart_parcel_Request_FIELDLIST(X, a) \
-X(a, CALLBACK, OPTIONAL, STRING,   source,            1) \
-X(a, CALLBACK, OPTIONAL, STRING,   destination,       2) \
+X(a, STATIC,   OPTIONAL, STRING,   source,            1) \
+X(a, STATIC,   OPTIONAL, STRING,   destination,       2) \
 X(a, STATIC,   ONEOF,    MESSAGE,  (command,set_elevator_status_request,command.set_elevator_status_request),   3) \
 X(a, STATIC,   ONEOF,    MESSAGE,  (command,move_delivery_robot_request,command.move_delivery_robot_request),   4)
-#define smart_parcel_Request_CALLBACK pb_default_field_callback
+#define smart_parcel_Request_CALLBACK NULL
 #define smart_parcel_Request_DEFAULT NULL
 #define smart_parcel_Request_command_set_elevator_status_request_MSGTYPE smart_parcel_SetElevatorStatusRequest
 #define smart_parcel_Request_command_move_delivery_robot_request_MSGTYPE smart_parcel_MoveDeliveryRobotRequest
 
 #define smart_parcel_Response_FIELDLIST(X, a) \
-X(a, CALLBACK, OPTIONAL, STRING,   source,            1) \
-X(a, CALLBACK, OPTIONAL, STRING,   destination,       2) \
+X(a, STATIC,   OPTIONAL, STRING,   source,            1) \
+X(a, STATIC,   OPTIONAL, STRING,   destination,       2) \
 X(a, STATIC,   OPTIONAL, MESSAGE,  ack_status,        3) \
 X(a, STATIC,   OPTIONAL, MESSAGE,  execution_status,   4) \
 X(a, STATIC,   ONEOF,    MESSAGE,  (command,set_elevator_status_response,command.set_elevator_status_response),   5) \
 X(a, STATIC,   ONEOF,    MESSAGE,  (command,move_delivery_robot_response,command.move_delivery_robot_response),   6)
-#define smart_parcel_Response_CALLBACK pb_default_field_callback
+#define smart_parcel_Response_CALLBACK NULL
 #define smart_parcel_Response_DEFAULT NULL
 #define smart_parcel_Response_ack_status_MSGTYPE smart_parcel_AckStatus
 #define smart_parcel_Response_execution_status_MSGTYPE smart_parcel_ExecutionStatus
@@ -399,14 +404,14 @@ X(a, STATIC,   ONEOF,    MESSAGE,  (event,parcel_status_event,event.parcel_statu
 
 #define smart_parcel_AckStatus_FIELDLIST(X, a) \
 X(a, STATIC,   OPTIONAL, UENUM,    code,              1) \
-X(a, CALLBACK, OPTIONAL, STRING,   message,           2)
-#define smart_parcel_AckStatus_CALLBACK pb_default_field_callback
+X(a, STATIC,   OPTIONAL, STRING,   message,           2)
+#define smart_parcel_AckStatus_CALLBACK NULL
 #define smart_parcel_AckStatus_DEFAULT NULL
 
 #define smart_parcel_ExecutionStatus_FIELDLIST(X, a) \
 X(a, STATIC,   OPTIONAL, UENUM,    code,              1) \
-X(a, CALLBACK, OPTIONAL, STRING,   message,           2)
-#define smart_parcel_ExecutionStatus_CALLBACK pb_default_field_callback
+X(a, STATIC,   OPTIONAL, STRING,   message,           2)
+#define smart_parcel_ExecutionStatus_CALLBACK NULL
 #define smart_parcel_ExecutionStatus_DEFAULT NULL
 
 #define smart_parcel_CreateParcelRequest_FIELDLIST(X, a) \
@@ -494,9 +499,9 @@ X(a, CALLBACK, REPEATED, MESSAGE,  lockers,           2)
 
 #define smart_parcel_Storage_Locker_FIELDLIST(X, a) \
 X(a, STATIC,   OPTIONAL, UINT32,   locker_id,         1) \
-X(a, CALLBACK, OPTIONAL, STRING,   access_code,       2) \
+X(a, STATIC,   OPTIONAL, STRING,   access_code,       2) \
 X(a, STATIC,   OPTIONAL, UINT32,   parcel_id,         3)
-#define smart_parcel_Storage_Locker_CALLBACK pb_default_field_callback
+#define smart_parcel_Storage_Locker_CALLBACK NULL
 #define smart_parcel_Storage_Locker_DEFAULT NULL
 
 #define smart_parcel_User_FIELDLIST(X, a) \
@@ -510,9 +515,8 @@ X(a, STATIC,   OPTIONAL, MESSAGE,  address,           2)
 X(a, STATIC,   OPTIONAL, UINT32,   id,                1) \
 X(a, STATIC,   OPTIONAL, MESSAGE,  address,           2) \
 X(a, STATIC,   OPTIONAL, UINT32,   shipper_id,        3) \
-X(a, STATIC,   OPTIONAL, UINT32,   recipient_id,      4) \
-X(a, CALLBACK, OPTIONAL, STRING,   photo_base64,      5)
-#define smart_parcel_Parcel_CALLBACK pb_default_field_callback
+X(a, STATIC,   OPTIONAL, UINT32,   recipient_id,      4)
+#define smart_parcel_Parcel_CALLBACK NULL
 #define smart_parcel_Parcel_DEFAULT NULL
 #define smart_parcel_Parcel_address_MSGTYPE smart_parcel_Address
 
@@ -523,10 +527,10 @@ X(a, STATIC,   ONEOF,    MESSAGE,  (address_type,apartment_address,address_type.
 #define smart_parcel_Address_address_type_apartment_address_MSGTYPE smart_parcel_ApartmentAddress
 
 #define smart_parcel_ApartmentAddress_FIELDLIST(X, a) \
-X(a, CALLBACK, OPTIONAL, STRING,   apartment_complex,   1) \
+X(a, STATIC,   OPTIONAL, STRING,   apartment_complex,   1) \
 X(a, STATIC,   OPTIONAL, UINT32,   building_number,   2) \
 X(a, STATIC,   OPTIONAL, UINT32,   apartment_number,   3)
-#define smart_parcel_ApartmentAddress_CALLBACK pb_default_field_callback
+#define smart_parcel_ApartmentAddress_CALLBACK NULL
 #define smart_parcel_ApartmentAddress_DEFAULT NULL
 
 extern const pb_msgdesc_t smart_parcel_Request_msg;
@@ -581,31 +585,31 @@ extern const pb_msgdesc_t smart_parcel_ApartmentAddress_msg;
 #define smart_parcel_ApartmentAddress_fields &smart_parcel_ApartmentAddress_msg
 
 /* Maximum encoded size of messages (where known) */
-/* smart_parcel_Request_size depends on runtime parameters */
-/* smart_parcel_Response_size depends on runtime parameters */
 /* smart_parcel_NodeEvent_size depends on runtime parameters */
-/* smart_parcel_AckStatus_size depends on runtime parameters */
-/* smart_parcel_ExecutionStatus_size depends on runtime parameters */
-/* smart_parcel_CreateParcelRequest_size depends on runtime parameters */
 /* smart_parcel_GetParcelInfoResponse_size depends on runtime parameters */
-/* smart_parcel_MoveDeliveryRobotRequest_size depends on runtime parameters */
 /* smart_parcel_Storage_size depends on runtime parameters */
-/* smart_parcel_Storage_Locker_size depends on runtime parameters */
-/* smart_parcel_User_size depends on runtime parameters */
-/* smart_parcel_Parcel_size depends on runtime parameters */
-/* smart_parcel_Address_size depends on runtime parameters */
-/* smart_parcel_ApartmentAddress_size depends on runtime parameters */
-#define SMART_PARCEL_SMART_PARCEL_PB_H_MAX_SIZE  smart_parcel_SetElevatorStatusRequest_size
+#define SMART_PARCEL_SMART_PARCEL_PB_H_MAX_SIZE  smart_parcel_Response_size
+#define smart_parcel_AckStatus_size              260
+#define smart_parcel_Address_size                145
+#define smart_parcel_ApartmentAddress_size       142
+#define smart_parcel_CreateParcelRequest_size    169
 #define smart_parcel_CreateParcelResponse_size   0
 #define smart_parcel_DeliveryRobot_size          6
 #define smart_parcel_ElevatorStatusEvent_size    16
 #define smart_parcel_Elevator_Status_size        8
 #define smart_parcel_Elevator_size               16
+#define smart_parcel_ExecutionStatus_size        260
 #define smart_parcel_GetParcelInfosRequest_size  6
+#define smart_parcel_MoveDeliveryRobotRequest_size 154
 #define smart_parcel_MoveDeliveryRobotResponse_size 0
 #define smart_parcel_ParcelStatusEvent_size      6
+#define smart_parcel_Parcel_size                 166
+#define smart_parcel_Request_size                287
+#define smart_parcel_Response_size               658
 #define smart_parcel_SetElevatorStatusRequest_size 16
 #define smart_parcel_SetElevatorStatusResponse_size 0
+#define smart_parcel_Storage_Locker_size         45
+#define smart_parcel_User_size                   154
 
 #ifdef __cplusplus
 } /* extern "C" */

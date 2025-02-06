@@ -6,19 +6,19 @@
 #error Regenerate this file with the current version of nanopb generator.
 #endif
 
-PB_BIND(smart_parcel_Request, smart_parcel_Request, AUTO)
+PB_BIND(smart_parcel_Request, smart_parcel_Request, 2)
 
 
-PB_BIND(smart_parcel_Response, smart_parcel_Response, AUTO)
+PB_BIND(smart_parcel_Response, smart_parcel_Response, 2)
 
 
 PB_BIND(smart_parcel_NodeEvent, smart_parcel_NodeEvent, AUTO)
 
 
-PB_BIND(smart_parcel_AckStatus, smart_parcel_AckStatus, AUTO)
+PB_BIND(smart_parcel_AckStatus, smart_parcel_AckStatus, 2)
 
 
-PB_BIND(smart_parcel_ExecutionStatus, smart_parcel_ExecutionStatus, AUTO)
+PB_BIND(smart_parcel_ExecutionStatus, smart_parcel_ExecutionStatus, 2)
 
 
 PB_BIND(smart_parcel_CreateParcelRequest, smart_parcel_CreateParcelRequest, AUTO)
