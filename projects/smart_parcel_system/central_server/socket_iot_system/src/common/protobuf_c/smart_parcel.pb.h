@@ -110,8 +110,10 @@ typedef struct _smart_parcel_ElevatorStatusEvent {
 
 /* ⏬ Events; A one-way message that notifies the system about status updates without expecting any response. */
 typedef struct _smart_parcel_NodeEvent {
-    pb_callback_t source;
-    pb_callback_t destination;
+    bool has_source;
+    char source[64];
+    bool has_destination;
+    char destination[64];
     pb_size_t which_event;
     union {
         smart_parcel_ElevatorStatusEvent elevator_status_event;
@@ -270,7 +272,7 @@ extern "C" {
 /* Initializer values for message structs */
 #define smart_parcel_Request_init_default        {false, "", false, "", 0, {smart_parcel_SetElevatorStatusRequest_init_default}}
 #define smart_parcel_Response_init_default       {false, "", false, "", false, smart_parcel_AckStatus_init_default, false, smart_parcel_ExecutionStatus_init_default, 0, {smart_parcel_SetElevatorStatusResponse_init_default}}
-#define smart_parcel_NodeEvent_init_default      {{{NULL}, NULL}, {{NULL}, NULL}, 0, {smart_parcel_ElevatorStatusEvent_init_default}}
+#define smart_parcel_NodeEvent_init_default      {false, "", false, "", 0, {smart_parcel_ElevatorStatusEvent_init_default}}
 #define smart_parcel_AckStatus_init_default      {false, _smart_parcel_AckStatus_StatusCode_MIN, false, ""}
 #define smart_parcel_ExecutionStatus_init_default {false, _smart_parcel_ExecutionStatus_StatusCode_MIN, false, ""}
 #define smart_parcel_CreateParcelRequest_init_default {false, smart_parcel_Parcel_init_default}
@@ -294,7 +296,7 @@ extern "C" {
 #define smart_parcel_ApartmentAddress_init_default {false, "", false, 0, false, 0}
 #define smart_parcel_Request_init_zero           {false, "", false, "", 0, {smart_parcel_SetElevatorStatusRequest_init_zero}}
 #define smart_parcel_Response_init_zero          {false, "", false, "", false, smart_parcel_AckStatus_init_zero, false, smart_parcel_ExecutionStatus_init_zero, 0, {smart_parcel_SetElevatorStatusResponse_init_zero}}
-#define smart_parcel_NodeEvent_init_zero         {{{NULL}, NULL}, {{NULL}, NULL}, 0, {smart_parcel_ElevatorStatusEvent_init_zero}}
+#define smart_parcel_NodeEvent_init_zero         {false, "", false, "", 0, {smart_parcel_ElevatorStatusEvent_init_zero}}
 #define smart_parcel_AckStatus_init_zero         {false, _smart_parcel_AckStatus_StatusCode_MIN, false, ""}
 #define smart_parcel_ExecutionStatus_init_zero   {false, _smart_parcel_ExecutionStatus_StatusCode_MIN, false, ""}
 #define smart_parcel_CreateParcelRequest_init_zero {false, smart_parcel_Parcel_init_zero}
@@ -393,11 +395,11 @@ X(a, STATIC,   ONEOF,    MESSAGE,  (command,move_delivery_robot_response,command
 #define smart_parcel_Response_command_move_delivery_robot_response_MSGTYPE smart_parcel_MoveDeliveryRobotResponse
 
 #define smart_parcel_NodeEvent_FIELDLIST(X, a) \
-X(a, CALLBACK, OPTIONAL, STRING,   source,            1) \
-X(a, CALLBACK, OPTIONAL, STRING,   destination,       2) \
+X(a, STATIC,   OPTIONAL, STRING,   source,            1) \
+X(a, STATIC,   OPTIONAL, STRING,   destination,       2) \
 X(a, STATIC,   ONEOF,    MESSAGE,  (event,elevator_status_event,event.elevator_status_event),   3) \
 X(a, STATIC,   ONEOF,    MESSAGE,  (event,parcel_status_event,event.parcel_status_event),   4)
-#define smart_parcel_NodeEvent_CALLBACK pb_default_field_callback
+#define smart_parcel_NodeEvent_CALLBACK NULL
 #define smart_parcel_NodeEvent_DEFAULT NULL
 #define smart_parcel_NodeEvent_event_elevator_status_event_MSGTYPE smart_parcel_ElevatorStatusEvent
 #define smart_parcel_NodeEvent_event_parcel_status_event_MSGTYPE smart_parcel_ParcelStatusEvent
@@ -585,7 +587,6 @@ extern const pb_msgdesc_t smart_parcel_ApartmentAddress_msg;
 #define smart_parcel_ApartmentAddress_fields &smart_parcel_ApartmentAddress_msg
 
 /* Maximum encoded size of messages (where known) */
-/* smart_parcel_NodeEvent_size depends on runtime parameters */
 /* smart_parcel_GetParcelInfoResponse_size depends on runtime parameters */
 /* smart_parcel_Storage_size depends on runtime parameters */
 #define SMART_PARCEL_SMART_PARCEL_PB_H_MAX_SIZE  smart_parcel_Response_size
@@ -602,6 +603,7 @@ extern const pb_msgdesc_t smart_parcel_ApartmentAddress_msg;
 #define smart_parcel_GetParcelInfosRequest_size  6
 #define smart_parcel_MoveDeliveryRobotRequest_size 154
 #define smart_parcel_MoveDeliveryRobotResponse_size 0
+#define smart_parcel_NodeEvent_size              148
 #define smart_parcel_ParcelStatusEvent_size      6
 #define smart_parcel_Parcel_size                 166
 #define smart_parcel_Request_size                287

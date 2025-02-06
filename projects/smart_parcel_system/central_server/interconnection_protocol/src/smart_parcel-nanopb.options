@@ -18,6 +18,9 @@ smart.parcel.Request.destination                 max_size:64
 smart.parcel.Response.source                     max_size:64
 smart.parcel.Response.destination                max_size:64
 
+smart.parcel.NodeEvent.source                     max_size:64
+smart.parcel.NodeEvent.destination                max_size:64
+
 smart.parcel.AckStatus.message                   max_size:256
 smart.parcel.ExecutionStatus.message             max_size:256
 
