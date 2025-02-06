@@ -51,20 +51,20 @@ RUN ./b2 install --user-config=user-config.jam --without-python --prefix=/opt/${
     threading=multi variant=release link=shared runtime-link=shared > build-release-shared.log
 
 
-### 🎯 Target Triple: aarch64-linux-gnu
+### 🎯 Target Triple: aarch64-linux-gnu 📰 TODO.. 
 # https://www.boost.org/build/doc/html/bbv2/tasks/crosscompile.html
-RUN ln --symbolic --force user-config.jam /workspace/raspberry_pi-4-user-config.jam
-## Configure
-RUN ./bootstrap.sh
+# RUN ln --symbolic --force user-config.jam /workspace/raspberry_pi-4-user-config.jam
+# ## Configure
+# RUN ./bootstrap.sh
 
-## Install
-RUN ./b2 install --user-config=user-config.jam --without-python --prefix=/opt/${PACKAGE_NAME}/release-static --build-dir=build/release-static \
-    toolset=gcc-aarch64 threading=multi variant=release link=static runtime-link=shared > build-release-static.log
-RUN ./b2 install --user-config=user-config.jam --without-python --prefix=/opt/${PACKAGE_NAME}/release-shared --build-dir=build/release-shared \
-    toolset=gcc-aarch64 threading=multi variant=release link=shared runtime-link=shared > build-release-shared.log
+# ## Install
+# RUN ./b2 install --user-config=user-config.jam --without-python --prefix=/opt/${PACKAGE_NAME}/release-static --build-dir=build/release-static \
+#     toolset=gcc-aarch64 threading=multi variant=release link=static runtime-link=shared > build-release-static.log
+# RUN ./b2 install --user-config=user-config.jam --without-python --prefix=/opt/${PACKAGE_NAME}/release-shared --build-dir=build/release-shared \
+#     toolset=gcc-aarch64 threading=multi variant=release link=shared runtime-link=shared > build-release-shared.log
 
-./b2 install --user-config=user-config.jam --without-python --prefix=/opt/boost/aarch64-linux-gnu/release-shared --build-dir=build/aarch64-linux-gnu/release-shared \
-    threading=multi variant=release link=shared runtime-link=shared
+# ./b2 install --user-config=user-config.jam --without-python --prefix=/opt/boost/aarch64-linux-gnu/release-shared --build-dir=build/aarch64-linux-gnu/release-shared \
+#     threading=multi variant=release link=shared runtime-link=shared
 ###
 CMD ["bash"]
 

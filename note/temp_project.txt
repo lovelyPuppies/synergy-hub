@@ -19935,3 +19935,7 @@ Gu.The Software
 
 
 https://mariadb.com/kb/en/window-functions/
+
+
+temp.
+  sprintf

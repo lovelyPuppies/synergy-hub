@@ -1,3 +1,5 @@
+// socket_iot_system/build/linux-debug-clang-19-x86_64/iot_client_c 10.10.14.19 1234 Hello
+
 /* =========================
  *  Includes and Definitions
  * ========================= */
@@ -17,19 +19,18 @@
 // Define buffer and name size limits
 #define BUF_SIZE  100
 #define NAME_SIZE 20
-#define ARR_CNT   5
 
 /* =========================
  *  Global Variables
  * ========================= */
 // Global variables for storing the client’s name and message data
-char name[NAME_SIZE] = "[Default]";
+char name[NAME_SIZE] = "elevator_1";
 char msg[BUF_SIZE];
 
 /* =========================
  *  Function Prototypes
  * ========================= */
-// Function declarations for sending, receiving, and handling errors
+// Function declarations for sending, receiving for 🧵 threading, and handling errors
 void *send_msg(void *arg);
 void *recv_msg(void *arg);
 void error_handling(char *message);
@@ -39,8 +40,10 @@ void error_handling(char *message);
  * ========================= */
 int main(int argc, char *argv[]) {
   // Variables for socket, server address, and thread management
+
+  // 🚣 sock: file descriptor
   int sock;
-  struct sockaddr_in serv_addr;
+  struct sockaddr_in server_address;
   pthread_t snd_thread, rcv_thread;
   void *thread_return;
 
@@ -53,19 +56,24 @@ int main(int argc, char *argv[]) {
   // Assign the client name from command line arguments.
   sprintf(name, "%s", argv[3]);
 
-  // Create a socket with IPv4 and TCP specifications.
+  // Create a socket with IPv4 (PF_INET: Protocol Family Internet) and TCP (SOCK_STREAM: Stream Socket) specifications.
+  // The '0' value automatically selects the appropriate protocol for the socket type:
+  //    SOCK_STREAM selects TCP (Transmission Control Protocol) by default, while SOCK_DGRAM selects UDP (User Datagram Protocol) by default.
   sock = socket(PF_INET, SOCK_STREAM, 0);
   if (sock == -1)
     error_handling("socket() error");
 
   // Initialize the serv_addr structure to zero and set server info.
-  memset(&serv_addr, 0, sizeof(serv_addr));
-  serv_addr.sin_family = AF_INET;
-  serv_addr.sin_addr.s_addr = inet_addr(argv[1]);
-  serv_addr.sin_port = htons(atoi(argv[2]));
+  memset(&server_address, 0, sizeof(server_address));
+  server_address.sin_family = AF_INET;
+  // 🚣 inet_addr: Convert Internet host address from numbers-and-dots notation in CP into binary data in 🚣 network byte order.
+  server_address.sin_addr.s_addr = inet_addr(argv[1]);
+  server_address.sin_port = htons(atoi(argv[2]));
 
   // Connect to the server, exit on failure.
-  if (connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) == -1)
+  // 💡 Cast sockaddr_in to sockaddr because connect() expects a sockaddr pointer. No data change in memory, only type casting is performed.
+  if (connect(sock, (struct sockaddr *)&server_address,
+              sizeof(server_address)) == -1)
     error_handling("connect() error");
 
   // Send initial message with client name for authentication.
@@ -73,6 +81,7 @@ int main(int argc, char *argv[]) {
   write(sock, msg, strlen(msg));
 
   // Create threads for handling message send and receive.
+  // 💡 Cast &sock to (void*) for passing as a thread argument, no data change, only type casting.
   pthread_create(&rcv_thread, NULL, recv_msg, (void *)&sock);
   pthread_create(&snd_thread, NULL, send_msg, (void *)&sock);
 
@@ -148,7 +157,7 @@ void *recv_msg(void *arg) {
     memset(name_msg, 0x0, sizeof(name_msg));
     int str_len = read(*sock, name_msg, NAME_SIZE + BUF_SIZE);
 
-    // If no data is received, set socket to -1 and exit.
+    // 🚣 If read() returns 0 (EOF (socket closed)) or an error occurs, mark socket as closed and exit.
     if (str_len <= 0) {
       *sock = -1;
       return NULL;

@@ -1929,3 +1929,7 @@ https://protobuf.dev/support/migration/
     For Bazel builds, Abseil will be automatically downloaded and built at a pinned LTS release when protobuf_deps is run from your WORKSPACE. This should be transparent, but if you depend on an older version of Abseil, you’ll need to upgrade your dependency.
     For CMake builds, we will first look for an existing Abseil installation pulled in by the top-level CMake configuration (see instructions). Otherwise, if protobuf_ABSL_PROVIDER is set to module (its default) we will attempt to build and link Abseil from our git submodule. If protobuf_ABSL_PROVIDER is set to package, we will look for a pre-installed system version of Abseil.
   
+
+  sprintf : string print; 문자열을 포맷하여 출력.
+
+*파일 디스크립터(file descriptor, FD)**는 운영체제에서 파일, 소켓, 표준 입력 등 모든 I/O 자원을 다룰 때 사용하는 정수 값이다.
