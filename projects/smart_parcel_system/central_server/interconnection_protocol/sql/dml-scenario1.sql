@@ -31,17 +31,31 @@ INSERT INTO lockers (storage_id) VALUES (1), (1), (2), (2);
 INSERT INTO parcels (recipient_id, name) VALUES (1, '노트북'), (1, '책');
 
 -- 📦 빈 보관함을 찾아 최신 택배를 할당
+-- 📍 UPDATE multiple rows with different values in one query 📅 2025-02-07 01:20:05
 UPDATE parcels p
 JOIN (
-    SELECT id FROM lockers
-    WHERE storage_id = 1
-    AND id NOT IN (SELECT locker_id FROM parcels WHERE locker_id IS NOT NULL)
-    ORDER BY id ASC
-    LIMIT 2
-) l
-SET p.locker_id = l.id
-WHERE p.delivery_status = 'pending' AND p.locker_id IS NULL
-LIMIT 2;
+    SELECT 
+        p.id AS parcel_id, 
+        l.id AS locker_id
+    FROM (
+        SELECT id, ROW_NUMBER() OVER () AS rownum FROM parcels 
+        WHERE delivery_status = 'pending' 
+        AND locker_id IS NULL 
+        ORDER BY id ASC 
+        LIMIT 10  -- ⚙️ 한번에 최대 10개 업데이트 (설정 가능)
+    ) p
+    JOIN (
+        SELECT id, ROW_NUMBER() OVER () AS rownum FROM lockers 
+        WHERE storage_id = 1 
+        AND id NOT IN (SELECT locker_id FROM parcels WHERE locker_id IS NOT NULL) 
+        ORDER BY id ASC 
+        LIMIT 10  -- ⚙️ 보관함도 한번에 최대 10개 가져옴
+    ) l
+    ON p.rownum = l.rownum  -- 🚀 1:1 매칭
+) temp
+ON p.id = temp.parcel_id
+SET p.locker_id = temp.locker_id;
+
 
 -- ➡️ SELECT * FROM parcels; SELECT * FROM lockers;
 --
@@ -70,3 +84,6 @@ UPDATE parcels
 SET delivery_image_path = '/images/delivery_1.jpg',
     delivery_status = 'delivered'
 WHERE recipient_id = 1 AND delivery_status = 'in_transit';
+
+
+

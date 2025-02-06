@@ -1,6 +1,5 @@
 {
   "python.analysis.indexing": true,
-  "python.analysis.memory.keepLibraryAst": true,
   "python.analysis.logLevel": "Trace",
   "python.analysis.inlayHints.functionReturnTypes": true,
   "workbench.colorTheme": "Default High Contrast",
@@ -150,35 +149,6 @@
   "cmake.ignoreCMakeListsMissing": true,
   "C_Cpp.default.compilerPath": "/home/linuxbrew/.linuxbrew/bin/clang",
   "C_Cpp.errorSquiggles": "enabled",
-  "sqltools.connections": [
-    {
-      "mysqlOptions": {
-        "authProtocol": "default",
-        "enableSsl": "Disabled"
-      },
-      "previewLimit": 50,
-      "server": "localhost",
-      "port": 3306,
-      "driver": "MariaDB",
-      "name": "home",
-      "group": "home",
-      "database": "mysql",
-      "username": "wbfw109_dev"
-    },
-    {
-      "mysqlOptions": {
-        "authProtocol": "default",
-        "enableSsl": "Disabled"
-      },
-      "previewLimit": 50,
-      "server": "localhost",
-      "port": 3306,
-      "driver": "MariaDB",
-      "name": "homev2",
-      "database": "smart_parcel",
-      "username": "wbfw109v2_dev"
-    }
-  ],
   "python.autoComplete.extraPaths": [
     "${workspaceFolder}/sources/poky/bitbake/lib",
     "${workspaceFolder}/sources/poky/meta/lib"
@@ -188,5 +158,24 @@
     "${workspaceFolder}/sources/poky/meta/lib"
   ],
   "todo-tree.tree.scanMode": "workspace only",
-  "vscode-edge-devtools.headless": false
+  "vscode-edge-devtools.headless": false,
+  "dbcode.connections": [
+    {
+      "connectionId": "C7vVX5F_88XeuQBCBjEGW",
+      "name": "homev2",
+      "driver": "mariadb",
+      "connectionType": "host",
+      "host": "localhost",
+      "port": 3306,
+      "ssl": false,
+      "username": "wbfw109v2_dev",
+      "password": "",
+      "savePassword": "secretStorage",
+      "database": "smart_parcel",
+      "connectionTimeout": 30,
+      "driverOptions": {
+        "retrievePublickey": true
+      }
+    }
+  ]
 }

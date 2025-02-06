@@ -73,8 +73,9 @@
     "tamasfe.even-better-toml",
     "arcanis.vscode-zipfs",
     // 🌀 Database
+    "DBCode.dbcode", // DBCode - Database Management ; https://marketplace.visualstudio.com/items?itemName=DBCode.dbcode
+    //    https://dbcode.io/docs
     "GuTheSoftware.sqlinform", // 📰 Human readable Formatter ; https://marketplace.visualstudio.com/items?itemName=GuTheSoftware.sqlinform
-    "ReneSaarsoo.sql-formatter", // SQL Formatter VSCode ; https://marketplace.visualstudio.com/items?itemName=ReneSaarsoo.sql-formatter-vsc
     // 🌀 Source Coude Mangement (SCM) ~
     "mhutchie.git-graph",
     // 🌀 Vision ~

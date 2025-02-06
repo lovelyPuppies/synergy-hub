@@ -19932,9 +19932,7 @@ If you do not get the key within 24 hours please check my foruThanks For Buying 
 Kind Regards
 Guido Thelen
 Gu.The Software
+https://mariadb.com/kb/en/merge/
 
-❌ SQLTools (mtxr.sqltools) ;  https://marketplace.visualstudio.com/items?itemName=mtxr.sqltools
-  📝 It not supports functionality: Edit the Records of Database Tables. 📅 2025-02-06 23:55:29
-  - %VSCode> SQLTools Connection: Run Selected Query
-  SQLTools MySQL/MariaDB/TiDB (mtxr.sqltools-driver-mysql); https://marketplace.visualstudio.com/items?itemName=mtxr.sqltools-driver-mysql
 
+https://mariadb.com/kb/en/window-functions/
