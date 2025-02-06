@@ -1,3 +1,10 @@
+-- MariaDB Script
+-- Author: Wbfw109
+-- Created: 
+-- Description: 📰
+-- DB Version: MariaDB 11.6.2
+
+
 USE smart_parcel;
 
 -- 🌀 1. 기본 데이터 삽입
@@ -31,18 +38,20 @@ VALUES
   (2),
   (2);
 
--- ➡️ SELECT * from addresses; SELECT * from users;
--- ➡️ SELECT * from storages; SELECT * from lockers;
+-- ➡️ SELECT * FROM addresses WHERE is_deleted = FALSE;
+-- ➡️ SELECT * FROM users WHERE is_deleted = FALSE;
+-- ➡️ SELECT * FROM storages WHERE is_deleted = FALSE;
+-- ➡️ SELECT * FROM lockers WHERE is_deleted = FALSE;
 --
 --
 --
 -- 🌀 2. [택배기사] Parcel 등록 및 보관함에 저장
 -- storage_id = 1 (강남 창고)에 택배 2개 등록
 INSERT INTO
-  parcels (recipient_id, name)
+  parcels (recipient_id, name, storage_id)
 VALUES
-  (1, '노트북'),
-  (1, '책');
+  (1, '노트북', 1),
+  (1, '책', 1);
 
 -- 📦 빈 보관함을 찾아 최신 택배를 할당
 -- 📍 UPDATE multiple rows with different values in one query 📅 2025-02-07 01:20:05
@@ -59,7 +68,9 @@ JOIN (
       FROM
         parcels
       WHERE
-        delivery_status = 'pending'
+        storage_id = 1
+        AND is_deleted = FALSE
+        AND delivery_status = 'pending'
         AND locker_id IS NULL
       ORDER BY
         id ASC
@@ -74,13 +85,16 @@ JOIN (
         lockers
       WHERE
         storage_id = 1
+        AND is_deleted = FALSE
         AND id NOT IN(
           SELECT
             locker_id
           FROM
             parcels
           WHERE
-            locker_id IS NOT NULL
+            storage_id = 1
+            AND locker_id IS NOT NULL
+            AND is_deleted = FALSE
         )
       ORDER BY
         id ASC
@@ -91,7 +105,8 @@ JOIN (
 SET
   p.locker_id = temp.locker_id;
 
--- ➡️ SELECT * FROM parcels; SELECT * FROM lockers;
+-- ➡️ SELECT * FROM parcels WHERE is_deleted = FALSE AND storage_id = 1;
+-- ➡️ SELECT * FROM lockers WHERE is_deleted = FALSE AND storage_id = 1;
 --
 --
 --
@@ -102,7 +117,9 @@ SELECT
 FROM
   parcels
 WHERE
-  recipient_id = 1
+  storage_id = 1
+  AND is_deleted = FALSE
+  AND recipient_id = 1
   AND delivery_status = 'pending';
 
 -- 🔓 보관함에서 parcel_id 제거, 🚛 택배 상태를 "배송 중"으로 변경 (택배 꺼내기)
@@ -111,12 +128,14 @@ SET
   locker_id = NULL,
   delivery_status = 'in_transit'
 WHERE
-  recipient_id = 1
+  storage_id = 1
+  AND is_deleted = FALSE
+  AND recipient_id = 1
   AND delivery_status = 'pending'
 LIMIT
   1;
 
---
+-- ➡️ SELECT * FROM parcels WHERE is_deleted = FALSE AND storage_id = 1;
 --
 --
 -- 🌀 4. [자동 배송 로봇] 배송 완료 후 업데이트
@@ -127,4 +146,8 @@ SET
   delivery_status = 'delivered'
 WHERE
   recipient_id = 1
-  AND delivery_status = 'in_transit';
+  AND delivery_status = 'in_transit'
+  AND is_deleted = FALSE
+  AND storage_id = 1;
+
+-- ➡️ SELECT * FROM parcels WHERE is_deleted = FALSE AND storage_id = 1;
