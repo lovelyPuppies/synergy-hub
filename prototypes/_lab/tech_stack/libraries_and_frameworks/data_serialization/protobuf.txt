@@ -317,7 +317,11 @@ protobuf 🔪⚓ Docs ; https://protobuf.dev/
   ⚓ Overview ; https://jpa.kapsi.fi/nanopb/docs/index.html
   ⚓ Basic concepts ; https://jpa.kapsi.fi/nanopb/docs/concepts.html
   ⚓ API reference ; https://jpa.kapsi.fi/nanopb/docs/reference.html
-    #️⃣ Generator options ; https://jpa.kapsi.fi/nanopb/docs/reference.html#generator-options
+    #️⃣🪱 Generator options ; https://jpa.kapsi.fi/nanopb/docs/reference.html#generator-options
+      - max_count
+      - max_size
+      - type
+        FT_IGNORE
   ⚓ Security model ; https://jpa.kapsi.fi/nanopb/docs/security.html
 
 

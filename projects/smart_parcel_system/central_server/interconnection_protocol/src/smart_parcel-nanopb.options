@@ -18,16 +18,21 @@ smart.parcel.Request.destination                 max_size:64
 smart.parcel.Response.source                     max_size:64
 smart.parcel.Response.destination                max_size:64
 
-smart.parcel.NodeEvent.source                     max_size:64
-smart.parcel.NodeEvent.destination                max_size:64
+smart.parcel.NodeEvent.source                    max_size:64
+smart.parcel.NodeEvent.destination               max_size:64
 
 smart.parcel.AckStatus.message                   max_size:256
 smart.parcel.ExecutionStatus.message             max_size:256
 
 smart.parcel.Storage.Locker.access_code          max_size:32
 
-# + 10%
-smart.parcel.Parcel.photo_bytes                  max_size:688128
+# `photo_bytes` field is not required in STM32.
+#   smart.parcel.Parcel.photo_bytes                  max_size:688128    #  + 10% extra size
 smart.parcel.Parcel.photo_bytes                  type:FT_IGNORE
 
 smart.parcel.ApartmentAddress.apartment_complex  max_size:128
+
+
+
+smart.parcel.GetParcelInfoResponse.parcels       max_count:10
+smart.parcel.Storage.lockers                     max_count:10
