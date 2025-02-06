@@ -1,9 +1,10 @@
 #include "iot_server.hpp"
 #include <vector>
+// TODO: Database ; https://mariadb.com/docs/server/connect/programming-languages/cpp/dml/
+#include <mariadb/conncpp.hpp>
 
 int main() {
 
-  
   iot::start_iot_server();
 
   std::vector<std::string> vec = {"test_package", "iot_server"};
