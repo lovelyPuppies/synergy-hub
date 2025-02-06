@@ -415,6 +415,16 @@ update_fish_interactive_block --unique-comment="$unique_comment" --contents="$ll
 brew install ripgrep
 
 
+: '
+📦 hexyl
+  🧮 hexyl --help
+    -b, --base <B>
+      Sets the base used for the bytes. The possible options are binary, octal, decimal, and hexadecimal
+    %shell> apt-cache show hexyl | grep -i version
+      >> Version: 0.8.0-2build1
+'
+brew install hexyl
+
 
 
 
@@ -697,8 +707,26 @@ brew install compiledb
 
 
 
+echo "▶️ Installing C# tools ..."
+: '
+📦 dotnet
+  https://dotnet.microsoft.com/en-us/
+  https://repology.org/project/dotnet/versions
+  https://formulae.brew.sh/formula/dotnet#default
 
+  Also known as: dotnet@9
+  .NET Core
+'
+brew install dotnet
+: '
+📦 sqlfluff
+  https://sqlfluff.com/
+  https://github.com/sqlfluff/sqlfluff
+  https://repology.org/project/sqlfluff/versions
+  https://formulae.brew.sh/formula/sqlfluff#default
 
+'
+brew install sqlfluff
 
 
 
@@ -1638,35 +1666,6 @@ end
 
 
 echo "🥞 Installing available stable versions from apt in fish shell ..."
-: ' 📦 hexyl
-  🧮 hexyl --help
-    -b, --base <B>
-      Sets the base used for the bytes. The possible options are binary, octal, decimal, and hexadecimal
-    %shell> apt-cache show hexyl | grep -i version
-      >> Version: 0.8.0-2build1
-
-  🚨 Unknown error 📅 2025-02-03 15:28:45
-    brew install hexyl
-    ==> Verifying attestation for hexyl
-    Error: The bottle for hexyl could not be verified.
-
-    This typically indicates an outdated or incompatible `gh` CLI.
-
-    Please confirm that you\'re running the latest version of `gh`
-    by performing an upgrade before retrying:
-
-      brew update
-      brew upgrade gh
-
-    sudo apt install hexyl
-'
-## ⚙️ Last checked version is 0.16.0 📅 2025-02-03 15:30:14
-cd ~/Downloads
-curl -L https://github.com/sharkdp/hexyl/releases/download/v0.16.0/hexyl-musl_0.16.0_amd64.deb -o hexyl.deb
-sudo dpkg -i hexyl.deb && rm hexyl.deb
-cd -
-
-
 ## ⚙️ Last checked version is 1.1.5-1 📅 2025-02-06 18:11:19
 ### Mariadb C++ Connector
 # https://mariadb.com/downloads/connectors/connectors-data-access/cpp-connector
@@ -1678,6 +1677,12 @@ sudo apt install -y mariadb-common libmariadb3
 set mariadb_connector_cpp_deb_path (mktemp --suffix=.deb)
 curl -L https://dlm.mariadb.com/3978240/Connectors/cpp/connector-cpp-1.1.5/mariadb-connector-cpp_1.1.5-1+maria~noble_amd64.deb -o $mariadb_connector_cpp_deb_path
 sudo dpkg --install $mariadb_connector_cpp_deb_path
+
+## ❔ .NET 8 runtime is required to use VS Code extension 🔗 SQLinForm SQL Formatter ; https://marketplace.visualstudio.com/items?itemName=GuTheSoftware.sqlinform
+# https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu-install?tabs=dotnet9&pivots=os-linux-ubuntu-2410#install-the-runtime
+# sudo apt install -y dotnet-runtime-8.0
+
+
 
 
 

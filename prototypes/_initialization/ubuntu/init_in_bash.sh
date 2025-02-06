@@ -10,9 +10,35 @@ mkdir -p $LOCAL_BIN_DIR
 
 
 
+
 ### Minimum packages in order to install homebrew 🔗 https://docs.brew.sh/Homebrew-on-Linux#requirements
 sudo apt install -y curl git
 git config --global init.defaultBranch main
+
+# 📦 GitHub CLI (🧮 gh) to login easily GitHub ; https://github.com/cli/cli/blob/trunk/docs/install_linux.md
+(type -p wget >/dev/null || (sudo apt update && sudo apt-get install wget -y)) \
+	&& sudo mkdir -p -m 755 /etc/apt/keyrings \
+        && out=$(mktemp) && wget -nv -O$out https://cli.github.com/packages/githubcli-archive-keyring.gpg \
+        && cat $out | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg > /dev/null \
+	&& sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg \
+	&& echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
+	&& sudo apt update \
+	&& sudo apt install gh -y
+
+
+: ' ☑️ Note that if you installed gh using both apt and Homebrew, and either one is outdated
+    , and when install or upgrade a package in homebrew the following error occurs: 📅 2025-02-06 21:17:38
+  >>
+    Error: The bottle for <package_name> could not be verified.
+
+    This typically indicates an outdated or incompatible `gh` CLI.
+
+    Please confirm that you're running the latest version of `gh`
+    by performing an upgrade before retrying:
+
+      brew update
+      brew upgrade gh
+'
 
 : '
 ☑️ If "build-essential" is not installed, the system cannot find standard headers like stdio.h, string.h, etc. 📅 2024-11-28 21:14:48

@@ -13,8 +13,8 @@ CREATE DATABASE IF NOT EXISTS smart_parcel;
 
 
 CREATE TABLE IF NOT EXISTS users (
-    id                  INT AUTO_INCREMENT PRIMARY KEY    COMMENT '사용자 고유 식별자'
-    name                VARCHAR(255) NOT NULL             COMMENT '🧪 사용자 이름',
+    id                  INT AUTO_INCREMENT PRIMARY KEY    COMMENT '사용자 고유 식별자',
+    name                VARCHAR(255) NOT NULL             COMMENT '🧪 사용자 이름'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS parcels (
     id                  INT AUTO_INCREMENT PRIMARY KEY    COMMENT '택배 고유 식별자',
     name                VARCHAR(255) NOT NULL             COMMENT '택배 물품 이름',
     recipient_id        INT                               COMMENT '수령자 id',
+    locker_id           INT UNIQUE                        COMMENT '택배 보관함 안에 parcel 이 있다면, NOT NULL',
     -- phone_number        VARCHAR(20)                       COMMENT '수령자 연락처. 월패드로 정보 전달 예정',
     delivery_status     ENUM('pending', 'in_transit', 'delivered') NOT NULL DEFAULT 'pending'
                                                           COMMENT '배송 상태 (pending, in_transit, delivered)',
@@ -46,7 +47,6 @@ CREATE TABLE IF NOT EXISTS parcels (
 CREATE TABLE IF NOT EXISTS lockers (
     id                  INT AUTO_INCREMENT PRIMARY KEY    COMMENT '택배 보관함 고유 식별자',
     storage_id          INT                               COMMENT '택배 저장소의 외래키 (storages.id 참조)',
-    parcel_id           INT                               COMMENT '택배 보관함 안에 parcel 이 있다면, NOT NULL',
     FOREIGN KEY (storage_id) REFERENCES storages(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 

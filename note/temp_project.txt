@@ -19895,3 +19895,46 @@ https://grpc.io/docs/platforms/web/basics/
 
 
 ⚓ https://en.wikipedia.org/wiki/Search_space
+
+🧮 터미널 클리어 명령.. 단축키
+  bind -p | grep "clear-screen"
+  cltr+L
+
+  
+
+// https://www.sqlinform.com/buy-vscode-sql-formatter-plugin/
+
+sqlfluff  
+  📝 Linter 에 대한 formatter 임.  Human-readable formatter 가 아님. 📅 2025-02-06 22:11:37
+  https://github.com/alanmcruickshank/sqlfluff
+  https://marketplace.visualstudio.com/items?itemName=dorzey.vscode-sqlfluff
+  https://formulae.brew.sh/formula/sqlfluff#default
+sqlfmt
+  https://formulae.brew.sh/formula/sqlfmt#default
+  "shandy-sqlfmt.path": "/home/linuxbrew/.linuxbrew/bin/sqlfmt"
+    brew 로 설치한걸 인식을 못하나? 무한pending 상태..
+
+      pipx install shandy-sqlfmt[jinja]
+    >> 주석의 경우, 모든 들여쓰기를 제거해버린다. 수정 불가.
+      -- phone_number        VARCHAR(20)                       COMMENT '수령자 연락처. 월패드로 정보 전달
+  -- 예정',
+
+
+
+
+
+Thank you ...
+… for purchasing a SQLinForm license.
+I will send you the registration key via email within 1 day.
+
+If you do not get the key within 24 hours please check my foruThanks For Buying Licensem. Sometimes (rarely) emails are rejected by SPAM filters.
+
+Kind Regards
+Guido Thelen
+Gu.The Software
+
+❌ SQLTools (mtxr.sqltools) ;  https://marketplace.visualstudio.com/items?itemName=mtxr.sqltools
+  📝 It not supports functionality: Edit the Records of Database Tables. 📅 2025-02-06 23:55:29
+  - %VSCode> SQLTools Connection: Run Selected Query
+  SQLTools MySQL/MariaDB/TiDB (mtxr.sqltools-driver-mysql); https://marketplace.visualstudio.com/items?itemName=mtxr.sqltools-driver-mysql
+

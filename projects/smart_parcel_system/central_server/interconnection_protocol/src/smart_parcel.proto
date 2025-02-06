@@ -153,7 +153,7 @@ message Elevator {
 }
 
 
-// 🚗
+// 🚛
 message DeliveryRobot {
   uint32 id = 1;
   // Status status = 2;

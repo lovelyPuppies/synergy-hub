@@ -3,7 +3,7 @@
     Initializes the pwsh environment
 
 .DESCRIPTION
-    🚧 Prerequsites
+    🚧 Prerequisite
       - This script must be run in "pwsh" after install pwsh in Window "PowerSshell"
       - You may need to see expiration_date/subscriptions.yml (License key)
 
@@ -87,6 +87,8 @@ View
   📦⚓ Logitech G Hub ; https://download01.logi.com/web/ftp/pub/techsupport/gaming/lghub_installer.exe
   📦⚓ Docker Desktop ; https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=docs-driven-download-win-amd64
   📦⚓ Office 365 ; https://go.microsoft.com/fwlink/?linkid=2264705&clcid=0x409&culture=en-us&country=us
+    - 📦 Language pack (Korean 64bit) ; https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=languagepack&language=ko-kr&platform=x64&source=O16LAP&version=O16GA
+      https://support.microsoft.com/en-us/office/language-accessory-pack-for-microsoft-365-82ee1236-0f9a-45ee-9c72-05b026ee809f
   📦⚓ Tailsacle ; https://pkgs.tailscale.com/stable/tailscale-setup-latest.exe
     Notes
     -----

@@ -39,6 +39,9 @@
   },
   // 🌀 Title: Terminal
   "telemetry.telemetryLevel": "error",
+  "sonarlint.disableTelemetry": true,
+  "dotnetAcquisitionExtension.enableTelemetry": false,
+  "gitlens.telemetry.enabled": false,
   // change VScode's tile bar color
   "window.titleBarStyle": "custom",
   "terminal.integrated.env.linux": {
@@ -112,9 +115,6 @@
     "editor.defaultFormatter": "tooltitudeteam.tooltitude-pb"
   },
   // 🌀 Title: SQL
-  "[sql]": {
-    "editor.defaultFormatter": "ReneSaarsoo.sql-formatter-vsc"
-  },
   // 🌀 Title: Rust
   // rust-analyzer ; https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer
   // ☑️ To ensure Rust Analyzer's debug functionality works without errors, both "build-essential" and "cmake" must be installed.

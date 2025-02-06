@@ -73,10 +73,8 @@
     "tamasfe.even-better-toml",
     "arcanis.vscode-zipfs",
     // 🌀 Database
-    "mtxr.sqltools", // https://marketplace.visualstudio.com/items?itemName=mtxr.sqltools
-    "mtxr.sqltools-driver-mysql", //https://marketplace.visualstudio.com/items?itemName=mtxr.sqltools-driver-mysql
-    // 🌀 Empowers developers to efficiently manage dependencies and address vulnerabilities in Rust, Go, JavaScript, TypeScript, Python and PHP projects ; https://www.dependi.io/
-    "fill-labs.dependi",
+    "GuTheSoftware.sqlinform", // 📰 Human readable Formatter ; https://marketplace.visualstudio.com/items?itemName=GuTheSoftware.sqlinform
+    "ReneSaarsoo.sql-formatter", // SQL Formatter VSCode ; https://marketplace.visualstudio.com/items?itemName=ReneSaarsoo.sql-formatter-vsc
     // 🌀 Source Coude Mangement (SCM) ~
     "mhutchie.git-graph",
     // 🌀 Vision ~

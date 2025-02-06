@@ -55,3 +55,9 @@ MariaDB 🔪⚓ Docs ;
             ⚓ UPDATE ; https://mariadb.com/kb/en/update/
             ⚓ DELETE ; https://mariadb.com/kb/en/delete/
  
+
+
+
+SYSTEM CLEAR;
+
+https://mariadb.com/kb/en/joining-tables-with-join-clauses/
