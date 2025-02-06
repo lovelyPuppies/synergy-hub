@@ -26,3 +26,6 @@ CREATE TABLE addresses (
     updated_at    DATETIME DEFAULT CURRENT_TIMESTAMP 
                 ON UPDATE CURRENT_TIMESTAMP               COMMENT '🧪 주소 업데이트 시각 (수정 시 자동 갱신)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+----- DB.. .proto에 따라 추가해야함.. parcel..

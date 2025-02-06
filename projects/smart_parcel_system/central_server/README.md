@@ -77,5 +77,9 @@
 - doing 📰
   ```
   gRPC 를 함께 사용하려 했으나 소켓통신에 사용하는 용도가 아님.
-  proto 가 조건적으로 
+  proto 가 조건적으로
   ```
+
+## TODO
+
+- Cross compile: Protobuf, Boost

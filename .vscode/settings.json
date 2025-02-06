@@ -14,7 +14,7 @@
   "files.associations": {
     ".clangd": "yaml",
     "*.S": "arm",
-    "*.txt": "cmake",
+    "*.txt": "plaintext",
     "iostream": "cpp",
     "vector": "cpp",
     "string": "cpp",
