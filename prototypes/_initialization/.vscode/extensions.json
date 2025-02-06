@@ -46,6 +46,8 @@
     "SonarSource.sonarlint-vscode",
     //      SonarQube for IDE ; https://marketplace.visualstudio.com/items?itemName=SonarSource.sonarlint-vscode
     //        Supported Languages: JS/TS, Python, PHP, Java, C, C++, C#, Go, IaC
+    //  *.sql (Database)
+    "ReneSaarsoo.sql-formatter-vsc",
     //  *.js (JavaScript)     // recommeded from https://code.visualstudio.com/docs/nodejs/extensions
     "dbaeumer.vscode-eslint",
     "xabikos.JavaScriptSnippets",

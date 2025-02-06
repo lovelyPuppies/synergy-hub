@@ -19,6 +19,21 @@
   # poetry init
   # poetry add conan
   # conan new cmake_exe --define name=iot_server --define version=1.0 --output iot_server
+
+
+
+  ### Mariadb C++ Connector
+  # https://mariadb.com/downloads/connectors/connectors-data-access/cpp-connector
+  ## If in Raspberry Pi
+  # curl -L https://dlm.mariadb.com/3907413/Connectors/cpp/connector-cpp-1.1.5/mariadb-connector-cpp_1.1.5-1+maria~bookworm_arm64.deb -o mariadb-connector-cpp.deb
+  # ☑️ mariadb-connector-cpp depends on libmariadb3, and libmariadb3 depends on mariadb-common
+  sudo apt install -y mariadb-common libmariadb3
+
+  set mariadb_connector_cpp_deb_path (mktemp --suffix=.deb)
+  curl -L https://dlm.mariadb.com/3978240/Connectors/cpp/connector-cpp-1.1.5/mariadb-connector-cpp_1.1.5-1+maria~noble_amd64.deb -o $mariadb_connector_cpp_deb_path
+  sudo dpkg --install $mariadb_connector_cpp_deb_path
+
+
   ```
 
 - Configure environment

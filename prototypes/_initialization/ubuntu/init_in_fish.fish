@@ -1660,11 +1660,27 @@ echo "🥞 Installing available stable versions from apt in fish shell ..."
 
     sudo apt install hexyl
 '
-# ⚙️ Last checked version is 0.16.0 📅 2025-02-03 15:30:14
+## ⚙️ Last checked version is 0.16.0 📅 2025-02-03 15:30:14
 cd ~/Downloads
 curl -L https://github.com/sharkdp/hexyl/releases/download/v0.16.0/hexyl-musl_0.16.0_amd64.deb -o hexyl.deb
 sudo dpkg -i hexyl.deb && rm hexyl.deb
 cd -
+
+
+## ⚙️ Last checked version is 1.1.5-1 📅 2025-02-06 18:11:19
+### Mariadb C++ Connector
+# https://mariadb.com/downloads/connectors/connectors-data-access/cpp-connector
+## If in Raspberry Pi
+# curl -L https://dlm.mariadb.com/3907413/Connectors/cpp/connector-cpp-1.1.5/mariadb-connector-cpp_1.1.5-1+maria~bookworm_arm64.deb -o mariadb-connector-cpp.deb
+# ☑️ mariadb-connector-cpp depends on libmariadb3, and libmariadb3 depends on mariadb-common
+sudo apt install -y mariadb-common libmariadb3
+
+set mariadb_connector_cpp_deb_path (mktemp --suffix=.deb)
+curl -L https://dlm.mariadb.com/3978240/Connectors/cpp/connector-cpp-1.1.5/mariadb-connector-cpp_1.1.5-1+maria~noble_amd64.deb -o $mariadb_connector_cpp_deb_path
+sudo dpkg --install $mariadb_connector_cpp_deb_path
+
+
+
 
 
 ## ☑️ Issue: Bug; Ubuntu VScode PlatformIO extension messages 'PlatformIO: Can not find working Python 3.6+ Interpreter' 📅 2024-11-22 14:12:31
