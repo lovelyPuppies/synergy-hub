@@ -55,9 +55,10 @@ MariaDB 🔪⚓ Docs ;
             ⚓ UPDATE ; https://mariadb.com/kb/en/update/
             ⚓ DELETE ; https://mariadb.com/kb/en/delete/
  
+  # High Availability & Performance Tuning
+    # Optimization and Tuning
+      # Optimization and Indexes
+        ⚓ Foreign Keys ; https://mariadb.com/kb/en/foreign-keys/  
+          -🪱 reference_option:
+              RESTRICT | CASCADE | SET NULL | NO ACTION | SET DEFAULT
 
-
-
-SYSTEM CLEAR;
-
-https://mariadb.com/kb/en/joining-tables-with-join-clauses/

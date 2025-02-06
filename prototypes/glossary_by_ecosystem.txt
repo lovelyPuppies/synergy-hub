@@ -122,6 +122,15 @@
       - Component diagrams (level 3)
       - Code diagrams (level 4)
 
+(Database)
+  - soft deletion ; https://en.wiktionary.org/wiki/soft_deletion#English
+    Noun
+      soft deletion (countable and uncountable, plural soft deletions)
+        (databases) An operation in which a flag is used to mark data as unusable, without erasing the data itself from the database. 
+  - hard deletion Antonym: hard deletion
+    Noun
+      hard deletion (countable and uncountable, plural hard deletions)
+        (databases) An operation in which data is erased from the database. 
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
 (Still not ground)
 

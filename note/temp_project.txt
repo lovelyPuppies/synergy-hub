@@ -19932,7 +19932,6 @@ If you do not get the key within 24 hours please check my foruThanks For Buying 
 Kind Regards
 Guido Thelen
 Gu.The Software
-https://mariadb.com/kb/en/merge/
 
 
 https://mariadb.com/kb/en/window-functions/
