@@ -164,6 +164,19 @@
       "group": "home",
       "database": "mysql",
       "username": "wbfw109_dev"
+    },
+    {
+      "mysqlOptions": {
+        "authProtocol": "default",
+        "enableSsl": "Disabled"
+      },
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 3306,
+      "driver": "MariaDB",
+      "name": "homev2",
+      "database": "smart_parcel",
+      "username": "wbfw109v2_dev"
     }
   ],
   "python.autoComplete.extraPaths": [

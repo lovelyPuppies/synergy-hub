@@ -21,6 +21,18 @@ PB_BIND(smart_parcel_AckStatus, smart_parcel_AckStatus, AUTO)
 PB_BIND(smart_parcel_ExecutionStatus, smart_parcel_ExecutionStatus, AUTO)
 
 
+PB_BIND(smart_parcel_CreateParcelRequest, smart_parcel_CreateParcelRequest, AUTO)
+
+
+PB_BIND(smart_parcel_CreateParcelResponse, smart_parcel_CreateParcelResponse, AUTO)
+
+
+PB_BIND(smart_parcel_GetParcelInfosRequest, smart_parcel_GetParcelInfosRequest, AUTO)
+
+
+PB_BIND(smart_parcel_GetParcelInfoResponse, smart_parcel_GetParcelInfoResponse, AUTO)
+
+
 PB_BIND(smart_parcel_SetElevatorStatusRequest, smart_parcel_SetElevatorStatusRequest, AUTO)
 
 
@@ -36,6 +48,9 @@ PB_BIND(smart_parcel_MoveDeliveryRobotResponse, smart_parcel_MoveDeliveryRobotRe
 PB_BIND(smart_parcel_ElevatorStatusEvent, smart_parcel_ElevatorStatusEvent, AUTO)
 
 
+PB_BIND(smart_parcel_ParcelStatusEvent, smart_parcel_ParcelStatusEvent, AUTO)
+
+
 PB_BIND(smart_parcel_Elevator, smart_parcel_Elevator, AUTO)
 
 
@@ -43,9 +58,6 @@ PB_BIND(smart_parcel_Elevator_Status, smart_parcel_Elevator_Status, AUTO)
 
 
 PB_BIND(smart_parcel_DeliveryRobot, smart_parcel_DeliveryRobot, AUTO)
-
-
-PB_BIND(smart_parcel_DeliveryRobot_Status, smart_parcel_DeliveryRobot_Status, AUTO)
 
 
 PB_BIND(smart_parcel_Storage, smart_parcel_Storage, AUTO)
@@ -63,9 +75,7 @@ PB_BIND(smart_parcel_Parcel, smart_parcel_Parcel, AUTO)
 PB_BIND(smart_parcel_Address, smart_parcel_Address, AUTO)
 
 
-PB_BIND(smart_parcel_Address_ApartmentAddress, smart_parcel_Address_ApartmentAddress, AUTO)
-
-
+PB_BIND(smart_parcel_ApartmentAddress, smart_parcel_ApartmentAddress, AUTO)
 
 
 
