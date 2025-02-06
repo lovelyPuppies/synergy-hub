@@ -3,6 +3,7 @@ arch=x86_64
 os=Linux
 build_type=Debug
 compiler=clang
+compiler.version=17
 compiler.cstd=23
 compiler.cppstd=23
 compiler.version=19
@@ -12,10 +13,10 @@ compiler.libcxx=libc++
 [buildenv]
 ## If in [conf], ☑️ [question] Why does conan not pass CMAKE_CXX_COMPILER to CMAKE ; https://github.com/conan-io/conan/issues/10877 📅 2025-01-27 01:19:59
 # tools.build:compiler_executables={"c": "clang", "cpp": "clang++"}
-CC=clang
-CXX=clang++
-CFLAGS=-std=c23
-CXXFLAGS=-std=c++23
+CC=clang-17
+CXX=clang++-17
+CFLAGS=-std=c17
+CXXFLAGS=-std=c++20
 ## If in [conf]
 # tools.build:exelinkflags=["-fuse-ld=lld"]
 LDFLAGS=-fuse-ld=lld

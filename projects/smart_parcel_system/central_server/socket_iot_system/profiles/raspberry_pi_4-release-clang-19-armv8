@@ -3,14 +3,15 @@ arch=armv8
 os=Linux
 build_type=Release
 compiler=clang
+compiler.version=17
 compiler.cstd=23
 compiler.cppstd=23
 compiler.version=19
 compiler.libcxx=libstdc++11
 
 [buildenv]
-CC=clang
-CXX=clang++
+CC=clang-17
+CXX=clang++-17
 # GCC compiler optimization for ARM-based systems ; https://gist.github.com/fm4dd/c663217935dc17f0fc73c9c81b0aa845
 CFLAGS=--target=aarch64-linux-gnu --gcc-install-dir=/usr/lib/gcc-cross/aarch64-linux-gnu/12 -march=armv8-a -mtune=cortex-a72 -O3 -flto -pipe
 CXXFLAGS=--target=aarch64-linux-gnu --gcc-install-dir=/usr/lib/gcc-cross/aarch64-linux-gnu/12 -march=armv8-a -mtune=cortex-a72 -O3 -flto -pipe

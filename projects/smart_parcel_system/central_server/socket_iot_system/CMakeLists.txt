@@ -42,10 +42,16 @@ set_target_properties(iot_client_cpp PROPERTIES CXX_STANDARD 23 CXX_STANDARD_REQ
 set_target_properties(iot_client_c PROPERTIES C_STANDARD 23 C_STANDARD_REQUIRED YES)
 
 
+# Common include directory
+set(COMMON_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/src/common)
+target_include_directories(iot_server PRIVATE ${COMMON_INCLUDE_DIR})
+target_include_directories(iot_client_cpp PRIVATE ${COMMON_INCLUDE_DIR})
+target_include_directories(iot_client_c PRIVATE ${COMMON_INCLUDE_DIR})
 
 
 
-##### Install configuration
+
+##### Install configuration 📰 TODO
 install(TARGETS iot_server DESTINATION "."
         RUNTIME DESTINATION bin
         ARCHIVE DESTINATION lib
@@ -58,7 +64,6 @@ install(TARGETS iot_client_cpp
         ARCHIVE DESTINATION lib
         LIBRARY DESTINATION lib
 )
-
 
 install(TARGETS iot_client_c
         DESTINATION "."

@@ -3,14 +3,18 @@
 /* =========================
  *  Includes and Definitions
  * ========================= */
-// 📅 2024-11-06 14:36:06
+// 📅 2025-02-07 05:20:22
 
 // Library inclusions for necessary functionalities
+#include "common/protobuf_c/smart_parcel.pb.h"
 #include <arpa/inet.h> // Defines functions for internet operations, such as inet_addr.
+#include <pb_decode.h>
+#include <pb_encode.h>
 #include <pthread.h> // Includes POSIX thread support.
-#include <stdio.h>   // Standard I/O functions, like printf and fgets.
-#include <stdlib.h>  // Standard library functions, such as memory allocation.
-#include <string.h>  // String handling functions, such as memset and strcpy.
+#include <stdio.h>
+#include <stdio.h>  // Standard I/O functions, like printf and fgets.
+#include <stdlib.h> // Standard library functions, such as memory allocation.
+#include <string.h> // String handling functions, such as memset and strcpy.
 #include <sys/select.h>
 #include <sys/socket.h> // Provides socket definitions and functions.
 #include <sys/types.h> // Provides system data types used in socket programming.
@@ -203,5 +207,3 @@ void error_handling(char *message) {
   // Terminates program after error.
   exit(1);
 }
-
-// clang -c error_handling.c -o error_handling.o
