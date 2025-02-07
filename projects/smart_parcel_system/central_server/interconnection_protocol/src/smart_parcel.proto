@@ -30,7 +30,9 @@ message Request {
   // 🔘 If the `destination` field is omitted, the request is assumed to be directed to the server; otherwise, it is sent to the specified node.
   string destination = 2;
   oneof command {
+    // client-delivery_robot (cpp) ---> server ---> client-elevator (c)
     SetElevatorStatusRequest set_elevator_status_request = 3;
+    // client-user (cpp) ---> server ---> client-delivery_robot (cpp)
     MoveDeliveryRobotRequest move_delivery_robot_request = 4;
   }
 }
@@ -42,7 +44,9 @@ message Response {
   AckStatus ack_status = 3;
   ExecutionStatus execution_status = 4;
   oneof command {
+    // client-delivery_robot (cpp) ---> server ---> client-user (cpp)
     SetElevatorStatusResponse set_elevator_status_response = 5;
+    // client-delivery_robot (cpp) ---> server ---> client-elevator (c)
     MoveDeliveryRobotResponse move_delivery_robot_response = 6;
   }
 }

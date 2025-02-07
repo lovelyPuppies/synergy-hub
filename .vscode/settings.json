@@ -12,6 +12,7 @@
   "terminal.integrated.defaultProfile.windows": "PowerShell",
   "files.associations": {
     ".clangd": "yaml",
+    "CMakeLists.txt": "CMake",
     "*.S": "arm",
     "*.txt": "plaintext",
     "iostream": "cpp",
