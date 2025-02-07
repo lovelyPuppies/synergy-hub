@@ -18,7 +18,7 @@ int main()
          * - check out the contents of simple.pb.h!
          * It is a good idea to always initialize your structures
          * so that you do not have garbage data from RAM in there.
-         */
+         */ 
         SimpleMessage message = SimpleMessage_init_zero;
         
         /* Create a stream that will write to our buffer. */

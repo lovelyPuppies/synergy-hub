@@ -103,6 +103,9 @@ extern NodeEventDefaultTypeInternal _NodeEvent_default_instance_;
 class Parcel;
 struct ParcelDefaultTypeInternal;
 extern ParcelDefaultTypeInternal _Parcel_default_instance_;
+class ParcelArrivalEvent;
+struct ParcelArrivalEventDefaultTypeInternal;
+extern ParcelArrivalEventDefaultTypeInternal _ParcelArrivalEvent_default_instance_;
 class ParcelStatusEvent;
 struct ParcelStatusEventDefaultTypeInternal;
 extern ParcelStatusEventDefaultTypeInternal _ParcelStatusEvent_default_instance_;
@@ -300,7 +303,7 @@ class Storage_Locker final : public ::google::protobuf::Message
     return reinterpret_cast<const Storage_Locker*>(
         &_Storage_Locker_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 18;
+  static constexpr int kIndexInFileMessages = 19;
   friend void swap(Storage_Locker& a, Storage_Locker& b) { a.Swap(&b); }
   inline void Swap(Storage_Locker* other) {
     if (other == this) return;
@@ -1428,7 +1431,7 @@ class Elevator_Status final : public ::google::protobuf::Message
     return reinterpret_cast<const Elevator_Status*>(
         &_Elevator_Status_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 15;
+  static constexpr int kIndexInFileMessages = 16;
   friend void swap(Elevator_Status& a, Elevator_Status& b) { a.Swap(&b); }
   inline void Swap(Elevator_Status* other) {
     if (other == this) return;
@@ -1633,7 +1636,7 @@ class DeliveryRobot final : public ::google::protobuf::Message
     return reinterpret_cast<const DeliveryRobot*>(
         &_DeliveryRobot_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 17;
+  static constexpr int kIndexInFileMessages = 18;
   friend void swap(DeliveryRobot& a, DeliveryRobot& b) { a.Swap(&b); }
   inline void Swap(DeliveryRobot* other) {
     if (other == this) return;
@@ -1970,7 +1973,7 @@ class ApartmentAddress final : public ::google::protobuf::Message
     return reinterpret_cast<const ApartmentAddress*>(
         &_ApartmentAddress_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 23;
+  static constexpr int kIndexInFileMessages = 24;
   friend void swap(ApartmentAddress& a, ApartmentAddress& b) { a.Swap(&b); }
   inline void Swap(ApartmentAddress* other) {
     if (other == this) return;
@@ -2424,7 +2427,7 @@ class Storage final : public ::google::protobuf::Message
     return reinterpret_cast<const Storage*>(
         &_Storage_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 19;
+  static constexpr int kIndexInFileMessages = 20;
   friend void swap(Storage& a, Storage& b) { a.Swap(&b); }
   inline void Swap(Storage* other) {
     if (other == this) return;
@@ -3363,7 +3366,7 @@ class Elevator final : public ::google::protobuf::Message
     return reinterpret_cast<const Elevator*>(
         &_Elevator_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 16;
+  static constexpr int kIndexInFileMessages = 17;
   friend void swap(Elevator& a, Elevator& b) { a.Swap(&b); }
   inline void Swap(Elevator* other) {
     if (other == this) return;
@@ -3596,7 +3599,7 @@ class Address final : public ::google::protobuf::Message
     return reinterpret_cast<const Address*>(
         &_Address_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 22;
+  static constexpr int kIndexInFileMessages = 23;
   friend void swap(Address& a, Address& b) { a.Swap(&b); }
   inline void Swap(Address* other) {
     if (other == this) return;
@@ -3805,7 +3808,7 @@ class User final : public ::google::protobuf::Message
     return reinterpret_cast<const User*>(
         &_User_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 20;
+  static constexpr int kIndexInFileMessages = 21;
   friend void swap(User& a, User& b) { a.Swap(&b); }
   inline void Swap(User* other) {
     if (other == this) return;
@@ -3955,6 +3958,202 @@ class User final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
+class ParcelArrivalEvent final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:smart.parcel.ParcelArrivalEvent) */ {
+ public:
+  inline ParcelArrivalEvent() : ParcelArrivalEvent(nullptr) {}
+  ~ParcelArrivalEvent() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(ParcelArrivalEvent* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(ParcelArrivalEvent));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR ParcelArrivalEvent(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline ParcelArrivalEvent(const ParcelArrivalEvent& from) : ParcelArrivalEvent(nullptr, from) {}
+  inline ParcelArrivalEvent(ParcelArrivalEvent&& from) noexcept
+      : ParcelArrivalEvent(nullptr, std::move(from)) {}
+  inline ParcelArrivalEvent& operator=(const ParcelArrivalEvent& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ParcelArrivalEvent& operator=(ParcelArrivalEvent&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ParcelArrivalEvent& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ParcelArrivalEvent* internal_default_instance() {
+    return reinterpret_cast<const ParcelArrivalEvent*>(
+        &_ParcelArrivalEvent_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 15;
+  friend void swap(ParcelArrivalEvent& a, ParcelArrivalEvent& b) { a.Swap(&b); }
+  inline void Swap(ParcelArrivalEvent* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ParcelArrivalEvent* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ParcelArrivalEvent* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<ParcelArrivalEvent>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const ParcelArrivalEvent& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const ParcelArrivalEvent& from) { ParcelArrivalEvent::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(ParcelArrivalEvent* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "smart.parcel.ParcelArrivalEvent"; }
+
+ protected:
+  explicit ParcelArrivalEvent(::google::protobuf::Arena* arena);
+  ParcelArrivalEvent(::google::protobuf::Arena* arena, const ParcelArrivalEvent& from);
+  ParcelArrivalEvent(::google::protobuf::Arena* arena, ParcelArrivalEvent&& from) noexcept
+      : ParcelArrivalEvent(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kAddressFieldNumber = 1,
+  };
+  // .smart.parcel.Address address = 1;
+  bool has_address() const;
+  void clear_address() ;
+  const ::smart::parcel::Address& address() const;
+  PROTOBUF_NODISCARD ::smart::parcel::Address* release_address();
+  ::smart::parcel::Address* mutable_address();
+  void set_allocated_address(::smart::parcel::Address* value);
+  void unsafe_arena_set_allocated_address(::smart::parcel::Address* value);
+  ::smart::parcel::Address* unsafe_arena_release_address();
+
+  private:
+  const ::smart::parcel::Address& _internal_address() const;
+  ::smart::parcel::Address* _internal_mutable_address();
+
+  public:
+  // @@protoc_insertion_point(class_scope:smart.parcel.ParcelArrivalEvent)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 1,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const ParcelArrivalEvent& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::smart::parcel::Address* address_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_smart_5fparcel_2eproto;
+};
+// -------------------------------------------------------------------
+
 class Parcel final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:smart.parcel.Parcel) */ {
  public:
@@ -4014,7 +4213,7 @@ class Parcel final : public ::google::protobuf::Message
     return reinterpret_cast<const Parcel*>(
         &_Parcel_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 21;
+  static constexpr int kIndexInFileMessages = 22;
   friend void swap(Parcel& a, Parcel& b) { a.Swap(&b); }
   inline void Swap(Parcel* other) {
     if (other == this) return;
@@ -4202,281 +4401,6 @@ class Parcel final : public ::google::protobuf::Message
     ::uint32_t id_;
     ::uint32_t shipper_id_;
     ::uint32_t recipient_id_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_smart_5fparcel_2eproto;
-};
-// -------------------------------------------------------------------
-
-class NodeEvent final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:smart.parcel.NodeEvent) */ {
- public:
-  inline NodeEvent() : NodeEvent(nullptr) {}
-  ~NodeEvent() PROTOBUF_FINAL;
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(NodeEvent* msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(NodeEvent));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR NodeEvent(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline NodeEvent(const NodeEvent& from) : NodeEvent(nullptr, from) {}
-  inline NodeEvent(NodeEvent&& from) noexcept
-      : NodeEvent(nullptr, std::move(from)) {}
-  inline NodeEvent& operator=(const NodeEvent& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline NodeEvent& operator=(NodeEvent&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const NodeEvent& default_instance() {
-    return *internal_default_instance();
-  }
-  enum EventCase {
-    kElevatorStatusEvent = 3,
-    kParcelStatusEvent = 4,
-    EVENT_NOT_SET = 0,
-  };
-  static inline const NodeEvent* internal_default_instance() {
-    return reinterpret_cast<const NodeEvent*>(
-        &_NodeEvent_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 2;
-  friend void swap(NodeEvent& a, NodeEvent& b) { a.Swap(&b); }
-  inline void Swap(NodeEvent* other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(NodeEvent* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  NodeEvent* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<NodeEvent>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const NodeEvent& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const NodeEvent& from) { NodeEvent::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* _InternalSerialize(
-      const MessageLite& msg, ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(NodeEvent* other);
- private:
-  template <typename T>
-  friend ::absl::string_view(
-      ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "smart.parcel.NodeEvent"; }
-
- protected:
-  explicit NodeEvent(::google::protobuf::Arena* arena);
-  NodeEvent(::google::protobuf::Arena* arena, const NodeEvent& from);
-  NodeEvent(::google::protobuf::Arena* arena, NodeEvent&& from) noexcept
-      : NodeEvent(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static void* PlacementNew_(const void*, void* mem,
-                             ::google::protobuf::Arena* arena);
-  static constexpr auto InternalNewImpl_();
-  static const ::google::protobuf::internal::ClassDataFull _class_data_;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kSourceFieldNumber = 1,
-    kDestinationFieldNumber = 2,
-    kElevatorStatusEventFieldNumber = 3,
-    kParcelStatusEventFieldNumber = 4,
-  };
-  // string source = 1;
-  bool has_source() const;
-  void clear_source() ;
-  const std::string& source() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_source(Arg_&& arg, Args_... args);
-  std::string* mutable_source();
-  PROTOBUF_NODISCARD std::string* release_source();
-  void set_allocated_source(std::string* value);
-
-  private:
-  const std::string& _internal_source() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_source(
-      const std::string& value);
-  std::string* _internal_mutable_source();
-
-  public:
-  // string destination = 2;
-  bool has_destination() const;
-  void clear_destination() ;
-  const std::string& destination() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_destination(Arg_&& arg, Args_... args);
-  std::string* mutable_destination();
-  PROTOBUF_NODISCARD std::string* release_destination();
-  void set_allocated_destination(std::string* value);
-
-  private:
-  const std::string& _internal_destination() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_destination(
-      const std::string& value);
-  std::string* _internal_mutable_destination();
-
-  public:
-  // .smart.parcel.ElevatorStatusEvent elevator_status_event = 3;
-  bool has_elevator_status_event() const;
-  private:
-  bool _internal_has_elevator_status_event() const;
-
-  public:
-  void clear_elevator_status_event() ;
-  const ::smart::parcel::ElevatorStatusEvent& elevator_status_event() const;
-  PROTOBUF_NODISCARD ::smart::parcel::ElevatorStatusEvent* release_elevator_status_event();
-  ::smart::parcel::ElevatorStatusEvent* mutable_elevator_status_event();
-  void set_allocated_elevator_status_event(::smart::parcel::ElevatorStatusEvent* value);
-  void unsafe_arena_set_allocated_elevator_status_event(::smart::parcel::ElevatorStatusEvent* value);
-  ::smart::parcel::ElevatorStatusEvent* unsafe_arena_release_elevator_status_event();
-
-  private:
-  const ::smart::parcel::ElevatorStatusEvent& _internal_elevator_status_event() const;
-  ::smart::parcel::ElevatorStatusEvent* _internal_mutable_elevator_status_event();
-
-  public:
-  // .smart.parcel.ParcelStatusEvent parcel_status_event = 4;
-  bool has_parcel_status_event() const;
-  private:
-  bool _internal_has_parcel_status_event() const;
-
-  public:
-  void clear_parcel_status_event() ;
-  const ::smart::parcel::ParcelStatusEvent& parcel_status_event() const;
-  PROTOBUF_NODISCARD ::smart::parcel::ParcelStatusEvent* release_parcel_status_event();
-  ::smart::parcel::ParcelStatusEvent* mutable_parcel_status_event();
-  void set_allocated_parcel_status_event(::smart::parcel::ParcelStatusEvent* value);
-  void unsafe_arena_set_allocated_parcel_status_event(::smart::parcel::ParcelStatusEvent* value);
-  ::smart::parcel::ParcelStatusEvent* unsafe_arena_release_parcel_status_event();
-
-  private:
-  const ::smart::parcel::ParcelStatusEvent& _internal_parcel_status_event() const;
-  ::smart::parcel::ParcelStatusEvent* _internal_mutable_parcel_status_event();
-
-  public:
-  void clear_event();
-  EventCase event_case() const;
-  // @@protoc_insertion_point(class_scope:smart.parcel.NodeEvent)
- private:
-  class _Internal;
-  void set_has_elevator_status_event();
-  void set_has_parcel_status_event();
-  inline bool has_event() const;
-  inline void clear_has_event();
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      1, 4, 2,
-      48, 2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const NodeEvent& from_msg);
-    ::google::protobuf::internal::HasBits<1> _has_bits_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::internal::ArenaStringPtr source_;
-    ::google::protobuf::internal::ArenaStringPtr destination_;
-    union EventUnion {
-      constexpr EventUnion() : _constinit_{} {}
-      ::google::protobuf::internal::ConstantInitialized _constinit_;
-      ::smart::parcel::ElevatorStatusEvent* elevator_status_event_;
-      ::smart::parcel::ParcelStatusEvent* parcel_status_event_;
-    } event_;
-    ::uint32_t _oneof_case_[1];
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -4960,6 +4884,304 @@ class Request final : public ::google::protobuf::Message
       ::smart::parcel::SetElevatorStatusRequest* set_elevator_status_request_;
       ::smart::parcel::MoveDeliveryRobotRequest* move_delivery_robot_request_;
     } command_;
+    ::uint32_t _oneof_case_[1];
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_smart_5fparcel_2eproto;
+};
+// -------------------------------------------------------------------
+
+class NodeEvent final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:smart.parcel.NodeEvent) */ {
+ public:
+  inline NodeEvent() : NodeEvent(nullptr) {}
+  ~NodeEvent() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(NodeEvent* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(NodeEvent));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR NodeEvent(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline NodeEvent(const NodeEvent& from) : NodeEvent(nullptr, from) {}
+  inline NodeEvent(NodeEvent&& from) noexcept
+      : NodeEvent(nullptr, std::move(from)) {}
+  inline NodeEvent& operator=(const NodeEvent& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline NodeEvent& operator=(NodeEvent&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const NodeEvent& default_instance() {
+    return *internal_default_instance();
+  }
+  enum EventCase {
+    kElevatorStatusEvent = 3,
+    kParcelStatusEvent = 4,
+    kParcelArrivalEvent = 5,
+    EVENT_NOT_SET = 0,
+  };
+  static inline const NodeEvent* internal_default_instance() {
+    return reinterpret_cast<const NodeEvent*>(
+        &_NodeEvent_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 2;
+  friend void swap(NodeEvent& a, NodeEvent& b) { a.Swap(&b); }
+  inline void Swap(NodeEvent* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(NodeEvent* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  NodeEvent* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<NodeEvent>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const NodeEvent& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const NodeEvent& from) { NodeEvent::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(NodeEvent* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "smart.parcel.NodeEvent"; }
+
+ protected:
+  explicit NodeEvent(::google::protobuf::Arena* arena);
+  NodeEvent(::google::protobuf::Arena* arena, const NodeEvent& from);
+  NodeEvent(::google::protobuf::Arena* arena, NodeEvent&& from) noexcept
+      : NodeEvent(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kSourceFieldNumber = 1,
+    kDestinationFieldNumber = 2,
+    kElevatorStatusEventFieldNumber = 3,
+    kParcelStatusEventFieldNumber = 4,
+    kParcelArrivalEventFieldNumber = 5,
+  };
+  // string source = 1;
+  bool has_source() const;
+  void clear_source() ;
+  const std::string& source() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_source(Arg_&& arg, Args_... args);
+  std::string* mutable_source();
+  PROTOBUF_NODISCARD std::string* release_source();
+  void set_allocated_source(std::string* value);
+
+  private:
+  const std::string& _internal_source() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_source(
+      const std::string& value);
+  std::string* _internal_mutable_source();
+
+  public:
+  // string destination = 2;
+  bool has_destination() const;
+  void clear_destination() ;
+  const std::string& destination() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_destination(Arg_&& arg, Args_... args);
+  std::string* mutable_destination();
+  PROTOBUF_NODISCARD std::string* release_destination();
+  void set_allocated_destination(std::string* value);
+
+  private:
+  const std::string& _internal_destination() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_destination(
+      const std::string& value);
+  std::string* _internal_mutable_destination();
+
+  public:
+  // .smart.parcel.ElevatorStatusEvent elevator_status_event = 3;
+  bool has_elevator_status_event() const;
+  private:
+  bool _internal_has_elevator_status_event() const;
+
+  public:
+  void clear_elevator_status_event() ;
+  const ::smart::parcel::ElevatorStatusEvent& elevator_status_event() const;
+  PROTOBUF_NODISCARD ::smart::parcel::ElevatorStatusEvent* release_elevator_status_event();
+  ::smart::parcel::ElevatorStatusEvent* mutable_elevator_status_event();
+  void set_allocated_elevator_status_event(::smart::parcel::ElevatorStatusEvent* value);
+  void unsafe_arena_set_allocated_elevator_status_event(::smart::parcel::ElevatorStatusEvent* value);
+  ::smart::parcel::ElevatorStatusEvent* unsafe_arena_release_elevator_status_event();
+
+  private:
+  const ::smart::parcel::ElevatorStatusEvent& _internal_elevator_status_event() const;
+  ::smart::parcel::ElevatorStatusEvent* _internal_mutable_elevator_status_event();
+
+  public:
+  // .smart.parcel.ParcelStatusEvent parcel_status_event = 4;
+  bool has_parcel_status_event() const;
+  private:
+  bool _internal_has_parcel_status_event() const;
+
+  public:
+  void clear_parcel_status_event() ;
+  const ::smart::parcel::ParcelStatusEvent& parcel_status_event() const;
+  PROTOBUF_NODISCARD ::smart::parcel::ParcelStatusEvent* release_parcel_status_event();
+  ::smart::parcel::ParcelStatusEvent* mutable_parcel_status_event();
+  void set_allocated_parcel_status_event(::smart::parcel::ParcelStatusEvent* value);
+  void unsafe_arena_set_allocated_parcel_status_event(::smart::parcel::ParcelStatusEvent* value);
+  ::smart::parcel::ParcelStatusEvent* unsafe_arena_release_parcel_status_event();
+
+  private:
+  const ::smart::parcel::ParcelStatusEvent& _internal_parcel_status_event() const;
+  ::smart::parcel::ParcelStatusEvent* _internal_mutable_parcel_status_event();
+
+  public:
+  // .smart.parcel.ParcelArrivalEvent parcel_arrival_event = 5;
+  bool has_parcel_arrival_event() const;
+  private:
+  bool _internal_has_parcel_arrival_event() const;
+
+  public:
+  void clear_parcel_arrival_event() ;
+  const ::smart::parcel::ParcelArrivalEvent& parcel_arrival_event() const;
+  PROTOBUF_NODISCARD ::smart::parcel::ParcelArrivalEvent* release_parcel_arrival_event();
+  ::smart::parcel::ParcelArrivalEvent* mutable_parcel_arrival_event();
+  void set_allocated_parcel_arrival_event(::smart::parcel::ParcelArrivalEvent* value);
+  void unsafe_arena_set_allocated_parcel_arrival_event(::smart::parcel::ParcelArrivalEvent* value);
+  ::smart::parcel::ParcelArrivalEvent* unsafe_arena_release_parcel_arrival_event();
+
+  private:
+  const ::smart::parcel::ParcelArrivalEvent& _internal_parcel_arrival_event() const;
+  ::smart::parcel::ParcelArrivalEvent* _internal_mutable_parcel_arrival_event();
+
+  public:
+  void clear_event();
+  EventCase event_case() const;
+  // @@protoc_insertion_point(class_scope:smart.parcel.NodeEvent)
+ private:
+  class _Internal;
+  void set_has_elevator_status_event();
+  void set_has_parcel_status_event();
+  void set_has_parcel_arrival_event();
+  inline bool has_event() const;
+  inline void clear_has_event();
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 5, 3,
+      48, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const NodeEvent& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr source_;
+    ::google::protobuf::internal::ArenaStringPtr destination_;
+    union EventUnion {
+      constexpr EventUnion() : _constinit_{} {}
+      ::google::protobuf::internal::ConstantInitialized _constinit_;
+      ::smart::parcel::ElevatorStatusEvent* elevator_status_event_;
+      ::smart::parcel::ParcelStatusEvent* parcel_status_event_;
+      ::smart::parcel::ParcelArrivalEvent* parcel_arrival_event_;
+    } event_;
     ::uint32_t _oneof_case_[1];
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -6482,6 +6704,85 @@ inline ::smart::parcel::ParcelStatusEvent* NodeEvent::mutable_parcel_status_even
   return _msg;
 }
 
+// .smart.parcel.ParcelArrivalEvent parcel_arrival_event = 5;
+inline bool NodeEvent::has_parcel_arrival_event() const {
+  return event_case() == kParcelArrivalEvent;
+}
+inline bool NodeEvent::_internal_has_parcel_arrival_event() const {
+  return event_case() == kParcelArrivalEvent;
+}
+inline void NodeEvent::set_has_parcel_arrival_event() {
+  _impl_._oneof_case_[0] = kParcelArrivalEvent;
+}
+inline void NodeEvent::clear_parcel_arrival_event() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (event_case() == kParcelArrivalEvent) {
+    if (GetArena() == nullptr) {
+      delete _impl_.event_.parcel_arrival_event_;
+    } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.event_.parcel_arrival_event_);
+    }
+    clear_has_event();
+  }
+}
+inline ::smart::parcel::ParcelArrivalEvent* NodeEvent::release_parcel_arrival_event() {
+  // @@protoc_insertion_point(field_release:smart.parcel.NodeEvent.parcel_arrival_event)
+  if (event_case() == kParcelArrivalEvent) {
+    clear_has_event();
+    auto* temp = _impl_.event_.parcel_arrival_event_;
+    if (GetArena() != nullptr) {
+      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.event_.parcel_arrival_event_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::smart::parcel::ParcelArrivalEvent& NodeEvent::_internal_parcel_arrival_event() const {
+  return event_case() == kParcelArrivalEvent ? *_impl_.event_.parcel_arrival_event_ : reinterpret_cast<::smart::parcel::ParcelArrivalEvent&>(::smart::parcel::_ParcelArrivalEvent_default_instance_);
+}
+inline const ::smart::parcel::ParcelArrivalEvent& NodeEvent::parcel_arrival_event() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:smart.parcel.NodeEvent.parcel_arrival_event)
+  return _internal_parcel_arrival_event();
+}
+inline ::smart::parcel::ParcelArrivalEvent* NodeEvent::unsafe_arena_release_parcel_arrival_event() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:smart.parcel.NodeEvent.parcel_arrival_event)
+  if (event_case() == kParcelArrivalEvent) {
+    clear_has_event();
+    auto* temp = _impl_.event_.parcel_arrival_event_;
+    _impl_.event_.parcel_arrival_event_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void NodeEvent::unsafe_arena_set_allocated_parcel_arrival_event(::smart::parcel::ParcelArrivalEvent* value) {
+  // We rely on the oneof clear method to free the earlier contents
+  // of this oneof. We can directly use the pointer we're given to
+  // set the new value.
+  clear_event();
+  if (value) {
+    set_has_parcel_arrival_event();
+    _impl_.event_.parcel_arrival_event_ = value;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:smart.parcel.NodeEvent.parcel_arrival_event)
+}
+inline ::smart::parcel::ParcelArrivalEvent* NodeEvent::_internal_mutable_parcel_arrival_event() {
+  if (event_case() != kParcelArrivalEvent) {
+    clear_event();
+    set_has_parcel_arrival_event();
+    _impl_.event_.parcel_arrival_event_ =
+        ::google::protobuf::Message::DefaultConstruct<::smart::parcel::ParcelArrivalEvent>(GetArena());
+  }
+  return _impl_.event_.parcel_arrival_event_;
+}
+inline ::smart::parcel::ParcelArrivalEvent* NodeEvent::mutable_parcel_arrival_event() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::smart::parcel::ParcelArrivalEvent* _msg = _internal_mutable_parcel_arrival_event();
+  // @@protoc_insertion_point(field_mutable:smart.parcel.NodeEvent.parcel_arrival_event)
+  return _msg;
+}
+
 inline bool NodeEvent::has_event() const {
   return event_case() != EVENT_NOT_SET;
 }
@@ -7304,6 +7605,106 @@ inline ::uint32_t ParcelStatusEvent::_internal_parcel_id() const {
 inline void ParcelStatusEvent::_internal_set_parcel_id(::uint32_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.parcel_id_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// ParcelArrivalEvent
+
+// .smart.parcel.Address address = 1;
+inline bool ParcelArrivalEvent::has_address() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.address_ != nullptr);
+  return value;
+}
+inline void ParcelArrivalEvent::clear_address() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.address_ != nullptr) _impl_.address_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::smart::parcel::Address& ParcelArrivalEvent::_internal_address() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::smart::parcel::Address* p = _impl_.address_;
+  return p != nullptr ? *p : reinterpret_cast<const ::smart::parcel::Address&>(::smart::parcel::_Address_default_instance_);
+}
+inline const ::smart::parcel::Address& ParcelArrivalEvent::address() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:smart.parcel.ParcelArrivalEvent.address)
+  return _internal_address();
+}
+inline void ParcelArrivalEvent::unsafe_arena_set_allocated_address(::smart::parcel::Address* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.address_);
+  }
+  _impl_.address_ = reinterpret_cast<::smart::parcel::Address*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:smart.parcel.ParcelArrivalEvent.address)
+}
+inline ::smart::parcel::Address* ParcelArrivalEvent::release_address() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::smart::parcel::Address* released = _impl_.address_;
+  _impl_.address_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::smart::parcel::Address* ParcelArrivalEvent::unsafe_arena_release_address() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:smart.parcel.ParcelArrivalEvent.address)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::smart::parcel::Address* temp = _impl_.address_;
+  _impl_.address_ = nullptr;
+  return temp;
+}
+inline ::smart::parcel::Address* ParcelArrivalEvent::_internal_mutable_address() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.address_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::smart::parcel::Address>(GetArena());
+    _impl_.address_ = reinterpret_cast<::smart::parcel::Address*>(p);
+  }
+  return _impl_.address_;
+}
+inline ::smart::parcel::Address* ParcelArrivalEvent::mutable_address() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::smart::parcel::Address* _msg = _internal_mutable_address();
+  // @@protoc_insertion_point(field_mutable:smart.parcel.ParcelArrivalEvent.address)
+  return _msg;
+}
+inline void ParcelArrivalEvent::set_allocated_address(::smart::parcel::Address* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete (_impl_.address_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.address_ = reinterpret_cast<::smart::parcel::Address*>(value);
+  // @@protoc_insertion_point(field_set_allocated:smart.parcel.ParcelArrivalEvent.address)
 }
 
 // -------------------------------------------------------------------

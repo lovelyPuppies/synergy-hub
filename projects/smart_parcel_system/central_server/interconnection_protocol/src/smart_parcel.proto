@@ -54,6 +54,7 @@ message NodeEvent {
   oneof event {
     ElevatorStatusEvent elevator_status_event = 3;
     ParcelStatusEvent parcel_status_event = 4;
+    ParcelArrivalEvent parcel_arrival_event = 5;
   }
 }
 
@@ -129,7 +130,10 @@ message ParcelStatusEvent {
   // Parcel.Status parcel_status = 2;
 }
 
-
+message ParcelArrivalEvent {
+  Address address = 1;
+  // Parcel.Status parcel_status = 2;
+}
 
 
 // -------------------------

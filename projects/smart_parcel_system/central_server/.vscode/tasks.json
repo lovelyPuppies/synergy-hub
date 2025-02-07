@@ -1,6 +1,21 @@
 {
   "version": "2.0.0",
   "tasks": [
+    // 🌀 Title: Compile: Protocal Buffers, NanoPB
+    {
+      "label": "Run (protoc, nanopb_generator)",
+      "type": "shell",
+      "command": "source $(poetry env info --path)/bin/activate.fish && protoc -I=interconnection_protocol/src --cpp_out=socket_iot_system/src/common/protobuf_cpp smart_parcel.proto && nanopb_generator --options-file=interconnection_protocol/src/smart_parcel-nanopb.options --output-dir=socket_iot_system/src/common/protobuf_c interconnection_protocol/src/smart_parcel.proto",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
     // 🌀 Title: target: Raspberry Pi
     {
       "label": "conan-raspberry_pi_4-release-clang-19-armv8 - 1. Conan Install",
@@ -11,7 +26,7 @@
         "isDefault": true
       },
       "presentation": {
-        "reveal": "always", 
+        "reveal": "always",
         "panel": "shared"
       },
       "problemMatcher": []
@@ -25,7 +40,7 @@
         "isDefault": true
       },
       "presentation": {
-        "reveal": "always", 
+        "reveal": "always",
         "panel": "shared"
       },
       "problemMatcher": []
@@ -39,7 +54,7 @@
         "isDefault": true
       },
       "presentation": {
-        "reveal": "always", 
+        "reveal": "always",
         "panel": "shared"
       },
       "problemMatcher": []
@@ -66,7 +81,7 @@
         "isDefault": true
       },
       "presentation": {
-        "reveal": "always", 
+        "reveal": "always",
         "panel": "shared"
       },
       "problemMatcher": []
@@ -80,7 +95,7 @@
         "isDefault": true
       },
       "presentation": {
-        "reveal": "always", 
+        "reveal": "always",
         "panel": "shared"
       },
       "problemMatcher": []
@@ -94,7 +109,7 @@
         "isDefault": true
       },
       "presentation": {
-        "reveal": "always", 
+        "reveal": "always",
         "panel": "shared"
       },
       "problemMatcher": []
@@ -108,7 +123,7 @@
         "isDefault": true
       },
       "presentation": {
-        "reveal": "always", 
+        "reveal": "always",
         "panel": "shared"
       },
       "problemMatcher": []
@@ -124,6 +139,6 @@
       "presentation": {
         "reveal": "never"
       }
-    },
+    }
   ]
 }

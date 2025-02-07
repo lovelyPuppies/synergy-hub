@@ -167,7 +167,7 @@ void *send_msg(void *arg) {
         strcpy(name_msg, msg);
       }
       // 📰
-      smart_parcel_Elevator_Status message =
+      smart_parcel_Elevator_Status message =  
           smart_parcel_Elevator_Status_init_zero;
 
       pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));

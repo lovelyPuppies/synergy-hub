@@ -31,11 +31,13 @@ endif()
 ##### Define and configure executables
 set(IOT_SERVER_DIR src/app/iot_server)
 set(IOT_CLIENT_CPP_DIR src/app/iot_client_cpp)
-set(IOT_CLIENT_C_DIR src/app/iot_client_c)
+set(IOT_CLIENT_C1_DIR src/app/iot_client_c1)
+set(IOT_CLIENT_C2_DIR src/app/iot_client_c2)
 
 add_executable(iot_server ${IOT_SERVER_DIR}/iot_server.cpp ${IOT_SERVER_DIR}/main.cpp)
 add_executable(iot_client_cpp ${IOT_CLIENT_CPP_DIR}/iot_client_cpp.cpp ${IOT_CLIENT_CPP_DIR}/main.cpp)
-add_executable(iot_client_c ${IOT_CLIENT_C_DIR}/main.c)
+add_executable(iot_client_c1 ${IOT_CLIENT_C1_DIR}/main.c)
+add_executable(iot_client_c2 ${IOT_CLIENT_C2_DIR}/main.c)
 
 # set_target_properties(iot_server PROPERTIES CXX_STANDARD 23 CXX_STANDARD_REQUIRED YES)
 # set_target_properties(iot_client_cpp PROPERTIES CXX_STANDARD 23 CXX_STANDARD_REQUIRED YES)
@@ -46,7 +48,8 @@ add_executable(iot_client_c ${IOT_CLIENT_C_DIR}/main.c)
 set(COMMON_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/src/common)
 target_include_directories(iot_server PRIVATE ${COMMON_INCLUDE_DIR})
 target_include_directories(iot_client_cpp PRIVATE ${COMMON_INCLUDE_DIR})
-target_include_directories(iot_client_c PRIVATE ${COMMON_INCLUDE_DIR})
+target_include_directories(iot_client_c1 PRIVATE ${COMMON_INCLUDE_DIR})
+target_include_directories(iot_client_c2 PRIVATE ${COMMON_INCLUDE_DIR})
 
 
 
@@ -65,7 +68,15 @@ install(TARGETS iot_client_cpp
         LIBRARY DESTINATION lib
 )
 
-install(TARGETS iot_client_c
+install(TARGETS iot_client_c1
+        DESTINATION "."
+        RUNTIME DESTINATION bin
+        ARCHIVE DESTINATION lib
+        LIBRARY DESTINATION lib
+)
+
+
+install(TARGETS iot_client_c2
         DESTINATION "."
         RUNTIME DESTINATION bin
         ARCHIVE DESTINATION lib

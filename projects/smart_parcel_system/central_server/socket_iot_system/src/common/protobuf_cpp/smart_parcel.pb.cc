@@ -486,6 +486,31 @@ struct UserDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserDefaultTypeInternal _User_default_instance_;
 
+inline constexpr ParcelArrivalEvent::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        address_{nullptr} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR ParcelArrivalEvent::ParcelArrivalEvent(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct ParcelArrivalEventDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ParcelArrivalEventDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ParcelArrivalEventDefaultTypeInternal() {}
+  union {
+    ParcelArrivalEvent _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ParcelArrivalEventDefaultTypeInternal _ParcelArrivalEvent_default_instance_;
+
 inline constexpr Parcel::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
@@ -516,38 +541,6 @@ struct ParcelDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ParcelDefaultTypeInternal _Parcel_default_instance_;
-
-inline constexpr NodeEvent::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : _cached_size_{0},
-        source_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        destination_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        event_{},
-        _oneof_case_{} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR NodeEvent::NodeEvent(::_pbi::ConstantInitialized)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(_class_data_.base()),
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(),
-#endif  // PROTOBUF_CUSTOM_VTABLE
-      _impl_(::_pbi::ConstantInitialized()) {
-}
-struct NodeEventDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR NodeEventDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~NodeEventDefaultTypeInternal() {}
-  union {
-    NodeEvent _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 NodeEventDefaultTypeInternal _NodeEvent_default_instance_;
 
 inline constexpr MoveDeliveryRobotRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -606,6 +599,38 @@ struct RequestDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RequestDefaultTypeInternal _Request_default_instance_;
+
+inline constexpr NodeEvent::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        source_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        destination_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        event_{},
+        _oneof_case_{} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR NodeEvent::NodeEvent(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct NodeEventDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR NodeEventDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~NodeEventDefaultTypeInternal() {}
+  union {
+    NodeEvent _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 NodeEventDefaultTypeInternal _NodeEvent_default_instance_;
 
 inline constexpr GetParcelInfoResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -714,9 +739,11 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::smart::parcel::NodeEvent, _impl_.destination_),
         ::_pbi::kInvalidFieldOffsetTag,
         ::_pbi::kInvalidFieldOffsetTag,
+        ::_pbi::kInvalidFieldOffsetTag,
         PROTOBUF_FIELD_OFFSET(::smart::parcel::NodeEvent, _impl_.event_),
         0,
         1,
+        ~0u,
         ~0u,
         ~0u,
         PROTOBUF_FIELD_OFFSET(::smart::parcel::AckStatus, _impl_._has_bits_),
@@ -842,6 +869,16 @@ const ::uint32_t
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::smart::parcel::ParcelStatusEvent, _impl_.parcel_id_),
         0,
+        PROTOBUF_FIELD_OFFSET(::smart::parcel::ParcelArrivalEvent, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::smart::parcel::ParcelArrivalEvent, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::smart::parcel::ParcelArrivalEvent, _impl_.address_),
+        0,
         PROTOBUF_FIELD_OFFSET(::smart::parcel::Elevator_Status, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::smart::parcel::Elevator_Status, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -962,28 +999,29 @@ static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
         {0, 13, -1, sizeof(::smart::parcel::Request)},
         {17, 32, -1, sizeof(::smart::parcel::Response)},
-        {38, 51, -1, sizeof(::smart::parcel::NodeEvent)},
-        {55, 65, -1, sizeof(::smart::parcel::AckStatus)},
-        {67, 77, -1, sizeof(::smart::parcel::ExecutionStatus)},
-        {79, 88, -1, sizeof(::smart::parcel::CreateParcelRequest)},
-        {89, -1, -1, sizeof(::smart::parcel::CreateParcelResponse)},
-        {97, 106, -1, sizeof(::smart::parcel::GetParcelInfosRequest)},
-        {107, -1, -1, sizeof(::smart::parcel::GetParcelInfoResponse)},
-        {116, 126, -1, sizeof(::smart::parcel::SetElevatorStatusRequest)},
-        {128, -1, -1, sizeof(::smart::parcel::SetElevatorStatusResponse)},
-        {136, 146, -1, sizeof(::smart::parcel::MoveDeliveryRobotRequest)},
-        {148, -1, -1, sizeof(::smart::parcel::MoveDeliveryRobotResponse)},
-        {156, 166, -1, sizeof(::smart::parcel::ElevatorStatusEvent)},
-        {168, 177, -1, sizeof(::smart::parcel::ParcelStatusEvent)},
-        {178, 188, -1, sizeof(::smart::parcel::Elevator_Status)},
-        {190, 200, -1, sizeof(::smart::parcel::Elevator)},
-        {202, 211, -1, sizeof(::smart::parcel::DeliveryRobot)},
-        {212, 223, -1, sizeof(::smart::parcel::Storage_Locker)},
-        {226, 236, -1, sizeof(::smart::parcel::Storage)},
-        {238, 248, -1, sizeof(::smart::parcel::User)},
-        {250, 263, -1, sizeof(::smart::parcel::Parcel)},
-        {268, -1, -1, sizeof(::smart::parcel::Address)},
-        {278, 289, -1, sizeof(::smart::parcel::ApartmentAddress)},
+        {38, 52, -1, sizeof(::smart::parcel::NodeEvent)},
+        {57, 67, -1, sizeof(::smart::parcel::AckStatus)},
+        {69, 79, -1, sizeof(::smart::parcel::ExecutionStatus)},
+        {81, 90, -1, sizeof(::smart::parcel::CreateParcelRequest)},
+        {91, -1, -1, sizeof(::smart::parcel::CreateParcelResponse)},
+        {99, 108, -1, sizeof(::smart::parcel::GetParcelInfosRequest)},
+        {109, -1, -1, sizeof(::smart::parcel::GetParcelInfoResponse)},
+        {118, 128, -1, sizeof(::smart::parcel::SetElevatorStatusRequest)},
+        {130, -1, -1, sizeof(::smart::parcel::SetElevatorStatusResponse)},
+        {138, 148, -1, sizeof(::smart::parcel::MoveDeliveryRobotRequest)},
+        {150, -1, -1, sizeof(::smart::parcel::MoveDeliveryRobotResponse)},
+        {158, 168, -1, sizeof(::smart::parcel::ElevatorStatusEvent)},
+        {170, 179, -1, sizeof(::smart::parcel::ParcelStatusEvent)},
+        {180, 189, -1, sizeof(::smart::parcel::ParcelArrivalEvent)},
+        {190, 200, -1, sizeof(::smart::parcel::Elevator_Status)},
+        {202, 212, -1, sizeof(::smart::parcel::Elevator)},
+        {214, 223, -1, sizeof(::smart::parcel::DeliveryRobot)},
+        {224, 235, -1, sizeof(::smart::parcel::Storage_Locker)},
+        {238, 248, -1, sizeof(::smart::parcel::Storage)},
+        {250, 260, -1, sizeof(::smart::parcel::User)},
+        {262, 275, -1, sizeof(::smart::parcel::Parcel)},
+        {280, -1, -1, sizeof(::smart::parcel::Address)},
+        {290, 301, -1, sizeof(::smart::parcel::ApartmentAddress)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::smart::parcel::_Request_default_instance_._instance,
@@ -1001,6 +1039,7 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::smart::parcel::_MoveDeliveryRobotResponse_default_instance_._instance,
     &::smart::parcel::_ElevatorStatusEvent_default_instance_._instance,
     &::smart::parcel::_ParcelStatusEvent_default_instance_._instance,
+    &::smart::parcel::_ParcelArrivalEvent_default_instance_._instance,
     &::smart::parcel::_Elevator_Status_default_instance_._instance,
     &::smart::parcel::_Elevator_default_instance_._instance,
     &::smart::parcel::_DeliveryRobot_default_instance_._instance,
@@ -1027,65 +1066,68 @@ const char descriptor_table_protodef_smart_5fparcel_2eproto[] ABSL_ATTRIBUTE_SEC
     "(\0132\'.smart.parcel.SetElevatorStatusRespo"
     "nseH\000\022O\n\034move_delivery_robot_response\030\006 "
     "\001(\0132\'.smart.parcel.MoveDeliveryRobotResp"
-    "onseH\000B\t\n\007command\"\275\001\n\tNodeEvent\022\016\n\006sourc"
+    "onseH\000B\t\n\007command\"\377\001\n\tNodeEvent\022\016\n\006sourc"
     "e\030\001 \001(\t\022\023\n\013destination\030\002 \001(\t\022B\n\025elevator"
     "_status_event\030\003 \001(\0132!.smart.parcel.Eleva"
     "torStatusEventH\000\022>\n\023parcel_status_event\030"
     "\004 \001(\0132\037.smart.parcel.ParcelStatusEventH\000"
-    "B\007\n\005event\"\177\n\tAckStatus\0220\n\004code\030\001 \001(\0162\".s"
-    "mart.parcel.AckStatus.StatusCode\022\017\n\007mess"
-    "age\030\002 \001(\t\"/\n\nStatusCode\022\020\n\014ACK_RECEIVED\020"
-    "\000\022\017\n\013ACK_INVALID\020\001\"\225\001\n\017ExecutionStatus\0226"
-    "\n\004code\030\001 \001(\0162(.smart.parcel.ExecutionSta"
-    "tus.StatusCode\022\017\n\007message\030\002 \001(\t\"9\n\nStatu"
-    "sCode\022\025\n\021EXECUTION_SUCCESS\020\000\022\024\n\020EXECUTIO"
-    "N_FAILED\020\001\";\n\023CreateParcelRequest\022$\n\006par"
-    "cel\030\001 \001(\0132\024.smart.parcel.Parcel\"\026\n\024Creat"
-    "eParcelResponse\"(\n\025GetParcelInfosRequest"
-    "\022\017\n\007user_id\030\001 \001(\r\">\n\025GetParcelInfoRespon"
-    "se\022%\n\007parcels\030\001 \003(\0132\024.smart.parcel.Parce"
-    "l\"g\n\030SetElevatorStatusRequest\022\023\n\013elevato"
-    "r_id\030\001 \001(\r\0226\n\017elevator_status\030\002 \001(\0132\035.sm"
-    "art.parcel.Elevator.Status\"\033\n\031SetElevato"
-    "rStatusResponse\"i\n\030MoveDeliveryRobotRequ"
-    "est\022\031\n\021delivery_robot_id\030\001 \001(\r\0222\n\023destin"
-    "ation_address\030\003 \001(\0132\025.smart.parcel.Addre"
-    "ss\"\033\n\031MoveDeliveryRobotResponse\"b\n\023Eleva"
-    "torStatusEvent\022\023\n\013elevator_id\030\001 \001(\r\0226\n\017e"
-    "levator_status\030\002 \001(\0132\035.smart.parcel.Elev"
-    "ator.Status\"&\n\021ParcelStatusEvent\022\021\n\tparc"
-    "el_id\030\001 \001(\r\"\317\001\n\010Elevator\022\n\n\002id\030\001 \001(\r\022-\n\006"
-    "status\030\002 \001(\0132\035.smart.parcel.Elevator.Sta"
-    "tus\032`\n\006Status\022\025\n\rcurrent_floor\030\001 \001(\r\022\?\n\020"
-    "door_open_status\030\002 \001(\0162%.smart.parcel.El"
-    "evator.DoorOpenStatus\"&\n\016DoorOpenStatus\022"
-    "\n\n\006CLOSED\020\000\022\010\n\004OPEN\020\001\"\033\n\rDeliveryRobot\022\n"
-    "\n\002id\030\001 \001(\r\"\211\001\n\007Storage\022\n\n\002id\030\001 \001(\r\022-\n\007lo"
-    "ckers\030\002 \003(\0132\034.smart.parcel.Storage.Locke"
-    "r\032C\n\006Locker\022\021\n\tlocker_id\030\001 \001(\r\022\023\n\013access"
-    "_code\030\002 \001(\t\022\021\n\tparcel_id\030\003 \001(\r\":\n\004User\022\n"
-    "\n\002id\030\001 \001(\r\022&\n\007address\030\002 \001(\0132\025.smart.parc"
-    "el.Address\"{\n\006Parcel\022\n\n\002id\030\001 \001(\r\022&\n\007addr"
-    "ess\030\002 \001(\0132\025.smart.parcel.Address\022\022\n\nship"
-    "per_id\030\003 \001(\r\022\024\n\014recipient_id\030\004 \001(\r\022\023\n\013ph"
-    "oto_bytes\030\005 \001(\014\"V\n\007Address\022;\n\021apartment_"
-    "address\030\001 \001(\0132\036.smart.parcel.ApartmentAd"
-    "dressH\000B\016\n\014address_type\"`\n\020ApartmentAddr"
-    "ess\022\031\n\021apartment_complex\030\001 \001(\t\022\027\n\017buildi"
-    "ng_number\030\002 \001(\r\022\030\n\020apartment_number\030\003 \001("
-    "\rb\010editionsp\350\007"
+    "\022@\n\024parcel_arrival_event\030\005 \001(\0132 .smart.p"
+    "arcel.ParcelArrivalEventH\000B\007\n\005event\"\177\n\tA"
+    "ckStatus\0220\n\004code\030\001 \001(\0162\".smart.parcel.Ac"
+    "kStatus.StatusCode\022\017\n\007message\030\002 \001(\t\"/\n\nS"
+    "tatusCode\022\020\n\014ACK_RECEIVED\020\000\022\017\n\013ACK_INVAL"
+    "ID\020\001\"\225\001\n\017ExecutionStatus\0226\n\004code\030\001 \001(\0162("
+    ".smart.parcel.ExecutionStatus.StatusCode"
+    "\022\017\n\007message\030\002 \001(\t\"9\n\nStatusCode\022\025\n\021EXECU"
+    "TION_SUCCESS\020\000\022\024\n\020EXECUTION_FAILED\020\001\";\n\023"
+    "CreateParcelRequest\022$\n\006parcel\030\001 \001(\0132\024.sm"
+    "art.parcel.Parcel\"\026\n\024CreateParcelRespons"
+    "e\"(\n\025GetParcelInfosRequest\022\017\n\007user_id\030\001 "
+    "\001(\r\">\n\025GetParcelInfoResponse\022%\n\007parcels\030"
+    "\001 \003(\0132\024.smart.parcel.Parcel\"g\n\030SetElevat"
+    "orStatusRequest\022\023\n\013elevator_id\030\001 \001(\r\0226\n\017"
+    "elevator_status\030\002 \001(\0132\035.smart.parcel.Ele"
+    "vator.Status\"\033\n\031SetElevatorStatusRespons"
+    "e\"i\n\030MoveDeliveryRobotRequest\022\031\n\021deliver"
+    "y_robot_id\030\001 \001(\r\0222\n\023destination_address\030"
+    "\003 \001(\0132\025.smart.parcel.Address\"\033\n\031MoveDeli"
+    "veryRobotResponse\"b\n\023ElevatorStatusEvent"
+    "\022\023\n\013elevator_id\030\001 \001(\r\0226\n\017elevator_status"
+    "\030\002 \001(\0132\035.smart.parcel.Elevator.Status\"&\n"
+    "\021ParcelStatusEvent\022\021\n\tparcel_id\030\001 \001(\r\"<\n"
+    "\022ParcelArrivalEvent\022&\n\007address\030\001 \001(\0132\025.s"
+    "mart.parcel.Address\"\317\001\n\010Elevator\022\n\n\002id\030\001"
+    " \001(\r\022-\n\006status\030\002 \001(\0132\035.smart.parcel.Elev"
+    "ator.Status\032`\n\006Status\022\025\n\rcurrent_floor\030\001"
+    " \001(\r\022\?\n\020door_open_status\030\002 \001(\0162%.smart.p"
+    "arcel.Elevator.DoorOpenStatus\"&\n\016DoorOpe"
+    "nStatus\022\n\n\006CLOSED\020\000\022\010\n\004OPEN\020\001\"\033\n\rDeliver"
+    "yRobot\022\n\n\002id\030\001 \001(\r\"\211\001\n\007Storage\022\n\n\002id\030\001 \001"
+    "(\r\022-\n\007lockers\030\002 \003(\0132\034.smart.parcel.Stora"
+    "ge.Locker\032C\n\006Locker\022\021\n\tlocker_id\030\001 \001(\r\022\023"
+    "\n\013access_code\030\002 \001(\t\022\021\n\tparcel_id\030\003 \001(\r\":"
+    "\n\004User\022\n\n\002id\030\001 \001(\r\022&\n\007address\030\002 \001(\0132\025.sm"
+    "art.parcel.Address\"{\n\006Parcel\022\n\n\002id\030\001 \001(\r"
+    "\022&\n\007address\030\002 \001(\0132\025.smart.parcel.Address"
+    "\022\022\n\nshipper_id\030\003 \001(\r\022\024\n\014recipient_id\030\004 \001"
+    "(\r\022\023\n\013photo_bytes\030\005 \001(\014\"V\n\007Address\022;\n\021ap"
+    "artment_address\030\001 \001(\0132\036.smart.parcel.Apa"
+    "rtmentAddressH\000B\016\n\014address_type\"`\n\020Apart"
+    "mentAddress\022\031\n\021apartment_complex\030\001 \001(\t\022\027"
+    "\n\017building_number\030\002 \001(\r\022\030\n\020apartment_num"
+    "ber\030\003 \001(\rb\010editionsp\350\007"
 };
 static ::absl::once_flag descriptor_table_smart_5fparcel_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_smart_5fparcel_2eproto = {
     false,
     false,
-    2414,
+    2542,
     descriptor_table_protodef_smart_5fparcel_2eproto,
     "smart_parcel.proto",
     &descriptor_table_smart_5fparcel_2eproto_once,
     nullptr,
     0,
-    24,
+    25,
     schemas,
     file_default_instances,
     TableStruct_smart_5fparcel_2eproto::offsets,
@@ -2137,6 +2179,19 @@ void NodeEvent::set_allocated_parcel_status_event(::smart::parcel::ParcelStatusE
   }
   // @@protoc_insertion_point(field_set_allocated:smart.parcel.NodeEvent.parcel_status_event)
 }
+void NodeEvent::set_allocated_parcel_arrival_event(::smart::parcel::ParcelArrivalEvent* parcel_arrival_event) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_event();
+  if (parcel_arrival_event) {
+    ::google::protobuf::Arena* submessage_arena = parcel_arrival_event->GetArena();
+    if (message_arena != submessage_arena) {
+      parcel_arrival_event = ::google::protobuf::internal::GetOwnedMessage(message_arena, parcel_arrival_event, submessage_arena);
+    }
+    set_has_parcel_arrival_event();
+    _impl_.event_.parcel_arrival_event_ = parcel_arrival_event;
+  }
+  // @@protoc_insertion_point(field_set_allocated:smart.parcel.NodeEvent.parcel_arrival_event)
+}
 NodeEvent::NodeEvent(::google::protobuf::Arena* arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(arena, _class_data_.base()) {
@@ -2177,6 +2232,9 @@ NodeEvent::NodeEvent(
         break;
       case kParcelStatusEvent:
         _impl_.event_.parcel_status_event_ = ::google::protobuf::Message::CopyConstruct<::smart::parcel::ParcelStatusEvent>(arena, *from._impl_.event_.parcel_status_event_);
+        break;
+      case kParcelArrivalEvent:
+        _impl_.event_.parcel_arrival_event_ = ::google::protobuf::Message::CopyConstruct<::smart::parcel::ParcelArrivalEvent>(arena, *from._impl_.event_.parcel_arrival_event_);
         break;
   }
 
@@ -2230,6 +2288,14 @@ void NodeEvent::clear_event() {
       }
       break;
     }
+    case kParcelArrivalEvent: {
+      if (GetArena() == nullptr) {
+        delete _impl_.event_.parcel_arrival_event_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.event_.parcel_arrival_event_);
+      }
+      break;
+    }
     case EVENT_NOT_SET: {
       break;
     }
@@ -2274,16 +2340,16 @@ const ::google::protobuf::internal::ClassData* NodeEvent::GetClassData() const {
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 4, 2, 48, 2> NodeEvent::_table_ = {
+const ::_pbi::TcParseTable<1, 5, 3, 48, 2> NodeEvent::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(NodeEvent, _impl_._has_bits_),
     0, // no _extensions_
-    4, 8,  // max_field_number, fast_idx_mask
+    5, 8,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967280,  // skipmap
+    4294967264,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    4,  // num_field_entries
-    2,  // num_aux_entries
+    5,  // num_field_entries
+    3,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     _class_data_.base(),
     nullptr,  // post_loop_handler
@@ -2313,9 +2379,13 @@ const ::_pbi::TcParseTable<1, 4, 2, 48, 2> NodeEvent::_table_ = {
     // .smart.parcel.ParcelStatusEvent parcel_status_event = 4;
     {PROTOBUF_FIELD_OFFSET(NodeEvent, _impl_.event_.parcel_status_event_), _Internal::kOneofCaseOffset + 0, 1,
     (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .smart.parcel.ParcelArrivalEvent parcel_arrival_event = 5;
+    {PROTOBUF_FIELD_OFFSET(NodeEvent, _impl_.event_.parcel_arrival_event_), _Internal::kOneofCaseOffset + 0, 2,
+    (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
   }}, {{
     {::_pbi::TcParser::GetTable<::smart::parcel::ElevatorStatusEvent>()},
     {::_pbi::TcParser::GetTable<::smart::parcel::ParcelStatusEvent>()},
+    {::_pbi::TcParser::GetTable<::smart::parcel::ParcelArrivalEvent>()},
   }}, {{
     "\26\6\13\0\0\0\0\0"
     "smart.parcel.NodeEvent"
@@ -2390,6 +2460,12 @@ PROTOBUF_NOINLINE void NodeEvent::Clear() {
                   stream);
               break;
             }
+            case kParcelArrivalEvent: {
+              target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                  5, *this_._impl_.event_.parcel_arrival_event_, this_._impl_.event_.parcel_arrival_event_->GetCachedSize(), target,
+                  stream);
+              break;
+            }
             default:
               break;
           }
@@ -2441,6 +2517,12 @@ PROTOBUF_NOINLINE void NodeEvent::Clear() {
             case kParcelStatusEvent: {
               total_size += 1 +
                             ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.event_.parcel_status_event_);
+              break;
+            }
+            // .smart.parcel.ParcelArrivalEvent parcel_arrival_event = 5;
+            case kParcelArrivalEvent: {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.event_.parcel_arrival_event_);
               break;
             }
             case EVENT_NOT_SET: {
@@ -2496,6 +2578,15 @@ void NodeEvent::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::googl
               ::google::protobuf::Message::CopyConstruct<::smart::parcel::ParcelStatusEvent>(arena, *from._impl_.event_.parcel_status_event_);
         } else {
           _this->_impl_.event_.parcel_status_event_->MergeFrom(from._internal_parcel_status_event());
+        }
+        break;
+      }
+      case kParcelArrivalEvent: {
+        if (oneof_needs_init) {
+          _this->_impl_.event_.parcel_arrival_event_ =
+              ::google::protobuf::Message::CopyConstruct<::smart::parcel::ParcelArrivalEvent>(arena, *from._impl_.event_.parcel_arrival_event_);
+        } else {
+          _this->_impl_.event_.parcel_arrival_event_->MergeFrom(from._internal_parcel_arrival_event());
         }
         break;
       }
@@ -5168,6 +5259,256 @@ void ParcelStatusEvent::InternalSwap(ParcelStatusEvent* PROTOBUF_RESTRICT other)
 }
 
 ::google::protobuf::Metadata ParcelStatusEvent::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class ParcelArrivalEvent::_Internal {
+ public:
+  using HasBits =
+      decltype(std::declval<ParcelArrivalEvent>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(ParcelArrivalEvent, _impl_._has_bits_);
+};
+
+ParcelArrivalEvent::ParcelArrivalEvent(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:smart.parcel.ParcelArrivalEvent)
+}
+inline PROTOBUF_NDEBUG_INLINE ParcelArrivalEvent::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::smart::parcel::ParcelArrivalEvent& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0} {}
+
+ParcelArrivalEvent::ParcelArrivalEvent(
+    ::google::protobuf::Arena* arena,
+    const ParcelArrivalEvent& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  ParcelArrivalEvent* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::uint32_t cached_has_bits = _impl_._has_bits_[0];
+  _impl_.address_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::smart::parcel::Address>(
+                              arena, *from._impl_.address_)
+                        : nullptr;
+
+  // @@protoc_insertion_point(copy_constructor:smart.parcel.ParcelArrivalEvent)
+}
+inline PROTOBUF_NDEBUG_INLINE ParcelArrivalEvent::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0} {}
+
+inline void ParcelArrivalEvent::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.address_ = {};
+}
+ParcelArrivalEvent::~ParcelArrivalEvent() {
+  // @@protoc_insertion_point(destructor:smart.parcel.ParcelArrivalEvent)
+  SharedDtor(*this);
+}
+inline void ParcelArrivalEvent::SharedDtor(MessageLite& self) {
+  ParcelArrivalEvent& this_ = static_cast<ParcelArrivalEvent&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  delete this_._impl_.address_;
+  this_._impl_.~Impl_();
+}
+
+inline void* ParcelArrivalEvent::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) ParcelArrivalEvent(arena);
+}
+constexpr auto ParcelArrivalEvent::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(ParcelArrivalEvent),
+                                            alignof(ParcelArrivalEvent));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull ParcelArrivalEvent::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_ParcelArrivalEvent_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &ParcelArrivalEvent::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<ParcelArrivalEvent>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &ParcelArrivalEvent::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<ParcelArrivalEvent>(), &ParcelArrivalEvent::ByteSizeLong,
+            &ParcelArrivalEvent::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(ParcelArrivalEvent, _impl_._cached_size_),
+        false,
+    },
+    &ParcelArrivalEvent::kDescriptorMethods,
+    &descriptor_table_smart_5fparcel_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* ParcelArrivalEvent::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 1, 0, 2> ParcelArrivalEvent::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(ParcelArrivalEvent, _impl_._has_bits_),
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    1,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::smart::parcel::ParcelArrivalEvent>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // .smart.parcel.Address address = 1;
+    {::_pbi::TcParser::FastMtS1,
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(ParcelArrivalEvent, _impl_.address_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .smart.parcel.Address address = 1;
+    {PROTOBUF_FIELD_OFFSET(ParcelArrivalEvent, _impl_.address_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::smart::parcel::Address>()},
+  }}, {{
+  }},
+};
+
+PROTOBUF_NOINLINE void ParcelArrivalEvent::Clear() {
+// @@protoc_insertion_point(message_clear_start:smart.parcel.ParcelArrivalEvent)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(_impl_.address_ != nullptr);
+    _impl_.address_->Clear();
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* ParcelArrivalEvent::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const ParcelArrivalEvent& this_ = static_cast<const ParcelArrivalEvent&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* ParcelArrivalEvent::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const ParcelArrivalEvent& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:smart.parcel.ParcelArrivalEvent)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          cached_has_bits = this_._impl_._has_bits_[0];
+          // .smart.parcel.Address address = 1;
+          if (cached_has_bits & 0x00000001u) {
+            target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                1, *this_._impl_.address_, this_._impl_.address_->GetCachedSize(), target,
+                stream);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:smart.parcel.ParcelArrivalEvent)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t ParcelArrivalEvent::ByteSizeLong(const MessageLite& base) {
+          const ParcelArrivalEvent& this_ = static_cast<const ParcelArrivalEvent&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t ParcelArrivalEvent::ByteSizeLong() const {
+          const ParcelArrivalEvent& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:smart.parcel.ParcelArrivalEvent)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+           {
+            // .smart.parcel.Address address = 1;
+            cached_has_bits = this_._impl_._has_bits_[0];
+            if (cached_has_bits & 0x00000001u) {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.address_);
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void ParcelArrivalEvent::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<ParcelArrivalEvent*>(&to_msg);
+  auto& from = static_cast<const ParcelArrivalEvent&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:smart.parcel.ParcelArrivalEvent)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    ABSL_DCHECK(from._impl_.address_ != nullptr);
+    if (_this->_impl_.address_ == nullptr) {
+      _this->_impl_.address_ =
+          ::google::protobuf::Message::CopyConstruct<::smart::parcel::Address>(arena, *from._impl_.address_);
+    } else {
+      _this->_impl_.address_->MergeFrom(*from._impl_.address_);
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ParcelArrivalEvent::CopyFrom(const ParcelArrivalEvent& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:smart.parcel.ParcelArrivalEvent)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void ParcelArrivalEvent::InternalSwap(ParcelArrivalEvent* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  swap(_impl_.address_, other->_impl_.address_);
+}
+
+::google::protobuf::Metadata ParcelArrivalEvent::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================
