@@ -44,7 +44,7 @@ message Response {
   AckStatus ack_status = 3;
   ExecutionStatus execution_status = 4;
   oneof command {
-    // client-delivery_robot (cpp) ---> server ---> client-user (cpp)
+    // client-elevator (c) ---> server ---> client-delivery_robot (cpp)
     SetElevatorStatusResponse set_elevator_status_response = 5;
     // client-delivery_robot (cpp) ---> server ---> client-user (cpp)
     MoveDeliveryRobotResponse move_delivery_robot_response = 6;
@@ -60,6 +60,8 @@ message NodeEvent {
     ElevatorStatusEvent elevator_status_event = 3;
     // client-storage (cpp) ---> server
     ParcelArrivalEvent parcel_arrival_event = 5;
+    // client-delivery_robot (cpp) ---> server :TODO 📰 ROS 터틀봇 상태 서버에 전달 시 메시지 하나 더 필요.
+    RobotStatusEvent parcel_arrival_event = 5;
   }
 }
 
@@ -118,7 +120,7 @@ message SetElevatorStatusResponse {}
 
 message MoveDeliveryRobotRequest {
   uint32 delivery_robot_id = 1;
-  Address destination_address = 3;
+  Address destination_address = 2;
 }
 
 message MoveDeliveryRobotResponse {}
@@ -161,7 +163,6 @@ message Elevator {
 message DeliveryRobot {
   uint32 id = 1;
   // Status status = 2;
-
   // enum DeliveryStatus {
   //   READY = 0;
   //   BUSY = 1;
