@@ -1368,87 +1368,9 @@ Mariadb
       - 고급 임베디드 장치인 라즈베리파이, 아두이노 뿐 아니라, 자원이 제한적인 STM32 에서도 성능 문제 없이 작동해야 한다.
       - ROS 1 noetic 환경에서도 호환성을 보장해야 한다.
 
-    * Design Pattern
-      - Imitate REST API naming convention (But not HTTP protocol.)
-        - HATEOAS (Hypermedia as the Engine of Application State)
-          HATEOAS는 클라이언트가 리소스를 탐색하고 상태를 전이할 수 있도록 링크와 관련 정보를 응답에 포함시키는 것을 권장
-
-    * Components
-      - 💾 Database: MariaDB
-        📝
-          - "🧪": 테스트 중 생략 가능한 컬럼
-        * Data Definition
-          CREATE TABLE parcels (
-              id                  INT AUTO_INCREMENT PRIMARY KEY    COMMENT '택배 고유 식별자',
-              parcel_name         VARCHAR(255) NOT NULL             COMMENT '택배 물품 이름',
-              recipient_name      VARCHAR(255)                      COMMENT '🧪 수령자 이름',
-              phone_number        VARCHAR(20)                       COMMENT '수령자 연락처. 월패드로 정보 전달 예정',
-              delivery_status     ENUM('pending', 'in_transit', 'delivered') NOT NULL DEFAULT 'pending'
-                                                                    COMMENT '배송 상태 (pending, in_transit, delivered)',
-              delivery_date       DATE                              COMMENT '🧪 배송 예정일',
-              address_id          INT                               COMMENT '배송지 주소의 외래키 (addresses.id 참조)',
-              delivery_image_path VARCHAR(255)                      COMMENT '배송 완료 후 이미지 경로 (URL 또는 파일 경로)'
-          ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-          CREATE TABLE addresses (
-              id            INT AUTO_INCREMENT PRIMARY KEY          COMMENT '주소 고유 식별자',
-              city          VARCHAR(100)                            COMMENT '🧪 도시 이름',
-              district      VARCHAR(100)                            COMMENT '🧪 구/군 이름',
-              sub_address   VARCHAR(255)                            COMMENT '상세 주소 (예: XX동, XX호)',
-              created_at    DATETIME DEFAULT CURRENT_TIMESTAMP 
-                                                                    COMMENT '🧪 주소 생성 시각 (기본값: 현재 시각)',
-              updated_at    DATETIME DEFAULT CURRENT_TIMESTAMP 
-                          ON UPDATE CURRENT_TIMESTAMP               COMMENT '🧪 주소 업데이트 시각 (수정 시 자동 갱신)'
-          ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-          📰 
-          ⚖️ Nodes (Mockup)
-            - storage_1
-            - storage_2
-            - elevator_1
-            - elevator_2
-            - home_1
-            - home_2
-            - turtlebot_1
-            - turtlebot_2
-
-
-        * Cardinality
-          parcels : addresses     ==    N : 1
-
-      - Socket Server
-      - ROS Master Node 📰 (Doing...) 
-
-    * Message Format
-      {
-        "source": "client_name",
-        "destination": "target_name",
-        "command": "command_name",
-        "payload": {
-          "key1": "value1",
-          "key2": "value2"
-        },
-        "status": "hub/1.0 0 OK",   // Format: protocol, " ", status code, " ", "message"
-        "message": "",
-        "links": [
-          { "rel": "self", "href": "/api/current_state" },
-          { "rel": "update", "href": "/api/update_state" }
-        ]
-      }
-
       command := ["get", "set", "create", "read" "update", "delete", ...]
         📝 CRUD (create, read, update, delete) 는 DB 에 대한 Query. 그 외에는 메모리에서만 유지되는 정보에 대한 쿼리.
 
-    * Messages Speicifcation
-      ⚖️ Mockup
-        - storage_1
-        - storage_2
-        - elevator_1
-        - elevator_2
-        - home_1
-        - home_2
-        - turtlebot_1
-        - turtlebot_2
     *🧪 Optimization
       - Maximum Message Size is 1460 bytes
         Ethernet Frame Total Size = 1518 bytes
@@ -1478,42 +1400,9 @@ Mariadb
             { "rel": "update", "href": "/api/update_state" }
           ]
         }
-      
-    1. 📰
-      syntax = "proto3"; // Protobuf 버전 3 사용
-
-      // 메시지 정의
-      message Message {
-        string source = 1;                // 메시지를 보낸 노드
-        string destination = 2;           // 메시지를 받을 노드
-        string command = 3;               // 수행할 명령
-        Payload payload = 4;              // 명령에 필요한 데이터
-        repeated Link links = 5;          // 선택적: 다음 가능한 작업 정보
-      }
-
-      // Payload 메시지 정의
-      message Payload {
-        string key1 = 1;                  // 첫 번째 데이터 키
-        string key2 = 2;                  // 두 번째 데이터 키
-      }
-
-      // Link 메시지 정의
-      message Link {
-        string rel = 1;                   // 링크의 관계 (예: self, update 등)
-        string href = 2;                  // 링크 URL
-      }
 
 
     2. 크로스컴파일 환경 구성 및 크로스컴파일, 라즈베리파이에서 직접 테스트.
-
-
-  
-  ...??? protoc --nanopb_out=. example.proto
-  엘레베이터 정보
-    - 엘레베이터 문 개폐 상태
-    - 엘레베이터 현재 층수
-  택배보관소 정보
-    - 택배 (parcel) - CRUD to DB
 
 
 Node

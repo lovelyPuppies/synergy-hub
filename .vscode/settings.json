@@ -159,24 +159,5 @@
     "${workspaceFolder}/sources/poky/meta/lib"
   ],
   "todo-tree.tree.scanMode": "workspace only",
-  "vscode-edge-devtools.headless": false,
-  "dbcode.connections": [
-    {
-      "connectionId": "C7vVX5F_88XeuQBCBjEGW",
-      "name": "homev2",
-      "driver": "mariadb",
-      "connectionType": "host",
-      "host": "localhost",
-      "port": 3306,
-      "ssl": false,
-      "username": "wbfw109v2_dev",
-      "password": "",
-      "savePassword": "secretStorage",
-      "database": "smart_parcel",
-      "connectionTimeout": 30,
-      "driverOptions": {
-        "retrievePublickey": true
-      }
-    }
-  ]
+  "vscode-edge-devtools.headless": false
 }

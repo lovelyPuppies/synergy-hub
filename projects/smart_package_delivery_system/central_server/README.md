@@ -1,4 +1,4 @@
-# Smart Parcel system 🔪 Central Server
+# Smart Package Delivery system 🔪 Central Server
 
 ## [Socket IoT System](socket_iot_system)
 
