@@ -5,7 +5,7 @@
 -- DB Version: MariaDB 11.6.2
 
 
-USE smart_parcel;
+USE smart_pkg_db;
 
 -- 🌀 1. 기본 데이터 삽입
 -- 👤 사용자 2명 추가

@@ -8,7 +8,7 @@
 -- SELECT user, host FROM mysql.user;
 -- SELECT USER();
 
-USE smart_parcel;
+USE smart_pkg_db;
 
 
 SELECT
@@ -22,7 +22,7 @@ SELECT
 FROM
   INFORMATION_SCHEMA.COLUMNS
 WHERE
-  TABLE_SCHEMA = 'smart_parcel'
+  TABLE_SCHEMA = 'smart_pkg_db'
 ORDER BY
   TABLE_NAME,
   ORDINAL_POSITION;

@@ -5,8 +5,8 @@
 -- DB Version: MariaDB 11.6.2
 
 
-CREATE DATABASE IF NOT EXISTS smart_parcel;
-USE smart_parcel;
+CREATE DATABASE IF NOT EXISTS smart_pkg_db;
+USE smart_pkg_db;
 --
 -- 🌀 Independent Tables
 --
@@ -20,7 +20,8 @@ CREATE TABLE IF NOT EXISTS users (
 
 
 
-CREATE TABLE IF NOT EXISTS storages (
+-- Apartment Package Room
+CREATE TABLE IF NOT EXISTS pkg_rooms (
     id                  INT AUTO_INCREMENT PRIMARY KEY    COMMENT '택배 저장소 고유 식별자',
     name                VARCHAR(255)                      COMMENT '택배 저장소 이름',
     is_deleted          BOOLEAN DEFAULT FALSE             COMMENT 'SOFT DELETE (TRUE = 삭제됨)'
@@ -33,10 +34,10 @@ CREATE TABLE IF NOT EXISTS storages (
 
 CREATE TABLE IF NOT EXISTS lockers (
     id                  INT AUTO_INCREMENT PRIMARY KEY    COMMENT '택배 보관함 고유 식별자',
-    storage_id          INT                               COMMENT '택배 저장소의 외래키 (storages.id 참조)',
+    pkg_room_id     INT                               COMMENT '택배 저장소의 외래키 (pkg_rooms.id 참조)',
     -- TODO: password_hash VARCHAR(72)                        COMMENT 'bcrypt 해시 저장 (최대 72자)',
     is_deleted          BOOLEAN DEFAULT FALSE             COMMENT 'SOFT DELETE (TRUE = 삭제됨)',
-    FOREIGN KEY (storage_id) REFERENCES storages(id) ON DELETE NO ACTION
+    FOREIGN KEY (pkg_room_id) REFERENCES pkg_rooms(id) ON DELETE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
@@ -44,7 +45,7 @@ CREATE TABLE IF NOT EXISTS parcels (
     id                  INT AUTO_INCREMENT PRIMARY KEY    COMMENT '택배 고유 식별자',
     name                VARCHAR(255) NOT NULL             COMMENT '택배 물품 이름',
     recipient_id        INT                               COMMENT '수령자 id',
-    storage_id          INT                               COMMENT '저장소 ID (storages.id 참조)',
+    pkg_room_id     INT                               COMMENT '저장소 ID (pkg_rooms.id 참조)',
     locker_id           INT UNIQUE                        COMMENT '택배 보관함 안에 parcel 이 있다면, NOT NULL',
     -- phone_number        VARCHAR(20)                       COMMENT '수령자 연락처. 월패드로 정보 전달 예정',
     delivery_status     ENUM('pending', 'in_transit', 'delivered') NOT NULL DEFAULT 'pending'
@@ -53,7 +54,7 @@ CREATE TABLE IF NOT EXISTS parcels (
     delivery_image_path VARCHAR(255)                      COMMENT '배송 완료 후 이미지 경로 (URL 또는 파일 경로)',
     is_deleted          BOOLEAN DEFAULT FALSE             COMMENT 'SOFT DELETE (TRUE = 삭제됨)',
     FOREIGN KEY (recipient_id) REFERENCES users(id) ON DELETE NO ACTION,
-    FOREIGN KEY (storage_id) REFERENCES storages(id) ON DELETE NO ACTION,
+    FOREIGN KEY (pkg_room_id) REFERENCES pkg_rooms(id) ON DELETE NO ACTION,
     FOREIGN KEY (locker_id) REFERENCES lockers(id) ON DELETE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 

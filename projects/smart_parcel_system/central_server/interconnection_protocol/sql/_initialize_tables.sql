@@ -5,7 +5,7 @@
 -- DB Version: MariaDB 11.6.2
 
 
-USE smart_parcel;
+USE smart_pkg_db;
 
 SET SESSION group_concat_max_len = 1000000;
 SET FOREIGN_KEY_CHECKS = 0;
