@@ -129,7 +129,7 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
 
 ## 📌 Project Shortcuts
 
-- 🎱 📰 (Doing) [**스마트 택배 시스템**](projects/smart_parcel_system/central_server)
+- 🎱 📰 (Doing) [**스마트 택배 시스템**](projects/smart_package_delivery_system/central_server)
 
   📅 2025-01-20 ~
 
