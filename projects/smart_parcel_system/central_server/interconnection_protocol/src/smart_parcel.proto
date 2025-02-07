@@ -46,7 +46,7 @@ message Response {
   oneof command {
     // client-delivery_robot (cpp) ---> server ---> client-user (cpp)
     SetElevatorStatusResponse set_elevator_status_response = 5;
-    // client-delivery_robot (cpp) ---> server ---> client-elevator (c)
+    // client-delivery_robot (cpp) ---> server ---> client-user (cpp)
     MoveDeliveryRobotResponse move_delivery_robot_response = 6;
   }
 }
@@ -56,8 +56,9 @@ message NodeEvent {
   string source = 1;
   string destination = 2;
   oneof event {
+    // client-elevator (cpp) ---> server ---> client-delivery_robot (cpp)
     ElevatorStatusEvent elevator_status_event = 3;
-    ParcelStatusEvent parcel_status_event = 4;
+    // client-storage (cpp) ---> server
     ParcelArrivalEvent parcel_arrival_event = 5;
   }
 }
@@ -128,10 +129,6 @@ message MoveDeliveryRobotResponse {}
 message ElevatorStatusEvent {
   uint32 elevator_id = 1;
   Elevator.Status elevator_status = 2;
-}
-message ParcelStatusEvent {
-  uint32 parcel_id = 1;
-  // Parcel.Status parcel_status = 2;
 }
 
 message ParcelArrivalEvent {
