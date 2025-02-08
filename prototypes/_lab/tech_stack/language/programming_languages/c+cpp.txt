@@ -164,7 +164,31 @@ c+cpp
         - ...
         - 🚣 extern "C" 
         - ...
-    ⚓ Initializers ; https://learn.microsoft.com/en-us/cpp/cpp/initializers
+    ⚓🔰 Initializers ; https://learn.microsoft.com/en-us/cpp/cpp/initializers
+      # Kinds of initialization
+        # Default initialization
+        #️⃣🪱 Direct initialization ; https://learn.microsoft.com/en-us/cpp/cpp/initializers?view=msvc-170#direct-initialization
+          📝🛍️ e.g. 
+            Direct initialization is a form of object initialization where an r-value is passed directly to a constructor, avoiding unnecessary copy operations.
+            This method allows explicit constructors to be invoked and is often used for efficiency and clarity in C++.
+            ```cpp
+            class Session : public std::enable_shared_from_this<Session> {
+              private:
+                tcp::socket socket_;
+                char buffer_[1024];
+
+                void doRead() {
+                  auto self(shared_from_this());  // 🚣 Direct initialization with an r-value
+                  ...
+                }
+            }
+            ```
+            In the case of `auto self(shared_from_this());`, the function `shared_from_this()` returns an r-value of type `std::shared_ptr<T>`
+            , which is then used to directly initialize `self` following the same principle.
+            
+        #️⃣ List initialization ; https://learn.microsoft.com/en-us/cpp/cpp/initializers?view=msvc-170#list-initialization
+
+
     ⚓ Aliases and typedefs ; https://learn.microsoft.com/en-us/cpp/cpp/aliases-and-typedefs-cpp
     ⚓ using declaration ; https://learn.microsoft.com/en-us/cpp/cpp/using-declaration
     ⚓ volatile ; https://learn.microsoft.com/en-us/cpp/cpp/volatile-cpp
