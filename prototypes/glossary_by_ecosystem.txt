@@ -170,24 +170,30 @@ Wiktionary
         3. (programming) A placeholder procedure that has the signature of the planned procedure but does not yet implement the intended behavior. 
 
 
+  - demultiplex ; https://en.wiktionary.org/wiki/demultiplex#English
+    Verb
+      demultiplex (third-person singular simple present demultiplexes, present participle demultiplexing, simple past and past participle demultiplexed)
+        1. (electronics) To separate signals that were previously multiplexed (combined using a multiplexer)
+
 
   - lean ; https://en.wiktionary.org/wiki/lean#English
     Adjective
       lean (comparative leaner, superlative leanest)
         6. (business) Efficient, economic, frugal, agile, slimmed-down; pertaining to the modern industrial principles of "lean manufacturing
 
+
+
   - nil ; https://en.wiktionary.org/wiki/nil#English
     Noun
       nil (usually uncountable, plural nils)
         1. Nothing; zero. 
-
-
-
   - no-op ; https://en.wiktionary.org/wiki/no-op#English
     Noun
       no-op (plural no-ops)
         1. (computing) An instruction or operation that has no effect; a null operation.
   
+  
+
   - deflate ; https://en.wiktionary.org/wiki/deflate#English
     Verb
       deflate (third-person singular simple present deflates, present participle deflating, simple past and past participle deflated)
@@ -196,6 +202,7 @@ Wiktionary
     Verb
       2. inflate (third-person singular simple present inflates, present participle inflating, simple past and past participle inflated)
         (transitive, computing) To decompress (data) that was previously deflated.
+
 
 ----------------------------------------------
 Wiktionary 🔪 Abbreviation

@@ -202,14 +202,33 @@ list of level 1 subjects
   ⚓ YAP ; https://www.boost.org/doc/libs/release/libs/yap/
 ----------------------------------------------
 boost 🔪⚓ Asio ; https://www.boost.org/doc/libs/release/libs/asio/
+  ⚓🚧 Using, Building, and Configuring Boost.Asio ; https://www.boost.org/doc/libs/1_87_0/doc/html/boost_asio/using.html
+
   ⚓🔰 Asio tutorial ; https://www.boost.org/doc/libs/1_87_0/doc/html/boost_asio/tutorial.html
+  ⚓🔰 Overview ; https://www.boost.org/doc/libs/1_87_0/doc/html/boost_asio/overview.html
+    # Core Concepts and Functionality
+      ⚓ The Proactor Design Pattern: Concurrency Without Threads ; https://www.boost.org/doc/libs/1_87_0/doc/html/boost_asio/overview/core/async.html
+      ⚓ Threads and Boost.Asio ; https://www.boost.org/doc/libs/1_87_0/doc/html/boost_asio/overview/core/threads.html
+        #📎💡 Thread Safety
+          In general, it is safe to make concurrent use of distinct objects, but unsafe to make concurrent use of a single object. However, types such as io_context provide a stronger guarantee that it is safe to use a single object concurrently.
+        #📎🪱 Thread Pools
+          ⚖️ Multiple threads may call io_context::run() to set up a pool of threads from which completion handlers may be invoked.
+            This approach may also be used with post() as a means to perform arbitrary computational tasks across a thread pool.
+          ⚖️ Note that all threads that have joined an io_context's pool are considered equivalent, and the io_context may distribute work across them in an arbitrary fashion.
+      ...
   ⚓ Asio Reference ; https://www.boost.org/doc/libs/1_87_0/doc/html/boost_asio/reference.html
+    # Core
+      # Classes
+        ⚓ io_context ; https://www.boost.org/doc/libs/1_87_0/doc/html/boost_asio/reference/io_context.html
+          #📎💡 Thread Safety
+            Shared objects: Safe, with the specific exceptions ...
+          #📎 Synchronous and asynchronous operations
+            - Synchronous operations on I/O objects implicitly run the io_context object for an individual operation.
+            - 🚧 The io_context functions run(), run_one(), run_for(), run_until(), poll() or poll_one() must be called for the io_context to perform asynchronous operations on behalf of a C++ program.
+              ... Handlers are invoked only by a thread that is currently calling any overload of run(), run_one(), run_for(), run_until(), poll() or poll_one() for the io_context.
+
       # Free Functions
         ⚓ post ; https://www.boost.org/doc/libs/1_87_0/doc/html/boost_asio/reference/post.html
          Submits a completion token or function object for execution.
         
-      https://www.boost.org/doc/libs/1_87_0/doc/html/boost_asio/overview/core/threads.html
-
-      https://www.boost.org/doc/libs/1_87_0/doc/html/boost_asio/reference/io_context.html
-
-https://www.boost.org/doc/libs/1_87_0/doc/html/boost_asio/tutorial/tutdaytime7.html
+      

@@ -13,9 +13,8 @@ https://www.codingwiththomas.com/blog/boost-asio-server-client-example
 namespace iot {
 using boost::asio::ip::tcp;
 
-// 🚀 Session 클래스
-// 클라이언트와 개별 통신을 담당
-// 클라이언트가 서버에 연결되면 Session 객체가 생성됨.
+// 🎱 Session class: Handles individual client communication.
+//    A Session object is created when a client connects to the server
 class Session : public std::enable_shared_from_this<Session> {
 public:
   explicit Session(tcp::socket socket) : socket_(std::move(socket)) {}
@@ -28,13 +27,16 @@ private:
   char buffer_[1024];
 
   void doRead() {
-    // 📌 이렇게 self를 생성하는 이유는?
-    //    async_read_some()는 비동기 함수이므로 즉시 리턴됨.
-    //    하지만, 비동기 작업이 끝나기 전에 Session 객체가 소멸될 수도 있음.
-    //    self(shared_from_this())를 사용하여 shared_ptr을 유지하면 객체가 소멸되지 않도록 참조를 유지할 수 있음.
+    // ❔💡 Ensuring Object Lifetime in Asynchronous Execution
+    //    `async_read_some()` is an asynchronous function, meaning it returns immediately.
+    //    However, before the asynchronous operation completes, the `Session` object might be destroyed.
+    //    By using `self(shared_from_this())`, we create a `shared_ptr` that keeps the object alive.
+    //      This `shared_ptr` is then captured in the callback, ensuring the object is not destroyed before the asynchronous operation completes.
     auto self(shared_from_this());
+    // 🧩 [Proactor Pattern] 3. Asynchronous Operation (Operation-specific actor)
     socket_.async_read_some(
         boost::asio::buffer(buffer_),
+        // 🧩 [Proactor Pattern] 5. Completion Handler (Operation-specific actor)
         [this, self](boost::system::error_code ec, std::size_t length) {
           //
           if (!ec) {
@@ -55,10 +57,10 @@ private:
   }
 };
 
-// 🚀 Server 클래스
-// 클라이언트의 연결을 수락하고, 새로운 Session을 생성하여 클라이언트와 통신하도록 함.
+// 🎱 Server class: Accepts client connections and creates a new Session to handle communication with each client.
 Server::Server(boost::asio::io_context &io_context, short port)
     : acceptor_(io_context, tcp::endpoint(tcp::v4(), port)) {
+  // 🧩 [Proactor Pattern] 1. Proactive Initiator (Operation-specific actor)
   doAccept();
 }
 
@@ -72,9 +74,10 @@ void Server::doAccept() {
       });
 }
 
-// 🚀 IoT 서버 실행 함수
+// 🎱
 void start_iot_server() {
   try {
+    // 🧩 [Proactor Pattern] 2. Asynchronous Operation Processor (Standardized actor)
     boost::asio::io_context io_context;
     Server server(io_context, 1234);
 
@@ -85,7 +88,10 @@ void start_iot_server() {
 
     std::vector<std::thread> threads;
     for (unsigned int i = 0; i < thread_count; ++i) {
-      threads.emplace_back([&io_context]() { io_context.run(); });
+      threads.emplace_back([&io_context]() {
+        // 🧩 [Proactor Pattern] 4. Completion Dispatcher (Standardized actor)
+        io_context.run();
+      });
     }
 
     for (auto &t : threads) {
@@ -110,14 +116,6 @@ void print_vector(const std::vector<std::string> &strings) {
 DB 수정
 
 * 시나리오 구체화: Draft 📅 2025-01-24 00:03:23
-  노드
-      택배기사
-      무인보관함 (택배 저장소)
-      사용자
-      중앙 서버
-      배달 로봇
-      엘레베이터
-
   📝 Note
     - 각 노드는 상대 노드로부터 명령을 수신받았을 때, "성공적"으로 수신 받았음을 사대 노드에게 알려야 한다. (ACK) 그 이후에 다음 절차를 진행해야 함.
     - 중앙 서버는 ROS 서버와 일반 소켓 서버를 의미한다.

@@ -19960,12 +19960,33 @@ TODO: 추가
   https://protobuf.dev/programming-guides/editions/#using-oneof
   https://jpa.kapsi.fi/nanopb/docs/concepts.html#oneof
 
-지워ㅜㄴ하는데.. 분명
-
   https://github.com/nanopb/nanopb/blob/master/generator/proto/google/protobuf/descriptor.proto
 
-📝 즉, 런타임에 동적으로 실제 클래스를 생성한다는 뜻인데  (TODO.. 작성해줘), 이는 IDE가 정적인 코드 분석 (protobuf에서 protoc을 이용해 생성한 *_pb2.py) 만으로 타입을 추론하기 어렵다는 뜻이다. 
-  따라서 .pyi (stub file) 을 같이 생성하면, VSCode는 정확한 인터페이스 정보를 명시적으로 읽을 수 있어서 Intellisense 가 잘 작동한다.
-
-
 https://www.codingwiththomas.com/blog/boost-asio-server-client-example
+
+📰 TODO:asio 만 따로 빌드하기. 다시.. 전체가 아니라. 크로스컴파일도 되도록.
+  ⚓🚧 Using, Building, and Configuring Boost.Asio ; https://www.boost.org/doc/libs/1_87_0/doc/html/boost_asio/using.html
+
+📰 TODO ppt..: Reactor pattern (select(), epoll. 동기적 방식.) -> Proactor pattern
+  더 높은 처리량(throughput), 성능(performance), 또는 복잡한 요청(request complexity)을 처리해야 하는 경우를 위한, Reactor 패턴에서 발전한 Multi-Reactor 또는 Proactor 같은 변형 패턴
+  핸들러가 오래 실행되면 다른 요청이 지연될 수 있다는 단점 개선.
+
+  비동기 방식은 OS 커널이 입출력 처리를 관리하고, 완료되었을 때만 알림을 주는 방식이다.
+  즉, 프로그램이 다른 작업을 수행할 수 있으며, 완료 핸들러(Completion Handler)가 실행된다.
+
+운영체제                      기반                                      특징
+---------------------------------------------------------------------------------------------
+BSD 계열 (BSD-based OS)	      Berkeley Software Distribution (BSD)	   FreeBSD, OpenBSD, NetBSD, macOS 등
+Linux 계열 (Linux-based OS)	  Unix-like OS (GNU/Linux 커널 기반)	      Ubuntu, Debian, CentOS, ArchLinux 등
+
+  1. Linux에서 신호를 이벤트 방식으로 감지하는 방법
+    📌 Linux는 기본적으로 epoll에서 신호를 감지할 수 없지만, signalfd를 사용하면 가능하다.
+    📌 즉, signalfd를 epoll에 등록하여 "비동기 이벤트" 방식으로 신호를 감지할 수 있다.
+    🔹 1.1 signalfd를 이용한 신호 감지 (Linux)
+    🔹 1.2 eventfd를 이용한 프로세스 간 이벤트 감지
+
+🧩 (퍼즐 조각) → 개별적인 구성 요소들이 모여 하나의 시스템을 이루는 개념 표현
+  // 소프트웨어적인 것?
+🔩 (볼트와 너트) → 작은 구성 요소들이 함께 결합되어 전체 시스템을 구성하는 의미
+  // 하드웨어적인 것?
+

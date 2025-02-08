@@ -2,7 +2,12 @@
 
 ## [Socket IoT System](socket_iot_system)
 
-🏷️ C++, boost, Asynchronous, Multithreading, Conan, CMake, Cross-compilation
+🏷️ C++, Asynchronous, Multithreading, Smart pointer, Conan, CMake, Cross-compilation, boost
+
+- **Design Pattern**
+  - Concurrency patterns: (Thread pool, Proactor)
+
+### Setup
 
 - Initialize
 

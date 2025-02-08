@@ -17,7 +17,43 @@ list of level 1 subjects
     #️⃣📎 Motivation ; https://en.wikipedia.org/wiki/Interning_(computer_science)#Motivation
 
 ⚓ Concurrency pattern ; https://en.wikipedia.org/wiki/Concurrency_pattern
-  ⚓ thread pool ; https://en.wikipedia.org/wiki/Thread_pool
+  ⚓📎 Reactor ; https://en.wikipedia.org/wiki/Reactor_pattern
+    🗒️ Contents
+      The reactor software design pattern is an event handling strategy that can respond to many potential service requests concurrently.
+      ❗ The pattern's key component is an event loop, running in a single thread or process, which 🪱 demultiplexes incoming requests and dispatches them to the correct request handler.
+        By relying on event-based mechanisms rather than blocking I/O or multi-threading, a reactor can handle many concurrent I/O bound requests with minimal delay.
+      ❗ A reactor also allows for easily modifying or expanding specific request handler routines, though the pattern does have some drawbacks and limitations.
+        🌳 Derivations such as the 🪱 multireactor and 🪱 proactor also exist for special cases where even greater throughput, performance, or request complexity are necessary.
+      
+      #️⃣📍 Structure ; https://en.wikipedia.org/wiki/Reactor_pattern#Structure
+        # Handle
+        # Demultiplexer
+          An 🪱 event notifier that can efficiently monitor the status of a handle, then notify other subsystems of a relevant status change (typically an IO handle becoming 🪱 "ready to read").
+          ⭕ Traditionally this role was filled by the select() system call, but more contemporary examples include 🪱 epoll, kqueue, and IOCP.
+        # Dispatcher
+        # Event Handler
+        # Event Handler Interface
+  ⚓🖇️ Proactor ; https://en.wikipedia.org/wiki/Proactor_pattern 📅 2025-02-09 05:41:30
+    🗒️ Contents
+      Proactor is a software design pattern for event handling in which long running activities are running in an asynchronous part.
+      A 🪱 completion handler is called after the asynchronous part has terminated. 
+
+      #️⃣ Interaction ; https://en.wikipedia.org/wiki/Proactor_pattern#Interaction
+        Operation specific actors:
+          - 1. The Proactive Initiator starts the asynchronous operation via the Asynchronous Operation Processor and defines the Completion Handler
+          - 5. Completion Handler is a call at the end of the operation from the Asynchronous Operation Processor
+          - 3. Asynchronous Operation
+        Standardized actors
+          - 2. The Asynchronous Operation Processor controls the whole asynchronous operation
+          - 4. The Completion Dispatcher handles the call, depending on the execution environment.
+      #️⃣ Implementations ; https://en.wikipedia.org/wiki/Proactor_pattern#Implementations
+        - Proactor and Boost.Asio (C++)
+  ⚓📎 Thread pool ; https://en.wikipedia.org/wiki/Thread_pool
+    | replicated workers | worker-crew model
+    🗒️ Contents
+      ... ❗ a thread pool maintains multiple threads waiting for tasks to be allocated for concurrent execution by the supervising program.
+        ❗ By maintaining a pool of threads, the model increases performance and avoids latency in execution due to frequent creation and destruction of threads for short-lived tasks
+
 
 ⚓ Structural patterns ; https://en.wikipedia.org/wiki/Structural_pattern
 
