@@ -1,6 +1,3 @@
-# %shell> poetry install --with ml-framework
-# %shell> poetry install --all-extras
-
 [tool.mypy]
 python_version = "3.13"
 strict = true
@@ -17,6 +14,9 @@ packages = [{ from = "study", include = "python_study" }]
 python = "~3.13.0"
 ipykernel = "*"
 grpcio-tools = "*"
+
+# It creates binary 🧮 stubgen, which creates stub files (.pyi; python interfaces)
+mypy = "*"
 
 # ultralytics = "^8.2.99"
 # opencv-python = "^4.10.0.84"

@@ -2,14 +2,14 @@
 
 [[package]]
 name = "certifi"
-version = "2024.12.14"
+version = "2025.1.31"
 description = "Python package for providing Mozilla's CA Bundle."
 optional = false
 python-versions = ">=3.6"
 groups = ["main"]
 files = [
-    {file = "certifi-2024.12.14-py3-none-any.whl", hash = "sha256:1275f7a45be9464efc1173084eaa30f866fe2e47d389406136d332ed4967ec56"},
-    {file = "certifi-2024.12.14.tar.gz", hash = "sha256:b650d30f370c2b724812bee08008be0c4163b163ddaec3f2546c1caf65f191db"},
+    {file = "certifi-2025.1.31-py3-none-any.whl", hash = "sha256:ca78db4565a652026a4db2bcdf68f2fb589ea80d0be70e03929ed730746b84fe"},
+    {file = "certifi-2025.1.31.tar.gz", hash = "sha256:3d5da6925056f6f18f119200434a4780a94263f10d1c21d032a6f6b2baa20651"},
 ]
 
 [[package]]
@@ -128,13 +128,13 @@ files = [
 
 [[package]]
 name = "conan"
-version = "2.11.0"
+version = "2.12.1"
 description = "Conan C/C++ package manager"
 optional = false
 python-versions = ">=3.6"
 groups = ["main"]
 files = [
-    {file = "conan-2.11.0.tar.gz", hash = "sha256:87f78a295716d1a37dfabc26f5d1b6a0ed49594618ea339420bb89627ececeda"},
+    {file = "conan-2.12.1.tar.gz", hash = "sha256:98c2daba94065e9171417e13c2983233092ab1f400bf5afa8a7616f80b801a7b"},
 ]
 
 [package.dependencies]
@@ -149,9 +149,9 @@ requests = ">=2.25,<3.0.0"
 urllib3 = ">=1.26.6,<1.27"
 
 [package.extras]
-dev = ["PyJWT", "WebTest (>=2.0.18,<2.1.0)", "bottle", "docker", "mock (>=1.3.0,<1.4.0)", "parameterized (>=0.6.3)", "pluginbase", "pytest (>=7,<8.0.0)", "pytest-xdist", "setuptools"]
+dev = ["PyJWT", "WebTest (>=3.0.0,<4)", "bottle", "docker", "mock (>=1.3.0,<1.4.0)", "parameterized (>=0.6.3)", "pluginbase", "pytest (>=7,<8.0.0)", "pytest-xdist", "setuptools"]
 runners = ["docker (>=7.1.0)", "paramiko"]
-test = ["PyJWT", "WebTest (>=2.0.18,<2.1.0)", "bottle", "docker", "mock (>=1.3.0,<1.4.0)", "parameterized (>=0.6.3)", "pluginbase", "pytest (>=7,<8.0.0)", "pytest-xdist", "setuptools"]
+test = ["PyJWT", "WebTest (>=3.0.0,<4)", "bottle", "docker", "mock (>=1.3.0,<1.4.0)", "parameterized (>=0.6.3)", "pluginbase", "pytest (>=7,<8.0.0)", "pytest-xdist", "setuptools"]
 
 [[package]]
 name = "distro"
@@ -605,4 +605,4 @@ socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.13"
-content-hash = "94203a429db41f13d5f96a02323403baad4614e839e2bcb176bd95536802e1da"
+content-hash = "c7556675df93ebb5ac1cf9a7c7c79a006371358c7dc49bfeb0ac29b4e1c0f184"

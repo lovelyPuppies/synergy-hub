@@ -6,11 +6,15 @@
 // 📅 2025-02-07 05:20:22
 
 // Library inclusions for necessary functionalities
-// #include "protobuf_c/smart_pkg_delivery.pb.h"
+// ⚙️ --------------------------------------------------
+#include "protobuf_c/message_initializer.h"
+#include "protobuf_c/smart_pkg_delivery.pb.h"
+// --------------------------------------------------
 #include <arpa/inet.h> // Defines functions for internet operations, such as inet_addr.
 #include <pb_decode.h>
 #include <pb_encode.h>
 #include <pthread.h> // Includes POSIX thread support.
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdio.h>  // Standard I/O functions, like printf and fgets.
 #include <stdlib.h> // Standard library functions, such as memory allocation.
@@ -24,12 +28,30 @@
 #define BUF_SIZE  100
 #define NAME_SIZE 20
 
+#define MSG_MAX_LEN 32 // 메시지 소스/목적지 최대 길이
+// typedef struct {
+//   char msg_src[MSG_MAX_LEN];
+//   char msg_dest[MSG_MAX_LEN];
+// } MessageInfo;
+
 /* =========================
  *  Global Variables
  * ========================= */
 // Global variables for storing the client’s name and message data
-char local_msg_source_name[NAME_SIZE] = "elevator_1";
+// ⚙️ --------------------------------------------------
+smart_pkg_delivery_NodeType local_msg_src_type =
+    smart_pkg_delivery_NodeType_UNSPECIFIED;
+uint32_t local_msg_src_id = 1;
 char msg[BUF_SIZE];
+
+// 🚧❗ Assume that this executable run with Single-thread.
+smart_pkg_delivery_Request local_request_msg =
+    smart_pkg_delivery_Request_init_zero;
+smart_pkg_delivery_Response local_response_msg =
+    smart_pkg_delivery_Response_init_zero;
+smart_pkg_delivery_NodeEvent local_node_event_msg =
+    smart_pkg_delivery_NodeEvent_init_zero;
+// --------------------------------------------------
 
 /* =========================
  *  Function Prototypes
@@ -38,6 +60,30 @@ char msg[BUF_SIZE];
 void *send_msg(void *arg);
 void *recv_msg(void *arg);
 void error_handling(char *message);
+
+// ⚙️ --------------------------------------------------
+void init_node_configuration(smart_pkg_delivery_NodeType src_type,
+                             uint32_t src_id) {
+  local_msg_src_type = src_type;
+  local_msg_src_id = src_id;
+}
+
+// 🏗 Wrapped Factory function for Request (No need to pass src_type, src_id)
+void init_local_request_msg(smart_pkg_delivery_Request *msg) {
+  init_request_msg(msg, local_msg_src_type, local_msg_src_id);
+}
+
+// 🏗 Wrapped Factory function for Response
+void init_local_response_msg(smart_pkg_delivery_Response *msg) {
+  init_response_msg(msg, local_msg_src_type, local_msg_src_id);
+}
+
+// 🏗 Wrapped Factory function for NodeEvent
+void init_local_node_event_msg(smart_pkg_delivery_NodeEvent *msg) {
+  init_node_event_msg(msg, local_msg_src_type, local_msg_src_id);
+}
+
+// --------------------------------------------------
 
 /* =========================
  *  Main Function
@@ -51,15 +97,30 @@ int main(int argc, char *argv[]) {
   pthread_t snd_thread, rcv_thread;
   void *thread_return;
 
+  // ⚙️ --------------------------------------------------
   // Validate arguments to ensure the correct number are provided.
   if (argc != 4) {
-    printf("Usage : %s <IP> <port> <name>\n", argv[0]);
+    printf("Usage : %s <IP> <port> <local_src_id>\n", argv[0]);
     exit(1);
   }
 
-  // Assign the client name from command line arguments.
-  sprintf(local_msg_source_name, "%s", argv[3]);
+  // Convert the fourth argument (id) to uint32_t
+  char *endptr;
+  uint32_t temp_local_msg_id = strtol(argv[3], &endptr, 10);
+  // Check for conversion errors
+  if (*endptr != '\0') {
+    printf("Error: Invalid ID format. Must be a numeric value.\n");
+    exit(1);
+  }
 
+  init_node_configuration(smart_pkg_delivery_NodeType_CLIENT_ADDRESS_RECOGNIZER,
+                          temp_local_msg_id);
+
+  // Assign the client name from command line arguments.
+  // sprintf(local_msg_source_name, "%s", argv[3]);
+  // --------------------------------------------------
+
+  // 🎱
   // Create a socket with IPv4 (PF_INET: Protocol Family Internet) and TCP (SOCK_STREAM: Stream Socket) specifications.
   // The '0' value automatically selects the appropriate protocol for the socket type:
   //    SOCK_STREAM selects TCP (Transmission Control Protocol) by default, while SOCK_DGRAM selects UDP (User Datagram Protocol) by default.
@@ -81,8 +142,8 @@ int main(int argc, char *argv[]) {
     error_handling("connect() error");
 
   // Send initial message with client name for authentication.
-  sprintf(msg, "[%s:PASSWD]", local_msg_source_name);
-  write(sock, msg, strlen(msg));
+  // sprintf(msg, "[%s:PASSWD]", local_msg_source_name);
+  // write(sock, msg, strlen(msg));
 
   // Create threads for handling message send and receive.
   // 💡 Cast &sock to (void*) for passing as a thread argument, no data change, only type casting.
@@ -102,8 +163,10 @@ int main(int argc, char *argv[]) {
 void *send_msg(void *arg) {
   // 🌀 Declare variables for nanoPB
   uint8_t buffer[256];
-  size_t message_length;
+  size_t msg_length;
   bool status;
+  // MessageInfo local_msg_info;
+  // MessageInfo received_msg_info;
   //
   //
 
@@ -166,16 +229,55 @@ void *send_msg(void *arg) {
       } else {
         strcpy(name_msg, msg);
       }
-      // 📰
-      // smart_pkg_Elevator_Status message = smart_pkg_Elevator_Status_init_zero;
 
-      // pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
-      // message.current_floor = 1;
+      // ⚙️📰
+      init_local_node_event_msg(&local_node_event_msg);
+      local_node_event_msg.dest_type = smart_pkg_delivery_NodeType_SERVER;
+      local_node_event_msg.which_event_type =
+          smart_pkg_delivery_NodeEvent_pkg_arrival_event_tag;
+
+      local_node_event_msg.event_type.pkg_arrival_event.has_address = true;
+      local_node_event_msg.event_type.pkg_arrival_event.address =
+          (smart_pkg_delivery_AptAddress){.has_building_num = true,
+                                          .building_num = 101,
+                                          .has_unit_num = true,
+                                          .unit_num = 305};
+
+      pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
+      printf(
+          "AAA: %d \n",
+          local_node_event_msg.event_type.pkg_arrival_event.address.unit_num);
+      status = pb_encode(&stream, smart_pkg_delivery_NodeEvent_fields,
+                         &local_node_event_msg);
+      msg_length = stream.bytes_written;
+      printf("%zu \n", msg_length);
 
       // Send the message to the server, exit on failure.
-      if (write(*sock, name_msg, strlen(name_msg)) <= 0) {
+      // if (write(*sock, name_msg, strlen(name_msg)) <= 0) {
+      if (write(*sock, buffer, msg_length) <= 0) {
         *sock = -1;
         return NULL;
+      }
+      // For testing decoding
+      {
+        init_local_node_event_msg(&local_node_event_msg);
+        pb_istream_t stream = pb_istream_from_buffer(buffer, msg_length);
+
+        /* Now we are ready to decode the message. */
+        status = pb_decode(&stream, smart_pkg_delivery_NodeEvent_fields,
+                           &local_node_event_msg);
+
+        /* Check for errors... */
+        if (!status) {
+          printf("Decoding failed: %s\n", PB_GET_ERROR(&stream));
+        }
+        smart_pkg_delivery_AptAddress *address =
+            &local_node_event_msg.event_type.pkg_arrival_event.address;
+        /* Print the data contained in the message. */
+        printf("Received address: %d동 %d호\n", address->building_num,
+               address->unit_num);
+        printf("received msg src, dst: %d, %d!\n",
+               local_node_event_msg.src_type, local_node_event_msg.src_id);
       }
     }
     // Exit if timeout and socket is closed

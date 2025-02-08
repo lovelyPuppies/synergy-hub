@@ -7,10 +7,11 @@ authors = [
 ]
 readme = "README.md"
 
+
 requires-python = ">=3.13"
 dependencies = [
     "conan (>=2.11.0,<3.0.0)",
-    "protobuf (>=5.29.3,<6.0.0)",
+    "protobuf (==5.29.3)",
     "grpcio-tools (>=1.70.0,<2.0.0)"
 ]
 
@@ -20,4 +21,6 @@ requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
-package-mode = false
+# package-mode = false
+packages = [{ from = "socket_iot_system-iot_client-python/src", include = "iot_client" }]
+

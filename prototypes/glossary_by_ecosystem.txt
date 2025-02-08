@@ -164,6 +164,13 @@ Wikipedia
 
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
 Wiktionary
+  - stub ; https://en.wiktionary.org/wiki/stub#English
+    Noun
+      stub (plural stubs)
+        3. (programming) A placeholder procedure that has the signature of the planned procedure but does not yet implement the intended behavior. 
+
+
+
   - lean ; https://en.wiktionary.org/wiki/lean#English
     Adjective
       lean (comparative leaner, superlative leanest)
@@ -201,7 +208,6 @@ Wiktionary 🔪 Abbreviation
       Noun
         msg (plural msgs)
           1. Abbreviation of message.
-
 
     - src (source) ; https://en.wiktionary.org/wiki/src#English
       Noun

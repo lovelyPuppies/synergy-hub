@@ -19963,3 +19963,7 @@ TODO: 추가
 지워ㅜㄴ하는데.. 분명
 
   https://github.com/nanopb/nanopb/blob/master/generator/proto/google/protobuf/descriptor.proto
+
+📝 즉, 런타임에 동적으로 실제 클래스를 생성한다는 뜻인데  (TODO.. 작성해줘), 이는 IDE가 정적인 코드 분석 (protobuf에서 protoc을 이용해 생성한 *_pb2.py) 만으로 타입을 추론하기 어렵다는 뜻이다. 
+  따라서 .pyi (stub file) 을 같이 생성하면, VSCode는 정확한 인터페이스 정보를 명시적으로 읽을 수 있어서 Intellisense 가 잘 작동한다.
+
