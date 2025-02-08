@@ -102,7 +102,8 @@ int main(int argc, char *argv[]) {
 void *send_msg(void *arg) {
   // 🌀 Declare variables for nanoPB
   uint8_t buffer[256];
-  size_t message_length;
+  size_t msg_length;
+  char* msg_source
   bool status;
   //
   //
@@ -167,7 +168,11 @@ void *send_msg(void *arg) {
         strcpy(name_msg, msg);
       }
       // 📰
-      // smart_pkg_Elevator_Status message = smart_pkg_Elevator_Status_init_zero;
+      smart_pkg_delivery_Request request_msg;
+
+      pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
+
+      request_msg.source
 
       // pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
       // message.current_floor = 1;

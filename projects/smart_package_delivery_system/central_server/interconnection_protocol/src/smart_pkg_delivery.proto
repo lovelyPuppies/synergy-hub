@@ -36,9 +36,9 @@ package smart_pkg_delivery;
 // -------------------------
 // 📨 A request message that expects a response from the destination.
 message Request {
-  string source = 1;
+  string src = 1;
   // 🔘 If the `destination` field is omitted, the request is assumed to be directed to the server; otherwise, it is sent to the specified node.
-  string destination = 2;
+  string dest = 2;
   oneof command {
     // user (c++) ---> server
     GetPkgInfosRequest get_pkg_infos_request = 3;
@@ -51,8 +51,8 @@ message Request {
 
 // 📩 A response message to a request that does not expect further replies, including ✅ ACK.
 message Response {
-  string source = 1;
-  string destination = 2;
+  string src = 1;
+  string dest = 2;
   AckStatus ack_status = 3;
   ExecutionStatus execution_status = 4;
   oneof command {
@@ -67,8 +67,8 @@ message Response {
 
 // ⏬ Events; A one-way message that notifies the system about status updates without expecting any response.
 message NodeEvent {
-  string source = 1;
-  string destination = 2;
+  string src = 1;
+  string dest = 2;
   oneof event {
     // client-pkg_room (c++) ---> server
     PkgArrivalEvent pkg_arrival_event = 4;

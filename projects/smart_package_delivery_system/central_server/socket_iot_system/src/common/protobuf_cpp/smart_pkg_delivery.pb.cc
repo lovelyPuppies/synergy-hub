@@ -520,10 +520,10 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 inline constexpr Request::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
-        source_(
+        src_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        destination_(
+        dest_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
         command_{},
@@ -552,10 +552,10 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 inline constexpr NodeEvent::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
-        source_(
+        src_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        destination_(
+        dest_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
         event_{},
@@ -609,10 +609,10 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 inline constexpr Response::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
-        source_(
+        src_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        destination_(
+        dest_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
         ack_status_{nullptr},
@@ -654,8 +654,8 @@ const ::uint32_t
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::Request, _impl_.source_),
-        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::Request, _impl_.destination_),
+        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::Request, _impl_.src_),
+        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::Request, _impl_.dest_),
         ::_pbi::kInvalidFieldOffsetTag,
         ::_pbi::kInvalidFieldOffsetTag,
         ::_pbi::kInvalidFieldOffsetTag,
@@ -673,8 +673,8 @@ const ::uint32_t
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::Response, _impl_.source_),
-        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::Response, _impl_.destination_),
+        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::Response, _impl_.src_),
+        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::Response, _impl_.dest_),
         PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::Response, _impl_.ack_status_),
         PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::Response, _impl_.execution_status_),
         ::_pbi::kInvalidFieldOffsetTag,
@@ -696,8 +696,8 @@ const ::uint32_t
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::NodeEvent, _impl_.source_),
-        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::NodeEvent, _impl_.destination_),
+        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::NodeEvent, _impl_.src_),
+        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::NodeEvent, _impl_.dest_),
         ::_pbi::kInvalidFieldOffsetTag,
         ::_pbi::kInvalidFieldOffsetTag,
         ::_pbi::kInvalidFieldOffsetTag,
@@ -996,85 +996,84 @@ static const ::_pb::Message* const file_default_instances[] = {
 const char descriptor_table_protodef_smart_5fpkg_5fdelivery_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
     "\n\030smart_pkg_delivery.proto\022\022smart_pkg_de"
-    "livery\"\254\002\n\007Request\022\016\n\006source\030\001 \001(\t\022\023\n\013de"
-    "stination\030\002 \001(\t\022G\n\025get_pkg_infos_request"
-    "\030\003 \001(\0132&.smart_pkg_delivery.GetPkgInfosR"
-    "equestH\000\022S\n\033set_elevator_status_request\030"
-    "\004 \001(\0132,.smart_pkg_delivery.SetElevatorSt"
-    "atusRequestH\000\022S\n\033move_delivery_robot_req"
-    "uest\030\005 \001(\0132,.smart_pkg_delivery.MoveDeli"
-    "veryRobotRequestH\000B\t\n\007command\"\243\003\n\010Respon"
-    "se\022\016\n\006source\030\001 \001(\t\022\023\n\013destination\030\002 \001(\t\022"
-    "1\n\nack_status\030\003 \001(\0132\035.smart_pkg_delivery"
-    ".AckStatus\022=\n\020execution_status\030\004 \001(\0132#.s"
-    "mart_pkg_delivery.ExecutionStatus\022G\n\025get"
-    "_pkg_info_response\030\005 \001(\0132&.smart_pkg_del"
-    "ivery.GetPkgInfoResponseH\000\022U\n\034set_elevat"
-    "or_status_response\030\006 \001(\0132-.smart_pkg_del"
-    "ivery.SetElevatorStatusResponseH\000\022U\n\034mov"
-    "e_delivery_robot_response\030\007 \001(\0132-.smart_"
-    "pkg_delivery.MoveDeliveryRobotResponseH\000"
-    "B\t\n\007command\"\217\002\n\tNodeEvent\022\016\n\006source\030\001 \001("
-    "\t\022\023\n\013destination\030\002 \001(\t\022@\n\021pkg_arrival_ev"
-    "ent\030\004 \001(\0132#.smart_pkg_delivery.PkgArriva"
-    "lEventH\000\022H\n\025elevator_status_event\030\003 \001(\0132"
-    "\'.smart_pkg_delivery.ElevatorStatusEvent"
-    "H\000\022H\n\025delivery_status_event\030\005 \001(\0132\'.smar"
-    "t_pkg_delivery.DeliveryStatusEventH\000B\007\n\005"
-    "event\"\205\001\n\tAckStatus\0226\n\004code\030\001 \001(\0162(.smar"
-    "t_pkg_delivery.AckStatus.StatusCode\022\017\n\007m"
-    "essage\030\002 \001(\t\"/\n\nStatusCode\022\020\n\014ACK_RECEIV"
-    "ED\020\000\022\017\n\013ACK_INVALID\020\001\"\233\001\n\017ExecutionStatu"
-    "s\022<\n\004code\030\001 \001(\0162..smart_pkg_delivery.Exe"
-    "cutionStatus.StatusCode\022\017\n\007message\030\002 \001(\t"
-    "\"9\n\nStatusCode\022\025\n\021EXECUTION_SUCCESS\020\000\022\024\n"
-    "\020EXECUTION_FAILED\020\001\"%\n\022GetPkgInfosReques"
-    "t\022\017\n\007user_id\030\001 \001(\r\";\n\022GetPkgInfoResponse"
-    "\022%\n\004pkgs\030\001 \003(\0132\027.smart_pkg_delivery.Pkg\""
-    "o\n\030MoveDeliveryRobotRequest\022\031\n\021delivery_"
-    "robot_id\030\001 \001(\r\0228\n\023destination_address\030\002 "
-    "\001(\0132\033.smart_pkg_delivery.Address\"\033\n\031Move"
-    "DeliveryRobotResponse\"m\n\030SetElevatorStat"
-    "usRequest\022\023\n\013elevator_id\030\001 \001(\r\022<\n\017elevat"
-    "or_status\030\002 \001(\0132#.smart_pkg_delivery.Ele"
-    "vator.Status\"\033\n\031SetElevatorStatusRespons"
-    "e\"\?\n\017PkgArrivalEvent\022,\n\007address\030\001 \001(\0132\033."
-    "smart_pkg_delivery.Address\"h\n\023ElevatorSt"
-    "atusEvent\022\023\n\013elevator_id\030\001 \001(\r\022<\n\017elevat"
-    "or_status\030\002 \001(\0132#.smart_pkg_delivery.Ele"
-    "vator.Status\"{\n\023DeliveryStatusEvent\022\031\n\021d"
-    "elivery_robot_id\030\001 \001(\r\022I\n\017delivery_statu"
-    "s\030\002 \001(\01620.smart_pkg_delivery.DeliveryRob"
-    "ot.DeliveryStatus\"\333\001\n\010Elevator\022\n\n\002id\030\001 \001"
-    "(\r\0223\n\006status\030\002 \001(\0132#.smart_pkg_delivery."
-    "Elevator.Status\032f\n\006Status\022\025\n\rcurrent_flo"
-    "or\030\001 \001(\r\022E\n\020door_open_status\030\002 \001(\0162+.sma"
-    "rt_pkg_delivery.Elevator.DoorOpenStatus\""
-    "&\n\016DoorOpenStatus\022\n\n\006CLOSED\020\000\022\010\n\004OPEN\020\001\""
-    "\244\001\n\rDeliveryRobot\022\n\n\002id\030\001 \001(\r\022I\n\017deliver"
-    "y_status\030\003 \001(\01620.smart_pkg_delivery.Deli"
-    "veryRobot.DeliveryStatus\"<\n\016DeliveryStat"
-    "us\022\013\n\007PENDING\020\000\022\016\n\nIN_TRANSIT\020\001\022\r\n\tDELIV"
-    "ERED\020\002\"\214\001\n\007PkgRoom\022\n\n\002id\030\001 \001(\r\0223\n\007locker"
-    "s\030\002 \003(\0132\".smart_pkg_delivery.PkgRoom.Loc"
-    "ker\032@\n\006Locker\022\021\n\tlocker_id\030\001 \001(\r\022\023\n\013acce"
-    "ss_code\030\002 \001(\t\022\016\n\006pkg_id\030\003 \001(\r\"@\n\004User\022\n\n"
-    "\002id\030\001 \001(\r\022,\n\007address\030\002 \001(\0132\033.smart_pkg_d"
-    "elivery.Address\"|\n\003Pkg\022\n\n\002id\030\001 \001(\r\022,\n\007ad"
-    "dress\030\002 \001(\0132\033.smart_pkg_delivery.Address"
-    "\022\021\n\tsender_id\030\003 \001(\r\022\023\n\013receiver_id\030\004 \001(\r"
-    "\022\023\n\013photo_bytes\030\005 \001(\014\"\\\n\007Address\022A\n\021apar"
-    "tment_address\030\001 \001(\0132$.smart_pkg_delivery"
-    ".ApartmentAddressH\000B\016\n\014address_type\"`\n\020A"
-    "partmentAddress\022\031\n\021apartment_complex\030\001 \001"
-    "(\t\022\027\n\017building_number\030\002 \001(\r\022\030\n\020apartment"
-    "_number\030\003 \001(\rb\010editionsp\350\007"
+    "livery\"\242\002\n\007Request\022\013\n\003src\030\001 \001(\t\022\014\n\004dest\030"
+    "\002 \001(\t\022G\n\025get_pkg_infos_request\030\003 \001(\0132&.s"
+    "mart_pkg_delivery.GetPkgInfosRequestH\000\022S"
+    "\n\033set_elevator_status_request\030\004 \001(\0132,.sm"
+    "art_pkg_delivery.SetElevatorStatusReques"
+    "tH\000\022S\n\033move_delivery_robot_request\030\005 \001(\013"
+    "2,.smart_pkg_delivery.MoveDeliveryRobotR"
+    "equestH\000B\t\n\007command\"\231\003\n\010Response\022\013\n\003src\030"
+    "\001 \001(\t\022\014\n\004dest\030\002 \001(\t\0221\n\nack_status\030\003 \001(\0132"
+    "\035.smart_pkg_delivery.AckStatus\022=\n\020execut"
+    "ion_status\030\004 \001(\0132#.smart_pkg_delivery.Ex"
+    "ecutionStatus\022G\n\025get_pkg_info_response\030\005"
+    " \001(\0132&.smart_pkg_delivery.GetPkgInfoResp"
+    "onseH\000\022U\n\034set_elevator_status_response\030\006"
+    " \001(\0132-.smart_pkg_delivery.SetElevatorSta"
+    "tusResponseH\000\022U\n\034move_delivery_robot_res"
+    "ponse\030\007 \001(\0132-.smart_pkg_delivery.MoveDel"
+    "iveryRobotResponseH\000B\t\n\007command\"\205\002\n\tNode"
+    "Event\022\013\n\003src\030\001 \001(\t\022\014\n\004dest\030\002 \001(\t\022@\n\021pkg_"
+    "arrival_event\030\004 \001(\0132#.smart_pkg_delivery"
+    ".PkgArrivalEventH\000\022H\n\025elevator_status_ev"
+    "ent\030\003 \001(\0132\'.smart_pkg_delivery.ElevatorS"
+    "tatusEventH\000\022H\n\025delivery_status_event\030\005 "
+    "\001(\0132\'.smart_pkg_delivery.DeliveryStatusE"
+    "ventH\000B\007\n\005event\"\205\001\n\tAckStatus\0226\n\004code\030\001 "
+    "\001(\0162(.smart_pkg_delivery.AckStatus.Statu"
+    "sCode\022\017\n\007message\030\002 \001(\t\"/\n\nStatusCode\022\020\n\014"
+    "ACK_RECEIVED\020\000\022\017\n\013ACK_INVALID\020\001\"\233\001\n\017Exec"
+    "utionStatus\022<\n\004code\030\001 \001(\0162..smart_pkg_de"
+    "livery.ExecutionStatus.StatusCode\022\017\n\007mes"
+    "sage\030\002 \001(\t\"9\n\nStatusCode\022\025\n\021EXECUTION_SU"
+    "CCESS\020\000\022\024\n\020EXECUTION_FAILED\020\001\"%\n\022GetPkgI"
+    "nfosRequest\022\017\n\007user_id\030\001 \001(\r\";\n\022GetPkgIn"
+    "foResponse\022%\n\004pkgs\030\001 \003(\0132\027.smart_pkg_del"
+    "ivery.Pkg\"o\n\030MoveDeliveryRobotRequest\022\031\n"
+    "\021delivery_robot_id\030\001 \001(\r\0228\n\023destination_"
+    "address\030\002 \001(\0132\033.smart_pkg_delivery.Addre"
+    "ss\"\033\n\031MoveDeliveryRobotResponse\"m\n\030SetEl"
+    "evatorStatusRequest\022\023\n\013elevator_id\030\001 \001(\r"
+    "\022<\n\017elevator_status\030\002 \001(\0132#.smart_pkg_de"
+    "livery.Elevator.Status\"\033\n\031SetElevatorSta"
+    "tusResponse\"\?\n\017PkgArrivalEvent\022,\n\007addres"
+    "s\030\001 \001(\0132\033.smart_pkg_delivery.Address\"h\n\023"
+    "ElevatorStatusEvent\022\023\n\013elevator_id\030\001 \001(\r"
+    "\022<\n\017elevator_status\030\002 \001(\0132#.smart_pkg_de"
+    "livery.Elevator.Status\"{\n\023DeliveryStatus"
+    "Event\022\031\n\021delivery_robot_id\030\001 \001(\r\022I\n\017deli"
+    "very_status\030\002 \001(\01620.smart_pkg_delivery.D"
+    "eliveryRobot.DeliveryStatus\"\333\001\n\010Elevator"
+    "\022\n\n\002id\030\001 \001(\r\0223\n\006status\030\002 \001(\0132#.smart_pkg"
+    "_delivery.Elevator.Status\032f\n\006Status\022\025\n\rc"
+    "urrent_floor\030\001 \001(\r\022E\n\020door_open_status\030\002"
+    " \001(\0162+.smart_pkg_delivery.Elevator.DoorO"
+    "penStatus\"&\n\016DoorOpenStatus\022\n\n\006CLOSED\020\000\022"
+    "\010\n\004OPEN\020\001\"\244\001\n\rDeliveryRobot\022\n\n\002id\030\001 \001(\r\022"
+    "I\n\017delivery_status\030\003 \001(\01620.smart_pkg_del"
+    "ivery.DeliveryRobot.DeliveryStatus\"<\n\016De"
+    "liveryStatus\022\013\n\007PENDING\020\000\022\016\n\nIN_TRANSIT\020"
+    "\001\022\r\n\tDELIVERED\020\002\"\214\001\n\007PkgRoom\022\n\n\002id\030\001 \001(\r"
+    "\0223\n\007lockers\030\002 \003(\0132\".smart_pkg_delivery.P"
+    "kgRoom.Locker\032@\n\006Locker\022\021\n\tlocker_id\030\001 \001"
+    "(\r\022\023\n\013access_code\030\002 \001(\t\022\016\n\006pkg_id\030\003 \001(\r\""
+    "@\n\004User\022\n\n\002id\030\001 \001(\r\022,\n\007address\030\002 \001(\0132\033.s"
+    "mart_pkg_delivery.Address\"|\n\003Pkg\022\n\n\002id\030\001"
+    " \001(\r\022,\n\007address\030\002 \001(\0132\033.smart_pkg_delive"
+    "ry.Address\022\021\n\tsender_id\030\003 \001(\r\022\023\n\013receive"
+    "r_id\030\004 \001(\r\022\023\n\013photo_bytes\030\005 \001(\014\"\\\n\007Addre"
+    "ss\022A\n\021apartment_address\030\001 \001(\0132$.smart_pk"
+    "g_delivery.ApartmentAddressH\000B\016\n\014address"
+    "_type\"`\n\020ApartmentAddress\022\031\n\021apartment_c"
+    "omplex\030\001 \001(\t\022\027\n\017building_number\030\002 \001(\r\022\030\n"
+    "\020apartment_number\030\003 \001(\rb\010editionsp\350\007"
 };
 static ::absl::once_flag descriptor_table_smart_5fpkg_5fdelivery_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_smart_5fpkg_5fdelivery_2eproto = {
     false,
     false,
-    2946,
+    2916,
     descriptor_table_protodef_smart_5fpkg_5fdelivery_2eproto,
     "smart_pkg_delivery.proto",
     &descriptor_table_smart_5fpkg_5fdelivery_2eproto_once,
@@ -1234,8 +1233,8 @@ inline PROTOBUF_NDEBUG_INLINE Request::Impl_::Impl_(
     const Impl_& from, const ::smart_pkg_delivery::Request& from_msg)
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
-        source_(arena, from.source_),
-        destination_(arena, from.destination_),
+        src_(arena, from.src_),
+        dest_(arena, from.dest_),
         command_{},
         _oneof_case_{from._oneof_case_[0]} {}
 
@@ -1272,8 +1271,8 @@ inline PROTOBUF_NDEBUG_INLINE Request::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : _cached_size_{0},
-        source_(arena),
-        destination_(arena),
+        src_(arena),
+        dest_(arena),
         command_{},
         _oneof_case_{} {}
 
@@ -1288,8 +1287,8 @@ inline void Request::SharedDtor(MessageLite& self) {
   Request& this_ = static_cast<Request&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
-  this_._impl_.source_.Destroy();
-  this_._impl_.destination_.Destroy();
+  this_._impl_.src_.Destroy();
+  this_._impl_.dest_.Destroy();
   if (this_.has_command()) {
     this_.clear_command();
   }
@@ -1368,7 +1367,7 @@ const ::google::protobuf::internal::ClassData* Request::GetClassData() const {
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 5, 3, 52, 2> Request::_table_ = {
+const ::_pbi::TcParseTable<1, 5, 3, 42, 2> Request::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(Request, _impl_._has_bits_),
     0, // no _extensions_
@@ -1386,20 +1385,20 @@ const ::_pbi::TcParseTable<1, 5, 3, 52, 2> Request::_table_ = {
     ::_pbi::TcParser::GetTable<::smart_pkg_delivery::Request>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // string destination = 2;
+    // string dest = 2;
     {::_pbi::TcParser::FastUS1,
-     {18, 1, 0, PROTOBUF_FIELD_OFFSET(Request, _impl_.destination_)}},
-    // string source = 1;
+     {18, 1, 0, PROTOBUF_FIELD_OFFSET(Request, _impl_.dest_)}},
+    // string src = 1;
     {::_pbi::TcParser::FastUS1,
-     {10, 0, 0, PROTOBUF_FIELD_OFFSET(Request, _impl_.source_)}},
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(Request, _impl_.src_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // string source = 1;
-    {PROTOBUF_FIELD_OFFSET(Request, _impl_.source_), _Internal::kHasBitsOffset + 0, 0,
+    // string src = 1;
+    {PROTOBUF_FIELD_OFFSET(Request, _impl_.src_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string destination = 2;
-    {PROTOBUF_FIELD_OFFSET(Request, _impl_.destination_), _Internal::kHasBitsOffset + 1, 0,
+    // string dest = 2;
+    {PROTOBUF_FIELD_OFFSET(Request, _impl_.dest_), _Internal::kHasBitsOffset + 1, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // .smart_pkg_delivery.GetPkgInfosRequest get_pkg_infos_request = 3;
     {PROTOBUF_FIELD_OFFSET(Request, _impl_.command_.get_pkg_infos_request_), _Internal::kOneofCaseOffset + 0, 0,
@@ -1415,10 +1414,10 @@ const ::_pbi::TcParseTable<1, 5, 3, 52, 2> Request::_table_ = {
     {::_pbi::TcParser::GetTable<::smart_pkg_delivery::SetElevatorStatusRequest>()},
     {::_pbi::TcParser::GetTable<::smart_pkg_delivery::MoveDeliveryRobotRequest>()},
   }}, {{
-    "\32\6\13\0\0\0\0\0"
+    "\32\3\4\0\0\0\0\0"
     "smart_pkg_delivery.Request"
-    "source"
-    "destination"
+    "src"
+    "dest"
   }},
 };
 
@@ -1432,10 +1431,10 @@ PROTOBUF_NOINLINE void Request::Clear() {
   cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000003u) {
     if (cached_has_bits & 0x00000001u) {
-      _impl_.source_.ClearNonDefaultToEmpty();
+      _impl_.src_.ClearNonDefaultToEmpty();
     }
     if (cached_has_bits & 0x00000002u) {
-      _impl_.destination_.ClearNonDefaultToEmpty();
+      _impl_.dest_.ClearNonDefaultToEmpty();
     }
   }
   clear_command();
@@ -1459,19 +1458,19 @@ PROTOBUF_NOINLINE void Request::Clear() {
           (void)cached_has_bits;
 
           cached_has_bits = this_._impl_._has_bits_[0];
-          // string source = 1;
+          // string src = 1;
           if (cached_has_bits & 0x00000001u) {
-            const std::string& _s = this_._internal_source();
+            const std::string& _s = this_._internal_src();
             ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "smart_pkg_delivery.Request.source");
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "smart_pkg_delivery.Request.src");
             target = stream->WriteStringMaybeAliased(1, _s, target);
           }
 
-          // string destination = 2;
+          // string dest = 2;
           if (cached_has_bits & 0x00000002u) {
-            const std::string& _s = this_._internal_destination();
+            const std::string& _s = this_._internal_dest();
             ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "smart_pkg_delivery.Request.destination");
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "smart_pkg_delivery.Request.dest");
             target = stream->WriteStringMaybeAliased(2, _s, target);
           }
 
@@ -1523,15 +1522,15 @@ PROTOBUF_NOINLINE void Request::Clear() {
           ::_pbi::Prefetch5LinesFrom7Lines(&this_);
           cached_has_bits = this_._impl_._has_bits_[0];
           if (cached_has_bits & 0x00000003u) {
-            // string source = 1;
+            // string src = 1;
             if (cached_has_bits & 0x00000001u) {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                              this_._internal_source());
+                                              this_._internal_src());
             }
-            // string destination = 2;
+            // string dest = 2;
             if (cached_has_bits & 0x00000002u) {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                              this_._internal_destination());
+                                              this_._internal_dest());
             }
           }
           switch (this_.command_case()) {
@@ -1573,10 +1572,10 @@ void Request::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google:
   cached_has_bits = from._impl_._has_bits_[0];
   if (cached_has_bits & 0x00000003u) {
     if (cached_has_bits & 0x00000001u) {
-      _this->_internal_set_source(from._internal_source());
+      _this->_internal_set_src(from._internal_src());
     }
     if (cached_has_bits & 0x00000002u) {
-      _this->_internal_set_destination(from._internal_destination());
+      _this->_internal_set_dest(from._internal_dest());
     }
   }
   _this->_impl_._has_bits_[0] |= cached_has_bits;
@@ -1639,8 +1638,8 @@ void Request::InternalSwap(Request* PROTOBUF_RESTRICT other) {
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.source_, &other->_impl_.source_, arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.destination_, &other->_impl_.destination_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.src_, &other->_impl_.src_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.dest_, &other->_impl_.dest_, arena);
   swap(_impl_.command_, other->_impl_.command_);
   swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
 }
@@ -1713,8 +1712,8 @@ inline PROTOBUF_NDEBUG_INLINE Response::Impl_::Impl_(
     const Impl_& from, const ::smart_pkg_delivery::Response& from_msg)
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
-        source_(arena, from.source_),
-        destination_(arena, from.destination_),
+        src_(arena, from.src_),
+        dest_(arena, from.dest_),
         command_{},
         _oneof_case_{from._oneof_case_[0]} {}
 
@@ -1758,8 +1757,8 @@ inline PROTOBUF_NDEBUG_INLINE Response::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : _cached_size_{0},
-        source_(arena),
-        destination_(arena),
+        src_(arena),
+        dest_(arena),
         command_{},
         _oneof_case_{} {}
 
@@ -1780,8 +1779,8 @@ inline void Response::SharedDtor(MessageLite& self) {
   Response& this_ = static_cast<Response&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
-  this_._impl_.source_.Destroy();
-  this_._impl_.destination_.Destroy();
+  this_._impl_.src_.Destroy();
+  this_._impl_.dest_.Destroy();
   delete this_._impl_.ack_status_;
   delete this_._impl_.execution_status_;
   if (this_.has_command()) {
@@ -1862,7 +1861,7 @@ const ::google::protobuf::internal::ClassData* Response::GetClassData() const {
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 7, 5, 53, 2> Response::_table_ = {
+const ::_pbi::TcParseTable<2, 7, 5, 43, 2> Response::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(Response, _impl_._has_bits_),
     0, // no _extensions_
@@ -1883,23 +1882,23 @@ const ::_pbi::TcParseTable<2, 7, 5, 53, 2> Response::_table_ = {
     // .smart_pkg_delivery.ExecutionStatus execution_status = 4;
     {::_pbi::TcParser::FastMtS1,
      {34, 3, 1, PROTOBUF_FIELD_OFFSET(Response, _impl_.execution_status_)}},
-    // string source = 1;
+    // string src = 1;
     {::_pbi::TcParser::FastUS1,
-     {10, 0, 0, PROTOBUF_FIELD_OFFSET(Response, _impl_.source_)}},
-    // string destination = 2;
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(Response, _impl_.src_)}},
+    // string dest = 2;
     {::_pbi::TcParser::FastUS1,
-     {18, 1, 0, PROTOBUF_FIELD_OFFSET(Response, _impl_.destination_)}},
+     {18, 1, 0, PROTOBUF_FIELD_OFFSET(Response, _impl_.dest_)}},
     // .smart_pkg_delivery.AckStatus ack_status = 3;
     {::_pbi::TcParser::FastMtS1,
      {26, 2, 0, PROTOBUF_FIELD_OFFSET(Response, _impl_.ack_status_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // string source = 1;
-    {PROTOBUF_FIELD_OFFSET(Response, _impl_.source_), _Internal::kHasBitsOffset + 0, 0,
+    // string src = 1;
+    {PROTOBUF_FIELD_OFFSET(Response, _impl_.src_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string destination = 2;
-    {PROTOBUF_FIELD_OFFSET(Response, _impl_.destination_), _Internal::kHasBitsOffset + 1, 0,
+    // string dest = 2;
+    {PROTOBUF_FIELD_OFFSET(Response, _impl_.dest_), _Internal::kHasBitsOffset + 1, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // .smart_pkg_delivery.AckStatus ack_status = 3;
     {PROTOBUF_FIELD_OFFSET(Response, _impl_.ack_status_), _Internal::kHasBitsOffset + 2, 0,
@@ -1923,10 +1922,10 @@ const ::_pbi::TcParseTable<2, 7, 5, 53, 2> Response::_table_ = {
     {::_pbi::TcParser::GetTable<::smart_pkg_delivery::SetElevatorStatusResponse>()},
     {::_pbi::TcParser::GetTable<::smart_pkg_delivery::MoveDeliveryRobotResponse>()},
   }}, {{
-    "\33\6\13\0\0\0\0\0"
+    "\33\3\4\0\0\0\0\0"
     "smart_pkg_delivery.Response"
-    "source"
-    "destination"
+    "src"
+    "dest"
   }},
 };
 
@@ -1940,10 +1939,10 @@ PROTOBUF_NOINLINE void Response::Clear() {
   cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x0000000fu) {
     if (cached_has_bits & 0x00000001u) {
-      _impl_.source_.ClearNonDefaultToEmpty();
+      _impl_.src_.ClearNonDefaultToEmpty();
     }
     if (cached_has_bits & 0x00000002u) {
-      _impl_.destination_.ClearNonDefaultToEmpty();
+      _impl_.dest_.ClearNonDefaultToEmpty();
     }
     if (cached_has_bits & 0x00000004u) {
       ABSL_DCHECK(_impl_.ack_status_ != nullptr);
@@ -1975,19 +1974,19 @@ PROTOBUF_NOINLINE void Response::Clear() {
           (void)cached_has_bits;
 
           cached_has_bits = this_._impl_._has_bits_[0];
-          // string source = 1;
+          // string src = 1;
           if (cached_has_bits & 0x00000001u) {
-            const std::string& _s = this_._internal_source();
+            const std::string& _s = this_._internal_src();
             ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "smart_pkg_delivery.Response.source");
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "smart_pkg_delivery.Response.src");
             target = stream->WriteStringMaybeAliased(1, _s, target);
           }
 
-          // string destination = 2;
+          // string dest = 2;
           if (cached_has_bits & 0x00000002u) {
-            const std::string& _s = this_._internal_destination();
+            const std::string& _s = this_._internal_dest();
             ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "smart_pkg_delivery.Response.destination");
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "smart_pkg_delivery.Response.dest");
             target = stream->WriteStringMaybeAliased(2, _s, target);
           }
 
@@ -2053,15 +2052,15 @@ PROTOBUF_NOINLINE void Response::Clear() {
           ::_pbi::Prefetch5LinesFrom7Lines(&this_);
           cached_has_bits = this_._impl_._has_bits_[0];
           if (cached_has_bits & 0x0000000fu) {
-            // string source = 1;
+            // string src = 1;
             if (cached_has_bits & 0x00000001u) {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                              this_._internal_source());
+                                              this_._internal_src());
             }
-            // string destination = 2;
+            // string dest = 2;
             if (cached_has_bits & 0x00000002u) {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                              this_._internal_destination());
+                                              this_._internal_dest());
             }
             // .smart_pkg_delivery.AckStatus ack_status = 3;
             if (cached_has_bits & 0x00000004u) {
@@ -2113,10 +2112,10 @@ void Response::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google
   cached_has_bits = from._impl_._has_bits_[0];
   if (cached_has_bits & 0x0000000fu) {
     if (cached_has_bits & 0x00000001u) {
-      _this->_internal_set_source(from._internal_source());
+      _this->_internal_set_src(from._internal_src());
     }
     if (cached_has_bits & 0x00000002u) {
-      _this->_internal_set_destination(from._internal_destination());
+      _this->_internal_set_dest(from._internal_dest());
     }
     if (cached_has_bits & 0x00000004u) {
       ABSL_DCHECK(from._impl_.ack_status_ != nullptr);
@@ -2197,8 +2196,8 @@ void Response::InternalSwap(Response* PROTOBUF_RESTRICT other) {
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.source_, &other->_impl_.source_, arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.destination_, &other->_impl_.destination_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.src_, &other->_impl_.src_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.dest_, &other->_impl_.dest_, arena);
   ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(Response, _impl_.execution_status_)
       + sizeof(Response::_impl_.execution_status_)
@@ -2277,8 +2276,8 @@ inline PROTOBUF_NDEBUG_INLINE NodeEvent::Impl_::Impl_(
     const Impl_& from, const ::smart_pkg_delivery::NodeEvent& from_msg)
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
-        source_(arena, from.source_),
-        destination_(arena, from.destination_),
+        src_(arena, from.src_),
+        dest_(arena, from.dest_),
         event_{},
         _oneof_case_{from._oneof_case_[0]} {}
 
@@ -2315,8 +2314,8 @@ inline PROTOBUF_NDEBUG_INLINE NodeEvent::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : _cached_size_{0},
-        source_(arena),
-        destination_(arena),
+        src_(arena),
+        dest_(arena),
         event_{},
         _oneof_case_{} {}
 
@@ -2331,8 +2330,8 @@ inline void NodeEvent::SharedDtor(MessageLite& self) {
   NodeEvent& this_ = static_cast<NodeEvent&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
-  this_._impl_.source_.Destroy();
-  this_._impl_.destination_.Destroy();
+  this_._impl_.src_.Destroy();
+  this_._impl_.dest_.Destroy();
   if (this_.has_event()) {
     this_.clear_event();
   }
@@ -2411,7 +2410,7 @@ const ::google::protobuf::internal::ClassData* NodeEvent::GetClassData() const {
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 5, 3, 54, 2> NodeEvent::_table_ = {
+const ::_pbi::TcParseTable<1, 5, 3, 44, 2> NodeEvent::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(NodeEvent, _impl_._has_bits_),
     0, // no _extensions_
@@ -2429,20 +2428,20 @@ const ::_pbi::TcParseTable<1, 5, 3, 54, 2> NodeEvent::_table_ = {
     ::_pbi::TcParser::GetTable<::smart_pkg_delivery::NodeEvent>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // string destination = 2;
+    // string dest = 2;
     {::_pbi::TcParser::FastUS1,
-     {18, 1, 0, PROTOBUF_FIELD_OFFSET(NodeEvent, _impl_.destination_)}},
-    // string source = 1;
+     {18, 1, 0, PROTOBUF_FIELD_OFFSET(NodeEvent, _impl_.dest_)}},
+    // string src = 1;
     {::_pbi::TcParser::FastUS1,
-     {10, 0, 0, PROTOBUF_FIELD_OFFSET(NodeEvent, _impl_.source_)}},
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(NodeEvent, _impl_.src_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // string source = 1;
-    {PROTOBUF_FIELD_OFFSET(NodeEvent, _impl_.source_), _Internal::kHasBitsOffset + 0, 0,
+    // string src = 1;
+    {PROTOBUF_FIELD_OFFSET(NodeEvent, _impl_.src_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string destination = 2;
-    {PROTOBUF_FIELD_OFFSET(NodeEvent, _impl_.destination_), _Internal::kHasBitsOffset + 1, 0,
+    // string dest = 2;
+    {PROTOBUF_FIELD_OFFSET(NodeEvent, _impl_.dest_), _Internal::kHasBitsOffset + 1, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // .smart_pkg_delivery.ElevatorStatusEvent elevator_status_event = 3;
     {PROTOBUF_FIELD_OFFSET(NodeEvent, _impl_.event_.elevator_status_event_), _Internal::kOneofCaseOffset + 0, 0,
@@ -2458,10 +2457,10 @@ const ::_pbi::TcParseTable<1, 5, 3, 54, 2> NodeEvent::_table_ = {
     {::_pbi::TcParser::GetTable<::smart_pkg_delivery::PkgArrivalEvent>()},
     {::_pbi::TcParser::GetTable<::smart_pkg_delivery::DeliveryStatusEvent>()},
   }}, {{
-    "\34\6\13\0\0\0\0\0"
+    "\34\3\4\0\0\0\0\0"
     "smart_pkg_delivery.NodeEvent"
-    "source"
-    "destination"
+    "src"
+    "dest"
   }},
 };
 
@@ -2475,10 +2474,10 @@ PROTOBUF_NOINLINE void NodeEvent::Clear() {
   cached_has_bits = _impl_._has_bits_[0];
   if (cached_has_bits & 0x00000003u) {
     if (cached_has_bits & 0x00000001u) {
-      _impl_.source_.ClearNonDefaultToEmpty();
+      _impl_.src_.ClearNonDefaultToEmpty();
     }
     if (cached_has_bits & 0x00000002u) {
-      _impl_.destination_.ClearNonDefaultToEmpty();
+      _impl_.dest_.ClearNonDefaultToEmpty();
     }
   }
   clear_event();
@@ -2502,19 +2501,19 @@ PROTOBUF_NOINLINE void NodeEvent::Clear() {
           (void)cached_has_bits;
 
           cached_has_bits = this_._impl_._has_bits_[0];
-          // string source = 1;
+          // string src = 1;
           if (cached_has_bits & 0x00000001u) {
-            const std::string& _s = this_._internal_source();
+            const std::string& _s = this_._internal_src();
             ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "smart_pkg_delivery.NodeEvent.source");
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "smart_pkg_delivery.NodeEvent.src");
             target = stream->WriteStringMaybeAliased(1, _s, target);
           }
 
-          // string destination = 2;
+          // string dest = 2;
           if (cached_has_bits & 0x00000002u) {
-            const std::string& _s = this_._internal_destination();
+            const std::string& _s = this_._internal_dest();
             ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "smart_pkg_delivery.NodeEvent.destination");
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "smart_pkg_delivery.NodeEvent.dest");
             target = stream->WriteStringMaybeAliased(2, _s, target);
           }
 
@@ -2566,15 +2565,15 @@ PROTOBUF_NOINLINE void NodeEvent::Clear() {
           ::_pbi::Prefetch5LinesFrom7Lines(&this_);
           cached_has_bits = this_._impl_._has_bits_[0];
           if (cached_has_bits & 0x00000003u) {
-            // string source = 1;
+            // string src = 1;
             if (cached_has_bits & 0x00000001u) {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                              this_._internal_source());
+                                              this_._internal_src());
             }
-            // string destination = 2;
+            // string dest = 2;
             if (cached_has_bits & 0x00000002u) {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                              this_._internal_destination());
+                                              this_._internal_dest());
             }
           }
           switch (this_.event_case()) {
@@ -2616,10 +2615,10 @@ void NodeEvent::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::googl
   cached_has_bits = from._impl_._has_bits_[0];
   if (cached_has_bits & 0x00000003u) {
     if (cached_has_bits & 0x00000001u) {
-      _this->_internal_set_source(from._internal_source());
+      _this->_internal_set_src(from._internal_src());
     }
     if (cached_has_bits & 0x00000002u) {
-      _this->_internal_set_destination(from._internal_destination());
+      _this->_internal_set_dest(from._internal_dest());
     }
   }
   _this->_impl_._has_bits_[0] |= cached_has_bits;
@@ -2682,8 +2681,8 @@ void NodeEvent::InternalSwap(NodeEvent* PROTOBUF_RESTRICT other) {
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.source_, &other->_impl_.source_, arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.destination_, &other->_impl_.destination_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.src_, &other->_impl_.src_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.dest_, &other->_impl_.dest_, arena);
   swap(_impl_.event_, other->_impl_.event_);
   swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
 }

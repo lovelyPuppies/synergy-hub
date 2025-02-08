@@ -161,11 +161,11 @@ typedef struct _smart_pkg_delivery_MoveDeliveryRobotRequest {
  -------------------------
  📨 A request message that expects a response from the destination. */
 typedef struct _smart_pkg_delivery_Request {
-    bool has_source;
-    char source[64];
+    bool has_src;
+    char src[64];
     /* 🔘 If the `destination` field is omitted, the request is assumed to be directed to the server; otherwise, it is sent to the specified node. */
-    bool has_destination;
-    char destination[64];
+    bool has_dest;
+    char dest[64];
     pb_size_t which_command;
     union {
         /* user (c++) ---> server */
@@ -186,10 +186,10 @@ typedef struct _smart_pkg_delivery_PkgArrivalEvent {
 
 /* ⏬ Events; A one-way message that notifies the system about status updates without expecting any response. */
 typedef struct _smart_pkg_delivery_NodeEvent {
-    bool has_source;
-    char source[64];
-    bool has_destination;
-    char destination[64];
+    bool has_src;
+    char src[64];
+    bool has_dest;
+    char dest[64];
     pb_size_t which_event;
     union {
         /* client-elevator (c++) ---> server ---> client-delivery_robot (c++) */
@@ -228,10 +228,10 @@ typedef struct _smart_pkg_delivery_GetPkgInfoResponse {
 
 /* 📩 A response message to a request that does not expect further replies, including ✅ ACK. */
 typedef struct _smart_pkg_delivery_Response {
-    bool has_source;
-    char source[64];
-    bool has_destination;
-    char destination[64];
+    bool has_src;
+    char src[64];
+    bool has_dest;
+    char dest[64];
     bool has_ack_status;
     smart_pkg_delivery_AckStatus ack_status;
     bool has_execution_status;
@@ -375,14 +375,14 @@ extern "C" {
 #define smart_pkg_delivery_Address_apartment_address_tag 1
 #define smart_pkg_delivery_MoveDeliveryRobotRequest_delivery_robot_id_tag 1
 #define smart_pkg_delivery_MoveDeliveryRobotRequest_destination_address_tag 2
-#define smart_pkg_delivery_Request_source_tag    1
-#define smart_pkg_delivery_Request_destination_tag 2
+#define smart_pkg_delivery_Request_src_tag       1
+#define smart_pkg_delivery_Request_dest_tag      2
 #define smart_pkg_delivery_Request_get_pkg_infos_request_tag 3
 #define smart_pkg_delivery_Request_set_elevator_status_request_tag 4
 #define smart_pkg_delivery_Request_move_delivery_robot_request_tag 5
 #define smart_pkg_delivery_PkgArrivalEvent_address_tag 1
-#define smart_pkg_delivery_NodeEvent_source_tag  1
-#define smart_pkg_delivery_NodeEvent_destination_tag 2
+#define smart_pkg_delivery_NodeEvent_src_tag     1
+#define smart_pkg_delivery_NodeEvent_dest_tag    2
 #define smart_pkg_delivery_NodeEvent_elevator_status_event_tag 3
 #define smart_pkg_delivery_NodeEvent_pkg_arrival_event_tag 4
 #define smart_pkg_delivery_NodeEvent_delivery_status_event_tag 5
@@ -393,8 +393,8 @@ extern "C" {
 #define smart_pkg_delivery_Pkg_sender_id_tag     3
 #define smart_pkg_delivery_Pkg_receiver_id_tag   4
 #define smart_pkg_delivery_GetPkgInfoResponse_pkgs_tag 1
-#define smart_pkg_delivery_Response_source_tag   1
-#define smart_pkg_delivery_Response_destination_tag 2
+#define smart_pkg_delivery_Response_src_tag      1
+#define smart_pkg_delivery_Response_dest_tag     2
 #define smart_pkg_delivery_Response_ack_status_tag 3
 #define smart_pkg_delivery_Response_execution_status_tag 4
 #define smart_pkg_delivery_Response_get_pkg_info_response_tag 5
@@ -403,8 +403,8 @@ extern "C" {
 
 /* Struct field encoding specification for nanopb */
 #define smart_pkg_delivery_Request_FIELDLIST(X, a) \
-X(a, STATIC,   OPTIONAL, STRING,   source,            1) \
-X(a, STATIC,   OPTIONAL, STRING,   destination,       2) \
+X(a, STATIC,   OPTIONAL, STRING,   src,               1) \
+X(a, STATIC,   OPTIONAL, STRING,   dest,              2) \
 X(a, STATIC,   ONEOF,    MESSAGE,  (command,get_pkg_infos_request,command.get_pkg_infos_request),   3) \
 X(a, STATIC,   ONEOF,    MESSAGE,  (command,set_elevator_status_request,command.set_elevator_status_request),   4) \
 X(a, STATIC,   ONEOF,    MESSAGE,  (command,move_delivery_robot_request,command.move_delivery_robot_request),   5)
@@ -415,8 +415,8 @@ X(a, STATIC,   ONEOF,    MESSAGE,  (command,move_delivery_robot_request,command.
 #define smart_pkg_delivery_Request_command_move_delivery_robot_request_MSGTYPE smart_pkg_delivery_MoveDeliveryRobotRequest
 
 #define smart_pkg_delivery_Response_FIELDLIST(X, a) \
-X(a, STATIC,   OPTIONAL, STRING,   source,            1) \
-X(a, STATIC,   OPTIONAL, STRING,   destination,       2) \
+X(a, STATIC,   OPTIONAL, STRING,   src,               1) \
+X(a, STATIC,   OPTIONAL, STRING,   dest,              2) \
 X(a, STATIC,   OPTIONAL, MESSAGE,  ack_status,        3) \
 X(a, STATIC,   OPTIONAL, MESSAGE,  execution_status,   4) \
 X(a, STATIC,   ONEOF,    MESSAGE,  (command,get_pkg_info_response,command.get_pkg_info_response),   5) \
@@ -431,8 +431,8 @@ X(a, STATIC,   ONEOF,    MESSAGE,  (command,move_delivery_robot_response,command
 #define smart_pkg_delivery_Response_command_move_delivery_robot_response_MSGTYPE smart_pkg_delivery_MoveDeliveryRobotResponse
 
 #define smart_pkg_delivery_NodeEvent_FIELDLIST(X, a) \
-X(a, STATIC,   OPTIONAL, STRING,   source,            1) \
-X(a, STATIC,   OPTIONAL, STRING,   destination,       2) \
+X(a, STATIC,   OPTIONAL, STRING,   src,               1) \
+X(a, STATIC,   OPTIONAL, STRING,   dest,              2) \
 X(a, STATIC,   ONEOF,    MESSAGE,  (event,elevator_status_event,event.elevator_status_event),   3) \
 X(a, STATIC,   ONEOF,    MESSAGE,  (event,pkg_arrival_event,event.pkg_arrival_event),   4) \
 X(a, STATIC,   ONEOF,    MESSAGE,  (event,delivery_status_event,event.delivery_status_event),   5)

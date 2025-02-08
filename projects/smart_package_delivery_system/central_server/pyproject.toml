@@ -6,6 +6,7 @@ authors = [
     {name = "wbfw109v2",email = "wbfw109v2@gmail.com"}
 ]
 readme = "README.md"
+
 requires-python = ">=3.13"
 dependencies = [
     "conan (>=2.11.0,<3.0.0)",
@@ -17,3 +18,6 @@ dependencies = [
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+package-mode = false

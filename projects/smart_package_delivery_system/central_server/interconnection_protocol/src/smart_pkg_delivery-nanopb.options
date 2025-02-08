@@ -12,27 +12,27 @@
 # * include:"sys/types.h"
 # * include:"dirent.h"
 
-smart_pkg_delivery.Request.source                      max_size:64
-smart_pkg_delivery.Request.destination                 max_size:64
+smart_pkg_delivery.Request.src                      max_size:64
+smart_pkg_delivery.Request.dest                     max_size:64
 
-smart_pkg_delivery.Response.source                     max_size:64
-smart_pkg_delivery.Response.destination                max_size:64
+smart_pkg_delivery.Response.src                     max_size:64
+smart_pkg_delivery.Response.dest                    max_size:64
 
-smart_pkg_delivery.NodeEvent.source                    max_size:64
-smart_pkg_delivery.NodeEvent.destination               max_size:64
+smart_pkg_delivery.NodeEvent.src                    max_size:64
+smart_pkg_delivery.NodeEvent.dest                   max_size:64
 
-smart_pkg_delivery.AckStatus.message                   max_size:256
-smart_pkg_delivery.ExecutionStatus.message             max_size:256
+smart_pkg_delivery.AckStatus.message                max_size:256
+smart_pkg_delivery.ExecutionStatus.message          max_size:256
 
-smart_pkg_delivery.PkgRoom.Locker.access_code          max_size:32
+smart_pkg_delivery.PkgRoom.Locker.access_code       max_size:32
 
 # `photo_bytes` field is not required in STM32.
-#   smart_pkg_delivery.Pkg.photo_bytes                  max_size:688128    #  + 10% extra size
+#   smart_pkg_delivery.Pkg.photo_bytes              max_size:688128    #  + 10% extra size
 smart_pkg_delivery.Pkg.photo_bytes                  type:FT_IGNORE
 
 smart_pkg_delivery.ApartmentAddress.apartment_complex  max_size:128
 
 
 
-smart_pkg_delivery.GetPkgInfoResponse.pkgs       max_count:10
-smart_pkg_delivery.PkgRoom.lockers                     max_count:10
+smart_pkg_delivery.GetPkgInfoResponse.pkgs          max_count:10
+smart_pkg_delivery.PkgRoom.lockers                  max_count:10

@@ -4386,44 +4386,44 @@ class Request final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kSourceFieldNumber = 1,
-    kDestinationFieldNumber = 2,
+    kSrcFieldNumber = 1,
+    kDestFieldNumber = 2,
     kGetPkgInfosRequestFieldNumber = 3,
     kSetElevatorStatusRequestFieldNumber = 4,
     kMoveDeliveryRobotRequestFieldNumber = 5,
   };
-  // string source = 1;
-  bool has_source() const;
-  void clear_source() ;
-  const std::string& source() const;
+  // string src = 1;
+  bool has_src() const;
+  void clear_src() ;
+  const std::string& src() const;
   template <typename Arg_ = const std::string&, typename... Args_>
-  void set_source(Arg_&& arg, Args_... args);
-  std::string* mutable_source();
-  PROTOBUF_NODISCARD std::string* release_source();
-  void set_allocated_source(std::string* value);
+  void set_src(Arg_&& arg, Args_... args);
+  std::string* mutable_src();
+  PROTOBUF_NODISCARD std::string* release_src();
+  void set_allocated_src(std::string* value);
 
   private:
-  const std::string& _internal_source() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_source(
+  const std::string& _internal_src() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_src(
       const std::string& value);
-  std::string* _internal_mutable_source();
+  std::string* _internal_mutable_src();
 
   public:
-  // string destination = 2;
-  bool has_destination() const;
-  void clear_destination() ;
-  const std::string& destination() const;
+  // string dest = 2;
+  bool has_dest() const;
+  void clear_dest() ;
+  const std::string& dest() const;
   template <typename Arg_ = const std::string&, typename... Args_>
-  void set_destination(Arg_&& arg, Args_... args);
-  std::string* mutable_destination();
-  PROTOBUF_NODISCARD std::string* release_destination();
-  void set_allocated_destination(std::string* value);
+  void set_dest(Arg_&& arg, Args_... args);
+  std::string* mutable_dest();
+  PROTOBUF_NODISCARD std::string* release_dest();
+  void set_allocated_dest(std::string* value);
 
   private:
-  const std::string& _internal_destination() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_destination(
+  const std::string& _internal_dest() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_dest(
       const std::string& value);
-  std::string* _internal_mutable_destination();
+  std::string* _internal_mutable_dest();
 
   public:
   // .smart_pkg_delivery.GetPkgInfosRequest get_pkg_infos_request = 3;
@@ -4496,7 +4496,7 @@ class Request final : public ::google::protobuf::Message
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       1, 5, 3,
-      52, 2>
+      42, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -4515,8 +4515,8 @@ class Request final : public ::google::protobuf::Message
                           const Request& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::internal::ArenaStringPtr source_;
-    ::google::protobuf::internal::ArenaStringPtr destination_;
+    ::google::protobuf::internal::ArenaStringPtr src_;
+    ::google::protobuf::internal::ArenaStringPtr dest_;
     union CommandUnion {
       constexpr CommandUnion() : _constinit_{} {}
       ::google::protobuf::internal::ConstantInitialized _constinit_;
@@ -4684,44 +4684,44 @@ class NodeEvent final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kSourceFieldNumber = 1,
-    kDestinationFieldNumber = 2,
+    kSrcFieldNumber = 1,
+    kDestFieldNumber = 2,
     kPkgArrivalEventFieldNumber = 4,
     kElevatorStatusEventFieldNumber = 3,
     kDeliveryStatusEventFieldNumber = 5,
   };
-  // string source = 1;
-  bool has_source() const;
-  void clear_source() ;
-  const std::string& source() const;
+  // string src = 1;
+  bool has_src() const;
+  void clear_src() ;
+  const std::string& src() const;
   template <typename Arg_ = const std::string&, typename... Args_>
-  void set_source(Arg_&& arg, Args_... args);
-  std::string* mutable_source();
-  PROTOBUF_NODISCARD std::string* release_source();
-  void set_allocated_source(std::string* value);
+  void set_src(Arg_&& arg, Args_... args);
+  std::string* mutable_src();
+  PROTOBUF_NODISCARD std::string* release_src();
+  void set_allocated_src(std::string* value);
 
   private:
-  const std::string& _internal_source() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_source(
+  const std::string& _internal_src() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_src(
       const std::string& value);
-  std::string* _internal_mutable_source();
+  std::string* _internal_mutable_src();
 
   public:
-  // string destination = 2;
-  bool has_destination() const;
-  void clear_destination() ;
-  const std::string& destination() const;
+  // string dest = 2;
+  bool has_dest() const;
+  void clear_dest() ;
+  const std::string& dest() const;
   template <typename Arg_ = const std::string&, typename... Args_>
-  void set_destination(Arg_&& arg, Args_... args);
-  std::string* mutable_destination();
-  PROTOBUF_NODISCARD std::string* release_destination();
-  void set_allocated_destination(std::string* value);
+  void set_dest(Arg_&& arg, Args_... args);
+  std::string* mutable_dest();
+  PROTOBUF_NODISCARD std::string* release_dest();
+  void set_allocated_dest(std::string* value);
 
   private:
-  const std::string& _internal_destination() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_destination(
+  const std::string& _internal_dest() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_dest(
       const std::string& value);
-  std::string* _internal_mutable_destination();
+  std::string* _internal_mutable_dest();
 
   public:
   // .smart_pkg_delivery.PkgArrivalEvent pkg_arrival_event = 4;
@@ -4794,7 +4794,7 @@ class NodeEvent final : public ::google::protobuf::Message
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       1, 5, 3,
-      54, 2>
+      44, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -4813,8 +4813,8 @@ class NodeEvent final : public ::google::protobuf::Message
                           const NodeEvent& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::internal::ArenaStringPtr source_;
-    ::google::protobuf::internal::ArenaStringPtr destination_;
+    ::google::protobuf::internal::ArenaStringPtr src_;
+    ::google::protobuf::internal::ArenaStringPtr dest_;
     union EventUnion {
       constexpr EventUnion() : _constinit_{} {}
       ::google::protobuf::internal::ConstantInitialized _constinit_;
@@ -5179,46 +5179,46 @@ class Response final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kSourceFieldNumber = 1,
-    kDestinationFieldNumber = 2,
+    kSrcFieldNumber = 1,
+    kDestFieldNumber = 2,
     kAckStatusFieldNumber = 3,
     kExecutionStatusFieldNumber = 4,
     kGetPkgInfoResponseFieldNumber = 5,
     kSetElevatorStatusResponseFieldNumber = 6,
     kMoveDeliveryRobotResponseFieldNumber = 7,
   };
-  // string source = 1;
-  bool has_source() const;
-  void clear_source() ;
-  const std::string& source() const;
+  // string src = 1;
+  bool has_src() const;
+  void clear_src() ;
+  const std::string& src() const;
   template <typename Arg_ = const std::string&, typename... Args_>
-  void set_source(Arg_&& arg, Args_... args);
-  std::string* mutable_source();
-  PROTOBUF_NODISCARD std::string* release_source();
-  void set_allocated_source(std::string* value);
+  void set_src(Arg_&& arg, Args_... args);
+  std::string* mutable_src();
+  PROTOBUF_NODISCARD std::string* release_src();
+  void set_allocated_src(std::string* value);
 
   private:
-  const std::string& _internal_source() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_source(
+  const std::string& _internal_src() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_src(
       const std::string& value);
-  std::string* _internal_mutable_source();
+  std::string* _internal_mutable_src();
 
   public:
-  // string destination = 2;
-  bool has_destination() const;
-  void clear_destination() ;
-  const std::string& destination() const;
+  // string dest = 2;
+  bool has_dest() const;
+  void clear_dest() ;
+  const std::string& dest() const;
   template <typename Arg_ = const std::string&, typename... Args_>
-  void set_destination(Arg_&& arg, Args_... args);
-  std::string* mutable_destination();
-  PROTOBUF_NODISCARD std::string* release_destination();
-  void set_allocated_destination(std::string* value);
+  void set_dest(Arg_&& arg, Args_... args);
+  std::string* mutable_dest();
+  PROTOBUF_NODISCARD std::string* release_dest();
+  void set_allocated_dest(std::string* value);
 
   private:
-  const std::string& _internal_destination() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_destination(
+  const std::string& _internal_dest() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_dest(
       const std::string& value);
-  std::string* _internal_mutable_destination();
+  std::string* _internal_mutable_dest();
 
   public:
   // .smart_pkg_delivery.AckStatus ack_status = 3;
@@ -5321,7 +5321,7 @@ class Response final : public ::google::protobuf::Message
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       2, 7, 5,
-      53, 2>
+      43, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -5340,8 +5340,8 @@ class Response final : public ::google::protobuf::Message
                           const Response& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::internal::ArenaStringPtr source_;
-    ::google::protobuf::internal::ArenaStringPtr destination_;
+    ::google::protobuf::internal::ArenaStringPtr src_;
+    ::google::protobuf::internal::ArenaStringPtr dest_;
     ::smart_pkg_delivery::AckStatus* ack_status_;
     ::smart_pkg_delivery::ExecutionStatus* execution_status_;
     union CommandUnion {
@@ -5374,142 +5374,142 @@ class Response final : public ::google::protobuf::Message
 
 // Request
 
-// string source = 1;
-inline bool Request::has_source() const {
+// string src = 1;
+inline bool Request::has_src() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   return value;
 }
-inline void Request::clear_source() {
+inline void Request::clear_src() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.source_.ClearToEmpty();
+  _impl_.src_.ClearToEmpty();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const std::string& Request::source() const
+inline const std::string& Request::src() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:smart_pkg_delivery.Request.source)
-  return _internal_source();
+  // @@protoc_insertion_point(field_get:smart_pkg_delivery.Request.src)
+  return _internal_src();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void Request::set_source(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void Request::set_src(Arg_&& arg,
                                                      Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
-  _impl_.source_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:smart_pkg_delivery.Request.source)
+  _impl_.src_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:smart_pkg_delivery.Request.src)
 }
-inline std::string* Request::mutable_source() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_source();
-  // @@protoc_insertion_point(field_mutable:smart_pkg_delivery.Request.source)
+inline std::string* Request::mutable_src() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_src();
+  // @@protoc_insertion_point(field_mutable:smart_pkg_delivery.Request.src)
   return _s;
 }
-inline const std::string& Request::_internal_source() const {
+inline const std::string& Request::_internal_src() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.source_.Get();
+  return _impl_.src_.Get();
 }
-inline void Request::_internal_set_source(const std::string& value) {
+inline void Request::_internal_set_src(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
-  _impl_.source_.Set(value, GetArena());
+  _impl_.src_.Set(value, GetArena());
 }
-inline std::string* Request::_internal_mutable_source() {
+inline std::string* Request::_internal_mutable_src() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
-  return _impl_.source_.Mutable( GetArena());
+  return _impl_.src_.Mutable( GetArena());
 }
-inline std::string* Request::release_source() {
+inline std::string* Request::release_src() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:smart_pkg_delivery.Request.source)
+  // @@protoc_insertion_point(field_release:smart_pkg_delivery.Request.src)
   if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
     return nullptr;
   }
   _impl_._has_bits_[0] &= ~0x00000001u;
-  auto* released = _impl_.source_.Release();
+  auto* released = _impl_.src_.Release();
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
-    _impl_.source_.Set("", GetArena());
+    _impl_.src_.Set("", GetArena());
   }
   return released;
 }
-inline void Request::set_allocated_source(std::string* value) {
+inline void Request::set_allocated_src(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  _impl_.source_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.source_.IsDefault()) {
-    _impl_.source_.Set("", GetArena());
+  _impl_.src_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.src_.IsDefault()) {
+    _impl_.src_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:smart_pkg_delivery.Request.source)
+  // @@protoc_insertion_point(field_set_allocated:smart_pkg_delivery.Request.src)
 }
 
-// string destination = 2;
-inline bool Request::has_destination() const {
+// string dest = 2;
+inline bool Request::has_dest() const {
   bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
   return value;
 }
-inline void Request::clear_destination() {
+inline void Request::clear_dest() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.destination_.ClearToEmpty();
+  _impl_.dest_.ClearToEmpty();
   _impl_._has_bits_[0] &= ~0x00000002u;
 }
-inline const std::string& Request::destination() const
+inline const std::string& Request::dest() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:smart_pkg_delivery.Request.destination)
-  return _internal_destination();
+  // @@protoc_insertion_point(field_get:smart_pkg_delivery.Request.dest)
+  return _internal_dest();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void Request::set_destination(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void Request::set_dest(Arg_&& arg,
                                                      Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000002u;
-  _impl_.destination_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:smart_pkg_delivery.Request.destination)
+  _impl_.dest_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:smart_pkg_delivery.Request.dest)
 }
-inline std::string* Request::mutable_destination() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_destination();
-  // @@protoc_insertion_point(field_mutable:smart_pkg_delivery.Request.destination)
+inline std::string* Request::mutable_dest() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_dest();
+  // @@protoc_insertion_point(field_mutable:smart_pkg_delivery.Request.dest)
   return _s;
 }
-inline const std::string& Request::_internal_destination() const {
+inline const std::string& Request::_internal_dest() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.destination_.Get();
+  return _impl_.dest_.Get();
 }
-inline void Request::_internal_set_destination(const std::string& value) {
+inline void Request::_internal_set_dest(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000002u;
-  _impl_.destination_.Set(value, GetArena());
+  _impl_.dest_.Set(value, GetArena());
 }
-inline std::string* Request::_internal_mutable_destination() {
+inline std::string* Request::_internal_mutable_dest() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000002u;
-  return _impl_.destination_.Mutable( GetArena());
+  return _impl_.dest_.Mutable( GetArena());
 }
-inline std::string* Request::release_destination() {
+inline std::string* Request::release_dest() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:smart_pkg_delivery.Request.destination)
+  // @@protoc_insertion_point(field_release:smart_pkg_delivery.Request.dest)
   if ((_impl_._has_bits_[0] & 0x00000002u) == 0) {
     return nullptr;
   }
   _impl_._has_bits_[0] &= ~0x00000002u;
-  auto* released = _impl_.destination_.Release();
+  auto* released = _impl_.dest_.Release();
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
-    _impl_.destination_.Set("", GetArena());
+    _impl_.dest_.Set("", GetArena());
   }
   return released;
 }
-inline void Request::set_allocated_destination(std::string* value) {
+inline void Request::set_allocated_dest(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000002u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000002u;
   }
-  _impl_.destination_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.destination_.IsDefault()) {
-    _impl_.destination_.Set("", GetArena());
+  _impl_.dest_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.dest_.IsDefault()) {
+    _impl_.dest_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:smart_pkg_delivery.Request.destination)
+  // @@protoc_insertion_point(field_set_allocated:smart_pkg_delivery.Request.dest)
 }
 
 // .smart_pkg_delivery.GetPkgInfosRequest get_pkg_infos_request = 3;
@@ -5762,142 +5762,142 @@ inline Request::CommandCase Request::command_case() const {
 
 // Response
 
-// string source = 1;
-inline bool Response::has_source() const {
+// string src = 1;
+inline bool Response::has_src() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   return value;
 }
-inline void Response::clear_source() {
+inline void Response::clear_src() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.source_.ClearToEmpty();
+  _impl_.src_.ClearToEmpty();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const std::string& Response::source() const
+inline const std::string& Response::src() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:smart_pkg_delivery.Response.source)
-  return _internal_source();
+  // @@protoc_insertion_point(field_get:smart_pkg_delivery.Response.src)
+  return _internal_src();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void Response::set_source(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void Response::set_src(Arg_&& arg,
                                                      Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
-  _impl_.source_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:smart_pkg_delivery.Response.source)
+  _impl_.src_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:smart_pkg_delivery.Response.src)
 }
-inline std::string* Response::mutable_source() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_source();
-  // @@protoc_insertion_point(field_mutable:smart_pkg_delivery.Response.source)
+inline std::string* Response::mutable_src() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_src();
+  // @@protoc_insertion_point(field_mutable:smart_pkg_delivery.Response.src)
   return _s;
 }
-inline const std::string& Response::_internal_source() const {
+inline const std::string& Response::_internal_src() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.source_.Get();
+  return _impl_.src_.Get();
 }
-inline void Response::_internal_set_source(const std::string& value) {
+inline void Response::_internal_set_src(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
-  _impl_.source_.Set(value, GetArena());
+  _impl_.src_.Set(value, GetArena());
 }
-inline std::string* Response::_internal_mutable_source() {
+inline std::string* Response::_internal_mutable_src() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
-  return _impl_.source_.Mutable( GetArena());
+  return _impl_.src_.Mutable( GetArena());
 }
-inline std::string* Response::release_source() {
+inline std::string* Response::release_src() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:smart_pkg_delivery.Response.source)
+  // @@protoc_insertion_point(field_release:smart_pkg_delivery.Response.src)
   if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
     return nullptr;
   }
   _impl_._has_bits_[0] &= ~0x00000001u;
-  auto* released = _impl_.source_.Release();
+  auto* released = _impl_.src_.Release();
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
-    _impl_.source_.Set("", GetArena());
+    _impl_.src_.Set("", GetArena());
   }
   return released;
 }
-inline void Response::set_allocated_source(std::string* value) {
+inline void Response::set_allocated_src(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  _impl_.source_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.source_.IsDefault()) {
-    _impl_.source_.Set("", GetArena());
+  _impl_.src_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.src_.IsDefault()) {
+    _impl_.src_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:smart_pkg_delivery.Response.source)
+  // @@protoc_insertion_point(field_set_allocated:smart_pkg_delivery.Response.src)
 }
 
-// string destination = 2;
-inline bool Response::has_destination() const {
+// string dest = 2;
+inline bool Response::has_dest() const {
   bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
   return value;
 }
-inline void Response::clear_destination() {
+inline void Response::clear_dest() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.destination_.ClearToEmpty();
+  _impl_.dest_.ClearToEmpty();
   _impl_._has_bits_[0] &= ~0x00000002u;
 }
-inline const std::string& Response::destination() const
+inline const std::string& Response::dest() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:smart_pkg_delivery.Response.destination)
-  return _internal_destination();
+  // @@protoc_insertion_point(field_get:smart_pkg_delivery.Response.dest)
+  return _internal_dest();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void Response::set_destination(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void Response::set_dest(Arg_&& arg,
                                                      Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000002u;
-  _impl_.destination_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:smart_pkg_delivery.Response.destination)
+  _impl_.dest_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:smart_pkg_delivery.Response.dest)
 }
-inline std::string* Response::mutable_destination() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_destination();
-  // @@protoc_insertion_point(field_mutable:smart_pkg_delivery.Response.destination)
+inline std::string* Response::mutable_dest() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_dest();
+  // @@protoc_insertion_point(field_mutable:smart_pkg_delivery.Response.dest)
   return _s;
 }
-inline const std::string& Response::_internal_destination() const {
+inline const std::string& Response::_internal_dest() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.destination_.Get();
+  return _impl_.dest_.Get();
 }
-inline void Response::_internal_set_destination(const std::string& value) {
+inline void Response::_internal_set_dest(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000002u;
-  _impl_.destination_.Set(value, GetArena());
+  _impl_.dest_.Set(value, GetArena());
 }
-inline std::string* Response::_internal_mutable_destination() {
+inline std::string* Response::_internal_mutable_dest() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000002u;
-  return _impl_.destination_.Mutable( GetArena());
+  return _impl_.dest_.Mutable( GetArena());
 }
-inline std::string* Response::release_destination() {
+inline std::string* Response::release_dest() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:smart_pkg_delivery.Response.destination)
+  // @@protoc_insertion_point(field_release:smart_pkg_delivery.Response.dest)
   if ((_impl_._has_bits_[0] & 0x00000002u) == 0) {
     return nullptr;
   }
   _impl_._has_bits_[0] &= ~0x00000002u;
-  auto* released = _impl_.destination_.Release();
+  auto* released = _impl_.dest_.Release();
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
-    _impl_.destination_.Set("", GetArena());
+    _impl_.dest_.Set("", GetArena());
   }
   return released;
 }
-inline void Response::set_allocated_destination(std::string* value) {
+inline void Response::set_allocated_dest(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000002u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000002u;
   }
-  _impl_.destination_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.destination_.IsDefault()) {
-    _impl_.destination_.Set("", GetArena());
+  _impl_.dest_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.dest_.IsDefault()) {
+    _impl_.dest_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:smart_pkg_delivery.Response.destination)
+  // @@protoc_insertion_point(field_set_allocated:smart_pkg_delivery.Response.dest)
 }
 
 // .smart_pkg_delivery.AckStatus ack_status = 3;
@@ -6342,142 +6342,142 @@ inline Response::CommandCase Response::command_case() const {
 
 // NodeEvent
 
-// string source = 1;
-inline bool NodeEvent::has_source() const {
+// string src = 1;
+inline bool NodeEvent::has_src() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   return value;
 }
-inline void NodeEvent::clear_source() {
+inline void NodeEvent::clear_src() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.source_.ClearToEmpty();
+  _impl_.src_.ClearToEmpty();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const std::string& NodeEvent::source() const
+inline const std::string& NodeEvent::src() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:smart_pkg_delivery.NodeEvent.source)
-  return _internal_source();
+  // @@protoc_insertion_point(field_get:smart_pkg_delivery.NodeEvent.src)
+  return _internal_src();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void NodeEvent::set_source(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void NodeEvent::set_src(Arg_&& arg,
                                                      Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
-  _impl_.source_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:smart_pkg_delivery.NodeEvent.source)
+  _impl_.src_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:smart_pkg_delivery.NodeEvent.src)
 }
-inline std::string* NodeEvent::mutable_source() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_source();
-  // @@protoc_insertion_point(field_mutable:smart_pkg_delivery.NodeEvent.source)
+inline std::string* NodeEvent::mutable_src() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_src();
+  // @@protoc_insertion_point(field_mutable:smart_pkg_delivery.NodeEvent.src)
   return _s;
 }
-inline const std::string& NodeEvent::_internal_source() const {
+inline const std::string& NodeEvent::_internal_src() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.source_.Get();
+  return _impl_.src_.Get();
 }
-inline void NodeEvent::_internal_set_source(const std::string& value) {
+inline void NodeEvent::_internal_set_src(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
-  _impl_.source_.Set(value, GetArena());
+  _impl_.src_.Set(value, GetArena());
 }
-inline std::string* NodeEvent::_internal_mutable_source() {
+inline std::string* NodeEvent::_internal_mutable_src() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
-  return _impl_.source_.Mutable( GetArena());
+  return _impl_.src_.Mutable( GetArena());
 }
-inline std::string* NodeEvent::release_source() {
+inline std::string* NodeEvent::release_src() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:smart_pkg_delivery.NodeEvent.source)
+  // @@protoc_insertion_point(field_release:smart_pkg_delivery.NodeEvent.src)
   if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
     return nullptr;
   }
   _impl_._has_bits_[0] &= ~0x00000001u;
-  auto* released = _impl_.source_.Release();
+  auto* released = _impl_.src_.Release();
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
-    _impl_.source_.Set("", GetArena());
+    _impl_.src_.Set("", GetArena());
   }
   return released;
 }
-inline void NodeEvent::set_allocated_source(std::string* value) {
+inline void NodeEvent::set_allocated_src(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  _impl_.source_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.source_.IsDefault()) {
-    _impl_.source_.Set("", GetArena());
+  _impl_.src_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.src_.IsDefault()) {
+    _impl_.src_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:smart_pkg_delivery.NodeEvent.source)
+  // @@protoc_insertion_point(field_set_allocated:smart_pkg_delivery.NodeEvent.src)
 }
 
-// string destination = 2;
-inline bool NodeEvent::has_destination() const {
+// string dest = 2;
+inline bool NodeEvent::has_dest() const {
   bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
   return value;
 }
-inline void NodeEvent::clear_destination() {
+inline void NodeEvent::clear_dest() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.destination_.ClearToEmpty();
+  _impl_.dest_.ClearToEmpty();
   _impl_._has_bits_[0] &= ~0x00000002u;
 }
-inline const std::string& NodeEvent::destination() const
+inline const std::string& NodeEvent::dest() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:smart_pkg_delivery.NodeEvent.destination)
-  return _internal_destination();
+  // @@protoc_insertion_point(field_get:smart_pkg_delivery.NodeEvent.dest)
+  return _internal_dest();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void NodeEvent::set_destination(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void NodeEvent::set_dest(Arg_&& arg,
                                                      Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000002u;
-  _impl_.destination_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:smart_pkg_delivery.NodeEvent.destination)
+  _impl_.dest_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:smart_pkg_delivery.NodeEvent.dest)
 }
-inline std::string* NodeEvent::mutable_destination() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_destination();
-  // @@protoc_insertion_point(field_mutable:smart_pkg_delivery.NodeEvent.destination)
+inline std::string* NodeEvent::mutable_dest() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_dest();
+  // @@protoc_insertion_point(field_mutable:smart_pkg_delivery.NodeEvent.dest)
   return _s;
 }
-inline const std::string& NodeEvent::_internal_destination() const {
+inline const std::string& NodeEvent::_internal_dest() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.destination_.Get();
+  return _impl_.dest_.Get();
 }
-inline void NodeEvent::_internal_set_destination(const std::string& value) {
+inline void NodeEvent::_internal_set_dest(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000002u;
-  _impl_.destination_.Set(value, GetArena());
+  _impl_.dest_.Set(value, GetArena());
 }
-inline std::string* NodeEvent::_internal_mutable_destination() {
+inline std::string* NodeEvent::_internal_mutable_dest() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000002u;
-  return _impl_.destination_.Mutable( GetArena());
+  return _impl_.dest_.Mutable( GetArena());
 }
-inline std::string* NodeEvent::release_destination() {
+inline std::string* NodeEvent::release_dest() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:smart_pkg_delivery.NodeEvent.destination)
+  // @@protoc_insertion_point(field_release:smart_pkg_delivery.NodeEvent.dest)
   if ((_impl_._has_bits_[0] & 0x00000002u) == 0) {
     return nullptr;
   }
   _impl_._has_bits_[0] &= ~0x00000002u;
-  auto* released = _impl_.destination_.Release();
+  auto* released = _impl_.dest_.Release();
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
-    _impl_.destination_.Set("", GetArena());
+    _impl_.dest_.Set("", GetArena());
   }
   return released;
 }
-inline void NodeEvent::set_allocated_destination(std::string* value) {
+inline void NodeEvent::set_allocated_dest(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000002u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000002u;
   }
-  _impl_.destination_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.destination_.IsDefault()) {
-    _impl_.destination_.Set("", GetArena());
+  _impl_.dest_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.dest_.IsDefault()) {
+    _impl_.dest_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:smart_pkg_delivery.NodeEvent.destination)
+  // @@protoc_insertion_point(field_set_allocated:smart_pkg_delivery.NodeEvent.dest)
 }
 
 // .smart_pkg_delivery.PkgArrivalEvent pkg_arrival_event = 4;
