@@ -167,10 +167,10 @@ void *send_msg(void *arg) {
         strcpy(name_msg, msg);
       }
       // 📰
-      smart_pkg_Elevator_Status message = smart_pkg_Elevator_Status_init_zero;
+      // smart_pkg_Elevator_Status message = smart_pkg_Elevator_Status_init_zero;
 
-      pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
-      message.current_floor = 1;
+      // pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
+      // message.current_floor = 1;
 
       // Send the message to the server, exit on failure.
       if (write(*sock, name_msg, strlen(name_msg)) <= 0) {

@@ -2523,3 +2523,6 @@ end
 # # git config --global user.name "wbfw109v2"
 # # git config --global user.email "wbfw109v2@gmail.com"
 # # git remote add origin https://github.com/lovelyPuppies/synergy-hub.git
+
+
+# sudo ln -s /home/linuxbrew/.linuxbrew/bin/clangd /usr/bin/clangd

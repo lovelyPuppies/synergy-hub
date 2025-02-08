@@ -19945,3 +19945,5 @@ temp.
 NanoPB.. 무조건 콜백으로 구현해야 함.
   https://stackoverflow.com/questions/69288444/encoding-decoding-optional-string-fields-using-nanopb
   https://github.com/nanopb/nanopb/blob/master/tests/callbacks/decode_callbacks.c
+
+🪱 AI JailBreak;

@@ -30,14 +30,17 @@ endif()
 
 ##### Define and configure executables
 set(IOT_SERVER_DIR src/app/iot_server)
-set(IOT_CLIENT_CPP_DIR src/app/iot_client_cpp)
-set(IOT_CLIENT_C1_DIR src/app/iot_client_c1)
-set(IOT_CLIENT_C2_DIR src/app/iot_client_c2)
+set(IOT_CLIENT_ADDRESS_RECOGNIZER_C_DIR src/app/iot_client-address_recognizer-c)
+set(IOT_CLIENT_DELIVERY_ROBOT_DIR src/app/iot_client-delivery_robot)
+set(IOT_CLIENT_ELEVATOR_C_DIR src/app/iot_client-elevator-c)
+set(IOT_CLIENT_USER_DIR src/app/iot_client-user)
 
+# add_executable(iot_client )
 add_executable(iot_server ${IOT_SERVER_DIR}/iot_server.cpp ${IOT_SERVER_DIR}/main.cpp)
-add_executable(iot_client_cpp ${IOT_CLIENT_CPP_DIR}/iot_client_cpp.cpp ${IOT_CLIENT_CPP_DIR}/main.cpp)
-add_executable(iot_client_c1 ${IOT_CLIENT_C1_DIR}/main.c)
-add_executable(iot_client_c2 ${IOT_CLIENT_C2_DIR}/main.c)
+add_executable(iot_client-address_recognizer ${IOT_CLIENT_ADDRESS_RECOGNIZER_C_DIR}/main.c)
+add_executable(iot_client-delivery_robot ${IOT_CLIENT_DELIVERY_ROBOT_DIR}/iot_client_cpp.cpp ${IOT_CLIENT_DELIVERY_ROBOT_DIR}/main.cpp)
+add_executable(iot_client-elevator ${IOT_CLIENT_ELEVATOR_C_DIR}/main.c)
+add_executable(iot_client-user ${IOT_CLIENT_USER_DIR}/iot_client_cpp.cpp ${IOT_CLIENT_USER_DIR}/main.cpp)
 
 # set_target_properties(iot_server PROPERTIES CXX_STANDARD 23 CXX_STANDARD_REQUIRED YES)
 # set_target_properties(iot_client_cpp PROPERTIES CXX_STANDARD 23 CXX_STANDARD_REQUIRED YES)
@@ -47,42 +50,46 @@ add_executable(iot_client_c2 ${IOT_CLIENT_C2_DIR}/main.c)
 # Common include directory
 set(COMMON_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/src/common)
 target_include_directories(iot_server PRIVATE ${COMMON_INCLUDE_DIR})
-target_include_directories(iot_client_cpp PRIVATE ${COMMON_INCLUDE_DIR})
-target_include_directories(iot_client_c1 PRIVATE ${COMMON_INCLUDE_DIR})
-target_include_directories(iot_client_c2 PRIVATE ${COMMON_INCLUDE_DIR})
+target_include_directories(iot_client-address_recognizer PRIVATE ${COMMON_INCLUDE_DIR})
+target_include_directories(iot_client-delivery_robot PRIVATE ${COMMON_INCLUDE_DIR})
+target_include_directories(iot_client-elevator PRIVATE ${COMMON_INCLUDE_DIR})
+target_include_directories(iot_client-user PRIVATE ${COMMON_INCLUDE_DIR})
 
 
 
 
-##### Install configuration 📰 TODO
-install(TARGETS iot_server DESTINATION "."
-        RUNTIME DESTINATION bin
-        ARCHIVE DESTINATION lib
-        LIBRARY DESTINATION lib
-        )
+# ##### Install configuration 📰 TODO
+# install(TARGETS iot_server DESTINATION "."
+#         RUNTIME DESTINATION bin
+#         ARCHIVE DESTINATION lib
+#         LIBRARY DESTINATION lib
+#         )
 
-install(TARGETS iot_client_cpp
-        DESTINATION "."
-        RUNTIME DESTINATION bin
-        ARCHIVE DESTINATION lib
-        LIBRARY DESTINATION lib
-)
+# install(TARGETS iot_client-address_recognizer
+#         DESTINATION "."
+#         RUNTIME DESTINATION bin
+#         ARCHIVE DESTINATION lib
+#         LIBRARY DESTINATION lib
+# )
 
-install(TARGETS iot_client_c1
-        DESTINATION "."
-        RUNTIME DESTINATION bin
-        ARCHIVE DESTINATION lib
-        LIBRARY DESTINATION lib
-)
+# install(TARGETS iot_client-delivery_robot
+#         DESTINATION "."
+#         RUNTIME DESTINATION bin
+#         ARCHIVE DESTINATION lib
+#         LIBRARY DESTINATION lib
+# )
 
+# install(TARGETS iot_client-elevator
+#         DESTINATION "."
+#         RUNTIME DESTINATION bin
+#         ARCHIVE DESTINATION lib
+#         LIBRARY DESTINATION lib
+# )
 
-install(TARGETS iot_client_c2
-        DESTINATION "."
-        RUNTIME DESTINATION bin
-        ARCHIVE DESTINATION lib
-        LIBRARY DESTINATION lib
-)
+# install(TARGETS iot_client-user
+#         DESTINATION "."
+#         RUNTIME DESTINATION bin
+#         ARCHIVE DESTINATION lib
+#         LIBRARY DESTINATION lib
+# )
 
-
-
-#  client-delivery_robot ---> server ---> client-elevator:

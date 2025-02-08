@@ -26,7 +26,8 @@ git config --global init.defaultBranch main
 	&& sudo apt install gh -y
 
 
-: ' ☑️ Note that if you installed gh using both apt and Homebrew, and either one is outdated
+<<COMMENT
+☑️ Note that if you installed gh using both apt and Homebrew, and either one is outdated
     , and when install or upgrade a package in homebrew the following error occurs: 📅 2025-02-06 21:17:38
   >>
     Error: The bottle for <package_name> could not be verified.
@@ -38,12 +39,10 @@ git config --global init.defaultBranch main
 
       brew update
       brew upgrade gh
-'
 
-: '
 ☑️ If "build-essential" is not installed, the system cannot find standard headers like stdio.h, string.h, etc. 📅 2024-11-28 21:14:48
   This is because the standard library packages (like glibc) and compiler packages (like GCC or Clang) are separate in Linux systems.
-'
+COMMENT
 sudo apt install -y build-essential gnupg
 
 
