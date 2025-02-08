@@ -201,17 +201,15 @@ list of level 1 subjects
   ⚓ Xpressive ; https://www.boost.org/doc/libs/release/libs/xpressive/
   ⚓ YAP ; https://www.boost.org/doc/libs/release/libs/yap/
 ----------------------------------------------
-boost 🔪 🔰 Asio
-  ⚓ Asio tutorial ; https://www.boost.org/doc/libs/1_87_0/doc/html/boost_asio/tutorial.html
-  ⚓ Asio API ; https://www.boost.org/doc/libs/release/libs/asio/
-      
-
+boost 🔪⚓ Asio ; https://www.boost.org/doc/libs/release/libs/asio/
+  ⚓🔰 Asio tutorial ; https://www.boost.org/doc/libs/1_87_0/doc/html/boost_asio/tutorial.html
+  ⚓ Asio Reference ; https://www.boost.org/doc/libs/1_87_0/doc/html/boost_asio/reference.html
+      # Free Functions
+        ⚓ post ; https://www.boost.org/doc/libs/1_87_0/doc/html/boost_asio/reference/post.html
+         Submits a completion token or function object for execution.
+        
       https://www.boost.org/doc/libs/1_87_0/doc/html/boost_asio/overview/core/threads.html
 
       https://www.boost.org/doc/libs/1_87_0/doc/html/boost_asio/reference/io_context.html
-
-    https://www.boost.org/doc/libs/1_87_0/doc/html/boost_asio/reference.html
-      # Free Functions
-        https://www.boost.org/doc/libs/1_87_0/doc/html/boost_asio/reference/post.html
 
 https://www.boost.org/doc/libs/1_87_0/doc/html/boost_asio/tutorial/tutdaytime7.html
