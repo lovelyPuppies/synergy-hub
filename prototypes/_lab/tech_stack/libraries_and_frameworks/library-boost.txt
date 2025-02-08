@@ -29,8 +29,6 @@ list of level 1 subjects
   ⚓ Align ; https://www.boost.org/doc/libs/release/libs/align/
   ⚓ Any ; https://www.boost.org/doc/libs/release/libs/any/
   ⚓ Array ; https://www.boost.org/doc/libs/release/libs/array/
-  ⚓🔰 Asio ; https://www.boost.org/doc/libs/release/libs/asio/
-    
   ⚓ Assert ; https://www.boost.org/doc/libs/release/libs/assert/
   ⚓ Assign ; https://www.boost.org/doc/libs/release/libs/assign/
   ⚓ Atomic ; https://www.boost.org/doc/libs/release/libs/atomic/
@@ -202,3 +200,18 @@ list of level 1 subjects
   ⚓ Wave ; https://www.boost.org/doc/libs/release/libs/wave/
   ⚓ Xpressive ; https://www.boost.org/doc/libs/release/libs/xpressive/
   ⚓ YAP ; https://www.boost.org/doc/libs/release/libs/yap/
+----------------------------------------------
+boost 🔪 🔰 Asio
+  ⚓ Asio tutorial ; https://www.boost.org/doc/libs/1_87_0/doc/html/boost_asio/tutorial.html
+  ⚓ Asio API ; https://www.boost.org/doc/libs/release/libs/asio/
+      
+
+      https://www.boost.org/doc/libs/1_87_0/doc/html/boost_asio/overview/core/threads.html
+
+      https://www.boost.org/doc/libs/1_87_0/doc/html/boost_asio/reference/io_context.html
+
+    https://www.boost.org/doc/libs/1_87_0/doc/html/boost_asio/reference.html
+      # Free Functions
+        https://www.boost.org/doc/libs/1_87_0/doc/html/boost_asio/reference/post.html
+
+https://www.boost.org/doc/libs/1_87_0/doc/html/boost_asio/tutorial/tutdaytime7.html

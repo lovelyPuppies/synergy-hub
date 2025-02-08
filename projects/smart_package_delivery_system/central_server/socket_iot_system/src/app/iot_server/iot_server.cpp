@@ -1,6 +1,7 @@
 // clang++-17 -std=c++20 -o cpp.out cpp.cpp
 /*
 nc localhost 1234
+https://www.codingwiththomas.com/blog/boost-asio-server-client-example
 
 */
 #include "iot_server.hpp"
@@ -35,6 +36,7 @@ private:
     socket_.async_read_some(
         boost::asio::buffer(buffer_),
         [this, self](boost::system::error_code ec, std::size_t length) {
+          //
           if (!ec) {
             doWrite(length);
           }
@@ -75,6 +77,8 @@ void start_iot_server() {
   try {
     boost::asio::io_context io_context;
     Server server(io_context, 1234);
+
+    // std::cout << "Hello!!!!!!!!!!\n";
 
     unsigned int thread_count = std::thread::hardware_concurrency();
     thread_count = (thread_count > 1) ? (thread_count / 2) : 1;

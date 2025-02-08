@@ -167,10 +167,14 @@ c+cpp
     ⚓🔰 Initializers ; https://learn.microsoft.com/en-us/cpp/cpp/initializers
       # Kinds of initialization
         # Default initialization
+            In the case of `auto self(shared_from_this());`, the function `shared_from_this()` returns an r-value of type `std::shared_ptr<T>`
+            , which is then used to directly initialize `self` following the same principle.
+            
         #️⃣🪱 Direct initialization ; https://learn.microsoft.com/en-us/cpp/cpp/initializers?view=msvc-170#direct-initialization
-          📝🛍️ e.g. 
+          📝📍🛍️ e.g. 
             Direct initialization is a form of object initialization where an r-value is passed directly to a constructor, avoiding unnecessary copy operations.
             This method allows explicit constructors to be invoked and is often used for efficiency and clarity in C++.
+
             ```cpp
             class Session : public std::enable_shared_from_this<Session> {
               private:
@@ -183,9 +187,15 @@ c+cpp
                 }
             }
             ```
-            In the case of `auto self(shared_from_this());`, the function `shared_from_this()` returns an r-value of type `std::shared_ptr<T>`
-            , which is then used to directly initialize `self` following the same principle.
-            
+
+            In the case of `auto self(shared_from_this());`, the function `shared_from_this()` returns an r-value of type `std::shared_ptr<T>`,
+            which is then used to directly initialize `self` following the same principle.
+
+            ❗ Note: Although passing an r-value does not always prevent call-by-copy semantics
+              , in this case, `shared_from_this()` does not create a new instance of the object itself.
+              Instead, it returns a new `shared_ptr` that shares ownership of the already existing object.
+              Only the reference count of the existing `shared_ptr` is incremented.
+
         #️⃣ List initialization ; https://learn.microsoft.com/en-us/cpp/cpp/initializers?view=msvc-170#list-initialization
 
 
