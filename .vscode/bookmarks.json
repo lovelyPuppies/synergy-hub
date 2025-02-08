@@ -99,6 +99,21 @@
 					"label": ""
 				}
 			]
+		},
+		{
+			"path": "prototypes/glossary_by_ecosystem.txt",
+			"bookmarks": [
+				{
+					"line": 158,
+					"column": 7,
+					"label": ""
+				},
+				{
+					"line": 186,
+					"column": 23,
+					"label": ""
+				}
+			]
 		}
 	]
 }

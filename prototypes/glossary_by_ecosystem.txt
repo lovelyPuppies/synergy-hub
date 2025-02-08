@@ -1,150 +1,166 @@
-(Data structure)
-  ⚓ Red–black tree ; https://en.wikipedia.org/wiki/Red%E2%80%93black_tree
-    #️⃣ Terminology
-      🪱 NIL, parent, uncle
-        ❗ The leaf nodes of red–black trees (NIL in figure 1) do not contain keys or data.
+list of level 1 subjects
+  - Wikipedia
+    📝 It can include Wiktionary.
+  - Wiktionary
 
-(Canonical Ecosystem)
-  ⚓ Launchpad ; https://en.wikipedia.org/wiki/Launchpad_(website)
-    Laucnhpad is a web application and website that allows users to develop and maintain software, particularly open-source software.
-
-  ⚓ Canonical (company) ; https://en.wikipedia.org/wiki/Canonical_(company)
-    Canonical Ltd. is a privately held computer software company based in London, England. It
-
-
-
-(Operating System (OS))
-  ⚓📎 Out of memory (OOM) ; https://en.wikipedia.org/wiki/Out_of_memory
-    Out of memory (OOM) is an often undesired state of computer operation where no additional memory can be allocated for use by programs or the operating system. Such a system will be unable to load any additional programs, and since many programs may load additional data into memory during execution, these will cease to function correctly. This usually occurs because all available memory, including disk swap space, has been allocated.
-    
-    🗒️ Contents
-      # Recovery
-        The kernels of operating systems such as Linux will attempt to recover from this type of OOM condition by terminating one or more processes, a mechanism known as 🪱 the OOM Killer
-(OS 🔪 Linux)
-  ----------------------------------------------
-  ⚓🖇️ Input Field Separators (IFS) ; https://en.wikipedia.org/wiki/Input_Field_Separators
-    ; input field separators or internal field separators
-    🗒️ Contents
-      🪱 $IFS shell variable
-      The value of IFS, (in the bash shell) typically includes the space, tab, and the newline characters by default.
-        These whitespace characters can be visualized by issuing the "declare" command in the bash shell or printing IFS with commands like: (the latter two commands being only available in some shells and on some systems)
-          - printf %s "$IFS" | od -c
-          - printf "%q\n" "$IFS"
-          - printf %s "$IFS" | cat -A 
-          
-      From the Bash, version 4 man page: ...
-
-      # IFS abbreviation
-        this name is misleading as the IFS characters are actually used as 🚣 field terminators.
-      #🕵️🛡️ Exploits
-
-  ----------------------------------------------
-  ⚓🔰📎 rPath ; https://en.wikipedia.org/wiki/Rpath
-    🗒️ Contents
-      In computer science, rpath designates the run-time search path hard-coded in an executable file or library. Dynamic linking loaders use the rpath to find required libraries.
-      Specifically, it encodes a path to shared libraries into the header of an executable (or another shared library).
-        This 🪱 RPATH header value (so named in the Executable and Linkable Format header 🚣 standards) 
-      
-      The rpath of an executable or shared library is an optional entry in the 🪱 .dynamic section of the ELF executable or shared libraries, with the type 🪱 DT_RPATH, called the :DT_RPATH attribute.
-        It can be stored there at link time by the linker. Tools such as 🪱 chrpath and 🪱 patchelf can create or modify the entry later.
-
-      #📎 Use of the DT_RPATH entry by the dynamic linker
-        The different dynamic linkers for ELF implement the use of the 🪱 DT_RPATH (Dynamic Tag) attribute in different ways.
-      #📎 GNU ld.so
-        The dynamic linker of the GNU C Library searches for shared libraries in the following locations in order:
-          1. The (colon-separated) paths in the 🪱 DT_RPATH dynamic section attribute of the binary 🔘 if present and the 🪱 DT_RUNPATH attribute does not exist.
-          2. The (colon-separated) paths in the environment variable LD_LIBRARY_PATH, 🔘 unless the executable is a setuid/setgid binary, in which case it is ignored.
-            LD_LIBRARY_PATH can be overridden by calling the dynamic linker with the option 🪱 --library-path (e.g. /lib/ld-linux.so.2 --library-path $HOME/mylibs myprogram).
-          3. The (colon-separated) paths in the DT_RUNPATH dynamic section attribute of the binary if present.
-          4. Lookup based on the ldconfig cache file (often located at /etc/ld.so.cache) which contains a compiled list of candidate libraries previously found in the augmented library path (set by /etc/ld.so.conf).
-            If, however, the binary was linked with the 🔘 -z nodefaultlib linker option, libraries in the default library paths are skipped.
-          5. In the trusted default path /lib, and then /usr/lib. If the binary was linked with the 🔘 -z nodefaultlib linker option, this step is skipped.
-
-        Failing to find the shared library in all these locations will raise the "cannot open shared object file: No such file or directory" error.
-
-        Notes:
-          - 🧮 readelf -d <binary_name> | grep 'R.*PATH' displays the RPATH or RUNPATH of a binary file. In gcc, for instance, one could specify RPATH by -Wl,-rpath,/custom/rpath/.
-          - The option 🪱 --inhibit-rpath LIST of the dynamic linker instructs it to ignore DT_RPATH and DT_RUNPATH attributes of the object names in LIST.
-            To specify a main program in the LIST, give empty string.
-          - Libraries specified by the environment variable 🪱 LD_PRELOAD and then those listed in /etc/ld.so.preload are loaded before the search begins.
-            A preload can thus be used to replace some (or all) of the requested library's normal functionalities
-              , or it can simply be used to supply a library that would otherwise not be found.
-          - Static libraries are searched and linked into the ELF file at link time and are not searched at run time.
-      
-      #📎 The role of GNU ld
-        The GNU Linker (GNU ld) implements a feature which it calls 🪱 "new-dtags"
-          , which can be used to insert an rpath that has lower precedence than the LD_LIBRARY_PATH environment variable.
-
-        If the new-dtags feature is enabled in the linker (🪱 --enable-new-dtags), GNU ld
-          , besides setting the DT_RPATH attribute, also sets the DT_RUNPATH attribute to the same string.
-          At run time, if the dynamic linker finds a DT_RUNPATH attribute, it ignores the value of the DT_RPATH attribute
-          , with the effect that LD_LIBRARY_PATH is checked first and the paths in the DT_RUNPATH attribute are only searched afterwards.
-
-        💡⚖️ The ld dynamic linker does not search DT_RUNPATH locations for transitive dependencies, unlike DT_RPATH.
-
-        Instead of specifying the 🪱 -rpath to the linker, the environment variable 🪱 LD_RUN_PATH can be set to the same effect.
-  ----------------------------------------------
-  ⚓⭕📎 Epoll (event poll) ; https://en.wikipedia.org/wiki/Epoll
-    🗒️ Contents
-      epoll is a Linux kernel system call for a scalable I/O event notification mechanism, ...
-      It is meant to replace the older POSIX ❌ select(2) and ❌ poll(2) system calls, to achieve better performance in more demanding applications, where the number of watched file descriptors is large
-      (unlike the older system calls, which operate in O(n) time, epoll operates in 🚣 O(1) time). ...
-      epoll uses a 🪱 red–black tree (RB-tree) data structure to keep track of all file descriptors that are currently being monitored
-
-  ----------------------------------------------
-  ⚓ Inotify ; https://en.wikipedia.org/wiki/Inotify
-    inotify (inode notify) is a Linux kernel subsystem created by John McCutchan, which monitors changes to the filesystem, and reports those changes to applications.
-
-
-
-⚓📎 Interface Description Language (IDL) ; https://en.wikipedia.org/wiki/Interface_description_language
-  🗒️ Contents
-    🚣 IDLs are commonly used in remote procedure call software.
-    ... 📰 UML Component Diagram
-      Representation of different software components for performing a hypothetical holiday reservation in UML.
-      
-
-
-
-  ⚓📎 Protocol Buffers ; https://en.wikipedia.org/wiki/Protocol_Buffers
-    Protocol Buffers (Protobuf) is a free and open-source cross-platform data format used to serialize structured data.
-    The method involves an interface description language ...
-
-  ⚓📎 Remote Procedure Call ; https://en.wikipedia.org/wiki/Remote_procedure_call
-    🚣 RPCs are a form of inter-process communication (IPC), ...
-
-
-(Graphical notation)
-  ⚓ C4 model ; https://en.wikipedia.org/wiki/C4_model
-    🗒️ Contents
-      - Context diagrams (level 1)
-      - Container diagrams (level 2)
-      - Component diagrams (level 3)
-      - Code diagrams (level 4)
-
-(Database)
-  - soft deletion ; https://en.wiktionary.org/wiki/soft_deletion#English
-    Noun
-      soft deletion (countable and uncountable, plural soft deletions)
-        (databases) An operation in which a flag is used to mark data as unusable, without erasing the data itself from the database. 
-  - hard deletion Antonym: hard deletion
-    Noun
-      hard deletion (countable and uncountable, plural hard deletions)
-        (databases) An operation in which data is erased from the database. 
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
-(Still not ground)
-
-⚓ Synchronization ; https://en.wikipedia.org/wiki/Synchronization_(computer_science)
-  🗒️ Contents
-    #️⃣ Implementation ; https://en.wikipedia.org/wiki/Synchronization_(computer_science)#Implementation
-      #🪱 Spinlocks
-      #🪱 Barriers
-      #🪱 Semaphores
-  
-  
+Wikipedia
+  (Data structure)
+    ⚓ Red–black tree ; https://en.wikipedia.org/wiki/Red%E2%80%93black_tree
+      #️⃣ Terminology
+        🪱 NIL, parent, uncle
+          ❗ The leaf nodes of red–black trees (NIL in figure 1) do not contain keys or data.
 
 
-https://en.wikipedia.org/wiki/Lean_thinking
+  (Operating System (OS))
+    ⚓📎 Out of memory (OOM) ; https://en.wikipedia.org/wiki/Out_of_memory
+      Out of memory (OOM) is an often undesired state of computer operation where no additional memory can be allocated for use by programs or the operating system. Such a system will be unable to load any additional programs, and since many programs may load additional data into memory during execution, these will cease to function correctly. This usually occurs because all available memory, including disk swap space, has been allocated.
+      
+      🗒️ Contents
+        # Recovery
+          The kernels of operating systems such as Linux will attempt to recover from this type of OOM condition by terminating one or more processes, a mechanism known as 🪱 the OOM Killer
+  (OS 🔪 Linux)
+    ----------------------------------------------
+    ⚓🖇️ Input Field Separators (IFS) ; https://en.wikipedia.org/wiki/Input_Field_Separators
+      ; input field separators or internal field separators
+      🗒️ Contents
+        🪱 $IFS shell variable
+        The value of IFS, (in the bash shell) typically includes the space, tab, and the newline characters by default.
+          These whitespace characters can be visualized by issuing the "declare" command in the bash shell or printing IFS with commands like: (the latter two commands being only available in some shells and on some systems)
+            - printf %s "$IFS" | od -c
+            - printf "%q\n" "$IFS"
+            - printf %s "$IFS" | cat -A 
+            
+        From the Bash, version 4 man page: ...
+
+        # IFS abbreviation
+          this name is misleading as the IFS characters are actually used as 🚣 field terminators.
+        #🕵️🛡️ Exploits
+
+    ----------------------------------------------
+    ⚓🔰📎 rPath ; https://en.wikipedia.org/wiki/Rpath
+      🗒️ Contents
+        In computer science, rpath designates the run-time search path hard-coded in an executable file or library. Dynamic linking loaders use the rpath to find required libraries.
+        Specifically, it encodes a path to shared libraries into the header of an executable (or another shared library).
+          This 🪱 RPATH header value (so named in the Executable and Linkable Format header 🚣 standards) 
+        
+        The rpath of an executable or shared library is an optional entry in the 🪱 .dynamic section of the ELF executable or shared libraries, with the type 🪱 DT_RPATH, called the :DT_RPATH attribute.
+          It can be stored there at link time by the linker. Tools such as 🪱 chrpath and 🪱 patchelf can create or modify the entry later.
+
+        #📎 Use of the DT_RPATH entry by the dynamic linker
+          The different dynamic linkers for ELF implement the use of the 🪱 DT_RPATH (Dynamic Tag) attribute in different ways.
+        #📎 GNU ld.so
+          The dynamic linker of the GNU C Library searches for shared libraries in the following locations in order:
+            1. The (colon-separated) paths in the 🪱 DT_RPATH dynamic section attribute of the binary 🔘 if present and the 🪱 DT_RUNPATH attribute does not exist.
+            2. The (colon-separated) paths in the environment variable LD_LIBRARY_PATH, 🔘 unless the executable is a setuid/setgid binary, in which case it is ignored.
+              LD_LIBRARY_PATH can be overridden by calling the dynamic linker with the option 🪱 --library-path (e.g. /lib/ld-linux.so.2 --library-path $HOME/mylibs myprogram).
+            3. The (colon-separated) paths in the DT_RUNPATH dynamic section attribute of the binary if present.
+            4. Lookup based on the ldconfig cache file (often located at /etc/ld.so.cache) which contains a compiled list of candidate libraries previously found in the augmented library path (set by /etc/ld.so.conf).
+              If, however, the binary was linked with the 🔘 -z nodefaultlib linker option, libraries in the default library paths are skipped.
+            5. In the trusted default path /lib, and then /usr/lib. If the binary was linked with the 🔘 -z nodefaultlib linker option, this step is skipped.
+
+          Failing to find the shared library in all these locations will raise the "cannot open shared object file: No such file or directory" error.
+
+          Notes:
+            - 🧮 readelf -d <binary_name> | grep 'R.*PATH' displays the RPATH or RUNPATH of a binary file. In gcc, for instance, one could specify RPATH by -Wl,-rpath,/custom/rpath/.
+            - The option 🪱 --inhibit-rpath LIST of the dynamic linker instructs it to ignore DT_RPATH and DT_RUNPATH attributes of the object names in LIST.
+              To specify a main program in the LIST, give empty string.
+            - Libraries specified by the environment variable 🪱 LD_PRELOAD and then those listed in /etc/ld.so.preload are loaded before the search begins.
+              A preload can thus be used to replace some (or all) of the requested library's normal functionalities
+                , or it can simply be used to supply a library that would otherwise not be found.
+            - Static libraries are searched and linked into the ELF file at link time and are not searched at run time.
+        
+        #📎 The role of GNU ld
+          The GNU Linker (GNU ld) implements a feature which it calls 🪱 "new-dtags"
+            , which can be used to insert an rpath that has lower precedence than the LD_LIBRARY_PATH environment variable.
+
+          If the new-dtags feature is enabled in the linker (🪱 --enable-new-dtags), GNU ld
+            , besides setting the DT_RPATH attribute, also sets the DT_RUNPATH attribute to the same string.
+            At run time, if the dynamic linker finds a DT_RUNPATH attribute, it ignores the value of the DT_RPATH attribute
+            , with the effect that LD_LIBRARY_PATH is checked first and the paths in the DT_RUNPATH attribute are only searched afterwards.
+
+          💡⚖️ The ld dynamic linker does not search DT_RUNPATH locations for transitive dependencies, unlike DT_RPATH.
+
+          Instead of specifying the 🪱 -rpath to the linker, the environment variable 🪱 LD_RUN_PATH can be set to the same effect.
+    ----------------------------------------------
+    ⚓⭕📎 Epoll (event poll) ; https://en.wikipedia.org/wiki/Epoll
+      🗒️ Contents
+        epoll is a Linux kernel system call for a scalable I/O event notification mechanism, ...
+        It is meant to replace the older POSIX ❌ select(2) and ❌ poll(2) system calls, to achieve better performance in more demanding applications, where the number of watched file descriptors is large
+        (unlike the older system calls, which operate in O(n) time, epoll operates in 🚣 O(1) time). ...
+        epoll uses a 🪱 red–black tree (RB-tree) data structure to keep track of all file descriptors that are currently being monitored
+
+    ----------------------------------------------
+    ⚓ Inotify ; https://en.wikipedia.org/wiki/Inotify
+      inotify (inode notify) is a Linux kernel subsystem created by John McCutchan, which monitors changes to the filesystem, and reports those changes to applications.
+
+
+
+  ⚓📎 Interface Description Language (IDL) ; https://en.wikipedia.org/wiki/Interface_description_language
+    🗒️ Contents
+      🚣 IDLs are commonly used in remote procedure call software.
+      ... 📰 UML Component Diagram
+        Representation of different software components for performing a hypothetical holiday reservation in UML.
+        
+
+
+
+    ⚓📎 Protocol Buffers ; https://en.wikipedia.org/wiki/Protocol_Buffers
+      Protocol Buffers (Protobuf) is a free and open-source cross-platform data format used to serialize structured data.
+      The method involves an interface description language ...
+
+    ⚓📎 Remote Procedure Call ; https://en.wikipedia.org/wiki/Remote_procedure_call
+      🚣 RPCs are a form of inter-process communication (IPC), ...
+
+
+  (Graphical notation)
+    ⚓ C4 model ; https://en.wikipedia.org/wiki/C4_model
+      🗒️ Contents
+        - Context diagrams (level 1)
+        - Container diagrams (level 2)
+        - Component diagrams (level 3)
+        - Code diagrams (level 4)
+
+  (Database)
+    - soft deletion ; https://en.wiktionary.org/wiki/soft_deletion#English
+      Noun
+        soft deletion (countable and uncountable, plural soft deletions)
+          (databases) An operation in which a flag is used to mark data as unusable, without erasing the data itself from the database. 
+    - hard deletion Antonym: hard deletion
+      Noun
+        hard deletion (countable and uncountable, plural hard deletions)
+          (databases) An operation in which data is erased from the database. 
+
+
+
+  (Canonical Ecosystem)
+    ⚓ Launchpad ; https://en.wikipedia.org/wiki/Launchpad_(website)
+      Laucnhpad is a web application and website that allows users to develop and maintain software, particularly open-source software.
+
+    ⚓ Canonical (company) ; https://en.wikipedia.org/wiki/Canonical_(company)
+      Canonical Ltd. is a privately held computer software company based in London, England. It
+
+
+
+----------------------------------------------
+(temp; Still not ground)
+
+  ⚓ Synchronization ; https://en.wikipedia.org/wiki/Synchronization_(computer_science)
+    🗒️ Contents
+      #️⃣ Implementation ; https://en.wikipedia.org/wiki/Synchronization_(computer_science)#Implementation
+        #🪱 Spinlocks
+        #🪱 Barriers
+        #🪱 Semaphores
+    
+  ⚓ Parameter (computer programming) ; https://en.wikipedia.org/wiki/Parameter_(computer_programming)    
+    | formal argument
+    🗒️ Contents
+      #️⃣🪱 Output parameters ; https://en.wikipedia.org/wiki/Parameter_(computer_programming)#Output_parameters
+
+
+
+  https://en.wikipedia.org/wiki/Lean_thinking
+
 
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
 Wiktionary

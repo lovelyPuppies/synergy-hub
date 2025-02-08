@@ -6,7 +6,10 @@
 // 📅 2025-02-07 05:20:22
 
 // Library inclusions for necessary functionalities
+// ⚙️ --------------------------------------------------
+#include "protobuf_c/message_initializer.h"
 #include "protobuf_c/smart_pkg_delivery.pb.h"
+// --------------------------------------------------
 #include <arpa/inet.h> // Defines functions for internet operations, such as inet_addr.
 #include <pb_decode.h>
 #include <pb_encode.h>
@@ -35,9 +38,20 @@
  *  Global Variables
  * ========================= */
 // Global variables for storing the client’s name and message data
-// ⚙️
-char local_msg_source_name[NAME_SIZE] = "address_recognizer_1";
+// ⚙️ --------------------------------------------------
+smart_pkg_delivery_NodeType local_msg_src_type =
+    smart_pkg_delivery_NodeType_UNSPECIFIED;
+uint32_t local_msg_src_id = 1;
 char msg[BUF_SIZE];
+
+// 🚧❗ Assume that this executable run with Single-thread.
+smart_pkg_delivery_Request local_request_msg =
+    smart_pkg_delivery_Request_init_zero;
+smart_pkg_delivery_Response local_response_msg =
+    smart_pkg_delivery_Response_init_zero;
+smart_pkg_delivery_NodeEvent local_node_event_msg =
+    smart_pkg_delivery_NodeEvent_init_zero;
+// --------------------------------------------------
 
 /* =========================
  *  Function Prototypes
@@ -46,6 +60,30 @@ char msg[BUF_SIZE];
 void *send_msg(void *arg);
 void *recv_msg(void *arg);
 void error_handling(char *message);
+
+// ⚙️ --------------------------------------------------
+void init_node_configuration(smart_pkg_delivery_NodeType src_type,
+                             uint32_t src_id) {
+  local_msg_src_type = src_type;
+  local_msg_src_id = src_id;
+}
+
+// 🏗 Wrapped Factory function for Request (No need to pass src_type, src_id)
+void init_local_request_msg(smart_pkg_delivery_Request *msg) {
+  init_request_msg(msg, local_msg_src_type, local_msg_src_id);
+}
+
+// 🏗 Wrapped Factory function for Response
+void init_local_response_msg(smart_pkg_delivery_Response *msg) {
+  init_response_msg(msg, local_msg_src_type, local_msg_src_id);
+}
+
+// 🏗 Wrapped Factory function for NodeEvent
+void init_local_node_event_msg(smart_pkg_delivery_NodeEvent *msg) {
+  init_node_event_msg(msg, local_msg_src_type, local_msg_src_id);
+}
+
+// --------------------------------------------------
 
 /* =========================
  *  Main Function
@@ -59,15 +97,30 @@ int main(int argc, char *argv[]) {
   pthread_t snd_thread, rcv_thread;
   void *thread_return;
 
+  // ⚙️ --------------------------------------------------
   // Validate arguments to ensure the correct number are provided.
   if (argc != 4) {
-    printf("Usage : %s <IP> <port> <name>\n", argv[0]);
+    printf("Usage : %s <IP> <port> <local_src_id>\n", argv[0]);
     exit(1);
   }
 
-  // Assign the client name from command line arguments.
-  sprintf(local_msg_source_name, "%s", argv[3]);
+  // Convert the fourth argument (id) to uint32_t
+  char *endptr;
+  uint32_t temp_local_msg_id = strtol(argv[4], &endptr, 10);
+  // Check for conversion errors
+  if (*endptr != '\0') {
+    printf("Error: Invalid ID format. Must be a numeric value.\n");
+    exit(1);
+  }
 
+  init_node_configuration(smart_pkg_delivery_NodeType_CLIENT_ADDRESS_RECOGNIZER,
+                          temp_local_msg_id);
+
+  // Assign the client name from command line arguments.
+  // sprintf(local_msg_source_name, "%s", argv[3]);
+  // --------------------------------------------------
+
+  // 🎱
   // Create a socket with IPv4 (PF_INET: Protocol Family Internet) and TCP (SOCK_STREAM: Stream Socket) specifications.
   // The '0' value automatically selects the appropriate protocol for the socket type:
   //    SOCK_STREAM selects TCP (Transmission Control Protocol) by default, while SOCK_DGRAM selects UDP (User Datagram Protocol) by default.
@@ -89,8 +142,8 @@ int main(int argc, char *argv[]) {
     error_handling("connect() error");
 
   // Send initial message with client name for authentication.
-  sprintf(msg, "[%s:PASSWD]", local_msg_source_name);
-  write(sock, msg, strlen(msg));
+  // sprintf(msg, "[%s:PASSWD]", local_msg_source_name);
+  // write(sock, msg, strlen(msg));
 
   // Create threads for handling message send and receive.
   // 💡 Cast &sock to (void*) for passing as a thread argument, no data change, only type casting.
@@ -178,12 +231,13 @@ void *send_msg(void *arg) {
       }
 
       // ⚙️📰
+      init_local_node_event_msg(&local_node_event_msg);
+      local_node_event_msg.dest_type = smart_pkg_delivery_NodeType_SERVER;
+      local_node_event_msg.event_type =
 
-      smart_pkg_delivery_Request request_msg;
-      snprintf(request_msg.src, MSG_MAX_LEN, "%s", local_msg_source_name);
-      snprintf(request_msg.dest, MSG_MAX_LEN, "%s", "server");
+          // snprintf(request_msg.src_name, MSG_MAX_LEN, "%s", local_msg_source_name);
 
-      pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
+          pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
 
       // pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
       // message.current_floor = 1;
