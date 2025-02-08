@@ -40,23 +40,22 @@ private:
         [this, self](boost::system::error_code ec, std::size_t length) {
           //
           if (!ec) {
+            std::string received_data(buffer_, length);
+            std::string response_data = processProtobufMessage(received_data);
             doWrite(length);
           }
         });
   }
 
   std::string processProtobufMessage(const std::string &data) {
-    // Protobuf 메시지 객체
-    smart_pkg_delivery::NodeEvent message;
 
-    // 메시지 디코딩 (디시리얼라이즈)
     if (!message.ParseFromString(data)) {
       std::cerr << "Protobuf 메시지 디코딩 실패!" << std::endl;
       return "ERROR: INVALID PROTOBUF MESSAGE";
     }
 
     std::cout << "📩 받은 메시지: " << std::endl;
-    std::cout << "  - Source: " << message.source() << std::endl;
+    std::cout << "  - Source: " << message.<< std::endl;
     std::cout << "  - Destination: " << message.destination() << std::endl;
     std::cout << "  - Command: " << message.command() << std::endl;
 

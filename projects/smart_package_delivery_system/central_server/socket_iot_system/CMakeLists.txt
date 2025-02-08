@@ -75,25 +75,3 @@ target_include_directories(iot_client-user PRIVATE ${COMMON_INCLUDE_DIR})
 #         ARCHIVE DESTINATION lib
 #         LIBRARY DESTINATION lib
 #         )
-
-# install(TARGETS iot_client-delivery_robot
-#         DESTINATION "."
-#         RUNTIME DESTINATION bin
-#         ARCHIVE DESTINATION lib
-#         LIBRARY DESTINATION lib
-# )
-
-# install(TARGETS iot_client-elevator
-#         DESTINATION "."
-#         RUNTIME DESTINATION bin
-#         ARCHIVE DESTINATION lib
-#         LIBRARY DESTINATION lib
-# )
-
-# install(TARGETS iot_client-user
-#         DESTINATION "."
-#         RUNTIME DESTINATION bin
-#         ARCHIVE DESTINATION lib
-#         LIBRARY DESTINATION lib
-# )
-

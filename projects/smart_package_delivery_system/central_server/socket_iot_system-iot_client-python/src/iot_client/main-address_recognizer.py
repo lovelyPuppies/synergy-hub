@@ -14,9 +14,6 @@
 # import threading
 # import socket
 
-# SERVER_IP = "10.10.14.19"
-# SERVER_PORT = 1234
-
 
 # # GPIO 핀 설정
 # IR_SENSOR_PIN = 21  # 적외선 센서 입력 핀 (BCM 모드)
@@ -160,56 +157,56 @@
 # #   %shell> pip install protobuf==5.29.3
 
 
-# from external.protobuf import smart_pkg_delivery_pb2
-
-
-# def main():
-#     # 소켓 연결
-#     try:
-#         client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-#         client_socket.connect((SERVER_IP, SERVER_PORT))
-#         print(f"서버({SERVER_IP}:{SERVER_PORT})에 연결되었습니다.")
-
-#         # 아이디와 비밀번호 전송
-#         # credentials = f"{USERNAME}:{PASSWORD}"
-#         # client_socket.sendall(credentials.encode("utf-8"))
-#         # print(f"로그인 정보 전송: {credentials}")
-#         while True:
-#             test_event = smart_pkg_delivery_pb2.NodeEvent()
-#             address = test_event.pkg_arrival_event.address
-#             address.building_num = 105
-#             address.unit_num = 505
-#             client_socket.sendall(test_event.SerializeToString())
-#     except Exception as e:
-#         print(f"서버에 연결할 수 없습니다: {e}")
-#         client_socket = None
-#     finally:
-#         if client_socket:
-#             client_socket.close()
-#             print("서버 연결을 종료했습니다.")
-#         print("리소스를 정리했습니다.")
-
-
-# if __name__ == "__main__":
-#     main()
-
 # %%
 from IPython.core.interactiveshell import InteractiveShell
 from external.protobuf import smart_pkg_delivery_pb2
+import socket
+import time
 
 InteractiveShell.ast_node_interactivity = "all"
 
-test_event = smart_pkg_delivery_pb2.NodeEvent()
-address = test_event.pkg_arrival_event.address
+
+SERVER_IP = "10.10.14.19"
+SERVER_PORT = 1234
+
+
+def main():
+    # 소켓 연결
+    try:
+        client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        client_socket.connect((SERVER_IP, SERVER_PORT))
+        print(f"서버({SERVER_IP}:{SERVER_PORT})에 연결되었습니다.")
+        while True:
+            wrapper_msg = smart_pkg_delivery_pb2.WrapperMsg()
+            msg1_node_event = wrapper_msg.node_event
+            address = msg1_node_event.pkg_arrival_event.address
+            address.building_num = 105
+            address.unit_num = 505
+            time.sleep(5)
+    except Exception as e:
+        print(f"서버에 연결할 수 없습니다: {e}")
+        client_socket = None
+    finally:
+        if client_socket:
+            client_socket.close()
+            print("서버 연결을 종료했습니다.")
+        print("리소스를 정리했습니다.")
+
+
+# %% 🧪🆗 Test protobuf for Encoding, Decoding
+wrapper_msg = smart_pkg_delivery_pb2.WrapperMsg()
+msg1_node_event = wrapper_msg.node_event
+address = msg1_node_event.pkg_arrival_event.address
 address.building_num = 105
 address.unit_num = 505
 
+print(f"Before encoded:\n {wrapper_msg}\n\n")
 
-print(f"Before encoded:\n {test_event}\n\n")
 # Method
-x = test_event.SerializePartialToString()
+x: str = wrapper_msg.SerializePartialToString()
 print(f"Encoded string (size: {len(x)} bytes):\n{x}\n\n")
 
 # Method
-y = test_event.ParseFromString(x)
-print(f"Encoded string (size: {y} bytes):\n{test_event}\n\n")
+wrapper_msg2 = smart_pkg_delivery_pb2.WrapperMsg()
+y: int = wrapper_msg2.ParseFromString(x)
+print(f"Decoded string (size: {y} bytes):\n{wrapper_msg2}\n\n")

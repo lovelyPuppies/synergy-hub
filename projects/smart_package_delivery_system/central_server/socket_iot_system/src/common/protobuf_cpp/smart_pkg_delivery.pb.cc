@@ -625,6 +625,32 @@ struct ResponseDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ResponseDefaultTypeInternal _Response_default_instance_;
+
+inline constexpr WrapperMsg::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : msg_type_{},
+        _cached_size_{0},
+        _oneof_case_{} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR WrapperMsg::WrapperMsg(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct WrapperMsgDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR WrapperMsgDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~WrapperMsgDefaultTypeInternal() {}
+  union {
+    WrapperMsg _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 WrapperMsgDefaultTypeInternal _WrapperMsg_default_instance_;
 }  // namespace smart_pkg_delivery
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_smart_5fpkg_5fdelivery_2eproto[5];
 static constexpr const ::_pb::ServiceDescriptor**
@@ -632,6 +658,18 @@ static constexpr const ::_pb::ServiceDescriptor**
 const ::uint32_t
     TableStruct_smart_5fpkg_5fdelivery_2eproto::offsets[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
         protodesc_cold) = {
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::WrapperMsg, _internal_metadata_),
+        ~0u,  // no _extensions_
+        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::WrapperMsg, _impl_._oneof_case_[0]),
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        ::_pbi::kInvalidFieldOffsetTag,
+        ::_pbi::kInvalidFieldOffsetTag,
+        ::_pbi::kInvalidFieldOffsetTag,
+        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::WrapperMsg, _impl_.msg_type_),
         PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::Request, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::Request, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -944,30 +982,32 @@ const ::uint32_t
 
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-        {0, 18, -1, sizeof(::smart_pkg_delivery::Request)},
-        {27, 47, -1, sizeof(::smart_pkg_delivery::Response)},
-        {58, 76, -1, sizeof(::smart_pkg_delivery::NodeEvent)},
-        {85, 95, -1, sizeof(::smart_pkg_delivery::AckStatus)},
-        {97, 107, -1, sizeof(::smart_pkg_delivery::ExecutionStatus)},
-        {109, 118, -1, sizeof(::smart_pkg_delivery::GetPkgInfosRequest)},
-        {119, -1, -1, sizeof(::smart_pkg_delivery::GetPkgInfoResponse)},
-        {128, 138, -1, sizeof(::smart_pkg_delivery::MoveDeliveryRobotRequest)},
-        {140, -1, -1, sizeof(::smart_pkg_delivery::MoveDeliveryRobotResponse)},
-        {148, 158, -1, sizeof(::smart_pkg_delivery::SetElevatorStatusRequest)},
-        {160, -1, -1, sizeof(::smart_pkg_delivery::SetElevatorStatusResponse)},
-        {168, 177, -1, sizeof(::smart_pkg_delivery::PkgArrivalEvent)},
-        {178, 188, -1, sizeof(::smart_pkg_delivery::ElevatorStatusEvent)},
-        {190, 200, -1, sizeof(::smart_pkg_delivery::DeliveryStatusEvent)},
-        {202, 212, -1, sizeof(::smart_pkg_delivery::Elevator_Status)},
-        {214, 224, -1, sizeof(::smart_pkg_delivery::Elevator)},
-        {226, 236, -1, sizeof(::smart_pkg_delivery::DeliveryRobot)},
-        {238, 249, -1, sizeof(::smart_pkg_delivery::PkgRoom_Locker)},
-        {252, 262, -1, sizeof(::smart_pkg_delivery::PkgRoom)},
-        {264, 274, -1, sizeof(::smart_pkg_delivery::User)},
-        {276, 289, -1, sizeof(::smart_pkg_delivery::Pkg)},
-        {294, 305, -1, sizeof(::smart_pkg_delivery::AptAddress)},
+        {0, -1, -1, sizeof(::smart_pkg_delivery::WrapperMsg)},
+        {12, 30, -1, sizeof(::smart_pkg_delivery::Request)},
+        {39, 59, -1, sizeof(::smart_pkg_delivery::Response)},
+        {70, 88, -1, sizeof(::smart_pkg_delivery::NodeEvent)},
+        {97, 107, -1, sizeof(::smart_pkg_delivery::AckStatus)},
+        {109, 119, -1, sizeof(::smart_pkg_delivery::ExecutionStatus)},
+        {121, 130, -1, sizeof(::smart_pkg_delivery::GetPkgInfosRequest)},
+        {131, -1, -1, sizeof(::smart_pkg_delivery::GetPkgInfoResponse)},
+        {140, 150, -1, sizeof(::smart_pkg_delivery::MoveDeliveryRobotRequest)},
+        {152, -1, -1, sizeof(::smart_pkg_delivery::MoveDeliveryRobotResponse)},
+        {160, 170, -1, sizeof(::smart_pkg_delivery::SetElevatorStatusRequest)},
+        {172, -1, -1, sizeof(::smart_pkg_delivery::SetElevatorStatusResponse)},
+        {180, 189, -1, sizeof(::smart_pkg_delivery::PkgArrivalEvent)},
+        {190, 200, -1, sizeof(::smart_pkg_delivery::ElevatorStatusEvent)},
+        {202, 212, -1, sizeof(::smart_pkg_delivery::DeliveryStatusEvent)},
+        {214, 224, -1, sizeof(::smart_pkg_delivery::Elevator_Status)},
+        {226, 236, -1, sizeof(::smart_pkg_delivery::Elevator)},
+        {238, 248, -1, sizeof(::smart_pkg_delivery::DeliveryRobot)},
+        {250, 261, -1, sizeof(::smart_pkg_delivery::PkgRoom_Locker)},
+        {264, 274, -1, sizeof(::smart_pkg_delivery::PkgRoom)},
+        {276, 286, -1, sizeof(::smart_pkg_delivery::User)},
+        {288, 301, -1, sizeof(::smart_pkg_delivery::Pkg)},
+        {306, 317, -1, sizeof(::smart_pkg_delivery::AptAddress)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
+    &::smart_pkg_delivery::_WrapperMsg_default_instance_._instance,
     &::smart_pkg_delivery::_Request_default_instance_._instance,
     &::smart_pkg_delivery::_Response_default_instance_._instance,
     &::smart_pkg_delivery::_NodeEvent_default_instance_._instance,
@@ -994,103 +1034,108 @@ static const ::_pb::Message* const file_default_instances[] = {
 const char descriptor_table_protodef_smart_5fpkg_5fdelivery_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
     "\n\030smart_pkg_delivery.proto\022\022smart_pkg_de"
-    "livery\"\263\003\n\007Request\022.\n\010src_type\030\001 \001(\0162\034.s"
-    "mart_pkg_delivery.NodeType\022\016\n\006src_id\030\002 \001"
-    "(\r\022\020\n\010src_name\030\003 \001(\t\022/\n\tdest_type\030\004 \001(\0162"
-    "\034.smart_pkg_delivery.NodeType\022\017\n\007dest_id"
-    "\030\005 \001(\r\022\021\n\tdest_name\030\006 \001(\t\022G\n\025get_pkg_inf"
-    "os_request\030\007 \001(\0132&.smart_pkg_delivery.Ge"
-    "tPkgInfosRequestH\000\022S\n\033set_elevator_statu"
-    "s_request\030\010 \001(\0132,.smart_pkg_delivery.Set"
-    "ElevatorStatusRequestH\000\022S\n\033move_delivery"
-    "_robot_request\030\t \001(\0132,.smart_pkg_deliver"
-    "y.MoveDeliveryRobotRequestH\000B\016\n\014request_"
-    "type\"\253\004\n\010Response\022.\n\010src_type\030\001 \001(\0162\034.sm"
-    "art_pkg_delivery.NodeType\022\016\n\006src_id\030\002 \001("
-    "\r\022\020\n\010src_name\030\003 \001(\t\022/\n\tdest_type\030\004 \001(\0162\034"
-    ".smart_pkg_delivery.NodeType\022\017\n\007dest_id\030"
-    "\005 \001(\r\022\021\n\tdest_name\030\006 \001(\t\0221\n\nack_status\030\007"
-    " \001(\0132\035.smart_pkg_delivery.AckStatus\022=\n\020e"
-    "xecution_status\030\010 \001(\0132#.smart_pkg_delive"
-    "ry.ExecutionStatus\022G\n\025get_pkg_info_respo"
-    "nse\030\t \001(\0132&.smart_pkg_delivery.GetPkgInf"
-    "oResponseH\000\022U\n\034set_elevator_status_respo"
-    "nse\030\n \001(\0132-.smart_pkg_delivery.SetElevat"
-    "orStatusResponseH\000\022U\n\034move_delivery_robo"
-    "t_response\030\013 \001(\0132-.smart_pkg_delivery.Mo"
-    "veDeliveryRobotResponseH\000B\017\n\rresponse_ty"
-    "pe\"\226\003\n\tNodeEvent\022.\n\010src_type\030\001 \001(\0162\034.sma"
-    "rt_pkg_delivery.NodeType\022\016\n\006src_id\030\002 \001(\r"
-    "\022\020\n\010src_name\030\003 \001(\t\022/\n\tdest_type\030\004 \001(\0162\034."
-    "smart_pkg_delivery.NodeType\022\017\n\007dest_id\030\005"
-    " \001(\r\022\021\n\tdest_name\030\006 \001(\t\022@\n\021pkg_arrival_e"
-    "vent\030\007 \001(\0132#.smart_pkg_delivery.PkgArriv"
-    "alEventH\000\022H\n\025elevator_status_event\030\010 \001(\013"
-    "2\'.smart_pkg_delivery.ElevatorStatusEven"
-    "tH\000\022H\n\025delivery_status_event\030\t \001(\0132\'.sma"
-    "rt_pkg_delivery.DeliveryStatusEventH\000B\014\n"
-    "\nevent_type\"\226\001\n\tAckStatus\0226\n\004code\030\001 \001(\0162"
-    "(.smart_pkg_delivery.AckStatus.StatusCod"
-    "e\022\017\n\007message\030\002 \001(\t\"@\n\nStatusCode\022\017\n\013UNSP"
-    "ECIFIED\020\000\022\020\n\014ACK_RECEIVED\020\001\022\017\n\013ACK_INVAL"
-    "ID\020\002\"\235\001\n\017ExecutionStatus\022<\n\004code\030\001 \001(\0162."
-    ".smart_pkg_delivery.ExecutionStatus.Stat"
-    "usCode\022\017\n\007message\030\002 \001(\t\";\n\nStatusCode\022\017\n"
-    "\013UNSPECIFIED\020\000\022\020\n\014CODE_SUCCESS\020\001\022\n\n\006FAIL"
-    "ED\020\002\"%\n\022GetPkgInfosRequest\022\017\n\007user_id\030\001 "
-    "\001(\r\";\n\022GetPkgInfoResponse\022%\n\004pkgs\030\001 \003(\0132"
-    "\027.smart_pkg_delivery.Pkg\"r\n\030MoveDelivery"
-    "RobotRequest\022\031\n\021delivery_robot_id\030\001 \001(\r\022"
-    ";\n\023destination_address\030\002 \001(\0132\036.smart_pkg"
-    "_delivery.AptAddress\"\033\n\031MoveDeliveryRobo"
-    "tResponse\"m\n\030SetElevatorStatusRequest\022\023\n"
-    "\013elevator_id\030\001 \001(\r\022<\n\017elevator_status\030\002 "
-    "\001(\0132#.smart_pkg_delivery.Elevator.Status"
-    "\"\033\n\031SetElevatorStatusResponse\"B\n\017PkgArri"
-    "valEvent\022/\n\007address\030\001 \001(\0132\036.smart_pkg_de"
-    "livery.AptAddress\"h\n\023ElevatorStatusEvent"
-    "\022\023\n\013elevator_id\030\001 \001(\r\022<\n\017elevator_status"
-    "\030\002 \001(\0132#.smart_pkg_delivery.Elevator.Sta"
-    "tus\"{\n\023DeliveryStatusEvent\022\031\n\021delivery_r"
-    "obot_id\030\001 \001(\r\022I\n\017delivery_status\030\002 \001(\01620"
-    ".smart_pkg_delivery.DeliveryRobot.Delive"
-    "ryStatus\"\354\001\n\010Elevator\022\n\n\002id\030\001 \001(\r\0223\n\006sta"
-    "tus\030\002 \001(\0132#.smart_pkg_delivery.Elevator."
-    "Status\032f\n\006Status\022\025\n\rcurrent_floor\030\001 \001(\r\022"
-    "E\n\020door_open_status\030\002 \001(\0162+.smart_pkg_de"
-    "livery.Elevator.DoorOpenStatus\"7\n\016DoorOp"
-    "enStatus\022\017\n\013UNSPECIFIED\020\000\022\n\n\006CLOSED\020\001\022\010\n"
-    "\004OPEN\020\002\"\265\001\n\rDeliveryRobot\022\n\n\002id\030\001 \001(\r\022I\n"
-    "\017delivery_status\030\003 \001(\01620.smart_pkg_deliv"
-    "ery.DeliveryRobot.DeliveryStatus\"M\n\016Deli"
-    "veryStatus\022\017\n\013UNSPECIFIED\020\000\022\013\n\007PENDING\020\001"
-    "\022\016\n\nIN_TRANSIT\020\002\022\r\n\tDELIVERED\020\003\"\214\001\n\007PkgR"
-    "oom\022\n\n\002id\030\001 \001(\r\0223\n\007lockers\030\002 \003(\0132\".smart"
-    "_pkg_delivery.PkgRoom.Locker\032@\n\006Locker\022\021"
-    "\n\tlocker_id\030\001 \001(\r\022\023\n\013access_code\030\002 \001(\t\022\016"
-    "\n\006pkg_id\030\003 \001(\r\"C\n\004User\022\n\n\002id\030\001 \001(\r\022/\n\007ad"
-    "dress\030\002 \001(\0132\036.smart_pkg_delivery.AptAddr"
-    "ess\"\177\n\003Pkg\022\n\n\002id\030\001 \001(\r\022/\n\007address\030\002 \001(\0132"
-    "\036.smart_pkg_delivery.AptAddress\022\021\n\tsende"
-    "r_id\030\003 \001(\r\022\023\n\013receiver_id\030\004 \001(\r\022\023\n\013photo"
-    "_bytes\030\005 \001(\014\"I\n\nAptAddress\022\023\n\013apt_comple"
-    "x\030\001 \001(\t\022\024\n\014building_num\030\002 \001(\r\022\020\n\010unit_nu"
-    "m\030\003 \001(\r*\207\001\n\010NodeType\022\017\n\013UNSPECIFIED\020\000\022\n\n"
-    "\006SERVER\020\001\022\035\n\031CLIENT_ADDRESS_RECOGNIZER\020\002"
-    "\022\017\n\013CLIENT_USER\020\003\022\031\n\025CLIENT_DELIVERY_ROB"
-    "OT\020\004\022\023\n\017CLIENT_ELEVATOR\020\005b\010editionsp\350\007"
+    "livery\"\257\001\n\nWrapperMsg\022.\n\007request\030\001 \001(\0132\033"
+    ".smart_pkg_delivery.RequestH\000\0220\n\010respons"
+    "e\030\002 \001(\0132\034.smart_pkg_delivery.ResponseH\000\022"
+    "3\n\nnode_event\030\003 \001(\0132\035.smart_pkg_delivery"
+    ".NodeEventH\000B\n\n\010msg_type\"\263\003\n\007Request\022.\n\010"
+    "src_type\030\001 \001(\0162\034.smart_pkg_delivery.Node"
+    "Type\022\016\n\006src_id\030\002 \001(\r\022\020\n\010src_name\030\003 \001(\t\022/"
+    "\n\tdest_type\030\004 \001(\0162\034.smart_pkg_delivery.N"
+    "odeType\022\017\n\007dest_id\030\005 \001(\r\022\021\n\tdest_name\030\006 "
+    "\001(\t\022G\n\025get_pkg_infos_request\030\007 \001(\0132&.sma"
+    "rt_pkg_delivery.GetPkgInfosRequestH\000\022S\n\033"
+    "set_elevator_status_request\030\010 \001(\0132,.smar"
+    "t_pkg_delivery.SetElevatorStatusRequestH"
+    "\000\022S\n\033move_delivery_robot_request\030\t \001(\0132,"
+    ".smart_pkg_delivery.MoveDeliveryRobotReq"
+    "uestH\000B\016\n\014request_type\"\253\004\n\010Response\022.\n\010s"
+    "rc_type\030\001 \001(\0162\034.smart_pkg_delivery.NodeT"
+    "ype\022\016\n\006src_id\030\002 \001(\r\022\020\n\010src_name\030\003 \001(\t\022/\n"
+    "\tdest_type\030\004 \001(\0162\034.smart_pkg_delivery.No"
+    "deType\022\017\n\007dest_id\030\005 \001(\r\022\021\n\tdest_name\030\006 \001"
+    "(\t\0221\n\nack_status\030\007 \001(\0132\035.smart_pkg_deliv"
+    "ery.AckStatus\022=\n\020execution_status\030\010 \001(\0132"
+    "#.smart_pkg_delivery.ExecutionStatus\022G\n\025"
+    "get_pkg_info_response\030\t \001(\0132&.smart_pkg_"
+    "delivery.GetPkgInfoResponseH\000\022U\n\034set_ele"
+    "vator_status_response\030\n \001(\0132-.smart_pkg_"
+    "delivery.SetElevatorStatusResponseH\000\022U\n\034"
+    "move_delivery_robot_response\030\013 \001(\0132-.sma"
+    "rt_pkg_delivery.MoveDeliveryRobotRespons"
+    "eH\000B\017\n\rresponse_type\"\226\003\n\tNodeEvent\022.\n\010sr"
+    "c_type\030\001 \001(\0162\034.smart_pkg_delivery.NodeTy"
+    "pe\022\016\n\006src_id\030\002 \001(\r\022\020\n\010src_name\030\003 \001(\t\022/\n\t"
+    "dest_type\030\004 \001(\0162\034.smart_pkg_delivery.Nod"
+    "eType\022\017\n\007dest_id\030\005 \001(\r\022\021\n\tdest_name\030\006 \001("
+    "\t\022@\n\021pkg_arrival_event\030\007 \001(\0132#.smart_pkg"
+    "_delivery.PkgArrivalEventH\000\022H\n\025elevator_"
+    "status_event\030\010 \001(\0132\'.smart_pkg_delivery."
+    "ElevatorStatusEventH\000\022H\n\025delivery_status"
+    "_event\030\t \001(\0132\'.smart_pkg_delivery.Delive"
+    "ryStatusEventH\000B\014\n\nevent_type\"\226\001\n\tAckSta"
+    "tus\0226\n\004code\030\001 \001(\0162(.smart_pkg_delivery.A"
+    "ckStatus.StatusCode\022\017\n\007message\030\002 \001(\t\"@\n\n"
+    "StatusCode\022\017\n\013UNSPECIFIED\020\000\022\020\n\014ACK_RECEI"
+    "VED\020\001\022\017\n\013ACK_INVALID\020\002\"\235\001\n\017ExecutionStat"
+    "us\022<\n\004code\030\001 \001(\0162..smart_pkg_delivery.Ex"
+    "ecutionStatus.StatusCode\022\017\n\007message\030\002 \001("
+    "\t\";\n\nStatusCode\022\017\n\013UNSPECIFIED\020\000\022\020\n\014CODE"
+    "_SUCCESS\020\001\022\n\n\006FAILED\020\002\"%\n\022GetPkgInfosReq"
+    "uest\022\017\n\007user_id\030\001 \001(\r\";\n\022GetPkgInfoRespo"
+    "nse\022%\n\004pkgs\030\001 \003(\0132\027.smart_pkg_delivery.P"
+    "kg\"r\n\030MoveDeliveryRobotRequest\022\031\n\021delive"
+    "ry_robot_id\030\001 \001(\r\022;\n\023destination_address"
+    "\030\002 \001(\0132\036.smart_pkg_delivery.AptAddress\"\033"
+    "\n\031MoveDeliveryRobotResponse\"m\n\030SetElevat"
+    "orStatusRequest\022\023\n\013elevator_id\030\001 \001(\r\022<\n\017"
+    "elevator_status\030\002 \001(\0132#.smart_pkg_delive"
+    "ry.Elevator.Status\"\033\n\031SetElevatorStatusR"
+    "esponse\"B\n\017PkgArrivalEvent\022/\n\007address\030\001 "
+    "\001(\0132\036.smart_pkg_delivery.AptAddress\"h\n\023E"
+    "levatorStatusEvent\022\023\n\013elevator_id\030\001 \001(\r\022"
+    "<\n\017elevator_status\030\002 \001(\0132#.smart_pkg_del"
+    "ivery.Elevator.Status\"{\n\023DeliveryStatusE"
+    "vent\022\031\n\021delivery_robot_id\030\001 \001(\r\022I\n\017deliv"
+    "ery_status\030\002 \001(\01620.smart_pkg_delivery.De"
+    "liveryRobot.DeliveryStatus\"\354\001\n\010Elevator\022"
+    "\n\n\002id\030\001 \001(\r\0223\n\006status\030\002 \001(\0132#.smart_pkg_"
+    "delivery.Elevator.Status\032f\n\006Status\022\025\n\rcu"
+    "rrent_floor\030\001 \001(\r\022E\n\020door_open_status\030\002 "
+    "\001(\0162+.smart_pkg_delivery.Elevator.DoorOp"
+    "enStatus\"7\n\016DoorOpenStatus\022\017\n\013UNSPECIFIE"
+    "D\020\000\022\n\n\006CLOSED\020\001\022\010\n\004OPEN\020\002\"\265\001\n\rDeliveryRo"
+    "bot\022\n\n\002id\030\001 \001(\r\022I\n\017delivery_status\030\003 \001(\016"
+    "20.smart_pkg_delivery.DeliveryRobot.Deli"
+    "veryStatus\"M\n\016DeliveryStatus\022\017\n\013UNSPECIF"
+    "IED\020\000\022\013\n\007PENDING\020\001\022\016\n\nIN_TRANSIT\020\002\022\r\n\tDE"
+    "LIVERED\020\003\"\214\001\n\007PkgRoom\022\n\n\002id\030\001 \001(\r\0223\n\007loc"
+    "kers\030\002 \003(\0132\".smart_pkg_delivery.PkgRoom."
+    "Locker\032@\n\006Locker\022\021\n\tlocker_id\030\001 \001(\r\022\023\n\013a"
+    "ccess_code\030\002 \001(\t\022\016\n\006pkg_id\030\003 \001(\r\"C\n\004User"
+    "\022\n\n\002id\030\001 \001(\r\022/\n\007address\030\002 \001(\0132\036.smart_pk"
+    "g_delivery.AptAddress\"\177\n\003Pkg\022\n\n\002id\030\001 \001(\r"
+    "\022/\n\007address\030\002 \001(\0132\036.smart_pkg_delivery.A"
+    "ptAddress\022\021\n\tsender_id\030\003 \001(\r\022\023\n\013receiver"
+    "_id\030\004 \001(\r\022\023\n\013photo_bytes\030\005 \001(\014\"I\n\nAptAdd"
+    "ress\022\023\n\013apt_complex\030\001 \001(\t\022\024\n\014building_nu"
+    "m\030\002 \001(\r\022\020\n\010unit_num\030\003 \001(\r*\207\001\n\010NodeType\022\017"
+    "\n\013UNSPECIFIED\020\000\022\n\n\006SERVER\020\001\022\035\n\031CLIENT_AD"
+    "DRESS_RECOGNIZER\020\002\022\017\n\013CLIENT_USER\020\003\022\031\n\025C"
+    "LIENT_DELIVERY_ROBOT\020\004\022\023\n\017CLIENT_ELEVATO"
+    "R\020\005b\010editionsp\350\007"
 };
 static ::absl::once_flag descriptor_table_smart_5fpkg_5fdelivery_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_smart_5fpkg_5fdelivery_2eproto = {
     false,
     false,
-    3438,
+    3616,
     descriptor_table_protodef_smart_5fpkg_5fdelivery_2eproto,
     "smart_pkg_delivery.proto",
     &descriptor_table_smart_5fpkg_5fdelivery_2eproto_once,
     nullptr,
     0,
-    22,
+    23,
     schemas,
     file_default_instances,
     TableStruct_smart_5fpkg_5fdelivery_2eproto::offsets,
@@ -1191,6 +1236,403 @@ PROTOBUF_CONSTINIT const uint32_t NodeType_internal_data_[] = {
     393216u, 0u, };
 bool NodeType_IsValid(int value) {
   return 0 <= value && value <= 5;
+}
+// ===================================================================
+
+class WrapperMsg::_Internal {
+ public:
+  static constexpr ::int32_t kOneofCaseOffset =
+      PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::WrapperMsg, _impl_._oneof_case_);
+};
+
+void WrapperMsg::set_allocated_request(::smart_pkg_delivery::Request* request) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_msg_type();
+  if (request) {
+    ::google::protobuf::Arena* submessage_arena = request->GetArena();
+    if (message_arena != submessage_arena) {
+      request = ::google::protobuf::internal::GetOwnedMessage(message_arena, request, submessage_arena);
+    }
+    set_has_request();
+    _impl_.msg_type_.request_ = request;
+  }
+  // @@protoc_insertion_point(field_set_allocated:smart_pkg_delivery.WrapperMsg.request)
+}
+void WrapperMsg::set_allocated_response(::smart_pkg_delivery::Response* response) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_msg_type();
+  if (response) {
+    ::google::protobuf::Arena* submessage_arena = response->GetArena();
+    if (message_arena != submessage_arena) {
+      response = ::google::protobuf::internal::GetOwnedMessage(message_arena, response, submessage_arena);
+    }
+    set_has_response();
+    _impl_.msg_type_.response_ = response;
+  }
+  // @@protoc_insertion_point(field_set_allocated:smart_pkg_delivery.WrapperMsg.response)
+}
+void WrapperMsg::set_allocated_node_event(::smart_pkg_delivery::NodeEvent* node_event) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_msg_type();
+  if (node_event) {
+    ::google::protobuf::Arena* submessage_arena = node_event->GetArena();
+    if (message_arena != submessage_arena) {
+      node_event = ::google::protobuf::internal::GetOwnedMessage(message_arena, node_event, submessage_arena);
+    }
+    set_has_node_event();
+    _impl_.msg_type_.node_event_ = node_event;
+  }
+  // @@protoc_insertion_point(field_set_allocated:smart_pkg_delivery.WrapperMsg.node_event)
+}
+WrapperMsg::WrapperMsg(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:smart_pkg_delivery.WrapperMsg)
+}
+inline PROTOBUF_NDEBUG_INLINE WrapperMsg::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::smart_pkg_delivery::WrapperMsg& from_msg)
+      : msg_type_{},
+        _cached_size_{0},
+        _oneof_case_{from._oneof_case_[0]} {}
+
+WrapperMsg::WrapperMsg(
+    ::google::protobuf::Arena* arena,
+    const WrapperMsg& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  WrapperMsg* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  switch (msg_type_case()) {
+    case MSG_TYPE_NOT_SET:
+      break;
+      case kRequest:
+        _impl_.msg_type_.request_ = ::google::protobuf::Message::CopyConstruct<::smart_pkg_delivery::Request>(arena, *from._impl_.msg_type_.request_);
+        break;
+      case kResponse:
+        _impl_.msg_type_.response_ = ::google::protobuf::Message::CopyConstruct<::smart_pkg_delivery::Response>(arena, *from._impl_.msg_type_.response_);
+        break;
+      case kNodeEvent:
+        _impl_.msg_type_.node_event_ = ::google::protobuf::Message::CopyConstruct<::smart_pkg_delivery::NodeEvent>(arena, *from._impl_.msg_type_.node_event_);
+        break;
+  }
+
+  // @@protoc_insertion_point(copy_constructor:smart_pkg_delivery.WrapperMsg)
+}
+inline PROTOBUF_NDEBUG_INLINE WrapperMsg::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : msg_type_{},
+        _cached_size_{0},
+        _oneof_case_{} {}
+
+inline void WrapperMsg::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+WrapperMsg::~WrapperMsg() {
+  // @@protoc_insertion_point(destructor:smart_pkg_delivery.WrapperMsg)
+  SharedDtor(*this);
+}
+inline void WrapperMsg::SharedDtor(MessageLite& self) {
+  WrapperMsg& this_ = static_cast<WrapperMsg&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  if (this_.has_msg_type()) {
+    this_.clear_msg_type();
+  }
+  this_._impl_.~Impl_();
+}
+
+void WrapperMsg::clear_msg_type() {
+// @@protoc_insertion_point(one_of_clear_start:smart_pkg_delivery.WrapperMsg)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  switch (msg_type_case()) {
+    case kRequest: {
+      if (GetArena() == nullptr) {
+        delete _impl_.msg_type_.request_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.msg_type_.request_);
+      }
+      break;
+    }
+    case kResponse: {
+      if (GetArena() == nullptr) {
+        delete _impl_.msg_type_.response_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.msg_type_.response_);
+      }
+      break;
+    }
+    case kNodeEvent: {
+      if (GetArena() == nullptr) {
+        delete _impl_.msg_type_.node_event_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.msg_type_.node_event_);
+      }
+      break;
+    }
+    case MSG_TYPE_NOT_SET: {
+      break;
+    }
+  }
+  _impl_._oneof_case_[0] = MSG_TYPE_NOT_SET;
+}
+
+
+inline void* WrapperMsg::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) WrapperMsg(arena);
+}
+constexpr auto WrapperMsg::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(WrapperMsg),
+                                            alignof(WrapperMsg));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull WrapperMsg::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_WrapperMsg_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &WrapperMsg::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<WrapperMsg>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &WrapperMsg::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<WrapperMsg>(), &WrapperMsg::ByteSizeLong,
+            &WrapperMsg::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(WrapperMsg, _impl_._cached_size_),
+        false,
+    },
+    &WrapperMsg::kDescriptorMethods,
+    &descriptor_table_smart_5fpkg_5fdelivery_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* WrapperMsg::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 3, 3, 0, 2> WrapperMsg::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    3, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    3,  // num_aux_entries
+    offsetof(decltype(_table_), aux_entries),
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::smart_pkg_delivery::WrapperMsg>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .smart_pkg_delivery.Request request = 1;
+    {PROTOBUF_FIELD_OFFSET(WrapperMsg, _impl_.msg_type_.request_), _Internal::kOneofCaseOffset + 0, 0,
+    (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .smart_pkg_delivery.Response response = 2;
+    {PROTOBUF_FIELD_OFFSET(WrapperMsg, _impl_.msg_type_.response_), _Internal::kOneofCaseOffset + 0, 1,
+    (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .smart_pkg_delivery.NodeEvent node_event = 3;
+    {PROTOBUF_FIELD_OFFSET(WrapperMsg, _impl_.msg_type_.node_event_), _Internal::kOneofCaseOffset + 0, 2,
+    (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
+  }}, {{
+    {::_pbi::TcParser::GetTable<::smart_pkg_delivery::Request>()},
+    {::_pbi::TcParser::GetTable<::smart_pkg_delivery::Response>()},
+    {::_pbi::TcParser::GetTable<::smart_pkg_delivery::NodeEvent>()},
+  }}, {{
+  }},
+};
+
+PROTOBUF_NOINLINE void WrapperMsg::Clear() {
+// @@protoc_insertion_point(message_clear_start:smart_pkg_delivery.WrapperMsg)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  clear_msg_type();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* WrapperMsg::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const WrapperMsg& this_ = static_cast<const WrapperMsg&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* WrapperMsg::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const WrapperMsg& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:smart_pkg_delivery.WrapperMsg)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          switch (this_.msg_type_case()) {
+            case kRequest: {
+              target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                  1, *this_._impl_.msg_type_.request_, this_._impl_.msg_type_.request_->GetCachedSize(), target,
+                  stream);
+              break;
+            }
+            case kResponse: {
+              target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                  2, *this_._impl_.msg_type_.response_, this_._impl_.msg_type_.response_->GetCachedSize(), target,
+                  stream);
+              break;
+            }
+            case kNodeEvent: {
+              target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                  3, *this_._impl_.msg_type_.node_event_, this_._impl_.msg_type_.node_event_->GetCachedSize(), target,
+                  stream);
+              break;
+            }
+            default:
+              break;
+          }
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:smart_pkg_delivery.WrapperMsg)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t WrapperMsg::ByteSizeLong(const MessageLite& base) {
+          const WrapperMsg& this_ = static_cast<const WrapperMsg&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t WrapperMsg::ByteSizeLong() const {
+          const WrapperMsg& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:smart_pkg_delivery.WrapperMsg)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          switch (this_.msg_type_case()) {
+            // .smart_pkg_delivery.Request request = 1;
+            case kRequest: {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.msg_type_.request_);
+              break;
+            }
+            // .smart_pkg_delivery.Response response = 2;
+            case kResponse: {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.msg_type_.response_);
+              break;
+            }
+            // .smart_pkg_delivery.NodeEvent node_event = 3;
+            case kNodeEvent: {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.msg_type_.node_event_);
+              break;
+            }
+            case MSG_TYPE_NOT_SET: {
+              break;
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void WrapperMsg::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<WrapperMsg*>(&to_msg);
+  auto& from = static_cast<const WrapperMsg&>(from_msg);
+  ::google::protobuf::Arena* arena = _this->GetArena();
+  // @@protoc_insertion_point(class_specific_merge_from_start:smart_pkg_delivery.WrapperMsg)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (const uint32_t oneof_from_case = from._impl_._oneof_case_[0]) {
+    const uint32_t oneof_to_case = _this->_impl_._oneof_case_[0];
+    const bool oneof_needs_init = oneof_to_case != oneof_from_case;
+    if (oneof_needs_init) {
+      if (oneof_to_case != 0) {
+        _this->clear_msg_type();
+      }
+      _this->_impl_._oneof_case_[0] = oneof_from_case;
+    }
+
+    switch (oneof_from_case) {
+      case kRequest: {
+        if (oneof_needs_init) {
+          _this->_impl_.msg_type_.request_ =
+              ::google::protobuf::Message::CopyConstruct<::smart_pkg_delivery::Request>(arena, *from._impl_.msg_type_.request_);
+        } else {
+          _this->_impl_.msg_type_.request_->MergeFrom(from._internal_request());
+        }
+        break;
+      }
+      case kResponse: {
+        if (oneof_needs_init) {
+          _this->_impl_.msg_type_.response_ =
+              ::google::protobuf::Message::CopyConstruct<::smart_pkg_delivery::Response>(arena, *from._impl_.msg_type_.response_);
+        } else {
+          _this->_impl_.msg_type_.response_->MergeFrom(from._internal_response());
+        }
+        break;
+      }
+      case kNodeEvent: {
+        if (oneof_needs_init) {
+          _this->_impl_.msg_type_.node_event_ =
+              ::google::protobuf::Message::CopyConstruct<::smart_pkg_delivery::NodeEvent>(arena, *from._impl_.msg_type_.node_event_);
+        } else {
+          _this->_impl_.msg_type_.node_event_->MergeFrom(from._internal_node_event());
+        }
+        break;
+      }
+      case MSG_TYPE_NOT_SET:
+        break;
+    }
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void WrapperMsg::CopyFrom(const WrapperMsg& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:smart_pkg_delivery.WrapperMsg)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void WrapperMsg::InternalSwap(WrapperMsg* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_.msg_type_, other->_impl_.msg_type_);
+  swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
+}
+
+::google::protobuf::Metadata WrapperMsg::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================
 

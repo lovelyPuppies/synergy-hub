@@ -38,6 +38,15 @@ enum NodeType {
 // -------------------------
 // 🌀 Request, Response, Event (like Notification)
 // -------------------------
+// Wrapper to distinguish between Request, Response, and Event messages
+message WrapperMsg {
+  oneof msg_type {
+    Request request = 1;
+    Response response = 2;
+    NodeEvent node_event = 3;
+  }
+}
+
 // 📨 A request message that expects a response from the destination.
 message Request {
   NodeType src_type = 1;

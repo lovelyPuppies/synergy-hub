@@ -19942,3 +19942,5 @@ Linux 계열 (Linux-based OS)	  Unix-like OS (GNU/Linux 커널 기반)	      Ubu
 
 
 https://www.codingwiththomas.com/blog/boost-asio-server-client-example
+
+https://googleapis.dev/python/protobuf/latest/google/protobuf/message.html#google.protobuf.message.Message

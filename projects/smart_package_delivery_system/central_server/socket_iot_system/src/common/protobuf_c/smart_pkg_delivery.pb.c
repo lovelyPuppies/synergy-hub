@@ -6,6 +6,9 @@
 #error Regenerate this file with the current version of nanopb generator.
 #endif
 
+PB_BIND(smart_pkg_delivery_WrapperMsg, smart_pkg_delivery_WrapperMsg, 2)
+
+
 PB_BIND(smart_pkg_delivery_Request, smart_pkg_delivery_Request, 2)
 
 

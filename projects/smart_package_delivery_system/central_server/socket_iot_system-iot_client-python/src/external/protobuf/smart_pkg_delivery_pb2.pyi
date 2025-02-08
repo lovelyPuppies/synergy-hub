@@ -21,6 +21,16 @@ CLIENT_USER: NodeType
 CLIENT_DELIVERY_ROBOT: NodeType
 CLIENT_ELEVATOR: NodeType
 
+class WrapperMsg(_message.Message):
+    __slots__ = ("request", "response", "node_event")
+    REQUEST_FIELD_NUMBER: _ClassVar[int]
+    RESPONSE_FIELD_NUMBER: _ClassVar[int]
+    NODE_EVENT_FIELD_NUMBER: _ClassVar[int]
+    request: Request
+    response: Response
+    node_event: NodeEvent
+    def __init__(self, request: _Optional[_Union[Request, _Mapping]] = ..., response: _Optional[_Union[Response, _Mapping]] = ..., node_event: _Optional[_Union[NodeEvent, _Mapping]] = ...) -> None: ...
+
 class Request(_message.Message):
     __slots__ = ("src_type", "src_id", "src_name", "dest_type", "dest_id", "dest_name", "get_pkg_infos_request", "set_elevator_status_request", "move_delivery_robot_request")
     SRC_TYPE_FIELD_NUMBER: _ClassVar[int]

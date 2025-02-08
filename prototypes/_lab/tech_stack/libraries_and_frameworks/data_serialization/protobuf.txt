@@ -358,6 +358,62 @@ protobuf 🔪⚓ Docs ; https://protobuf.dev/
     Describes exactly what Python definitions the protocol buffer compiler generates for any given protocol definition.
 
   ⚓ Protocol Buffers Python API Reference ; https://googleapis.dev/python/protobuf/latest/
+
+(✍️ protobuf 🔪 study)
+  ✅ (how-to) detect dynamically message type for type hint 📅 2025-02-09 08:11:51
+    def detect_message_type(wrapper_msg2: smart_pkg_delivery_pb2.WrapperMsg) -> type:
+        """
+        Determines which `oneof` field is set in the given `WrapperMsg` instance
+        and returns the corresponding message type.
+
+        This function dynamically retrieves the `oneof` field name, identifies
+        the currently assigned field, and returns the type of the corresponding
+        Protobuf message.
+
+        Args:
+            wrapper_msg2 (smart_pkg_delivery_pb2.WrapperMsg):
+                The `WrapperMsg` instance containing a `oneof` field.
+
+        Returns:
+            type: The type of the set Protobuf message.
+                  If no field is set, returns `type(None)`.
+        🛍️ e.g.:
+            ```python
+            wrapper_msg2 = smart_pkg_delivery_pb2.WrapperMsg()
+            wrapper_msg2.node_event.src_name = "Address Recognizer for Test"
+
+            # Detect the message type
+            msg_type = detect_message_type(wrapper_msg2)
+            print(f"Detected message type: {msg_type}")
+            #   >> <class 'smart_pkg_delivery_pb2.NodeEvent'>
+
+            # Example of type-based handling
+            if msg_type is smart_pkg_delivery_pb2.NodeEvent:
+                print("Processing as a NodeEvent message.")
+            elif msg_type is smart_pkg_delivery_pb2.Request:
+                print("Processing as a Request message.")
+            elif msg_type is smart_pkg_delivery_pb2.Response:
+                print("Processing as a Response message.")
+            else:
+                print("Unknown message type.")
+            ```
+        """
+        # Retrieve the name of the `oneof` field dynamically
+        oneof_field_names = list(wrapper_msg2.DESCRIPTOR.oneofs_by_name)
+
+        if not oneof_field_names:
+            return type(None)  # No `oneof` fields found, return NoneType
+
+        # Determine which field within `oneof` is currently set
+        message_type_name = wrapper_msg2.WhichOneof(oneof_field_names[0])
+
+        if message_type_name is None:
+            return type(None)  # Return NoneType if no `oneof` field is set
+
+        # Return the actual message type of the instance of the currently set field dynamically
+        return type(getattr(wrapper_msg2, message_type_name))
+
+
 ※※※※※※※※※※※※※※※
 # nanoPB 🔪 Docs
   ⚓ Overview ; https://jpa.kapsi.fi/nanopb/docs/index.html

@@ -168,10 +168,7 @@ typedef struct _smart_pkg_delivery_MoveDeliveryRobotRequest {
     smart_pkg_delivery_AptAddress destination_address;
 } smart_pkg_delivery_MoveDeliveryRobotRequest;
 
-/* -------------------------
- 🌀 Request, Response, Event (like Notification)
- -------------------------
- 📨 A request message that expects a response from the destination. */
+/* 📨 A request message that expects a response from the destination. */
 typedef struct _smart_pkg_delivery_Request {
     bool has_src_type;
     smart_pkg_delivery_NodeType src_type;
@@ -282,6 +279,19 @@ typedef struct _smart_pkg_delivery_Response {
     } response_type;
 } smart_pkg_delivery_Response;
 
+/* -------------------------
+ 🌀 Request, Response, Event (like Notification)
+ -------------------------
+ Wrapper to distinguish between Request, Response, and Event messages */
+typedef struct _smart_pkg_delivery_WrapperMsg {
+    pb_size_t which_msg_type;
+    union {
+        smart_pkg_delivery_Request request;
+        smart_pkg_delivery_Response response;
+        smart_pkg_delivery_NodeEvent node_event;
+    } msg_type;
+} smart_pkg_delivery_WrapperMsg;
+
 
 #ifdef __cplusplus
 extern "C" {
@@ -307,6 +317,7 @@ extern "C" {
 #define _smart_pkg_delivery_DeliveryRobot_DeliveryStatus_MIN smart_pkg_delivery_DeliveryRobot_DeliveryStatus_UNSPECIFIED
 #define _smart_pkg_delivery_DeliveryRobot_DeliveryStatus_MAX smart_pkg_delivery_DeliveryRobot_DeliveryStatus_DELIVERED
 #define _smart_pkg_delivery_DeliveryRobot_DeliveryStatus_ARRAYSIZE ((smart_pkg_delivery_DeliveryRobot_DeliveryStatus)(smart_pkg_delivery_DeliveryRobot_DeliveryStatus_DELIVERED+1))
+
 
 #define smart_pkg_delivery_Request_src_type_ENUMTYPE smart_pkg_delivery_NodeType
 #define smart_pkg_delivery_Request_dest_type_ENUMTYPE smart_pkg_delivery_NodeType
@@ -343,6 +354,7 @@ extern "C" {
 
 
 /* Initializer values for message structs */
+#define smart_pkg_delivery_WrapperMsg_init_default {0, {smart_pkg_delivery_Request_init_default}}
 #define smart_pkg_delivery_Request_init_default  {false, _smart_pkg_delivery_NodeType_MIN, false, 0, false, "", false, _smart_pkg_delivery_NodeType_MIN, false, 0, false, "", 0, {smart_pkg_delivery_GetPkgInfosRequest_init_default}}
 #define smart_pkg_delivery_Response_init_default {false, _smart_pkg_delivery_NodeType_MIN, false, 0, false, "", false, _smart_pkg_delivery_NodeType_MIN, false, 0, false, "", false, smart_pkg_delivery_AckStatus_init_default, false, smart_pkg_delivery_ExecutionStatus_init_default, 0, {smart_pkg_delivery_GetPkgInfoResponse_init_default}}
 #define smart_pkg_delivery_NodeEvent_init_default {false, _smart_pkg_delivery_NodeType_MIN, false, 0, false, "", false, _smart_pkg_delivery_NodeType_MIN, false, 0, false, "", 0, {smart_pkg_delivery_PkgArrivalEvent_init_default}}
@@ -365,6 +377,7 @@ extern "C" {
 #define smart_pkg_delivery_User_init_default     {false, 0, false, smart_pkg_delivery_AptAddress_init_default}
 #define smart_pkg_delivery_Pkg_init_default      {false, 0, false, smart_pkg_delivery_AptAddress_init_default, false, 0, false, 0}
 #define smart_pkg_delivery_AptAddress_init_default {false, "", false, 0, false, 0}
+#define smart_pkg_delivery_WrapperMsg_init_zero  {0, {smart_pkg_delivery_Request_init_zero}}
 #define smart_pkg_delivery_Request_init_zero     {false, _smart_pkg_delivery_NodeType_MIN, false, 0, false, "", false, _smart_pkg_delivery_NodeType_MIN, false, 0, false, "", 0, {smart_pkg_delivery_GetPkgInfosRequest_init_zero}}
 #define smart_pkg_delivery_Response_init_zero    {false, _smart_pkg_delivery_NodeType_MIN, false, 0, false, "", false, _smart_pkg_delivery_NodeType_MIN, false, 0, false, "", false, smart_pkg_delivery_AckStatus_init_zero, false, smart_pkg_delivery_ExecutionStatus_init_zero, 0, {smart_pkg_delivery_GetPkgInfoResponse_init_zero}}
 #define smart_pkg_delivery_NodeEvent_init_zero   {false, _smart_pkg_delivery_NodeType_MIN, false, 0, false, "", false, _smart_pkg_delivery_NodeType_MIN, false, 0, false, "", 0, {smart_pkg_delivery_PkgArrivalEvent_init_zero}}
@@ -453,8 +466,21 @@ extern "C" {
 #define smart_pkg_delivery_Response_get_pkg_info_response_tag 9
 #define smart_pkg_delivery_Response_set_elevator_status_response_tag 10
 #define smart_pkg_delivery_Response_move_delivery_robot_response_tag 11
+#define smart_pkg_delivery_WrapperMsg_request_tag 1
+#define smart_pkg_delivery_WrapperMsg_response_tag 2
+#define smart_pkg_delivery_WrapperMsg_node_event_tag 3
 
 /* Struct field encoding specification for nanopb */
+#define smart_pkg_delivery_WrapperMsg_FIELDLIST(X, a) \
+X(a, STATIC,   ONEOF,    MESSAGE,  (msg_type,request,msg_type.request),   1) \
+X(a, STATIC,   ONEOF,    MESSAGE,  (msg_type,response,msg_type.response),   2) \
+X(a, STATIC,   ONEOF,    MESSAGE,  (msg_type,node_event,msg_type.node_event),   3)
+#define smart_pkg_delivery_WrapperMsg_CALLBACK NULL
+#define smart_pkg_delivery_WrapperMsg_DEFAULT NULL
+#define smart_pkg_delivery_WrapperMsg_msg_type_request_MSGTYPE smart_pkg_delivery_Request
+#define smart_pkg_delivery_WrapperMsg_msg_type_response_MSGTYPE smart_pkg_delivery_Response
+#define smart_pkg_delivery_WrapperMsg_msg_type_node_event_MSGTYPE smart_pkg_delivery_NodeEvent
+
 #define smart_pkg_delivery_Request_FIELDLIST(X, a) \
 X(a, STATIC,   OPTIONAL, UENUM,    src_type,          1) \
 X(a, STATIC,   OPTIONAL, UINT32,   src_id,            2) \
@@ -629,6 +655,7 @@ X(a, STATIC,   OPTIONAL, UINT32,   unit_num,          3)
 #define smart_pkg_delivery_AptAddress_CALLBACK NULL
 #define smart_pkg_delivery_AptAddress_DEFAULT NULL
 
+extern const pb_msgdesc_t smart_pkg_delivery_WrapperMsg_msg;
 extern const pb_msgdesc_t smart_pkg_delivery_Request_msg;
 extern const pb_msgdesc_t smart_pkg_delivery_Response_msg;
 extern const pb_msgdesc_t smart_pkg_delivery_NodeEvent_msg;
@@ -653,6 +680,7 @@ extern const pb_msgdesc_t smart_pkg_delivery_Pkg_msg;
 extern const pb_msgdesc_t smart_pkg_delivery_AptAddress_msg;
 
 /* Defines for backwards compatibility with code written before nanopb-0.4.0 */
+#define smart_pkg_delivery_WrapperMsg_fields &smart_pkg_delivery_WrapperMsg_msg
 #define smart_pkg_delivery_Request_fields &smart_pkg_delivery_Request_msg
 #define smart_pkg_delivery_Response_fields &smart_pkg_delivery_Response_msg
 #define smart_pkg_delivery_NodeEvent_fields &smart_pkg_delivery_NodeEvent_msg
@@ -677,7 +705,7 @@ extern const pb_msgdesc_t smart_pkg_delivery_AptAddress_msg;
 #define smart_pkg_delivery_AptAddress_fields &smart_pkg_delivery_AptAddress_msg
 
 /* Maximum encoded size of messages (where known) */
-#define SMART_PKG_DELIVERY_SMART_PKG_DELIVERY_PB_H_MAX_SIZE smart_pkg_delivery_Response_size
+#define SMART_PKG_DELIVERY_SMART_PKG_DELIVERY_PB_H_MAX_SIZE smart_pkg_delivery_WrapperMsg_size
 #define smart_pkg_delivery_AckStatus_size        260
 #define smart_pkg_delivery_AptAddress_size       142
 #define smart_pkg_delivery_DeliveryRobot_size    8
@@ -700,6 +728,7 @@ extern const pb_msgdesc_t smart_pkg_delivery_AptAddress_msg;
 #define smart_pkg_delivery_SetElevatorStatusRequest_size 16
 #define smart_pkg_delivery_SetElevatorStatusResponse_size 0
 #define smart_pkg_delivery_User_size             151
+#define smart_pkg_delivery_WrapperMsg_size       2338
 
 #ifdef __cplusplus
 } /* extern "C" */
