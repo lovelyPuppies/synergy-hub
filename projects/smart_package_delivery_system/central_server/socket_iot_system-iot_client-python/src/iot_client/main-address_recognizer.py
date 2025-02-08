@@ -1,10 +1,9 @@
-## 🚧 Prerequisite
-#   %shell> pip install protobuf==5.29.3
-from external.protobuf import smart_pkg_delivery_pb2
-
-smart_pkg_delivery_pb2.DeliveryRobot
+# 📖 Index
+#   - original source by 조명근 팀원
+#   - modified additional source by 박준수 팀원
 
 
+#########################
 #########################
 # Author: 조명근 팀원
 import cv2
@@ -154,3 +153,17 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+#########################
+# Author: 박준수 팀원
+## 🚧 Prerequisite
+#   %shell> pip install protobuf==5.29.3
+
+
+from external.protobuf import smart_pkg_delivery_pb2
+
+test_event = smart_pkg_delivery_pb2.NodeEvent()
+address = test_event.pkg_arrival_event.address
+address.building_num = 105
+address.unit_num = 505
+client_socket.sendall(test_event.SerializeToString())

@@ -1,16 +1,16 @@
 #pragma once // Include guard
 
+// 🪱 asio: Asynchronous Input/Output
 #include <boost/asio.hpp>
 #include <string>
 #include <vector>
 
 namespace iot {
 
-// 🚀 Server 클래스 선언 (정의는 .cpp에서)
 class Server {
 public:
   Server(boost::asio::io_context &io_context, short port);
-  ~Server() = default; // 기본 소멸자
+  ~Server() = default;
 
 private:
   void doAccept();

@@ -19,13 +19,18 @@ class Session : public std::enable_shared_from_this<Session> {
 public:
   explicit Session(tcp::socket socket) : socket_(std::move(socket)) {}
 
+  // 🎱 Entrypoint
   void start() { doRead(); }
 
 private:
   tcp::socket socket_;
-  char buffer_[256];
+  char buffer_[1024];
 
   void doRead() {
+    // 📌 이렇게 self를 생성하는 이유는?
+    //    async_read_some()는 비동기 함수이므로 즉시 리턴됨.
+    //    하지만, 비동기 작업이 끝나기 전에 Session 객체가 소멸될 수도 있음.
+    //    self(shared_from_this())를 사용하여 shared_ptr을 유지하면 객체가 소멸되지 않도록 참조를 유지할 수 있음.
     auto self(shared_from_this());
     socket_.async_read_some(
         boost::asio::buffer(buffer_),

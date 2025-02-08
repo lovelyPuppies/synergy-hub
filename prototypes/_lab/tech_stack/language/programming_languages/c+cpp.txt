@@ -790,6 +790,10 @@ c+cpp
     ⚓ shared_ptr ; https://en.cppreference.com/w/cpp/memory/shared_ptr
     ⚓ weak_ptr ; https://en.cppreference.com/w/cpp/memory/weak_ptr
     ⚓ Memory resources ; https://en.cppreference.com/w/cpp/memory#Memory_resources
+      # Helper classes
+        enable_shared_from_this (C++11)
+          allows an object to create a shared_ptr referring to itself (class template)
+          
     ⚓ Allocators ; https://en.cppreference.com/w/cpp/memory#Allocators
     ⚓ Low level management ; https://en.cppreference.com/w/cpp/memory/new
   ⚓ Metaprogramming library ; https://en.cppreference.com/w/cpp/meta

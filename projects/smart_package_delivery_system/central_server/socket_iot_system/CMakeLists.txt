@@ -27,9 +27,6 @@ else()
 endif()
 
 
-# set(nano_pb_header_dir /opt/nanopb/include)
-# set(nano_pb_sources 
-# )
 set(nano_pb_header_dir /opt/nanopb/include)
 set(c_common_sources
     ${nano_pb_header_dir}/pb_encode.c
@@ -48,7 +45,6 @@ set(IOT_CLIENT_USER_DIR src/app/iot_client-user)
 
 # add_executable(iot_client )
 add_executable(iot_server ${IOT_SERVER_DIR}/iot_server.cpp ${IOT_SERVER_DIR}/main.cpp)
-add_executable(iot_client-address_recognizer ${c_common_sources} ${IOT_CLIENT_ADDRESS_RECOGNIZER_C_DIR}/main.c)
 add_executable(iot_client-delivery_robot ${IOT_CLIENT_DELIVERY_ROBOT_DIR}/iot_client_cpp.cpp ${IOT_CLIENT_DELIVERY_ROBOT_DIR}/main.cpp)
 add_executable(iot_client-elevator ${c_common_sources} ${IOT_CLIENT_ELEVATOR_C_DIR}/main.c)
 add_executable(iot_client-user ${IOT_CLIENT_USER_DIR}/iot_client_cpp.cpp ${IOT_CLIENT_USER_DIR}/main.cpp)
@@ -61,7 +57,7 @@ add_executable(iot_client-user ${IOT_CLIENT_USER_DIR}/iot_client_cpp.cpp ${IOT_C
 # Common include directory
 set(COMMON_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/src/common)
 target_include_directories(iot_server PRIVATE ${COMMON_INCLUDE_DIR})
-target_include_directories(iot_client-address_recognizer PRIVATE ${COMMON_INCLUDE_DIR})
+# target_include_directories(iot_client-address_recognizer PRIVATE ${COMMON_INCLUDE_DIR})
 target_include_directories(iot_client-delivery_robot PRIVATE ${COMMON_INCLUDE_DIR})
 target_include_directories(iot_client-elevator PRIVATE ${COMMON_INCLUDE_DIR})
 target_include_directories(iot_client-user PRIVATE ${COMMON_INCLUDE_DIR})
@@ -75,13 +71,6 @@ target_include_directories(iot_client-user PRIVATE ${COMMON_INCLUDE_DIR})
 #         ARCHIVE DESTINATION lib
 #         LIBRARY DESTINATION lib
 #         )
-
-# install(TARGETS iot_client-address_recognizer
-#         DESTINATION "."
-#         RUNTIME DESTINATION bin
-#         ARCHIVE DESTINATION lib
-#         LIBRARY DESTINATION lib
-# )
 
 # install(TARGETS iot_client-delivery_robot
 #         DESTINATION "."
