@@ -12,14 +12,12 @@
 # * include:"sys/types.h"
 # * include:"dirent.h"
 
-smart_pkg_delivery.Request.src                      max_size:64
-smart_pkg_delivery.Request.dest                     max_size:64
-
-smart_pkg_delivery.Response.src                     max_size:64
-smart_pkg_delivery.Response.dest                    max_size:64
-
-smart_pkg_delivery.NodeEvent.src                    max_size:64
-smart_pkg_delivery.NodeEvent.dest                   max_size:64
+smart_pkg_delivery.Request.src_name                 max_size:64
+smart_pkg_delivery.Request.dest_name                max_size:64
+smart_pkg_delivery.Response.src_name                max_size:64
+smart_pkg_delivery.Response.dest_name               max_size:64
+smart_pkg_delivery.NodeEvent.src_name               max_size:64
+smart_pkg_delivery.NodeEvent.dest_name              max_size:64
 
 smart_pkg_delivery.AckStatus.message                max_size:256
 smart_pkg_delivery.ExecutionStatus.message          max_size:256

@@ -11,16 +11,11 @@ package smart_pkg_delivery;
 //    - ❗ Note that this draft does not consider multiple pkgs for one user. It distinguishes users by a fixed address rather than by invoice ID or user ID.
 //      When a pkg first arrives at the package room, its address information is sent to the server. Likewise, when a user checks their incoming pkgs, the address information is also sent. 
 //      However, since the database retrieves data based on the user, additional logic is required to handle this.
-// 🧮
-//    protoc -I=. --cpp_out=../../socket_iot_system/src/common/protobuf_cpp smart_pkg.proto
-//    nanopb_generator --options-file=smart_pkg-nanopb.options --output-dir=../../socket_iot_system/src/common/protobuf_c smart_pkg.proto
+// 🧮 Run %shell>
+//    source (poetry env info --path)
+//    protoc -I=. --cpp_out=../../socket_iot_system/src/common/protobuf_cpp smart_pkg_delivery.proto
+//    nanopb_generator --options-file=smart_pkg_delivery-nanopb.options --output-dir=../../socket_iot_system/src/common/protobuf_c smart_pkg_delivery.proto
 
-
-
-// source /home/wbfw109v2/.cache/pypoetry/virtualenvs/python-study-WVteXKC2-py3.13/bin/activate.fish
-// 소자의 특성, RLC ghlfh. 
-// 🔰 처음 접속할떄 아이디 할당하는 것. 필요.
-// gRPC 를 사용하지 않기 때문에, 해당 요청에 대해서 자동으로 코드를 만들 수 없다. c 에서는 어떻게 해야하지?..
 
 
 // ❔ Sockets for Communication
@@ -44,46 +39,57 @@ enum NodeType {
 // -------------------------
 // 📨 A request message that expects a response from the destination.
 message Request {
-  string src = 1;
-  // 🔘 If the `destination` field is omitted, the request is assumed to be directed to the server; otherwise, it is sent to the specified node.
-  string dest = 2;
-  oneof command {
+  NodeType src_type = 1;
+  uint32 src_id = 2;
+  string src_name = 3;
+  NodeType dest_type = 4;
+  uint32 dest_id = 5;
+  string dest_name = 6;
+  oneof request_type {
     // user (c++) ---> server
-    GetPkgInfosRequest get_pkg_infos_request = 3;
+    GetPkgInfosRequest get_pkg_infos_request = 7;
     // client-delivery_robot (c++) ---> server ---> client-elevator (c)
-    SetElevatorStatusRequest set_elevator_status_request = 4;
+    SetElevatorStatusRequest set_elevator_status_request = 8;
     // client-user (c++) ---> server ---> client-delivery_robot (c++)
-    MoveDeliveryRobotRequest move_delivery_robot_request = 5;
+    MoveDeliveryRobotRequest move_delivery_robot_request = 9;
   }
 }
 
 // 📩 A response message to a request that does not expect further replies, including ✅ ACK.
 message Response {
-  string src = 1;
-  string dest = 2;
-  AckStatus ack_status = 3;
-  ExecutionStatus execution_status = 4;
-  oneof command {
+  NodeType src_type = 1;
+  uint32 src_id = 2;
+  string src_name = 3;
+  NodeType dest_type = 4;
+  uint32 dest_id = 5;
+  string dest_name = 6;
+  AckStatus ack_status = 7;
+  ExecutionStatus execution_status = 8;
+  oneof response_type {
     // server ---> user (c++)
-    GetPkgInfoResponse get_pkg_info_response = 5;
+    GetPkgInfoResponse get_pkg_info_response = 9;
     // client-elevator (c) ---> server ---> client-delivery_robot (c++)
-    SetElevatorStatusResponse set_elevator_status_response = 6;
+    SetElevatorStatusResponse set_elevator_status_response = 10;
     // client-delivery_robot (c++) ---> server ---> client-user (c++)
-    MoveDeliveryRobotResponse move_delivery_robot_response = 7;
+    MoveDeliveryRobotResponse move_delivery_robot_response = 11;
   }
 }
 
 // ⏬ Events; A one-way message that notifies the system about status updates without expecting any response.
 message NodeEvent {
-  string src = 1;
-  string dest = 2;
-  oneof event {
+  NodeType src_type = 1;
+  uint32 src_id = 2;
+  string src_name = 3;
+  NodeType dest_type = 4;
+  uint32 dest_id = 5;
+  string dest_name = 6;
+  oneof event_type {
     // client-pkg_room (c++) ---> server
-    PkgArrivalEvent pkg_arrival_event = 4;
+    PkgArrivalEvent pkg_arrival_event = 7;
     // client-elevator (c++) ---> server ---> client-delivery_robot (c++)
-    ElevatorStatusEvent elevator_status_event = 3;
+    ElevatorStatusEvent elevator_status_event = 8;
     // client-delivery_robot (c++) ---> server
-    DeliveryStatusEvent delivery_status_event = 5;
+    DeliveryStatusEvent delivery_status_event = 9;
   }
 }
 

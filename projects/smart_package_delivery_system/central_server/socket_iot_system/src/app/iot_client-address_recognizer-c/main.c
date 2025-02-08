@@ -184,13 +184,12 @@ void *send_msg(void *arg) {
       snprintf(request_msg.dest, MSG_MAX_LEN, "%s", "server");
 
       pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
-      smart_pkg_delivery_nodete
 
-          // pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
-          // message.current_floor = 1;
+      // pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
+      // message.current_floor = 1;
 
-          // Send the message to the server, exit on failure.
-          if (write(*sock, name_msg, strlen(name_msg)) <= 0) {
+      // Send the message to the server, exit on failure.
+      if (write(*sock, name_msg, strlen(name_msg)) <= 0) {
         *sock = -1;
         return NULL;
       }
