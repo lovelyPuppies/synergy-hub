@@ -29,7 +29,6 @@
 #define NAME_SIZE 20
 
 #define MSG_MAX_LEN 32 // 메시지 소스/목적지 최대 길이
-
 // typedef struct {
 //   char msg_src[MSG_MAX_LEN];
 //   char msg_dest[MSG_MAX_LEN];
@@ -252,14 +251,16 @@ void *send_msg(void *arg) {
                          &local_node_event_msg);
       msg_length = stream.bytes_written;
       printf("%zu \n", msg_length);
+
       // Send the message to the server, exit on failure.
       // if (write(*sock, name_msg, strlen(name_msg)) <= 0) {
       if (write(*sock, buffer, msg_length) <= 0) {
         *sock = -1;
         return NULL;
       }
+      // For testing decoding
       {
-        // init_local_node_event_msg(&local_node_event_msg);
+        init_local_node_event_msg(&local_node_event_msg);
         pb_istream_t stream = pb_istream_from_buffer(buffer, msg_length);
 
         /* Now we are ready to decode the message. */
@@ -270,14 +271,13 @@ void *send_msg(void *arg) {
         if (!status) {
           printf("Decoding failed: %s\n", PB_GET_ERROR(&stream));
         }
-
+        smart_pkg_delivery_AptAddress *address =
+            &local_node_event_msg.event_type.pkg_arrival_event.address;
         /* Print the data contained in the message. */
-        printf("Your lucky number was %d!\n",
-               local_node_event_msg.event_type.pkg_arrival_event.address
-                   .building_num);
-        printf(
-            "Your lucky number was %d!\n",
-            local_node_event_msg.event_type.pkg_arrival_event.address.unit_num);
+        printf("Received address: %d동 %d호\n", address->building_num,
+               address->unit_num);
+        printf("received msg src, dst: %d, %d!\n",
+               local_node_event_msg.src_type, local_node_event_msg.src_id);
       }
     }
     // Exit if timeout and socket is closed
