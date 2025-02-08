@@ -35,6 +35,10 @@ set(c_common_sources
     src/common/protobuf_c/message_initializer.c
     src/common/protobuf_c/smart_pkg_delivery.pb.c
 )
+set(protobuf_header_dir /opt/protobuf/debug-shared/include)
+set(cpp_common_sources
+    src/common/protobuf_cpp/smart_pkg_delivery.pb.cc
+)
 
 ##### Define and configure executables
 set(IOT_SERVER_DIR src/app/iot_server)
@@ -44,7 +48,7 @@ set(IOT_CLIENT_ELEVATOR_C_DIR src/app/iot_client-elevator-c)
 set(IOT_CLIENT_USER_DIR src/app/iot_client-user)
 
 # add_executable(iot_client )
-add_executable(iot_server ${IOT_SERVER_DIR}/iot_server.cpp ${IOT_SERVER_DIR}/main.cpp)
+add_executable(iot_server ${cpp_common_sources} ${IOT_SERVER_DIR}/iot_server.cpp ${IOT_SERVER_DIR}/main.cpp)
 add_executable(iot_client-delivery_robot ${IOT_CLIENT_DELIVERY_ROBOT_DIR}/iot_client_cpp.cpp ${IOT_CLIENT_DELIVERY_ROBOT_DIR}/main.cpp)
 add_executable(iot_client-elevator ${c_common_sources} ${IOT_CLIENT_ELEVATOR_C_DIR}/main.c)
 add_executable(iot_client-user ${IOT_CLIENT_USER_DIR}/iot_client_cpp.cpp ${IOT_CLIENT_USER_DIR}/main.cpp)

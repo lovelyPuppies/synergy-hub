@@ -1,10 +1,10 @@
 // clang++-17 -std=c++20 -o cpp.out cpp.cpp
 /*
 nc localhost 1234
-https://www.codingwiththomas.com/blog/boost-asio-server-client-example
-
 */
 #include "iot_server.hpp"
+#include "protobuf_c/smart_pkg_delivery.pb.h"
+#include "protobuf_cpp/smart_pkg_delivery.pb.h"
 #include <boost/asio.hpp>
 #include <iostream>
 #include <memory>
@@ -45,6 +45,30 @@ private:
         });
   }
 
+  std::string processProtobufMessage(const std::string &data) {
+    // Protobuf 메시지 객체
+    smart_pkg_delivery::NodeEvent message;
+
+    // 메시지 디코딩 (디시리얼라이즈)
+    if (!message.ParseFromString(data)) {
+      std::cerr << "Protobuf 메시지 디코딩 실패!" << std::endl;
+      return "ERROR: INVALID PROTOBUF MESSAGE";
+    }
+
+    std::cout << "📩 받은 메시지: " << std::endl;
+    std::cout << "  - Source: " << message.source() << std::endl;
+    std::cout << "  - Destination: " << message.destination() << std::endl;
+    std::cout << "  - Command: " << message.command() << std::endl;
+
+    // 그대로 다시 전송 (에코)
+    std::string encoded_message;
+    if (!message.SerializeToString(&encoded_message)) {
+      std::cerr << "Protobuf 메시지 직렬화 실패!" << std::endl;
+      return "ERROR: SERIALIZATION FAILED";
+    }
+
+    return encoded_message;
+  }
   void doWrite(std::size_t length) {
     auto self(shared_from_this());
     boost::asio::async_write(
