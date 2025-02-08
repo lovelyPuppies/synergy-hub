@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS pkg_rooms (
 
 CREATE TABLE IF NOT EXISTS lockers (
     id                  INT AUTO_INCREMENT PRIMARY KEY    COMMENT '택배 보관함 고유 식별자',
-    pkg_room_id     INT                                   COMMENT '택배 저장소의 외래키 (pkg_rooms.id 참조)',
+    pkg_room_id         INT                               COMMENT '택배 저장소의 외래키 (pkg_rooms.id 참조)',
     -- TODO: password_hash VARCHAR(72)                        COMMENT 'bcrypt 해시 저장 (최대 72자)',
     is_deleted          BOOLEAN DEFAULT FALSE             COMMENT 'SOFT DELETE (TRUE = 삭제됨)',
     FOREIGN KEY (pkg_room_id) REFERENCES pkg_rooms(id) ON DELETE NO ACTION
@@ -50,8 +50,8 @@ CREATE TABLE IF NOT EXISTS lockers (
 CREATE TABLE IF NOT EXISTS pkgs (
     id                  INT AUTO_INCREMENT PRIMARY KEY    COMMENT '택배 고유 식별자',
     name                VARCHAR(255) NOT NULL             COMMENT '택배 물품 이름',
-    receiver_id        INT                               COMMENT '수령자 id',
-    pkg_room_id     INT                                   COMMENT '저장소 ID (pkg_rooms.id 참조)',
+    receiver_id         INT                               COMMENT '수령자 id',
+    pkg_room_id         INT                               COMMENT '저장소 ID (pkg_rooms.id 참조)',
     locker_id           INT UNIQUE                        COMMENT '택배 보관함 안에 pkg 가 있다면, NOT NULL',
     -- phone_number        VARCHAR(20)                       COMMENT '수령자 연락처. 월패드로 정보 전달 예정',
     delivery_status     ENUM('pending', 'in_transit', 'delivered') NOT NULL DEFAULT 'pending'
@@ -67,16 +67,16 @@ CREATE TABLE IF NOT EXISTS pkgs (
 
 
 CREATE TABLE IF NOT EXISTS addresses (
-    id            INT AUTO_INCREMENT PRIMARY KEY          COMMENT '주소 고유 식별자',
-    user_id       INT                                     COMMENT '사용자의 외래키 (user.id 참조)',
+    id                  INT AUTO_INCREMENT PRIMARY KEY    COMMENT '주소 고유 식별자',
+    user_id             INT                               COMMENT '사용자의 외래키 (user.id 참조)',
     -- city          VARCHAR(100)                            COMMENT '🧪 도시 이름',
     -- district      VARCHAR(100)                            COMMENT '🧪 구/군 이름',
-    sub_address   VARCHAR(255)                            COMMENT '상세 주소 (예: XX동, XX호)',
+    sub_address         VARCHAR(255)                      COMMENT '상세 주소 (예: XX동, XX호)',
     -- created_at    DATETIME DEFAULT CURRENT_TIMESTAMP 
     --                                                       COMMENT '🧪 주소 생성 시각 (기본값: 현재 시각)',
     -- updated_at    DATETIME DEFAULT CURRENT_TIMESTAMP 
     --             ON UPDATE CURRENT_TIMESTAMP               COMMENT '🧪 주소 업데이트 시각 (수정 시 자동 갱신)'
-    is_deleted    BOOLEAN DEFAULT FALSE                   COMMENT 'SOFT DELETE (TRUE = 삭제됨)',
+    is_deleted          BOOLEAN DEFAULT FALSE             COMMENT 'SOFT DELETE (TRUE = 삭제됨)',
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 

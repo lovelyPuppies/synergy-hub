@@ -173,4 +173,10 @@ Wiktionary
     Verb
       2. inflate (third-person singular simple present inflates, present participle inflating, simple past and past participle inflated)
         (transitive, computing) To decompress (data) that was previously deflated.
-  
+
+----------------------------------------------
+Wiktionary 🔪 Abbreviation
+  - pkg: package; https://en.wiktionary.org/wiki/pkg#English
+    Noun
+      pkg (countable and uncountable, plural pkgs)
+        1. Abbreviation of package.

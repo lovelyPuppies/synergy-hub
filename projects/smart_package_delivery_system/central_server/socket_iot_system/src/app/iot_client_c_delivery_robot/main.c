@@ -6,7 +6,7 @@
 // 📅 2025-02-07 05:20:22
 
 // Library inclusions for necessary functionalities
-#include "protobuf_c/smart_parcel.pb.h"
+#include "protobuf_c/smart_pkg.pb.h"
 #include <arpa/inet.h> // Defines functions for internet operations, such as inet_addr.
 #include <pb_decode.h>
 #include <pb_encode.h>
@@ -167,8 +167,7 @@ void *send_msg(void *arg) {
         strcpy(name_msg, msg);
       }
       // 📰
-      smart_parcel_Elevator_Status message =  
-          smart_parcel_Elevator_Status_init_zero;
+      smart_pkg_Elevator_Status message = smart_pkg_Elevator_Status_init_zero;
 
       pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
       message.current_floor = 1;
