@@ -179,7 +179,21 @@ protobuf 🔪⚓ Docs ; https://protobuf.dev/
           A singular field has no explicit cardinality label. It has two possible states:
             🔘 the field is set, and contains a value that was explicitly set or parsed from the wire. It will be serialized to the wire.
             🔘 the field is unset, and will return the default value. ❗ It will not be serialized to the wire.
-        
+
+      #️⃣ Enumerations ; https://protobuf.dev/programming-guides/editions/#enum
+        #⚖️ Enum Default Value
+          In edition 2023, the first value defined in an enum definition must have the value zero and should have the name 🪱 ENUM_TYPE_NAME_UNSPECIFIED or 🪱 ENUM_TYPE_NAME_UNKNOWN.
+          📝⭕ But, Adding "ENUM_TYPE_NAME" as a prefix is useless because Protobuf automatically adds a prefix based on the containing message or package. This results in duplication. 📅 2025-02-08 13:30:54
+            // Official 🛍️ e.g. 🔗 https://protobuf.dev/getting-started/cpptutorial/#protocol-format
+            message Person {
+              enum PhoneType {
+                PHONE_TYPE_UNSPECIFIED = 0;
+                PHONE_TYPE_MOBILE = 1;
+                PHONE_TYPE_HOME = 2;
+                PHONE_TYPE_WORK = 3;
+              }
+            }
+
     ⚓ Encoding ; https://protobuf.dev/programming-guides/encoding/
       🪱 wire format
 ----------------------------------------------

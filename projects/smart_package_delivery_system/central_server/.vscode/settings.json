@@ -13,5 +13,6 @@
     "*.conf": "bitbake",
     "*.inc": "bitbake"
   },
-  "dbcode.connections": []
+  "dbcode.connections": [],
+  "cmake.sourceDirectory": "/home/wbfw109v2/repos/synergy-hub/projects/smart_package_delivery_system/central_server/socket_iot_system"
 }

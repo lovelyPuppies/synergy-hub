@@ -28,7 +28,7 @@
  *  Global Variables
  * ========================= */
 // Global variables for storing the client’s name and message data
-char name[NAME_SIZE] = "elevator_1";
+char local_msg_source_name[NAME_SIZE] = "elevator_1";
 char msg[BUF_SIZE];
 
 /* =========================
@@ -58,7 +58,7 @@ int main(int argc, char *argv[]) {
   }
 
   // Assign the client name from command line arguments.
-  sprintf(name, "%s", argv[3]);
+  sprintf(local_msg_source_name, "%s", argv[3]);
 
   // Create a socket with IPv4 (PF_INET: Protocol Family Internet) and TCP (SOCK_STREAM: Stream Socket) specifications.
   // The '0' value automatically selects the appropriate protocol for the socket type:
@@ -81,7 +81,7 @@ int main(int argc, char *argv[]) {
     error_handling("connect() error");
 
   // Send initial message with client name for authentication.
-  sprintf(msg, "[%s:PASSWD]", name);
+  sprintf(msg, "[%s:PASSWD]", local_msg_source_name);
   write(sock, msg, strlen(msg));
 
   // Create threads for handling message send and receive.

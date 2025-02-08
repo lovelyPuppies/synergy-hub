@@ -10,25 +10,44 @@
 #endif
 
 /* Enum definitions */
+/* ❔ Sockets for Communication
+    - Server (c++)
+    - Address Recognizer (c or python)
+    - User (c++)
+    - Delivery Robot (c++)
+    - Elevator (c) */
+typedef enum _smart_pkg_delivery_NodeType {
+    smart_pkg_delivery_NodeType_UNSPECIFIED = 0,
+    smart_pkg_delivery_NodeType_SERVER = 1,
+    smart_pkg_delivery_NodeType_CLIENT_ADDRESS_RECOGNIZER = 2,
+    smart_pkg_delivery_NodeType_CLIENT_USER = 3,
+    smart_pkg_delivery_NodeType_CLIENT_DELIVERY_ROBOT = 4,
+    smart_pkg_delivery_NodeType_CLIENT_ELEVATOR = 5
+} smart_pkg_delivery_NodeType;
+
 typedef enum _smart_pkg_delivery_AckStatus_StatusCode {
-    smart_pkg_delivery_AckStatus_StatusCode_ACK_RECEIVED = 0,
-    smart_pkg_delivery_AckStatus_StatusCode_ACK_INVALID = 1
+    smart_pkg_delivery_AckStatus_StatusCode_UNSPECIFIED = 0,
+    smart_pkg_delivery_AckStatus_StatusCode_ACK_RECEIVED = 1,
+    smart_pkg_delivery_AckStatus_StatusCode_ACK_INVALID = 2
 } smart_pkg_delivery_AckStatus_StatusCode;
 
 typedef enum _smart_pkg_delivery_ExecutionStatus_StatusCode {
-    smart_pkg_delivery_ExecutionStatus_StatusCode_EXECUTION_SUCCESS = 0,
-    smart_pkg_delivery_ExecutionStatus_StatusCode_EXECUTION_FAILED = 1
+    smart_pkg_delivery_ExecutionStatus_StatusCode_UNSPECIFIED = 0,
+    smart_pkg_delivery_ExecutionStatus_StatusCode_CODE_SUCCESS = 1,
+    smart_pkg_delivery_ExecutionStatus_StatusCode_FAILED = 2
 } smart_pkg_delivery_ExecutionStatus_StatusCode;
 
 typedef enum _smart_pkg_delivery_Elevator_DoorOpenStatus {
-    smart_pkg_delivery_Elevator_DoorOpenStatus_CLOSED = 0,
-    smart_pkg_delivery_Elevator_DoorOpenStatus_OPEN = 1
+    smart_pkg_delivery_Elevator_DoorOpenStatus_UNSPECIFIED = 0,
+    smart_pkg_delivery_Elevator_DoorOpenStatus_CLOSED = 1,
+    smart_pkg_delivery_Elevator_DoorOpenStatus_OPEN = 2
 } smart_pkg_delivery_Elevator_DoorOpenStatus;
 
 typedef enum _smart_pkg_delivery_DeliveryRobot_DeliveryStatus {
-    smart_pkg_delivery_DeliveryRobot_DeliveryStatus_PENDING = 0,
-    smart_pkg_delivery_DeliveryRobot_DeliveryStatus_IN_TRANSIT = 1,
-    smart_pkg_delivery_DeliveryRobot_DeliveryStatus_DELIVERED = 2
+    smart_pkg_delivery_DeliveryRobot_DeliveryStatus_UNSPECIFIED = 0,
+    smart_pkg_delivery_DeliveryRobot_DeliveryStatus_PENDING = 1,
+    smart_pkg_delivery_DeliveryRobot_DeliveryStatus_IN_TRANSIT = 2,
+    smart_pkg_delivery_DeliveryRobot_DeliveryStatus_DELIVERED = 3
 } smart_pkg_delivery_DeliveryRobot_DeliveryStatus;
 
 /* Struct definitions */
@@ -253,19 +272,23 @@ extern "C" {
 #endif
 
 /* Helper constants for enums */
-#define _smart_pkg_delivery_AckStatus_StatusCode_MIN smart_pkg_delivery_AckStatus_StatusCode_ACK_RECEIVED
+#define _smart_pkg_delivery_NodeType_MIN smart_pkg_delivery_NodeType_UNSPECIFIED
+#define _smart_pkg_delivery_NodeType_MAX smart_pkg_delivery_NodeType_CLIENT_ELEVATOR
+#define _smart_pkg_delivery_NodeType_ARRAYSIZE ((smart_pkg_delivery_NodeType)(smart_pkg_delivery_NodeType_CLIENT_ELEVATOR+1))
+
+#define _smart_pkg_delivery_AckStatus_StatusCode_MIN smart_pkg_delivery_AckStatus_StatusCode_UNSPECIFIED
 #define _smart_pkg_delivery_AckStatus_StatusCode_MAX smart_pkg_delivery_AckStatus_StatusCode_ACK_INVALID
 #define _smart_pkg_delivery_AckStatus_StatusCode_ARRAYSIZE ((smart_pkg_delivery_AckStatus_StatusCode)(smart_pkg_delivery_AckStatus_StatusCode_ACK_INVALID+1))
 
-#define _smart_pkg_delivery_ExecutionStatus_StatusCode_MIN smart_pkg_delivery_ExecutionStatus_StatusCode_EXECUTION_SUCCESS
-#define _smart_pkg_delivery_ExecutionStatus_StatusCode_MAX smart_pkg_delivery_ExecutionStatus_StatusCode_EXECUTION_FAILED
-#define _smart_pkg_delivery_ExecutionStatus_StatusCode_ARRAYSIZE ((smart_pkg_delivery_ExecutionStatus_StatusCode)(smart_pkg_delivery_ExecutionStatus_StatusCode_EXECUTION_FAILED+1))
+#define _smart_pkg_delivery_ExecutionStatus_StatusCode_MIN smart_pkg_delivery_ExecutionStatus_StatusCode_UNSPECIFIED
+#define _smart_pkg_delivery_ExecutionStatus_StatusCode_MAX smart_pkg_delivery_ExecutionStatus_StatusCode_FAILED
+#define _smart_pkg_delivery_ExecutionStatus_StatusCode_ARRAYSIZE ((smart_pkg_delivery_ExecutionStatus_StatusCode)(smart_pkg_delivery_ExecutionStatus_StatusCode_FAILED+1))
 
-#define _smart_pkg_delivery_Elevator_DoorOpenStatus_MIN smart_pkg_delivery_Elevator_DoorOpenStatus_CLOSED
+#define _smart_pkg_delivery_Elevator_DoorOpenStatus_MIN smart_pkg_delivery_Elevator_DoorOpenStatus_UNSPECIFIED
 #define _smart_pkg_delivery_Elevator_DoorOpenStatus_MAX smart_pkg_delivery_Elevator_DoorOpenStatus_OPEN
 #define _smart_pkg_delivery_Elevator_DoorOpenStatus_ARRAYSIZE ((smart_pkg_delivery_Elevator_DoorOpenStatus)(smart_pkg_delivery_Elevator_DoorOpenStatus_OPEN+1))
 
-#define _smart_pkg_delivery_DeliveryRobot_DeliveryStatus_MIN smart_pkg_delivery_DeliveryRobot_DeliveryStatus_PENDING
+#define _smart_pkg_delivery_DeliveryRobot_DeliveryStatus_MIN smart_pkg_delivery_DeliveryRobot_DeliveryStatus_UNSPECIFIED
 #define _smart_pkg_delivery_DeliveryRobot_DeliveryStatus_MAX smart_pkg_delivery_DeliveryRobot_DeliveryStatus_DELIVERED
 #define _smart_pkg_delivery_DeliveryRobot_DeliveryStatus_ARRAYSIZE ((smart_pkg_delivery_DeliveryRobot_DeliveryStatus)(smart_pkg_delivery_DeliveryRobot_DeliveryStatus_DELIVERED+1))
 

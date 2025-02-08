@@ -24,11 +24,19 @@
 #define BUF_SIZE  100
 #define NAME_SIZE 20
 
+#define MSG_MAX_LEN 32 // 메시지 소스/목적지 최대 길이
+
+// typedef struct {
+//   char msg_src[MSG_MAX_LEN];
+//   char msg_dest[MSG_MAX_LEN];
+// } MessageInfo;
+
 /* =========================
  *  Global Variables
  * ========================= */
 // Global variables for storing the client’s name and message data
-char name[NAME_SIZE] = "elevator_1";
+// ⚙️
+char local_msg_source_name[NAME_SIZE] = "address_recognizer_1";
 char msg[BUF_SIZE];
 
 /* =========================
@@ -58,7 +66,7 @@ int main(int argc, char *argv[]) {
   }
 
   // Assign the client name from command line arguments.
-  sprintf(name, "%s", argv[3]);
+  sprintf(local_msg_source_name, "%s", argv[3]);
 
   // Create a socket with IPv4 (PF_INET: Protocol Family Internet) and TCP (SOCK_STREAM: Stream Socket) specifications.
   // The '0' value automatically selects the appropriate protocol for the socket type:
@@ -81,7 +89,7 @@ int main(int argc, char *argv[]) {
     error_handling("connect() error");
 
   // Send initial message with client name for authentication.
-  sprintf(msg, "[%s:PASSWD]", name);
+  sprintf(msg, "[%s:PASSWD]", local_msg_source_name);
   write(sock, msg, strlen(msg));
 
   // Create threads for handling message send and receive.
@@ -103,8 +111,9 @@ void *send_msg(void *arg) {
   // 🌀 Declare variables for nanoPB
   uint8_t buffer[256];
   size_t msg_length;
-  char* msg_source
   bool status;
+  // MessageInfo local_msg_info;
+  // MessageInfo received_msg_info;
   //
   //
 
@@ -167,18 +176,21 @@ void *send_msg(void *arg) {
       } else {
         strcpy(name_msg, msg);
       }
-      // 📰
+
+      // ⚙️📰
+
       smart_pkg_delivery_Request request_msg;
+      snprintf(request_msg.src, MSG_MAX_LEN, "%s", local_msg_source_name);
+      snprintf(request_msg.dest, MSG_MAX_LEN, "%s", "server");
 
       pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
+      smart_pkg_delivery_nodete
 
-      request_msg.source
+          // pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
+          // message.current_floor = 1;
 
-      // pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
-      // message.current_floor = 1;
-
-      // Send the message to the server, exit on failure.
-      if (write(*sock, name_msg, strlen(name_msg)) <= 0) {
+          // Send the message to the server, exit on failure.
+          if (write(*sock, name_msg, strlen(name_msg)) <= 0) {
         *sock = -1;
         return NULL;
       }

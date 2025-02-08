@@ -131,8 +131,9 @@ namespace protobuf {
 
 namespace smart_pkg_delivery {
 enum AckStatus_StatusCode : int {
-  AckStatus_StatusCode_ACK_RECEIVED = 0,
-  AckStatus_StatusCode_ACK_INVALID = 1,
+  AckStatus_StatusCode_UNSPECIFIED = 0,
+  AckStatus_StatusCode_ACK_RECEIVED = 1,
+  AckStatus_StatusCode_ACK_INVALID = 2,
   AckStatus_StatusCode_AckStatus_StatusCode_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
   AckStatus_StatusCode_AckStatus_StatusCode_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -142,8 +143,8 @@ enum AckStatus_StatusCode : int {
 bool AckStatus_StatusCode_IsValid(int value);
 extern const uint32_t AckStatus_StatusCode_internal_data_[];
 constexpr AckStatus_StatusCode AckStatus_StatusCode_StatusCode_MIN = static_cast<AckStatus_StatusCode>(0);
-constexpr AckStatus_StatusCode AckStatus_StatusCode_StatusCode_MAX = static_cast<AckStatus_StatusCode>(1);
-constexpr int AckStatus_StatusCode_StatusCode_ARRAYSIZE = 1 + 1;
+constexpr AckStatus_StatusCode AckStatus_StatusCode_StatusCode_MAX = static_cast<AckStatus_StatusCode>(2);
+constexpr int AckStatus_StatusCode_StatusCode_ARRAYSIZE = 2 + 1;
 const ::google::protobuf::EnumDescriptor*
 AckStatus_StatusCode_descriptor();
 template <typename T>
@@ -156,7 +157,7 @@ const std::string& AckStatus_StatusCode_Name(T value) {
 template <>
 inline const std::string& AckStatus_StatusCode_Name(AckStatus_StatusCode value) {
   return ::google::protobuf::internal::NameOfDenseEnum<AckStatus_StatusCode_descriptor,
-                                                 0, 1>(
+                                                 0, 2>(
       static_cast<int>(value));
 }
 inline bool AckStatus_StatusCode_Parse(absl::string_view name, AckStatus_StatusCode* value) {
@@ -164,8 +165,9 @@ inline bool AckStatus_StatusCode_Parse(absl::string_view name, AckStatus_StatusC
       AckStatus_StatusCode_descriptor(), name, value);
 }
 enum ExecutionStatus_StatusCode : int {
-  ExecutionStatus_StatusCode_EXECUTION_SUCCESS = 0,
-  ExecutionStatus_StatusCode_EXECUTION_FAILED = 1,
+  ExecutionStatus_StatusCode_UNSPECIFIED = 0,
+  ExecutionStatus_StatusCode_CODE_SUCCESS = 1,
+  ExecutionStatus_StatusCode_FAILED = 2,
   ExecutionStatus_StatusCode_ExecutionStatus_StatusCode_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
   ExecutionStatus_StatusCode_ExecutionStatus_StatusCode_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -175,8 +177,8 @@ enum ExecutionStatus_StatusCode : int {
 bool ExecutionStatus_StatusCode_IsValid(int value);
 extern const uint32_t ExecutionStatus_StatusCode_internal_data_[];
 constexpr ExecutionStatus_StatusCode ExecutionStatus_StatusCode_StatusCode_MIN = static_cast<ExecutionStatus_StatusCode>(0);
-constexpr ExecutionStatus_StatusCode ExecutionStatus_StatusCode_StatusCode_MAX = static_cast<ExecutionStatus_StatusCode>(1);
-constexpr int ExecutionStatus_StatusCode_StatusCode_ARRAYSIZE = 1 + 1;
+constexpr ExecutionStatus_StatusCode ExecutionStatus_StatusCode_StatusCode_MAX = static_cast<ExecutionStatus_StatusCode>(2);
+constexpr int ExecutionStatus_StatusCode_StatusCode_ARRAYSIZE = 2 + 1;
 const ::google::protobuf::EnumDescriptor*
 ExecutionStatus_StatusCode_descriptor();
 template <typename T>
@@ -189,7 +191,7 @@ const std::string& ExecutionStatus_StatusCode_Name(T value) {
 template <>
 inline const std::string& ExecutionStatus_StatusCode_Name(ExecutionStatus_StatusCode value) {
   return ::google::protobuf::internal::NameOfDenseEnum<ExecutionStatus_StatusCode_descriptor,
-                                                 0, 1>(
+                                                 0, 2>(
       static_cast<int>(value));
 }
 inline bool ExecutionStatus_StatusCode_Parse(absl::string_view name, ExecutionStatus_StatusCode* value) {
@@ -197,8 +199,9 @@ inline bool ExecutionStatus_StatusCode_Parse(absl::string_view name, ExecutionSt
       ExecutionStatus_StatusCode_descriptor(), name, value);
 }
 enum Elevator_DoorOpenStatus : int {
-  Elevator_DoorOpenStatus_CLOSED = 0,
-  Elevator_DoorOpenStatus_OPEN = 1,
+  Elevator_DoorOpenStatus_UNSPECIFIED = 0,
+  Elevator_DoorOpenStatus_CLOSED = 1,
+  Elevator_DoorOpenStatus_OPEN = 2,
   Elevator_DoorOpenStatus_Elevator_DoorOpenStatus_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
   Elevator_DoorOpenStatus_Elevator_DoorOpenStatus_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -208,8 +211,8 @@ enum Elevator_DoorOpenStatus : int {
 bool Elevator_DoorOpenStatus_IsValid(int value);
 extern const uint32_t Elevator_DoorOpenStatus_internal_data_[];
 constexpr Elevator_DoorOpenStatus Elevator_DoorOpenStatus_DoorOpenStatus_MIN = static_cast<Elevator_DoorOpenStatus>(0);
-constexpr Elevator_DoorOpenStatus Elevator_DoorOpenStatus_DoorOpenStatus_MAX = static_cast<Elevator_DoorOpenStatus>(1);
-constexpr int Elevator_DoorOpenStatus_DoorOpenStatus_ARRAYSIZE = 1 + 1;
+constexpr Elevator_DoorOpenStatus Elevator_DoorOpenStatus_DoorOpenStatus_MAX = static_cast<Elevator_DoorOpenStatus>(2);
+constexpr int Elevator_DoorOpenStatus_DoorOpenStatus_ARRAYSIZE = 2 + 1;
 const ::google::protobuf::EnumDescriptor*
 Elevator_DoorOpenStatus_descriptor();
 template <typename T>
@@ -222,7 +225,7 @@ const std::string& Elevator_DoorOpenStatus_Name(T value) {
 template <>
 inline const std::string& Elevator_DoorOpenStatus_Name(Elevator_DoorOpenStatus value) {
   return ::google::protobuf::internal::NameOfDenseEnum<Elevator_DoorOpenStatus_descriptor,
-                                                 0, 1>(
+                                                 0, 2>(
       static_cast<int>(value));
 }
 inline bool Elevator_DoorOpenStatus_Parse(absl::string_view name, Elevator_DoorOpenStatus* value) {
@@ -230,9 +233,10 @@ inline bool Elevator_DoorOpenStatus_Parse(absl::string_view name, Elevator_DoorO
       Elevator_DoorOpenStatus_descriptor(), name, value);
 }
 enum DeliveryRobot_DeliveryStatus : int {
-  DeliveryRobot_DeliveryStatus_PENDING = 0,
-  DeliveryRobot_DeliveryStatus_IN_TRANSIT = 1,
-  DeliveryRobot_DeliveryStatus_DELIVERED = 2,
+  DeliveryRobot_DeliveryStatus_UNSPECIFIED = 0,
+  DeliveryRobot_DeliveryStatus_PENDING = 1,
+  DeliveryRobot_DeliveryStatus_IN_TRANSIT = 2,
+  DeliveryRobot_DeliveryStatus_DELIVERED = 3,
   DeliveryRobot_DeliveryStatus_DeliveryRobot_DeliveryStatus_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
   DeliveryRobot_DeliveryStatus_DeliveryRobot_DeliveryStatus_INT_MAX_SENTINEL_DO_NOT_USE_ =
@@ -242,8 +246,8 @@ enum DeliveryRobot_DeliveryStatus : int {
 bool DeliveryRobot_DeliveryStatus_IsValid(int value);
 extern const uint32_t DeliveryRobot_DeliveryStatus_internal_data_[];
 constexpr DeliveryRobot_DeliveryStatus DeliveryRobot_DeliveryStatus_DeliveryStatus_MIN = static_cast<DeliveryRobot_DeliveryStatus>(0);
-constexpr DeliveryRobot_DeliveryStatus DeliveryRobot_DeliveryStatus_DeliveryStatus_MAX = static_cast<DeliveryRobot_DeliveryStatus>(2);
-constexpr int DeliveryRobot_DeliveryStatus_DeliveryStatus_ARRAYSIZE = 2 + 1;
+constexpr DeliveryRobot_DeliveryStatus DeliveryRobot_DeliveryStatus_DeliveryStatus_MAX = static_cast<DeliveryRobot_DeliveryStatus>(3);
+constexpr int DeliveryRobot_DeliveryStatus_DeliveryStatus_ARRAYSIZE = 3 + 1;
 const ::google::protobuf::EnumDescriptor*
 DeliveryRobot_DeliveryStatus_descriptor();
 template <typename T>
@@ -256,12 +260,49 @@ const std::string& DeliveryRobot_DeliveryStatus_Name(T value) {
 template <>
 inline const std::string& DeliveryRobot_DeliveryStatus_Name(DeliveryRobot_DeliveryStatus value) {
   return ::google::protobuf::internal::NameOfDenseEnum<DeliveryRobot_DeliveryStatus_descriptor,
-                                                 0, 2>(
+                                                 0, 3>(
       static_cast<int>(value));
 }
 inline bool DeliveryRobot_DeliveryStatus_Parse(absl::string_view name, DeliveryRobot_DeliveryStatus* value) {
   return ::google::protobuf::internal::ParseNamedEnum<DeliveryRobot_DeliveryStatus>(
       DeliveryRobot_DeliveryStatus_descriptor(), name, value);
+}
+enum NodeType : int {
+  UNSPECIFIED = 0,
+  SERVER = 1,
+  CLIENT_ADDRESS_RECOGNIZER = 2,
+  CLIENT_USER = 3,
+  CLIENT_DELIVERY_ROBOT = 4,
+  CLIENT_ELEVATOR = 5,
+  NodeType_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  NodeType_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool NodeType_IsValid(int value);
+extern const uint32_t NodeType_internal_data_[];
+constexpr NodeType NodeType_MIN = static_cast<NodeType>(0);
+constexpr NodeType NodeType_MAX = static_cast<NodeType>(5);
+constexpr int NodeType_ARRAYSIZE = 5 + 1;
+const ::google::protobuf::EnumDescriptor*
+NodeType_descriptor();
+template <typename T>
+const std::string& NodeType_Name(T value) {
+  static_assert(std::is_same<T, NodeType>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to NodeType_Name().");
+  return NodeType_Name(static_cast<NodeType>(value));
+}
+template <>
+inline const std::string& NodeType_Name(NodeType value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<NodeType_descriptor,
+                                                 0, 5>(
+      static_cast<int>(value));
+}
+inline bool NodeType_Parse(absl::string_view name, NodeType* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<NodeType>(
+      NodeType_descriptor(), name, value);
 }
 
 // ===================================================================
@@ -1119,8 +1160,9 @@ class ExecutionStatus final : public ::google::protobuf::Message
   ::google::protobuf::Metadata GetMetadata() const;
   // nested types ----------------------------------------------------
   using StatusCode = ExecutionStatus_StatusCode;
-  static constexpr StatusCode EXECUTION_SUCCESS = ExecutionStatus_StatusCode_EXECUTION_SUCCESS;
-  static constexpr StatusCode EXECUTION_FAILED = ExecutionStatus_StatusCode_EXECUTION_FAILED;
+  static constexpr StatusCode UNSPECIFIED = ExecutionStatus_StatusCode_UNSPECIFIED;
+  static constexpr StatusCode CODE_SUCCESS = ExecutionStatus_StatusCode_CODE_SUCCESS;
+  static constexpr StatusCode FAILED = ExecutionStatus_StatusCode_FAILED;
   static inline bool StatusCode_IsValid(int value) {
     return ExecutionStatus_StatusCode_IsValid(value);
   }
@@ -1759,6 +1801,7 @@ class DeliveryRobot final : public ::google::protobuf::Message
   ::google::protobuf::Metadata GetMetadata() const;
   // nested types ----------------------------------------------------
   using DeliveryStatus = DeliveryRobot_DeliveryStatus;
+  static constexpr DeliveryStatus UNSPECIFIED = DeliveryRobot_DeliveryStatus_UNSPECIFIED;
   static constexpr DeliveryStatus PENDING = DeliveryRobot_DeliveryStatus_PENDING;
   static constexpr DeliveryStatus IN_TRANSIT = DeliveryRobot_DeliveryStatus_IN_TRANSIT;
   static constexpr DeliveryStatus DELIVERED = DeliveryRobot_DeliveryStatus_DELIVERED;
@@ -2208,6 +2251,7 @@ class AckStatus final : public ::google::protobuf::Message
   ::google::protobuf::Metadata GetMetadata() const;
   // nested types ----------------------------------------------------
   using StatusCode = AckStatus_StatusCode;
+  static constexpr StatusCode UNSPECIFIED = AckStatus_StatusCode_UNSPECIFIED;
   static constexpr StatusCode ACK_RECEIVED = AckStatus_StatusCode_ACK_RECEIVED;
   static constexpr StatusCode ACK_INVALID = AckStatus_StatusCode_ACK_INVALID;
   static inline bool StatusCode_IsValid(int value) {
@@ -3069,6 +3113,7 @@ class Elevator final : public ::google::protobuf::Message
   // nested types ----------------------------------------------------
   using Status = Elevator_Status;
   using DoorOpenStatus = Elevator_DoorOpenStatus;
+  static constexpr DoorOpenStatus UNSPECIFIED = Elevator_DoorOpenStatus_UNSPECIFIED;
   static constexpr DoorOpenStatus CLOSED = Elevator_DoorOpenStatus_CLOSED;
   static constexpr DoorOpenStatus OPEN = Elevator_DoorOpenStatus_OPEN;
   static inline bool DoorOpenStatus_IsValid(int value) {
@@ -8659,6 +8704,12 @@ struct is_proto_enum<::smart_pkg_delivery::DeliveryRobot_DeliveryStatus> : std::
 template <>
 inline const EnumDescriptor* GetEnumDescriptor<::smart_pkg_delivery::DeliveryRobot_DeliveryStatus>() {
   return ::smart_pkg_delivery::DeliveryRobot_DeliveryStatus_descriptor();
+}
+template <>
+struct is_proto_enum<::smart_pkg_delivery::NodeType> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::smart_pkg_delivery::NodeType>() {
+  return ::smart_pkg_delivery::NodeType_descriptor();
 }
 
 }  // namespace protobuf

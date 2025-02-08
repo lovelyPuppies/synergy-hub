@@ -640,7 +640,7 @@ struct ResponseDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ResponseDefaultTypeInternal _Response_default_instance_;
 }  // namespace smart_pkg_delivery
-static const ::_pb::EnumDescriptor* file_level_enum_descriptors_smart_5fpkg_5fdelivery_2eproto[4];
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_smart_5fpkg_5fdelivery_2eproto[5];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_smart_5fpkg_5fdelivery_2eproto = nullptr;
 const ::uint32_t
@@ -1020,60 +1020,65 @@ const char descriptor_table_protodef_smart_5fpkg_5fdelivery_2eproto[] ABSL_ATTRI
     "ent\030\003 \001(\0132\'.smart_pkg_delivery.ElevatorS"
     "tatusEventH\000\022H\n\025delivery_status_event\030\005 "
     "\001(\0132\'.smart_pkg_delivery.DeliveryStatusE"
-    "ventH\000B\007\n\005event\"\205\001\n\tAckStatus\0226\n\004code\030\001 "
+    "ventH\000B\007\n\005event\"\226\001\n\tAckStatus\0226\n\004code\030\001 "
     "\001(\0162(.smart_pkg_delivery.AckStatus.Statu"
-    "sCode\022\017\n\007message\030\002 \001(\t\"/\n\nStatusCode\022\020\n\014"
-    "ACK_RECEIVED\020\000\022\017\n\013ACK_INVALID\020\001\"\233\001\n\017Exec"
-    "utionStatus\022<\n\004code\030\001 \001(\0162..smart_pkg_de"
-    "livery.ExecutionStatus.StatusCode\022\017\n\007mes"
-    "sage\030\002 \001(\t\"9\n\nStatusCode\022\025\n\021EXECUTION_SU"
-    "CCESS\020\000\022\024\n\020EXECUTION_FAILED\020\001\"%\n\022GetPkgI"
-    "nfosRequest\022\017\n\007user_id\030\001 \001(\r\";\n\022GetPkgIn"
-    "foResponse\022%\n\004pkgs\030\001 \003(\0132\027.smart_pkg_del"
-    "ivery.Pkg\"o\n\030MoveDeliveryRobotRequest\022\031\n"
-    "\021delivery_robot_id\030\001 \001(\r\0228\n\023destination_"
-    "address\030\002 \001(\0132\033.smart_pkg_delivery.Addre"
-    "ss\"\033\n\031MoveDeliveryRobotResponse\"m\n\030SetEl"
-    "evatorStatusRequest\022\023\n\013elevator_id\030\001 \001(\r"
-    "\022<\n\017elevator_status\030\002 \001(\0132#.smart_pkg_de"
-    "livery.Elevator.Status\"\033\n\031SetElevatorSta"
-    "tusResponse\"\?\n\017PkgArrivalEvent\022,\n\007addres"
-    "s\030\001 \001(\0132\033.smart_pkg_delivery.Address\"h\n\023"
-    "ElevatorStatusEvent\022\023\n\013elevator_id\030\001 \001(\r"
-    "\022<\n\017elevator_status\030\002 \001(\0132#.smart_pkg_de"
-    "livery.Elevator.Status\"{\n\023DeliveryStatus"
-    "Event\022\031\n\021delivery_robot_id\030\001 \001(\r\022I\n\017deli"
-    "very_status\030\002 \001(\01620.smart_pkg_delivery.D"
-    "eliveryRobot.DeliveryStatus\"\333\001\n\010Elevator"
-    "\022\n\n\002id\030\001 \001(\r\0223\n\006status\030\002 \001(\0132#.smart_pkg"
-    "_delivery.Elevator.Status\032f\n\006Status\022\025\n\rc"
-    "urrent_floor\030\001 \001(\r\022E\n\020door_open_status\030\002"
-    " \001(\0162+.smart_pkg_delivery.Elevator.DoorO"
-    "penStatus\"&\n\016DoorOpenStatus\022\n\n\006CLOSED\020\000\022"
-    "\010\n\004OPEN\020\001\"\244\001\n\rDeliveryRobot\022\n\n\002id\030\001 \001(\r\022"
-    "I\n\017delivery_status\030\003 \001(\01620.smart_pkg_del"
-    "ivery.DeliveryRobot.DeliveryStatus\"<\n\016De"
-    "liveryStatus\022\013\n\007PENDING\020\000\022\016\n\nIN_TRANSIT\020"
-    "\001\022\r\n\tDELIVERED\020\002\"\214\001\n\007PkgRoom\022\n\n\002id\030\001 \001(\r"
-    "\0223\n\007lockers\030\002 \003(\0132\".smart_pkg_delivery.P"
-    "kgRoom.Locker\032@\n\006Locker\022\021\n\tlocker_id\030\001 \001"
-    "(\r\022\023\n\013access_code\030\002 \001(\t\022\016\n\006pkg_id\030\003 \001(\r\""
-    "@\n\004User\022\n\n\002id\030\001 \001(\r\022,\n\007address\030\002 \001(\0132\033.s"
-    "mart_pkg_delivery.Address\"|\n\003Pkg\022\n\n\002id\030\001"
-    " \001(\r\022,\n\007address\030\002 \001(\0132\033.smart_pkg_delive"
-    "ry.Address\022\021\n\tsender_id\030\003 \001(\r\022\023\n\013receive"
-    "r_id\030\004 \001(\r\022\023\n\013photo_bytes\030\005 \001(\014\"\\\n\007Addre"
-    "ss\022A\n\021apartment_address\030\001 \001(\0132$.smart_pk"
-    "g_delivery.ApartmentAddressH\000B\016\n\014address"
-    "_type\"`\n\020ApartmentAddress\022\031\n\021apartment_c"
-    "omplex\030\001 \001(\t\022\027\n\017building_number\030\002 \001(\r\022\030\n"
-    "\020apartment_number\030\003 \001(\rb\010editionsp\350\007"
+    "sCode\022\017\n\007message\030\002 \001(\t\"@\n\nStatusCode\022\017\n\013"
+    "UNSPECIFIED\020\000\022\020\n\014ACK_RECEIVED\020\001\022\017\n\013ACK_I"
+    "NVALID\020\002\"\235\001\n\017ExecutionStatus\022<\n\004code\030\001 \001"
+    "(\0162..smart_pkg_delivery.ExecutionStatus."
+    "StatusCode\022\017\n\007message\030\002 \001(\t\";\n\nStatusCod"
+    "e\022\017\n\013UNSPECIFIED\020\000\022\020\n\014CODE_SUCCESS\020\001\022\n\n\006"
+    "FAILED\020\002\"%\n\022GetPkgInfosRequest\022\017\n\007user_i"
+    "d\030\001 \001(\r\";\n\022GetPkgInfoResponse\022%\n\004pkgs\030\001 "
+    "\003(\0132\027.smart_pkg_delivery.Pkg\"o\n\030MoveDeli"
+    "veryRobotRequest\022\031\n\021delivery_robot_id\030\001 "
+    "\001(\r\0228\n\023destination_address\030\002 \001(\0132\033.smart"
+    "_pkg_delivery.Address\"\033\n\031MoveDeliveryRob"
+    "otResponse\"m\n\030SetElevatorStatusRequest\022\023"
+    "\n\013elevator_id\030\001 \001(\r\022<\n\017elevator_status\030\002"
+    " \001(\0132#.smart_pkg_delivery.Elevator.Statu"
+    "s\"\033\n\031SetElevatorStatusResponse\"\?\n\017PkgArr"
+    "ivalEvent\022,\n\007address\030\001 \001(\0132\033.smart_pkg_d"
+    "elivery.Address\"h\n\023ElevatorStatusEvent\022\023"
+    "\n\013elevator_id\030\001 \001(\r\022<\n\017elevator_status\030\002"
+    " \001(\0132#.smart_pkg_delivery.Elevator.Statu"
+    "s\"{\n\023DeliveryStatusEvent\022\031\n\021delivery_rob"
+    "ot_id\030\001 \001(\r\022I\n\017delivery_status\030\002 \001(\01620.s"
+    "mart_pkg_delivery.DeliveryRobot.Delivery"
+    "Status\"\354\001\n\010Elevator\022\n\n\002id\030\001 \001(\r\0223\n\006statu"
+    "s\030\002 \001(\0132#.smart_pkg_delivery.Elevator.St"
+    "atus\032f\n\006Status\022\025\n\rcurrent_floor\030\001 \001(\r\022E\n"
+    "\020door_open_status\030\002 \001(\0162+.smart_pkg_deli"
+    "very.Elevator.DoorOpenStatus\"7\n\016DoorOpen"
+    "Status\022\017\n\013UNSPECIFIED\020\000\022\n\n\006CLOSED\020\001\022\010\n\004O"
+    "PEN\020\002\"\265\001\n\rDeliveryRobot\022\n\n\002id\030\001 \001(\r\022I\n\017d"
+    "elivery_status\030\003 \001(\01620.smart_pkg_deliver"
+    "y.DeliveryRobot.DeliveryStatus\"M\n\016Delive"
+    "ryStatus\022\017\n\013UNSPECIFIED\020\000\022\013\n\007PENDING\020\001\022\016"
+    "\n\nIN_TRANSIT\020\002\022\r\n\tDELIVERED\020\003\"\214\001\n\007PkgRoo"
+    "m\022\n\n\002id\030\001 \001(\r\0223\n\007lockers\030\002 \003(\0132\".smart_p"
+    "kg_delivery.PkgRoom.Locker\032@\n\006Locker\022\021\n\t"
+    "locker_id\030\001 \001(\r\022\023\n\013access_code\030\002 \001(\t\022\016\n\006"
+    "pkg_id\030\003 \001(\r\"@\n\004User\022\n\n\002id\030\001 \001(\r\022,\n\007addr"
+    "ess\030\002 \001(\0132\033.smart_pkg_delivery.Address\"|"
+    "\n\003Pkg\022\n\n\002id\030\001 \001(\r\022,\n\007address\030\002 \001(\0132\033.sma"
+    "rt_pkg_delivery.Address\022\021\n\tsender_id\030\003 \001"
+    "(\r\022\023\n\013receiver_id\030\004 \001(\r\022\023\n\013photo_bytes\030\005"
+    " \001(\014\"\\\n\007Address\022A\n\021apartment_address\030\001 \001"
+    "(\0132$.smart_pkg_delivery.ApartmentAddress"
+    "H\000B\016\n\014address_type\"`\n\020ApartmentAddress\022\031"
+    "\n\021apartment_complex\030\001 \001(\t\022\027\n\017building_nu"
+    "mber\030\002 \001(\r\022\030\n\020apartment_number\030\003 \001(\r*\207\001\n"
+    "\010NodeType\022\017\n\013UNSPECIFIED\020\000\022\n\n\006SERVER\020\001\022\035"
+    "\n\031CLIENT_ADDRESS_RECOGNIZER\020\002\022\017\n\013CLIENT_"
+    "USER\020\003\022\031\n\025CLIENT_DELIVERY_ROBOT\020\004\022\023\n\017CLI"
+    "ENT_ELEVATOR\020\005b\010editionsp\350\007"
 };
 static ::absl::once_flag descriptor_table_smart_5fpkg_5fdelivery_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_smart_5fpkg_5fdelivery_2eproto = {
     false,
     false,
-    2916,
+    3107,
     descriptor_table_protodef_smart_5fpkg_5fdelivery_2eproto,
     "smart_pkg_delivery.proto",
     &descriptor_table_smart_5fpkg_5fdelivery_2eproto_once,
@@ -1092,13 +1097,14 @@ const ::google::protobuf::EnumDescriptor* AckStatus_StatusCode_descriptor() {
   return file_level_enum_descriptors_smart_5fpkg_5fdelivery_2eproto[0];
 }
 PROTOBUF_CONSTINIT const uint32_t AckStatus_StatusCode_internal_data_[] = {
-    131072u, 0u, };
+    196608u, 0u, };
 bool AckStatus_StatusCode_IsValid(int value) {
-  return 0 <= value && value <= 1;
+  return 0 <= value && value <= 2;
 }
 #if (__cplusplus < 201703) && \
   (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 
+constexpr AckStatus_StatusCode AckStatus::UNSPECIFIED;
 constexpr AckStatus_StatusCode AckStatus::ACK_RECEIVED;
 constexpr AckStatus_StatusCode AckStatus::ACK_INVALID;
 constexpr AckStatus_StatusCode AckStatus::StatusCode_MIN;
@@ -1112,15 +1118,16 @@ const ::google::protobuf::EnumDescriptor* ExecutionStatus_StatusCode_descriptor(
   return file_level_enum_descriptors_smart_5fpkg_5fdelivery_2eproto[1];
 }
 PROTOBUF_CONSTINIT const uint32_t ExecutionStatus_StatusCode_internal_data_[] = {
-    131072u, 0u, };
+    196608u, 0u, };
 bool ExecutionStatus_StatusCode_IsValid(int value) {
-  return 0 <= value && value <= 1;
+  return 0 <= value && value <= 2;
 }
 #if (__cplusplus < 201703) && \
   (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 
-constexpr ExecutionStatus_StatusCode ExecutionStatus::EXECUTION_SUCCESS;
-constexpr ExecutionStatus_StatusCode ExecutionStatus::EXECUTION_FAILED;
+constexpr ExecutionStatus_StatusCode ExecutionStatus::UNSPECIFIED;
+constexpr ExecutionStatus_StatusCode ExecutionStatus::CODE_SUCCESS;
+constexpr ExecutionStatus_StatusCode ExecutionStatus::FAILED;
 constexpr ExecutionStatus_StatusCode ExecutionStatus::StatusCode_MIN;
 constexpr ExecutionStatus_StatusCode ExecutionStatus::StatusCode_MAX;
 constexpr int ExecutionStatus::StatusCode_ARRAYSIZE;
@@ -1132,13 +1139,14 @@ const ::google::protobuf::EnumDescriptor* Elevator_DoorOpenStatus_descriptor() {
   return file_level_enum_descriptors_smart_5fpkg_5fdelivery_2eproto[2];
 }
 PROTOBUF_CONSTINIT const uint32_t Elevator_DoorOpenStatus_internal_data_[] = {
-    131072u, 0u, };
+    196608u, 0u, };
 bool Elevator_DoorOpenStatus_IsValid(int value) {
-  return 0 <= value && value <= 1;
+  return 0 <= value && value <= 2;
 }
 #if (__cplusplus < 201703) && \
   (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 
+constexpr Elevator_DoorOpenStatus Elevator::UNSPECIFIED;
 constexpr Elevator_DoorOpenStatus Elevator::CLOSED;
 constexpr Elevator_DoorOpenStatus Elevator::OPEN;
 constexpr Elevator_DoorOpenStatus Elevator::DoorOpenStatus_MIN;
@@ -1152,13 +1160,14 @@ const ::google::protobuf::EnumDescriptor* DeliveryRobot_DeliveryStatus_descripto
   return file_level_enum_descriptors_smart_5fpkg_5fdelivery_2eproto[3];
 }
 PROTOBUF_CONSTINIT const uint32_t DeliveryRobot_DeliveryStatus_internal_data_[] = {
-    196608u, 0u, };
+    262144u, 0u, };
 bool DeliveryRobot_DeliveryStatus_IsValid(int value) {
-  return 0 <= value && value <= 2;
+  return 0 <= value && value <= 3;
 }
 #if (__cplusplus < 201703) && \
   (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 
+constexpr DeliveryRobot_DeliveryStatus DeliveryRobot::UNSPECIFIED;
 constexpr DeliveryRobot_DeliveryStatus DeliveryRobot::PENDING;
 constexpr DeliveryRobot_DeliveryStatus DeliveryRobot::IN_TRANSIT;
 constexpr DeliveryRobot_DeliveryStatus DeliveryRobot::DELIVERED;
@@ -1168,6 +1177,15 @@ constexpr int DeliveryRobot::DeliveryStatus_ARRAYSIZE;
 
 #endif  // (__cplusplus < 201703) &&
         // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+const ::google::protobuf::EnumDescriptor* NodeType_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_smart_5fpkg_5fdelivery_2eproto);
+  return file_level_enum_descriptors_smart_5fpkg_5fdelivery_2eproto[4];
+}
+PROTOBUF_CONSTINIT const uint32_t NodeType_internal_data_[] = {
+    393216u, 0u, };
+bool NodeType_IsValid(int value) {
+  return 0 <= value && value <= 5;
+}
 // ===================================================================
 
 class Request::_Internal {
