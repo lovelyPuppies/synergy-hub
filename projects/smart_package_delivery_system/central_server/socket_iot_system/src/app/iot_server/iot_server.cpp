@@ -21,7 +21,7 @@ public:
 
 private:
   tcp::socket socket_;
-  char buffer_[1024];
+  char buffer_[256];
 
   void doRead() {
     auto self(shared_from_this());

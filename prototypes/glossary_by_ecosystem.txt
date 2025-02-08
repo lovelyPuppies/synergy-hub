@@ -192,27 +192,38 @@ Wiktionary
 
 ----------------------------------------------
 Wiktionary 🔪 Abbreviation
-  - pkg (package) ; https://en.wiktionary.org/wiki/pkg#English
-    Noun
-      pkg (countable and uncountable, plural pkgs)
-        1. Abbreviation of package.
-  - msg (message) ; https://en.wiktionary.org/wiki/msg#English
-    Noun
-      msg (plural msgs)
-        1. Abbreviation of message.
+  (Programming)
+    - pkg (package) ; https://en.wiktionary.org/wiki/pkg#English
+      Noun
+        pkg (countable and uncountable, plural pkgs)
+          1. Abbreviation of package.
+    - msg (message) ; https://en.wiktionary.org/wiki/msg#English
+      Noun
+        msg (plural msgs)
+          1. Abbreviation of message.
 
 
-  - src (source) ; https://en.wiktionary.org/wiki/src#English
-    Noun
-      src (plural srcs)
-        1. Abbreviation of source.
-  - dest (destination) ; https://en.wiktionary.org/wiki/dest
-    Noun
-      dest (plural dests)
-        1. Abbreviation of destination.
+    - src (source) ; https://en.wiktionary.org/wiki/src#English
+      Noun
+        src (plural srcs)
+          1. Abbreviation of source.
+    - dest (destination) ; https://en.wiktionary.org/wiki/dest
+      Noun
+        dest (plural dests)
+          1. Abbreviation of destination.
 
-  - sock (socket) ; https://en.wiktionary.org/wiki/sock#English
-    Noun
-      sock (plural socks)
-        1. (computing, networking) Abbreviation of socket.
+    - sock (socket) ; https://en.wiktionary.org/wiki/sock#English
+      Noun
+        sock (plural socks)
+          1. (computing, networking) Abbreviation of socket.
 
+  (Ungrouped)
+    - apt (apartment) ; https://en.wiktionary.org/wiki/apt#English
+      Noun
+        apt (plural apts)
+          1. Abbreviation of apartment.
+
+    - num (number) ; https://en.wiktionary.org/wiki/num#English
+      Noun
+        num (plural nums)
+          1. Abbreviation of number.

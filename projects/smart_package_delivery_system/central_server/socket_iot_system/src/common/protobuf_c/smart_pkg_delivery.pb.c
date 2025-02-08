@@ -69,10 +69,7 @@ PB_BIND(smart_pkg_delivery_User, smart_pkg_delivery_User, AUTO)
 PB_BIND(smart_pkg_delivery_Pkg, smart_pkg_delivery_Pkg, AUTO)
 
 
-PB_BIND(smart_pkg_delivery_Address, smart_pkg_delivery_Address, AUTO)
-
-
-PB_BIND(smart_pkg_delivery_ApartmentAddress, smart_pkg_delivery_ApartmentAddress, AUTO)
+PB_BIND(smart_pkg_delivery_AptAddress, smart_pkg_delivery_AptAddress, AUTO)
 
 
 

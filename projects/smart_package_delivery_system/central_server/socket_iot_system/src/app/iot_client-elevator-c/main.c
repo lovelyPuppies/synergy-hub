@@ -6,7 +6,7 @@
 // 📅 2025-02-07 05:20:22
 
 // Library inclusions for necessary functionalities
-#include "protobuf_c/smart_pkg_delivery.pb.h"
+// #include "protobuf_c/smart_pkg_delivery.pb.h"
 #include <arpa/inet.h> // Defines functions for internet operations, such as inet_addr.
 #include <pb_decode.h>
 #include <pb_encode.h>

@@ -57,12 +57,9 @@ namespace smart_pkg_delivery {
 class AckStatus;
 struct AckStatusDefaultTypeInternal;
 extern AckStatusDefaultTypeInternal _AckStatus_default_instance_;
-class Address;
-struct AddressDefaultTypeInternal;
-extern AddressDefaultTypeInternal _Address_default_instance_;
-class ApartmentAddress;
-struct ApartmentAddressDefaultTypeInternal;
-extern ApartmentAddressDefaultTypeInternal _ApartmentAddress_default_instance_;
+class AptAddress;
+struct AptAddressDefaultTypeInternal;
+extern AptAddressDefaultTypeInternal _AptAddress_default_instance_;
 class DeliveryRobot;
 struct DeliveryRobotDefaultTypeInternal;
 extern DeliveryRobotDefaultTypeInternal _DeliveryRobot_default_instance_;
@@ -1883,31 +1880,31 @@ class DeliveryRobot final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
-class ApartmentAddress final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:smart_pkg_delivery.ApartmentAddress) */ {
+class AptAddress final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:smart_pkg_delivery.AptAddress) */ {
  public:
-  inline ApartmentAddress() : ApartmentAddress(nullptr) {}
-  ~ApartmentAddress() PROTOBUF_FINAL;
+  inline AptAddress() : AptAddress(nullptr) {}
+  ~AptAddress() PROTOBUF_FINAL;
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(ApartmentAddress* msg, std::destroying_delete_t) {
+  void operator delete(AptAddress* msg, std::destroying_delete_t) {
     SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(ApartmentAddress));
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(AptAddress));
   }
 #endif
 
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR ApartmentAddress(
+  explicit PROTOBUF_CONSTEXPR AptAddress(
       ::google::protobuf::internal::ConstantInitialized);
 
-  inline ApartmentAddress(const ApartmentAddress& from) : ApartmentAddress(nullptr, from) {}
-  inline ApartmentAddress(ApartmentAddress&& from) noexcept
-      : ApartmentAddress(nullptr, std::move(from)) {}
-  inline ApartmentAddress& operator=(const ApartmentAddress& from) {
+  inline AptAddress(const AptAddress& from) : AptAddress(nullptr, from) {}
+  inline AptAddress(AptAddress&& from) noexcept
+      : AptAddress(nullptr, std::move(from)) {}
+  inline AptAddress& operator=(const AptAddress& from) {
     CopyFrom(from);
     return *this;
   }
-  inline ApartmentAddress& operator=(ApartmentAddress&& from) noexcept {
+  inline AptAddress& operator=(AptAddress&& from) noexcept {
     if (this == &from) return *this;
     if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
       InternalSwap(&from);
@@ -1935,16 +1932,16 @@ class ApartmentAddress final : public ::google::protobuf::Message
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const ApartmentAddress& default_instance() {
+  static const AptAddress& default_instance() {
     return *internal_default_instance();
   }
-  static inline const ApartmentAddress* internal_default_instance() {
-    return reinterpret_cast<const ApartmentAddress*>(
-        &_ApartmentAddress_default_instance_);
+  static inline const AptAddress* internal_default_instance() {
+    return reinterpret_cast<const AptAddress*>(
+        &_AptAddress_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 22;
-  friend void swap(ApartmentAddress& a, ApartmentAddress& b) { a.Swap(&b); }
-  inline void Swap(ApartmentAddress* other) {
+  static constexpr int kIndexInFileMessages = 21;
+  friend void swap(AptAddress& a, AptAddress& b) { a.Swap(&b); }
+  inline void Swap(AptAddress* other) {
     if (other == this) return;
     if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
       InternalSwap(other);
@@ -1952,7 +1949,7 @@ class ApartmentAddress final : public ::google::protobuf::Message
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(ApartmentAddress* other) {
+  void UnsafeArenaSwap(AptAddress* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -1960,13 +1957,13 @@ class ApartmentAddress final : public ::google::protobuf::Message
 
   // implements Message ----------------------------------------------
 
-  ApartmentAddress* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<ApartmentAddress>(arena);
+  AptAddress* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<AptAddress>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const ApartmentAddress& from);
+  void CopyFrom(const AptAddress& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const ApartmentAddress& from) { ApartmentAddress::MergeImpl(*this, from); }
+  void MergeFrom(const AptAddress& from) { AptAddress::MergeImpl(*this, from); }
 
   private:
   static void MergeImpl(
@@ -2003,18 +2000,18 @@ class ApartmentAddress final : public ::google::protobuf::Message
   private:
   void SharedCtor(::google::protobuf::Arena* arena);
   static void SharedDtor(MessageLite& self);
-  void InternalSwap(ApartmentAddress* other);
+  void InternalSwap(AptAddress* other);
  private:
   template <typename T>
   friend ::absl::string_view(
       ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "smart_pkg_delivery.ApartmentAddress"; }
+  static ::absl::string_view FullMessageName() { return "smart_pkg_delivery.AptAddress"; }
 
  protected:
-  explicit ApartmentAddress(::google::protobuf::Arena* arena);
-  ApartmentAddress(::google::protobuf::Arena* arena, const ApartmentAddress& from);
-  ApartmentAddress(::google::protobuf::Arena* arena, ApartmentAddress&& from) noexcept
-      : ApartmentAddress(arena) {
+  explicit AptAddress(::google::protobuf::Arena* arena);
+  AptAddress(::google::protobuf::Arena* arena, const AptAddress& from);
+  AptAddress(::google::protobuf::Arena* arena, AptAddress&& from) noexcept
+      : AptAddress(arena) {
     *this = ::std::move(from);
   }
   const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
@@ -2029,56 +2026,56 @@ class ApartmentAddress final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kApartmentComplexFieldNumber = 1,
-    kBuildingNumberFieldNumber = 2,
-    kApartmentNumberFieldNumber = 3,
+    kAptComplexFieldNumber = 1,
+    kBuildingNumFieldNumber = 2,
+    kUnitNumFieldNumber = 3,
   };
-  // string apartment_complex = 1;
-  bool has_apartment_complex() const;
-  void clear_apartment_complex() ;
-  const std::string& apartment_complex() const;
+  // string apt_complex = 1;
+  bool has_apt_complex() const;
+  void clear_apt_complex() ;
+  const std::string& apt_complex() const;
   template <typename Arg_ = const std::string&, typename... Args_>
-  void set_apartment_complex(Arg_&& arg, Args_... args);
-  std::string* mutable_apartment_complex();
-  PROTOBUF_NODISCARD std::string* release_apartment_complex();
-  void set_allocated_apartment_complex(std::string* value);
+  void set_apt_complex(Arg_&& arg, Args_... args);
+  std::string* mutable_apt_complex();
+  PROTOBUF_NODISCARD std::string* release_apt_complex();
+  void set_allocated_apt_complex(std::string* value);
 
   private:
-  const std::string& _internal_apartment_complex() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_apartment_complex(
+  const std::string& _internal_apt_complex() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_apt_complex(
       const std::string& value);
-  std::string* _internal_mutable_apartment_complex();
+  std::string* _internal_mutable_apt_complex();
 
   public:
-  // uint32 building_number = 2;
-  bool has_building_number() const;
-  void clear_building_number() ;
-  ::uint32_t building_number() const;
-  void set_building_number(::uint32_t value);
+  // uint32 building_num = 2;
+  bool has_building_num() const;
+  void clear_building_num() ;
+  ::uint32_t building_num() const;
+  void set_building_num(::uint32_t value);
 
   private:
-  ::uint32_t _internal_building_number() const;
-  void _internal_set_building_number(::uint32_t value);
+  ::uint32_t _internal_building_num() const;
+  void _internal_set_building_num(::uint32_t value);
 
   public:
-  // uint32 apartment_number = 3;
-  bool has_apartment_number() const;
-  void clear_apartment_number() ;
-  ::uint32_t apartment_number() const;
-  void set_apartment_number(::uint32_t value);
+  // uint32 unit_num = 3;
+  bool has_unit_num() const;
+  void clear_unit_num() ;
+  ::uint32_t unit_num() const;
+  void set_unit_num(::uint32_t value);
 
   private:
-  ::uint32_t _internal_apartment_number() const;
-  void _internal_set_apartment_number(::uint32_t value);
+  ::uint32_t _internal_unit_num() const;
+  void _internal_set_unit_num(::uint32_t value);
 
   public:
-  // @@protoc_insertion_point(class_scope:smart_pkg_delivery.ApartmentAddress)
+  // @@protoc_insertion_point(class_scope:smart_pkg_delivery.AptAddress)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       2, 3, 0,
-      61, 2>
+      49, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -2094,12 +2091,12 @@ class ApartmentAddress final : public ::google::protobuf::Message
                           ::google::protobuf::Arena* arena);
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
-                          const ApartmentAddress& from_msg);
+                          const AptAddress& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::internal::ArenaStringPtr apartment_complex_;
-    ::uint32_t building_number_;
-    ::uint32_t apartment_number_;
+    ::google::protobuf::internal::ArenaStringPtr apt_complex_;
+    ::uint32_t building_num_;
+    ::uint32_t unit_num_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -2331,6 +2328,215 @@ class AckStatus final : public ::google::protobuf::Message
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::ArenaStringPtr message_;
     int code_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_smart_5fpkg_5fdelivery_2eproto;
+};
+// -------------------------------------------------------------------
+
+class User final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:smart_pkg_delivery.User) */ {
+ public:
+  inline User() : User(nullptr) {}
+  ~User() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(User* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(User));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR User(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline User(const User& from) : User(nullptr, from) {}
+  inline User(User&& from) noexcept
+      : User(nullptr, std::move(from)) {}
+  inline User& operator=(const User& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline User& operator=(User&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const User& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const User* internal_default_instance() {
+    return reinterpret_cast<const User*>(
+        &_User_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 19;
+  friend void swap(User& a, User& b) { a.Swap(&b); }
+  inline void Swap(User* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(User* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  User* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<User>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const User& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const User& from) { User::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(User* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "smart_pkg_delivery.User"; }
+
+ protected:
+  explicit User(::google::protobuf::Arena* arena);
+  User(::google::protobuf::Arena* arena, const User& from);
+  User(::google::protobuf::Arena* arena, User&& from) noexcept
+      : User(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kAddressFieldNumber = 2,
+    kIdFieldNumber = 1,
+  };
+  // .smart_pkg_delivery.AptAddress address = 2;
+  bool has_address() const;
+  void clear_address() ;
+  const ::smart_pkg_delivery::AptAddress& address() const;
+  PROTOBUF_NODISCARD ::smart_pkg_delivery::AptAddress* release_address();
+  ::smart_pkg_delivery::AptAddress* mutable_address();
+  void set_allocated_address(::smart_pkg_delivery::AptAddress* value);
+  void unsafe_arena_set_allocated_address(::smart_pkg_delivery::AptAddress* value);
+  ::smart_pkg_delivery::AptAddress* unsafe_arena_release_address();
+
+  private:
+  const ::smart_pkg_delivery::AptAddress& _internal_address() const;
+  ::smart_pkg_delivery::AptAddress* _internal_mutable_address();
+
+  public:
+  // uint32 id = 1;
+  bool has_id() const;
+  void clear_id() ;
+  ::uint32_t id() const;
+  void set_id(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_id() const;
+  void _internal_set_id(::uint32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:smart_pkg_delivery.User)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 1,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const User& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::smart_pkg_delivery::AptAddress* address_;
+    ::uint32_t id_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -2752,6 +2958,665 @@ class PkgRoom final : public ::google::protobuf::Message
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::RepeatedPtrField< ::smart_pkg_delivery::PkgRoom_Locker > lockers_;
     ::uint32_t id_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_smart_5fpkg_5fdelivery_2eproto;
+};
+// -------------------------------------------------------------------
+
+class PkgArrivalEvent final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:smart_pkg_delivery.PkgArrivalEvent) */ {
+ public:
+  inline PkgArrivalEvent() : PkgArrivalEvent(nullptr) {}
+  ~PkgArrivalEvent() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(PkgArrivalEvent* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(PkgArrivalEvent));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR PkgArrivalEvent(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline PkgArrivalEvent(const PkgArrivalEvent& from) : PkgArrivalEvent(nullptr, from) {}
+  inline PkgArrivalEvent(PkgArrivalEvent&& from) noexcept
+      : PkgArrivalEvent(nullptr, std::move(from)) {}
+  inline PkgArrivalEvent& operator=(const PkgArrivalEvent& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline PkgArrivalEvent& operator=(PkgArrivalEvent&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const PkgArrivalEvent& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const PkgArrivalEvent* internal_default_instance() {
+    return reinterpret_cast<const PkgArrivalEvent*>(
+        &_PkgArrivalEvent_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 11;
+  friend void swap(PkgArrivalEvent& a, PkgArrivalEvent& b) { a.Swap(&b); }
+  inline void Swap(PkgArrivalEvent* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(PkgArrivalEvent* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  PkgArrivalEvent* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<PkgArrivalEvent>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const PkgArrivalEvent& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const PkgArrivalEvent& from) { PkgArrivalEvent::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(PkgArrivalEvent* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "smart_pkg_delivery.PkgArrivalEvent"; }
+
+ protected:
+  explicit PkgArrivalEvent(::google::protobuf::Arena* arena);
+  PkgArrivalEvent(::google::protobuf::Arena* arena, const PkgArrivalEvent& from);
+  PkgArrivalEvent(::google::protobuf::Arena* arena, PkgArrivalEvent&& from) noexcept
+      : PkgArrivalEvent(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kAddressFieldNumber = 1,
+  };
+  // .smart_pkg_delivery.AptAddress address = 1;
+  bool has_address() const;
+  void clear_address() ;
+  const ::smart_pkg_delivery::AptAddress& address() const;
+  PROTOBUF_NODISCARD ::smart_pkg_delivery::AptAddress* release_address();
+  ::smart_pkg_delivery::AptAddress* mutable_address();
+  void set_allocated_address(::smart_pkg_delivery::AptAddress* value);
+  void unsafe_arena_set_allocated_address(::smart_pkg_delivery::AptAddress* value);
+  ::smart_pkg_delivery::AptAddress* unsafe_arena_release_address();
+
+  private:
+  const ::smart_pkg_delivery::AptAddress& _internal_address() const;
+  ::smart_pkg_delivery::AptAddress* _internal_mutable_address();
+
+  public:
+  // @@protoc_insertion_point(class_scope:smart_pkg_delivery.PkgArrivalEvent)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 1,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const PkgArrivalEvent& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::smart_pkg_delivery::AptAddress* address_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_smart_5fpkg_5fdelivery_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Pkg final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:smart_pkg_delivery.Pkg) */ {
+ public:
+  inline Pkg() : Pkg(nullptr) {}
+  ~Pkg() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Pkg* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Pkg));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Pkg(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline Pkg(const Pkg& from) : Pkg(nullptr, from) {}
+  inline Pkg(Pkg&& from) noexcept
+      : Pkg(nullptr, std::move(from)) {}
+  inline Pkg& operator=(const Pkg& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Pkg& operator=(Pkg&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Pkg& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Pkg* internal_default_instance() {
+    return reinterpret_cast<const Pkg*>(
+        &_Pkg_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 20;
+  friend void swap(Pkg& a, Pkg& b) { a.Swap(&b); }
+  inline void Swap(Pkg* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Pkg* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Pkg* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<Pkg>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const Pkg& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const Pkg& from) { Pkg::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(Pkg* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "smart_pkg_delivery.Pkg"; }
+
+ protected:
+  explicit Pkg(::google::protobuf::Arena* arena);
+  Pkg(::google::protobuf::Arena* arena, const Pkg& from);
+  Pkg(::google::protobuf::Arena* arena, Pkg&& from) noexcept
+      : Pkg(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kPhotoBytesFieldNumber = 5,
+    kAddressFieldNumber = 2,
+    kIdFieldNumber = 1,
+    kSenderIdFieldNumber = 3,
+    kReceiverIdFieldNumber = 4,
+  };
+  // bytes photo_bytes = 5;
+  bool has_photo_bytes() const;
+  void clear_photo_bytes() ;
+  const std::string& photo_bytes() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_photo_bytes(Arg_&& arg, Args_... args);
+  std::string* mutable_photo_bytes();
+  PROTOBUF_NODISCARD std::string* release_photo_bytes();
+  void set_allocated_photo_bytes(std::string* value);
+
+  private:
+  const std::string& _internal_photo_bytes() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_photo_bytes(
+      const std::string& value);
+  std::string* _internal_mutable_photo_bytes();
+
+  public:
+  // .smart_pkg_delivery.AptAddress address = 2;
+  bool has_address() const;
+  void clear_address() ;
+  const ::smart_pkg_delivery::AptAddress& address() const;
+  PROTOBUF_NODISCARD ::smart_pkg_delivery::AptAddress* release_address();
+  ::smart_pkg_delivery::AptAddress* mutable_address();
+  void set_allocated_address(::smart_pkg_delivery::AptAddress* value);
+  void unsafe_arena_set_allocated_address(::smart_pkg_delivery::AptAddress* value);
+  ::smart_pkg_delivery::AptAddress* unsafe_arena_release_address();
+
+  private:
+  const ::smart_pkg_delivery::AptAddress& _internal_address() const;
+  ::smart_pkg_delivery::AptAddress* _internal_mutable_address();
+
+  public:
+  // uint32 id = 1;
+  bool has_id() const;
+  void clear_id() ;
+  ::uint32_t id() const;
+  void set_id(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_id() const;
+  void _internal_set_id(::uint32_t value);
+
+  public:
+  // uint32 sender_id = 3;
+  bool has_sender_id() const;
+  void clear_sender_id() ;
+  ::uint32_t sender_id() const;
+  void set_sender_id(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_sender_id() const;
+  void _internal_set_sender_id(::uint32_t value);
+
+  public:
+  // uint32 receiver_id = 4;
+  bool has_receiver_id() const;
+  void clear_receiver_id() ;
+  ::uint32_t receiver_id() const;
+  void set_receiver_id(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_receiver_id() const;
+  void _internal_set_receiver_id(::uint32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:smart_pkg_delivery.Pkg)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      3, 5, 1,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const Pkg& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr photo_bytes_;
+    ::smart_pkg_delivery::AptAddress* address_;
+    ::uint32_t id_;
+    ::uint32_t sender_id_;
+    ::uint32_t receiver_id_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_smart_5fpkg_5fdelivery_2eproto;
+};
+// -------------------------------------------------------------------
+
+class MoveDeliveryRobotRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:smart_pkg_delivery.MoveDeliveryRobotRequest) */ {
+ public:
+  inline MoveDeliveryRobotRequest() : MoveDeliveryRobotRequest(nullptr) {}
+  ~MoveDeliveryRobotRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(MoveDeliveryRobotRequest* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(MoveDeliveryRobotRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR MoveDeliveryRobotRequest(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline MoveDeliveryRobotRequest(const MoveDeliveryRobotRequest& from) : MoveDeliveryRobotRequest(nullptr, from) {}
+  inline MoveDeliveryRobotRequest(MoveDeliveryRobotRequest&& from) noexcept
+      : MoveDeliveryRobotRequest(nullptr, std::move(from)) {}
+  inline MoveDeliveryRobotRequest& operator=(const MoveDeliveryRobotRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MoveDeliveryRobotRequest& operator=(MoveDeliveryRobotRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const MoveDeliveryRobotRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const MoveDeliveryRobotRequest* internal_default_instance() {
+    return reinterpret_cast<const MoveDeliveryRobotRequest*>(
+        &_MoveDeliveryRobotRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 7;
+  friend void swap(MoveDeliveryRobotRequest& a, MoveDeliveryRobotRequest& b) { a.Swap(&b); }
+  inline void Swap(MoveDeliveryRobotRequest* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MoveDeliveryRobotRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  MoveDeliveryRobotRequest* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<MoveDeliveryRobotRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const MoveDeliveryRobotRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const MoveDeliveryRobotRequest& from) { MoveDeliveryRobotRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(MoveDeliveryRobotRequest* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "smart_pkg_delivery.MoveDeliveryRobotRequest"; }
+
+ protected:
+  explicit MoveDeliveryRobotRequest(::google::protobuf::Arena* arena);
+  MoveDeliveryRobotRequest(::google::protobuf::Arena* arena, const MoveDeliveryRobotRequest& from);
+  MoveDeliveryRobotRequest(::google::protobuf::Arena* arena, MoveDeliveryRobotRequest&& from) noexcept
+      : MoveDeliveryRobotRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kDestinationAddressFieldNumber = 2,
+    kDeliveryRobotIdFieldNumber = 1,
+  };
+  // .smart_pkg_delivery.AptAddress destination_address = 2;
+  bool has_destination_address() const;
+  void clear_destination_address() ;
+  const ::smart_pkg_delivery::AptAddress& destination_address() const;
+  PROTOBUF_NODISCARD ::smart_pkg_delivery::AptAddress* release_destination_address();
+  ::smart_pkg_delivery::AptAddress* mutable_destination_address();
+  void set_allocated_destination_address(::smart_pkg_delivery::AptAddress* value);
+  void unsafe_arena_set_allocated_destination_address(::smart_pkg_delivery::AptAddress* value);
+  ::smart_pkg_delivery::AptAddress* unsafe_arena_release_destination_address();
+
+  private:
+  const ::smart_pkg_delivery::AptAddress& _internal_destination_address() const;
+  ::smart_pkg_delivery::AptAddress* _internal_mutable_destination_address();
+
+  public:
+  // uint32 delivery_robot_id = 1;
+  bool has_delivery_robot_id() const;
+  void clear_delivery_robot_id() ;
+  ::uint32_t delivery_robot_id() const;
+  void set_delivery_robot_id(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_delivery_robot_id() const;
+  void _internal_set_delivery_robot_id(::uint32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:smart_pkg_delivery.MoveDeliveryRobotRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 1,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const MoveDeliveryRobotRequest& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::smart_pkg_delivery::AptAddress* destination_address_;
+    ::uint32_t delivery_robot_id_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -3191,1087 +4056,6 @@ class Elevator final : public ::google::protobuf::Message
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::smart_pkg_delivery::Elevator_Status* status_;
     ::uint32_t id_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_smart_5fpkg_5fdelivery_2eproto;
-};
-// -------------------------------------------------------------------
-
-class Address final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:smart_pkg_delivery.Address) */ {
- public:
-  inline Address() : Address(nullptr) {}
-  ~Address() PROTOBUF_FINAL;
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(Address* msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(Address));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR Address(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline Address(const Address& from) : Address(nullptr, from) {}
-  inline Address(Address&& from) noexcept
-      : Address(nullptr, std::move(from)) {}
-  inline Address& operator=(const Address& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline Address& operator=(Address&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const Address& default_instance() {
-    return *internal_default_instance();
-  }
-  enum AddressTypeCase {
-    kApartmentAddress = 1,
-    ADDRESS_TYPE_NOT_SET = 0,
-  };
-  static inline const Address* internal_default_instance() {
-    return reinterpret_cast<const Address*>(
-        &_Address_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 21;
-  friend void swap(Address& a, Address& b) { a.Swap(&b); }
-  inline void Swap(Address* other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(Address* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  Address* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<Address>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const Address& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const Address& from) { Address::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* _InternalSerialize(
-      const MessageLite& msg, ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(Address* other);
- private:
-  template <typename T>
-  friend ::absl::string_view(
-      ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "smart_pkg_delivery.Address"; }
-
- protected:
-  explicit Address(::google::protobuf::Arena* arena);
-  Address(::google::protobuf::Arena* arena, const Address& from);
-  Address(::google::protobuf::Arena* arena, Address&& from) noexcept
-      : Address(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static void* PlacementNew_(const void*, void* mem,
-                             ::google::protobuf::Arena* arena);
-  static constexpr auto InternalNewImpl_();
-  static const ::google::protobuf::internal::ClassDataFull _class_data_;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kApartmentAddressFieldNumber = 1,
-  };
-  // .smart_pkg_delivery.ApartmentAddress apartment_address = 1;
-  bool has_apartment_address() const;
-  private:
-  bool _internal_has_apartment_address() const;
-
-  public:
-  void clear_apartment_address() ;
-  const ::smart_pkg_delivery::ApartmentAddress& apartment_address() const;
-  PROTOBUF_NODISCARD ::smart_pkg_delivery::ApartmentAddress* release_apartment_address();
-  ::smart_pkg_delivery::ApartmentAddress* mutable_apartment_address();
-  void set_allocated_apartment_address(::smart_pkg_delivery::ApartmentAddress* value);
-  void unsafe_arena_set_allocated_apartment_address(::smart_pkg_delivery::ApartmentAddress* value);
-  ::smart_pkg_delivery::ApartmentAddress* unsafe_arena_release_apartment_address();
-
-  private:
-  const ::smart_pkg_delivery::ApartmentAddress& _internal_apartment_address() const;
-  ::smart_pkg_delivery::ApartmentAddress* _internal_mutable_apartment_address();
-
-  public:
-  void clear_address_type();
-  AddressTypeCase address_type_case() const;
-  // @@protoc_insertion_point(class_scope:smart_pkg_delivery.Address)
- private:
-  class _Internal;
-  void set_has_apartment_address();
-  inline bool has_address_type() const;
-  inline void clear_has_address_type();
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      0, 1, 1,
-      0, 2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const Address& from_msg);
-    union AddressTypeUnion {
-      constexpr AddressTypeUnion() : _constinit_{} {}
-      ::google::protobuf::internal::ConstantInitialized _constinit_;
-      ::smart_pkg_delivery::ApartmentAddress* apartment_address_;
-    } address_type_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
-    ::uint32_t _oneof_case_[1];
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_smart_5fpkg_5fdelivery_2eproto;
-};
-// -------------------------------------------------------------------
-
-class User final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:smart_pkg_delivery.User) */ {
- public:
-  inline User() : User(nullptr) {}
-  ~User() PROTOBUF_FINAL;
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(User* msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(User));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR User(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline User(const User& from) : User(nullptr, from) {}
-  inline User(User&& from) noexcept
-      : User(nullptr, std::move(from)) {}
-  inline User& operator=(const User& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline User& operator=(User&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const User& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const User* internal_default_instance() {
-    return reinterpret_cast<const User*>(
-        &_User_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 19;
-  friend void swap(User& a, User& b) { a.Swap(&b); }
-  inline void Swap(User* other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(User* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  User* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<User>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const User& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const User& from) { User::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* _InternalSerialize(
-      const MessageLite& msg, ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(User* other);
- private:
-  template <typename T>
-  friend ::absl::string_view(
-      ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "smart_pkg_delivery.User"; }
-
- protected:
-  explicit User(::google::protobuf::Arena* arena);
-  User(::google::protobuf::Arena* arena, const User& from);
-  User(::google::protobuf::Arena* arena, User&& from) noexcept
-      : User(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static void* PlacementNew_(const void*, void* mem,
-                             ::google::protobuf::Arena* arena);
-  static constexpr auto InternalNewImpl_();
-  static const ::google::protobuf::internal::ClassDataFull _class_data_;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kAddressFieldNumber = 2,
-    kIdFieldNumber = 1,
-  };
-  // .smart_pkg_delivery.Address address = 2;
-  bool has_address() const;
-  void clear_address() ;
-  const ::smart_pkg_delivery::Address& address() const;
-  PROTOBUF_NODISCARD ::smart_pkg_delivery::Address* release_address();
-  ::smart_pkg_delivery::Address* mutable_address();
-  void set_allocated_address(::smart_pkg_delivery::Address* value);
-  void unsafe_arena_set_allocated_address(::smart_pkg_delivery::Address* value);
-  ::smart_pkg_delivery::Address* unsafe_arena_release_address();
-
-  private:
-  const ::smart_pkg_delivery::Address& _internal_address() const;
-  ::smart_pkg_delivery::Address* _internal_mutable_address();
-
-  public:
-  // uint32 id = 1;
-  bool has_id() const;
-  void clear_id() ;
-  ::uint32_t id() const;
-  void set_id(::uint32_t value);
-
-  private:
-  ::uint32_t _internal_id() const;
-  void _internal_set_id(::uint32_t value);
-
-  public:
-  // @@protoc_insertion_point(class_scope:smart_pkg_delivery.User)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      1, 2, 1,
-      0, 2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const User& from_msg);
-    ::google::protobuf::internal::HasBits<1> _has_bits_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
-    ::smart_pkg_delivery::Address* address_;
-    ::uint32_t id_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_smart_5fpkg_5fdelivery_2eproto;
-};
-// -------------------------------------------------------------------
-
-class PkgArrivalEvent final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:smart_pkg_delivery.PkgArrivalEvent) */ {
- public:
-  inline PkgArrivalEvent() : PkgArrivalEvent(nullptr) {}
-  ~PkgArrivalEvent() PROTOBUF_FINAL;
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(PkgArrivalEvent* msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(PkgArrivalEvent));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR PkgArrivalEvent(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline PkgArrivalEvent(const PkgArrivalEvent& from) : PkgArrivalEvent(nullptr, from) {}
-  inline PkgArrivalEvent(PkgArrivalEvent&& from) noexcept
-      : PkgArrivalEvent(nullptr, std::move(from)) {}
-  inline PkgArrivalEvent& operator=(const PkgArrivalEvent& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline PkgArrivalEvent& operator=(PkgArrivalEvent&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const PkgArrivalEvent& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const PkgArrivalEvent* internal_default_instance() {
-    return reinterpret_cast<const PkgArrivalEvent*>(
-        &_PkgArrivalEvent_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 11;
-  friend void swap(PkgArrivalEvent& a, PkgArrivalEvent& b) { a.Swap(&b); }
-  inline void Swap(PkgArrivalEvent* other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(PkgArrivalEvent* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  PkgArrivalEvent* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<PkgArrivalEvent>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const PkgArrivalEvent& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const PkgArrivalEvent& from) { PkgArrivalEvent::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* _InternalSerialize(
-      const MessageLite& msg, ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(PkgArrivalEvent* other);
- private:
-  template <typename T>
-  friend ::absl::string_view(
-      ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "smart_pkg_delivery.PkgArrivalEvent"; }
-
- protected:
-  explicit PkgArrivalEvent(::google::protobuf::Arena* arena);
-  PkgArrivalEvent(::google::protobuf::Arena* arena, const PkgArrivalEvent& from);
-  PkgArrivalEvent(::google::protobuf::Arena* arena, PkgArrivalEvent&& from) noexcept
-      : PkgArrivalEvent(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static void* PlacementNew_(const void*, void* mem,
-                             ::google::protobuf::Arena* arena);
-  static constexpr auto InternalNewImpl_();
-  static const ::google::protobuf::internal::ClassDataFull _class_data_;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kAddressFieldNumber = 1,
-  };
-  // .smart_pkg_delivery.Address address = 1;
-  bool has_address() const;
-  void clear_address() ;
-  const ::smart_pkg_delivery::Address& address() const;
-  PROTOBUF_NODISCARD ::smart_pkg_delivery::Address* release_address();
-  ::smart_pkg_delivery::Address* mutable_address();
-  void set_allocated_address(::smart_pkg_delivery::Address* value);
-  void unsafe_arena_set_allocated_address(::smart_pkg_delivery::Address* value);
-  ::smart_pkg_delivery::Address* unsafe_arena_release_address();
-
-  private:
-  const ::smart_pkg_delivery::Address& _internal_address() const;
-  ::smart_pkg_delivery::Address* _internal_mutable_address();
-
-  public:
-  // @@protoc_insertion_point(class_scope:smart_pkg_delivery.PkgArrivalEvent)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      0, 1, 1,
-      0, 2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const PkgArrivalEvent& from_msg);
-    ::google::protobuf::internal::HasBits<1> _has_bits_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
-    ::smart_pkg_delivery::Address* address_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_smart_5fpkg_5fdelivery_2eproto;
-};
-// -------------------------------------------------------------------
-
-class Pkg final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:smart_pkg_delivery.Pkg) */ {
- public:
-  inline Pkg() : Pkg(nullptr) {}
-  ~Pkg() PROTOBUF_FINAL;
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(Pkg* msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(Pkg));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR Pkg(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline Pkg(const Pkg& from) : Pkg(nullptr, from) {}
-  inline Pkg(Pkg&& from) noexcept
-      : Pkg(nullptr, std::move(from)) {}
-  inline Pkg& operator=(const Pkg& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline Pkg& operator=(Pkg&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const Pkg& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const Pkg* internal_default_instance() {
-    return reinterpret_cast<const Pkg*>(
-        &_Pkg_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 20;
-  friend void swap(Pkg& a, Pkg& b) { a.Swap(&b); }
-  inline void Swap(Pkg* other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(Pkg* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  Pkg* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<Pkg>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const Pkg& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const Pkg& from) { Pkg::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* _InternalSerialize(
-      const MessageLite& msg, ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(Pkg* other);
- private:
-  template <typename T>
-  friend ::absl::string_view(
-      ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "smart_pkg_delivery.Pkg"; }
-
- protected:
-  explicit Pkg(::google::protobuf::Arena* arena);
-  Pkg(::google::protobuf::Arena* arena, const Pkg& from);
-  Pkg(::google::protobuf::Arena* arena, Pkg&& from) noexcept
-      : Pkg(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static void* PlacementNew_(const void*, void* mem,
-                             ::google::protobuf::Arena* arena);
-  static constexpr auto InternalNewImpl_();
-  static const ::google::protobuf::internal::ClassDataFull _class_data_;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kPhotoBytesFieldNumber = 5,
-    kAddressFieldNumber = 2,
-    kIdFieldNumber = 1,
-    kSenderIdFieldNumber = 3,
-    kReceiverIdFieldNumber = 4,
-  };
-  // bytes photo_bytes = 5;
-  bool has_photo_bytes() const;
-  void clear_photo_bytes() ;
-  const std::string& photo_bytes() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_photo_bytes(Arg_&& arg, Args_... args);
-  std::string* mutable_photo_bytes();
-  PROTOBUF_NODISCARD std::string* release_photo_bytes();
-  void set_allocated_photo_bytes(std::string* value);
-
-  private:
-  const std::string& _internal_photo_bytes() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_photo_bytes(
-      const std::string& value);
-  std::string* _internal_mutable_photo_bytes();
-
-  public:
-  // .smart_pkg_delivery.Address address = 2;
-  bool has_address() const;
-  void clear_address() ;
-  const ::smart_pkg_delivery::Address& address() const;
-  PROTOBUF_NODISCARD ::smart_pkg_delivery::Address* release_address();
-  ::smart_pkg_delivery::Address* mutable_address();
-  void set_allocated_address(::smart_pkg_delivery::Address* value);
-  void unsafe_arena_set_allocated_address(::smart_pkg_delivery::Address* value);
-  ::smart_pkg_delivery::Address* unsafe_arena_release_address();
-
-  private:
-  const ::smart_pkg_delivery::Address& _internal_address() const;
-  ::smart_pkg_delivery::Address* _internal_mutable_address();
-
-  public:
-  // uint32 id = 1;
-  bool has_id() const;
-  void clear_id() ;
-  ::uint32_t id() const;
-  void set_id(::uint32_t value);
-
-  private:
-  ::uint32_t _internal_id() const;
-  void _internal_set_id(::uint32_t value);
-
-  public:
-  // uint32 sender_id = 3;
-  bool has_sender_id() const;
-  void clear_sender_id() ;
-  ::uint32_t sender_id() const;
-  void set_sender_id(::uint32_t value);
-
-  private:
-  ::uint32_t _internal_sender_id() const;
-  void _internal_set_sender_id(::uint32_t value);
-
-  public:
-  // uint32 receiver_id = 4;
-  bool has_receiver_id() const;
-  void clear_receiver_id() ;
-  ::uint32_t receiver_id() const;
-  void set_receiver_id(::uint32_t value);
-
-  private:
-  ::uint32_t _internal_receiver_id() const;
-  void _internal_set_receiver_id(::uint32_t value);
-
-  public:
-  // @@protoc_insertion_point(class_scope:smart_pkg_delivery.Pkg)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      3, 5, 1,
-      0, 2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const Pkg& from_msg);
-    ::google::protobuf::internal::HasBits<1> _has_bits_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::internal::ArenaStringPtr photo_bytes_;
-    ::smart_pkg_delivery::Address* address_;
-    ::uint32_t id_;
-    ::uint32_t sender_id_;
-    ::uint32_t receiver_id_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_smart_5fpkg_5fdelivery_2eproto;
-};
-// -------------------------------------------------------------------
-
-class MoveDeliveryRobotRequest final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:smart_pkg_delivery.MoveDeliveryRobotRequest) */ {
- public:
-  inline MoveDeliveryRobotRequest() : MoveDeliveryRobotRequest(nullptr) {}
-  ~MoveDeliveryRobotRequest() PROTOBUF_FINAL;
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(MoveDeliveryRobotRequest* msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(MoveDeliveryRobotRequest));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR MoveDeliveryRobotRequest(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline MoveDeliveryRobotRequest(const MoveDeliveryRobotRequest& from) : MoveDeliveryRobotRequest(nullptr, from) {}
-  inline MoveDeliveryRobotRequest(MoveDeliveryRobotRequest&& from) noexcept
-      : MoveDeliveryRobotRequest(nullptr, std::move(from)) {}
-  inline MoveDeliveryRobotRequest& operator=(const MoveDeliveryRobotRequest& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline MoveDeliveryRobotRequest& operator=(MoveDeliveryRobotRequest&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const MoveDeliveryRobotRequest& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const MoveDeliveryRobotRequest* internal_default_instance() {
-    return reinterpret_cast<const MoveDeliveryRobotRequest*>(
-        &_MoveDeliveryRobotRequest_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 7;
-  friend void swap(MoveDeliveryRobotRequest& a, MoveDeliveryRobotRequest& b) { a.Swap(&b); }
-  inline void Swap(MoveDeliveryRobotRequest* other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(MoveDeliveryRobotRequest* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  MoveDeliveryRobotRequest* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<MoveDeliveryRobotRequest>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const MoveDeliveryRobotRequest& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const MoveDeliveryRobotRequest& from) { MoveDeliveryRobotRequest::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* _InternalSerialize(
-      const MessageLite& msg, ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(MoveDeliveryRobotRequest* other);
- private:
-  template <typename T>
-  friend ::absl::string_view(
-      ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "smart_pkg_delivery.MoveDeliveryRobotRequest"; }
-
- protected:
-  explicit MoveDeliveryRobotRequest(::google::protobuf::Arena* arena);
-  MoveDeliveryRobotRequest(::google::protobuf::Arena* arena, const MoveDeliveryRobotRequest& from);
-  MoveDeliveryRobotRequest(::google::protobuf::Arena* arena, MoveDeliveryRobotRequest&& from) noexcept
-      : MoveDeliveryRobotRequest(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static void* PlacementNew_(const void*, void* mem,
-                             ::google::protobuf::Arena* arena);
-  static constexpr auto InternalNewImpl_();
-  static const ::google::protobuf::internal::ClassDataFull _class_data_;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kDestinationAddressFieldNumber = 2,
-    kDeliveryRobotIdFieldNumber = 1,
-  };
-  // .smart_pkg_delivery.Address destination_address = 2;
-  bool has_destination_address() const;
-  void clear_destination_address() ;
-  const ::smart_pkg_delivery::Address& destination_address() const;
-  PROTOBUF_NODISCARD ::smart_pkg_delivery::Address* release_destination_address();
-  ::smart_pkg_delivery::Address* mutable_destination_address();
-  void set_allocated_destination_address(::smart_pkg_delivery::Address* value);
-  void unsafe_arena_set_allocated_destination_address(::smart_pkg_delivery::Address* value);
-  ::smart_pkg_delivery::Address* unsafe_arena_release_destination_address();
-
-  private:
-  const ::smart_pkg_delivery::Address& _internal_destination_address() const;
-  ::smart_pkg_delivery::Address* _internal_mutable_destination_address();
-
-  public:
-  // uint32 delivery_robot_id = 1;
-  bool has_delivery_robot_id() const;
-  void clear_delivery_robot_id() ;
-  ::uint32_t delivery_robot_id() const;
-  void set_delivery_robot_id(::uint32_t value);
-
-  private:
-  ::uint32_t _internal_delivery_robot_id() const;
-  void _internal_set_delivery_robot_id(::uint32_t value);
-
-  public:
-  // @@protoc_insertion_point(class_scope:smart_pkg_delivery.MoveDeliveryRobotRequest)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      1, 2, 1,
-      0, 2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const MoveDeliveryRobotRequest& from_msg);
-    ::google::protobuf::internal::HasBits<1> _has_bits_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
-    ::smart_pkg_delivery::Address* destination_address_;
-    ::uint32_t delivery_robot_id_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -7582,7 +7366,7 @@ inline void MoveDeliveryRobotRequest::_internal_set_delivery_robot_id(::uint32_t
   _impl_.delivery_robot_id_ = value;
 }
 
-// .smart_pkg_delivery.Address destination_address = 2;
+// .smart_pkg_delivery.AptAddress destination_address = 2;
 inline bool MoveDeliveryRobotRequest::has_destination_address() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.destination_address_ != nullptr);
@@ -7593,21 +7377,21 @@ inline void MoveDeliveryRobotRequest::clear_destination_address() {
   if (_impl_.destination_address_ != nullptr) _impl_.destination_address_->Clear();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const ::smart_pkg_delivery::Address& MoveDeliveryRobotRequest::_internal_destination_address() const {
+inline const ::smart_pkg_delivery::AptAddress& MoveDeliveryRobotRequest::_internal_destination_address() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::smart_pkg_delivery::Address* p = _impl_.destination_address_;
-  return p != nullptr ? *p : reinterpret_cast<const ::smart_pkg_delivery::Address&>(::smart_pkg_delivery::_Address_default_instance_);
+  const ::smart_pkg_delivery::AptAddress* p = _impl_.destination_address_;
+  return p != nullptr ? *p : reinterpret_cast<const ::smart_pkg_delivery::AptAddress&>(::smart_pkg_delivery::_AptAddress_default_instance_);
 }
-inline const ::smart_pkg_delivery::Address& MoveDeliveryRobotRequest::destination_address() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline const ::smart_pkg_delivery::AptAddress& MoveDeliveryRobotRequest::destination_address() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_get:smart_pkg_delivery.MoveDeliveryRobotRequest.destination_address)
   return _internal_destination_address();
 }
-inline void MoveDeliveryRobotRequest::unsafe_arena_set_allocated_destination_address(::smart_pkg_delivery::Address* value) {
+inline void MoveDeliveryRobotRequest::unsafe_arena_set_allocated_destination_address(::smart_pkg_delivery::AptAddress* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.destination_address_);
   }
-  _impl_.destination_address_ = reinterpret_cast<::smart_pkg_delivery::Address*>(value);
+  _impl_.destination_address_ = reinterpret_cast<::smart_pkg_delivery::AptAddress*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
@@ -7615,11 +7399,11 @@ inline void MoveDeliveryRobotRequest::unsafe_arena_set_allocated_destination_add
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:smart_pkg_delivery.MoveDeliveryRobotRequest.destination_address)
 }
-inline ::smart_pkg_delivery::Address* MoveDeliveryRobotRequest::release_destination_address() {
+inline ::smart_pkg_delivery::AptAddress* MoveDeliveryRobotRequest::release_destination_address() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::smart_pkg_delivery::Address* released = _impl_.destination_address_;
+  ::smart_pkg_delivery::AptAddress* released = _impl_.destination_address_;
   _impl_.destination_address_ = nullptr;
   if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
     auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
@@ -7634,30 +7418,30 @@ inline ::smart_pkg_delivery::Address* MoveDeliveryRobotRequest::release_destinat
   }
   return released;
 }
-inline ::smart_pkg_delivery::Address* MoveDeliveryRobotRequest::unsafe_arena_release_destination_address() {
+inline ::smart_pkg_delivery::AptAddress* MoveDeliveryRobotRequest::unsafe_arena_release_destination_address() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   // @@protoc_insertion_point(field_release:smart_pkg_delivery.MoveDeliveryRobotRequest.destination_address)
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::smart_pkg_delivery::Address* temp = _impl_.destination_address_;
+  ::smart_pkg_delivery::AptAddress* temp = _impl_.destination_address_;
   _impl_.destination_address_ = nullptr;
   return temp;
 }
-inline ::smart_pkg_delivery::Address* MoveDeliveryRobotRequest::_internal_mutable_destination_address() {
+inline ::smart_pkg_delivery::AptAddress* MoveDeliveryRobotRequest::_internal_mutable_destination_address() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.destination_address_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::smart_pkg_delivery::Address>(GetArena());
-    _impl_.destination_address_ = reinterpret_cast<::smart_pkg_delivery::Address*>(p);
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::smart_pkg_delivery::AptAddress>(GetArena());
+    _impl_.destination_address_ = reinterpret_cast<::smart_pkg_delivery::AptAddress*>(p);
   }
   return _impl_.destination_address_;
 }
-inline ::smart_pkg_delivery::Address* MoveDeliveryRobotRequest::mutable_destination_address() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::smart_pkg_delivery::AptAddress* MoveDeliveryRobotRequest::mutable_destination_address() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   _impl_._has_bits_[0] |= 0x00000001u;
-  ::smart_pkg_delivery::Address* _msg = _internal_mutable_destination_address();
+  ::smart_pkg_delivery::AptAddress* _msg = _internal_mutable_destination_address();
   // @@protoc_insertion_point(field_mutable:smart_pkg_delivery.MoveDeliveryRobotRequest.destination_address)
   return _msg;
 }
-inline void MoveDeliveryRobotRequest::set_allocated_destination_address(::smart_pkg_delivery::Address* value) {
+inline void MoveDeliveryRobotRequest::set_allocated_destination_address(::smart_pkg_delivery::AptAddress* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (message_arena == nullptr) {
@@ -7674,7 +7458,7 @@ inline void MoveDeliveryRobotRequest::set_allocated_destination_address(::smart_
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
 
-  _impl_.destination_address_ = reinterpret_cast<::smart_pkg_delivery::Address*>(value);
+  _impl_.destination_address_ = reinterpret_cast<::smart_pkg_delivery::AptAddress*>(value);
   // @@protoc_insertion_point(field_set_allocated:smart_pkg_delivery.MoveDeliveryRobotRequest.destination_address)
 }
 
@@ -7818,7 +7602,7 @@ inline void SetElevatorStatusRequest::set_allocated_elevator_status(::smart_pkg_
 
 // PkgArrivalEvent
 
-// .smart_pkg_delivery.Address address = 1;
+// .smart_pkg_delivery.AptAddress address = 1;
 inline bool PkgArrivalEvent::has_address() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.address_ != nullptr);
@@ -7829,21 +7613,21 @@ inline void PkgArrivalEvent::clear_address() {
   if (_impl_.address_ != nullptr) _impl_.address_->Clear();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const ::smart_pkg_delivery::Address& PkgArrivalEvent::_internal_address() const {
+inline const ::smart_pkg_delivery::AptAddress& PkgArrivalEvent::_internal_address() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::smart_pkg_delivery::Address* p = _impl_.address_;
-  return p != nullptr ? *p : reinterpret_cast<const ::smart_pkg_delivery::Address&>(::smart_pkg_delivery::_Address_default_instance_);
+  const ::smart_pkg_delivery::AptAddress* p = _impl_.address_;
+  return p != nullptr ? *p : reinterpret_cast<const ::smart_pkg_delivery::AptAddress&>(::smart_pkg_delivery::_AptAddress_default_instance_);
 }
-inline const ::smart_pkg_delivery::Address& PkgArrivalEvent::address() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline const ::smart_pkg_delivery::AptAddress& PkgArrivalEvent::address() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_get:smart_pkg_delivery.PkgArrivalEvent.address)
   return _internal_address();
 }
-inline void PkgArrivalEvent::unsafe_arena_set_allocated_address(::smart_pkg_delivery::Address* value) {
+inline void PkgArrivalEvent::unsafe_arena_set_allocated_address(::smart_pkg_delivery::AptAddress* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.address_);
   }
-  _impl_.address_ = reinterpret_cast<::smart_pkg_delivery::Address*>(value);
+  _impl_.address_ = reinterpret_cast<::smart_pkg_delivery::AptAddress*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
@@ -7851,11 +7635,11 @@ inline void PkgArrivalEvent::unsafe_arena_set_allocated_address(::smart_pkg_deli
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:smart_pkg_delivery.PkgArrivalEvent.address)
 }
-inline ::smart_pkg_delivery::Address* PkgArrivalEvent::release_address() {
+inline ::smart_pkg_delivery::AptAddress* PkgArrivalEvent::release_address() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::smart_pkg_delivery::Address* released = _impl_.address_;
+  ::smart_pkg_delivery::AptAddress* released = _impl_.address_;
   _impl_.address_ = nullptr;
   if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
     auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
@@ -7870,30 +7654,30 @@ inline ::smart_pkg_delivery::Address* PkgArrivalEvent::release_address() {
   }
   return released;
 }
-inline ::smart_pkg_delivery::Address* PkgArrivalEvent::unsafe_arena_release_address() {
+inline ::smart_pkg_delivery::AptAddress* PkgArrivalEvent::unsafe_arena_release_address() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   // @@protoc_insertion_point(field_release:smart_pkg_delivery.PkgArrivalEvent.address)
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::smart_pkg_delivery::Address* temp = _impl_.address_;
+  ::smart_pkg_delivery::AptAddress* temp = _impl_.address_;
   _impl_.address_ = nullptr;
   return temp;
 }
-inline ::smart_pkg_delivery::Address* PkgArrivalEvent::_internal_mutable_address() {
+inline ::smart_pkg_delivery::AptAddress* PkgArrivalEvent::_internal_mutable_address() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.address_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::smart_pkg_delivery::Address>(GetArena());
-    _impl_.address_ = reinterpret_cast<::smart_pkg_delivery::Address*>(p);
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::smart_pkg_delivery::AptAddress>(GetArena());
+    _impl_.address_ = reinterpret_cast<::smart_pkg_delivery::AptAddress*>(p);
   }
   return _impl_.address_;
 }
-inline ::smart_pkg_delivery::Address* PkgArrivalEvent::mutable_address() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::smart_pkg_delivery::AptAddress* PkgArrivalEvent::mutable_address() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   _impl_._has_bits_[0] |= 0x00000001u;
-  ::smart_pkg_delivery::Address* _msg = _internal_mutable_address();
+  ::smart_pkg_delivery::AptAddress* _msg = _internal_mutable_address();
   // @@protoc_insertion_point(field_mutable:smart_pkg_delivery.PkgArrivalEvent.address)
   return _msg;
 }
-inline void PkgArrivalEvent::set_allocated_address(::smart_pkg_delivery::Address* value) {
+inline void PkgArrivalEvent::set_allocated_address(::smart_pkg_delivery::AptAddress* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (message_arena == nullptr) {
@@ -7910,7 +7694,7 @@ inline void PkgArrivalEvent::set_allocated_address(::smart_pkg_delivery::Address
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
 
-  _impl_.address_ = reinterpret_cast<::smart_pkg_delivery::Address*>(value);
+  _impl_.address_ = reinterpret_cast<::smart_pkg_delivery::AptAddress*>(value);
   // @@protoc_insertion_point(field_set_allocated:smart_pkg_delivery.PkgArrivalEvent.address)
 }
 
@@ -8592,7 +8376,7 @@ inline void User::_internal_set_id(::uint32_t value) {
   _impl_.id_ = value;
 }
 
-// .smart_pkg_delivery.Address address = 2;
+// .smart_pkg_delivery.AptAddress address = 2;
 inline bool User::has_address() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.address_ != nullptr);
@@ -8603,21 +8387,21 @@ inline void User::clear_address() {
   if (_impl_.address_ != nullptr) _impl_.address_->Clear();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const ::smart_pkg_delivery::Address& User::_internal_address() const {
+inline const ::smart_pkg_delivery::AptAddress& User::_internal_address() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::smart_pkg_delivery::Address* p = _impl_.address_;
-  return p != nullptr ? *p : reinterpret_cast<const ::smart_pkg_delivery::Address&>(::smart_pkg_delivery::_Address_default_instance_);
+  const ::smart_pkg_delivery::AptAddress* p = _impl_.address_;
+  return p != nullptr ? *p : reinterpret_cast<const ::smart_pkg_delivery::AptAddress&>(::smart_pkg_delivery::_AptAddress_default_instance_);
 }
-inline const ::smart_pkg_delivery::Address& User::address() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline const ::smart_pkg_delivery::AptAddress& User::address() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_get:smart_pkg_delivery.User.address)
   return _internal_address();
 }
-inline void User::unsafe_arena_set_allocated_address(::smart_pkg_delivery::Address* value) {
+inline void User::unsafe_arena_set_allocated_address(::smart_pkg_delivery::AptAddress* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.address_);
   }
-  _impl_.address_ = reinterpret_cast<::smart_pkg_delivery::Address*>(value);
+  _impl_.address_ = reinterpret_cast<::smart_pkg_delivery::AptAddress*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
@@ -8625,11 +8409,11 @@ inline void User::unsafe_arena_set_allocated_address(::smart_pkg_delivery::Addre
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:smart_pkg_delivery.User.address)
 }
-inline ::smart_pkg_delivery::Address* User::release_address() {
+inline ::smart_pkg_delivery::AptAddress* User::release_address() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::smart_pkg_delivery::Address* released = _impl_.address_;
+  ::smart_pkg_delivery::AptAddress* released = _impl_.address_;
   _impl_.address_ = nullptr;
   if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
     auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
@@ -8644,30 +8428,30 @@ inline ::smart_pkg_delivery::Address* User::release_address() {
   }
   return released;
 }
-inline ::smart_pkg_delivery::Address* User::unsafe_arena_release_address() {
+inline ::smart_pkg_delivery::AptAddress* User::unsafe_arena_release_address() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   // @@protoc_insertion_point(field_release:smart_pkg_delivery.User.address)
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::smart_pkg_delivery::Address* temp = _impl_.address_;
+  ::smart_pkg_delivery::AptAddress* temp = _impl_.address_;
   _impl_.address_ = nullptr;
   return temp;
 }
-inline ::smart_pkg_delivery::Address* User::_internal_mutable_address() {
+inline ::smart_pkg_delivery::AptAddress* User::_internal_mutable_address() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.address_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::smart_pkg_delivery::Address>(GetArena());
-    _impl_.address_ = reinterpret_cast<::smart_pkg_delivery::Address*>(p);
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::smart_pkg_delivery::AptAddress>(GetArena());
+    _impl_.address_ = reinterpret_cast<::smart_pkg_delivery::AptAddress*>(p);
   }
   return _impl_.address_;
 }
-inline ::smart_pkg_delivery::Address* User::mutable_address() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::smart_pkg_delivery::AptAddress* User::mutable_address() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   _impl_._has_bits_[0] |= 0x00000001u;
-  ::smart_pkg_delivery::Address* _msg = _internal_mutable_address();
+  ::smart_pkg_delivery::AptAddress* _msg = _internal_mutable_address();
   // @@protoc_insertion_point(field_mutable:smart_pkg_delivery.User.address)
   return _msg;
 }
-inline void User::set_allocated_address(::smart_pkg_delivery::Address* value) {
+inline void User::set_allocated_address(::smart_pkg_delivery::AptAddress* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (message_arena == nullptr) {
@@ -8684,7 +8468,7 @@ inline void User::set_allocated_address(::smart_pkg_delivery::Address* value) {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
 
-  _impl_.address_ = reinterpret_cast<::smart_pkg_delivery::Address*>(value);
+  _impl_.address_ = reinterpret_cast<::smart_pkg_delivery::AptAddress*>(value);
   // @@protoc_insertion_point(field_set_allocated:smart_pkg_delivery.User.address)
 }
 
@@ -8720,7 +8504,7 @@ inline void Pkg::_internal_set_id(::uint32_t value) {
   _impl_.id_ = value;
 }
 
-// .smart_pkg_delivery.Address address = 2;
+// .smart_pkg_delivery.AptAddress address = 2;
 inline bool Pkg::has_address() const {
   bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.address_ != nullptr);
@@ -8731,21 +8515,21 @@ inline void Pkg::clear_address() {
   if (_impl_.address_ != nullptr) _impl_.address_->Clear();
   _impl_._has_bits_[0] &= ~0x00000002u;
 }
-inline const ::smart_pkg_delivery::Address& Pkg::_internal_address() const {
+inline const ::smart_pkg_delivery::AptAddress& Pkg::_internal_address() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::smart_pkg_delivery::Address* p = _impl_.address_;
-  return p != nullptr ? *p : reinterpret_cast<const ::smart_pkg_delivery::Address&>(::smart_pkg_delivery::_Address_default_instance_);
+  const ::smart_pkg_delivery::AptAddress* p = _impl_.address_;
+  return p != nullptr ? *p : reinterpret_cast<const ::smart_pkg_delivery::AptAddress&>(::smart_pkg_delivery::_AptAddress_default_instance_);
 }
-inline const ::smart_pkg_delivery::Address& Pkg::address() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline const ::smart_pkg_delivery::AptAddress& Pkg::address() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_get:smart_pkg_delivery.Pkg.address)
   return _internal_address();
 }
-inline void Pkg::unsafe_arena_set_allocated_address(::smart_pkg_delivery::Address* value) {
+inline void Pkg::unsafe_arena_set_allocated_address(::smart_pkg_delivery::AptAddress* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.address_);
   }
-  _impl_.address_ = reinterpret_cast<::smart_pkg_delivery::Address*>(value);
+  _impl_.address_ = reinterpret_cast<::smart_pkg_delivery::AptAddress*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000002u;
   } else {
@@ -8753,11 +8537,11 @@ inline void Pkg::unsafe_arena_set_allocated_address(::smart_pkg_delivery::Addres
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:smart_pkg_delivery.Pkg.address)
 }
-inline ::smart_pkg_delivery::Address* Pkg::release_address() {
+inline ::smart_pkg_delivery::AptAddress* Pkg::release_address() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
   _impl_._has_bits_[0] &= ~0x00000002u;
-  ::smart_pkg_delivery::Address* released = _impl_.address_;
+  ::smart_pkg_delivery::AptAddress* released = _impl_.address_;
   _impl_.address_ = nullptr;
   if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
     auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
@@ -8772,30 +8556,30 @@ inline ::smart_pkg_delivery::Address* Pkg::release_address() {
   }
   return released;
 }
-inline ::smart_pkg_delivery::Address* Pkg::unsafe_arena_release_address() {
+inline ::smart_pkg_delivery::AptAddress* Pkg::unsafe_arena_release_address() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   // @@protoc_insertion_point(field_release:smart_pkg_delivery.Pkg.address)
 
   _impl_._has_bits_[0] &= ~0x00000002u;
-  ::smart_pkg_delivery::Address* temp = _impl_.address_;
+  ::smart_pkg_delivery::AptAddress* temp = _impl_.address_;
   _impl_.address_ = nullptr;
   return temp;
 }
-inline ::smart_pkg_delivery::Address* Pkg::_internal_mutable_address() {
+inline ::smart_pkg_delivery::AptAddress* Pkg::_internal_mutable_address() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.address_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::smart_pkg_delivery::Address>(GetArena());
-    _impl_.address_ = reinterpret_cast<::smart_pkg_delivery::Address*>(p);
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::smart_pkg_delivery::AptAddress>(GetArena());
+    _impl_.address_ = reinterpret_cast<::smart_pkg_delivery::AptAddress*>(p);
   }
   return _impl_.address_;
 }
-inline ::smart_pkg_delivery::Address* Pkg::mutable_address() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::smart_pkg_delivery::AptAddress* Pkg::mutable_address() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   _impl_._has_bits_[0] |= 0x00000002u;
-  ::smart_pkg_delivery::Address* _msg = _internal_mutable_address();
+  ::smart_pkg_delivery::AptAddress* _msg = _internal_mutable_address();
   // @@protoc_insertion_point(field_mutable:smart_pkg_delivery.Pkg.address)
   return _msg;
 }
-inline void Pkg::set_allocated_address(::smart_pkg_delivery::Address* value) {
+inline void Pkg::set_allocated_address(::smart_pkg_delivery::AptAddress* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (message_arena == nullptr) {
@@ -8812,7 +8596,7 @@ inline void Pkg::set_allocated_address(::smart_pkg_delivery::Address* value) {
     _impl_._has_bits_[0] &= ~0x00000002u;
   }
 
-  _impl_.address_ = reinterpret_cast<::smart_pkg_delivery::Address*>(value);
+  _impl_.address_ = reinterpret_cast<::smart_pkg_delivery::AptAddress*>(value);
   // @@protoc_insertion_point(field_set_allocated:smart_pkg_delivery.Pkg.address)
 }
 
@@ -8943,223 +8727,131 @@ inline void Pkg::set_allocated_photo_bytes(std::string* value) {
 
 // -------------------------------------------------------------------
 
-// Address
+// AptAddress
 
-// .smart_pkg_delivery.ApartmentAddress apartment_address = 1;
-inline bool Address::has_apartment_address() const {
-  return address_type_case() == kApartmentAddress;
-}
-inline bool Address::_internal_has_apartment_address() const {
-  return address_type_case() == kApartmentAddress;
-}
-inline void Address::set_has_apartment_address() {
-  _impl_._oneof_case_[0] = kApartmentAddress;
-}
-inline void Address::clear_apartment_address() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (address_type_case() == kApartmentAddress) {
-    if (GetArena() == nullptr) {
-      delete _impl_.address_type_.apartment_address_;
-    } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.address_type_.apartment_address_);
-    }
-    clear_has_address_type();
-  }
-}
-inline ::smart_pkg_delivery::ApartmentAddress* Address::release_apartment_address() {
-  // @@protoc_insertion_point(field_release:smart_pkg_delivery.Address.apartment_address)
-  if (address_type_case() == kApartmentAddress) {
-    clear_has_address_type();
-    auto* temp = _impl_.address_type_.apartment_address_;
-    if (GetArena() != nullptr) {
-      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
-    }
-    _impl_.address_type_.apartment_address_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline const ::smart_pkg_delivery::ApartmentAddress& Address::_internal_apartment_address() const {
-  return address_type_case() == kApartmentAddress ? *_impl_.address_type_.apartment_address_ : reinterpret_cast<::smart_pkg_delivery::ApartmentAddress&>(::smart_pkg_delivery::_ApartmentAddress_default_instance_);
-}
-inline const ::smart_pkg_delivery::ApartmentAddress& Address::apartment_address() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:smart_pkg_delivery.Address.apartment_address)
-  return _internal_apartment_address();
-}
-inline ::smart_pkg_delivery::ApartmentAddress* Address::unsafe_arena_release_apartment_address() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:smart_pkg_delivery.Address.apartment_address)
-  if (address_type_case() == kApartmentAddress) {
-    clear_has_address_type();
-    auto* temp = _impl_.address_type_.apartment_address_;
-    _impl_.address_type_.apartment_address_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline void Address::unsafe_arena_set_allocated_apartment_address(::smart_pkg_delivery::ApartmentAddress* value) {
-  // We rely on the oneof clear method to free the earlier contents
-  // of this oneof. We can directly use the pointer we're given to
-  // set the new value.
-  clear_address_type();
-  if (value) {
-    set_has_apartment_address();
-    _impl_.address_type_.apartment_address_ = value;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:smart_pkg_delivery.Address.apartment_address)
-}
-inline ::smart_pkg_delivery::ApartmentAddress* Address::_internal_mutable_apartment_address() {
-  if (address_type_case() != kApartmentAddress) {
-    clear_address_type();
-    set_has_apartment_address();
-    _impl_.address_type_.apartment_address_ =
-        ::google::protobuf::Message::DefaultConstruct<::smart_pkg_delivery::ApartmentAddress>(GetArena());
-  }
-  return _impl_.address_type_.apartment_address_;
-}
-inline ::smart_pkg_delivery::ApartmentAddress* Address::mutable_apartment_address() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::smart_pkg_delivery::ApartmentAddress* _msg = _internal_mutable_apartment_address();
-  // @@protoc_insertion_point(field_mutable:smart_pkg_delivery.Address.apartment_address)
-  return _msg;
-}
-
-inline bool Address::has_address_type() const {
-  return address_type_case() != ADDRESS_TYPE_NOT_SET;
-}
-inline void Address::clear_has_address_type() {
-  _impl_._oneof_case_[0] = ADDRESS_TYPE_NOT_SET;
-}
-inline Address::AddressTypeCase Address::address_type_case() const {
-  return Address::AddressTypeCase(_impl_._oneof_case_[0]);
-}
-// -------------------------------------------------------------------
-
-// ApartmentAddress
-
-// string apartment_complex = 1;
-inline bool ApartmentAddress::has_apartment_complex() const {
+// string apt_complex = 1;
+inline bool AptAddress::has_apt_complex() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   return value;
 }
-inline void ApartmentAddress::clear_apartment_complex() {
+inline void AptAddress::clear_apt_complex() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.apartment_complex_.ClearToEmpty();
+  _impl_.apt_complex_.ClearToEmpty();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const std::string& ApartmentAddress::apartment_complex() const
+inline const std::string& AptAddress::apt_complex() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:smart_pkg_delivery.ApartmentAddress.apartment_complex)
-  return _internal_apartment_complex();
+  // @@protoc_insertion_point(field_get:smart_pkg_delivery.AptAddress.apt_complex)
+  return _internal_apt_complex();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void ApartmentAddress::set_apartment_complex(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void AptAddress::set_apt_complex(Arg_&& arg,
                                                      Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
-  _impl_.apartment_complex_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:smart_pkg_delivery.ApartmentAddress.apartment_complex)
+  _impl_.apt_complex_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:smart_pkg_delivery.AptAddress.apt_complex)
 }
-inline std::string* ApartmentAddress::mutable_apartment_complex() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_apartment_complex();
-  // @@protoc_insertion_point(field_mutable:smart_pkg_delivery.ApartmentAddress.apartment_complex)
+inline std::string* AptAddress::mutable_apt_complex() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_apt_complex();
+  // @@protoc_insertion_point(field_mutable:smart_pkg_delivery.AptAddress.apt_complex)
   return _s;
 }
-inline const std::string& ApartmentAddress::_internal_apartment_complex() const {
+inline const std::string& AptAddress::_internal_apt_complex() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.apartment_complex_.Get();
+  return _impl_.apt_complex_.Get();
 }
-inline void ApartmentAddress::_internal_set_apartment_complex(const std::string& value) {
+inline void AptAddress::_internal_set_apt_complex(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
-  _impl_.apartment_complex_.Set(value, GetArena());
+  _impl_.apt_complex_.Set(value, GetArena());
 }
-inline std::string* ApartmentAddress::_internal_mutable_apartment_complex() {
+inline std::string* AptAddress::_internal_mutable_apt_complex() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
-  return _impl_.apartment_complex_.Mutable( GetArena());
+  return _impl_.apt_complex_.Mutable( GetArena());
 }
-inline std::string* ApartmentAddress::release_apartment_complex() {
+inline std::string* AptAddress::release_apt_complex() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:smart_pkg_delivery.ApartmentAddress.apartment_complex)
+  // @@protoc_insertion_point(field_release:smart_pkg_delivery.AptAddress.apt_complex)
   if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
     return nullptr;
   }
   _impl_._has_bits_[0] &= ~0x00000001u;
-  auto* released = _impl_.apartment_complex_.Release();
+  auto* released = _impl_.apt_complex_.Release();
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
-    _impl_.apartment_complex_.Set("", GetArena());
+    _impl_.apt_complex_.Set("", GetArena());
   }
   return released;
 }
-inline void ApartmentAddress::set_allocated_apartment_complex(std::string* value) {
+inline void AptAddress::set_allocated_apt_complex(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
-  _impl_.apartment_complex_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.apartment_complex_.IsDefault()) {
-    _impl_.apartment_complex_.Set("", GetArena());
+  _impl_.apt_complex_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.apt_complex_.IsDefault()) {
+    _impl_.apt_complex_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:smart_pkg_delivery.ApartmentAddress.apartment_complex)
+  // @@protoc_insertion_point(field_set_allocated:smart_pkg_delivery.AptAddress.apt_complex)
 }
 
-// uint32 building_number = 2;
-inline bool ApartmentAddress::has_building_number() const {
+// uint32 building_num = 2;
+inline bool AptAddress::has_building_num() const {
   bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
   return value;
 }
-inline void ApartmentAddress::clear_building_number() {
+inline void AptAddress::clear_building_num() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.building_number_ = 0u;
+  _impl_.building_num_ = 0u;
   _impl_._has_bits_[0] &= ~0x00000002u;
 }
-inline ::uint32_t ApartmentAddress::building_number() const {
-  // @@protoc_insertion_point(field_get:smart_pkg_delivery.ApartmentAddress.building_number)
-  return _internal_building_number();
+inline ::uint32_t AptAddress::building_num() const {
+  // @@protoc_insertion_point(field_get:smart_pkg_delivery.AptAddress.building_num)
+  return _internal_building_num();
 }
-inline void ApartmentAddress::set_building_number(::uint32_t value) {
-  _internal_set_building_number(value);
+inline void AptAddress::set_building_num(::uint32_t value) {
+  _internal_set_building_num(value);
   _impl_._has_bits_[0] |= 0x00000002u;
-  // @@protoc_insertion_point(field_set:smart_pkg_delivery.ApartmentAddress.building_number)
+  // @@protoc_insertion_point(field_set:smart_pkg_delivery.AptAddress.building_num)
 }
-inline ::uint32_t ApartmentAddress::_internal_building_number() const {
+inline ::uint32_t AptAddress::_internal_building_num() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.building_number_;
+  return _impl_.building_num_;
 }
-inline void ApartmentAddress::_internal_set_building_number(::uint32_t value) {
+inline void AptAddress::_internal_set_building_num(::uint32_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.building_number_ = value;
+  _impl_.building_num_ = value;
 }
 
-// uint32 apartment_number = 3;
-inline bool ApartmentAddress::has_apartment_number() const {
+// uint32 unit_num = 3;
+inline bool AptAddress::has_unit_num() const {
   bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
   return value;
 }
-inline void ApartmentAddress::clear_apartment_number() {
+inline void AptAddress::clear_unit_num() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.apartment_number_ = 0u;
+  _impl_.unit_num_ = 0u;
   _impl_._has_bits_[0] &= ~0x00000004u;
 }
-inline ::uint32_t ApartmentAddress::apartment_number() const {
-  // @@protoc_insertion_point(field_get:smart_pkg_delivery.ApartmentAddress.apartment_number)
-  return _internal_apartment_number();
+inline ::uint32_t AptAddress::unit_num() const {
+  // @@protoc_insertion_point(field_get:smart_pkg_delivery.AptAddress.unit_num)
+  return _internal_unit_num();
 }
-inline void ApartmentAddress::set_apartment_number(::uint32_t value) {
-  _internal_set_apartment_number(value);
+inline void AptAddress::set_unit_num(::uint32_t value) {
+  _internal_set_unit_num(value);
   _impl_._has_bits_[0] |= 0x00000004u;
-  // @@protoc_insertion_point(field_set:smart_pkg_delivery.ApartmentAddress.apartment_number)
+  // @@protoc_insertion_point(field_set:smart_pkg_delivery.AptAddress.unit_num)
 }
-inline ::uint32_t ApartmentAddress::_internal_apartment_number() const {
+inline ::uint32_t AptAddress::_internal_unit_num() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.apartment_number_;
+  return _impl_.unit_num_;
 }
-inline void ApartmentAddress::_internal_set_apartment_number(::uint32_t value) {
+inline void AptAddress::_internal_set_unit_num(::uint32_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.apartment_number_ = value;
+  _impl_.unit_num_ = value;
 }
 
 #ifdef __GNUC__

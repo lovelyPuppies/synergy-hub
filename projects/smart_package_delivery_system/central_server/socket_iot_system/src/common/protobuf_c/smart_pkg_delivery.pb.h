@@ -152,27 +152,20 @@ typedef struct _smart_pkg_delivery_PkgRoom {
     smart_pkg_delivery_PkgRoom_Locker lockers[10];
 } smart_pkg_delivery_PkgRoom;
 
-typedef struct _smart_pkg_delivery_ApartmentAddress {
-    bool has_apartment_complex;
-    char apartment_complex[128];
-    bool has_building_number;
-    uint32_t building_number;
-    bool has_apartment_number;
-    uint32_t apartment_number;
-} smart_pkg_delivery_ApartmentAddress;
-
-typedef struct _smart_pkg_delivery_Address {
-    pb_size_t which_address_type;
-    union {
-        smart_pkg_delivery_ApartmentAddress apartment_address;
-    } address_type;
-} smart_pkg_delivery_Address;
+typedef struct _smart_pkg_delivery_AptAddress {
+    bool has_apt_complex;
+    char apt_complex[128];
+    bool has_building_num;
+    uint32_t building_num;
+    bool has_unit_num;
+    uint32_t unit_num;
+} smart_pkg_delivery_AptAddress;
 
 typedef struct _smart_pkg_delivery_MoveDeliveryRobotRequest {
     bool has_delivery_robot_id;
     uint32_t delivery_robot_id;
     bool has_destination_address;
-    smart_pkg_delivery_Address destination_address;
+    smart_pkg_delivery_AptAddress destination_address;
 } smart_pkg_delivery_MoveDeliveryRobotRequest;
 
 /* -------------------------
@@ -207,7 +200,7 @@ typedef struct _smart_pkg_delivery_Request {
  ------------------------- */
 typedef struct _smart_pkg_delivery_PkgArrivalEvent {
     bool has_address;
-    smart_pkg_delivery_Address address; /* Pkg.Status pkg_status = 2; */
+    smart_pkg_delivery_AptAddress address; /* Pkg.Status pkg_status = 2; */
 } smart_pkg_delivery_PkgArrivalEvent;
 
 /* ⏬ Events; A one-way message that notifies the system about status updates without expecting any response. */
@@ -240,7 +233,7 @@ typedef struct _smart_pkg_delivery_User {
     bool has_id;
     uint32_t id;
     bool has_address;
-    smart_pkg_delivery_Address address;
+    smart_pkg_delivery_AptAddress address;
 } smart_pkg_delivery_User;
 
 /* 📦 */
@@ -248,7 +241,7 @@ typedef struct _smart_pkg_delivery_Pkg {
     bool has_id;
     uint32_t id;
     bool has_address;
-    smart_pkg_delivery_Address address;
+    smart_pkg_delivery_AptAddress address;
     bool has_sender_id;
     uint32_t sender_id;
     bool has_receiver_id;
@@ -349,7 +342,6 @@ extern "C" {
 
 
 
-
 /* Initializer values for message structs */
 #define smart_pkg_delivery_Request_init_default  {false, _smart_pkg_delivery_NodeType_MIN, false, 0, false, "", false, _smart_pkg_delivery_NodeType_MIN, false, 0, false, "", 0, {smart_pkg_delivery_GetPkgInfosRequest_init_default}}
 #define smart_pkg_delivery_Response_init_default {false, _smart_pkg_delivery_NodeType_MIN, false, 0, false, "", false, _smart_pkg_delivery_NodeType_MIN, false, 0, false, "", false, smart_pkg_delivery_AckStatus_init_default, false, smart_pkg_delivery_ExecutionStatus_init_default, 0, {smart_pkg_delivery_GetPkgInfoResponse_init_default}}
@@ -358,11 +350,11 @@ extern "C" {
 #define smart_pkg_delivery_ExecutionStatus_init_default {false, _smart_pkg_delivery_ExecutionStatus_StatusCode_MIN, false, ""}
 #define smart_pkg_delivery_GetPkgInfosRequest_init_default {false, 0}
 #define smart_pkg_delivery_GetPkgInfoResponse_init_default {0, {smart_pkg_delivery_Pkg_init_default, smart_pkg_delivery_Pkg_init_default, smart_pkg_delivery_Pkg_init_default, smart_pkg_delivery_Pkg_init_default, smart_pkg_delivery_Pkg_init_default, smart_pkg_delivery_Pkg_init_default, smart_pkg_delivery_Pkg_init_default, smart_pkg_delivery_Pkg_init_default, smart_pkg_delivery_Pkg_init_default, smart_pkg_delivery_Pkg_init_default}}
-#define smart_pkg_delivery_MoveDeliveryRobotRequest_init_default {false, 0, false, smart_pkg_delivery_Address_init_default}
+#define smart_pkg_delivery_MoveDeliveryRobotRequest_init_default {false, 0, false, smart_pkg_delivery_AptAddress_init_default}
 #define smart_pkg_delivery_MoveDeliveryRobotResponse_init_default {0}
 #define smart_pkg_delivery_SetElevatorStatusRequest_init_default {false, 0, false, smart_pkg_delivery_Elevator_Status_init_default}
 #define smart_pkg_delivery_SetElevatorStatusResponse_init_default {0}
-#define smart_pkg_delivery_PkgArrivalEvent_init_default {false, smart_pkg_delivery_Address_init_default}
+#define smart_pkg_delivery_PkgArrivalEvent_init_default {false, smart_pkg_delivery_AptAddress_init_default}
 #define smart_pkg_delivery_ElevatorStatusEvent_init_default {false, 0, false, smart_pkg_delivery_Elevator_Status_init_default}
 #define smart_pkg_delivery_DeliveryStatusEvent_init_default {false, 0, false, _smart_pkg_delivery_DeliveryRobot_DeliveryStatus_MIN}
 #define smart_pkg_delivery_Elevator_init_default {false, 0, false, smart_pkg_delivery_Elevator_Status_init_default}
@@ -370,10 +362,9 @@ extern "C" {
 #define smart_pkg_delivery_DeliveryRobot_init_default {false, 0, false, _smart_pkg_delivery_DeliveryRobot_DeliveryStatus_MIN}
 #define smart_pkg_delivery_PkgRoom_init_default  {false, 0, 0, {smart_pkg_delivery_PkgRoom_Locker_init_default, smart_pkg_delivery_PkgRoom_Locker_init_default, smart_pkg_delivery_PkgRoom_Locker_init_default, smart_pkg_delivery_PkgRoom_Locker_init_default, smart_pkg_delivery_PkgRoom_Locker_init_default, smart_pkg_delivery_PkgRoom_Locker_init_default, smart_pkg_delivery_PkgRoom_Locker_init_default, smart_pkg_delivery_PkgRoom_Locker_init_default, smart_pkg_delivery_PkgRoom_Locker_init_default, smart_pkg_delivery_PkgRoom_Locker_init_default}}
 #define smart_pkg_delivery_PkgRoom_Locker_init_default {false, 0, false, "", false, 0}
-#define smart_pkg_delivery_User_init_default     {false, 0, false, smart_pkg_delivery_Address_init_default}
-#define smart_pkg_delivery_Pkg_init_default      {false, 0, false, smart_pkg_delivery_Address_init_default, false, 0, false, 0}
-#define smart_pkg_delivery_Address_init_default  {0, {smart_pkg_delivery_ApartmentAddress_init_default}}
-#define smart_pkg_delivery_ApartmentAddress_init_default {false, "", false, 0, false, 0}
+#define smart_pkg_delivery_User_init_default     {false, 0, false, smart_pkg_delivery_AptAddress_init_default}
+#define smart_pkg_delivery_Pkg_init_default      {false, 0, false, smart_pkg_delivery_AptAddress_init_default, false, 0, false, 0}
+#define smart_pkg_delivery_AptAddress_init_default {false, "", false, 0, false, 0}
 #define smart_pkg_delivery_Request_init_zero     {false, _smart_pkg_delivery_NodeType_MIN, false, 0, false, "", false, _smart_pkg_delivery_NodeType_MIN, false, 0, false, "", 0, {smart_pkg_delivery_GetPkgInfosRequest_init_zero}}
 #define smart_pkg_delivery_Response_init_zero    {false, _smart_pkg_delivery_NodeType_MIN, false, 0, false, "", false, _smart_pkg_delivery_NodeType_MIN, false, 0, false, "", false, smart_pkg_delivery_AckStatus_init_zero, false, smart_pkg_delivery_ExecutionStatus_init_zero, 0, {smart_pkg_delivery_GetPkgInfoResponse_init_zero}}
 #define smart_pkg_delivery_NodeEvent_init_zero   {false, _smart_pkg_delivery_NodeType_MIN, false, 0, false, "", false, _smart_pkg_delivery_NodeType_MIN, false, 0, false, "", 0, {smart_pkg_delivery_PkgArrivalEvent_init_zero}}
@@ -381,11 +372,11 @@ extern "C" {
 #define smart_pkg_delivery_ExecutionStatus_init_zero {false, _smart_pkg_delivery_ExecutionStatus_StatusCode_MIN, false, ""}
 #define smart_pkg_delivery_GetPkgInfosRequest_init_zero {false, 0}
 #define smart_pkg_delivery_GetPkgInfoResponse_init_zero {0, {smart_pkg_delivery_Pkg_init_zero, smart_pkg_delivery_Pkg_init_zero, smart_pkg_delivery_Pkg_init_zero, smart_pkg_delivery_Pkg_init_zero, smart_pkg_delivery_Pkg_init_zero, smart_pkg_delivery_Pkg_init_zero, smart_pkg_delivery_Pkg_init_zero, smart_pkg_delivery_Pkg_init_zero, smart_pkg_delivery_Pkg_init_zero, smart_pkg_delivery_Pkg_init_zero}}
-#define smart_pkg_delivery_MoveDeliveryRobotRequest_init_zero {false, 0, false, smart_pkg_delivery_Address_init_zero}
+#define smart_pkg_delivery_MoveDeliveryRobotRequest_init_zero {false, 0, false, smart_pkg_delivery_AptAddress_init_zero}
 #define smart_pkg_delivery_MoveDeliveryRobotResponse_init_zero {0}
 #define smart_pkg_delivery_SetElevatorStatusRequest_init_zero {false, 0, false, smart_pkg_delivery_Elevator_Status_init_zero}
 #define smart_pkg_delivery_SetElevatorStatusResponse_init_zero {0}
-#define smart_pkg_delivery_PkgArrivalEvent_init_zero {false, smart_pkg_delivery_Address_init_zero}
+#define smart_pkg_delivery_PkgArrivalEvent_init_zero {false, smart_pkg_delivery_AptAddress_init_zero}
 #define smart_pkg_delivery_ElevatorStatusEvent_init_zero {false, 0, false, smart_pkg_delivery_Elevator_Status_init_zero}
 #define smart_pkg_delivery_DeliveryStatusEvent_init_zero {false, 0, false, _smart_pkg_delivery_DeliveryRobot_DeliveryStatus_MIN}
 #define smart_pkg_delivery_Elevator_init_zero    {false, 0, false, smart_pkg_delivery_Elevator_Status_init_zero}
@@ -393,10 +384,9 @@ extern "C" {
 #define smart_pkg_delivery_DeliveryRobot_init_zero {false, 0, false, _smart_pkg_delivery_DeliveryRobot_DeliveryStatus_MIN}
 #define smart_pkg_delivery_PkgRoom_init_zero     {false, 0, 0, {smart_pkg_delivery_PkgRoom_Locker_init_zero, smart_pkg_delivery_PkgRoom_Locker_init_zero, smart_pkg_delivery_PkgRoom_Locker_init_zero, smart_pkg_delivery_PkgRoom_Locker_init_zero, smart_pkg_delivery_PkgRoom_Locker_init_zero, smart_pkg_delivery_PkgRoom_Locker_init_zero, smart_pkg_delivery_PkgRoom_Locker_init_zero, smart_pkg_delivery_PkgRoom_Locker_init_zero, smart_pkg_delivery_PkgRoom_Locker_init_zero, smart_pkg_delivery_PkgRoom_Locker_init_zero}}
 #define smart_pkg_delivery_PkgRoom_Locker_init_zero {false, 0, false, "", false, 0}
-#define smart_pkg_delivery_User_init_zero        {false, 0, false, smart_pkg_delivery_Address_init_zero}
-#define smart_pkg_delivery_Pkg_init_zero         {false, 0, false, smart_pkg_delivery_Address_init_zero, false, 0, false, 0}
-#define smart_pkg_delivery_Address_init_zero     {0, {smart_pkg_delivery_ApartmentAddress_init_zero}}
-#define smart_pkg_delivery_ApartmentAddress_init_zero {false, "", false, 0, false, 0}
+#define smart_pkg_delivery_User_init_zero        {false, 0, false, smart_pkg_delivery_AptAddress_init_zero}
+#define smart_pkg_delivery_Pkg_init_zero         {false, 0, false, smart_pkg_delivery_AptAddress_init_zero, false, 0, false, 0}
+#define smart_pkg_delivery_AptAddress_init_zero  {false, "", false, 0, false, 0}
 
 /* Field tags (for use in manual encoding/decoding) */
 #define smart_pkg_delivery_AckStatus_code_tag    1
@@ -421,10 +411,9 @@ extern "C" {
 #define smart_pkg_delivery_PkgRoom_Locker_pkg_id_tag 3
 #define smart_pkg_delivery_PkgRoom_id_tag        1
 #define smart_pkg_delivery_PkgRoom_lockers_tag   2
-#define smart_pkg_delivery_ApartmentAddress_apartment_complex_tag 1
-#define smart_pkg_delivery_ApartmentAddress_building_number_tag 2
-#define smart_pkg_delivery_ApartmentAddress_apartment_number_tag 3
-#define smart_pkg_delivery_Address_apartment_address_tag 1
+#define smart_pkg_delivery_AptAddress_apt_complex_tag 1
+#define smart_pkg_delivery_AptAddress_building_num_tag 2
+#define smart_pkg_delivery_AptAddress_unit_num_tag 3
 #define smart_pkg_delivery_MoveDeliveryRobotRequest_delivery_robot_id_tag 1
 #define smart_pkg_delivery_MoveDeliveryRobotRequest_destination_address_tag 2
 #define smart_pkg_delivery_Request_src_type_tag  1
@@ -546,7 +535,7 @@ X(a, STATIC,   OPTIONAL, UINT32,   delivery_robot_id,   1) \
 X(a, STATIC,   OPTIONAL, MESSAGE,  destination_address,   2)
 #define smart_pkg_delivery_MoveDeliveryRobotRequest_CALLBACK NULL
 #define smart_pkg_delivery_MoveDeliveryRobotRequest_DEFAULT NULL
-#define smart_pkg_delivery_MoveDeliveryRobotRequest_destination_address_MSGTYPE smart_pkg_delivery_Address
+#define smart_pkg_delivery_MoveDeliveryRobotRequest_destination_address_MSGTYPE smart_pkg_delivery_AptAddress
 
 #define smart_pkg_delivery_MoveDeliveryRobotResponse_FIELDLIST(X, a) \
 
@@ -569,7 +558,7 @@ X(a, STATIC,   OPTIONAL, MESSAGE,  elevator_status,   2)
 X(a, STATIC,   OPTIONAL, MESSAGE,  address,           1)
 #define smart_pkg_delivery_PkgArrivalEvent_CALLBACK NULL
 #define smart_pkg_delivery_PkgArrivalEvent_DEFAULT NULL
-#define smart_pkg_delivery_PkgArrivalEvent_address_MSGTYPE smart_pkg_delivery_Address
+#define smart_pkg_delivery_PkgArrivalEvent_address_MSGTYPE smart_pkg_delivery_AptAddress
 
 #define smart_pkg_delivery_ElevatorStatusEvent_FIELDLIST(X, a) \
 X(a, STATIC,   OPTIONAL, UINT32,   elevator_id,       1) \
@@ -622,7 +611,7 @@ X(a, STATIC,   OPTIONAL, UINT32,   id,                1) \
 X(a, STATIC,   OPTIONAL, MESSAGE,  address,           2)
 #define smart_pkg_delivery_User_CALLBACK NULL
 #define smart_pkg_delivery_User_DEFAULT NULL
-#define smart_pkg_delivery_User_address_MSGTYPE smart_pkg_delivery_Address
+#define smart_pkg_delivery_User_address_MSGTYPE smart_pkg_delivery_AptAddress
 
 #define smart_pkg_delivery_Pkg_FIELDLIST(X, a) \
 X(a, STATIC,   OPTIONAL, UINT32,   id,                1) \
@@ -631,20 +620,14 @@ X(a, STATIC,   OPTIONAL, UINT32,   sender_id,         3) \
 X(a, STATIC,   OPTIONAL, UINT32,   receiver_id,       4)
 #define smart_pkg_delivery_Pkg_CALLBACK NULL
 #define smart_pkg_delivery_Pkg_DEFAULT NULL
-#define smart_pkg_delivery_Pkg_address_MSGTYPE smart_pkg_delivery_Address
+#define smart_pkg_delivery_Pkg_address_MSGTYPE smart_pkg_delivery_AptAddress
 
-#define smart_pkg_delivery_Address_FIELDLIST(X, a) \
-X(a, STATIC,   ONEOF,    MESSAGE,  (address_type,apartment_address,address_type.apartment_address),   1)
-#define smart_pkg_delivery_Address_CALLBACK NULL
-#define smart_pkg_delivery_Address_DEFAULT NULL
-#define smart_pkg_delivery_Address_address_type_apartment_address_MSGTYPE smart_pkg_delivery_ApartmentAddress
-
-#define smart_pkg_delivery_ApartmentAddress_FIELDLIST(X, a) \
-X(a, STATIC,   OPTIONAL, STRING,   apartment_complex,   1) \
-X(a, STATIC,   OPTIONAL, UINT32,   building_number,   2) \
-X(a, STATIC,   OPTIONAL, UINT32,   apartment_number,   3)
-#define smart_pkg_delivery_ApartmentAddress_CALLBACK NULL
-#define smart_pkg_delivery_ApartmentAddress_DEFAULT NULL
+#define smart_pkg_delivery_AptAddress_FIELDLIST(X, a) \
+X(a, STATIC,   OPTIONAL, STRING,   apt_complex,       1) \
+X(a, STATIC,   OPTIONAL, UINT32,   building_num,      2) \
+X(a, STATIC,   OPTIONAL, UINT32,   unit_num,          3)
+#define smart_pkg_delivery_AptAddress_CALLBACK NULL
+#define smart_pkg_delivery_AptAddress_DEFAULT NULL
 
 extern const pb_msgdesc_t smart_pkg_delivery_Request_msg;
 extern const pb_msgdesc_t smart_pkg_delivery_Response_msg;
@@ -667,8 +650,7 @@ extern const pb_msgdesc_t smart_pkg_delivery_PkgRoom_msg;
 extern const pb_msgdesc_t smart_pkg_delivery_PkgRoom_Locker_msg;
 extern const pb_msgdesc_t smart_pkg_delivery_User_msg;
 extern const pb_msgdesc_t smart_pkg_delivery_Pkg_msg;
-extern const pb_msgdesc_t smart_pkg_delivery_Address_msg;
-extern const pb_msgdesc_t smart_pkg_delivery_ApartmentAddress_msg;
+extern const pb_msgdesc_t smart_pkg_delivery_AptAddress_msg;
 
 /* Defines for backwards compatibility with code written before nanopb-0.4.0 */
 #define smart_pkg_delivery_Request_fields &smart_pkg_delivery_Request_msg
@@ -692,34 +674,32 @@ extern const pb_msgdesc_t smart_pkg_delivery_ApartmentAddress_msg;
 #define smart_pkg_delivery_PkgRoom_Locker_fields &smart_pkg_delivery_PkgRoom_Locker_msg
 #define smart_pkg_delivery_User_fields &smart_pkg_delivery_User_msg
 #define smart_pkg_delivery_Pkg_fields &smart_pkg_delivery_Pkg_msg
-#define smart_pkg_delivery_Address_fields &smart_pkg_delivery_Address_msg
-#define smart_pkg_delivery_ApartmentAddress_fields &smart_pkg_delivery_ApartmentAddress_msg
+#define smart_pkg_delivery_AptAddress_fields &smart_pkg_delivery_AptAddress_msg
 
 /* Maximum encoded size of messages (where known) */
 #define SMART_PKG_DELIVERY_SMART_PKG_DELIVERY_PB_H_MAX_SIZE smart_pkg_delivery_Response_size
 #define smart_pkg_delivery_AckStatus_size        260
-#define smart_pkg_delivery_Address_size          145
-#define smart_pkg_delivery_ApartmentAddress_size 142
+#define smart_pkg_delivery_AptAddress_size       142
 #define smart_pkg_delivery_DeliveryRobot_size    8
 #define smart_pkg_delivery_DeliveryStatusEvent_size 8
 #define smart_pkg_delivery_ElevatorStatusEvent_size 16
 #define smart_pkg_delivery_Elevator_Status_size  8
 #define smart_pkg_delivery_Elevator_size         16
 #define smart_pkg_delivery_ExecutionStatus_size  260
-#define smart_pkg_delivery_GetPkgInfoResponse_size 1690
+#define smart_pkg_delivery_GetPkgInfoResponse_size 1660
 #define smart_pkg_delivery_GetPkgInfosRequest_size 6
-#define smart_pkg_delivery_MoveDeliveryRobotRequest_size 154
+#define smart_pkg_delivery_MoveDeliveryRobotRequest_size 151
 #define smart_pkg_delivery_MoveDeliveryRobotResponse_size 0
-#define smart_pkg_delivery_NodeEvent_size        297
-#define smart_pkg_delivery_PkgArrivalEvent_size  148
+#define smart_pkg_delivery_NodeEvent_size        294
+#define smart_pkg_delivery_PkgArrivalEvent_size  145
 #define smart_pkg_delivery_PkgRoom_Locker_size   45
 #define smart_pkg_delivery_PkgRoom_size          476
-#define smart_pkg_delivery_Pkg_size              166
-#define smart_pkg_delivery_Request_size          303
-#define smart_pkg_delivery_Response_size         2365
+#define smart_pkg_delivery_Pkg_size              163
+#define smart_pkg_delivery_Request_size          300
+#define smart_pkg_delivery_Response_size         2335
 #define smart_pkg_delivery_SetElevatorStatusRequest_size 16
 #define smart_pkg_delivery_SetElevatorStatusResponse_size 0
-#define smart_pkg_delivery_User_size             154
+#define smart_pkg_delivery_User_size             151
 
 #ifdef __cplusplus
 } /* extern "C" */

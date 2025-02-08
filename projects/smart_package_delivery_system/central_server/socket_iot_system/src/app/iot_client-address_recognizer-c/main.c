@@ -106,7 +106,7 @@ int main(int argc, char *argv[]) {
 
   // Convert the fourth argument (id) to uint32_t
   char *endptr;
-  uint32_t temp_local_msg_id = strtol(argv[4], &endptr, 10);
+  uint32_t temp_local_msg_id = strtol(argv[3], &endptr, 10);
   // Check for conversion errors
   if (*endptr != '\0') {
     printf("Error: Invalid ID format. Must be a numeric value.\n");
@@ -233,19 +233,46 @@ void *send_msg(void *arg) {
       // ⚙️📰
       init_local_node_event_msg(&local_node_event_msg);
       local_node_event_msg.dest_type = smart_pkg_delivery_NodeType_SERVER;
-      local_node_event_msg.event_type =
+      local_node_event_msg.which_event_type =
+          smart_pkg_delivery_NodeEvent_pkg_arrival_event_tag;
+      local_node_event_msg.event_type.pkg_arrival_event.address.building_num =
+          101;
+      local_node_event_msg.event_type.pkg_arrival_event.address.unit_num = 305;
 
-          // snprintf(request_msg.src_name, MSG_MAX_LEN, "%s", local_msg_source_name);
-
-          pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
-
-      // pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
-      // message.current_floor = 1;
-
+      pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
+      printf(
+          "AAA: %d \n",
+          local_node_event_msg.event_type.pkg_arrival_event.address.unit_num);
+      status = pb_encode(&stream, smart_pkg_delivery_NodeEvent_fields,
+                         &local_node_event_msg);
+      msg_length = stream.bytes_written;
+      printf("%zu \n", msg_length);
       // Send the message to the server, exit on failure.
-      if (write(*sock, name_msg, strlen(name_msg)) <= 0) {
+      // if (write(*sock, name_msg, strlen(name_msg)) <= 0) {
+      if (write(*sock, buffer, msg_length) <= 0) {
         *sock = -1;
         return NULL;
+      }
+      {
+        // init_local_node_event_msg(&local_node_event_msg);
+        pb_istream_t stream = pb_istream_from_buffer(buffer, msg_length);
+
+        /* Now we are ready to decode the message. */
+        status = pb_decode(&stream, smart_pkg_delivery_NodeEvent_fields,
+                           &local_node_event_msg);
+
+        /* Check for errors... */
+        if (!status) {
+          printf("Decoding failed: %s\n", PB_GET_ERROR(&stream));
+        }
+
+        /* Print the data contained in the message. */
+        printf("Your lucky number was %d!\n",
+               local_node_event_msg.event_type.pkg_arrival_event.address
+                   .building_num);
+        printf(
+            "Your lucky number was %d!\n",
+            local_node_event_msg.event_type.pkg_arrival_event.address.unit_num);
       }
     }
     // Exit if timeout and socket is closed

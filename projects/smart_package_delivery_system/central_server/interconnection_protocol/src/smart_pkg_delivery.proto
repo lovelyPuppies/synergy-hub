@@ -1,4 +1,5 @@
 edition = "2023";
+
 // <company_domain>.<project_name>.<feature_name>
 //    ; Smart Package Delivery
 package smart_pkg_delivery;
@@ -134,7 +135,7 @@ message GetPkgInfoResponse {
 
 message MoveDeliveryRobotRequest {
   uint32 delivery_robot_id = 1;
-  Address destination_address = 2;
+  AptAddress destination_address = 2;
 }
 
 message MoveDeliveryRobotResponse {}
@@ -152,7 +153,7 @@ message SetElevatorStatusResponse {}
 // -------------------------
 // -------------------------
 message PkgArrivalEvent {
-  Address address = 1;
+  AptAddress address = 1;
   // Pkg.Status pkg_status = 2;
 }
 
@@ -222,13 +223,13 @@ message PkgRoom {
 // 👤 User (Wall Pad)
 message User {
   uint32 id = 1;
-  Address address = 2;
+  AptAddress address = 2;
 }
 
 // 📦
 message Pkg {
   uint32 id = 1;
-  Address address = 2;
+  AptAddress address = 2;
   uint32 sender_id = 3;
   uint32 receiver_id = 4;
   // 🖼️ Raw JPEG Image Data (Binary); Estimated size for 1920x1080 JPEG: (1920 * 1080 * 3) / 10 (JPEG compression) ≈ 622 KB
@@ -239,15 +240,10 @@ message Pkg {
 // 🌀 Nodes 🔪 Sub-nodes
 // -------------------------
 
-message Address {
-  oneof address_type {
-    ApartmentAddress apartment_address = 1;
-  }
-}
 
-message ApartmentAddress {
-  string apartment_complex = 1;
-  uint32 building_number = 2;
-  uint32 apartment_number = 3;
+message AptAddress {
+  string apt_complex = 1;
+  uint32 building_num = 2;
+  uint32 unit_num = 3;
 }
 

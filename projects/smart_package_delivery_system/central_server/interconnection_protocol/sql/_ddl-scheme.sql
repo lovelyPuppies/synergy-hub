@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS pkgs (
     receiver_id         INT                               COMMENT '수령자 id',
     pkg_room_id         INT                               COMMENT '저장소 ID (pkg_rooms.id 참조)',
     locker_id           INT UNIQUE                        COMMENT '택배 보관함 안에 pkg 가 있다면, NOT NULL',
-    -- phone_number        VARCHAR(20)                       COMMENT '수령자 연락처. 월패드로 정보 전달 예정',
+    -- phone_num        VARCHAR(20)                       COMMENT '수령자 연락처. 월패드로 정보 전달 예정',
     delivery_status     ENUM('pending', 'in_transit', 'delivered') NOT NULL DEFAULT 'pending'
                                                           COMMENT '배송 상태 (pending, in_transit, delivered)',
     -- delivery_date       DATE                              COMMENT '🧪 배송 예정일',

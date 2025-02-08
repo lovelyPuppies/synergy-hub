@@ -19956,3 +19956,10 @@ NanoPB.. 무조건 콜백으로 구현해야 함.
 
 
 🪱 Return Value Optimization // Clang
+TODO: 추가
+  https://protobuf.dev/programming-guides/editions/#using-oneof
+  https://jpa.kapsi.fi/nanopb/docs/concepts.html#oneof
+
+지워ㅜㄴ하는데.. 분명
+
+  https://github.com/nanopb/nanopb/blob/master/generator/proto/google/protobuf/descriptor.proto

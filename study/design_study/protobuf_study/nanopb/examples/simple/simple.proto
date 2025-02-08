@@ -4,6 +4,6 @@
 edition = "2023";
 
 message SimpleMessage {
-    int32 lucky_number = 1;
+  int32 lucky_number = 1;
 }
 
