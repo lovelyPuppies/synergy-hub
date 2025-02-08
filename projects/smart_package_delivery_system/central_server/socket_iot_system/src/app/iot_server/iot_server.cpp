@@ -12,7 +12,9 @@ nc localhost 1234
 namespace iot {
 using boost::asio::ip::tcp;
 
-// 🚀 Session 클래스 (내부 클래스)
+// 🚀 Session 클래스
+// 클라이언트와 개별 통신을 담당
+// 클라이언트가 서버에 연결되면 Session 객체가 생성됨.
 class Session : public std::enable_shared_from_this<Session> {
 public:
   explicit Session(tcp::socket socket) : socket_(std::move(socket)) {}
@@ -46,7 +48,8 @@ private:
   }
 };
 
-// 🚀 Server 클래스 구현 (정의는 .cpp에서!)
+// 🚀 Server 클래스
+// 클라이언트의 연결을 수락하고, 새로운 Session을 생성하여 클라이언트와 통신하도록 함.
 Server::Server(boost::asio::io_context &io_context, short port)
     : acceptor_(io_context, tcp::endpoint(tcp::v4(), port)) {
   doAccept();

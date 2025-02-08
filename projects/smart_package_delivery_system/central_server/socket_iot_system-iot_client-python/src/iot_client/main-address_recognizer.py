@@ -4,6 +4,7 @@ from external.protobuf import smart_pkg_delivery_pb2
 
 smart_pkg_delivery_pb2.DeliveryRobot
 
+
 #########################
 # Author: 조명근 팀원
 import cv2
@@ -13,6 +14,10 @@ import RPi.GPIO as GPIO
 import time
 import threading
 import socket
+
+SERVER_IP = "10.10.14.19"
+SERVER_PORT = 1234
+
 
 # GPIO 핀 설정
 IR_SENSOR_PIN = 21  # 적외선 센서 입력 핀 (BCM 모드)
