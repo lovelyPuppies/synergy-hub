@@ -12,5 +12,6 @@
     "CMakeLists.txt": "CMake",
     "*.conf": "bitbake",
     "*.inc": "bitbake"
-  }
+  },
+  "dbcode.connections": []
 }

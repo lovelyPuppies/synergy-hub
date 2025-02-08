@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS lockers (
 CREATE TABLE IF NOT EXISTS pkgs (
     id                  INT AUTO_INCREMENT PRIMARY KEY    COMMENT '택배 고유 식별자',
     name                VARCHAR(255) NOT NULL             COMMENT '택배 물품 이름',
-    recipient_id        INT                               COMMENT '수령자 id',
+    receiver_id        INT                               COMMENT '수령자 id',
     pkg_room_id     INT                                   COMMENT '저장소 ID (pkg_rooms.id 참조)',
     locker_id           INT UNIQUE                        COMMENT '택배 보관함 안에 pkg 가 있다면, NOT NULL',
     -- phone_number        VARCHAR(20)                       COMMENT '수령자 연락처. 월패드로 정보 전달 예정',
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS pkgs (
     -- delivery_date       DATE                              COMMENT '🧪 배송 예정일',
     delivery_image_path VARCHAR(255)                      COMMENT '배송 완료 후 이미지 경로 (URL 또는 파일 경로)',
     is_deleted          BOOLEAN DEFAULT FALSE             COMMENT 'SOFT DELETE (TRUE = 삭제됨)',
-    FOREIGN KEY (recipient_id) REFERENCES users(id) ON DELETE NO ACTION,
+    FOREIGN KEY (receiver_id) REFERENCES users(id) ON DELETE NO ACTION,
     FOREIGN KEY (pkg_room_id) REFERENCES pkg_rooms(id) ON DELETE NO ACTION,
     FOREIGN KEY (locker_id) REFERENCES lockers(id) ON DELETE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

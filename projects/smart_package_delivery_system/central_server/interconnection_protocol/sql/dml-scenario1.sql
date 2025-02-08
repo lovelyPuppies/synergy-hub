@@ -38,17 +38,14 @@ VALUES
   (2),
   (2);
 
--- ➡️ SELECT * FROM addresses WHERE is_deleted = FALSE;
--- ➡️ SELECT * FROM users WHERE is_deleted = FALSE;
--- ➡️ SELECT * FROM pkg_rooms WHERE is_deleted = FALSE;
--- ➡️ SELECT * FROM lockers WHERE is_deleted = FALSE;
+-- ➡️ SELECT * FROM addresses WHERE is_deleted = FALSE; SELECT * FROM users WHERE is_deleted = FALSE; SELECT * FROM pkg_rooms WHERE is_deleted = FALSE; SELECT * FROM lockers WHERE is_deleted = FALSE;
 --
 --
 --
 -- 🌀 2. [택배기사] Pkg 등록 및 보관함에 저장
 -- pkg_room_id = 1 (강남 창고)에 택배 2개 등록
 INSERT INTO
-  pkgs (recipient_id, name, pkg_room_id)
+  pkgs (receiver_id, name, pkg_room_id)
 VALUES
   (1, '노트북', 1),
   (1, '책', 1);
@@ -105,8 +102,7 @@ JOIN (
 SET
   p.locker_id = temp.locker_id;
 
--- ➡️ SELECT * FROM pkgs WHERE is_deleted = FALSE AND pkg_room_id = 1;
--- ➡️ SELECT * FROM lockers WHERE is_deleted = FALSE AND pkg_room_id = 1;
+-- ➡️ SELECT * FROM pkgs WHERE is_deleted = FALSE AND pkg_room_id = 1; SELECT * FROM lockers WHERE is_deleted = FALSE AND pkg_room_id = 1;
 --
 --
 --
@@ -119,7 +115,7 @@ FROM
 WHERE
   pkg_room_id = 1
   AND is_deleted = FALSE
-  AND recipient_id = 1
+  AND receiver_id = 1
   AND delivery_status = 'pending';
 
 -- 🔓 보관함에서 pkg_id 제거, 🚛 택배 상태를 "배송 중"으로 변경 (택배 꺼내기)
@@ -130,7 +126,7 @@ SET
 WHERE
   pkg_room_id = 1
   AND is_deleted = FALSE
-  AND recipient_id = 1
+  AND receiver_id = 1
   AND delivery_status = 'pending'
 LIMIT
   1;
@@ -145,7 +141,7 @@ SET
   delivery_image_path = '/images/delivery_1.jpg',
   delivery_status = 'delivered'
 WHERE
-  recipient_id = 1
+  receiver_id = 1
   AND delivery_status = 'in_transit'
   AND is_deleted = FALSE
   AND pkg_room_id = 1;

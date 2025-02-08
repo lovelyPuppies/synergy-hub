@@ -9,7 +9,7 @@ package smart_pkg_delivery;
 //      - The `PkgRoom` table must contain actual records (rows).
 // ❓ TODO:
 //    - ❗ Note that this draft does not consider multiple parcels for one user. It distinguishes users by a fixed address rather than by invoice ID or user ID.
-//    - 현재 처음에 택배가 창고에 첫 도착했을 때에는, 정보를 주소만 서버에 보내고, 사용자가 온 택배를 조회할 때에도 정보를 서버에 보낸다. 하지만 Database 상에서는 User 를 기반으로 조회하므로 이에 따른 로직이 추가적으로 필요하다.
+//    - When a parcel first arrives at the warehouse, only its address information is sent to the server. Likewise, when a user checks their incoming parcels, the address information is also sent. However, since the database retrieves data based on the user, additional logic is required to handle this.
 // 📝 클라이언트에서는 동기적인 요청을 가정하고 만든 것이라 비동기 요청인 경우, 클라이언트측에서 
 // 🧮
 //    protoc -I=. --cpp_out=../../socket_iot_system/src/common/protobuf_cpp smart_parcel.proto
@@ -205,7 +205,7 @@ message Parcel {
   uint32 id = 1;
   Address address = 2;
   uint32 shipper_id = 3;
-  uint32 recipient_id = 4;
+  uint32 receiver_id = 4;
   // 🖼️ Raw JPEG Image Data (Binary); Estimated size for 1920x1080 JPEG: (1920 * 1080 * 3) / 10 (JPEG compression) ≈ 622 KB
   bytes photo_bytes = 5;
 }
