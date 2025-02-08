@@ -9,11 +9,18 @@ package smart_pkg_delivery;
 //      - The `PkgRoom` table must contain actual records (rows).
 // ❓ TODO:
 //    - ❗ Note that this draft does not consider multiple pkgs for one user. It distinguishes users by a fixed address rather than by invoice ID or user ID.
-//    - When a pkg first arrives at the warehouse, only its address information is sent to the server. Likewise, when a user checks their incoming pkgs, the address information is also sent. However, since the database retrieves data based on the user, additional logic is required to handle this.
-// 📝 클라이언트에서는 동기적인 요청을 가정하고 만든 것이라 비동기 요청인 경우, 클라이언트측에서 
+//      When a pkg first arrives at the package room, its address information is sent to the server. Likewise, when a user checks their incoming pkgs, the address information is also sent. 
+//      However, since the database retrieves data based on the user, additional logic is required to handle this.
 // 🧮
 //    protoc -I=. --cpp_out=../../socket_iot_system/src/common/protobuf_cpp smart_pkg.proto
 //    nanopb_generator --options-file=smart_pkg-nanopb.options --output-dir=../../socket_iot_system/src/common/protobuf_c smart_pkg.proto
+// ❔ Sockets for Communication
+//    - Server (c++)
+//    - User (c++)
+//    - Elevator (c)
+//    - Delivery Robot (c++)
+//    - Address Recognizer (c or python)
+
 
 // source /home/wbfw109v2/.cache/pypoetry/virtualenvs/python-study-WVteXKC2-py3.13/bin/activate.fish
 // 소자의 특성, RLC ghlfh. 
