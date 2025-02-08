@@ -339,6 +339,17 @@ protobuf 🔪⚓ Docs ; https://protobuf.dev/
   ⚓ Security model ; https://jpa.kapsi.fi/nanopb/docs/security.html
 
 
+(✍️ nanoPB 🔪 study)
+  ☑️ (Issue: Bug) values of decoding the encoded message have 0 from .proto file (`edition = "2023");` 📅 2025-02-08 16:35:52
+    Description
+      - In Edition 2023 in .proto file, all field types are treated as optional for flexibility.
+      - In NanoPB, fields must be explicitly marked as 📍 present to be encoded.
+        - For regular fields, the `has_<field_name>` flag must be set to `true` to include the field in the encoded message.
+        - For oneof fields, the `which_<oneof_field_name_tag>` must be set to specify the active field.
+      
+        If these flags are not set, NanoPB treats the field as non-existent, and it will not be included in the encoded data.
+        As a result, during decoding, any unset fields will revert to their default values (e.g., `0` for integers, empty strings, etc.), making it appear as if the values were never assigned.
+
 
 
 

@@ -14,6 +14,7 @@
 #include <pb_decode.h>
 #include <pb_encode.h>
 #include <pthread.h> // Includes POSIX thread support.
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdio.h>  // Standard I/O functions, like printf and fgets.
 #include <stdlib.h> // Standard library functions, such as memory allocation.
@@ -235,9 +236,13 @@ void *send_msg(void *arg) {
       local_node_event_msg.dest_type = smart_pkg_delivery_NodeType_SERVER;
       local_node_event_msg.which_event_type =
           smart_pkg_delivery_NodeEvent_pkg_arrival_event_tag;
-      local_node_event_msg.event_type.pkg_arrival_event.address.building_num =
-          101;
-      local_node_event_msg.event_type.pkg_arrival_event.address.unit_num = 305;
+
+      local_node_event_msg.event_type.pkg_arrival_event.has_address = true;
+      local_node_event_msg.event_type.pkg_arrival_event.address =
+          (smart_pkg_delivery_AptAddress){.has_building_num = true,
+                                          .building_num = 101,
+                                          .has_unit_num = true,
+                                          .unit_num = 305};
 
       pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
       printf(

@@ -1,5 +1,6 @@
 #include "message_initializer.h" // Include the corresponding header file
-#include <string.h>              // For memset (safe initialization)
+#include <stdbool.h>
+#include <string.h> // For memset (safe initialization)
 
 // 🏗 Initializer function for Request Message (output parameter approach)
 void init_request_msg(smart_pkg_delivery_Request *msg,
@@ -8,7 +9,9 @@ void init_request_msg(smart_pkg_delivery_Request *msg,
   if (!msg)
     return;
   memset(msg, 0, sizeof(smart_pkg_delivery_Request));
+  msg->has_src_type = true;
   msg->src_type = src_type;
+  msg->has_src_id = true;
   msg->src_id = src_id;
 }
 
@@ -19,6 +22,7 @@ void init_response_msg(smart_pkg_delivery_Response *msg,
   if (!msg)
     return;
   memset(msg, 0, sizeof(smart_pkg_delivery_Response));
+  msg->has_src_type = true;
   msg->src_type = src_type;
   msg->src_id = src_id;
 }
@@ -31,6 +35,8 @@ void init_node_event_msg(smart_pkg_delivery_NodeEvent *msg,
   if (!msg)
     return;
   memset(msg, 0, sizeof(smart_pkg_delivery_NodeEvent));
+  msg->has_src_type = true;
   msg->src_type = src_type;
+  msg->has_src_id = true;
   msg->src_id = src_id;
 }
