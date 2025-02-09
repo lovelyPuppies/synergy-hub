@@ -10,7 +10,7 @@ prepare_request_msg(smart_pkg_delivery_WrapperMsg *wrapper_msg,
   // 🚧 NULL check
   if (!wrapper_msg)
     return NULL;
-  memset(wrapper_msg, 0, sizeof(smart_pkg_delivery_Request));
+  memset(wrapper_msg, 0, sizeof(smart_pkg_delivery_WrapperMsg));
   wrapper_msg->which_msg_type = smart_pkg_delivery_WrapperMsg_request_tag;
   wrapper_msg->msg_type.request.has_src_type = true;
   wrapper_msg->msg_type.request.src_type = src_type;
@@ -27,7 +27,7 @@ prepare_response_msg(smart_pkg_delivery_WrapperMsg *wrapper_msg,
   // 🚧 NULL check
   if (!wrapper_msg)
     return NULL;
-  memset(wrapper_msg, 0, sizeof(smart_pkg_delivery_Response));
+  memset(wrapper_msg, 0, sizeof(smart_pkg_delivery_WrapperMsg));
   wrapper_msg->which_msg_type = smart_pkg_delivery_WrapperMsg_response_tag;
   wrapper_msg->msg_type.response.has_src_type = true;
   wrapper_msg->msg_type.response.src_type = src_type;
@@ -45,7 +45,7 @@ prepare_node_event_msg(smart_pkg_delivery_WrapperMsg *wrapper_msg,
   if (!wrapper_msg)
     return NULL;
 
-  memset(wrapper_msg, 0, sizeof(smart_pkg_delivery_NodeEvent));
+  memset(wrapper_msg, 0, sizeof(smart_pkg_delivery_WrapperMsg));
   wrapper_msg->which_msg_type = smart_pkg_delivery_WrapperMsg_node_event_tag;
   wrapper_msg->msg_type.node_event.has_src_type = true;
   wrapper_msg->msg_type.node_event.src_type = src_type;

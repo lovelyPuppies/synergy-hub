@@ -41,8 +41,16 @@ private:
           //
           if (!ec) {
             std::string received_data(buffer_, length);
+
+            // Protobuf 메시지 처리 및 응답 메시지 생성
             std::string response_data = processProtobufMessage(received_data);
-            doWrite(length);
+
+            // 🔄 buffer_에 직접 복사 (최대 1024 바이트)
+            std::size_t response_length =
+                std::min(response_data.size(), sizeof(buffer_));
+            std::memcpy(buffer_, response_data.data(), response_length);
+
+            doWrite(response_length);
           }
         });
   }
@@ -135,10 +143,36 @@ private:
         // 📰 TODO: save to DB
         std::cout << "  - Type: PkgArrivalEvent" << std::endl;
         break;
-      case smart_pkg_delivery::NodeEvent::kElevatorStatusEvent:
+      case smart_pkg_delivery::NodeEvent::kElevatorStatusEvent: {
         // 📰 TODO: pass to Delivery Robot
+        // 📰 Temp
         std::cout << "  - Type: ElevatorStatusEvent" << std::endl;
-        break;
+        smart_pkg_delivery::WrapperMsg wrapper_msg;
+
+        smart_pkg_delivery::Response *response = wrapper_msg.mutable_response();
+        response->set_src_id(10);
+        response->set_src_type(
+            smart_pkg_delivery::NodeType::CLIENT_DELIVERY_ROBOT);
+        response->set_dest_id(10);
+        response->set_dest_type(smart_pkg_delivery::NodeType::CLIENT_ELEVATOR);
+        smart_pkg_delivery::AckStatus ack_status = response->ack_status();
+        response->mutable_ack_status()->set_status_code(
+            smart_pkg_delivery::AckStatus::ACK_RECEIVED);
+        response->mutable_execution_status()->set_status_code(
+            smart_pkg_delivery::ExecutionStatus::SUCCESS);
+        // ✅ (how-to) Protobuf에서는 비어 있는 메시지도 set할 수 있다. 비어 있는 메시지를 설정하면 oneof 필드가 해당 메시지로 설정됨.
+        //  즉, mutable_move_delivery_robot_response()를 호출하면 oneof의 현재 필드가 변경됨!
+        response->mutable_move_delivery_robot_response();
+        std::cout << "\n\n🛠  DEBUG: Full Message to be written:\n"
+                  << wrapper_msg.DebugString() << std::endl;
+        // 📰 TODO: 전송
+        std::string encoded_message;
+        if (!wrapper_msg.SerializeToString(&encoded_message)) {
+          std::cerr << "Protobuf 메시지 직렬화 실패!" << std::endl;
+          return "ERROR: SERIALIZATION FAILED";
+        }
+        return encoded_message;
+      } break;
       case smart_pkg_delivery::NodeEvent::kDeliveryStatusEvent:
         std::cout << "  - Type: DeliveryStatusEvent" << std::endl;
         break;
@@ -165,35 +199,6 @@ private:
     boost::asio::async_write(
         socket_, boost::asio::buffer(buffer_, length),
         [this, self](boost::system::error_code ec, std::size_t) {
-          smart_pkg_delivery::WrapperMsg wrapper_msg;
-
-          smart_pkg_delivery::Response *response =
-              wrapper_msg.mutable_response();
-          response->set_src_id(10);
-          response->set_src_type(
-              smart_pkg_delivery::NodeType::CLIENT_DELIVERY_ROBOT);
-          response->set_dest_id(10);
-          response->set_dest_type(
-              smart_pkg_delivery::NodeType::CLIENT_ELEVATOR);
-          smart_pkg_delivery::AckStatus ack_status = response->ack_status();
-          response->mutable_ack_status()->set_status_code(
-              smart_pkg_delivery::AckStatus::ACK_RECEIVED);
-          response->mutable_execution_status()->set_status_code(
-              smart_pkg_delivery::ExecutionStatus::SUCCESS);
-          // ✅ (how-to) Protobuf에서는 비어 있는 메시지도 set할 수 있다. 비어 있는 메시지를 설정하면 oneof 필드가 해당 메시지로 설정됨.
-          //  즉, mutable_move_delivery_robot_response()를 호출하면 oneof의 현재 필드가 변경됨!
-          response->mutable_move_delivery_robot_response();
-          std::cout << "\n\n🛠  DEBUG: Full Message to be written:\n"
-                    << wrapper_msg.DebugString() << std::endl;
-          // 📰 TODO: 전송
-          // std::string encoded_message;
-          // // if (!message.SerializeToString(&encoded_message)) {
-          // //   std::cerr << "Protobuf 메시지 직렬화 실패!" << std::endl;
-          // //   return "ERROR: SERIALIZATION FAILED";
-          // // }
-
-          // return encoded_message;
-
           // ❗ Maintain a Client's connection (loop)
           if (!ec) {
             doRead();
