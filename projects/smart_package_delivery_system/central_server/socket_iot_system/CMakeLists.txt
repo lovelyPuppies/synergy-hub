@@ -36,6 +36,7 @@ set(c_common_sources
     src/common/protobuf_c/message_initializer.c
     src/common/protobuf_c/smart_pkg_delivery.pb.c
 )
+
 # https://cmake.org/cmake/help/latest/module/FindPkgConfig.html
 # https://cmake.org/cmake/help/latest/module/FindProtobuf.html
 
@@ -78,7 +79,6 @@ add_executable(iot_server ${cpp_common_sources} ${IOT_SERVER_DIR}/iot_server.cpp
 add_executable(iot_client-delivery_robot ${IOT_CLIENT_DELIVERY_ROBOT_DIR}/iot_client_cpp.cpp ${IOT_CLIENT_DELIVERY_ROBOT_DIR}/main.cpp)
 add_executable(iot_client-elevator ${c_common_sources} ${IOT_CLIENT_ELEVATOR_C_DIR}/main.c)
 add_executable(iot_client-user ${IOT_CLIENT_USER_DIR}/iot_client_cpp.cpp ${IOT_CLIENT_USER_DIR}/main.cpp)
-
 
 # set_target_properties(iot_server PROPERTIES CXX_STANDARD 23 CXX_STANDARD_REQUIRED YES)
 # set_target_properties(iot_client_cpp PROPERTIES CXX_STANDARD 23 CXX_STANDARD_REQUIRED YES)

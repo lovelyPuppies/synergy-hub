@@ -3,6 +3,7 @@
 nc localhost 1234
 */
 #include "iot_server.hpp"
+#include "protobuf_c/smart_pkg_delivery.pb.h"
 #include "protobuf_cpp/smart_pkg_delivery.pb.h"
 #include <boost/asio.hpp>
 #include <iostream>
@@ -54,18 +55,106 @@ private:
       return "ERROR: INVALID PROTOBUF MESSAGE";
     }
 
-    std::cout << "📩 받은 메시지: " << std::endl;
-    std::cout
-        << "  - Source: "
-        << wrapper_msg.node_event().pkg_arrival_event().address().building_num()
-        << std::endl;
-    std::cout
-        << "  - Source: "
-        << wrapper_msg.node_event().pkg_arrival_event().address().unit_num()
-        << std::endl;
-    // std::cout << "  - Destination: " << message.destination() << std::endl;
-    // std::cout << "  - Command: " << message.command() << std::endl;
+    // `oneof` 필드 판별
+    switch (wrapper_msg.msg_type_case()) {
+    case smart_pkg_delivery::WrapperMsg::kRequest: {
+      const auto &request = wrapper_msg.request();
+      std::cout << "📌 Request 수신!" << std::endl;
+      std::cout << "  - Source: " << request.src_name()
+                << " (ID: " << request.src_id() << ")" << std::endl;
+      std::cout << "  - Destination: " << request.dest_name()
+                << " (ID: " << request.dest_id() << ")" << std::endl;
 
+      switch (request.request_type_case()) {
+      case smart_pkg_delivery::Request::kGetPkgInfosRequest:
+        std::cout << "  - Type: GetPkgInfosRequest" << std::endl;
+        break;
+      case smart_pkg_delivery::Request::kSetElevatorStatusRequest:
+        std::cout << "  - Type: SetElevatorStatusRequest" << std::endl;
+        break;
+      case smart_pkg_delivery::Request::kMoveDeliveryRobotRequest:
+        std::cout << "  - Type: MoveDeliveryRobotRequest" << std::endl;
+        break;
+      case smart_pkg_delivery::Request::REQUEST_TYPE_NOT_SET:
+        std::cerr << "⚠️ Request 타입이 설정되지 않음!" << std::endl;
+        return "ERROR: INVALID REQUEST TYPE";
+      }
+      break;
+    }
+    case smart_pkg_delivery::WrapperMsg::kResponse: {
+      const auto &response = wrapper_msg.response();
+      std::cout << "📩 Response 수신!" << std::endl;
+      std::cout << "  - Source: " << response.src_name()
+                << " (ID: " << response.src_id() << ")" << std::endl;
+      std::cout << "  - Destination: " << response.dest_name()
+                << " (ID: " << response.dest_id() << ")" << std::endl;
+
+      // ✅ AckStatus에 따라 출력
+      std::cout << "  - Ack Status: ";
+      switch (response.ack_status().code()) {
+      case smart_pkg_delivery::AckStatus::ACK_RECEIVED:
+        std::cout << "ACK_INVALID";
+        break;
+      case smart_pkg_delivery::AckStatus::ACK_INVALID:
+        std::cout << "ACK_RECEIVED";
+        break;
+      default:
+        std::cout << "UNKNOWN_ACK_STATUS";
+        break;
+      }
+      std::cout << std::endl;
+
+      // ✅ ExecutionStatus에 따라 출력
+      std::cout << "  - Execution Status: ";
+      switch (response.execution_status().code()) {
+      case smart_pkg_delivery::ExecutionStatus::SUCCESS:
+        std::cout << "EXEC_PENDING";
+        break;
+      case smart_pkg_delivery::ExecutionStatus::FAILED:
+        std::cout << "EXEC_COMPLETED";
+        break;
+      default:
+        std::cout << "UNKNOWN_EXECUTION_STATUS";
+        break;
+      }
+      std::cout << std::endl;
+
+      break;
+    }
+
+    case smart_pkg_delivery::WrapperMsg::kNodeEvent: {
+      const auto &event = wrapper_msg.node_event();
+      std::cout << "⏬ NodeEvent 수신!" << std::endl;
+      std::cout << "  - Source: " << event.src_name()
+                << " (ID: " << event.src_id() << ")" << std::endl;
+      std::cout << "  - Destination: " << event.dest_name()
+                << " (ID: " << event.dest_id() << ")" << std::endl;
+
+      switch (event.event_type_case()) {
+      case smart_pkg_delivery::NodeEvent::kPkgArrivalEvent:
+        std::cout << "  - Type: PkgArrivalEvent" << std::endl;
+        break;
+      case smart_pkg_delivery::NodeEvent::kElevatorStatusEvent:
+        std::cout << "  - Type: ElevatorStatusEvent" << std::endl;
+        break;
+      case smart_pkg_delivery::NodeEvent::kDeliveryStatusEvent:
+        std::cout << "  - Type: DeliveryStatusEvent" << std::endl;
+        break;
+      case smart_pkg_delivery::NodeEvent::EVENT_TYPE_NOT_SET:
+        std::cerr << "⚠️ Event 타입이 설정되지 않음!" << std::endl;
+        return "ERROR: INVALID EVENT TYPE";
+      }
+      break;
+    }
+
+    case smart_pkg_delivery::WrapperMsg::MSG_TYPE_NOT_SET:
+      std::cerr << "⚠️ WrapperMsg의 msg_type이 설정되지 않음!" << std::endl;
+      return "ERROR: INVALID WRAPPER MESSAGE TYPE";
+
+    default:
+      std::cerr << "⚠️ Error: 알 수 없는 메시지 타입!" << std::endl;
+      return "ERROR: UNKNOWN MESSAGE TYPE";
+    }
     // 그대로 다시 전송 (에코)
     std::string encoded_message;
     // if (!message.SerializeToString(&encoded_message)) {

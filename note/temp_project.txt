@@ -19959,3 +19959,13 @@ https://googleapis.dev/python/protobuf/latest/google/protobuf/message.html#googl
 
 
  protobuf가 libstdc++로 빌드되었으니, Clang에서도 -stdlib=libstdc++을 맞춰주는 게 정답!
+
+ https://cmake.org/cmake/help/latest/command/target_link_libraries.html
+    Libraries for a Target and/or its Dependents
+    target_link_libraries(<target>
+                          <PRIVATE|PUBLIC|INTERFACE> <item>...
+                        [<PRIVATE|PUBLIC|INTERFACE> <item>...]...)
+      
+      https://stackoverflow.com/questions/32161409/how-to-get-protobuf-enum-as-string
+How to get protobuf enum as string?
+  https://stackoverflow.com/questions/32161409/how-to-get-protobuf-enum-as-string

@@ -28,6 +28,9 @@ class iot_serverRecipe(ConanFile):
     #     "custom_suffix": "",
     # }
 
+    # def requirements(self):
+    # Convert Integer to enum value.
+
     def layout(self):
         cmake_layout(self)
 

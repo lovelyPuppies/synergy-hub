@@ -33,7 +33,7 @@ typedef enum _smart_pkg_delivery_AckStatus_StatusCode {
 
 typedef enum _smart_pkg_delivery_ExecutionStatus_StatusCode {
     smart_pkg_delivery_ExecutionStatus_StatusCode_UNSPECIFIED = 0,
-    smart_pkg_delivery_ExecutionStatus_StatusCode_CODE_SUCCESS = 1,
+    smart_pkg_delivery_ExecutionStatus_StatusCode_SUCCESS = 1,
     smart_pkg_delivery_ExecutionStatus_StatusCode_FAILED = 2
 } smart_pkg_delivery_ExecutionStatus_StatusCode;
 

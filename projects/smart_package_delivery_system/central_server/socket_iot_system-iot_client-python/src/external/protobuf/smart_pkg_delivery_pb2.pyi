@@ -122,10 +122,10 @@ class ExecutionStatus(_message.Message):
     class StatusCode(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
         __slots__ = ()
         UNSPECIFIED: _ClassVar[ExecutionStatus.StatusCode]
-        CODE_SUCCESS: _ClassVar[ExecutionStatus.StatusCode]
+        SUCCESS: _ClassVar[ExecutionStatus.StatusCode]
         FAILED: _ClassVar[ExecutionStatus.StatusCode]
     UNSPECIFIED: ExecutionStatus.StatusCode
-    CODE_SUCCESS: ExecutionStatus.StatusCode
+    SUCCESS: ExecutionStatus.StatusCode
     FAILED: ExecutionStatus.StatusCode
     CODE_FIELD_NUMBER: _ClassVar[int]
     MESSAGE_FIELD_NUMBER: _ClassVar[int]

@@ -166,7 +166,7 @@ inline bool AckStatus_StatusCode_Parse(absl::string_view name, AckStatus_StatusC
 }
 enum ExecutionStatus_StatusCode : int {
   ExecutionStatus_StatusCode_UNSPECIFIED = 0,
-  ExecutionStatus_StatusCode_CODE_SUCCESS = 1,
+  ExecutionStatus_StatusCode_SUCCESS = 1,
   ExecutionStatus_StatusCode_FAILED = 2,
   ExecutionStatus_StatusCode_ExecutionStatus_StatusCode_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
@@ -1161,7 +1161,7 @@ class ExecutionStatus final : public ::google::protobuf::Message
   // nested types ----------------------------------------------------
   using StatusCode = ExecutionStatus_StatusCode;
   static constexpr StatusCode UNSPECIFIED = ExecutionStatus_StatusCode_UNSPECIFIED;
-  static constexpr StatusCode CODE_SUCCESS = ExecutionStatus_StatusCode_CODE_SUCCESS;
+  static constexpr StatusCode SUCCESS = ExecutionStatus_StatusCode_SUCCESS;
   static constexpr StatusCode FAILED = ExecutionStatus_StatusCode_FAILED;
   static inline bool StatusCode_IsValid(int value) {
     return ExecutionStatus_StatusCode_IsValid(value);

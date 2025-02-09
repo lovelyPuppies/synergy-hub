@@ -121,7 +121,7 @@ message AckStatus {
 message ExecutionStatus {
   enum StatusCode {
     UNSPECIFIED = 0;
-    CODE_SUCCESS = 1;
+    SUCCESS = 1;
     FAILED = 2;
   }
   StatusCode code = 1;

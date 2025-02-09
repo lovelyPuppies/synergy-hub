@@ -48,7 +48,7 @@
     {
       "label": "conan-raspberry_pi_4-release-clang-19-armv8 - 3. Conan Build",
       "type": "shell",
-      "command": "cd socket_iot_system && cmake --build --preset conan-raspberry_pi_4-release-clang-19-armv8 && file build/raspberry_pi_4-release-clang-19-armv8/iot_server",
+      "command": "cmake --build --preset conan-raspberry_pi_4-release-clang-19-armv8 && file build/raspberry_pi_4-release-clang-19-armv8/iot_server",
       "group": {
         "kind": "build",
         "isDefault": true
@@ -117,7 +117,7 @@
     {
       "label": "conan-linux-debug-clang-19-x86_64 - 4. Conan Run",
       "type": "shell",
-      "command": "cd socket_iot_system && build/linux-debug-clang-19-x86_64/iot_server",
+      "command": "socket_iot_system/build/linux-debug-clang-19-x86_64/iot_server",
       "group": {
         "kind": "build",
         "isDefault": true

@@ -24,15 +24,15 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x18smart_pkg_delivery.proto\x12\x12smart_pkg_delivery\"\xaf\x01\n\nWrapperMsg\x12.\n\x07request\x18\x01 \x01(\x0b\x32\x1b.smart_pkg_delivery.RequestH\x00\x12\x30\n\x08response\x18\x02 \x01(\x0b\x32\x1c.smart_pkg_delivery.ResponseH\x00\x12\x33\n\nnode_event\x18\x03 \x01(\x0b\x32\x1d.smart_pkg_delivery.NodeEventH\x00\x42\n\n\x08msg_type\"\xb3\x03\n\x07Request\x12.\n\x08src_type\x18\x01 \x01(\x0e\x32\x1c.smart_pkg_delivery.NodeType\x12\x0e\n\x06src_id\x18\x02 \x01(\r\x12\x10\n\x08src_name\x18\x03 \x01(\t\x12/\n\tdest_type\x18\x04 \x01(\x0e\x32\x1c.smart_pkg_delivery.NodeType\x12\x0f\n\x07\x64\x65st_id\x18\x05 \x01(\r\x12\x11\n\tdest_name\x18\x06 \x01(\t\x12G\n\x15get_pkg_infos_request\x18\x07 \x01(\x0b\x32&.smart_pkg_delivery.GetPkgInfosRequestH\x00\x12S\n\x1bset_elevator_status_request\x18\x08 \x01(\x0b\x32,.smart_pkg_delivery.SetElevatorStatusRequestH\x00\x12S\n\x1bmove_delivery_robot_request\x18\t \x01(\x0b\x32,.smart_pkg_delivery.MoveDeliveryRobotRequestH\x00\x42\x0e\n\x0crequest_type\"\xab\x04\n\x08Response\x12.\n\x08src_type\x18\x01 \x01(\x0e\x32\x1c.smart_pkg_delivery.NodeType\x12\x0e\n\x06src_id\x18\x02 \x01(\r\x12\x10\n\x08src_name\x18\x03 \x01(\t\x12/\n\tdest_type\x18\x04 \x01(\x0e\x32\x1c.smart_pkg_delivery.NodeType\x12\x0f\n\x07\x64\x65st_id\x18\x05 \x01(\r\x12\x11\n\tdest_name\x18\x06 \x01(\t\x12\x31\n\nack_status\x18\x07 \x01(\x0b\x32\x1d.smart_pkg_delivery.AckStatus\x12=\n\x10\x65xecution_status\x18\x08 \x01(\x0b\x32#.smart_pkg_delivery.ExecutionStatus\x12G\n\x15get_pkg_info_response\x18\t \x01(\x0b\x32&.smart_pkg_delivery.GetPkgInfoResponseH\x00\x12U\n\x1cset_elevator_status_response\x18\n \x01(\x0b\x32-.smart_pkg_delivery.SetElevatorStatusResponseH\x00\x12U\n\x1cmove_delivery_robot_response\x18\x0b \x01(\x0b\x32-.smart_pkg_delivery.MoveDeliveryRobotResponseH\x00\x42\x0f\n\rresponse_type\"\x96\x03\n\tNodeEvent\x12.\n\x08src_type\x18\x01 \x01(\x0e\x32\x1c.smart_pkg_delivery.NodeType\x12\x0e\n\x06src_id\x18\x02 \x01(\r\x12\x10\n\x08src_name\x18\x03 \x01(\t\x12/\n\tdest_type\x18\x04 \x01(\x0e\x32\x1c.smart_pkg_delivery.NodeType\x12\x0f\n\x07\x64\x65st_id\x18\x05 \x01(\r\x12\x11\n\tdest_name\x18\x06 \x01(\t\x12@\n\x11pkg_arrival_event\x18\x07 \x01(\x0b\x32#.smart_pkg_delivery.PkgArrivalEventH\x00\x12H\n\x15\x65levator_status_event\x18\x08 \x01(\x0b\x32\'.smart_pkg_delivery.ElevatorStatusEventH\x00\x12H\n\x15\x64\x65livery_status_event\x18\t \x01(\x0b\x32\'.smart_pkg_delivery.DeliveryStatusEventH\x00\x42\x0c\n\nevent_type\"\x96\x01\n\tAckStatus\x12\x36\n\x04\x63ode\x18\x01 \x01(\x0e\x32(.smart_pkg_delivery.AckStatus.StatusCode\x12\x0f\n\x07message\x18\x02 \x01(\t\"@\n\nStatusCode\x12\x0f\n\x0bUNSPECIFIED\x10\x00\x12\x10\n\x0c\x41\x43K_RECEIVED\x10\x01\x12\x0f\n\x0b\x41\x43K_INVALID\x10\x02\"\x9d\x01\n\x0f\x45xecutionStatus\x12<\n\x04\x63ode\x18\x01 \x01(\x0e\x32..smart_pkg_delivery.ExecutionStatus.StatusCode\x12\x0f\n\x07message\x18\x02 \x01(\t\";\n\nStatusCode\x12\x0f\n\x0bUNSPECIFIED\x10\x00\x12\x10\n\x0c\x43ODE_SUCCESS\x10\x01\x12\n\n\x06\x46\x41ILED\x10\x02\"%\n\x12GetPkgInfosRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\r\";\n\x12GetPkgInfoResponse\x12%\n\x04pkgs\x18\x01 \x03(\x0b\x32\x17.smart_pkg_delivery.Pkg\"r\n\x18MoveDeliveryRobotRequest\x12\x19\n\x11\x64\x65livery_robot_id\x18\x01 \x01(\r\x12;\n\x13\x64\x65stination_address\x18\x02 \x01(\x0b\x32\x1e.smart_pkg_delivery.AptAddress\"\x1b\n\x19MoveDeliveryRobotResponse\"m\n\x18SetElevatorStatusRequest\x12\x13\n\x0b\x65levator_id\x18\x01 \x01(\r\x12<\n\x0f\x65levator_status\x18\x02 \x01(\x0b\x32#.smart_pkg_delivery.Elevator.Status\"\x1b\n\x19SetElevatorStatusResponse\"B\n\x0fPkgArrivalEvent\x12/\n\x07\x61\x64\x64ress\x18\x01 \x01(\x0b\x32\x1e.smart_pkg_delivery.AptAddress\"h\n\x13\x45levatorStatusEvent\x12\x13\n\x0b\x65levator_id\x18\x01 \x01(\r\x12<\n\x0f\x65levator_status\x18\x02 \x01(\x0b\x32#.smart_pkg_delivery.Elevator.Status\"{\n\x13\x44\x65liveryStatusEvent\x12\x19\n\x11\x64\x65livery_robot_id\x18\x01 \x01(\r\x12I\n\x0f\x64\x65livery_status\x18\x02 \x01(\x0e\x32\x30.smart_pkg_delivery.DeliveryRobot.DeliveryStatus\"\xec\x01\n\x08\x45levator\x12\n\n\x02id\x18\x01 \x01(\r\x12\x33\n\x06status\x18\x02 \x01(\x0b\x32#.smart_pkg_delivery.Elevator.Status\x1a\x66\n\x06Status\x12\x15\n\rcurrent_floor\x18\x01 \x01(\r\x12\x45\n\x10\x64oor_open_status\x18\x02 \x01(\x0e\x32+.smart_pkg_delivery.Elevator.DoorOpenStatus\"7\n\x0e\x44oorOpenStatus\x12\x0f\n\x0bUNSPECIFIED\x10\x00\x12\n\n\x06\x43LOSED\x10\x01\x12\x08\n\x04OPEN\x10\x02\"\xb5\x01\n\rDeliveryRobot\x12\n\n\x02id\x18\x01 \x01(\r\x12I\n\x0f\x64\x65livery_status\x18\x03 \x01(\x0e\x32\x30.smart_pkg_delivery.DeliveryRobot.DeliveryStatus\"M\n\x0e\x44\x65liveryStatus\x12\x0f\n\x0bUNSPECIFIED\x10\x00\x12\x0b\n\x07PENDING\x10\x01\x12\x0e\n\nIN_TRANSIT\x10\x02\x12\r\n\tDELIVERED\x10\x03\"\x8c\x01\n\x07PkgRoom\x12\n\n\x02id\x18\x01 \x01(\r\x12\x33\n\x07lockers\x18\x02 \x03(\x0b\x32\".smart_pkg_delivery.PkgRoom.Locker\x1a@\n\x06Locker\x12\x11\n\tlocker_id\x18\x01 \x01(\r\x12\x13\n\x0b\x61\x63\x63\x65ss_code\x18\x02 \x01(\t\x12\x0e\n\x06pkg_id\x18\x03 \x01(\r\"C\n\x04User\x12\n\n\x02id\x18\x01 \x01(\r\x12/\n\x07\x61\x64\x64ress\x18\x02 \x01(\x0b\x32\x1e.smart_pkg_delivery.AptAddress\"\x7f\n\x03Pkg\x12\n\n\x02id\x18\x01 \x01(\r\x12/\n\x07\x61\x64\x64ress\x18\x02 \x01(\x0b\x32\x1e.smart_pkg_delivery.AptAddress\x12\x11\n\tsender_id\x18\x03 \x01(\r\x12\x13\n\x0breceiver_id\x18\x04 \x01(\r\x12\x13\n\x0bphoto_bytes\x18\x05 \x01(\x0c\"I\n\nAptAddress\x12\x13\n\x0b\x61pt_complex\x18\x01 \x01(\t\x12\x14\n\x0c\x62uilding_num\x18\x02 \x01(\r\x12\x10\n\x08unit_num\x18\x03 \x01(\r*\x87\x01\n\x08NodeType\x12\x0f\n\x0bUNSPECIFIED\x10\x00\x12\n\n\x06SERVER\x10\x01\x12\x1d\n\x19\x43LIENT_ADDRESS_RECOGNIZER\x10\x02\x12\x0f\n\x0b\x43LIENT_USER\x10\x03\x12\x19\n\x15\x43LIENT_DELIVERY_ROBOT\x10\x04\x12\x13\n\x0f\x43LIENT_ELEVATOR\x10\x05\x62\x08\x65\x64itionsp\xe8\x07')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x18smart_pkg_delivery.proto\x12\x12smart_pkg_delivery\"\xaf\x01\n\nWrapperMsg\x12.\n\x07request\x18\x01 \x01(\x0b\x32\x1b.smart_pkg_delivery.RequestH\x00\x12\x30\n\x08response\x18\x02 \x01(\x0b\x32\x1c.smart_pkg_delivery.ResponseH\x00\x12\x33\n\nnode_event\x18\x03 \x01(\x0b\x32\x1d.smart_pkg_delivery.NodeEventH\x00\x42\n\n\x08msg_type\"\xb3\x03\n\x07Request\x12.\n\x08src_type\x18\x01 \x01(\x0e\x32\x1c.smart_pkg_delivery.NodeType\x12\x0e\n\x06src_id\x18\x02 \x01(\r\x12\x10\n\x08src_name\x18\x03 \x01(\t\x12/\n\tdest_type\x18\x04 \x01(\x0e\x32\x1c.smart_pkg_delivery.NodeType\x12\x0f\n\x07\x64\x65st_id\x18\x05 \x01(\r\x12\x11\n\tdest_name\x18\x06 \x01(\t\x12G\n\x15get_pkg_infos_request\x18\x07 \x01(\x0b\x32&.smart_pkg_delivery.GetPkgInfosRequestH\x00\x12S\n\x1bset_elevator_status_request\x18\x08 \x01(\x0b\x32,.smart_pkg_delivery.SetElevatorStatusRequestH\x00\x12S\n\x1bmove_delivery_robot_request\x18\t \x01(\x0b\x32,.smart_pkg_delivery.MoveDeliveryRobotRequestH\x00\x42\x0e\n\x0crequest_type\"\xab\x04\n\x08Response\x12.\n\x08src_type\x18\x01 \x01(\x0e\x32\x1c.smart_pkg_delivery.NodeType\x12\x0e\n\x06src_id\x18\x02 \x01(\r\x12\x10\n\x08src_name\x18\x03 \x01(\t\x12/\n\tdest_type\x18\x04 \x01(\x0e\x32\x1c.smart_pkg_delivery.NodeType\x12\x0f\n\x07\x64\x65st_id\x18\x05 \x01(\r\x12\x11\n\tdest_name\x18\x06 \x01(\t\x12\x31\n\nack_status\x18\x07 \x01(\x0b\x32\x1d.smart_pkg_delivery.AckStatus\x12=\n\x10\x65xecution_status\x18\x08 \x01(\x0b\x32#.smart_pkg_delivery.ExecutionStatus\x12G\n\x15get_pkg_info_response\x18\t \x01(\x0b\x32&.smart_pkg_delivery.GetPkgInfoResponseH\x00\x12U\n\x1cset_elevator_status_response\x18\n \x01(\x0b\x32-.smart_pkg_delivery.SetElevatorStatusResponseH\x00\x12U\n\x1cmove_delivery_robot_response\x18\x0b \x01(\x0b\x32-.smart_pkg_delivery.MoveDeliveryRobotResponseH\x00\x42\x0f\n\rresponse_type\"\x96\x03\n\tNodeEvent\x12.\n\x08src_type\x18\x01 \x01(\x0e\x32\x1c.smart_pkg_delivery.NodeType\x12\x0e\n\x06src_id\x18\x02 \x01(\r\x12\x10\n\x08src_name\x18\x03 \x01(\t\x12/\n\tdest_type\x18\x04 \x01(\x0e\x32\x1c.smart_pkg_delivery.NodeType\x12\x0f\n\x07\x64\x65st_id\x18\x05 \x01(\r\x12\x11\n\tdest_name\x18\x06 \x01(\t\x12@\n\x11pkg_arrival_event\x18\x07 \x01(\x0b\x32#.smart_pkg_delivery.PkgArrivalEventH\x00\x12H\n\x15\x65levator_status_event\x18\x08 \x01(\x0b\x32\'.smart_pkg_delivery.ElevatorStatusEventH\x00\x12H\n\x15\x64\x65livery_status_event\x18\t \x01(\x0b\x32\'.smart_pkg_delivery.DeliveryStatusEventH\x00\x42\x0c\n\nevent_type\"\x96\x01\n\tAckStatus\x12\x36\n\x04\x63ode\x18\x01 \x01(\x0e\x32(.smart_pkg_delivery.AckStatus.StatusCode\x12\x0f\n\x07message\x18\x02 \x01(\t\"@\n\nStatusCode\x12\x0f\n\x0bUNSPECIFIED\x10\x00\x12\x10\n\x0c\x41\x43K_RECEIVED\x10\x01\x12\x0f\n\x0b\x41\x43K_INVALID\x10\x02\"\x98\x01\n\x0f\x45xecutionStatus\x12<\n\x04\x63ode\x18\x01 \x01(\x0e\x32..smart_pkg_delivery.ExecutionStatus.StatusCode\x12\x0f\n\x07message\x18\x02 \x01(\t\"6\n\nStatusCode\x12\x0f\n\x0bUNSPECIFIED\x10\x00\x12\x0b\n\x07SUCCESS\x10\x01\x12\n\n\x06\x46\x41ILED\x10\x02\"%\n\x12GetPkgInfosRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\r\";\n\x12GetPkgInfoResponse\x12%\n\x04pkgs\x18\x01 \x03(\x0b\x32\x17.smart_pkg_delivery.Pkg\"r\n\x18MoveDeliveryRobotRequest\x12\x19\n\x11\x64\x65livery_robot_id\x18\x01 \x01(\r\x12;\n\x13\x64\x65stination_address\x18\x02 \x01(\x0b\x32\x1e.smart_pkg_delivery.AptAddress\"\x1b\n\x19MoveDeliveryRobotResponse\"m\n\x18SetElevatorStatusRequest\x12\x13\n\x0b\x65levator_id\x18\x01 \x01(\r\x12<\n\x0f\x65levator_status\x18\x02 \x01(\x0b\x32#.smart_pkg_delivery.Elevator.Status\"\x1b\n\x19SetElevatorStatusResponse\"B\n\x0fPkgArrivalEvent\x12/\n\x07\x61\x64\x64ress\x18\x01 \x01(\x0b\x32\x1e.smart_pkg_delivery.AptAddress\"h\n\x13\x45levatorStatusEvent\x12\x13\n\x0b\x65levator_id\x18\x01 \x01(\r\x12<\n\x0f\x65levator_status\x18\x02 \x01(\x0b\x32#.smart_pkg_delivery.Elevator.Status\"{\n\x13\x44\x65liveryStatusEvent\x12\x19\n\x11\x64\x65livery_robot_id\x18\x01 \x01(\r\x12I\n\x0f\x64\x65livery_status\x18\x02 \x01(\x0e\x32\x30.smart_pkg_delivery.DeliveryRobot.DeliveryStatus\"\xec\x01\n\x08\x45levator\x12\n\n\x02id\x18\x01 \x01(\r\x12\x33\n\x06status\x18\x02 \x01(\x0b\x32#.smart_pkg_delivery.Elevator.Status\x1a\x66\n\x06Status\x12\x15\n\rcurrent_floor\x18\x01 \x01(\r\x12\x45\n\x10\x64oor_open_status\x18\x02 \x01(\x0e\x32+.smart_pkg_delivery.Elevator.DoorOpenStatus\"7\n\x0e\x44oorOpenStatus\x12\x0f\n\x0bUNSPECIFIED\x10\x00\x12\n\n\x06\x43LOSED\x10\x01\x12\x08\n\x04OPEN\x10\x02\"\xb5\x01\n\rDeliveryRobot\x12\n\n\x02id\x18\x01 \x01(\r\x12I\n\x0f\x64\x65livery_status\x18\x03 \x01(\x0e\x32\x30.smart_pkg_delivery.DeliveryRobot.DeliveryStatus\"M\n\x0e\x44\x65liveryStatus\x12\x0f\n\x0bUNSPECIFIED\x10\x00\x12\x0b\n\x07PENDING\x10\x01\x12\x0e\n\nIN_TRANSIT\x10\x02\x12\r\n\tDELIVERED\x10\x03\"\x8c\x01\n\x07PkgRoom\x12\n\n\x02id\x18\x01 \x01(\r\x12\x33\n\x07lockers\x18\x02 \x03(\x0b\x32\".smart_pkg_delivery.PkgRoom.Locker\x1a@\n\x06Locker\x12\x11\n\tlocker_id\x18\x01 \x01(\r\x12\x13\n\x0b\x61\x63\x63\x65ss_code\x18\x02 \x01(\t\x12\x0e\n\x06pkg_id\x18\x03 \x01(\r\"C\n\x04User\x12\n\n\x02id\x18\x01 \x01(\r\x12/\n\x07\x61\x64\x64ress\x18\x02 \x01(\x0b\x32\x1e.smart_pkg_delivery.AptAddress\"\x7f\n\x03Pkg\x12\n\n\x02id\x18\x01 \x01(\r\x12/\n\x07\x61\x64\x64ress\x18\x02 \x01(\x0b\x32\x1e.smart_pkg_delivery.AptAddress\x12\x11\n\tsender_id\x18\x03 \x01(\r\x12\x13\n\x0breceiver_id\x18\x04 \x01(\r\x12\x13\n\x0bphoto_bytes\x18\x05 \x01(\x0c\"I\n\nAptAddress\x12\x13\n\x0b\x61pt_complex\x18\x01 \x01(\t\x12\x14\n\x0c\x62uilding_num\x18\x02 \x01(\r\x12\x10\n\x08unit_num\x18\x03 \x01(\r*\x87\x01\n\x08NodeType\x12\x0f\n\x0bUNSPECIFIED\x10\x00\x12\n\n\x06SERVER\x10\x01\x12\x1d\n\x19\x43LIENT_ADDRESS_RECOGNIZER\x10\x02\x12\x0f\n\x0b\x43LIENT_USER\x10\x03\x12\x19\n\x15\x43LIENT_DELIVERY_ROBOT\x10\x04\x12\x13\n\x0f\x43LIENT_ELEVATOR\x10\x05\x62\x08\x65\x64itionsp\xe8\x07')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'smart_pkg_delivery_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
-  _globals['_NODETYPE']._serialized_start=3468
-  _globals['_NODETYPE']._serialized_end=3603
+  _globals['_NODETYPE']._serialized_start=3463
+  _globals['_NODETYPE']._serialized_end=3598
   _globals['_WRAPPERMSG']._serialized_start=49
   _globals['_WRAPPERMSG']._serialized_end=224
   _globals['_REQUEST']._serialized_start=227
@@ -46,45 +46,45 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_ACKSTATUS_STATUSCODE']._serialized_start=1718
   _globals['_ACKSTATUS_STATUSCODE']._serialized_end=1782
   _globals['_EXECUTIONSTATUS']._serialized_start=1785
-  _globals['_EXECUTIONSTATUS']._serialized_end=1942
+  _globals['_EXECUTIONSTATUS']._serialized_end=1937
   _globals['_EXECUTIONSTATUS_STATUSCODE']._serialized_start=1883
-  _globals['_EXECUTIONSTATUS_STATUSCODE']._serialized_end=1942
-  _globals['_GETPKGINFOSREQUEST']._serialized_start=1944
-  _globals['_GETPKGINFOSREQUEST']._serialized_end=1981
-  _globals['_GETPKGINFORESPONSE']._serialized_start=1983
-  _globals['_GETPKGINFORESPONSE']._serialized_end=2042
-  _globals['_MOVEDELIVERYROBOTREQUEST']._serialized_start=2044
-  _globals['_MOVEDELIVERYROBOTREQUEST']._serialized_end=2158
-  _globals['_MOVEDELIVERYROBOTRESPONSE']._serialized_start=2160
-  _globals['_MOVEDELIVERYROBOTRESPONSE']._serialized_end=2187
-  _globals['_SETELEVATORSTATUSREQUEST']._serialized_start=2189
-  _globals['_SETELEVATORSTATUSREQUEST']._serialized_end=2298
-  _globals['_SETELEVATORSTATUSRESPONSE']._serialized_start=2300
-  _globals['_SETELEVATORSTATUSRESPONSE']._serialized_end=2327
-  _globals['_PKGARRIVALEVENT']._serialized_start=2329
-  _globals['_PKGARRIVALEVENT']._serialized_end=2395
-  _globals['_ELEVATORSTATUSEVENT']._serialized_start=2397
-  _globals['_ELEVATORSTATUSEVENT']._serialized_end=2501
-  _globals['_DELIVERYSTATUSEVENT']._serialized_start=2503
-  _globals['_DELIVERYSTATUSEVENT']._serialized_end=2626
-  _globals['_ELEVATOR']._serialized_start=2629
-  _globals['_ELEVATOR']._serialized_end=2865
-  _globals['_ELEVATOR_STATUS']._serialized_start=2706
-  _globals['_ELEVATOR_STATUS']._serialized_end=2808
-  _globals['_ELEVATOR_DOOROPENSTATUS']._serialized_start=2810
-  _globals['_ELEVATOR_DOOROPENSTATUS']._serialized_end=2865
-  _globals['_DELIVERYROBOT']._serialized_start=2868
-  _globals['_DELIVERYROBOT']._serialized_end=3049
-  _globals['_DELIVERYROBOT_DELIVERYSTATUS']._serialized_start=2972
-  _globals['_DELIVERYROBOT_DELIVERYSTATUS']._serialized_end=3049
-  _globals['_PKGROOM']._serialized_start=3052
-  _globals['_PKGROOM']._serialized_end=3192
-  _globals['_PKGROOM_LOCKER']._serialized_start=3128
-  _globals['_PKGROOM_LOCKER']._serialized_end=3192
-  _globals['_USER']._serialized_start=3194
-  _globals['_USER']._serialized_end=3261
-  _globals['_PKG']._serialized_start=3263
-  _globals['_PKG']._serialized_end=3390
-  _globals['_APTADDRESS']._serialized_start=3392
-  _globals['_APTADDRESS']._serialized_end=3465
+  _globals['_EXECUTIONSTATUS_STATUSCODE']._serialized_end=1937
+  _globals['_GETPKGINFOSREQUEST']._serialized_start=1939
+  _globals['_GETPKGINFOSREQUEST']._serialized_end=1976
+  _globals['_GETPKGINFORESPONSE']._serialized_start=1978
+  _globals['_GETPKGINFORESPONSE']._serialized_end=2037
+  _globals['_MOVEDELIVERYROBOTREQUEST']._serialized_start=2039
+  _globals['_MOVEDELIVERYROBOTREQUEST']._serialized_end=2153
+  _globals['_MOVEDELIVERYROBOTRESPONSE']._serialized_start=2155
+  _globals['_MOVEDELIVERYROBOTRESPONSE']._serialized_end=2182
+  _globals['_SETELEVATORSTATUSREQUEST']._serialized_start=2184
+  _globals['_SETELEVATORSTATUSREQUEST']._serialized_end=2293
+  _globals['_SETELEVATORSTATUSRESPONSE']._serialized_start=2295
+  _globals['_SETELEVATORSTATUSRESPONSE']._serialized_end=2322
+  _globals['_PKGARRIVALEVENT']._serialized_start=2324
+  _globals['_PKGARRIVALEVENT']._serialized_end=2390
+  _globals['_ELEVATORSTATUSEVENT']._serialized_start=2392
+  _globals['_ELEVATORSTATUSEVENT']._serialized_end=2496
+  _globals['_DELIVERYSTATUSEVENT']._serialized_start=2498
+  _globals['_DELIVERYSTATUSEVENT']._serialized_end=2621
+  _globals['_ELEVATOR']._serialized_start=2624
+  _globals['_ELEVATOR']._serialized_end=2860
+  _globals['_ELEVATOR_STATUS']._serialized_start=2701
+  _globals['_ELEVATOR_STATUS']._serialized_end=2803
+  _globals['_ELEVATOR_DOOROPENSTATUS']._serialized_start=2805
+  _globals['_ELEVATOR_DOOROPENSTATUS']._serialized_end=2860
+  _globals['_DELIVERYROBOT']._serialized_start=2863
+  _globals['_DELIVERYROBOT']._serialized_end=3044
+  _globals['_DELIVERYROBOT_DELIVERYSTATUS']._serialized_start=2967
+  _globals['_DELIVERYROBOT_DELIVERYSTATUS']._serialized_end=3044
+  _globals['_PKGROOM']._serialized_start=3047
+  _globals['_PKGROOM']._serialized_end=3187
+  _globals['_PKGROOM_LOCKER']._serialized_start=3123
+  _globals['_PKGROOM_LOCKER']._serialized_end=3187
+  _globals['_USER']._serialized_start=3189
+  _globals['_USER']._serialized_end=3256
+  _globals['_PKG']._serialized_start=3258
+  _globals['_PKG']._serialized_end=3385
+  _globals['_APTADDRESS']._serialized_start=3387
+  _globals['_APTADDRESS']._serialized_end=3460
 # @@protoc_insertion_point(module_scope)
