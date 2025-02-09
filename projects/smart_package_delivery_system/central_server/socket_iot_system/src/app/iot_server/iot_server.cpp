@@ -3,7 +3,6 @@
 nc localhost 1234
 */
 #include "iot_server.hpp"
-#include "protobuf_c/smart_pkg_delivery.pb.h"
 #include "protobuf_cpp/smart_pkg_delivery.pb.h"
 #include <boost/asio.hpp>
 #include <iostream>
