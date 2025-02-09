@@ -45,12 +45,13 @@ uint32_t local_msg_src_id = 1;
 char msg[BUF_SIZE];
 
 // 🚧❗ Assume that this executable run with Single-thread.
-smart_pkg_delivery_Request local_request_msg =
-    smart_pkg_delivery_Request_init_zero;
-smart_pkg_delivery_Response local_response_msg =
-    smart_pkg_delivery_Response_init_zero;
-smart_pkg_delivery_NodeEvent local_node_event_msg =
-    smart_pkg_delivery_NodeEvent_init_zero;
+smart_pkg_delivery_WrapperMsg local_request_wrapper_msg =
+    smart_pkg_delivery_AptAddress_init_zero;
+smart_pkg_delivery_WrapperMsg local_response_wrapper_msg =
+    smart_pkg_delivery_AptAddress_init_zero;
+smart_pkg_delivery_WrapperMsg local_event_wrapper_msg =
+    smart_pkg_delivery_AptAddress_init_zero;
+
 // --------------------------------------------------
 
 /* =========================
