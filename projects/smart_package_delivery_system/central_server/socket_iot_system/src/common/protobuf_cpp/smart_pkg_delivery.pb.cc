@@ -122,7 +122,7 @@ inline constexpr ExecutionStatus::Impl_::Impl_(
         message_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        code_{static_cast< ::smart_pkg_delivery::ExecutionStatus_StatusCode >(0)} {}
+        status_code_{static_cast< ::smart_pkg_delivery::ExecutionStatus_StatusCode >(0)} {}
 
 template <typename>
 PROTOBUF_CONSTEXPR ExecutionStatus::ExecutionStatus(::_pbi::ConstantInitialized)
@@ -257,7 +257,7 @@ inline constexpr AckStatus::Impl_::Impl_(
         message_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        code_{static_cast< ::smart_pkg_delivery::AckStatus_StatusCode >(0)} {}
+        status_code_{static_cast< ::smart_pkg_delivery::AckStatus_StatusCode >(0)} {}
 
 template <typename>
 PROTOBUF_CONSTEXPR AckStatus::AckStatus(::_pbi::ConstantInitialized)
@@ -763,7 +763,7 @@ const ::uint32_t
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::AckStatus, _impl_.code_),
+        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::AckStatus, _impl_.status_code_),
         PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::AckStatus, _impl_.message_),
         1,
         0,
@@ -775,7 +775,7 @@ const ::uint32_t
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::ExecutionStatus, _impl_.code_),
+        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::ExecutionStatus, _impl_.status_code_),
         PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::ExecutionStatus, _impl_.message_),
         1,
         0,
@@ -1073,63 +1073,63 @@ const char descriptor_table_protodef_smart_5fpkg_5fdelivery_2eproto[] ABSL_ATTRI
     "status_event\030\010 \001(\0132\'.smart_pkg_delivery."
     "ElevatorStatusEventH\000\022H\n\025delivery_status"
     "_event\030\t \001(\0132\'.smart_pkg_delivery.Delive"
-    "ryStatusEventH\000B\014\n\nevent_type\"\226\001\n\tAckSta"
-    "tus\0226\n\004code\030\001 \001(\0162(.smart_pkg_delivery.A"
-    "ckStatus.StatusCode\022\017\n\007message\030\002 \001(\t\"@\n\n"
-    "StatusCode\022\017\n\013UNSPECIFIED\020\000\022\020\n\014ACK_RECEI"
-    "VED\020\001\022\017\n\013ACK_INVALID\020\002\"\230\001\n\017ExecutionStat"
-    "us\022<\n\004code\030\001 \001(\0162..smart_pkg_delivery.Ex"
-    "ecutionStatus.StatusCode\022\017\n\007message\030\002 \001("
-    "\t\"6\n\nStatusCode\022\017\n\013UNSPECIFIED\020\000\022\013\n\007SUCC"
-    "ESS\020\001\022\n\n\006FAILED\020\002\"%\n\022GetPkgInfosRequest\022"
-    "\017\n\007user_id\030\001 \001(\r\";\n\022GetPkgInfoResponse\022%"
-    "\n\004pkgs\030\001 \003(\0132\027.smart_pkg_delivery.Pkg\"r\n"
-    "\030MoveDeliveryRobotRequest\022\031\n\021delivery_ro"
-    "bot_id\030\001 \001(\r\022;\n\023destination_address\030\002 \001("
-    "\0132\036.smart_pkg_delivery.AptAddress\"\033\n\031Mov"
-    "eDeliveryRobotResponse\"m\n\030SetElevatorSta"
-    "tusRequest\022\023\n\013elevator_id\030\001 \001(\r\022<\n\017eleva"
-    "tor_status\030\002 \001(\0132#.smart_pkg_delivery.El"
-    "evator.Status\"\033\n\031SetElevatorStatusRespon"
-    "se\"B\n\017PkgArrivalEvent\022/\n\007address\030\001 \001(\0132\036"
-    ".smart_pkg_delivery.AptAddress\"h\n\023Elevat"
-    "orStatusEvent\022\023\n\013elevator_id\030\001 \001(\r\022<\n\017el"
-    "evator_status\030\002 \001(\0132#.smart_pkg_delivery"
-    ".Elevator.Status\"{\n\023DeliveryStatusEvent\022"
-    "\031\n\021delivery_robot_id\030\001 \001(\r\022I\n\017delivery_s"
-    "tatus\030\002 \001(\01620.smart_pkg_delivery.Deliver"
-    "yRobot.DeliveryStatus\"\354\001\n\010Elevator\022\n\n\002id"
-    "\030\001 \001(\r\0223\n\006status\030\002 \001(\0132#.smart_pkg_deliv"
-    "ery.Elevator.Status\032f\n\006Status\022\025\n\rcurrent"
-    "_floor\030\001 \001(\r\022E\n\020door_open_status\030\002 \001(\0162+"
-    ".smart_pkg_delivery.Elevator.DoorOpenSta"
-    "tus\"7\n\016DoorOpenStatus\022\017\n\013UNSPECIFIED\020\000\022\n"
-    "\n\006CLOSED\020\001\022\010\n\004OPEN\020\002\"\265\001\n\rDeliveryRobot\022\n"
-    "\n\002id\030\001 \001(\r\022I\n\017delivery_status\030\003 \001(\01620.sm"
-    "art_pkg_delivery.DeliveryRobot.DeliveryS"
-    "tatus\"M\n\016DeliveryStatus\022\017\n\013UNSPECIFIED\020\000"
-    "\022\013\n\007PENDING\020\001\022\016\n\nIN_TRANSIT\020\002\022\r\n\tDELIVER"
-    "ED\020\003\"\214\001\n\007PkgRoom\022\n\n\002id\030\001 \001(\r\0223\n\007lockers\030"
-    "\002 \003(\0132\".smart_pkg_delivery.PkgRoom.Locke"
-    "r\032@\n\006Locker\022\021\n\tlocker_id\030\001 \001(\r\022\023\n\013access"
-    "_code\030\002 \001(\t\022\016\n\006pkg_id\030\003 \001(\r\"C\n\004User\022\n\n\002i"
-    "d\030\001 \001(\r\022/\n\007address\030\002 \001(\0132\036.smart_pkg_del"
-    "ivery.AptAddress\"\177\n\003Pkg\022\n\n\002id\030\001 \001(\r\022/\n\007a"
-    "ddress\030\002 \001(\0132\036.smart_pkg_delivery.AptAdd"
-    "ress\022\021\n\tsender_id\030\003 \001(\r\022\023\n\013receiver_id\030\004"
-    " \001(\r\022\023\n\013photo_bytes\030\005 \001(\014\"I\n\nAptAddress\022"
-    "\023\n\013apt_complex\030\001 \001(\t\022\024\n\014building_num\030\002 \001"
-    "(\r\022\020\n\010unit_num\030\003 \001(\r*\207\001\n\010NodeType\022\017\n\013UNS"
-    "PECIFIED\020\000\022\n\n\006SERVER\020\001\022\035\n\031CLIENT_ADDRESS"
-    "_RECOGNIZER\020\002\022\017\n\013CLIENT_USER\020\003\022\031\n\025CLIENT"
-    "_DELIVERY_ROBOT\020\004\022\023\n\017CLIENT_ELEVATOR\020\005b\010"
-    "editionsp\350\007"
+    "ryStatusEventH\000B\014\n\nevent_type\"\235\001\n\tAckSta"
+    "tus\022=\n\013status_code\030\001 \001(\0162(.smart_pkg_del"
+    "ivery.AckStatus.StatusCode\022\017\n\007message\030\002 "
+    "\001(\t\"@\n\nStatusCode\022\017\n\013UNSPECIFIED\020\000\022\020\n\014AC"
+    "K_RECEIVED\020\001\022\017\n\013ACK_INVALID\020\002\"\237\001\n\017Execut"
+    "ionStatus\022C\n\013status_code\030\001 \001(\0162..smart_p"
+    "kg_delivery.ExecutionStatus.StatusCode\022\017"
+    "\n\007message\030\002 \001(\t\"6\n\nStatusCode\022\017\n\013UNSPECI"
+    "FIED\020\000\022\013\n\007SUCCESS\020\001\022\n\n\006FAILED\020\002\"%\n\022GetPk"
+    "gInfosRequest\022\017\n\007user_id\030\001 \001(\r\";\n\022GetPkg"
+    "InfoResponse\022%\n\004pkgs\030\001 \003(\0132\027.smart_pkg_d"
+    "elivery.Pkg\"r\n\030MoveDeliveryRobotRequest\022"
+    "\031\n\021delivery_robot_id\030\001 \001(\r\022;\n\023destinatio"
+    "n_address\030\002 \001(\0132\036.smart_pkg_delivery.Apt"
+    "Address\"\033\n\031MoveDeliveryRobotResponse\"m\n\030"
+    "SetElevatorStatusRequest\022\023\n\013elevator_id\030"
+    "\001 \001(\r\022<\n\017elevator_status\030\002 \001(\0132#.smart_p"
+    "kg_delivery.Elevator.Status\"\033\n\031SetElevat"
+    "orStatusResponse\"B\n\017PkgArrivalEvent\022/\n\007a"
+    "ddress\030\001 \001(\0132\036.smart_pkg_delivery.AptAdd"
+    "ress\"h\n\023ElevatorStatusEvent\022\023\n\013elevator_"
+    "id\030\001 \001(\r\022<\n\017elevator_status\030\002 \001(\0132#.smar"
+    "t_pkg_delivery.Elevator.Status\"{\n\023Delive"
+    "ryStatusEvent\022\031\n\021delivery_robot_id\030\001 \001(\r"
+    "\022I\n\017delivery_status\030\002 \001(\01620.smart_pkg_de"
+    "livery.DeliveryRobot.DeliveryStatus\"\354\001\n\010"
+    "Elevator\022\n\n\002id\030\001 \001(\r\0223\n\006status\030\002 \001(\0132#.s"
+    "mart_pkg_delivery.Elevator.Status\032f\n\006Sta"
+    "tus\022\025\n\rcurrent_floor\030\001 \001(\r\022E\n\020door_open_"
+    "status\030\002 \001(\0162+.smart_pkg_delivery.Elevat"
+    "or.DoorOpenStatus\"7\n\016DoorOpenStatus\022\017\n\013U"
+    "NSPECIFIED\020\000\022\n\n\006CLOSED\020\001\022\010\n\004OPEN\020\002\"\265\001\n\rD"
+    "eliveryRobot\022\n\n\002id\030\001 \001(\r\022I\n\017delivery_sta"
+    "tus\030\003 \001(\01620.smart_pkg_delivery.DeliveryR"
+    "obot.DeliveryStatus\"M\n\016DeliveryStatus\022\017\n"
+    "\013UNSPECIFIED\020\000\022\013\n\007PENDING\020\001\022\016\n\nIN_TRANSI"
+    "T\020\002\022\r\n\tDELIVERED\020\003\"\214\001\n\007PkgRoom\022\n\n\002id\030\001 \001"
+    "(\r\0223\n\007lockers\030\002 \003(\0132\".smart_pkg_delivery"
+    ".PkgRoom.Locker\032@\n\006Locker\022\021\n\tlocker_id\030\001"
+    " \001(\r\022\023\n\013access_code\030\002 \001(\t\022\016\n\006pkg_id\030\003 \001("
+    "\r\"C\n\004User\022\n\n\002id\030\001 \001(\r\022/\n\007address\030\002 \001(\0132\036"
+    ".smart_pkg_delivery.AptAddress\"\177\n\003Pkg\022\n\n"
+    "\002id\030\001 \001(\r\022/\n\007address\030\002 \001(\0132\036.smart_pkg_d"
+    "elivery.AptAddress\022\021\n\tsender_id\030\003 \001(\r\022\023\n"
+    "\013receiver_id\030\004 \001(\r\022\023\n\013photo_bytes\030\005 \001(\014\""
+    "I\n\nAptAddress\022\023\n\013apt_complex\030\001 \001(\t\022\024\n\014bu"
+    "ilding_num\030\002 \001(\r\022\020\n\010unit_num\030\003 \001(\r*\207\001\n\010N"
+    "odeType\022\017\n\013UNSPECIFIED\020\000\022\n\n\006SERVER\020\001\022\035\n\031"
+    "CLIENT_ADDRESS_RECOGNIZER\020\002\022\017\n\013CLIENT_US"
+    "ER\020\003\022\031\n\025CLIENT_DELIVERY_ROBOT\020\004\022\023\n\017CLIEN"
+    "T_ELEVATOR\020\005b\010editionsp\350\007"
 };
 static ::absl::once_flag descriptor_table_smart_5fpkg_5fdelivery_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_smart_5fpkg_5fdelivery_2eproto = {
     false,
     false,
-    3611,
+    3625,
     descriptor_table_protodef_smart_5fpkg_5fdelivery_2eproto,
     "smart_pkg_delivery.proto",
     &descriptor_table_smart_5fpkg_5fdelivery_2eproto_once,
@@ -3511,7 +3511,7 @@ AckStatus::AckStatus(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
-  _impl_.code_ = from._impl_.code_;
+  _impl_.status_code_ = from._impl_.status_code_;
 
   // @@protoc_insertion_point(copy_constructor:smart_pkg_delivery.AckStatus)
 }
@@ -3523,7 +3523,7 @@ inline PROTOBUF_NDEBUG_INLINE AckStatus::Impl_::Impl_(
 
 inline void AckStatus::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.code_ = {};
+  _impl_.status_code_ = {};
 }
 AckStatus::~AckStatus() {
   // @@protoc_insertion_point(destructor:smart_pkg_delivery.AckStatus)
@@ -3594,14 +3594,14 @@ const ::_pbi::TcParseTable<1, 2, 0, 44, 2> AckStatus::_table_ = {
     // string message = 2;
     {::_pbi::TcParser::FastUS1,
      {18, 0, 0, PROTOBUF_FIELD_OFFSET(AckStatus, _impl_.message_)}},
-    // .smart_pkg_delivery.AckStatus.StatusCode code = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(AckStatus, _impl_.code_), 1>(),
-     {8, 1, 0, PROTOBUF_FIELD_OFFSET(AckStatus, _impl_.code_)}},
+    // .smart_pkg_delivery.AckStatus.StatusCode status_code = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(AckStatus, _impl_.status_code_), 1>(),
+     {8, 1, 0, PROTOBUF_FIELD_OFFSET(AckStatus, _impl_.status_code_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // .smart_pkg_delivery.AckStatus.StatusCode code = 1;
-    {PROTOBUF_FIELD_OFFSET(AckStatus, _impl_.code_), _Internal::kHasBitsOffset + 1, 0,
+    // .smart_pkg_delivery.AckStatus.StatusCode status_code = 1;
+    {PROTOBUF_FIELD_OFFSET(AckStatus, _impl_.status_code_), _Internal::kHasBitsOffset + 1, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kOpenEnum)},
     // string message = 2;
     {PROTOBUF_FIELD_OFFSET(AckStatus, _impl_.message_), _Internal::kHasBitsOffset + 0, 0,
@@ -3626,7 +3626,7 @@ PROTOBUF_NOINLINE void AckStatus::Clear() {
   if (cached_has_bits & 0x00000001u) {
     _impl_.message_.ClearNonDefaultToEmpty();
   }
-  _impl_.code_ = 0;
+  _impl_.status_code_ = 0;
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -3647,11 +3647,11 @@ PROTOBUF_NOINLINE void AckStatus::Clear() {
           (void)cached_has_bits;
 
           cached_has_bits = this_._impl_._has_bits_[0];
-          // .smart_pkg_delivery.AckStatus.StatusCode code = 1;
+          // .smart_pkg_delivery.AckStatus.StatusCode status_code = 1;
           if (cached_has_bits & 0x00000002u) {
             target = stream->EnsureSpace(target);
             target = ::_pbi::WireFormatLite::WriteEnumToArray(
-                1, this_._internal_code(), target);
+                1, this_._internal_status_code(), target);
           }
 
           // string message = 2;
@@ -3693,10 +3693,10 @@ PROTOBUF_NOINLINE void AckStatus::Clear() {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                               this_._internal_message());
             }
-            // .smart_pkg_delivery.AckStatus.StatusCode code = 1;
+            // .smart_pkg_delivery.AckStatus.StatusCode status_code = 1;
             if (cached_has_bits & 0x00000002u) {
               total_size += 1 +
-                            ::_pbi::WireFormatLite::EnumSize(this_._internal_code());
+                            ::_pbi::WireFormatLite::EnumSize(this_._internal_status_code());
             }
           }
           return this_.MaybeComputeUnknownFieldsSize(total_size,
@@ -3717,7 +3717,7 @@ void AckStatus::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::googl
       _this->_internal_set_message(from._internal_message());
     }
     if (cached_has_bits & 0x00000002u) {
-      _this->_impl_.code_ = from._impl_.code_;
+      _this->_impl_.status_code_ = from._impl_.status_code_;
     }
   }
   _this->_impl_._has_bits_[0] |= cached_has_bits;
@@ -3739,7 +3739,7 @@ void AckStatus::InternalSwap(AckStatus* PROTOBUF_RESTRICT other) {
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.message_, &other->_impl_.message_, arena);
-  swap(_impl_.code_, other->_impl_.code_);
+  swap(_impl_.status_code_, other->_impl_.status_code_);
 }
 
 ::google::protobuf::Metadata AckStatus::GetMetadata() const {
@@ -3784,7 +3784,7 @@ ExecutionStatus::ExecutionStatus(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
-  _impl_.code_ = from._impl_.code_;
+  _impl_.status_code_ = from._impl_.status_code_;
 
   // @@protoc_insertion_point(copy_constructor:smart_pkg_delivery.ExecutionStatus)
 }
@@ -3796,7 +3796,7 @@ inline PROTOBUF_NDEBUG_INLINE ExecutionStatus::Impl_::Impl_(
 
 inline void ExecutionStatus::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.code_ = {};
+  _impl_.status_code_ = {};
 }
 ExecutionStatus::~ExecutionStatus() {
   // @@protoc_insertion_point(destructor:smart_pkg_delivery.ExecutionStatus)
@@ -3867,14 +3867,14 @@ const ::_pbi::TcParseTable<1, 2, 0, 50, 2> ExecutionStatus::_table_ = {
     // string message = 2;
     {::_pbi::TcParser::FastUS1,
      {18, 0, 0, PROTOBUF_FIELD_OFFSET(ExecutionStatus, _impl_.message_)}},
-    // .smart_pkg_delivery.ExecutionStatus.StatusCode code = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ExecutionStatus, _impl_.code_), 1>(),
-     {8, 1, 0, PROTOBUF_FIELD_OFFSET(ExecutionStatus, _impl_.code_)}},
+    // .smart_pkg_delivery.ExecutionStatus.StatusCode status_code = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ExecutionStatus, _impl_.status_code_), 1>(),
+     {8, 1, 0, PROTOBUF_FIELD_OFFSET(ExecutionStatus, _impl_.status_code_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // .smart_pkg_delivery.ExecutionStatus.StatusCode code = 1;
-    {PROTOBUF_FIELD_OFFSET(ExecutionStatus, _impl_.code_), _Internal::kHasBitsOffset + 1, 0,
+    // .smart_pkg_delivery.ExecutionStatus.StatusCode status_code = 1;
+    {PROTOBUF_FIELD_OFFSET(ExecutionStatus, _impl_.status_code_), _Internal::kHasBitsOffset + 1, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kOpenEnum)},
     // string message = 2;
     {PROTOBUF_FIELD_OFFSET(ExecutionStatus, _impl_.message_), _Internal::kHasBitsOffset + 0, 0,
@@ -3899,7 +3899,7 @@ PROTOBUF_NOINLINE void ExecutionStatus::Clear() {
   if (cached_has_bits & 0x00000001u) {
     _impl_.message_.ClearNonDefaultToEmpty();
   }
-  _impl_.code_ = 0;
+  _impl_.status_code_ = 0;
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -3920,11 +3920,11 @@ PROTOBUF_NOINLINE void ExecutionStatus::Clear() {
           (void)cached_has_bits;
 
           cached_has_bits = this_._impl_._has_bits_[0];
-          // .smart_pkg_delivery.ExecutionStatus.StatusCode code = 1;
+          // .smart_pkg_delivery.ExecutionStatus.StatusCode status_code = 1;
           if (cached_has_bits & 0x00000002u) {
             target = stream->EnsureSpace(target);
             target = ::_pbi::WireFormatLite::WriteEnumToArray(
-                1, this_._internal_code(), target);
+                1, this_._internal_status_code(), target);
           }
 
           // string message = 2;
@@ -3966,10 +3966,10 @@ PROTOBUF_NOINLINE void ExecutionStatus::Clear() {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                               this_._internal_message());
             }
-            // .smart_pkg_delivery.ExecutionStatus.StatusCode code = 1;
+            // .smart_pkg_delivery.ExecutionStatus.StatusCode status_code = 1;
             if (cached_has_bits & 0x00000002u) {
               total_size += 1 +
-                            ::_pbi::WireFormatLite::EnumSize(this_._internal_code());
+                            ::_pbi::WireFormatLite::EnumSize(this_._internal_status_code());
             }
           }
           return this_.MaybeComputeUnknownFieldsSize(total_size,
@@ -3990,7 +3990,7 @@ void ExecutionStatus::MergeImpl(::google::protobuf::MessageLite& to_msg, const :
       _this->_internal_set_message(from._internal_message());
     }
     if (cached_has_bits & 0x00000002u) {
-      _this->_impl_.code_ = from._impl_.code_;
+      _this->_impl_.status_code_ = from._impl_.status_code_;
     }
   }
   _this->_impl_._has_bits_[0] |= cached_has_bits;
@@ -4012,7 +4012,7 @@ void ExecutionStatus::InternalSwap(ExecutionStatus* PROTOBUF_RESTRICT other) {
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.message_, &other->_impl_.message_, arena);
-  swap(_impl_.code_, other->_impl_.code_);
+  swap(_impl_.status_code_, other->_impl_.status_code_);
 }
 
 ::google::protobuf::Metadata ExecutionStatus::GetMetadata() const {

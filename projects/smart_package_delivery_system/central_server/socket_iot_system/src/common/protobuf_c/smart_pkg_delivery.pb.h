@@ -55,16 +55,16 @@ typedef enum _smart_pkg_delivery_DeliveryRobot_DeliveryStatus {
  -------------------------
  Indicates whether a Request has been successfully received by the Destination from the Source. */
 typedef struct _smart_pkg_delivery_AckStatus {
-    bool has_code;
-    smart_pkg_delivery_AckStatus_StatusCode code;
+    bool has_status_code;
+    smart_pkg_delivery_AckStatus_StatusCode status_code;
     bool has_message;
     char message[256];
 } smart_pkg_delivery_AckStatus;
 
 /* Indicates the execution result of the received Request. */
 typedef struct _smart_pkg_delivery_ExecutionStatus {
-    bool has_code;
-    smart_pkg_delivery_ExecutionStatus_StatusCode code;
+    bool has_status_code;
+    smart_pkg_delivery_ExecutionStatus_StatusCode status_code;
     bool has_message;
     char message[256];
 } smart_pkg_delivery_ExecutionStatus;
@@ -216,7 +216,7 @@ typedef struct _smart_pkg_delivery_NodeEvent {
     char dest_name[64];
     pb_size_t which_event_type;
     union {
-        /* client-pkg_room (c++) ---> server */
+        /* client-pkg_room (python) ---> server */
         smart_pkg_delivery_PkgArrivalEvent pkg_arrival_event;
         /* client-elevator (c++) ---> server ---> client-delivery_robot (c++) */
         smart_pkg_delivery_ElevatorStatusEvent elevator_status_event;
@@ -328,9 +328,9 @@ extern "C" {
 #define smart_pkg_delivery_NodeEvent_src_type_ENUMTYPE smart_pkg_delivery_NodeType
 #define smart_pkg_delivery_NodeEvent_dest_type_ENUMTYPE smart_pkg_delivery_NodeType
 
-#define smart_pkg_delivery_AckStatus_code_ENUMTYPE smart_pkg_delivery_AckStatus_StatusCode
+#define smart_pkg_delivery_AckStatus_status_code_ENUMTYPE smart_pkg_delivery_AckStatus_StatusCode
 
-#define smart_pkg_delivery_ExecutionStatus_code_ENUMTYPE smart_pkg_delivery_ExecutionStatus_StatusCode
+#define smart_pkg_delivery_ExecutionStatus_status_code_ENUMTYPE smart_pkg_delivery_ExecutionStatus_StatusCode
 
 
 
@@ -402,9 +402,9 @@ extern "C" {
 #define smart_pkg_delivery_AptAddress_init_zero  {false, "", false, 0, false, 0}
 
 /* Field tags (for use in manual encoding/decoding) */
-#define smart_pkg_delivery_AckStatus_code_tag    1
+#define smart_pkg_delivery_AckStatus_status_code_tag 1
 #define smart_pkg_delivery_AckStatus_message_tag 2
-#define smart_pkg_delivery_ExecutionStatus_code_tag 1
+#define smart_pkg_delivery_ExecutionStatus_status_code_tag 1
 #define smart_pkg_delivery_ExecutionStatus_message_tag 2
 #define smart_pkg_delivery_GetPkgInfosRequest_user_id_tag 1
 #define smart_pkg_delivery_DeliveryStatusEvent_delivery_robot_id_tag 1
@@ -534,13 +534,13 @@ X(a, STATIC,   ONEOF,    MESSAGE,  (event_type,delivery_status_event,event_type.
 #define smart_pkg_delivery_NodeEvent_event_type_delivery_status_event_MSGTYPE smart_pkg_delivery_DeliveryStatusEvent
 
 #define smart_pkg_delivery_AckStatus_FIELDLIST(X, a) \
-X(a, STATIC,   OPTIONAL, UENUM,    code,              1) \
+X(a, STATIC,   OPTIONAL, UENUM,    status_code,       1) \
 X(a, STATIC,   OPTIONAL, STRING,   message,           2)
 #define smart_pkg_delivery_AckStatus_CALLBACK NULL
 #define smart_pkg_delivery_AckStatus_DEFAULT NULL
 
 #define smart_pkg_delivery_ExecutionStatus_FIELDLIST(X, a) \
-X(a, STATIC,   OPTIONAL, UENUM,    code,              1) \
+X(a, STATIC,   OPTIONAL, UENUM,    status_code,       1) \
 X(a, STATIC,   OPTIONAL, STRING,   message,           2)
 #define smart_pkg_delivery_ExecutionStatus_CALLBACK NULL
 #define smart_pkg_delivery_ExecutionStatus_DEFAULT NULL

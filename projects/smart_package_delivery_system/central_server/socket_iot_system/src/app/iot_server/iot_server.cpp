@@ -93,7 +93,7 @@ private:
 
       // ✅ AckStatus에 따라 출력
       std::cout << "  - Ack Status: ";
-      switch (response.ack_status().code()) {
+      switch (response.ack_status().status_code()) {
       case smart_pkg_delivery::AckStatus::ACK_RECEIVED:
         std::cout << "ACK_INVALID";
         break;
@@ -108,7 +108,7 @@ private:
 
       // ✅ ExecutionStatus에 따라 출력
       std::cout << "  - Execution Status: ";
-      switch (response.execution_status().code()) {
+      switch (response.execution_status().status_code()) {
       case smart_pkg_delivery::ExecutionStatus::SUCCESS:
         std::cout << "EXEC_PENDING";
         break;
@@ -157,20 +157,44 @@ private:
       std::cerr << "⚠️ Error: 알 수 없는 메시지 타입!" << std::endl;
       return "ERROR: UNKNOWN MESSAGE TYPE";
     }
-    // 그대로 다시 전송 (에코)
-    std::string encoded_message;
-    // if (!message.SerializeToString(&encoded_message)) {
-    //   std::cerr << "Protobuf 메시지 직렬화 실패!" << std::endl;
-    //   return "ERROR: SERIALIZATION FAILED";
-    // }
 
-    return encoded_message;
+    return "";
   }
   void doWrite(std::size_t length) {
     auto self(shared_from_this());
     boost::asio::async_write(
         socket_, boost::asio::buffer(buffer_, length),
         [this, self](boost::system::error_code ec, std::size_t) {
+          smart_pkg_delivery::WrapperMsg wrapper_msg;
+
+          smart_pkg_delivery::Response *response =
+              wrapper_msg.mutable_response();
+          response->set_src_id(10);
+          response->set_src_type(
+              smart_pkg_delivery::NodeType::CLIENT_DELIVERY_ROBOT);
+          response->set_dest_id(10);
+          response->set_dest_type(
+              smart_pkg_delivery::NodeType::CLIENT_ELEVATOR);
+          smart_pkg_delivery::AckStatus ack_status = response->ack_status();
+          response->mutable_ack_status()->set_status_code(
+              smart_pkg_delivery::AckStatus::ACK_RECEIVED);
+          response->mutable_execution_status()->set_status_code(
+              smart_pkg_delivery::ExecutionStatus::SUCCESS);
+          // ✅ (how-to) Protobuf에서는 비어 있는 메시지도 set할 수 있다. 비어 있는 메시지를 설정하면 oneof 필드가 해당 메시지로 설정됨.
+          //  즉, mutable_move_delivery_robot_response()를 호출하면 oneof의 현재 필드가 변경됨!
+          response->mutable_move_delivery_robot_response();
+          std::cout << "\n\n🛠  DEBUG: Full Message to be written:\n"
+                    << wrapper_msg.DebugString() << std::endl;
+          // 📰 TODO: 전송
+          // std::string encoded_message;
+          // // if (!message.SerializeToString(&encoded_message)) {
+          // //   std::cerr << "Protobuf 메시지 직렬화 실패!" << std::endl;
+          // //   return "ERROR: SERIALIZATION FAILED";
+          // // }
+
+          // return encoded_message;
+
+          // ❗ Maintain a Client's connection (loop)
           if (!ec) {
             doRead();
           }

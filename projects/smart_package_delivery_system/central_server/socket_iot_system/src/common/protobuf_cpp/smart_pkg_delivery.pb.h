@@ -1183,7 +1183,7 @@ class ExecutionStatus final : public ::google::protobuf::Message
   // accessors -------------------------------------------------------
   enum : int {
     kMessageFieldNumber = 2,
-    kCodeFieldNumber = 1,
+    kStatusCodeFieldNumber = 1,
   };
   // string message = 2;
   bool has_message() const;
@@ -1202,15 +1202,15 @@ class ExecutionStatus final : public ::google::protobuf::Message
   std::string* _internal_mutable_message();
 
   public:
-  // .smart_pkg_delivery.ExecutionStatus.StatusCode code = 1;
-  bool has_code() const;
-  void clear_code() ;
-  ::smart_pkg_delivery::ExecutionStatus_StatusCode code() const;
-  void set_code(::smart_pkg_delivery::ExecutionStatus_StatusCode value);
+  // .smart_pkg_delivery.ExecutionStatus.StatusCode status_code = 1;
+  bool has_status_code() const;
+  void clear_status_code() ;
+  ::smart_pkg_delivery::ExecutionStatus_StatusCode status_code() const;
+  void set_status_code(::smart_pkg_delivery::ExecutionStatus_StatusCode value);
 
   private:
-  ::smart_pkg_delivery::ExecutionStatus_StatusCode _internal_code() const;
-  void _internal_set_code(::smart_pkg_delivery::ExecutionStatus_StatusCode value);
+  ::smart_pkg_delivery::ExecutionStatus_StatusCode _internal_status_code() const;
+  void _internal_set_status_code(::smart_pkg_delivery::ExecutionStatus_StatusCode value);
 
   public:
   // @@protoc_insertion_point(class_scope:smart_pkg_delivery.ExecutionStatus)
@@ -1239,7 +1239,7 @@ class ExecutionStatus final : public ::google::protobuf::Message
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::ArenaStringPtr message_;
-    int code_;
+    int status_code_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -2274,7 +2274,7 @@ class AckStatus final : public ::google::protobuf::Message
   // accessors -------------------------------------------------------
   enum : int {
     kMessageFieldNumber = 2,
-    kCodeFieldNumber = 1,
+    kStatusCodeFieldNumber = 1,
   };
   // string message = 2;
   bool has_message() const;
@@ -2293,15 +2293,15 @@ class AckStatus final : public ::google::protobuf::Message
   std::string* _internal_mutable_message();
 
   public:
-  // .smart_pkg_delivery.AckStatus.StatusCode code = 1;
-  bool has_code() const;
-  void clear_code() ;
-  ::smart_pkg_delivery::AckStatus_StatusCode code() const;
-  void set_code(::smart_pkg_delivery::AckStatus_StatusCode value);
+  // .smart_pkg_delivery.AckStatus.StatusCode status_code = 1;
+  bool has_status_code() const;
+  void clear_status_code() ;
+  ::smart_pkg_delivery::AckStatus_StatusCode status_code() const;
+  void set_status_code(::smart_pkg_delivery::AckStatus_StatusCode value);
 
   private:
-  ::smart_pkg_delivery::AckStatus_StatusCode _internal_code() const;
-  void _internal_set_code(::smart_pkg_delivery::AckStatus_StatusCode value);
+  ::smart_pkg_delivery::AckStatus_StatusCode _internal_status_code() const;
+  void _internal_set_status_code(::smart_pkg_delivery::AckStatus_StatusCode value);
 
   public:
   // @@protoc_insertion_point(class_scope:smart_pkg_delivery.AckStatus)
@@ -2330,7 +2330,7 @@ class AckStatus final : public ::google::protobuf::Message
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::ArenaStringPtr message_;
-    int code_;
+    int status_code_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -7563,32 +7563,32 @@ inline NodeEvent::EventTypeCase NodeEvent::event_type_case() const {
 
 // AckStatus
 
-// .smart_pkg_delivery.AckStatus.StatusCode code = 1;
-inline bool AckStatus::has_code() const {
+// .smart_pkg_delivery.AckStatus.StatusCode status_code = 1;
+inline bool AckStatus::has_status_code() const {
   bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
   return value;
 }
-inline void AckStatus::clear_code() {
+inline void AckStatus::clear_status_code() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.code_ = 0;
+  _impl_.status_code_ = 0;
   _impl_._has_bits_[0] &= ~0x00000002u;
 }
-inline ::smart_pkg_delivery::AckStatus_StatusCode AckStatus::code() const {
-  // @@protoc_insertion_point(field_get:smart_pkg_delivery.AckStatus.code)
-  return _internal_code();
+inline ::smart_pkg_delivery::AckStatus_StatusCode AckStatus::status_code() const {
+  // @@protoc_insertion_point(field_get:smart_pkg_delivery.AckStatus.status_code)
+  return _internal_status_code();
 }
-inline void AckStatus::set_code(::smart_pkg_delivery::AckStatus_StatusCode value) {
-  _internal_set_code(value);
+inline void AckStatus::set_status_code(::smart_pkg_delivery::AckStatus_StatusCode value) {
+  _internal_set_status_code(value);
   _impl_._has_bits_[0] |= 0x00000002u;
-  // @@protoc_insertion_point(field_set:smart_pkg_delivery.AckStatus.code)
+  // @@protoc_insertion_point(field_set:smart_pkg_delivery.AckStatus.status_code)
 }
-inline ::smart_pkg_delivery::AckStatus_StatusCode AckStatus::_internal_code() const {
+inline ::smart_pkg_delivery::AckStatus_StatusCode AckStatus::_internal_status_code() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return static_cast<::smart_pkg_delivery::AckStatus_StatusCode>(_impl_.code_);
+  return static_cast<::smart_pkg_delivery::AckStatus_StatusCode>(_impl_.status_code_);
 }
-inline void AckStatus::_internal_set_code(::smart_pkg_delivery::AckStatus_StatusCode value) {
+inline void AckStatus::_internal_set_status_code(::smart_pkg_delivery::AckStatus_StatusCode value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.code_ = value;
+  _impl_.status_code_ = value;
 }
 
 // string message = 2;
@@ -7664,32 +7664,32 @@ inline void AckStatus::set_allocated_message(std::string* value) {
 
 // ExecutionStatus
 
-// .smart_pkg_delivery.ExecutionStatus.StatusCode code = 1;
-inline bool ExecutionStatus::has_code() const {
+// .smart_pkg_delivery.ExecutionStatus.StatusCode status_code = 1;
+inline bool ExecutionStatus::has_status_code() const {
   bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
   return value;
 }
-inline void ExecutionStatus::clear_code() {
+inline void ExecutionStatus::clear_status_code() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.code_ = 0;
+  _impl_.status_code_ = 0;
   _impl_._has_bits_[0] &= ~0x00000002u;
 }
-inline ::smart_pkg_delivery::ExecutionStatus_StatusCode ExecutionStatus::code() const {
-  // @@protoc_insertion_point(field_get:smart_pkg_delivery.ExecutionStatus.code)
-  return _internal_code();
+inline ::smart_pkg_delivery::ExecutionStatus_StatusCode ExecutionStatus::status_code() const {
+  // @@protoc_insertion_point(field_get:smart_pkg_delivery.ExecutionStatus.status_code)
+  return _internal_status_code();
 }
-inline void ExecutionStatus::set_code(::smart_pkg_delivery::ExecutionStatus_StatusCode value) {
-  _internal_set_code(value);
+inline void ExecutionStatus::set_status_code(::smart_pkg_delivery::ExecutionStatus_StatusCode value) {
+  _internal_set_status_code(value);
   _impl_._has_bits_[0] |= 0x00000002u;
-  // @@protoc_insertion_point(field_set:smart_pkg_delivery.ExecutionStatus.code)
+  // @@protoc_insertion_point(field_set:smart_pkg_delivery.ExecutionStatus.status_code)
 }
-inline ::smart_pkg_delivery::ExecutionStatus_StatusCode ExecutionStatus::_internal_code() const {
+inline ::smart_pkg_delivery::ExecutionStatus_StatusCode ExecutionStatus::_internal_status_code() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return static_cast<::smart_pkg_delivery::ExecutionStatus_StatusCode>(_impl_.code_);
+  return static_cast<::smart_pkg_delivery::ExecutionStatus_StatusCode>(_impl_.status_code_);
 }
-inline void ExecutionStatus::_internal_set_code(::smart_pkg_delivery::ExecutionStatus_StatusCode value) {
+inline void ExecutionStatus::_internal_set_status_code(::smart_pkg_delivery::ExecutionStatus_StatusCode value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.code_ = value;
+  _impl_.status_code_ = value;
 }
 
 // string message = 2;

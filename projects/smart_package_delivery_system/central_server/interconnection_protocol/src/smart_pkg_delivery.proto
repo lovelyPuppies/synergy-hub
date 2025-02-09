@@ -113,7 +113,7 @@ message AckStatus {
     ACK_RECEIVED = 1;
     ACK_INVALID = 2;
   }
-  StatusCode code = 1;
+  StatusCode status_code = 1;
   string message = 2;
 }
 
@@ -124,7 +124,7 @@ message ExecutionStatus {
     SUCCESS = 1;
     FAILED = 2;
   }
-  StatusCode code = 1;
+  StatusCode status_code = 1;
   string message = 2;
 }
 

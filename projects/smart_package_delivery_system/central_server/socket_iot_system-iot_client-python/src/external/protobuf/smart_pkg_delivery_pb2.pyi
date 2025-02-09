@@ -102,7 +102,7 @@ class NodeEvent(_message.Message):
     def __init__(self, src_type: _Optional[_Union[NodeType, str]] = ..., src_id: _Optional[int] = ..., src_name: _Optional[str] = ..., dest_type: _Optional[_Union[NodeType, str]] = ..., dest_id: _Optional[int] = ..., dest_name: _Optional[str] = ..., pkg_arrival_event: _Optional[_Union[PkgArrivalEvent, _Mapping]] = ..., elevator_status_event: _Optional[_Union[ElevatorStatusEvent, _Mapping]] = ..., delivery_status_event: _Optional[_Union[DeliveryStatusEvent, _Mapping]] = ...) -> None: ...
 
 class AckStatus(_message.Message):
-    __slots__ = ("code", "message")
+    __slots__ = ("status_code", "message")
     class StatusCode(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
         __slots__ = ()
         UNSPECIFIED: _ClassVar[AckStatus.StatusCode]
@@ -111,14 +111,14 @@ class AckStatus(_message.Message):
     UNSPECIFIED: AckStatus.StatusCode
     ACK_RECEIVED: AckStatus.StatusCode
     ACK_INVALID: AckStatus.StatusCode
-    CODE_FIELD_NUMBER: _ClassVar[int]
+    STATUS_CODE_FIELD_NUMBER: _ClassVar[int]
     MESSAGE_FIELD_NUMBER: _ClassVar[int]
-    code: AckStatus.StatusCode
+    status_code: AckStatus.StatusCode
     message: str
-    def __init__(self, code: _Optional[_Union[AckStatus.StatusCode, str]] = ..., message: _Optional[str] = ...) -> None: ...
+    def __init__(self, status_code: _Optional[_Union[AckStatus.StatusCode, str]] = ..., message: _Optional[str] = ...) -> None: ...
 
 class ExecutionStatus(_message.Message):
-    __slots__ = ("code", "message")
+    __slots__ = ("status_code", "message")
     class StatusCode(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
         __slots__ = ()
         UNSPECIFIED: _ClassVar[ExecutionStatus.StatusCode]
@@ -127,11 +127,11 @@ class ExecutionStatus(_message.Message):
     UNSPECIFIED: ExecutionStatus.StatusCode
     SUCCESS: ExecutionStatus.StatusCode
     FAILED: ExecutionStatus.StatusCode
-    CODE_FIELD_NUMBER: _ClassVar[int]
+    STATUS_CODE_FIELD_NUMBER: _ClassVar[int]
     MESSAGE_FIELD_NUMBER: _ClassVar[int]
-    code: ExecutionStatus.StatusCode
+    status_code: ExecutionStatus.StatusCode
     message: str
-    def __init__(self, code: _Optional[_Union[ExecutionStatus.StatusCode, str]] = ..., message: _Optional[str] = ...) -> None: ...
+    def __init__(self, status_code: _Optional[_Union[ExecutionStatus.StatusCode, str]] = ..., message: _Optional[str] = ...) -> None: ...
 
 class GetPkgInfosRequest(_message.Message):
     __slots__ = ("user_id",)
