@@ -33,7 +33,7 @@ set(c_common_sources
     ${nano_pb_header_dir}/pb_encode.c
     ${nano_pb_header_dir}/pb_decode.c
     ${nano_pb_header_dir}/pb_common.c
-    src/common/protobuf_c/message_initializer.c
+    src/common/protobuf_c/message_preparer.c
     src/common/protobuf_c/smart_pkg_delivery.pb.c
 )
 

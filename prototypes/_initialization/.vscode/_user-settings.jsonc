@@ -188,6 +188,8 @@
   "STM32VSCodeExtension.cubeCLT.path": "/home/wbfw109v2/st/stm32cubeclt",
   "STM32VSCodeExtension.projectCreator.executablePath": "/home/wbfw109v2/STM32CubeMX/STM32CubeMX",
   "STM32VSCodeExtension.productFinder.executablePath": "/home/wbfw109v2/STMCUFinder/STMCUFinder",
+  // 🌀 Experimental
+  "github.copilot.nextEditSuggestions.enabled": true,
   // 🌀 Title: Latex setting from https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop
   "latex-workshop.latex.recipe.default": "lualatex",
   "latex-workshop.latex.outDir": "%WORKSPACE_FOLDER%/build/note",

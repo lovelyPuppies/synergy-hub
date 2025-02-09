@@ -1,49 +1,58 @@
-#include "message_initializer.h" // Include the corresponding header file
+#include "message_preparer.h" // Include the corresponding header file
 #include "protobuf_c/smart_pkg_delivery.pb.h"
 #include <stdbool.h>
 #include <string.h> // For memset (safe initialization)
 
-// 🏗 Initializer function for Request Message (output parameter approach)
-void init_request_msg(smart_pkg_delivery_WrapperMsg *wrapper_msg,
-                      smart_pkg_delivery_NodeType src_type, uint32_t src_id) {
+// 🏗 Prepare function for Request Message (returns request pointer)
+smart_pkg_delivery_Request *
+prepare_request_msg(smart_pkg_delivery_WrapperMsg *wrapper_msg,
+                    smart_pkg_delivery_NodeType src_type, uint32_t src_id) {
   // 🚧 NULL check
   if (!wrapper_msg)
-    return;
+    return NULL;
   memset(wrapper_msg, 0, sizeof(smart_pkg_delivery_Request));
   wrapper_msg->which_msg_type = smart_pkg_delivery_WrapperMsg_request_tag;
   wrapper_msg->msg_type.request.has_src_type = true;
   wrapper_msg->msg_type.request.src_type = src_type;
   wrapper_msg->msg_type.request.has_src_id = true;
   wrapper_msg->msg_type.request.src_id = src_id;
+
+  return &wrapper_msg->msg_type.request;
 }
 
-// 🏗 Initializer function for Response Message (output parameter approach)
-void init_response_msg(smart_pkg_delivery_WrapperMsg *wrapper_msg,
-                       smart_pkg_delivery_NodeType src_type, uint32_t src_id) {
+// 🏗 Prepare function for Response Message (returns response pointer)
+smart_pkg_delivery_Response *
+prepare_response_msg(smart_pkg_delivery_WrapperMsg *wrapper_msg,
+                     smart_pkg_delivery_NodeType src_type, uint32_t src_id) {
   // 🚧 NULL check
   if (!wrapper_msg)
-    return;
+    return NULL;
   memset(wrapper_msg, 0, sizeof(smart_pkg_delivery_Response));
   wrapper_msg->which_msg_type = smart_pkg_delivery_WrapperMsg_response_tag;
   wrapper_msg->msg_type.response.has_src_type = true;
   wrapper_msg->msg_type.response.src_type = src_type;
   wrapper_msg->msg_type.response.has_src_id = true;
   wrapper_msg->msg_type.response.src_id = src_id;
+
+  return &wrapper_msg->msg_type.response;
 }
 
-// 🏗 Initializer function for NodeEvent Message (output parameter approach)
-void init_node_event_msg(smart_pkg_delivery_WrapperMsg *wrapper_msg,
-                         smart_pkg_delivery_NodeType src_type,
-                         uint32_t src_id) {
+// 🏗 Prepare function for NodeEvent Message (returns node event pointer)
+smart_pkg_delivery_NodeEvent *
+prepare_node_event_msg(smart_pkg_delivery_WrapperMsg *wrapper_msg,
+                       smart_pkg_delivery_NodeType src_type, uint32_t src_id) {
   // 🚧 NULL check
   if (!wrapper_msg)
-    return;
+    return NULL;
+
   memset(wrapper_msg, 0, sizeof(smart_pkg_delivery_NodeEvent));
   wrapper_msg->which_msg_type = smart_pkg_delivery_WrapperMsg_node_event_tag;
   wrapper_msg->msg_type.node_event.has_src_type = true;
   wrapper_msg->msg_type.node_event.src_type = src_type;
   wrapper_msg->msg_type.node_event.has_src_id = true;
   wrapper_msg->msg_type.node_event.src_id = src_id;
+
+  return &wrapper_msg->msg_type.node_event;
 }
 // // 🏗 Initializer function for Request Message (output parameter approach)
 // void init_request_msg(smart_pkg_delivery_Request *msg,

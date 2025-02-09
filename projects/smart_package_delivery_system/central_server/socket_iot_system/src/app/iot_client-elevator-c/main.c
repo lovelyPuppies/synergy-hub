@@ -7,7 +7,7 @@
 
 // Library inclusions for necessary functionalities
 // ⚙️ --------------------------------------------------
-#include "protobuf_c/message_initializer.h"
+#include "protobuf_c/message_preparer.h"
 #include "protobuf_c/smart_pkg_delivery.pb.h"
 // --------------------------------------------------
 #include <arpa/inet.h> // Defines functions for internet operations, such as inet_addr.
@@ -46,12 +46,14 @@ char msg[BUF_SIZE];
 
 // 🚧❗ Assume that this executable run with Single-thread.
 smart_pkg_delivery_WrapperMsg local_request_wrapper_msg =
-    smart_pkg_delivery_AptAddress_init_zero;
+    smart_pkg_delivery_WrapperMsg_init_zero;
+smart_pkg_delivery_Request *local_request_msg;
 smart_pkg_delivery_WrapperMsg local_response_wrapper_msg =
-    smart_pkg_delivery_AptAddress_init_zero;
+    smart_pkg_delivery_WrapperMsg_init_zero;
+smart_pkg_delivery_Response *local_response_msg;
 smart_pkg_delivery_WrapperMsg local_event_wrapper_msg =
-    smart_pkg_delivery_AptAddress_init_zero;
-
+    smart_pkg_delivery_WrapperMsg_init_zero;
+smart_pkg_delivery_NodeEvent *local_event_msg;
 // --------------------------------------------------
 
 /* =========================
@@ -69,19 +71,24 @@ void init_node_configuration(smart_pkg_delivery_NodeType src_type,
   local_msg_src_id = src_id;
 }
 
-// 🏗 Wrapped Factory function for Request (No need to pass src_type, src_id)
-void init_local_request_msg(smart_pkg_delivery_Request *msg) {
-  init_request_msg(msg, local_msg_src_type, local_msg_src_id);
+// 🏗 Wrapped Factory function for Request
+smart_pkg_delivery_Request *
+prepare_local_request_msg(smart_pkg_delivery_WrapperMsg *wrapper_msg) {
+  return prepare_request_msg(wrapper_msg, local_msg_src_type, local_msg_src_id);
 }
 
 // 🏗 Wrapped Factory function for Response
-void init_local_response_msg(smart_pkg_delivery_Response *msg) {
-  init_response_msg(msg, local_msg_src_type, local_msg_src_id);
+smart_pkg_delivery_Response *
+prepare_local_response_msg(smart_pkg_delivery_WrapperMsg *wrapper_msg) {
+  return prepare_response_msg(wrapper_msg, local_msg_src_type,
+                              local_msg_src_id);
 }
 
 // 🏗 Wrapped Factory function for NodeEvent
-void init_local_node_event_msg(smart_pkg_delivery_NodeEvent *msg) {
-  init_node_event_msg(msg, local_msg_src_type, local_msg_src_id);
+smart_pkg_delivery_NodeEvent *
+prepare_local_node_event_msg(smart_pkg_delivery_WrapperMsg *wrapper_msg) {
+  return prepare_node_event_msg(wrapper_msg, local_msg_src_type,
+                                local_msg_src_id);
 }
 
 // --------------------------------------------------
@@ -92,13 +99,13 @@ void init_local_node_event_msg(smart_pkg_delivery_NodeEvent *msg) {
 int main(int argc, char *argv[]) {
   // Variables for socket, server address, and thread management
 
+  // ⚙️ --------------------------------------------------
   // 🚣 sock: file descriptor
   int sock;
   struct sockaddr_in server_address;
   pthread_t snd_thread, rcv_thread;
   void *thread_return;
 
-  // ⚙️ --------------------------------------------------
   // Validate arguments to ensure the correct number are provided.
   if (argc != 4) {
     printf("Usage : %s <IP> <port> <local_src_id>\n", argv[0]);
@@ -232,24 +239,23 @@ void *send_msg(void *arg) {
       }
 
       // ⚙️📰
-      init_local_node_event_msg(&local_node_event_msg);
-      local_node_event_msg.dest_type = smart_pkg_delivery_NodeType_SERVER;
-      local_node_event_msg.which_event_type =
+      local_event_msg = prepare_local_node_event_msg(&local_event_wrapper_msg);
+      local_enent_msg->dest_type = smart_pkg_delivery_NodeType_SERVER;
+      local_enent_msg->which_event_type =
           smart_pkg_delivery_NodeEvent_pkg_arrival_event_tag;
 
-      local_node_event_msg.event_type.pkg_arrival_event.has_address = true;
-      local_node_event_msg.event_type.pkg_arrival_event.address =
+      local_enent_msg->event_type.pkg_arrival_event.has_address = true;
+      local_enent_msg->event_type.pkg_arrival_event.address =
           (smart_pkg_delivery_AptAddress){.has_building_num = true,
                                           .building_num = 101,
                                           .has_unit_num = true,
                                           .unit_num = 305};
 
       pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
-      printf(
-          "AAA: %d \n",
-          local_node_event_msg.event_type.pkg_arrival_event.address.unit_num);
+      printf("AAA: %d \n",
+             local_enent_msg->event_type.pkg_arrival_event.address.unit_num);
       status = pb_encode(&stream, smart_pkg_delivery_NodeEvent_fields,
-                         &local_node_event_msg);
+                         &local_event_wrapper_msg);
       msg_length = stream.bytes_written;
       printf("%zu \n", msg_length);
 
@@ -261,12 +267,12 @@ void *send_msg(void *arg) {
       }
       // For testing decoding
       {
-        init_local_node_event_msg(&local_node_event_msg);
+        prepare_local_node_event_msg(&prepare_local_node_event_msg);
         pb_istream_t stream = pb_istream_from_buffer(buffer, msg_length);
 
         /* Now we are ready to decode the message. */
         status = pb_decode(&stream, smart_pkg_delivery_NodeEvent_fields,
-                           &local_node_event_msg);
+                           &prepare_local_node_event_msg);
 
         /* Check for errors... */
         if (!status) {
