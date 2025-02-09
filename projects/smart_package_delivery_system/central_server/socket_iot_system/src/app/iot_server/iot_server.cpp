@@ -99,35 +99,50 @@ private:
       std::cout << "\n\n🛠  DEBUG: Full Response Message:\n"
                 << response.DebugString() << std::endl;
 
-      // ✅ AckStatus에 따라 출력
-      std::cout << "  - Ack Status: ";
-      switch (response.ack_status().status_code()) {
-      case smart_pkg_delivery::AckStatus::ACK_RECEIVED:
-        std::cout << "ACK_INVALID";
+      switch (response.response_type_case()) {
+      case smart_pkg_delivery::Response::kGetPkgInfoResponse:
+        std::cout << "  - Type: kGetPkgInfoResponse" << std::endl;
         break;
-      case smart_pkg_delivery::AckStatus::ACK_INVALID:
-        std::cout << "ACK_RECEIVED";
-        break;
-      default:
-        std::cout << "UNKNOWN_ACK_STATUS";
-        break;
-      }
-      std::cout << std::endl;
+      case smart_pkg_delivery::Response::kSetElevatorStatusResponse: {
+        std::cout << "  - Type: SetElevatorStatusResponse" << std::endl;
 
-      // ✅ ExecutionStatus에 따라 출력
-      std::cout << "  - Execution Status: ";
-      switch (response.execution_status().status_code()) {
-      case smart_pkg_delivery::ExecutionStatus::SUCCESS:
-        std::cout << "EXEC_PENDING";
+      } break;
+      case smart_pkg_delivery::Response::kMoveDeliveryRobotResponse:
+        std::cout << "  - Type: MoveDeliveryRobotResponse" << std::endl;
         break;
-      case smart_pkg_delivery::ExecutionStatus::FAILED:
-        std::cout << "EXEC_COMPLETED";
-        break;
-      default:
-        std::cout << "UNKNOWN_EXECUTION_STATUS";
-        break;
+      case smart_pkg_delivery::Response::RESPONSE_TYPE_NOT_SET:
+        std::cerr << "⚠️ Response 타입이 설정되지 않음!" << std::endl;
+        return "ERROR: INVALID RESPONSE TYPE";
       }
-      std::cout << std::endl;
+      // ✅ AckStatus에 따라 출력
+      // std::cout << "  - Ack Status: ";
+      // switch (response.ack_status().status_code()) {
+      // case smart_pkg_delivery::AckStatus::ACK_RECEIVED:
+      //   std::cout << "ACK_INVALID";
+      //   break;
+      // case smart_pkg_delivery::AckStatus::ACK_INVALID:
+      //   std::cout << "ACK_RECEIVED";
+      //   break;
+      // default:
+      //   std::cout << "UNKNOWN_ACK_STATUS";
+      //   break;
+      // }
+      // std::cout << std::endl;
+
+      // // ✅ ExecutionStatus에 따라 출력
+      // std::cout << "  - Execution Status: ";
+      // switch (response.execution_status().status_code()) {
+      // case smart_pkg_delivery::ExecutionStatus::SUCCESS:
+      //   std::cout << "EXEC_PENDING";
+      //   break;
+      // case smart_pkg_delivery::ExecutionStatus::FAILED:
+      //   std::cout << "EXEC_COMPLETED";
+      //   break;
+      // default:
+      //   std::cout << "UNKNOWN_EXECUTION_STATUS";
+      //   break;
+      // }
+      // std::cout << std::endl;
 
       break;
     }
@@ -171,6 +186,11 @@ private:
           std::cerr << "Protobuf 메시지 직렬화 실패!" << std::endl;
           return "ERROR: SERIALIZATION FAILED";
         }
+        std::cout << "\n\n🛠  DEBUG: ---------:\n"
+                  << wrapper_msg.DebugString() << std::endl;
+
+        // return encoded_message;
+        std::cout << encoded_message.length() << std::endl;
         return encoded_message;
       } break;
       case smart_pkg_delivery::NodeEvent::kDeliveryStatusEvent:

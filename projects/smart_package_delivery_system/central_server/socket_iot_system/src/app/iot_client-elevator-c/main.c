@@ -55,15 +55,8 @@ smart_pkg_delivery_WrapperMsg local_event_wrapper_msg =
     smart_pkg_delivery_WrapperMsg_init_zero;
 smart_pkg_delivery_NodeEvent *local_event_msg;
 
-smart_pkg_delivery_WrapperMsg received_request_wrapper_msg =
+smart_pkg_delivery_WrapperMsg received_wrapper_msg =
     smart_pkg_delivery_WrapperMsg_init_zero;
-smart_pkg_delivery_Request *received_request_msg;
-smart_pkg_delivery_WrapperMsg received_response_wrapper_msg =
-    smart_pkg_delivery_WrapperMsg_init_zero;
-smart_pkg_delivery_Response *received_response_msg;
-smart_pkg_delivery_WrapperMsg received_event_wrapper_msg =
-    smart_pkg_delivery_WrapperMsg_init_zero;
-smart_pkg_delivery_NodeEvent *received_event_msg;
 // --------------------------------------------------
 
 /* =========================
@@ -264,11 +257,10 @@ void *send_msg(void *arg) {
           };
 
       pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
-      printf("AAA: %s \n", buffer);
       status = pb_encode(&stream, smart_pkg_delivery_WrapperMsg_fields,
                          &local_event_wrapper_msg);
       msg_length = stream.bytes_written;
-      printf("%zu \n", msg_length);
+      printf("Encoded msg length: %zu \n", msg_length);
 
       // Send the message to the server, exit on failure.
       // if (write(*sock, name_msg, strlen(name_msg)) <= 0) {
@@ -292,46 +284,85 @@ void *recv_msg(void *arg) {
 
   // Variable definitions for receiving messages
   int *sock = (int *)arg;
-  char name_msg[NAME_SIZE + BUF_SIZE + 1];
 
   // Loop to continuously receive messages from server.
   while (1) {
-    // Clear the receive buffer and read message from server.
-    memset(name_msg, 0x0, sizeof(name_msg));
-    int str_len = read(*sock, name_msg, NAME_SIZE + BUF_SIZE);
-    printf("?aaaaaaaaaaaaaa??");
     // For testing decoding
-    {
-      memset(received_event_msg, 0, sizeof(smart_pkg_delivery_WrapperMsg));
-      pb_istream_t stream = pb_istream_from_buffer(buffer, msg_length);
+    // Clear the receive buffer and read message from server.
+    memset(buffer, 0x0, sizeof(buffer));
+    memset(&received_wrapper_msg, 0, sizeof(smart_pkg_delivery_WrapperMsg));
+    msg_length = read(*sock, buffer, NAME_SIZE + BUF_SIZE);
 
-      /* Now we are ready to decode the message. */
-      status = pb_decode(&stream, smart_pkg_delivery_WrapperMsg_fields,
-                         &received_event_msg);
+    pb_istream_t stream = pb_istream_from_buffer(buffer, msg_length);
 
-      /* Check for errors... */
-      if (!status) {
-        printf("Decoding failed: %s\n", PB_GET_ERROR(&stream));
-      }
-      printf("%s\n", buffer);
-      //   // smart_pkg_delivery_AptAddress *address =
-      //   //     &local_node_event_msg.event_type.pkg_arrival_event.address;
-      //   // /* Print the data contained in the message. */
-      //   // printf("Received address: %d동 %d호\n", address->building_num,
-      //   //        address->unit_num);
-      //   // printf("received msg src, dst: %d, %d!\n", local_node_event_msg.src_type,
-      //   //        local_node_event_msg.src_id);
+    /* Now we are ready to decode the message. */
+    status = pb_decode(&stream, smart_pkg_delivery_WrapperMsg_fields,
+                       &received_wrapper_msg);
+
+    /* Check for errors... */
+    if (!status) {
+      printf("Decoding failed: %s\n", PB_GET_ERROR(&stream));
     }
 
+    printf("\n🛠️  Debug: Received message\n");
+    switch (received_wrapper_msg.which_msg_type) {
+    case smart_pkg_delivery_WrapperMsg_node_event_tag:
+      printf("  Node Event:\n");
+      printf("    Source ID: %d\n",
+             received_wrapper_msg.msg_type.node_event.src_id);
+      printf("    Event Type: %d\n",
+             received_wrapper_msg.msg_type.node_event.which_event_type);
+      break;
+
+    case smart_pkg_delivery_WrapperMsg_request_tag:
+      printf("  Request:\n");
+      printf("    Source ID: %d\n",
+             received_wrapper_msg.msg_type.request.src_id);
+      printf("    Event Type: %d\n",
+             received_wrapper_msg.msg_type.request.which_request_type);
+      break;
+
+    case smart_pkg_delivery_WrapperMsg_response_tag:
+      printf("  Response:\n");
+      printf("    Source ID: %d\n",
+             received_wrapper_msg.msg_type.response.src_id);
+      printf("    Ack Status code: %d\n",
+             received_wrapper_msg.msg_type.response.ack_status.status_code);
+      printf(
+          "    Execution Status code: %d\n",
+          received_wrapper_msg.msg_type.response.execution_status.status_code);
+      printf("    Response Type: %d\n",
+             received_wrapper_msg.msg_type.response.which_response_type);
+      switch (received_wrapper_msg.msg_type.response.which_response_type) {
+      case smart_pkg_delivery_Response_move_delivery_robot_response_tag:
+
+        break;
+      default:
+        break
+      }
+      break;
+
+    default:
+      printf("  Unknown message type!\n");
+      break;
+    }
+    // smart_pkg_delivery_AptAddress *address =
+    //     &local_node_event_msg.event_type.pkg_arrival_event.address;
+    // /* Print the data contained in the message. */
+    // printf("Received address: %d동 %d호\n", address->building_num,
+    //        address->unit_num);
+    // printf("received msg src, dst: %d, %d!\n", local_node_event_msg.src_type,
+    //        local_node_event_msg.src_id);
+
     // 🚣 If read() returns 0 (EOF (socket closed)) or an error occurs, mark socket as closed and exit.
-    if (str_len <= 0) {
+    if (msg_length <= 0) {
       *sock = -1;
       return NULL;
     }
 
     // Null-terminate message and print it to console.
-    name_msg[str_len] = 0;
-    fputs(name_msg, stdout);
+    buffer[msg_length] = 0;
+    // fputs(buffer, stdout);
   }
 }
 

@@ -69,7 +69,8 @@
       },
       "presentation": {
         "reveal": "never"
-      }
+      },
+      "problemMatcher": []
     },
     // 🌀 Title: target: Host
     {
@@ -129,6 +130,22 @@
       "problemMatcher": []
     },
     {
+      "label": "conan-linux-debug-clang-19-x86_64 - 🧪 Build and Run",
+      "dependsOn": [
+        "conan-linux-debug-clang-19-x86_64 - 3. Conan Build",
+        "conan-linux-debug-clang-19-x86_64 - 4. Conan Run"
+      ],
+      "dependsOrder": "sequence",
+      "runOptions": {
+        "runOn": "default"
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
       "label": "conan-linux-debug-clang-19-x86_64 - Clean",
       "type": "shell",
       "command": "cd socket_iot_system && rm -fr build/linux-debug-clang-19-x86_64",
@@ -138,7 +155,8 @@
       },
       "presentation": {
         "reveal": "never"
-      }
+      },
+      "problemMatcher": []
     }
   ]
 }

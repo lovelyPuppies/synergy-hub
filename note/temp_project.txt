@@ -19995,3 +19995,5 @@ How to get protobuf enum as string?
         std::cout << std:
 
       
+📰 TODO: nanoPB c++ 도 잇녜!
+  https://github.com/nanopb/nanopb_cpp

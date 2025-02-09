@@ -47,6 +47,10 @@ VS code 🔪📦 Extensions ; https://marketplace.visualstudio.com/vscode
 
 ================================================
 VS code 🔪 Docs ; https://code.visualstudio.com/docs
+  #🔰 USER GUIDE
+    ⚓ Tasks ; https://code.visualstudio.com/docs/editor/tasks
+      #️⃣ Processing task output with 🪱 problem matchers ; https://code.visualstudio.com/docs/editor/tasks#_processing-task-output-with-problem-matchers
+      
 
   # LANGUAGES
     ⚓🖇️ Rust ; https://code.visualstudio.com/docs/languages/rust 📅 2024-11-30 21:31:58
