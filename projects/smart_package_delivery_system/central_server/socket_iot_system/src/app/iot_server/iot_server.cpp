@@ -3,7 +3,6 @@
 nc localhost 1234
 */
 #include "iot_server.hpp"
-#include "protobuf_c/smart_pkg_delivery.pb.h"
 #include "protobuf_cpp/smart_pkg_delivery.pb.h"
 #include <boost/asio.hpp>
 #include <iostream>
@@ -48,23 +47,31 @@ private:
   }
 
   std::string processProtobufMessage(const std::string &data) {
+    smart_pkg_delivery::WrapperMsg wrapper_msg;
 
-    if (!message.ParseFromString(data)) {
+    if (!wrapper_msg.ParseFromString(data)) {
       std::cerr << "Protobuf 메시지 디코딩 실패!" << std::endl;
       return "ERROR: INVALID PROTOBUF MESSAGE";
     }
 
     std::cout << "📩 받은 메시지: " << std::endl;
-    std::cout << "  - Source: " << message.<< std::endl;
-    std::cout << "  - Destination: " << message.destination() << std::endl;
-    std::cout << "  - Command: " << message.command() << std::endl;
+    std::cout
+        << "  - Source: "
+        << wrapper_msg.node_event().pkg_arrival_event().address().building_num()
+        << std::endl;
+    std::cout
+        << "  - Source: "
+        << wrapper_msg.node_event().pkg_arrival_event().address().unit_num()
+        << std::endl;
+    // std::cout << "  - Destination: " << message.destination() << std::endl;
+    // std::cout << "  - Command: " << message.command() << std::endl;
 
     // 그대로 다시 전송 (에코)
     std::string encoded_message;
-    if (!message.SerializeToString(&encoded_message)) {
-      std::cerr << "Protobuf 메시지 직렬화 실패!" << std::endl;
-      return "ERROR: SERIALIZATION FAILED";
-    }
+    // if (!message.SerializeToString(&encoded_message)) {
+    //   std::cerr << "Protobuf 메시지 직렬화 실패!" << std::endl;
+    //   return "ERROR: SERIALIZATION FAILED";
+    // }
 
     return encoded_message;
   }

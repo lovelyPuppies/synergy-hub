@@ -4,8 +4,8 @@ os=Linux
 build_type=Debug
 compiler=clang
 compiler.version=17
-compiler.cstd=23
-compiler.cppstd=23
+compiler.cstd=17
+compiler.cppstd=20
 compiler.version=19
 compiler.libcxx=libc++
 

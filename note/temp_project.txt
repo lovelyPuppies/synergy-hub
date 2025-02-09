@@ -19944,3 +19944,18 @@ Linux 계열 (Linux-based OS)	  Unix-like OS (GNU/Linux 커널 기반)	      Ubu
 https://www.codingwiththomas.com/blog/boost-asio-server-client-example
 
 https://googleapis.dev/python/protobuf/latest/google/protobuf/message.html#google.protobuf.message.Message
+
+⚠️ TODO:.. 이거 발표 끝나고 처리하기 하..
+  현재 clang++-17을 사용하면서 -stdlib=libc++을 적용하고 있습니다. 하지만 protobuf 및 abseil이 libstdc++로 빌드되었을 가능성이 높습니다.
+  이 문제였네.
+
+  ld.lld: error: undefined symbol: std::length_error::length_error(char const*)
+  >>> referenced by throw_delegate.cc
+  >>>               throw_delegate.cc.o:(absl::lts_20240116::base_internal::ThrowStdLengthError(char const*)) in archive /opt/protobuf/release-static/lib/libabsl_throw_delegate.a
+
+  ld.lld: error: too many errors emitted, stopping now (use --error-limit=0 to see all errors)
+  clang++-17: error: linker command failed with exit code 1 (use -v to see invocation)
+  ninja: build stopped: subcommand failed.
+
+
+ protobuf가 libstdc++로 빌드되었으니, Clang에서도 -stdlib=libstdc++을 맞춰주는 게 정답!
