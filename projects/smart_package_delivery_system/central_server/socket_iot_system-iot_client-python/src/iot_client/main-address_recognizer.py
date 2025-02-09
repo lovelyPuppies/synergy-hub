@@ -176,13 +176,18 @@ def main():
         client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         client_socket.connect((SERVER_IP, SERVER_PORT))
         print(f"서버({SERVER_IP}:{SERVER_PORT})에 연결되었습니다.")
-        while True:
+        for _ in range(5):
             wrapper_msg = smart_pkg_delivery_pb2.WrapperMsg()
             msg1_node_event = wrapper_msg.node_event
             address = msg1_node_event.pkg_arrival_event.address
             address.building_num = 105
             address.unit_num = 505
             time.sleep(5)
+            if client_socket:
+                try:
+                    client_socket.sendall(wrapper_msg.SerializePartialToString())
+                except Exception as e:
+                    print(f"데이터 전송 실패: {e}")
     except Exception as e:
         print(f"서버에 연결할 수 없습니다: {e}")
         client_socket = None
@@ -192,6 +197,8 @@ def main():
             print("서버 연결을 종료했습니다.")
         print("리소스를 정리했습니다.")
 
+
+main()
 
 # %% 🧪🆗 Test protobuf for Encoding, Decoding
 wrapper_msg = smart_pkg_delivery_pb2.WrapperMsg()
