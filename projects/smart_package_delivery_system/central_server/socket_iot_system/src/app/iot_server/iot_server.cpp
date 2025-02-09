@@ -124,14 +124,19 @@ private:
 
     case smart_pkg_delivery::WrapperMsg::kNodeEvent: {
       const auto &event = wrapper_msg.node_event();
-      std::cout << "⏬ NodeEvent 수신!" << std::endl;
-      std::cout << "  - Source: " << event.src_name()
-                << " (ID: " << event.src_id() << ")" << std::endl;
-      std::cout << "  - Destination: " << event.dest_name()
-                << " (ID: " << event.dest_id() << ")" << std::endl;
+      // 🛠️
+      std::cout << "\n\n🛠  DEBUG: Full NodeEvent Message:\n"
+                << event.DebugString() << std::endl;
+
+      // std::cout << "⏬ NodeEvent 수신!" << std::endl;
+      // std::cout << "  - Source: " << event.src_name()
+      //           << " (ID: " << event.src_id() << ")" << std::endl;
+      // std::cout << "  - Destination: " << event.dest_name()
+      //           << " (ID: " << event.dest_id() << ")" << std::endl;
 
       switch (event.event_type_case()) {
       case smart_pkg_delivery::NodeEvent::kPkgArrivalEvent:
+        // 📰 TODO: save to DB
         std::cout << "  - Type: PkgArrivalEvent" << std::endl;
         break;
       case smart_pkg_delivery::NodeEvent::kElevatorStatusEvent:

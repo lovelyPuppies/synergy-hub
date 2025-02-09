@@ -254,7 +254,7 @@ protobuf 🔪⚓ Docs ; https://protobuf.dev/
         Each message class also contains a number of other methods that let you check or manipulate the entire message, including:          
           -🪱 bool IsInitialized() const; 
             checks if all the required fields have been set.
-          -🪱 string DebugString() const; 
+          - 🔰📍🪱 string DebugString() const; 
             returns a human-readable representation of the message, particularly useful for debugging.
           -🪱 void CopyFrom(const Person& from);  
             overwrites the message with the given message’s values.

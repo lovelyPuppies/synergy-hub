@@ -94,7 +94,7 @@ message NodeEvent {
   uint32 dest_id = 5;
   string dest_name = 6;
   oneof event_type {
-    // client-pkg_room (c++) ---> server
+    // client-pkg_room (python) ---> server
     PkgArrivalEvent pkg_arrival_event = 7;
     // client-elevator (c++) ---> server ---> client-delivery_robot (c++)
     ElevatorStatusEvent elevator_status_event = 8;

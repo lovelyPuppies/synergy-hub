@@ -19969,3 +19969,29 @@ https://googleapis.dev/python/protobuf/latest/google/protobuf/message.html#googl
       https://stackoverflow.com/questions/32161409/how-to-get-protobuf-enum-as-string
 How to get protobuf enum as string?
   https://stackoverflow.com/questions/32161409/how-to-get-protobuf-enum-as-string
+
+📰 TODO: reference 찾기.. 공식문서 어디? .code 로 enum 값 받아와야하는거..
+      case smart_pkg_delivery::WrapperMsg::kResponse: {
+        const auto &response = wrapper_msg.response();
+        std::cout << "📩 Response 수신!" << std::endl;
+        std::cout << "  - Source: " << response.src_name()
+                  << " (ID: " << response.src_id() << ")" << std::endl;
+        std::cout << "  - Destination: " << response.dest_name()
+                  << " (ID: " << response.dest_id() << ")" << std::endl;
+
+        // ✅ AckStatus에 따라 출력
+        std::cout << "  - Ack Status: ";
+        switch (response.ack_status().code()) {
+        case smart_pkg_delivery::AckStatus::ACK_RECEIVED:
+          std::cout << "ACK_INVALID";
+          break;
+        case smart_pkg_delivery::AckStatus::ACK_INVALID:
+          std::cout << "ACK_RECEIVED";
+          break;
+        default:
+          std::cout << "UNKNOWN_ACK_STATUS";
+          break;
+        }
+        std::cout << std:
+
+      

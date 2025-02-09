@@ -205,8 +205,8 @@ def main():
         client_socket.connect((SERVER_IP, SERVER_PORT))
         print(f"서버({SERVER_IP}:{SERVER_PORT})에 연결되었습니다.")
         ## ⚙️ --------------------------------------------------
-        # 5회 전송 테스트
-        for _ in range(5):
+        # 3회 전송 테스트
+        for i in range(3):
             wrapper_msg = smart_pkg_delivery_pb2.WrapperMsg()
             wrapper_msg.node_event.src_type = (
                 smart_pkg_delivery_pb2.CLIENT_ADDRESS_RECOGNIZER
@@ -216,7 +216,7 @@ def main():
             wrapper_msg.node_event.dest_id = 1
             msg1_arrival_event = wrapper_msg.node_event.pkg_arrival_event
             msg1_arrival_event.address.building_num = 105
-            msg1_arrival_event.address.unit_num = 505
+            msg1_arrival_event.address.unit_num = 505 + i * 100
             if client_socket:
                 try:
                     client_socket.sendall(wrapper_msg.SerializePartialToString())
