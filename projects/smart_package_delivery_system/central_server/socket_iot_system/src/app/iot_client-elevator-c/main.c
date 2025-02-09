@@ -335,10 +335,9 @@ void *recv_msg(void *arg) {
              received_wrapper_msg.msg_type.response.which_response_type);
       switch (received_wrapper_msg.msg_type.response.which_response_type) {
       case smart_pkg_delivery_Response_move_delivery_robot_response_tag:
-
         break;
       default:
-        break
+        break;
       }
       break;
 

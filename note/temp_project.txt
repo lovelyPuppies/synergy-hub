@@ -19997,3 +19997,45 @@ How to get protobuf enum as string?
       
 📰 TODO: nanoPB c++ 도 잇녜!
   https://github.com/nanopb/nanopb_cpp
+
+
+
+
+
+음.. 아니 저렇게 하면 너무 클라이언트를 분류할 수 없는데..
+실제 자동차 전장에서나 수십 수백개이상의 소켓통신이 있는 곳에서는 어떤식으로 하는데?
+(2025년 기준, 실제 실무 기준/트렌드 기준으로!! )
+
+
+현재 나는 (.proto)  .proto 를 사실 src type, src_id 를 이렇게 메시지에 함꼐 넣었거든?
+근데 그러면 소켓 클라이언트가 src_type 을 변조해서 보낼 수 있다는 문제가 있을거같아.
+근데 그렇다고 이를 서버에서 중간에서 받아서 src_type, id, name 을 지정한 소켓 클라이언트에 대해서 수정하는 건 괜찮은건가? 보안상?.. 아니 애초에 서버가 원래 이런 걸 확인해서 자신에게 들어온 소켓 클라이언트의 메시지 소스를 함께 관리하는건가?
+나는 소켓 클라이언트가 서버에 처음 접속할때 자신의 src_type, src_id, src_name 을 주고, 서버에서 이를 확인해서 이미 서버에 등록된 것만 허용하게 하려고 해. 흠.. 왜냐면 역할군별로 나눠야해서.. 이건 어떻게 생각해?
+
+enum NodeType {
+  UNSPECIFIED = 0;
+  SERVER = 1;
+  CLIENT_ADDRESS_RECOGNIZER = 2;
+  CLIENT_USER = 3;
+  CLIENT_DELIVERY_ROBOT = 4;
+  CLIENT_ELEVATOR = 5;
+}
+
+// 📨 A request message that expects a response from the destination.
+message Request {
+  NodeType src_type = 1;
+  uint32 src_id = 2;
+  string src_name = 3;
+  NodeType dest_type = 4;
+  uint32 dest_id = 5;
+  string dest_name = 6;
+  oneof request_type {
+    // user (c++) ---> server
+    GetPkgInfosRequest get_pkg_infos_request = 7;
+    // client-delivery_robot (c++) ---> server ---> client-elevator (c)
+    SetElevatorStatusRequest set_elevator_status_request = 8;
+    // client-user (c++) ---> server ---> client-delivery_robot (c++)
+    MoveDeliveryRobotRequest move_delivery_robot_request = 9;
+  }
+}
+
