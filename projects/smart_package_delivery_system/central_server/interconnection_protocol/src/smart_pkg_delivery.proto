@@ -35,71 +35,66 @@ enum NodeType {
 }
 
 
+
 // -------------------------
 // 🌀 Request, Response, Event (like Notification)
 // -------------------------
-// Wrapper to distinguish between Request, Response, and Event messages
-message WrapperMsg {
+// Wrapper to distinguish between Request, Response, and Event messages.
+//    ❔ Name `ExchangeMessage` is inspired by the message exchange process after HTTPS Handshake.
+message ExchangeMessage {
+  // 📝 Note that src_* are set in Server. Never set manually in Client.
+  NodeType src_type = 1;
+  uint32 src_id = 2;
+  string src_name = 3;
+  //
+  NodeType dest_type = 4;
+  uint32 dest_id = 5;
+  string dest_name = 6;
+  // Payload
   oneof msg_type {
-    Request request = 1;
-    Response response = 2;
-    NodeEvent node_event = 3;
+    Request request = 7;
+    Response response = 8;
+    NodeEvent node_event = 9;
   }
 }
 
 // 📨 A request message that expects a response from the destination.
 message Request {
-  NodeType src_type = 1;
-  uint32 src_id = 2;
-  string src_name = 3;
-  NodeType dest_type = 4;
-  uint32 dest_id = 5;
-  string dest_name = 6;
   oneof request_type {
+    ClientRegisterRequest client_register_request = 1;
     // user (c++) ---> server
-    GetPkgInfosRequest get_pkg_infos_request = 7;
+    GetPkgInfosRequest get_pkg_infos_request = 2;
     // client-delivery_robot (c++) ---> server ---> client-elevator (c)
-    SetElevatorStatusRequest set_elevator_status_request = 8;
+    SetElevatorStatusRequest set_elevator_status_request = 3;
     // client-user (c++) ---> server ---> client-delivery_robot (c++)
-    MoveDeliveryRobotRequest move_delivery_robot_request = 9;
+    MoveDeliveryRobotRequest move_delivery_robot_request = 4;
   }
 }
 
 // 📩 A response message to a request that does not expect further replies, including ✅ ACK.
 message Response {
-  NodeType src_type = 1;
-  uint32 src_id = 2;
-  string src_name = 3;
-  NodeType dest_type = 4;
-  uint32 dest_id = 5;
-  string dest_name = 6;
-  AckStatus ack_status = 7;
-  ExecutionStatus execution_status = 8;
+  AckStatus ack_status = 1;
+  ExecutionStatus execution_status = 2;
   oneof response_type {
+    ClientRegisterResponse client_register_response = 3;
     // server ---> user (c++)
-    GetPkgInfoResponse get_pkg_info_response = 9;
+    GetPkgInfoResponse get_pkg_info_response = 4;
     // client-elevator (c) ---> server ---> client-delivery_robot (c++)
-    SetElevatorStatusResponse set_elevator_status_response = 10;
+    SetElevatorStatusResponse set_elevator_status_response = 5;
     // client-delivery_robot (c++) ---> server ---> client-user (c++)
-    MoveDeliveryRobotResponse move_delivery_robot_response = 11;
+    MoveDeliveryRobotResponse move_delivery_robot_response = 6;
   }
 }
 
 // ⏬ Events; A one-way message that notifies the system about status updates without expecting any response.
 message NodeEvent {
-  NodeType src_type = 1;
-  uint32 src_id = 2;
-  string src_name = 3;
-  NodeType dest_type = 4;
-  uint32 dest_id = 5;
-  string dest_name = 6;
   oneof event_type {
     // client-pkg_room (python) ---> server
-    PkgArrivalEvent pkg_arrival_event = 7;
+    PkgArrivalEvent pkg_arrival_event = 1;
     // client-elevator (c++) ---> server ---> client-delivery_robot (c++)
-    ElevatorStatusEvent elevator_status_event = 8;
+    ElevatorStatusEvent elevator_status_event = 2;
     // client-delivery_robot (c++) ---> server
-    DeliveryStatusEvent delivery_status_event = 9;
+    DeliveryStatusEvent delivery_status_event = 3;
   }
 }
 
@@ -131,6 +126,18 @@ message ExecutionStatus {
 // -------------------------
 // 🌀 Request, Response, Event 🔪 Details
 // -------------------------
+// 🔰 Sent by the client to identify itself during the initial registration.
+message ClientRegisterRequest {
+  NodeType identity_type = 1;
+  uint32 identity_id = 2;
+  string identity_name = 3;
+}
+message ClientRegisterResponse {}
+
+// -------------------------
+// -------------------------
+
+
 message GetPkgInfosRequest {
   uint32 user_id = 1;
 }

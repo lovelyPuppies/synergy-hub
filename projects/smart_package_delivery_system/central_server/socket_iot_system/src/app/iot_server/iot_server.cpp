@@ -12,6 +12,7 @@ nc localhost 1234
 namespace iot {
 using boost::asio::ip::tcp;
 
+// 📰 TODO: // "std::unordered_map<std::pair<NodeType, uint32_t>, Session>" for session management
 // 🎱 Session class: Handles individual client communication.
 //    A Session object is created when a client connects to the server
 class Session : public std::enable_shared_from_this<Session> {
