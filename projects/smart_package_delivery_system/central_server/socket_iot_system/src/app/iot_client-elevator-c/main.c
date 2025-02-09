@@ -240,12 +240,12 @@ void *send_msg(void *arg) {
 
       // ⚙️📰
       local_event_msg = prepare_local_node_event_msg(&local_event_wrapper_msg);
-      local_enent_msg->dest_type = smart_pkg_delivery_NodeType_SERVER;
-      local_enent_msg->which_event_type =
+      local_event_msg->dest_type = smart_pkg_delivery_NodeType_SERVER;
+      local_event_msg->which_event_type =
           smart_pkg_delivery_NodeEvent_pkg_arrival_event_tag;
 
-      local_enent_msg->event_type.pkg_arrival_event.has_address = true;
-      local_enent_msg->event_type.pkg_arrival_event.address =
+      local_event_msg->event_type.pkg_arrival_event.has_address = true;
+      local_event_msg->event_type.pkg_arrival_event.address =
           (smart_pkg_delivery_AptAddress){.has_building_num = true,
                                           .building_num = 101,
                                           .has_unit_num = true,
@@ -253,7 +253,7 @@ void *send_msg(void *arg) {
 
       pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
       printf("AAA: %d \n",
-             local_enent_msg->event_type.pkg_arrival_event.address.unit_num);
+             local_event_msg->event_type.pkg_arrival_event.address.unit_num);
       status = pb_encode(&stream, smart_pkg_delivery_NodeEvent_fields,
                          &local_event_wrapper_msg);
       msg_length = stream.bytes_written;
