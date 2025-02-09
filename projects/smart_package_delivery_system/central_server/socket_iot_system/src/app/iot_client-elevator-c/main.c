@@ -9,10 +9,10 @@
 // ⚙️ --------------------------------------------------
 #include "protobuf_c/message_preparer.h"
 #include "protobuf_c/smart_pkg_delivery.pb.h"
-// --------------------------------------------------
-#include <arpa/inet.h> // Defines functions for internet operations, such as inet_addr.
 #include <pb_decode.h>
 #include <pb_encode.h>
+// --------------------------------------------------
+#include <arpa/inet.h> // Defines functions for internet operations, such as inet_addr.
 #include <pthread.h> // Includes POSIX thread support.
 #include <stdbool.h>
 #include <stdio.h>
@@ -121,7 +121,7 @@ int main(int argc, char *argv[]) {
     exit(1);
   }
 
-  init_node_configuration(smart_pkg_delivery_NodeType_CLIENT_ADDRESS_RECOGNIZER,
+  init_node_configuration(smart_pkg_delivery_NodeType_CLIENT_ELEVATOR,
                           temp_local_msg_id);
 
   // Assign the client name from command line arguments.
@@ -240,21 +240,26 @@ void *send_msg(void *arg) {
 
       // ⚙️📰
       local_event_msg = prepare_local_node_event_msg(&local_event_wrapper_msg);
-      local_event_msg->dest_type = smart_pkg_delivery_NodeType_SERVER;
+      local_event_msg->dest_type =
+          smart_pkg_delivery_NodeType_CLIENT_DELIVERY_ROBOT;
       local_event_msg->which_event_type =
-          smart_pkg_delivery_NodeEvent_pkg_arrival_event_tag;
+          smart_pkg_delivery_NodeEvent_elevator_status_event_tag;
 
-      local_event_msg->event_type.pkg_arrival_event.has_address = true;
-      local_event_msg->event_type.pkg_arrival_event.address =
-          (smart_pkg_delivery_AptAddress){.has_building_num = true,
-                                          .building_num = 101,
-                                          .has_unit_num = true,
-                                          .unit_num = 305};
+      local_event_msg->event_type.elevator_status_event =
+          (smart_pkg_delivery_ElevatorStatusEvent){
+              .has_elevator_id = true,
+              .elevator_id = 5,
+              .has_elevator_status = true,
+              .elevator_status.has_door_open_status = true,
+              .elevator_status.door_open_status =
+                  smart_pkg_delivery_Elevator_DoorOpenStatus_OPEN,
+              .elevator_status.has_current_floor = true,
+              .elevator_status.current_floor = 10,
+          };
 
       pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
-      printf("AAA: %d \n",
-             local_event_msg->event_type.pkg_arrival_event.address.unit_num);
-      status = pb_encode(&stream, smart_pkg_delivery_NodeEvent_fields,
+      printf("AAA: %s \n", buffer);
+      status = pb_encode(&stream, smart_pkg_delivery_WrapperMsg_fields,
                          &local_event_wrapper_msg);
       msg_length = stream.bytes_written;
       printf("%zu \n", msg_length);
@@ -265,27 +270,28 @@ void *send_msg(void *arg) {
         *sock = -1;
         return NULL;
       }
-      // For testing decoding
-      {
-        prepare_local_node_event_msg(&prepare_local_node_event_msg);
-        pb_istream_t stream = pb_istream_from_buffer(buffer, msg_length);
+      // // For testing decoding
+      // {
+      //   local_event_msg =
+      //       prepare_local_node_event_msg(&local_event_wrapper_msg);
+      //   pb_istream_t stream = pb_istream_from_buffer(buffer, msg_length);
 
-        /* Now we are ready to decode the message. */
-        status = pb_decode(&stream, smart_pkg_delivery_NodeEvent_fields,
-                           &prepare_local_node_event_msg);
+      //   /* Now we are ready to decode the message. */
+      //   status = pb_decode(&stream, smart_pkg_delivery_WrapperMsg_fields,
+      //                      &local_event_wrapper_msg);
 
-        /* Check for errors... */
-        if (!status) {
-          printf("Decoding failed: %s\n", PB_GET_ERROR(&stream));
-        }
-        smart_pkg_delivery_AptAddress *address =
-            &local_node_event_msg.event_type.pkg_arrival_event.address;
-        /* Print the data contained in the message. */
-        printf("Received address: %d동 %d호\n", address->building_num,
-               address->unit_num);
-        printf("received msg src, dst: %d, %d!\n",
-               local_node_event_msg.src_type, local_node_event_msg.src_id);
-      }
+      //   /* Check for errors... */
+      //   if (!status) {
+      //     printf("Decoding failed: %s\n", PB_GET_ERROR(&stream));
+      //   }
+      //   smart_pkg_delivery_AptAddress *address =
+      //       &local_node_event_msg.event_type.pkg_arrival_event.address;
+      //   /* Print the data contained in the message. */
+      //   printf("Received address: %d동 %d호\n", address->building_num,
+      //          address->unit_num);
+      //   printf("received msg src, dst: %d, %d!\n",
+      //          local_node_event_msg.src_type, local_node_event_msg.src_id);
+      // }
     }
     // Exit if timeout and socket is closed
     if (ret == 0 && *sock == -1)

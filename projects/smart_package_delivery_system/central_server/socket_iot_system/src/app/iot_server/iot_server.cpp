@@ -59,6 +59,10 @@ private:
     switch (wrapper_msg.msg_type_case()) {
     case smart_pkg_delivery::WrapperMsg::kRequest: {
       const auto &request = wrapper_msg.request();
+      // 🛠️
+      std::cout << "\n\n🛠  DEBUG: Full Request Message:\n"
+                << request.DebugString() << std::endl;
+
       std::cout << "📌 Request 수신!" << std::endl;
       std::cout << "  - Source: " << request.src_name()
                 << " (ID: " << request.src_id() << ")" << std::endl;
@@ -83,11 +87,9 @@ private:
     }
     case smart_pkg_delivery::WrapperMsg::kResponse: {
       const auto &response = wrapper_msg.response();
-      std::cout << "📩 Response 수신!" << std::endl;
-      std::cout << "  - Source: " << response.src_name()
-                << " (ID: " << response.src_id() << ")" << std::endl;
-      std::cout << "  - Destination: " << response.dest_name()
-                << " (ID: " << response.dest_id() << ")" << std::endl;
+      // 🛠️
+      std::cout << "\n\n🛠  DEBUG: Full Response Message:\n"
+                << response.DebugString() << std::endl;
 
       // ✅ AckStatus에 따라 출력
       std::cout << "  - Ack Status: ";
@@ -128,18 +130,13 @@ private:
       std::cout << "\n\n🛠  DEBUG: Full NodeEvent Message:\n"
                 << event.DebugString() << std::endl;
 
-      // std::cout << "⏬ NodeEvent 수신!" << std::endl;
-      // std::cout << "  - Source: " << event.src_name()
-      //           << " (ID: " << event.src_id() << ")" << std::endl;
-      // std::cout << "  - Destination: " << event.dest_name()
-      //           << " (ID: " << event.dest_id() << ")" << std::endl;
-
       switch (event.event_type_case()) {
       case smart_pkg_delivery::NodeEvent::kPkgArrivalEvent:
         // 📰 TODO: save to DB
         std::cout << "  - Type: PkgArrivalEvent" << std::endl;
         break;
       case smart_pkg_delivery::NodeEvent::kElevatorStatusEvent:
+        // 📰 TODO: pass to Delivery Robot
         std::cout << "  - Type: ElevatorStatusEvent" << std::endl;
         break;
       case smart_pkg_delivery::NodeEvent::kDeliveryStatusEvent:
