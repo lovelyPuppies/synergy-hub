@@ -41,7 +41,7 @@ enum NodeType {
 // -------------------------
 // Wrapper to distinguish between Request, Response, and Event messages.
 //    ❔ Name `ExchangeMessage` is inspired by the message exchange process after HTTPS Handshake.
-message WrapperMsg {
+message InteractionMsg {
   // 📝 Note that src_* are set in Server. Never set manually in Client.
   NodeType src_type = 1;
   uint32 src_id = 2;
