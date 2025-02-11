@@ -60,7 +60,15 @@ c+cpp
     | 2024 | 14882:2024       | C++23, C++2b  |
     | TBA  | -                | C++26, C++2c  |
 
+----------------------------------------------
+⭕ Style guide
+  ⚓⭕ Google (C++) ; https://llvm.org/docs/CodingStandards.html
+  #️⃣ Variable Names ; https://google.github.io/styleguide/cppguide.html#Variable_Names
+    # Class Data Members
+      Data members of classes, both static and non-static, are named like ordinary nonmember variables, but with a trailing underscore.
 
+  ⚓LLVM ; https://llvm.org/docs/CodingStandards.html
+  
 ================================================
 # cpp: MSDN 🔪 C++ language reference
   ⚓ C++ language reference ; https://learn.microsoft.com/en-us/cpp/cpp/cpp-language-reference
@@ -1149,59 +1157,59 @@ c+cpp
 ================================================
 
 ----------------------------------------------
-⚓ C: cppreference 🔪 C reference ; https://en.cppreference.com/w/c/w/c
+⚓ C: cppreference 🔪 C reference ; https://en.cppreference.com/w/c
   # C89, C95, C99, C11, C17, C23  │  Compiler support C99, C23
-    ⚓ C95 ; https://en.cppreference.com/w/c/w/c/95
-    ⚓ C99 ; https://en.cppreference.com/w/c/w/c/99
-    ⚓ C11 ; https://en.cppreference.com/w/c/w/c/11
-    ⚓ C17 ; https://en.cppreference.com/w/c/w/c/17
-    ⚓ C23 ; https://en.cppreference.com/w/c/w/c/23
-    ⚓ Compiler support ; https://en.cppreference.com/w/c/w/c/compiler_support
-    ⚓ C99 ; https://en.cppreference.com/w/c/w/c/compiler_support/99
-    ⚓ C23 ; https://en.cppreference.com/w/c/w/c/compiler_support/23
-  ⚓ Language ; https://en.cppreference.com/w/c/w/c/language
-    ⚓ Basic concepts ; https://en.cppreference.com/w/c/w/c/language/basic_concepts
-    ⚓ Keywords ; https://en.cppreference.com/w/c/w/c/keyword
-    ⚓ Preprocessor ; https://en.cppreference.com/w/c/w/c/preprocessor
-    ⚓ Expressions ; https://en.cppreference.com/w/c/w/c/language/expressions
-    ⚓ Declaration ; https://en.cppreference.com/w/c/w/c/language/declarations
-    ⚓ Initialization ; https://en.cppreference.com/w/c/w/c/language/initialization
-    ⚓ Functions ; https://en.cppreference.com/w/c/w/c/language/functions
-    ⚓ Statements ; https://en.cppreference.com/w/c/w/c/language/statements
-  ⚓ Headers ; https://en.cppreference.com/w/c/w/c/header
-  ⚓ Type support ; https://en.cppreference.com/w/c/w/c/types
-  ⚓ Program utilities ; https://en.cppreference.com/w/c/w/c/program
-  ⚓ Variadic functions ; https://en.cppreference.com/w/c/w/c/variadic
-  ⚓ Diagnostics library ; https://en.cppreference.com/w/c/w/c/error
-  ⚓ Dynamic memory management ; https://en.cppreference.com/w/c/w/c/memory
-  ⚓ Strings library ; https://en.cppreference.com/w/c/w/c/string
-    ⚓ byte ; https://en.cppreference.com/w/c/w/c/string/byte
+    ⚓ C95 ; https://en.cppreference.com/w/c/95
+    ⚓ C99 ; https://en.cppreference.com/w/c/99
+    ⚓ C11 ; https://en.cppreference.com/w/c/11
+    ⚓ C17 ; https://en.cppreference.com/w/c/17
+    ⚓ C23 ; https://en.cppreference.com/w/c/23
+    ⚓ Compiler support ; https://en.cppreference.com/w/c/compiler_support
+    ⚓ C99 ; https://en.cppreference.com/w/c/compiler_support/99
+    ⚓ C23 ; https://en.cppreference.com/w/c/compiler_support/23
+  ⚓ Language ; https://en.cppreference.com/w/c/language
+    ⚓ Basic concepts ; https://en.cppreference.com/w/c/language/basic_concepts
+    ⚓ Keywords ; https://en.cppreference.com/w/c/keyword
+    ⚓ Preprocessor ; https://en.cppreference.com/w/c/preprocessor
+    ⚓ Expressions ; https://en.cppreference.com/w/c/language/expressions
+    ⚓ Declaration ; https://en.cppreference.com/w/c/language/declarations
+    ⚓ Initialization ; https://en.cppreference.com/w/c/language/initialization
+    ⚓ Functions ; https://en.cppreference.com/w/c/language/functions
+    ⚓ Statements ; https://en.cppreference.com/w/c/language/statements
+  ⚓ Headers ; https://en.cppreference.com/w/c/header
+  ⚓ Type support ; https://en.cppreference.com/w/c/types
+  ⚓ Program utilities ; https://en.cppreference.com/w/c/program
+  ⚓ Variadic functions ; https://en.cppreference.com/w/c/variadic
+  ⚓ Diagnostics library ; https://en.cppreference.com/w/c/error
+  ⚓ Dynamic memory management ; https://en.cppreference.com/w/c/memory
+  ⚓ Strings library ; https://en.cppreference.com/w/c/string
+    ⚓ byte ; https://en.cppreference.com/w/c/string/byte
       ⚓ strtok, strtok_s ; https://en.cppreference.com/w/c/string/byte/strtok
         💡 This function is designed to be called multiple times to obtain successive tokens from the same string.
           ...
         
       
-    ⚓ multibyte ; https://en.cppreference.com/w/c/w/c/string/multibyte
-    ⚓ wide ; https://en.cppreference.com/w/c/w/c/string/wide
-  ⚓ Algorithms library ; https://en.cppreference.com/w/c/w/c/algorithm
-  ⚓ Numerics library ; https://en.cppreference.com/w/c/w/c/numeric
-    ⚓ Common mathematical functions ; https://en.cppreference.com/w/c/w/c/numeric/math
-    ⚓ Floating-point environment ; https://en.cppreference.com/w/c/w/c/numeric/fenv
-    ⚓ Pseudo-random number generation ; https://en.cppreference.com/w/c/w/c/numeric/random
-    ⚓ Complex number arithmetic ; https://en.cppreference.com/w/c/w/c/numeric/complex
-    ⚓ Type-generic math ; https://en.cppreference.com/w/c/w/c/numeric/tgmath
-  ⚓ Date and time library ; https://en.cppreference.com/w/c/w/c/chrono
-  ⚓ Localization library ; https://en.cppreference.com/w/c/w/c/locale
-  ⚓ Input/output library ; https://en.cppreference.com/w/c/w/c/io
-  ⚓ Concurrency support library ; https://en.cppreference.com/w/c/w/c/thread
-  ⚓ Technical specifications ; https://en.cppreference.com/w/c/w/c/experimental
-    ⚓ Dynamic memory extensions ; https://en.cppreference.com/w/c/w/c/experimental/dynamic
-    ⚓ Floating-point extensions, Part 1 ; https://en.cppreference.com/w/c/w/c/experimental/fpext1
-    ⚓ Floating-point extensions, Part 4 ; https://en.cppreference.com/w/c/w/c/experimental/fpext4
-  ⚓ External Links ; https://en.cppreference.com/w/c/w/c/links
-  ⚓ Non-ANSI/ISO Libraries ; https://en.cppreference.com/w/c/w/c/links/libs
-  ⚓ Index ; https://en.cppreference.com/w/c/w/c/index
-  ⚓ Symbol Index ; https://en.cppreference.com/w/c/w/c/symbol_index
+    ⚓ multibyte ; https://en.cppreference.com/w/c/string/multibyte
+    ⚓ wide ; https://en.cppreference.com/w/c/string/wide
+  ⚓ Algorithms library ; https://en.cppreference.com/w/c/algorithm
+  ⚓ Numerics library ; https://en.cppreference.com/w/c/numeric
+    ⚓ Common mathematical functions ; https://en.cppreference.com/w/c/numeric/math
+    ⚓ Floating-point environment ; https://en.cppreference.com/w/c/numeric/fenv
+    ⚓ Pseudo-random number generation ; https://en.cppreference.com/w/c/numeric/random
+    ⚓ Complex number arithmetic ; https://en.cppreference.com/w/c/numeric/complex
+    ⚓ Type-generic math ; https://en.cppreference.com/w/c/numeric/tgmath
+  ⚓ Date and time library ; https://en.cppreference.com/w/c/chrono
+  ⚓ Localization library ; https://en.cppreference.com/w/c/locale
+  ⚓ Input/output library ; https://en.cppreference.com/w/c/io
+  ⚓ Concurrency support library ; https://en.cppreference.com/w/c/thread
+  ⚓ Technical specifications ; https://en.cppreference.com/w/c/experimental
+    ⚓ Dynamic memory extensions ; https://en.cppreference.com/w/c/experimental/dynamic
+    ⚓ Floating-point extensions, Part 1 ; https://en.cppreference.com/w/c/experimental/fpext1
+    ⚓ Floating-point extensions, Part 4 ; https://en.cppreference.com/w/c/experimental/fpext4
+  ⚓ External Links ; https://en.cppreference.com/w/c/links
+  ⚓ Non-ANSI/ISO Libraries ; https://en.cppreference.com/w/c/links/libs
+  ⚓ Index ; https://en.cppreference.com/w/c/index
+  ⚓ Symbol Index ; https://en.cppreference.com/w/c/symbol_index
   
 
 

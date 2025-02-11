@@ -40,17 +40,20 @@ private:
         [this, self](boost::system::error_code ec, std::size_t length) {
           //
           if (!ec) {
-            std::string received_data(buffer_, length);
 
-            // Protobuf 메시지 처리 및 응답 메시지 생성
-            std::string response_data = processProtobufMessage(received_data);
+            printf("");
+            // std::string received_data(buffer_, length);
 
-            // 🔄 buffer_에 직접 복사 (최대 1024 바이트)
-            std::size_t response_length =
-                std::min(response_data.size(), sizeof(buffer_));
-            std::memcpy(buffer_, response_data.data(), response_length);
+            // // Protobuf 메시지 처리 및 응답 메시지 생성
+            // std::string response_data = processProtobufMessage(received_data);
 
-            doWrite(response_length);
+            // // 🔄 buffer_에 직접 복사 (최대 1024 바이트)
+            // std::size_t response_length =
+            //     std::min(response_data.size(), sizeof(buffer_));
+            // std::memcpy(buffer_, response_data.data(), response_length);
+
+            // doWrite(response_length);
+            doWrite(length);
           }
         });
   }
@@ -238,6 +241,7 @@ void Server::doAccept() {
   acceptor_.async_accept(
       [this](boost::system::error_code ec, tcp::socket socket) {
         if (!ec) {
+
           std::make_shared<Session>(std::move(socket))->start();
         }
         doAccept();
