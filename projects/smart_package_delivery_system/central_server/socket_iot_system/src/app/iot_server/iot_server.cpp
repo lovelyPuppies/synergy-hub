@@ -17,7 +17,8 @@ using boost::asio::ip::tcp;
 //    A Session object is created when a client connects to the server
 class Session : public std::enable_shared_from_this<Session> {
 public:
-  explicit Session(tcp::socket socket) : socket_(std::move(socket)) {}
+  explicit Session(tcp::socket socket, const Server &server)
+      : socket_(std::move(socket)) {}
 
   // 🎱 Entrypoint
   void start() { doRead(); }
