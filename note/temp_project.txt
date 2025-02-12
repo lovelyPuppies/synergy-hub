@@ -20146,3 +20146,39 @@ Boost.Asio 라이브러리. 비동기, 멀티쓰레딩 서버
   장점
 
 
+
+
+
+본인이 시간이 없다면,
+  해커스 파랑이 ➡️ 해커스 하양이 ➡️ 해커스 파이널
+
+시간이 많다면,
+  해커스 파랑이 ➡️ 해커스 하양이 
+  ➡️ 타 출판사 봉투모의고사 ➡️ 해커스 파이널
+
+  ​
+
+  (개인적으로 오류가 많았던 렛유인은 솔직히 비추한다)
+  [출처] 최종 합격자의 GSAT 공부법 및 책 추천|작성자 흑제리
+  https://blog.naver.com/black_jerri/223146322849
+
+
+https://en.wikipedia.org/wiki/Vendor_lock-in
+
+
+
+아 단위를 보자. "만" 개. 객관식 답변의 단위. 그러니까 식을 세울 때부터 제거해도 된다.
+  y = 650 - x
+  x*1.1 + 0.85*y = 640
+
+-- 계수부터 보고 계수를 1로 맞추게 만든 후, 실제 스칼라값의 계산은 모아서 하기.
+
+
+
+
+https://marketplace.visualstudio.com/items?itemName=brunnerh.insert-unicode
+
+3²⁰
+
+Unicode Latex
+O
