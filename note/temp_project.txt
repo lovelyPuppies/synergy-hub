@@ -20182,3 +20182,51 @@ https://marketplace.visualstudio.com/items?itemName=brunnerh.insert-unicode
 
 Unicode Latex
 O
+
+
+
+<!--
+조직 계정생성..
+  https://github.com/account/organizations/new?plan=free&ref_cta=Create%2520a%2520free%2520organization&ref_loc=cards&ref_page=%2Forganizations%2Fplan
+    Organization name
+    :  Intel Edge AI SW Academy 5th Cohort AGV
+    // Your URL will be: https://github.com/Intel-Edge-AI-SW-Academy-5th-Cohort, which has been adjusted to comply with our naming rules.
+    Username is too long (maximum is 39 characters).
+
+
+## 브랜치별 권한 관리
+
+Intel Edge AI SW Academy 5th Cohort
+  
+
+
+# 택배 주소 인식 담당자 (조명근)
+git checkout -b feature/address_recognizer
+git push origin feature/address_recognizer
+
+# 월 패드 담당자 (최정호)
+git checkout -b feature/wall_pad
+git push origin feature/wall_pad
+
+# 배달 로봇 담당자 (박인혁)
+git checkout -b feature/delivery_robot
+git push origin feature/delivery_robot
+
+
+# 엘리베이터 담당자 (정진우 & 정태현)
+git checkout -b feature/elevator
+git push origin feature/elevator
+
+ -->
+
+
+ 의료기기니까 진짜 마지막 테크는 GE Healthcare인데
+  여기는 영어 잘해야돼 최소 AL은 가지고 있어야할걸
+GitHub CodeQL
+
+
+➡️ MCU - APP 동작 프로토콜 설계
+
+❓ tartube options..
+  --download-sections "*0-95"
+    2번 download 해야 성공함..
