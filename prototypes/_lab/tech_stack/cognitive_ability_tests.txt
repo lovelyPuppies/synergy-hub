@@ -58,6 +58,19 @@
         , 사물 위치 고르기, 5명 중 거짓말을 하는 2명 고르기, 디자이너 예약 스케출 배치하기, 음량 세기 순서 파악하기, 버스 좌석 배치하기
 
 
+      * Problems
+        🎲 다음 전제를 읽고 반드시 참인 결론을 고르시오.
+          🏷️ Tag: 명제추리
+          ➡️ Formulate the logical proposition
+            - 전제
+              C언어를 수강하는 모든 사원은 파이썬을 수강한다.
+                ∀x(P(x) -> Q(x))
+              Java를 수강하는 모든 사원은 C언어를 수강한다.
+                ∀x(R(x) -> P(x))
+            - 결론
+              - ∀x(R(x) -> Q(x))
+              - Contrapositive; ¬Q(x) -> ¬R(x)
+              
     * 도형추리
       
     * 도식추리
@@ -83,13 +96,3 @@ https://marketplace.visualstudio.com/items?itemName=studykit.unicode-math
   studykit
 
 
-
-전제
-  C언어를 수강하는 모든 사원은 파이썬을 수강한다.
-    ∀x(P(x) -> Q(x))
-  Java를 수강하는 모든 사원은 C언어를 수강한다.
-    ∀x(R(x) -> P(x))
-결론
-  ∀x(R(x) -> Q(x))
-  ¬Q(x) -> ¬R(x)
-  Contrapositive
