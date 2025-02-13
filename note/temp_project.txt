@@ -20227,6 +20227,8 @@ GitHub CodeQL
 
 ➡️ MCU - APP 동작 프로토콜 설계
 
+!!❓ kubuntu 특수문자 입력: Alt + Space -> kcharselect 입력 후 실행. 
+
 ❓ tartube options..
   --download-sections "*0-95"
     2번 download 해야 성공함..
