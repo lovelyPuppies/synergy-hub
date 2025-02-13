@@ -20230,3 +20230,11 @@ GitHub CodeQL
 ❓ tartube options..
   --download-sections "*0-95"
     2번 download 해야 성공함..
+
+⭕⚓ Unicode Latex .. oijaz.unicode-latex ; https://marketplace.visualstudio.com/items?itemName=oijaz.unicode-latex
+  
+
+⚓ Contraposition | 대우(對偶) ; https://en.wikipedia.org/wiki/Contraposition
+  ¬
+⚓ Equivalence relation ; https://en.wikipedia.org/wiki/Equivalence_relation
+
