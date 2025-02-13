@@ -20233,10 +20233,13 @@ GitHub CodeQL
 
 ⭕⚓ Unicode Latex .. oijaz.unicode-latex ; https://marketplace.visualstudio.com/items?itemName=oijaz.unicode-latex
   ∀: \forall
+  ⋆: \star
   ⊛: \circledast
     Circled Asterisk
-  
-
+  ¬: \neg
+    Negation
+  ∩: \∩
+    Cap
 
 
 ⚓ Contraposition | 대우(對偶) ; https://en.wikipedia.org/wiki/Contraposition
