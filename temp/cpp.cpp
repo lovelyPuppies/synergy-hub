@@ -1,13 +1,56 @@
 // TCMalloc Test: clang++ -o cpp cpp.cpp -ltcmalloc_minimal && ./cpp && ldd ./cpp | grep tcmalloc
-#include <boost/asio.hpp>
-#include <boost/bind.hpp>
+#include <iomanip>
 #include <iostream>
+#include <sstream>
 #include <string>
+#include <vector>
 
-int main() {
-  std::string greeting = "Hello, World!!";
-  std::cout << "Hello, World!" << std::endl;
-  return 0;
+using namespace std;
+
+int get_seconds(const string &min_sec) {
+  int minutes, seconds;
+  sscanf(min_sec.c_str(), "%d:%d", &minutes, &seconds);
+  return minutes * 60 + seconds;
+}
+
+string format_time(int total_seconds) {
+  auto result = std::div(total_seconds, 60);
+  stringstream ss;
+  ss << setfill('0') << setw(2) << result.quot << ":" << setw(2) << result.rem;
+  return ss.str();
+}
+string solution(string video_len, string pos, string op_start, string op_end,
+                vector<string> commands) {
+  int video_len_int = get_seconds(video_len);
+  int op_start_int = get_seconds(op_start);
+  int op_end_int = get_seconds(op_end);
+  int pos_int = get_seconds(pos);
+
+  auto move_to_opend = [&](int sec) -> int {
+    if (op_start_int <= sec && sec <= op_end_int) {
+      return op_end_int;
+    }
+    return sec;
+  };
+
+  pos_int = move_to_opend(pos_int);
+
+  for (const auto &command : commands) {
+    if (command == "next") {
+      pos_int += 10;
+      if (pos_int > video_len_int - 10) {
+        pos_int = video_len_int;
+      }
+    } else if (command == "prev") {
+      pos_int -= 10;
+      if (pos_int < 10) {
+        pos_int = 0;
+      }
+    }
+    pos_int = move_to_opend(pos_int);
+  }
+
+  return format_time(pos_int);
 }
 
 // class Test {

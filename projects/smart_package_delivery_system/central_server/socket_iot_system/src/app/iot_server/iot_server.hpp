@@ -19,7 +19,7 @@ public:
   void registerClient(const std::string &name,
                       std::shared_ptr<Session> session);
   void sendMessageToClient(const std::string &dest_name,
-                           const std::string &message);
+                           const std::string &message) const;
 
 private:
   void doAccept();
