@@ -105,6 +105,93 @@
 - Cross compile: Protobuf, Boost
 - Callback Implementation (Optimization) for nanoPB instead of fixed message size for `repeated`, `string` fields.
 
+## Retrospective
+
+### 1. 인증 체계의 보완 필요성
+
+#### 🚩 **기존 문제점**
+
+현재 IoT 서버는 클라이언트가 접속할 때 **NodeType**과 **NodeType별 ID**를 기반으로만 인증을 수행하고 있다. 그러나 이 방식은 다음과 같은 보안적 한계가 존재한다:
+
+- **NodeType/ID의 추측 가능성:** 공격자가 예상 가능한 NodeType 및 ID 패턴으로 무차별 대입(Brute Force Attack)을 시도할 수 있음.
+- **동일 NodeType/ID 중복 문제:** 동일한 NodeType과 ID를 가진 다른 기기가 접속할 가능성.
+- **기기 식별 불가:** 클라이언트 기기가 물리적으로 변경되더라도 서버는 이를 인지하지 못함.
+
+---
+
+### 🛠️ 2. 개선 전략: **NodeType/ID + MCU 고유 ID + UUID 기반 인증**
+
+#### ✅ **2.1. 개선 방안 개요**
+
+초기 접속 시 클라이언트는 **NodeType**, **NodeType별 ID**, **기기 제조사명**, **MCU 고유 ID**를 서버로 전송한다. 서버는 이 정보를 바탕으로 다음과 같은 절차를 통해 인증한다:
+
+1. **NodeType/ID 기반 화이트리스트 확인:**
+   - 사전에 등록된 NodeType 및 ID인지 확인.
+2. **기기 정보 일치 여부 확인:**
+   - **MCU 고유 ID**와 **제조사명**이 **화이트리스트에 등록된 정보와 일치하는지 확인**.
+3. **최초 접속 시 UUID 발급:**
+   - 첫 접속 시 **UUID를 생성**하여 클라이언트에 전송.
+   - 클라이언트는 이후 접속 시 이 UUID를 함께 전송.
+4. **재접속 시 UUID 검증:**
+   - **NodeType + ID + MCU 고유 ID + 제조사명 + UUID**를 **모두 일치하는지 확인**.
+   - 일치하지 않으면 접속 거부.
+
+**⚙️ 서버 저장 구조 (Redis 기준)**
+
+```plaintext
+device:{NodeType}:{ID} → {MCU_ID, Manufacturer, UUID}
+```
+
+**📡 클라이언트 인증 요청 메시지 예제 (Protocol Buffers)**
+
+```proto
+message AuthRequest {
+  string node_type = 1;
+  string client_id = 2;
+  string mcu_id = 3;
+  string manufacturer = 4;
+  string uuid = 5; // 최초 접속 시 빈 문자열
+}
+```
+
+---
+
+### 🛠️ 3. MCU 고유 ID 수집 및 사용
+
+#### 🎯 **3.1. MCU 고유 ID의 필요성**
+
+MCU 고유 ID는 하드웨어에 고정된 식별자로, **펌웨어 재설치** 또는 **네트워크 변경**에도 **일관성을 유지**할 수 있다.
+
+#### ⚙️ **3.2. MCU별 고유 ID 접근 코드 예제**
+
+**(1) STM32 MCU (STMicroelectronics)**
+
+```c
+uint32_t uid0 = HAL_GetUIDw0();
+uint32_t uid1 = HAL_GetUIDw1();
+uint32_t uid2 = HAL_GetUIDw2();
+printf("STM32 UID: %08lX-%08lX-%08lX
+", uid0, uid1, uid2);
+```
+
+**(2) ESP32 MCU (Espressif Systems)**
+
+```c
+uint64_t mac = esp_efuse_mac_get_default();
+printf("ESP32 MAC (UID): %llX
+", mac);
+```
+
+
+---
+
+### 🔐 4. mTLS를 통한 데이터 보호
+
+**mTLS(상호 TLS)**는 서버와 클라이언트가 **서로를 인증**하고, **암호화된 통신 채널**을 제공하는 핵심 기술이다.
+
+- TLS from Boost.Asio
+
+
 <!--
 Introduction in PPT 📅 2025-02-10 19:01:44
   * Server 🔪 Asynchronous Multithreading

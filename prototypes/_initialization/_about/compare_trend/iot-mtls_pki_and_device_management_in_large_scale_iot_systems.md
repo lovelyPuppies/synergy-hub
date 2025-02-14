@@ -2,11 +2,66 @@
 
 ## 1. Introduction
 
-As the adoption of IoT devices in automotive, industrial, and smart home sectors accelerates, secure communication between clients and servers has become a critical requirement. From STM32 microcontrollers to mobile applications and automotive ECUs, IoT systems must ensure reliable authentication, integrity, and confidentiality. This document explores modern strategies to secure large-scale IoT networks using mTLS (Mutual TLS), PKI (Public Key Infrastructure), IoT device management platforms, and IDS/IPS (Intrusion Detection/Prevention Systems). We will conclude with practical recommendations based on real-world implementations.
+As the adoption of IoT devices in automotive, industrial, and smart home sectors accelerates, secure communication between clients and servers has become a critical requirement. From STM32 microcontrollers to mobile applications and automotive ECUs, IoT systems must ensure reliable authentication, integrity, and confidentiality. This document explores modern strategies to secure large-scale IoT networks using mTLS (Mutual TLS), PKI (Public Key Infrastructure), IoT device management platforms, and IDS/IPS...
 
 ---
 
-## 2. The Role of mTLS in IoT Security
+## 2. IoT Client Authentication Strategy
+
+### 2.1. NodeType/ID-Based Client Authentication
+
+IoT servers typically assign a NodeType and ID to devices for identification. The server manages these values and validates each connection against a pre-defined whitelist.
+
+### 2.2. UUID-Based Device Identification
+
+Upon the first connection, the server issues a UUID to the device, which the device must present on subsequent connections. The UUID is generated based on the MCU's unique hardware ID, ensuring the device's authenticity.
+
+**Workflow:**
+1. The client connects with NodeType, ID, and hardware UID.
+2. The server checks if the combination exists in the device database.
+3. If it's a new device, the server generates and sends a UUID.
+4. On subsequent connections, the client must provide the correct UUID.
+5. If the UUID does not match, the connection is rejected.
+
+**Code Example (Server UUID Generation):**
+```cpp
+std::string generateUUID() {
+    boost::uuids::random_generator gen;
+    boost::uuids::uuid u = gen();
+    return boost::uuids::to_string(u);
+}
+```
+
+### 2.3. MCU Information Retrieval
+
+Modern MCUs often provide hardware-level unique IDs, which can be utilized to enhance security.
+
+**Example:** STM32:
+```c
+uint32_t uid0 = HAL_GetUIDw0();
+uint32_t uid1 = HAL_GetUIDw1();
+uint32_t uid2 = HAL_GetUIDw2();
+printf("STM32 UID: %08lX-%08lX-%08lX
+", uid0, uid1, uid2);
+```
+
+**Other MCUs:** ESP32 (`esp_efuse_mac_get`), Nordic (`NRF_FICR->DEVICEID`), NXP (`SIM->UIDH`).
+
+### 2.4. Secure UUID Management
+
+**Security Enhancements:**
+- **Encrypt UUIDs** using AES-256 before storage.
+- **Store UUIDs in a dedicated DB (e.g., Redis)**.
+- **Regularly rotate UUIDs** to mitigate replay attacks.
+
+**Database Schema:**
+```
+device:{MCUFamily}:{UID} → {NodeType, ClientID, AuthStatus}
+```
+
+---
+
+## 3. The Role of mTLS in IoT Security
 
 Mutual TLS (mTLS) provides mutual authentication between clients and servers, ensuring that both parties are verified before communication begins. In TCP socket-based IoT systems, mTLS serves as the foundation for secure communication by:
 
@@ -18,11 +73,11 @@ However, while mTLS effectively handles encryption and authentication, it does n
 
 ---
 
-## 3. The Need for Supplementary Systems
+## 4. The Need for Supplementary Systems
 
 As IoT networks scale, relying solely on mTLS becomes insufficient. The following components complement mTLS to achieve a robust security framework:
 
-### 3.1. IoT Device Management Platforms
+### 4.1. IoT Device Management Platforms
 
 IoT device management platforms streamline the process of onboarding, authenticating, monitoring, and managing devices. These platforms typically provide:
 
@@ -37,7 +92,7 @@ IoT device management platforms streamline the process of onboarding, authentica
 **Real-world Example:**
 - **Amazon Alexa Smart Home:** AWS IoT Core manages device interactions, ensuring secure communication with cloud services via mTLS.
 
-### 3.2. Public Key Infrastructure (PKI)
+### 4.2. Public Key Infrastructure (PKI)
 
 PKI provides a structured approach to issue, manage, and revoke digital certificates, which are essential for mTLS. Key features include:
 
@@ -52,7 +107,7 @@ PKI provides a structured approach to issue, manage, and revoke digital certific
 **Real-world Example:**
 - **BMW ConnectedDrive:** BMW employs PKI to authenticate vehicle-to-cloud communication, preventing unauthorized access.
 
-### 3.3. Intrusion Detection and Prevention Systems (IDS/IPS)
+### 4.3. Intrusion Detection and Prevention Systems (IDS/IPS)
 
 IDS/IPS solutions analyze network traffic to identify and mitigate suspicious activity, such as unauthorized access attempts or potential DDoS attacks.
 
@@ -71,7 +126,7 @@ IDS/IPS solutions analyze network traffic to identify and mitigate suspicious ac
 
 ---
 
-## 4. Architecture Overview
+## 5. Architecture Overview
 
 A comprehensive security architecture typically integrates the above components with mTLS. The following diagram illustrates the recommended structure:
 
@@ -108,25 +163,25 @@ A comprehensive security architecture typically integrates the above components 
 
 ---
 
-## 5. Practical Considerations for Large-Scale Deployment
+## 6. Practical Considerations for Large-Scale Deployment
 
-### 5.1. Performance Optimization
+### 6.1. Performance Optimization
 - **TLS Session Resumption:** Reuse session parameters to reduce handshake overhead.
 - **Redis with Bloom Filters:** Optimize device lookup performance.
 - **Edge Computing with IoT Gateways:** Process data locally to reduce network congestion.
 
-### 5.2. Certificate Management
+### 6.2. Certificate Management
 - **Automate Certificate Issuance:** Use AWS ACM PCA or HashiCorp Vault.
 - **Implement Certificate Rotation:** Rotate certificates periodically to minimize compromise risks.
 
-### 5.3. Security Best Practices
+### 6.3. Security Best Practices
 - **Enable Mutual Authentication:** Ensure both client and server validate certificates.
 - **Use Hardware Security Modules (HSMs):** Protect cryptographic keys.
 - **Apply Network Segmentation:** Isolate critical infrastructure.
 
 ---
 
-## 6. Real-World Recommendations
+## 7. Real-World Recommendations
 
 Based on industry practices, we recommend the following setup for automotive and large-scale IoT systems:
 
@@ -148,9 +203,7 @@ Based on industry practices, we recommend the following setup for automotive and
 - **Certificate Handling:** HashiCorp Vault for multi-site PKI.
 - **Security:** Zeek for real-time traffic analysis.
 
----
-
-## 7. Conclusion
+## 8. Conclusion
 
 mTLS alone provides robust security for TCP-based IoT communications, but its effectiveness increases significantly when combined with IoT device management platforms, PKI systems, and IDS/IPS solutions. For environments like automotive systems and large-scale IoT infrastructures, we recommend adopting:
 
@@ -158,6 +211,7 @@ mTLS alone provides robust security for TCP-based IoT communications, but its ef
 - **IoT Device Management:** For streamlined onboarding and monitoring.
 - **PKI:** For scalable, automated certificate handling.
 - **IDS/IPS:** For proactive threat detection.
+- **UUID-Based Authentication:** For device-specific identification.
 
 ### 🎯 **Final Recommendation:**
 **Implement a layered defense-in-depth strategy, integrating mTLS with modern IoT management tools to handle the complexities of large-scale, diverse client environments like STM32 microcontrollers, mobile applications, and automotive ECUs.**

@@ -20326,3 +20326,18 @@ Protocol Buffers 메시지 구조에 client_id와 session_token을 포함하여 
   Boost.Asio 기반 TCP 소켓 서버에서 mTLS를 필수로 적용하고 (Boost.Asio SSL 스트림으로 TCP 통신 보호),
   NodeType/ID 기반 화이트리스트 인증과 Heartbeat 관리로
   안전하고 효율적인 IoT 서버를 구축할 수 있습니다. 🛠️
+
+
+  동일한 MCU ID는 동일한 HMAC 생성 → UUID 선점 공격 가능성 존재.
+이를 방지하기 위해 서버는 Nonce(일회성 랜덤 값)를 함께 요구해야 안전성 확보 가능.
+
+
+
+
+
+
+❓ 소켓 통신은 초기 연결 시 클라이언트 인증을 사후 검증하기 때문에 구조적으로 취약할 수밖에 없습니다.
+
+
+✅ STM32F411RE는 TLS 지원 가능합니다.
+  mbedTLS 또는 wolfSSL 같은 경량 TLS 라이브러리를 사용할 수 있습니다.
