@@ -20348,3 +20348,22 @@ Protocol Buffers 메시지 구조에 client_id와 session_token을 포함하여 
 그러니까 요청
 
 Active Time Battle (ATB)
+
+⚓ Telegraf  ; https://www.influxdata.com/time-series-platform/telegraf/
+  Opensource..
+시계열 데이터베이스(Time Series Database) (TSDB) 활용: IoT 환경에서는 센서 데이터와 같은 시계열 데이터가 주를 이루므로, InfluxDB, Apache IoTDB, Google Bigtable과 같은 시계열 데이터베이스를 사용하여 대량의 데이터를 효율적으로 저장하고 쿼리합니다.
+
+
+ C++에서 InfluxDB용 Query Builde
+C++20 Query Object Pattern 
+  ✔️ **"Query Object Pattern"**은 Martin Fowler의 Patterns of Enterprise Application Architecture에 소개된 정식 설계 패턴입니다.
+  ✔️ C++20 Query Object Pattern은 C++20의 Concepts, Templates, Fluent Interface 패턴을 기반으로 구현한 현대적인 Query Object 설계 방식입니다.
+  ✔️ ORM 라이브러리 내부에서는 이미 유사한 설계 패턴이 널리 사용 중입니다.
+💡 5. 실제로 TSDB에서는 ORM 대신 이런 방식을 사용하나?
+  ✅ 예! 많은 TSDB는 전용 쿼리 언어(InfluxQL, PromQL, IoTDB SQL)를 사용하므로 ORM보다 Query Builder 패턴을 선호합니다.
+  ✅ 예를 들어:
+
+  InfluxDB는 **influxdb-client-cpp**와 같은 전용 클라이언트를 제공하며, 쿼리를 Query Object 방식으로 체이닝 지원합니다.
+  TimescaleDB는 PostgreSQL 기반이므로 **PostgreSQL ORM(TinyORM, ODB)**과 함께 사용할 수 있습니다.
+B. Query를 모듈화하고, 파일 기반으로 관리
+
