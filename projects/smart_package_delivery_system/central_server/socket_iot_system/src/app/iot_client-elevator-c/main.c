@@ -45,18 +45,18 @@ uint32_t local_msg_src_id = 1;
 char msg[BUF_SIZE];
 
 // 🚧❗ Assume that this executable run with Single-thread.
-smart_pkg_delivery_WrapperMsg local_request_wrapper_msg =
-    smart_pkg_delivery_WrapperMsg_init_zero;
+smart_pkg_delivery_InteractionMsg local_request_interaction_msg =
+    smart_pkg_delivery_InteractionMsg_init_zero;
 smart_pkg_delivery_Request *local_request_msg;
-smart_pkg_delivery_WrapperMsg local_response_wrapper_msg =
-    smart_pkg_delivery_WrapperMsg_init_zero;
+smart_pkg_delivery_InteractionMsg local_response_interaction_msg =
+    smart_pkg_delivery_InteractionMsg_init_zero;
 smart_pkg_delivery_Response *local_response_msg;
-smart_pkg_delivery_WrapperMsg local_event_wrapper_msg =
-    smart_pkg_delivery_WrapperMsg_init_zero;
+smart_pkg_delivery_InteractionMsg local_event_interaction_msg =
+    smart_pkg_delivery_InteractionMsg_init_zero;
 smart_pkg_delivery_NodeEvent *local_event_msg;
 
-smart_pkg_delivery_WrapperMsg received_wrapper_msg =
-    smart_pkg_delivery_WrapperMsg_init_zero;
+smart_pkg_delivery_InteractionMsg received_interaction_msg =
+    smart_pkg_delivery_InteractionMsg_init_zero;
 // --------------------------------------------------
 
 /* =========================
@@ -76,21 +76,22 @@ void init_node_configuration(smart_pkg_delivery_NodeType src_type,
 
 // 🏗 Wrapped Factory function for Request
 smart_pkg_delivery_Request *
-prepare_local_request_msg(smart_pkg_delivery_WrapperMsg *wrapper_msg) {
-  return prepare_request_msg(wrapper_msg, local_msg_src_type, local_msg_src_id);
+prepare_local_request_msg(smart_pkg_delivery_InteractionMsg *interaction_msg) {
+  return prepare_request_msg(interaction_msg, local_msg_src_type,
+                             local_msg_src_id);
 }
 
 // 🏗 Wrapped Factory function for Response
 smart_pkg_delivery_Response *
-prepare_local_response_msg(smart_pkg_delivery_WrapperMsg *wrapper_msg) {
-  return prepare_response_msg(wrapper_msg, local_msg_src_type,
+prepare_local_response_msg(smart_pkg_delivery_InteractionMsg *interaction_msg) {
+  return prepare_response_msg(interaction_msg, local_msg_src_type,
                               local_msg_src_id);
 }
 
 // 🏗 Wrapped Factory function for NodeEvent
-smart_pkg_delivery_NodeEvent *
-prepare_local_node_event_msg(smart_pkg_delivery_WrapperMsg *wrapper_msg) {
-  return prepare_node_event_msg(wrapper_msg, local_msg_src_type,
+smart_pkg_delivery_NodeEvent *prepare_local_node_event_msg(
+    smart_pkg_delivery_InteractionMsg *interaction_msg) {
+  return prepare_node_event_msg(interaction_msg, local_msg_src_type,
                                 local_msg_src_id);
 }
 
@@ -238,7 +239,8 @@ void *send_msg(void *arg) {
       }
 
       // ⚙️📰
-      local_event_msg = prepare_local_node_event_msg(&local_event_wrapper_msg);
+      local_event_msg =
+          prepare_local_node_event_msg(&local_event_interaction_msg);
       local_event_msg->dest_type =
           smart_pkg_delivery_NodeType_CLIENT_DELIVERY_ROBOT;
       local_event_msg->which_event_type =
@@ -257,8 +259,8 @@ void *send_msg(void *arg) {
           };
 
       pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
-      status = pb_encode(&stream, smart_pkg_delivery_WrapperMsg_fields,
-                         &local_event_wrapper_msg);
+      status = pb_encode(&stream, smart_pkg_delivery_InteractionMsg_fields,
+                         &local_event_interaction_msg);
       msg_length = stream.bytes_written;
       printf("Encoded msg length: %zu \n", msg_length);
 
@@ -290,14 +292,15 @@ void *recv_msg(void *arg) {
     // For testing decoding
     // Clear the receive buffer and read message from server.
     memset(buffer, 0x0, sizeof(buffer));
-    memset(&received_wrapper_msg, 0, sizeof(smart_pkg_delivery_WrapperMsg));
+    memset(&received_interaction_msg, 0,
+           sizeof(smart_pkg_delivery_InteractionMsg));
     msg_length = read(*sock, buffer, NAME_SIZE + BUF_SIZE);
 
     pb_istream_t stream = pb_istream_from_buffer(buffer, msg_length);
 
     /* Now we are ready to decode the message. */
-    status = pb_decode(&stream, smart_pkg_delivery_WrapperMsg_fields,
-                       &received_wrapper_msg);
+    status = pb_decode(&stream, smart_pkg_delivery_InteractionMsg_fields,
+                       &received_interaction_msg);
 
     /* Check for errors... */
     if (!status) {
@@ -305,35 +308,35 @@ void *recv_msg(void *arg) {
     }
 
     printf("\n🛠️  Debug: Received message\n");
-    switch (received_wrapper_msg.which_msg_type) {
-    case smart_pkg_delivery_WrapperMsg_node_event_tag:
+    switch (received_interaction_msg.which_msg_type) {
+    case smart_pkg_delivery_InteractionMsg_node_event_tag:
       printf("  Node Event:\n");
       printf("    Source ID: %d\n",
-             received_wrapper_msg.msg_type.node_event.src_id);
+             received_interaction_msg.msg_type.node_event.src_id);
       printf("    Event Type: %d\n",
-             received_wrapper_msg.msg_type.node_event.which_event_type);
+             received_interaction_msg.msg_type.node_event.which_event_type);
       break;
 
-    case smart_pkg_delivery_WrapperMsg_request_tag:
+    case smart_pkg_delivery_InteractionMsg_request_tag:
       printf("  Request:\n");
       printf("    Source ID: %d\n",
-             received_wrapper_msg.msg_type.request.src_id);
+             received_interaction_msg.msg_type.request.src_id);
       printf("    Event Type: %d\n",
-             received_wrapper_msg.msg_type.request.which_request_type);
+             received_interaction_msg.msg_type.request.which_request_type);
       break;
 
-    case smart_pkg_delivery_WrapperMsg_response_tag:
+    case smart_pkg_delivery_InteractionMsg_response_tag:
       printf("  Response:\n");
       printf("    Source ID: %d\n",
-             received_wrapper_msg.msg_type.response.src_id);
+             received_interaction_msg.msg_type.response.src_id);
       printf("    Ack Status code: %d\n",
-             received_wrapper_msg.msg_type.response.ack_status.status_code);
-      printf(
-          "    Execution Status code: %d\n",
-          received_wrapper_msg.msg_type.response.execution_status.status_code);
+             received_interaction_msg.msg_type.response.ack_status.status_code);
+      printf("    Execution Status code: %d\n",
+             received_interaction_msg.msg_type.response.execution_status
+                 .status_code);
       printf("    Response Type: %d\n",
-             received_wrapper_msg.msg_type.response.which_response_type);
-      switch (received_wrapper_msg.msg_type.response.which_response_type) {
+             received_interaction_msg.msg_type.response.which_response_type);
+      switch (received_interaction_msg.msg_type.response.which_response_type) {
       case smart_pkg_delivery_Response_move_delivery_robot_response_tag:
         break;
       default:

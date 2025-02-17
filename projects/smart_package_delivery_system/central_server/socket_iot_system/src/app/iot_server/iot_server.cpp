@@ -60,28 +60,29 @@ private:
   }
 
   std::string processProtobufMessage(const std::string &data) {
-    smart_pkg_delivery::WrapperMsg wrapper_msg;
+    smart_pkg_delivery::InteractionMsg interaction_msg;
 
-    if (!wrapper_msg.ParseFromString(data)) {
+    if (!interaction_msg.ParseFromString(data)) {
       std::cerr << "Protobuf 메시지 디코딩 실패!" << std::endl;
       return "ERROR: INVALID PROTOBUF MESSAGE";
     }
 
+    std::cout << "  - Source: " << interaction_msg.src_name()
+              << " (ID: " << interaction_msg.src_id() << ")" << std::endl;
+    std::cout << "  - Destination: " << interaction_msg.dest_name()
+              << " (ID: " << interaction_msg.dest_id() << ")" << std::endl;
+
     // `oneof` 필드 판별
-    switch (wrapper_msg.msg_type_case()) {
-    case smart_pkg_delivery::WrapperMsg::kRequest: {
-      const auto &request = wrapper_msg.request();
+    switch (interaction_msg.msg_type_case()) {
+    case smart_pkg_delivery::InteractionMsg::kRequest: {
+      const auto &request = interaction_msg.request();
       // 🛠️
       std::cout << "\n\n🛠  DEBUG: Full Request Message:\n"
                 << request.DebugString() << std::endl;
 
-      std::cout << "📌 Request 수신!" << std::endl;
-      std::cout << "  - Source: " << request.src_name()
-                << " (ID: " << request.src_id() << ")" << std::endl;
-      std::cout << "  - Destination: " << request.dest_name()
-                << " (ID: " << request.dest_id() << ")" << std::endl;
-
       switch (request.request_type_case()) {
+      case smart_pkg_delivery::Request::kClientRegisterRequest:
+        break;
       case smart_pkg_delivery::Request::kGetPkgInfosRequest:
         std::cout << "  - Type: GetPkgInfosRequest" << std::endl;
         break;
@@ -97,13 +98,15 @@ private:
       }
       break;
     }
-    case smart_pkg_delivery::WrapperMsg::kResponse: {
-      const auto &response = wrapper_msg.response();
+    case smart_pkg_delivery::InteractionMsg::kResponse: {
+      const auto &response = interaction_msg.response();
       // 🛠️
       std::cout << "\n\n🛠  DEBUG: Full Response Message:\n"
                 << response.DebugString() << std::endl;
 
       switch (response.response_type_case()) {
+      case smart_pkg_delivery::Response::kClientRegisterResponse:
+        break;
       case smart_pkg_delivery::Response::kGetPkgInfoResponse:
         std::cout << "  - Type: kGetPkgInfoResponse" << std::endl;
         break;
@@ -151,8 +154,8 @@ private:
       break;
     }
 
-    case smart_pkg_delivery::WrapperMsg::kNodeEvent: {
-      const auto &event = wrapper_msg.node_event();
+    case smart_pkg_delivery::InteractionMsg::kNodeEvent: {
+      const auto &event = interaction_msg.node_event();
       // 🛠️
       std::cout << "\n\n🛠  DEBUG: Full NodeEvent Message:\n"
                 << event.DebugString() << std::endl;
@@ -166,14 +169,16 @@ private:
         // 📰 TODO: pass to Delivery Robot
         // 📰 Temp
         std::cout << "  - Type: ElevatorStatusEvent" << std::endl;
-        smart_pkg_delivery::WrapperMsg wrapper_msg;
+        smart_pkg_delivery::InteractionMsg interaction_msg;
 
-        smart_pkg_delivery::Response *response = wrapper_msg.mutable_response();
-        response->set_src_id(10);
-        response->set_src_type(
+        smart_pkg_delivery::Response *response =
+            interaction_msg.mutable_response();
+        interaction_msg.set_src_id(10);
+        interaction_msg.set_src_type(
             smart_pkg_delivery::NodeType::CLIENT_DELIVERY_ROBOT);
-        response->set_dest_id(10);
-        response->set_dest_type(smart_pkg_delivery::NodeType::CLIENT_ELEVATOR);
+        interaction_msg.set_dest_id(10);
+        interaction_msg.set_dest_type(
+            smart_pkg_delivery::NodeType::CLIENT_ELEVATOR);
         smart_pkg_delivery::AckStatus ack_status = response->ack_status();
         response->mutable_ack_status()->set_status_code(
             smart_pkg_delivery::AckStatus::ACK_RECEIVED);
@@ -183,15 +188,15 @@ private:
         //  즉, mutable_move_delivery_robot_response()를 호출하면 oneof의 현재 필드가 변경됨!
         response->mutable_move_delivery_robot_response();
         std::cout << "\n\n🛠  DEBUG: Full Message to be written:\n"
-                  << wrapper_msg.DebugString() << std::endl;
+                  << interaction_msg.DebugString() << std::endl;
         // 📰 TODO: 전송
         std::string encoded_message;
-        if (!wrapper_msg.SerializeToString(&encoded_message)) {
+        if (!interaction_msg.SerializeToString(&encoded_message)) {
           std::cerr << "Protobuf 메시지 직렬화 실패!" << std::endl;
           return "ERROR: SERIALIZATION FAILED";
         }
         std::cout << "\n\n🛠  DEBUG: ---------:\n"
-                  << wrapper_msg.DebugString() << std::endl;
+                  << interaction_msg.DebugString() << std::endl;
 
         // return encoded_message;
         std::cout << encoded_message.length() << std::endl;
@@ -207,8 +212,8 @@ private:
       break;
     }
 
-    case smart_pkg_delivery::WrapperMsg::MSG_TYPE_NOT_SET:
-      std::cerr << "⚠️ WrapperMsg의 msg_type이 설정되지 않음!" << std::endl;
+    case smart_pkg_delivery::InteractionMsg::MSG_TYPE_NOT_SET:
+      std::cerr << "⚠️ InteractionMsg의 msg_type이 설정되지 않음!" << std::endl;
       return "ERROR: INVALID WRAPPER MESSAGE TYPE";
 
     default:

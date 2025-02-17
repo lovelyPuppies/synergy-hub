@@ -21,85 +21,65 @@ CLIENT_USER: NodeType
 CLIENT_DELIVERY_ROBOT: NodeType
 CLIENT_ELEVATOR: NodeType
 
-class WrapperMsg(_message.Message):
-    __slots__ = ("request", "response", "node_event")
+class InteractionMsg(_message.Message):
+    __slots__ = ("src_type", "src_id", "src_name", "dest_type", "dest_id", "dest_name", "request", "response", "node_event")
+    SRC_TYPE_FIELD_NUMBER: _ClassVar[int]
+    SRC_ID_FIELD_NUMBER: _ClassVar[int]
+    SRC_NAME_FIELD_NUMBER: _ClassVar[int]
+    DEST_TYPE_FIELD_NUMBER: _ClassVar[int]
+    DEST_ID_FIELD_NUMBER: _ClassVar[int]
+    DEST_NAME_FIELD_NUMBER: _ClassVar[int]
     REQUEST_FIELD_NUMBER: _ClassVar[int]
     RESPONSE_FIELD_NUMBER: _ClassVar[int]
     NODE_EVENT_FIELD_NUMBER: _ClassVar[int]
+    src_type: NodeType
+    src_id: int
+    src_name: str
+    dest_type: NodeType
+    dest_id: int
+    dest_name: str
     request: Request
     response: Response
     node_event: NodeEvent
-    def __init__(self, request: _Optional[_Union[Request, _Mapping]] = ..., response: _Optional[_Union[Response, _Mapping]] = ..., node_event: _Optional[_Union[NodeEvent, _Mapping]] = ...) -> None: ...
+    def __init__(self, src_type: _Optional[_Union[NodeType, str]] = ..., src_id: _Optional[int] = ..., src_name: _Optional[str] = ..., dest_type: _Optional[_Union[NodeType, str]] = ..., dest_id: _Optional[int] = ..., dest_name: _Optional[str] = ..., request: _Optional[_Union[Request, _Mapping]] = ..., response: _Optional[_Union[Response, _Mapping]] = ..., node_event: _Optional[_Union[NodeEvent, _Mapping]] = ...) -> None: ...
 
 class Request(_message.Message):
-    __slots__ = ("src_type", "src_id", "src_name", "dest_type", "dest_id", "dest_name", "get_pkg_infos_request", "set_elevator_status_request", "move_delivery_robot_request")
-    SRC_TYPE_FIELD_NUMBER: _ClassVar[int]
-    SRC_ID_FIELD_NUMBER: _ClassVar[int]
-    SRC_NAME_FIELD_NUMBER: _ClassVar[int]
-    DEST_TYPE_FIELD_NUMBER: _ClassVar[int]
-    DEST_ID_FIELD_NUMBER: _ClassVar[int]
-    DEST_NAME_FIELD_NUMBER: _ClassVar[int]
+    __slots__ = ("client_register_request", "get_pkg_infos_request", "set_elevator_status_request", "move_delivery_robot_request")
+    CLIENT_REGISTER_REQUEST_FIELD_NUMBER: _ClassVar[int]
     GET_PKG_INFOS_REQUEST_FIELD_NUMBER: _ClassVar[int]
     SET_ELEVATOR_STATUS_REQUEST_FIELD_NUMBER: _ClassVar[int]
     MOVE_DELIVERY_ROBOT_REQUEST_FIELD_NUMBER: _ClassVar[int]
-    src_type: NodeType
-    src_id: int
-    src_name: str
-    dest_type: NodeType
-    dest_id: int
-    dest_name: str
+    client_register_request: ClientRegisterRequest
     get_pkg_infos_request: GetPkgInfosRequest
     set_elevator_status_request: SetElevatorStatusRequest
     move_delivery_robot_request: MoveDeliveryRobotRequest
-    def __init__(self, src_type: _Optional[_Union[NodeType, str]] = ..., src_id: _Optional[int] = ..., src_name: _Optional[str] = ..., dest_type: _Optional[_Union[NodeType, str]] = ..., dest_id: _Optional[int] = ..., dest_name: _Optional[str] = ..., get_pkg_infos_request: _Optional[_Union[GetPkgInfosRequest, _Mapping]] = ..., set_elevator_status_request: _Optional[_Union[SetElevatorStatusRequest, _Mapping]] = ..., move_delivery_robot_request: _Optional[_Union[MoveDeliveryRobotRequest, _Mapping]] = ...) -> None: ...
+    def __init__(self, client_register_request: _Optional[_Union[ClientRegisterRequest, _Mapping]] = ..., get_pkg_infos_request: _Optional[_Union[GetPkgInfosRequest, _Mapping]] = ..., set_elevator_status_request: _Optional[_Union[SetElevatorStatusRequest, _Mapping]] = ..., move_delivery_robot_request: _Optional[_Union[MoveDeliveryRobotRequest, _Mapping]] = ...) -> None: ...
 
 class Response(_message.Message):
-    __slots__ = ("src_type", "src_id", "src_name", "dest_type", "dest_id", "dest_name", "ack_status", "execution_status", "get_pkg_info_response", "set_elevator_status_response", "move_delivery_robot_response")
-    SRC_TYPE_FIELD_NUMBER: _ClassVar[int]
-    SRC_ID_FIELD_NUMBER: _ClassVar[int]
-    SRC_NAME_FIELD_NUMBER: _ClassVar[int]
-    DEST_TYPE_FIELD_NUMBER: _ClassVar[int]
-    DEST_ID_FIELD_NUMBER: _ClassVar[int]
-    DEST_NAME_FIELD_NUMBER: _ClassVar[int]
+    __slots__ = ("ack_status", "execution_status", "client_register_response", "get_pkg_info_response", "set_elevator_status_response", "move_delivery_robot_response")
     ACK_STATUS_FIELD_NUMBER: _ClassVar[int]
     EXECUTION_STATUS_FIELD_NUMBER: _ClassVar[int]
+    CLIENT_REGISTER_RESPONSE_FIELD_NUMBER: _ClassVar[int]
     GET_PKG_INFO_RESPONSE_FIELD_NUMBER: _ClassVar[int]
     SET_ELEVATOR_STATUS_RESPONSE_FIELD_NUMBER: _ClassVar[int]
     MOVE_DELIVERY_ROBOT_RESPONSE_FIELD_NUMBER: _ClassVar[int]
-    src_type: NodeType
-    src_id: int
-    src_name: str
-    dest_type: NodeType
-    dest_id: int
-    dest_name: str
     ack_status: AckStatus
     execution_status: ExecutionStatus
+    client_register_response: ClientRegisterResponse
     get_pkg_info_response: GetPkgInfoResponse
     set_elevator_status_response: SetElevatorStatusResponse
     move_delivery_robot_response: MoveDeliveryRobotResponse
-    def __init__(self, src_type: _Optional[_Union[NodeType, str]] = ..., src_id: _Optional[int] = ..., src_name: _Optional[str] = ..., dest_type: _Optional[_Union[NodeType, str]] = ..., dest_id: _Optional[int] = ..., dest_name: _Optional[str] = ..., ack_status: _Optional[_Union[AckStatus, _Mapping]] = ..., execution_status: _Optional[_Union[ExecutionStatus, _Mapping]] = ..., get_pkg_info_response: _Optional[_Union[GetPkgInfoResponse, _Mapping]] = ..., set_elevator_status_response: _Optional[_Union[SetElevatorStatusResponse, _Mapping]] = ..., move_delivery_robot_response: _Optional[_Union[MoveDeliveryRobotResponse, _Mapping]] = ...) -> None: ...
+    def __init__(self, ack_status: _Optional[_Union[AckStatus, _Mapping]] = ..., execution_status: _Optional[_Union[ExecutionStatus, _Mapping]] = ..., client_register_response: _Optional[_Union[ClientRegisterResponse, _Mapping]] = ..., get_pkg_info_response: _Optional[_Union[GetPkgInfoResponse, _Mapping]] = ..., set_elevator_status_response: _Optional[_Union[SetElevatorStatusResponse, _Mapping]] = ..., move_delivery_robot_response: _Optional[_Union[MoveDeliveryRobotResponse, _Mapping]] = ...) -> None: ...
 
 class NodeEvent(_message.Message):
-    __slots__ = ("src_type", "src_id", "src_name", "dest_type", "dest_id", "dest_name", "pkg_arrival_event", "elevator_status_event", "delivery_status_event")
-    SRC_TYPE_FIELD_NUMBER: _ClassVar[int]
-    SRC_ID_FIELD_NUMBER: _ClassVar[int]
-    SRC_NAME_FIELD_NUMBER: _ClassVar[int]
-    DEST_TYPE_FIELD_NUMBER: _ClassVar[int]
-    DEST_ID_FIELD_NUMBER: _ClassVar[int]
-    DEST_NAME_FIELD_NUMBER: _ClassVar[int]
+    __slots__ = ("pkg_arrival_event", "elevator_status_event", "delivery_status_event")
     PKG_ARRIVAL_EVENT_FIELD_NUMBER: _ClassVar[int]
     ELEVATOR_STATUS_EVENT_FIELD_NUMBER: _ClassVar[int]
     DELIVERY_STATUS_EVENT_FIELD_NUMBER: _ClassVar[int]
-    src_type: NodeType
-    src_id: int
-    src_name: str
-    dest_type: NodeType
-    dest_id: int
-    dest_name: str
     pkg_arrival_event: PkgArrivalEvent
     elevator_status_event: ElevatorStatusEvent
     delivery_status_event: DeliveryStatusEvent
-    def __init__(self, src_type: _Optional[_Union[NodeType, str]] = ..., src_id: _Optional[int] = ..., src_name: _Optional[str] = ..., dest_type: _Optional[_Union[NodeType, str]] = ..., dest_id: _Optional[int] = ..., dest_name: _Optional[str] = ..., pkg_arrival_event: _Optional[_Union[PkgArrivalEvent, _Mapping]] = ..., elevator_status_event: _Optional[_Union[ElevatorStatusEvent, _Mapping]] = ..., delivery_status_event: _Optional[_Union[DeliveryStatusEvent, _Mapping]] = ...) -> None: ...
+    def __init__(self, pkg_arrival_event: _Optional[_Union[PkgArrivalEvent, _Mapping]] = ..., elevator_status_event: _Optional[_Union[ElevatorStatusEvent, _Mapping]] = ..., delivery_status_event: _Optional[_Union[DeliveryStatusEvent, _Mapping]] = ...) -> None: ...
 
 class AckStatus(_message.Message):
     __slots__ = ("status_code", "message")
@@ -132,6 +112,20 @@ class ExecutionStatus(_message.Message):
     status_code: ExecutionStatus.StatusCode
     message: str
     def __init__(self, status_code: _Optional[_Union[ExecutionStatus.StatusCode, str]] = ..., message: _Optional[str] = ...) -> None: ...
+
+class ClientRegisterRequest(_message.Message):
+    __slots__ = ("identity_type", "identity_id", "identity_name")
+    IDENTITY_TYPE_FIELD_NUMBER: _ClassVar[int]
+    IDENTITY_ID_FIELD_NUMBER: _ClassVar[int]
+    IDENTITY_NAME_FIELD_NUMBER: _ClassVar[int]
+    identity_type: NodeType
+    identity_id: int
+    identity_name: str
+    def __init__(self, identity_type: _Optional[_Union[NodeType, str]] = ..., identity_id: _Optional[int] = ..., identity_name: _Optional[str] = ...) -> None: ...
+
+class ClientRegisterResponse(_message.Message):
+    __slots__ = ()
+    def __init__(self) -> None: ...
 
 class GetPkgInfosRequest(_message.Message):
     __slots__ = ("user_id",)

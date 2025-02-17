@@ -732,6 +732,16 @@ brew install sqlfluff
 
 echo "▶️ Installing packages closedly related with Terminal-based editor ..."
 : '
+📦 vim
+  https://repology.org/project/vim/versions
+  https://formulae.brew.sh/formula/vim#default
+  This package includes 🧮 `xxd` (🔎 eXtended heXaDump).
+    It can be used to create .h (header) files from binary files (.bin), executable files, or any raw data files by converting them into C-style arrays.
+'
+brew install vim
+
+
+: '
 📦 helix (hx)
   Terminal-based editor:
   🔗 https://docs.helix-editor.com/package-managers.html 📅 2024-11-05 15:18:43

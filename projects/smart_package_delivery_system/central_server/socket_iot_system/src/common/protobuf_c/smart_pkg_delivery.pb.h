@@ -71,7 +71,20 @@ typedef struct _smart_pkg_delivery_ExecutionStatus {
 
 /* -------------------------
  🌀 Request, Response, Event 🔪 Details
- ------------------------- */
+ -------------------------
+ 🔰 Sent by the client to identify itself during the initial registration. */
+typedef struct _smart_pkg_delivery_ClientRegisterRequest {
+    bool has_identity_type;
+    smart_pkg_delivery_NodeType identity_type;
+    bool has_identity_id;
+    uint32_t identity_id;
+    pb_callback_t identity_name;
+} smart_pkg_delivery_ClientRegisterRequest;
+
+typedef struct _smart_pkg_delivery_ClientRegisterResponse {
+    char dummy_field;
+} smart_pkg_delivery_ClientRegisterResponse;
+
 typedef struct _smart_pkg_delivery_GetPkgInfosRequest {
     bool has_user_id;
     uint32_t user_id;
@@ -170,20 +183,9 @@ typedef struct _smart_pkg_delivery_MoveDeliveryRobotRequest {
 
 /* 📨 A request message that expects a response from the destination. */
 typedef struct _smart_pkg_delivery_Request {
-    bool has_src_type;
-    smart_pkg_delivery_NodeType src_type;
-    bool has_src_id;
-    uint32_t src_id;
-    bool has_src_name;
-    char src_name[64];
-    bool has_dest_type;
-    smart_pkg_delivery_NodeType dest_type;
-    bool has_dest_id;
-    uint32_t dest_id;
-    bool has_dest_name;
-    char dest_name[64];
     pb_size_t which_request_type;
     union {
+        smart_pkg_delivery_ClientRegisterRequest client_register_request;
         /* user (c++) ---> server */
         smart_pkg_delivery_GetPkgInfosRequest get_pkg_infos_request;
         /* client-delivery_robot (c++) ---> server ---> client-elevator (c) */
@@ -202,18 +204,6 @@ typedef struct _smart_pkg_delivery_PkgArrivalEvent {
 
 /* ⏬ Events; A one-way message that notifies the system about status updates without expecting any response. */
 typedef struct _smart_pkg_delivery_NodeEvent {
-    bool has_src_type;
-    smart_pkg_delivery_NodeType src_type;
-    bool has_src_id;
-    uint32_t src_id;
-    bool has_src_name;
-    char src_name[64];
-    bool has_dest_type;
-    smart_pkg_delivery_NodeType dest_type;
-    bool has_dest_id;
-    uint32_t dest_id;
-    bool has_dest_name;
-    char dest_name[64];
     pb_size_t which_event_type;
     union {
         /* client-pkg_room (python) ---> server */
@@ -252,24 +242,13 @@ typedef struct _smart_pkg_delivery_GetPkgInfoResponse {
 
 /* 📩 A response message to a request that does not expect further replies, including ✅ ACK. */
 typedef struct _smart_pkg_delivery_Response {
-    bool has_src_type;
-    smart_pkg_delivery_NodeType src_type;
-    bool has_src_id;
-    uint32_t src_id;
-    bool has_src_name;
-    char src_name[64];
-    bool has_dest_type;
-    smart_pkg_delivery_NodeType dest_type;
-    bool has_dest_id;
-    uint32_t dest_id;
-    bool has_dest_name;
-    char dest_name[64];
     bool has_ack_status;
     smart_pkg_delivery_AckStatus ack_status;
     bool has_execution_status;
     smart_pkg_delivery_ExecutionStatus execution_status;
     pb_size_t which_response_type;
     union {
+        smart_pkg_delivery_ClientRegisterResponse client_register_response;
         /* server ---> user (c++) */
         smart_pkg_delivery_GetPkgInfoResponse get_pkg_info_response;
         /* client-elevator (c) ---> server ---> client-delivery_robot (c++) */
@@ -282,15 +261,28 @@ typedef struct _smart_pkg_delivery_Response {
 /* -------------------------
  🌀 Request, Response, Event (like Notification)
  -------------------------
- Wrapper to distinguish between Request, Response, and Event messages */
-typedef struct _smart_pkg_delivery_WrapperMsg {
+ Wrapper to distinguish between Request, Response, and Event messages.
+    ❔ Name `ExchangeMessage` is inspired by the message exchange process after HTTPS Handshake. */
+typedef struct _smart_pkg_delivery_InteractionMsg {
+    /* 📝 Note that src_* are set in Server. Never set manually in Client. */
+    bool has_src_type;
+    smart_pkg_delivery_NodeType src_type;
+    bool has_src_id;
+    uint32_t src_id;
+    pb_callback_t src_name;
+    /*  */
+    bool has_dest_type;
+    smart_pkg_delivery_NodeType dest_type;
+    bool has_dest_id;
+    uint32_t dest_id;
+    pb_callback_t dest_name;
     pb_size_t which_msg_type;
     union {
         smart_pkg_delivery_Request request;
         smart_pkg_delivery_Response response;
         smart_pkg_delivery_NodeEvent node_event;
     } msg_type;
-} smart_pkg_delivery_WrapperMsg;
+} smart_pkg_delivery_InteractionMsg;
 
 
 #ifdef __cplusplus
@@ -318,19 +310,18 @@ extern "C" {
 #define _smart_pkg_delivery_DeliveryRobot_DeliveryStatus_MAX smart_pkg_delivery_DeliveryRobot_DeliveryStatus_DELIVERED
 #define _smart_pkg_delivery_DeliveryRobot_DeliveryStatus_ARRAYSIZE ((smart_pkg_delivery_DeliveryRobot_DeliveryStatus)(smart_pkg_delivery_DeliveryRobot_DeliveryStatus_DELIVERED+1))
 
+#define smart_pkg_delivery_InteractionMsg_src_type_ENUMTYPE smart_pkg_delivery_NodeType
+#define smart_pkg_delivery_InteractionMsg_dest_type_ENUMTYPE smart_pkg_delivery_NodeType
 
-#define smart_pkg_delivery_Request_src_type_ENUMTYPE smart_pkg_delivery_NodeType
-#define smart_pkg_delivery_Request_dest_type_ENUMTYPE smart_pkg_delivery_NodeType
 
-#define smart_pkg_delivery_Response_src_type_ENUMTYPE smart_pkg_delivery_NodeType
-#define smart_pkg_delivery_Response_dest_type_ENUMTYPE smart_pkg_delivery_NodeType
 
-#define smart_pkg_delivery_NodeEvent_src_type_ENUMTYPE smart_pkg_delivery_NodeType
-#define smart_pkg_delivery_NodeEvent_dest_type_ENUMTYPE smart_pkg_delivery_NodeType
 
 #define smart_pkg_delivery_AckStatus_status_code_ENUMTYPE smart_pkg_delivery_AckStatus_StatusCode
 
 #define smart_pkg_delivery_ExecutionStatus_status_code_ENUMTYPE smart_pkg_delivery_ExecutionStatus_StatusCode
+
+#define smart_pkg_delivery_ClientRegisterRequest_identity_type_ENUMTYPE smart_pkg_delivery_NodeType
+
 
 
 
@@ -354,12 +345,14 @@ extern "C" {
 
 
 /* Initializer values for message structs */
-#define smart_pkg_delivery_WrapperMsg_init_default {0, {smart_pkg_delivery_Request_init_default}}
-#define smart_pkg_delivery_Request_init_default  {false, _smart_pkg_delivery_NodeType_MIN, false, 0, false, "", false, _smart_pkg_delivery_NodeType_MIN, false, 0, false, "", 0, {smart_pkg_delivery_GetPkgInfosRequest_init_default}}
-#define smart_pkg_delivery_Response_init_default {false, _smart_pkg_delivery_NodeType_MIN, false, 0, false, "", false, _smart_pkg_delivery_NodeType_MIN, false, 0, false, "", false, smart_pkg_delivery_AckStatus_init_default, false, smart_pkg_delivery_ExecutionStatus_init_default, 0, {smart_pkg_delivery_GetPkgInfoResponse_init_default}}
-#define smart_pkg_delivery_NodeEvent_init_default {false, _smart_pkg_delivery_NodeType_MIN, false, 0, false, "", false, _smart_pkg_delivery_NodeType_MIN, false, 0, false, "", 0, {smart_pkg_delivery_PkgArrivalEvent_init_default}}
+#define smart_pkg_delivery_InteractionMsg_init_default {false, _smart_pkg_delivery_NodeType_MIN, false, 0, {{NULL}, NULL}, false, _smart_pkg_delivery_NodeType_MIN, false, 0, {{NULL}, NULL}, 0, {smart_pkg_delivery_Request_init_default}}
+#define smart_pkg_delivery_Request_init_default  {0, {smart_pkg_delivery_ClientRegisterRequest_init_default}}
+#define smart_pkg_delivery_Response_init_default {false, smart_pkg_delivery_AckStatus_init_default, false, smart_pkg_delivery_ExecutionStatus_init_default, 0, {smart_pkg_delivery_ClientRegisterResponse_init_default}}
+#define smart_pkg_delivery_NodeEvent_init_default {0, {smart_pkg_delivery_PkgArrivalEvent_init_default}}
 #define smart_pkg_delivery_AckStatus_init_default {false, _smart_pkg_delivery_AckStatus_StatusCode_MIN, false, ""}
 #define smart_pkg_delivery_ExecutionStatus_init_default {false, _smart_pkg_delivery_ExecutionStatus_StatusCode_MIN, false, ""}
+#define smart_pkg_delivery_ClientRegisterRequest_init_default {false, _smart_pkg_delivery_NodeType_MIN, false, 0, {{NULL}, NULL}}
+#define smart_pkg_delivery_ClientRegisterResponse_init_default {0}
 #define smart_pkg_delivery_GetPkgInfosRequest_init_default {false, 0}
 #define smart_pkg_delivery_GetPkgInfoResponse_init_default {0, {smart_pkg_delivery_Pkg_init_default, smart_pkg_delivery_Pkg_init_default, smart_pkg_delivery_Pkg_init_default, smart_pkg_delivery_Pkg_init_default, smart_pkg_delivery_Pkg_init_default, smart_pkg_delivery_Pkg_init_default, smart_pkg_delivery_Pkg_init_default, smart_pkg_delivery_Pkg_init_default, smart_pkg_delivery_Pkg_init_default, smart_pkg_delivery_Pkg_init_default}}
 #define smart_pkg_delivery_MoveDeliveryRobotRequest_init_default {false, 0, false, smart_pkg_delivery_AptAddress_init_default}
@@ -377,12 +370,14 @@ extern "C" {
 #define smart_pkg_delivery_User_init_default     {false, 0, false, smart_pkg_delivery_AptAddress_init_default}
 #define smart_pkg_delivery_Pkg_init_default      {false, 0, false, smart_pkg_delivery_AptAddress_init_default, false, 0, false, 0}
 #define smart_pkg_delivery_AptAddress_init_default {false, "", false, 0, false, 0}
-#define smart_pkg_delivery_WrapperMsg_init_zero  {0, {smart_pkg_delivery_Request_init_zero}}
-#define smart_pkg_delivery_Request_init_zero     {false, _smart_pkg_delivery_NodeType_MIN, false, 0, false, "", false, _smart_pkg_delivery_NodeType_MIN, false, 0, false, "", 0, {smart_pkg_delivery_GetPkgInfosRequest_init_zero}}
-#define smart_pkg_delivery_Response_init_zero    {false, _smart_pkg_delivery_NodeType_MIN, false, 0, false, "", false, _smart_pkg_delivery_NodeType_MIN, false, 0, false, "", false, smart_pkg_delivery_AckStatus_init_zero, false, smart_pkg_delivery_ExecutionStatus_init_zero, 0, {smart_pkg_delivery_GetPkgInfoResponse_init_zero}}
-#define smart_pkg_delivery_NodeEvent_init_zero   {false, _smart_pkg_delivery_NodeType_MIN, false, 0, false, "", false, _smart_pkg_delivery_NodeType_MIN, false, 0, false, "", 0, {smart_pkg_delivery_PkgArrivalEvent_init_zero}}
+#define smart_pkg_delivery_InteractionMsg_init_zero {false, _smart_pkg_delivery_NodeType_MIN, false, 0, {{NULL}, NULL}, false, _smart_pkg_delivery_NodeType_MIN, false, 0, {{NULL}, NULL}, 0, {smart_pkg_delivery_Request_init_zero}}
+#define smart_pkg_delivery_Request_init_zero     {0, {smart_pkg_delivery_ClientRegisterRequest_init_zero}}
+#define smart_pkg_delivery_Response_init_zero    {false, smart_pkg_delivery_AckStatus_init_zero, false, smart_pkg_delivery_ExecutionStatus_init_zero, 0, {smart_pkg_delivery_ClientRegisterResponse_init_zero}}
+#define smart_pkg_delivery_NodeEvent_init_zero   {0, {smart_pkg_delivery_PkgArrivalEvent_init_zero}}
 #define smart_pkg_delivery_AckStatus_init_zero   {false, _smart_pkg_delivery_AckStatus_StatusCode_MIN, false, ""}
 #define smart_pkg_delivery_ExecutionStatus_init_zero {false, _smart_pkg_delivery_ExecutionStatus_StatusCode_MIN, false, ""}
+#define smart_pkg_delivery_ClientRegisterRequest_init_zero {false, _smart_pkg_delivery_NodeType_MIN, false, 0, {{NULL}, NULL}}
+#define smart_pkg_delivery_ClientRegisterResponse_init_zero {0}
 #define smart_pkg_delivery_GetPkgInfosRequest_init_zero {false, 0}
 #define smart_pkg_delivery_GetPkgInfoResponse_init_zero {0, {smart_pkg_delivery_Pkg_init_zero, smart_pkg_delivery_Pkg_init_zero, smart_pkg_delivery_Pkg_init_zero, smart_pkg_delivery_Pkg_init_zero, smart_pkg_delivery_Pkg_init_zero, smart_pkg_delivery_Pkg_init_zero, smart_pkg_delivery_Pkg_init_zero, smart_pkg_delivery_Pkg_init_zero, smart_pkg_delivery_Pkg_init_zero, smart_pkg_delivery_Pkg_init_zero}}
 #define smart_pkg_delivery_MoveDeliveryRobotRequest_init_zero {false, 0, false, smart_pkg_delivery_AptAddress_init_zero}
@@ -406,6 +401,9 @@ extern "C" {
 #define smart_pkg_delivery_AckStatus_message_tag 2
 #define smart_pkg_delivery_ExecutionStatus_status_code_tag 1
 #define smart_pkg_delivery_ExecutionStatus_message_tag 2
+#define smart_pkg_delivery_ClientRegisterRequest_identity_type_tag 1
+#define smart_pkg_delivery_ClientRegisterRequest_identity_id_tag 2
+#define smart_pkg_delivery_ClientRegisterRequest_identity_name_tag 3
 #define smart_pkg_delivery_GetPkgInfosRequest_user_id_tag 1
 #define smart_pkg_delivery_DeliveryStatusEvent_delivery_robot_id_tag 1
 #define smart_pkg_delivery_DeliveryStatusEvent_delivery_status_tag 2
@@ -429,25 +427,14 @@ extern "C" {
 #define smart_pkg_delivery_AptAddress_unit_num_tag 3
 #define smart_pkg_delivery_MoveDeliveryRobotRequest_delivery_robot_id_tag 1
 #define smart_pkg_delivery_MoveDeliveryRobotRequest_destination_address_tag 2
-#define smart_pkg_delivery_Request_src_type_tag  1
-#define smart_pkg_delivery_Request_src_id_tag    2
-#define smart_pkg_delivery_Request_src_name_tag  3
-#define smart_pkg_delivery_Request_dest_type_tag 4
-#define smart_pkg_delivery_Request_dest_id_tag   5
-#define smart_pkg_delivery_Request_dest_name_tag 6
-#define smart_pkg_delivery_Request_get_pkg_infos_request_tag 7
-#define smart_pkg_delivery_Request_set_elevator_status_request_tag 8
-#define smart_pkg_delivery_Request_move_delivery_robot_request_tag 9
+#define smart_pkg_delivery_Request_client_register_request_tag 1
+#define smart_pkg_delivery_Request_get_pkg_infos_request_tag 2
+#define smart_pkg_delivery_Request_set_elevator_status_request_tag 3
+#define smart_pkg_delivery_Request_move_delivery_robot_request_tag 4
 #define smart_pkg_delivery_PkgArrivalEvent_address_tag 1
-#define smart_pkg_delivery_NodeEvent_src_type_tag 1
-#define smart_pkg_delivery_NodeEvent_src_id_tag  2
-#define smart_pkg_delivery_NodeEvent_src_name_tag 3
-#define smart_pkg_delivery_NodeEvent_dest_type_tag 4
-#define smart_pkg_delivery_NodeEvent_dest_id_tag 5
-#define smart_pkg_delivery_NodeEvent_dest_name_tag 6
-#define smart_pkg_delivery_NodeEvent_pkg_arrival_event_tag 7
-#define smart_pkg_delivery_NodeEvent_elevator_status_event_tag 8
-#define smart_pkg_delivery_NodeEvent_delivery_status_event_tag 9
+#define smart_pkg_delivery_NodeEvent_pkg_arrival_event_tag 1
+#define smart_pkg_delivery_NodeEvent_elevator_status_event_tag 2
+#define smart_pkg_delivery_NodeEvent_delivery_status_event_tag 3
 #define smart_pkg_delivery_User_id_tag           1
 #define smart_pkg_delivery_User_address_tag      2
 #define smart_pkg_delivery_Pkg_id_tag            1
@@ -455,78 +442,71 @@ extern "C" {
 #define smart_pkg_delivery_Pkg_sender_id_tag     3
 #define smart_pkg_delivery_Pkg_receiver_id_tag   4
 #define smart_pkg_delivery_GetPkgInfoResponse_pkgs_tag 1
-#define smart_pkg_delivery_Response_src_type_tag 1
-#define smart_pkg_delivery_Response_src_id_tag   2
-#define smart_pkg_delivery_Response_src_name_tag 3
-#define smart_pkg_delivery_Response_dest_type_tag 4
-#define smart_pkg_delivery_Response_dest_id_tag  5
-#define smart_pkg_delivery_Response_dest_name_tag 6
-#define smart_pkg_delivery_Response_ack_status_tag 7
-#define smart_pkg_delivery_Response_execution_status_tag 8
-#define smart_pkg_delivery_Response_get_pkg_info_response_tag 9
-#define smart_pkg_delivery_Response_set_elevator_status_response_tag 10
-#define smart_pkg_delivery_Response_move_delivery_robot_response_tag 11
-#define smart_pkg_delivery_WrapperMsg_request_tag 1
-#define smart_pkg_delivery_WrapperMsg_response_tag 2
-#define smart_pkg_delivery_WrapperMsg_node_event_tag 3
+#define smart_pkg_delivery_Response_ack_status_tag 1
+#define smart_pkg_delivery_Response_execution_status_tag 2
+#define smart_pkg_delivery_Response_client_register_response_tag 3
+#define smart_pkg_delivery_Response_get_pkg_info_response_tag 4
+#define smart_pkg_delivery_Response_set_elevator_status_response_tag 5
+#define smart_pkg_delivery_Response_move_delivery_robot_response_tag 6
+#define smart_pkg_delivery_InteractionMsg_src_type_tag 1
+#define smart_pkg_delivery_InteractionMsg_src_id_tag 2
+#define smart_pkg_delivery_InteractionMsg_src_name_tag 3
+#define smart_pkg_delivery_InteractionMsg_dest_type_tag 4
+#define smart_pkg_delivery_InteractionMsg_dest_id_tag 5
+#define smart_pkg_delivery_InteractionMsg_dest_name_tag 6
+#define smart_pkg_delivery_InteractionMsg_request_tag 7
+#define smart_pkg_delivery_InteractionMsg_response_tag 8
+#define smart_pkg_delivery_InteractionMsg_node_event_tag 9
 
 /* Struct field encoding specification for nanopb */
-#define smart_pkg_delivery_WrapperMsg_FIELDLIST(X, a) \
-X(a, STATIC,   ONEOF,    MESSAGE,  (msg_type,request,msg_type.request),   1) \
-X(a, STATIC,   ONEOF,    MESSAGE,  (msg_type,response,msg_type.response),   2) \
-X(a, STATIC,   ONEOF,    MESSAGE,  (msg_type,node_event,msg_type.node_event),   3)
-#define smart_pkg_delivery_WrapperMsg_CALLBACK NULL
-#define smart_pkg_delivery_WrapperMsg_DEFAULT NULL
-#define smart_pkg_delivery_WrapperMsg_msg_type_request_MSGTYPE smart_pkg_delivery_Request
-#define smart_pkg_delivery_WrapperMsg_msg_type_response_MSGTYPE smart_pkg_delivery_Response
-#define smart_pkg_delivery_WrapperMsg_msg_type_node_event_MSGTYPE smart_pkg_delivery_NodeEvent
-
-#define smart_pkg_delivery_Request_FIELDLIST(X, a) \
+#define smart_pkg_delivery_InteractionMsg_FIELDLIST(X, a) \
 X(a, STATIC,   OPTIONAL, UENUM,    src_type,          1) \
 X(a, STATIC,   OPTIONAL, UINT32,   src_id,            2) \
-X(a, STATIC,   OPTIONAL, STRING,   src_name,          3) \
+X(a, CALLBACK, OPTIONAL, STRING,   src_name,          3) \
 X(a, STATIC,   OPTIONAL, UENUM,    dest_type,         4) \
 X(a, STATIC,   OPTIONAL, UINT32,   dest_id,           5) \
-X(a, STATIC,   OPTIONAL, STRING,   dest_name,         6) \
-X(a, STATIC,   ONEOF,    MESSAGE,  (request_type,get_pkg_infos_request,request_type.get_pkg_infos_request),   7) \
-X(a, STATIC,   ONEOF,    MESSAGE,  (request_type,set_elevator_status_request,request_type.set_elevator_status_request),   8) \
-X(a, STATIC,   ONEOF,    MESSAGE,  (request_type,move_delivery_robot_request,request_type.move_delivery_robot_request),   9)
+X(a, CALLBACK, OPTIONAL, STRING,   dest_name,         6) \
+X(a, STATIC,   ONEOF,    MESSAGE,  (msg_type,request,msg_type.request),   7) \
+X(a, STATIC,   ONEOF,    MESSAGE,  (msg_type,response,msg_type.response),   8) \
+X(a, STATIC,   ONEOF,    MESSAGE,  (msg_type,node_event,msg_type.node_event),   9)
+#define smart_pkg_delivery_InteractionMsg_CALLBACK pb_default_field_callback
+#define smart_pkg_delivery_InteractionMsg_DEFAULT NULL
+#define smart_pkg_delivery_InteractionMsg_msg_type_request_MSGTYPE smart_pkg_delivery_Request
+#define smart_pkg_delivery_InteractionMsg_msg_type_response_MSGTYPE smart_pkg_delivery_Response
+#define smart_pkg_delivery_InteractionMsg_msg_type_node_event_MSGTYPE smart_pkg_delivery_NodeEvent
+
+#define smart_pkg_delivery_Request_FIELDLIST(X, a) \
+X(a, STATIC,   ONEOF,    MESSAGE,  (request_type,client_register_request,request_type.client_register_request),   1) \
+X(a, STATIC,   ONEOF,    MESSAGE,  (request_type,get_pkg_infos_request,request_type.get_pkg_infos_request),   2) \
+X(a, STATIC,   ONEOF,    MESSAGE,  (request_type,set_elevator_status_request,request_type.set_elevator_status_request),   3) \
+X(a, STATIC,   ONEOF,    MESSAGE,  (request_type,move_delivery_robot_request,request_type.move_delivery_robot_request),   4)
 #define smart_pkg_delivery_Request_CALLBACK NULL
 #define smart_pkg_delivery_Request_DEFAULT NULL
+#define smart_pkg_delivery_Request_request_type_client_register_request_MSGTYPE smart_pkg_delivery_ClientRegisterRequest
 #define smart_pkg_delivery_Request_request_type_get_pkg_infos_request_MSGTYPE smart_pkg_delivery_GetPkgInfosRequest
 #define smart_pkg_delivery_Request_request_type_set_elevator_status_request_MSGTYPE smart_pkg_delivery_SetElevatorStatusRequest
 #define smart_pkg_delivery_Request_request_type_move_delivery_robot_request_MSGTYPE smart_pkg_delivery_MoveDeliveryRobotRequest
 
 #define smart_pkg_delivery_Response_FIELDLIST(X, a) \
-X(a, STATIC,   OPTIONAL, UENUM,    src_type,          1) \
-X(a, STATIC,   OPTIONAL, UINT32,   src_id,            2) \
-X(a, STATIC,   OPTIONAL, STRING,   src_name,          3) \
-X(a, STATIC,   OPTIONAL, UENUM,    dest_type,         4) \
-X(a, STATIC,   OPTIONAL, UINT32,   dest_id,           5) \
-X(a, STATIC,   OPTIONAL, STRING,   dest_name,         6) \
-X(a, STATIC,   OPTIONAL, MESSAGE,  ack_status,        7) \
-X(a, STATIC,   OPTIONAL, MESSAGE,  execution_status,   8) \
-X(a, STATIC,   ONEOF,    MESSAGE,  (response_type,get_pkg_info_response,response_type.get_pkg_info_response),   9) \
-X(a, STATIC,   ONEOF,    MESSAGE,  (response_type,set_elevator_status_response,response_type.set_elevator_status_response),  10) \
-X(a, STATIC,   ONEOF,    MESSAGE,  (response_type,move_delivery_robot_response,response_type.move_delivery_robot_response),  11)
+X(a, STATIC,   OPTIONAL, MESSAGE,  ack_status,        1) \
+X(a, STATIC,   OPTIONAL, MESSAGE,  execution_status,   2) \
+X(a, STATIC,   ONEOF,    MESSAGE,  (response_type,client_register_response,response_type.client_register_response),   3) \
+X(a, STATIC,   ONEOF,    MESSAGE,  (response_type,get_pkg_info_response,response_type.get_pkg_info_response),   4) \
+X(a, STATIC,   ONEOF,    MESSAGE,  (response_type,set_elevator_status_response,response_type.set_elevator_status_response),   5) \
+X(a, STATIC,   ONEOF,    MESSAGE,  (response_type,move_delivery_robot_response,response_type.move_delivery_robot_response),   6)
 #define smart_pkg_delivery_Response_CALLBACK NULL
 #define smart_pkg_delivery_Response_DEFAULT NULL
 #define smart_pkg_delivery_Response_ack_status_MSGTYPE smart_pkg_delivery_AckStatus
 #define smart_pkg_delivery_Response_execution_status_MSGTYPE smart_pkg_delivery_ExecutionStatus
+#define smart_pkg_delivery_Response_response_type_client_register_response_MSGTYPE smart_pkg_delivery_ClientRegisterResponse
 #define smart_pkg_delivery_Response_response_type_get_pkg_info_response_MSGTYPE smart_pkg_delivery_GetPkgInfoResponse
 #define smart_pkg_delivery_Response_response_type_set_elevator_status_response_MSGTYPE smart_pkg_delivery_SetElevatorStatusResponse
 #define smart_pkg_delivery_Response_response_type_move_delivery_robot_response_MSGTYPE smart_pkg_delivery_MoveDeliveryRobotResponse
 
 #define smart_pkg_delivery_NodeEvent_FIELDLIST(X, a) \
-X(a, STATIC,   OPTIONAL, UENUM,    src_type,          1) \
-X(a, STATIC,   OPTIONAL, UINT32,   src_id,            2) \
-X(a, STATIC,   OPTIONAL, STRING,   src_name,          3) \
-X(a, STATIC,   OPTIONAL, UENUM,    dest_type,         4) \
-X(a, STATIC,   OPTIONAL, UINT32,   dest_id,           5) \
-X(a, STATIC,   OPTIONAL, STRING,   dest_name,         6) \
-X(a, STATIC,   ONEOF,    MESSAGE,  (event_type,pkg_arrival_event,event_type.pkg_arrival_event),   7) \
-X(a, STATIC,   ONEOF,    MESSAGE,  (event_type,elevator_status_event,event_type.elevator_status_event),   8) \
-X(a, STATIC,   ONEOF,    MESSAGE,  (event_type,delivery_status_event,event_type.delivery_status_event),   9)
+X(a, STATIC,   ONEOF,    MESSAGE,  (event_type,pkg_arrival_event,event_type.pkg_arrival_event),   1) \
+X(a, STATIC,   ONEOF,    MESSAGE,  (event_type,elevator_status_event,event_type.elevator_status_event),   2) \
+X(a, STATIC,   ONEOF,    MESSAGE,  (event_type,delivery_status_event,event_type.delivery_status_event),   3)
 #define smart_pkg_delivery_NodeEvent_CALLBACK NULL
 #define smart_pkg_delivery_NodeEvent_DEFAULT NULL
 #define smart_pkg_delivery_NodeEvent_event_type_pkg_arrival_event_MSGTYPE smart_pkg_delivery_PkgArrivalEvent
@@ -544,6 +524,18 @@ X(a, STATIC,   OPTIONAL, UENUM,    status_code,       1) \
 X(a, STATIC,   OPTIONAL, STRING,   message,           2)
 #define smart_pkg_delivery_ExecutionStatus_CALLBACK NULL
 #define smart_pkg_delivery_ExecutionStatus_DEFAULT NULL
+
+#define smart_pkg_delivery_ClientRegisterRequest_FIELDLIST(X, a) \
+X(a, STATIC,   OPTIONAL, UENUM,    identity_type,     1) \
+X(a, STATIC,   OPTIONAL, UINT32,   identity_id,       2) \
+X(a, CALLBACK, OPTIONAL, STRING,   identity_name,     3)
+#define smart_pkg_delivery_ClientRegisterRequest_CALLBACK pb_default_field_callback
+#define smart_pkg_delivery_ClientRegisterRequest_DEFAULT NULL
+
+#define smart_pkg_delivery_ClientRegisterResponse_FIELDLIST(X, a) \
+
+#define smart_pkg_delivery_ClientRegisterResponse_CALLBACK NULL
+#define smart_pkg_delivery_ClientRegisterResponse_DEFAULT NULL
 
 #define smart_pkg_delivery_GetPkgInfosRequest_FIELDLIST(X, a) \
 X(a, STATIC,   OPTIONAL, UINT32,   user_id,           1)
@@ -655,12 +647,14 @@ X(a, STATIC,   OPTIONAL, UINT32,   unit_num,          3)
 #define smart_pkg_delivery_AptAddress_CALLBACK NULL
 #define smart_pkg_delivery_AptAddress_DEFAULT NULL
 
-extern const pb_msgdesc_t smart_pkg_delivery_WrapperMsg_msg;
+extern const pb_msgdesc_t smart_pkg_delivery_InteractionMsg_msg;
 extern const pb_msgdesc_t smart_pkg_delivery_Request_msg;
 extern const pb_msgdesc_t smart_pkg_delivery_Response_msg;
 extern const pb_msgdesc_t smart_pkg_delivery_NodeEvent_msg;
 extern const pb_msgdesc_t smart_pkg_delivery_AckStatus_msg;
 extern const pb_msgdesc_t smart_pkg_delivery_ExecutionStatus_msg;
+extern const pb_msgdesc_t smart_pkg_delivery_ClientRegisterRequest_msg;
+extern const pb_msgdesc_t smart_pkg_delivery_ClientRegisterResponse_msg;
 extern const pb_msgdesc_t smart_pkg_delivery_GetPkgInfosRequest_msg;
 extern const pb_msgdesc_t smart_pkg_delivery_GetPkgInfoResponse_msg;
 extern const pb_msgdesc_t smart_pkg_delivery_MoveDeliveryRobotRequest_msg;
@@ -680,12 +674,14 @@ extern const pb_msgdesc_t smart_pkg_delivery_Pkg_msg;
 extern const pb_msgdesc_t smart_pkg_delivery_AptAddress_msg;
 
 /* Defines for backwards compatibility with code written before nanopb-0.4.0 */
-#define smart_pkg_delivery_WrapperMsg_fields &smart_pkg_delivery_WrapperMsg_msg
+#define smart_pkg_delivery_InteractionMsg_fields &smart_pkg_delivery_InteractionMsg_msg
 #define smart_pkg_delivery_Request_fields &smart_pkg_delivery_Request_msg
 #define smart_pkg_delivery_Response_fields &smart_pkg_delivery_Response_msg
 #define smart_pkg_delivery_NodeEvent_fields &smart_pkg_delivery_NodeEvent_msg
 #define smart_pkg_delivery_AckStatus_fields &smart_pkg_delivery_AckStatus_msg
 #define smart_pkg_delivery_ExecutionStatus_fields &smart_pkg_delivery_ExecutionStatus_msg
+#define smart_pkg_delivery_ClientRegisterRequest_fields &smart_pkg_delivery_ClientRegisterRequest_msg
+#define smart_pkg_delivery_ClientRegisterResponse_fields &smart_pkg_delivery_ClientRegisterResponse_msg
 #define smart_pkg_delivery_GetPkgInfosRequest_fields &smart_pkg_delivery_GetPkgInfosRequest_msg
 #define smart_pkg_delivery_GetPkgInfoResponse_fields &smart_pkg_delivery_GetPkgInfoResponse_msg
 #define smart_pkg_delivery_MoveDeliveryRobotRequest_fields &smart_pkg_delivery_MoveDeliveryRobotRequest_msg
@@ -705,9 +701,13 @@ extern const pb_msgdesc_t smart_pkg_delivery_AptAddress_msg;
 #define smart_pkg_delivery_AptAddress_fields &smart_pkg_delivery_AptAddress_msg
 
 /* Maximum encoded size of messages (where known) */
-#define SMART_PKG_DELIVERY_SMART_PKG_DELIVERY_PB_H_MAX_SIZE smart_pkg_delivery_WrapperMsg_size
+/* smart_pkg_delivery_InteractionMsg_size depends on runtime parameters */
+/* smart_pkg_delivery_Request_size depends on runtime parameters */
+/* smart_pkg_delivery_ClientRegisterRequest_size depends on runtime parameters */
+#define SMART_PKG_DELIVERY_SMART_PKG_DELIVERY_PB_H_MAX_SIZE smart_pkg_delivery_Response_size
 #define smart_pkg_delivery_AckStatus_size        260
 #define smart_pkg_delivery_AptAddress_size       142
+#define smart_pkg_delivery_ClientRegisterResponse_size 0
 #define smart_pkg_delivery_DeliveryRobot_size    8
 #define smart_pkg_delivery_DeliveryStatusEvent_size 8
 #define smart_pkg_delivery_ElevatorStatusEvent_size 16
@@ -718,17 +718,15 @@ extern const pb_msgdesc_t smart_pkg_delivery_AptAddress_msg;
 #define smart_pkg_delivery_GetPkgInfosRequest_size 6
 #define smart_pkg_delivery_MoveDeliveryRobotRequest_size 151
 #define smart_pkg_delivery_MoveDeliveryRobotResponse_size 0
-#define smart_pkg_delivery_NodeEvent_size        294
+#define smart_pkg_delivery_NodeEvent_size        148
 #define smart_pkg_delivery_PkgArrivalEvent_size  145
 #define smart_pkg_delivery_PkgRoom_Locker_size   45
 #define smart_pkg_delivery_PkgRoom_size          476
 #define smart_pkg_delivery_Pkg_size              163
-#define smart_pkg_delivery_Request_size          300
-#define smart_pkg_delivery_Response_size         2335
+#define smart_pkg_delivery_Response_size         2189
 #define smart_pkg_delivery_SetElevatorStatusRequest_size 16
 #define smart_pkg_delivery_SetElevatorStatusResponse_size 0
 #define smart_pkg_delivery_User_size             151
-#define smart_pkg_delivery_WrapperMsg_size       2338
 
 #ifdef __cplusplus
 } /* extern "C" */

@@ -12,6 +12,7 @@ package smart_pkg_delivery;
 //    - ❗ Note that this draft does not consider multiple pkgs for one user. It distinguishes users by a fixed address rather than by invoice ID or user ID.
 //      When a pkg first arrives at the package room, its address information is sent to the server. Likewise, when a user checks their incoming pkgs, the address information is also sent. 
 //      However, since the database retrieves data based on the user, additional logic is required to handle this.
+//    - 비밀번호로 인증을 할 때, 비밀번호는 암호화된 채로 보내져야 한다. 즉, 평문으로 클라이언트 코드 안에 삽입되면 안된다.
 // 🧮 Run %shell>
 //    source (poetry env info --path)
 //    protoc -I=. --cpp_out=../../socket_iot_system/src/common/protobuf_cpp smart_pkg_delivery.proto
@@ -61,7 +62,7 @@ message InteractionMsg {
 // 📨 A request message that expects a response from the destination.
 message Request {
   oneof request_type {
-    ClientRegisterRequest client_register_request = 1;
+    AuthRequest auth_request = 1;
     // user (c++) ---> server
     GetPkgInfosRequest get_pkg_infos_request = 2;
     // client-delivery_robot (c++) ---> server ---> client-elevator (c)
@@ -76,7 +77,7 @@ message Response {
   AckStatus ack_status = 1;
   ExecutionStatus execution_status = 2;
   oneof response_type {
-    ClientRegisterResponse client_register_response = 3;
+    AuthResponse client_register_response = 3;
     // server ---> user (c++)
     GetPkgInfoResponse get_pkg_info_response = 4;
     // client-elevator (c) ---> server ---> client-delivery_robot (c++)
@@ -127,12 +128,23 @@ message ExecutionStatus {
 // 🌀 Request, Response, Event 🔪 Details
 // -------------------------
 // 🔰 Sent by the client to identify itself during the initial registration.
-message ClientRegisterRequest {
-  NodeType identity_type = 1;
-  uint32 identity_id = 2;
-  string identity_name = 3;
+message AuthRequest {
+  enum AuthType {
+    UNSPECIFIED = 0;
+    LOGIN = 1;
+    // LOGOUT = 2;
+    // TOKEN_REFRESH = 3;
+    // CHANGE_PASSWORD = 4;
+  }
+  AuthType auth_type = 1;
+  string manufacturer = 2;
+  string model_name = 3;
+  // string refresh_token = 4;
 }
-message ClientRegisterResponse {}
+message AuthResponse {
+  // string session_token = 1;
+  // string refresh_token = 2;
+}
 
 // -------------------------
 // -------------------------

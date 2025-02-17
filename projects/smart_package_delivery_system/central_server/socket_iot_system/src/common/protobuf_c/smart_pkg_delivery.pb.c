@@ -6,22 +6,28 @@
 #error Regenerate this file with the current version of nanopb generator.
 #endif
 
-PB_BIND(smart_pkg_delivery_WrapperMsg, smart_pkg_delivery_WrapperMsg, 2)
+PB_BIND(smart_pkg_delivery_InteractionMsg, smart_pkg_delivery_InteractionMsg, 2)
 
 
-PB_BIND(smart_pkg_delivery_Request, smart_pkg_delivery_Request, 2)
+PB_BIND(smart_pkg_delivery_Request, smart_pkg_delivery_Request, AUTO)
 
 
 PB_BIND(smart_pkg_delivery_Response, smart_pkg_delivery_Response, 2)
 
 
-PB_BIND(smart_pkg_delivery_NodeEvent, smart_pkg_delivery_NodeEvent, 2)
+PB_BIND(smart_pkg_delivery_NodeEvent, smart_pkg_delivery_NodeEvent, AUTO)
 
 
 PB_BIND(smart_pkg_delivery_AckStatus, smart_pkg_delivery_AckStatus, 2)
 
 
 PB_BIND(smart_pkg_delivery_ExecutionStatus, smart_pkg_delivery_ExecutionStatus, 2)
+
+
+PB_BIND(smart_pkg_delivery_ClientRegisterRequest, smart_pkg_delivery_ClientRegisterRequest, AUTO)
+
+
+PB_BIND(smart_pkg_delivery_ClientRegisterResponse, smart_pkg_delivery_ClientRegisterResponse, AUTO)
 
 
 PB_BIND(smart_pkg_delivery_GetPkgInfosRequest, smart_pkg_delivery_GetPkgInfosRequest, AUTO)

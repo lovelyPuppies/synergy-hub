@@ -60,6 +60,12 @@ extern AckStatusDefaultTypeInternal _AckStatus_default_instance_;
 class AptAddress;
 struct AptAddressDefaultTypeInternal;
 extern AptAddressDefaultTypeInternal _AptAddress_default_instance_;
+class ClientRegisterRequest;
+struct ClientRegisterRequestDefaultTypeInternal;
+extern ClientRegisterRequestDefaultTypeInternal _ClientRegisterRequest_default_instance_;
+class ClientRegisterResponse;
+struct ClientRegisterResponseDefaultTypeInternal;
+extern ClientRegisterResponseDefaultTypeInternal _ClientRegisterResponse_default_instance_;
 class DeliveryRobot;
 struct DeliveryRobotDefaultTypeInternal;
 extern DeliveryRobotDefaultTypeInternal _DeliveryRobot_default_instance_;
@@ -84,6 +90,9 @@ extern GetPkgInfoResponseDefaultTypeInternal _GetPkgInfoResponse_default_instanc
 class GetPkgInfosRequest;
 struct GetPkgInfosRequestDefaultTypeInternal;
 extern GetPkgInfosRequestDefaultTypeInternal _GetPkgInfosRequest_default_instance_;
+class InteractionMsg;
+struct InteractionMsgDefaultTypeInternal;
+extern InteractionMsgDefaultTypeInternal _InteractionMsg_default_instance_;
 class MoveDeliveryRobotRequest;
 struct MoveDeliveryRobotRequestDefaultTypeInternal;
 extern MoveDeliveryRobotRequestDefaultTypeInternal _MoveDeliveryRobotRequest_default_instance_;
@@ -120,9 +129,6 @@ extern SetElevatorStatusResponseDefaultTypeInternal _SetElevatorStatusResponse_d
 class User;
 struct UserDefaultTypeInternal;
 extern UserDefaultTypeInternal _User_default_instance_;
-class WrapperMsg;
-struct WrapperMsgDefaultTypeInternal;
-extern WrapperMsgDefaultTypeInternal _WrapperMsg_default_instance_;
 }  // namespace smart_pkg_delivery
 namespace google {
 namespace protobuf {
@@ -368,7 +374,7 @@ class SetElevatorStatusResponse final : public ::google::protobuf::internal::Zer
     return reinterpret_cast<const SetElevatorStatusResponse*>(
         &_SetElevatorStatusResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 11;
+  static constexpr int kIndexInFileMessages = 13;
   friend void swap(SetElevatorStatusResponse& a, SetElevatorStatusResponse& b) { a.Swap(&b); }
   inline void Swap(SetElevatorStatusResponse* other) {
     if (other == this) return;
@@ -514,7 +520,7 @@ class PkgRoom_Locker final : public ::google::protobuf::Message
     return reinterpret_cast<const PkgRoom_Locker*>(
         &_PkgRoom_Locker_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 18;
+  static constexpr int kIndexInFileMessages = 20;
   friend void swap(PkgRoom_Locker& a, PkgRoom_Locker& b) { a.Swap(&b); }
   inline void Swap(PkgRoom_Locker* other) {
     if (other == this) return;
@@ -737,7 +743,7 @@ class MoveDeliveryRobotResponse final : public ::google::protobuf::internal::Zer
     return reinterpret_cast<const MoveDeliveryRobotResponse*>(
         &_MoveDeliveryRobotResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 9;
+  static constexpr int kIndexInFileMessages = 11;
   friend void swap(MoveDeliveryRobotResponse& a, MoveDeliveryRobotResponse& b) { a.Swap(&b); }
   inline void Swap(MoveDeliveryRobotResponse* other) {
     if (other == this) return;
@@ -883,7 +889,7 @@ class GetPkgInfosRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const GetPkgInfosRequest*>(
         &_GetPkgInfosRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 6;
+  static constexpr int kIndexInFileMessages = 8;
   friend void swap(GetPkgInfosRequest& a, GetPkgInfosRequest& b) { a.Swap(&b); }
   inline void Swap(GetPkgInfosRequest* other) {
     if (other == this) return;
@@ -1306,7 +1312,7 @@ class Elevator_Status final : public ::google::protobuf::Message
     return reinterpret_cast<const Elevator_Status*>(
         &_Elevator_Status_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 15;
+  static constexpr int kIndexInFileMessages = 17;
   friend void swap(Elevator_Status& a, Elevator_Status& b) { a.Swap(&b); }
   inline void Swap(Elevator_Status* other) {
     if (other == this) return;
@@ -1511,7 +1517,7 @@ class DeliveryStatusEvent final : public ::google::protobuf::Message
     return reinterpret_cast<const DeliveryStatusEvent*>(
         &_DeliveryStatusEvent_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 14;
+  static constexpr int kIndexInFileMessages = 16;
   friend void swap(DeliveryStatusEvent& a, DeliveryStatusEvent& b) { a.Swap(&b); }
   inline void Swap(DeliveryStatusEvent* other) {
     if (other == this) return;
@@ -1716,7 +1722,7 @@ class DeliveryRobot final : public ::google::protobuf::Message
     return reinterpret_cast<const DeliveryRobot*>(
         &_DeliveryRobot_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 17;
+  static constexpr int kIndexInFileMessages = 19;
   friend void swap(DeliveryRobot& a, DeliveryRobot& b) { a.Swap(&b); }
   inline void Swap(DeliveryRobot* other) {
     if (other == this) return;
@@ -1883,6 +1889,375 @@ class DeliveryRobot final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
+class ClientRegisterResponse final : public ::google::protobuf::internal::ZeroFieldsBase
+/* @@protoc_insertion_point(class_definition:smart_pkg_delivery.ClientRegisterResponse) */ {
+ public:
+  inline ClientRegisterResponse() : ClientRegisterResponse(nullptr) {}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(ClientRegisterResponse* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(ClientRegisterResponse));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR ClientRegisterResponse(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline ClientRegisterResponse(const ClientRegisterResponse& from) : ClientRegisterResponse(nullptr, from) {}
+  inline ClientRegisterResponse(ClientRegisterResponse&& from) noexcept
+      : ClientRegisterResponse(nullptr, std::move(from)) {}
+  inline ClientRegisterResponse& operator=(const ClientRegisterResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ClientRegisterResponse& operator=(ClientRegisterResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ClientRegisterResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ClientRegisterResponse* internal_default_instance() {
+    return reinterpret_cast<const ClientRegisterResponse*>(
+        &_ClientRegisterResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 7;
+  friend void swap(ClientRegisterResponse& a, ClientRegisterResponse& b) { a.Swap(&b); }
+  inline void Swap(ClientRegisterResponse* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ClientRegisterResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ClientRegisterResponse* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::internal::ZeroFieldsBase::DefaultConstruct<ClientRegisterResponse>(arena);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const ClientRegisterResponse& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const ClientRegisterResponse& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
+  }
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "smart_pkg_delivery.ClientRegisterResponse"; }
+
+ protected:
+  explicit ClientRegisterResponse(::google::protobuf::Arena* arena);
+  ClientRegisterResponse(::google::protobuf::Arena* arena, const ClientRegisterResponse& from);
+  ClientRegisterResponse(::google::protobuf::Arena* arena, ClientRegisterResponse&& from) noexcept
+      : ClientRegisterResponse(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  // @@protoc_insertion_point(class_scope:smart_pkg_delivery.ClientRegisterResponse)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 0, 0,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const ClientRegisterResponse& from_msg);
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  friend struct ::TableStruct_smart_5fpkg_5fdelivery_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ClientRegisterRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:smart_pkg_delivery.ClientRegisterRequest) */ {
+ public:
+  inline ClientRegisterRequest() : ClientRegisterRequest(nullptr) {}
+  ~ClientRegisterRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(ClientRegisterRequest* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(ClientRegisterRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR ClientRegisterRequest(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline ClientRegisterRequest(const ClientRegisterRequest& from) : ClientRegisterRequest(nullptr, from) {}
+  inline ClientRegisterRequest(ClientRegisterRequest&& from) noexcept
+      : ClientRegisterRequest(nullptr, std::move(from)) {}
+  inline ClientRegisterRequest& operator=(const ClientRegisterRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ClientRegisterRequest& operator=(ClientRegisterRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ClientRegisterRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ClientRegisterRequest* internal_default_instance() {
+    return reinterpret_cast<const ClientRegisterRequest*>(
+        &_ClientRegisterRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 6;
+  friend void swap(ClientRegisterRequest& a, ClientRegisterRequest& b) { a.Swap(&b); }
+  inline void Swap(ClientRegisterRequest* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ClientRegisterRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ClientRegisterRequest* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<ClientRegisterRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const ClientRegisterRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const ClientRegisterRequest& from) { ClientRegisterRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(ClientRegisterRequest* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "smart_pkg_delivery.ClientRegisterRequest"; }
+
+ protected:
+  explicit ClientRegisterRequest(::google::protobuf::Arena* arena);
+  ClientRegisterRequest(::google::protobuf::Arena* arena, const ClientRegisterRequest& from);
+  ClientRegisterRequest(::google::protobuf::Arena* arena, ClientRegisterRequest&& from) noexcept
+      : ClientRegisterRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kIdentityNameFieldNumber = 3,
+    kIdentityTypeFieldNumber = 1,
+    kIdentityIdFieldNumber = 2,
+  };
+  // string identity_name = 3;
+  bool has_identity_name() const;
+  void clear_identity_name() ;
+  const std::string& identity_name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_identity_name(Arg_&& arg, Args_... args);
+  std::string* mutable_identity_name();
+  PROTOBUF_NODISCARD std::string* release_identity_name();
+  void set_allocated_identity_name(std::string* value);
+
+  private:
+  const std::string& _internal_identity_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_identity_name(
+      const std::string& value);
+  std::string* _internal_mutable_identity_name();
+
+  public:
+  // .smart_pkg_delivery.NodeType identity_type = 1;
+  bool has_identity_type() const;
+  void clear_identity_type() ;
+  ::smart_pkg_delivery::NodeType identity_type() const;
+  void set_identity_type(::smart_pkg_delivery::NodeType value);
+
+  private:
+  ::smart_pkg_delivery::NodeType _internal_identity_type() const;
+  void _internal_set_identity_type(::smart_pkg_delivery::NodeType value);
+
+  public:
+  // uint32 identity_id = 2;
+  bool has_identity_id() const;
+  void clear_identity_id() ;
+  ::uint32_t identity_id() const;
+  void set_identity_id(::uint32_t value);
+
+  private:
+  ::uint32_t _internal_identity_id() const;
+  void _internal_set_identity_id(::uint32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:smart_pkg_delivery.ClientRegisterRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      2, 3, 0,
+      62, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const ClientRegisterRequest& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr identity_name_;
+    int identity_type_;
+    ::uint32_t identity_id_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_smart_5fpkg_5fdelivery_2eproto;
+};
+// -------------------------------------------------------------------
+
 class AptAddress final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:smart_pkg_delivery.AptAddress) */ {
  public:
@@ -1942,7 +2317,7 @@ class AptAddress final : public ::google::protobuf::Message
     return reinterpret_cast<const AptAddress*>(
         &_AptAddress_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 22;
+  static constexpr int kIndexInFileMessages = 24;
   friend void swap(AptAddress& a, AptAddress& b) { a.Swap(&b); }
   inline void Swap(AptAddress* other) {
     if (other == this) return;
@@ -2397,7 +2772,7 @@ class User final : public ::google::protobuf::Message
     return reinterpret_cast<const User*>(
         &_User_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 20;
+  static constexpr int kIndexInFileMessages = 22;
   friend void swap(User& a, User& b) { a.Swap(&b); }
   inline void Swap(User* other) {
     if (other == this) return;
@@ -2606,7 +2981,7 @@ class SetElevatorStatusRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const SetElevatorStatusRequest*>(
         &_SetElevatorStatusRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 10;
+  static constexpr int kIndexInFileMessages = 12;
   friend void swap(SetElevatorStatusRequest& a, SetElevatorStatusRequest& b) { a.Swap(&b); }
   inline void Swap(SetElevatorStatusRequest* other) {
     if (other == this) return;
@@ -2815,7 +3190,7 @@ class PkgRoom final : public ::google::protobuf::Message
     return reinterpret_cast<const PkgRoom*>(
         &_PkgRoom_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 19;
+  static constexpr int kIndexInFileMessages = 21;
   friend void swap(PkgRoom& a, PkgRoom& b) { a.Swap(&b); }
   inline void Swap(PkgRoom* other) {
     if (other == this) return;
@@ -3027,7 +3402,7 @@ class PkgArrivalEvent final : public ::google::protobuf::Message
     return reinterpret_cast<const PkgArrivalEvent*>(
         &_PkgArrivalEvent_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 12;
+  static constexpr int kIndexInFileMessages = 14;
   friend void swap(PkgArrivalEvent& a, PkgArrivalEvent& b) { a.Swap(&b); }
   inline void Swap(PkgArrivalEvent* other) {
     if (other == this) return;
@@ -3223,7 +3598,7 @@ class Pkg final : public ::google::protobuf::Message
     return reinterpret_cast<const Pkg*>(
         &_Pkg_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 21;
+  static constexpr int kIndexInFileMessages = 23;
   friend void swap(Pkg& a, Pkg& b) { a.Swap(&b); }
   inline void Swap(Pkg* other) {
     if (other == this) return;
@@ -3477,7 +3852,7 @@ class MoveDeliveryRobotRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const MoveDeliveryRobotRequest*>(
         &_MoveDeliveryRobotRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 8;
+  static constexpr int kIndexInFileMessages = 10;
   friend void swap(MoveDeliveryRobotRequest& a, MoveDeliveryRobotRequest& b) { a.Swap(&b); }
   inline void Swap(MoveDeliveryRobotRequest* other) {
     if (other == this) return;
@@ -3686,7 +4061,7 @@ class ElevatorStatusEvent final : public ::google::protobuf::Message
     return reinterpret_cast<const ElevatorStatusEvent*>(
         &_ElevatorStatusEvent_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 13;
+  static constexpr int kIndexInFileMessages = 15;
   friend void swap(ElevatorStatusEvent& a, ElevatorStatusEvent& b) { a.Swap(&b); }
   inline void Swap(ElevatorStatusEvent* other) {
     if (other == this) return;
@@ -3895,7 +4270,7 @@ class Elevator final : public ::google::protobuf::Message
     return reinterpret_cast<const Elevator*>(
         &_Elevator_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 16;
+  static constexpr int kIndexInFileMessages = 18;
   friend void swap(Elevator& a, Elevator& b) { a.Swap(&b); }
   inline void Swap(Elevator* other) {
     if (other == this) return;
@@ -4122,9 +4497,10 @@ class Request final : public ::google::protobuf::Message
     return *internal_default_instance();
   }
   enum RequestTypeCase {
-    kGetPkgInfosRequest = 7,
-    kSetElevatorStatusRequest = 8,
-    kMoveDeliveryRobotRequest = 9,
+    kClientRegisterRequest = 1,
+    kGetPkgInfosRequest = 2,
+    kSetElevatorStatusRequest = 3,
+    kMoveDeliveryRobotRequest = 4,
     REQUEST_TYPE_NOT_SET = 0,
   };
   static inline const Request* internal_default_instance() {
@@ -4218,95 +4594,31 @@ class Request final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kSrcNameFieldNumber = 3,
-    kDestNameFieldNumber = 6,
-    kSrcTypeFieldNumber = 1,
-    kSrcIdFieldNumber = 2,
-    kDestTypeFieldNumber = 4,
-    kDestIdFieldNumber = 5,
-    kGetPkgInfosRequestFieldNumber = 7,
-    kSetElevatorStatusRequestFieldNumber = 8,
-    kMoveDeliveryRobotRequestFieldNumber = 9,
+    kClientRegisterRequestFieldNumber = 1,
+    kGetPkgInfosRequestFieldNumber = 2,
+    kSetElevatorStatusRequestFieldNumber = 3,
+    kMoveDeliveryRobotRequestFieldNumber = 4,
   };
-  // string src_name = 3;
-  bool has_src_name() const;
-  void clear_src_name() ;
-  const std::string& src_name() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_src_name(Arg_&& arg, Args_... args);
-  std::string* mutable_src_name();
-  PROTOBUF_NODISCARD std::string* release_src_name();
-  void set_allocated_src_name(std::string* value);
-
+  // .smart_pkg_delivery.ClientRegisterRequest client_register_request = 1;
+  bool has_client_register_request() const;
   private:
-  const std::string& _internal_src_name() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_src_name(
-      const std::string& value);
-  std::string* _internal_mutable_src_name();
+  bool _internal_has_client_register_request() const;
 
   public:
-  // string dest_name = 6;
-  bool has_dest_name() const;
-  void clear_dest_name() ;
-  const std::string& dest_name() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_dest_name(Arg_&& arg, Args_... args);
-  std::string* mutable_dest_name();
-  PROTOBUF_NODISCARD std::string* release_dest_name();
-  void set_allocated_dest_name(std::string* value);
+  void clear_client_register_request() ;
+  const ::smart_pkg_delivery::ClientRegisterRequest& client_register_request() const;
+  PROTOBUF_NODISCARD ::smart_pkg_delivery::ClientRegisterRequest* release_client_register_request();
+  ::smart_pkg_delivery::ClientRegisterRequest* mutable_client_register_request();
+  void set_allocated_client_register_request(::smart_pkg_delivery::ClientRegisterRequest* value);
+  void unsafe_arena_set_allocated_client_register_request(::smart_pkg_delivery::ClientRegisterRequest* value);
+  ::smart_pkg_delivery::ClientRegisterRequest* unsafe_arena_release_client_register_request();
 
   private:
-  const std::string& _internal_dest_name() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_dest_name(
-      const std::string& value);
-  std::string* _internal_mutable_dest_name();
+  const ::smart_pkg_delivery::ClientRegisterRequest& _internal_client_register_request() const;
+  ::smart_pkg_delivery::ClientRegisterRequest* _internal_mutable_client_register_request();
 
   public:
-  // .smart_pkg_delivery.NodeType src_type = 1;
-  bool has_src_type() const;
-  void clear_src_type() ;
-  ::smart_pkg_delivery::NodeType src_type() const;
-  void set_src_type(::smart_pkg_delivery::NodeType value);
-
-  private:
-  ::smart_pkg_delivery::NodeType _internal_src_type() const;
-  void _internal_set_src_type(::smart_pkg_delivery::NodeType value);
-
-  public:
-  // uint32 src_id = 2;
-  bool has_src_id() const;
-  void clear_src_id() ;
-  ::uint32_t src_id() const;
-  void set_src_id(::uint32_t value);
-
-  private:
-  ::uint32_t _internal_src_id() const;
-  void _internal_set_src_id(::uint32_t value);
-
-  public:
-  // .smart_pkg_delivery.NodeType dest_type = 4;
-  bool has_dest_type() const;
-  void clear_dest_type() ;
-  ::smart_pkg_delivery::NodeType dest_type() const;
-  void set_dest_type(::smart_pkg_delivery::NodeType value);
-
-  private:
-  ::smart_pkg_delivery::NodeType _internal_dest_type() const;
-  void _internal_set_dest_type(::smart_pkg_delivery::NodeType value);
-
-  public:
-  // uint32 dest_id = 5;
-  bool has_dest_id() const;
-  void clear_dest_id() ;
-  ::uint32_t dest_id() const;
-  void set_dest_id(::uint32_t value);
-
-  private:
-  ::uint32_t _internal_dest_id() const;
-  void _internal_set_dest_id(::uint32_t value);
-
-  public:
-  // .smart_pkg_delivery.GetPkgInfosRequest get_pkg_infos_request = 7;
+  // .smart_pkg_delivery.GetPkgInfosRequest get_pkg_infos_request = 2;
   bool has_get_pkg_infos_request() const;
   private:
   bool _internal_has_get_pkg_infos_request() const;
@@ -4325,7 +4637,7 @@ class Request final : public ::google::protobuf::Message
   ::smart_pkg_delivery::GetPkgInfosRequest* _internal_mutable_get_pkg_infos_request();
 
   public:
-  // .smart_pkg_delivery.SetElevatorStatusRequest set_elevator_status_request = 8;
+  // .smart_pkg_delivery.SetElevatorStatusRequest set_elevator_status_request = 3;
   bool has_set_elevator_status_request() const;
   private:
   bool _internal_has_set_elevator_status_request() const;
@@ -4344,7 +4656,7 @@ class Request final : public ::google::protobuf::Message
   ::smart_pkg_delivery::SetElevatorStatusRequest* _internal_mutable_set_elevator_status_request();
 
   public:
-  // .smart_pkg_delivery.MoveDeliveryRobotRequest move_delivery_robot_request = 9;
+  // .smart_pkg_delivery.MoveDeliveryRobotRequest move_delivery_robot_request = 4;
   bool has_move_delivery_robot_request() const;
   private:
   bool _internal_has_move_delivery_robot_request() const;
@@ -4368,6 +4680,7 @@ class Request final : public ::google::protobuf::Message
   // @@protoc_insertion_point(class_scope:smart_pkg_delivery.Request)
  private:
   class _Internal;
+  void set_has_client_register_request();
   void set_has_get_pkg_infos_request();
   void set_has_set_elevator_status_request();
   void set_has_move_delivery_robot_request();
@@ -4375,8 +4688,8 @@ class Request final : public ::google::protobuf::Message
   inline void clear_has_request_type();
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      3, 9, 3,
-      60, 2>
+      0, 4, 4,
+      0, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -4393,21 +4706,15 @@ class Request final : public ::google::protobuf::Message
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const Request& from_msg);
-    ::google::protobuf::internal::HasBits<1> _has_bits_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::internal::ArenaStringPtr src_name_;
-    ::google::protobuf::internal::ArenaStringPtr dest_name_;
-    int src_type_;
-    ::uint32_t src_id_;
-    int dest_type_;
-    ::uint32_t dest_id_;
     union RequestTypeUnion {
       constexpr RequestTypeUnion() : _constinit_{} {}
       ::google::protobuf::internal::ConstantInitialized _constinit_;
+      ::smart_pkg_delivery::ClientRegisterRequest* client_register_request_;
       ::smart_pkg_delivery::GetPkgInfosRequest* get_pkg_infos_request_;
       ::smart_pkg_delivery::SetElevatorStatusRequest* set_elevator_status_request_;
       ::smart_pkg_delivery::MoveDeliveryRobotRequest* move_delivery_robot_request_;
     } request_type_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
     ::uint32_t _oneof_case_[1];
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -4472,9 +4779,9 @@ class NodeEvent final : public ::google::protobuf::Message
     return *internal_default_instance();
   }
   enum EventTypeCase {
-    kPkgArrivalEvent = 7,
-    kElevatorStatusEvent = 8,
-    kDeliveryStatusEvent = 9,
+    kPkgArrivalEvent = 1,
+    kElevatorStatusEvent = 2,
+    kDeliveryStatusEvent = 3,
     EVENT_TYPE_NOT_SET = 0,
   };
   static inline const NodeEvent* internal_default_instance() {
@@ -4568,95 +4875,11 @@ class NodeEvent final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kSrcNameFieldNumber = 3,
-    kDestNameFieldNumber = 6,
-    kSrcTypeFieldNumber = 1,
-    kSrcIdFieldNumber = 2,
-    kDestTypeFieldNumber = 4,
-    kDestIdFieldNumber = 5,
-    kPkgArrivalEventFieldNumber = 7,
-    kElevatorStatusEventFieldNumber = 8,
-    kDeliveryStatusEventFieldNumber = 9,
+    kPkgArrivalEventFieldNumber = 1,
+    kElevatorStatusEventFieldNumber = 2,
+    kDeliveryStatusEventFieldNumber = 3,
   };
-  // string src_name = 3;
-  bool has_src_name() const;
-  void clear_src_name() ;
-  const std::string& src_name() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_src_name(Arg_&& arg, Args_... args);
-  std::string* mutable_src_name();
-  PROTOBUF_NODISCARD std::string* release_src_name();
-  void set_allocated_src_name(std::string* value);
-
-  private:
-  const std::string& _internal_src_name() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_src_name(
-      const std::string& value);
-  std::string* _internal_mutable_src_name();
-
-  public:
-  // string dest_name = 6;
-  bool has_dest_name() const;
-  void clear_dest_name() ;
-  const std::string& dest_name() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_dest_name(Arg_&& arg, Args_... args);
-  std::string* mutable_dest_name();
-  PROTOBUF_NODISCARD std::string* release_dest_name();
-  void set_allocated_dest_name(std::string* value);
-
-  private:
-  const std::string& _internal_dest_name() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_dest_name(
-      const std::string& value);
-  std::string* _internal_mutable_dest_name();
-
-  public:
-  // .smart_pkg_delivery.NodeType src_type = 1;
-  bool has_src_type() const;
-  void clear_src_type() ;
-  ::smart_pkg_delivery::NodeType src_type() const;
-  void set_src_type(::smart_pkg_delivery::NodeType value);
-
-  private:
-  ::smart_pkg_delivery::NodeType _internal_src_type() const;
-  void _internal_set_src_type(::smart_pkg_delivery::NodeType value);
-
-  public:
-  // uint32 src_id = 2;
-  bool has_src_id() const;
-  void clear_src_id() ;
-  ::uint32_t src_id() const;
-  void set_src_id(::uint32_t value);
-
-  private:
-  ::uint32_t _internal_src_id() const;
-  void _internal_set_src_id(::uint32_t value);
-
-  public:
-  // .smart_pkg_delivery.NodeType dest_type = 4;
-  bool has_dest_type() const;
-  void clear_dest_type() ;
-  ::smart_pkg_delivery::NodeType dest_type() const;
-  void set_dest_type(::smart_pkg_delivery::NodeType value);
-
-  private:
-  ::smart_pkg_delivery::NodeType _internal_dest_type() const;
-  void _internal_set_dest_type(::smart_pkg_delivery::NodeType value);
-
-  public:
-  // uint32 dest_id = 5;
-  bool has_dest_id() const;
-  void clear_dest_id() ;
-  ::uint32_t dest_id() const;
-  void set_dest_id(::uint32_t value);
-
-  private:
-  ::uint32_t _internal_dest_id() const;
-  void _internal_set_dest_id(::uint32_t value);
-
-  public:
-  // .smart_pkg_delivery.PkgArrivalEvent pkg_arrival_event = 7;
+  // .smart_pkg_delivery.PkgArrivalEvent pkg_arrival_event = 1;
   bool has_pkg_arrival_event() const;
   private:
   bool _internal_has_pkg_arrival_event() const;
@@ -4675,7 +4898,7 @@ class NodeEvent final : public ::google::protobuf::Message
   ::smart_pkg_delivery::PkgArrivalEvent* _internal_mutable_pkg_arrival_event();
 
   public:
-  // .smart_pkg_delivery.ElevatorStatusEvent elevator_status_event = 8;
+  // .smart_pkg_delivery.ElevatorStatusEvent elevator_status_event = 2;
   bool has_elevator_status_event() const;
   private:
   bool _internal_has_elevator_status_event() const;
@@ -4694,7 +4917,7 @@ class NodeEvent final : public ::google::protobuf::Message
   ::smart_pkg_delivery::ElevatorStatusEvent* _internal_mutable_elevator_status_event();
 
   public:
-  // .smart_pkg_delivery.DeliveryStatusEvent delivery_status_event = 9;
+  // .smart_pkg_delivery.DeliveryStatusEvent delivery_status_event = 3;
   bool has_delivery_status_event() const;
   private:
   bool _internal_has_delivery_status_event() const;
@@ -4725,8 +4948,8 @@ class NodeEvent final : public ::google::protobuf::Message
   inline void clear_has_event_type();
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      3, 9, 3,
-      62, 2>
+      0, 3, 3,
+      0, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -4743,14 +4966,6 @@ class NodeEvent final : public ::google::protobuf::Message
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const NodeEvent& from_msg);
-    ::google::protobuf::internal::HasBits<1> _has_bits_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::internal::ArenaStringPtr src_name_;
-    ::google::protobuf::internal::ArenaStringPtr dest_name_;
-    int src_type_;
-    ::uint32_t src_id_;
-    int dest_type_;
-    ::uint32_t dest_id_;
     union EventTypeUnion {
       constexpr EventTypeUnion() : _constinit_{} {}
       ::google::protobuf::internal::ConstantInitialized _constinit_;
@@ -4758,6 +4973,7 @@ class NodeEvent final : public ::google::protobuf::Message
       ::smart_pkg_delivery::ElevatorStatusEvent* elevator_status_event_;
       ::smart_pkg_delivery::DeliveryStatusEvent* delivery_status_event_;
     } event_type_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
     ::uint32_t _oneof_case_[1];
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -4825,7 +5041,7 @@ class GetPkgInfoResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const GetPkgInfoResponse*>(
         &_GetPkgInfoResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 7;
+  static constexpr int kIndexInFileMessages = 9;
   friend void swap(GetPkgInfoResponse& a, GetPkgInfoResponse& b) { a.Swap(&b); }
   inline void Swap(GetPkgInfoResponse* other) {
     if (other == this) return;
@@ -5019,9 +5235,10 @@ class Response final : public ::google::protobuf::Message
     return *internal_default_instance();
   }
   enum ResponseTypeCase {
-    kGetPkgInfoResponse = 9,
-    kSetElevatorStatusResponse = 10,
-    kMoveDeliveryRobotResponse = 11,
+    kClientRegisterResponse = 3,
+    kGetPkgInfoResponse = 4,
+    kSetElevatorStatusResponse = 5,
+    kMoveDeliveryRobotResponse = 6,
     RESPONSE_TYPE_NOT_SET = 0,
   };
   static inline const Response* internal_default_instance() {
@@ -5115,17 +5332,331 @@ class Response final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
+    kAckStatusFieldNumber = 1,
+    kExecutionStatusFieldNumber = 2,
+    kClientRegisterResponseFieldNumber = 3,
+    kGetPkgInfoResponseFieldNumber = 4,
+    kSetElevatorStatusResponseFieldNumber = 5,
+    kMoveDeliveryRobotResponseFieldNumber = 6,
+  };
+  // .smart_pkg_delivery.AckStatus ack_status = 1;
+  bool has_ack_status() const;
+  void clear_ack_status() ;
+  const ::smart_pkg_delivery::AckStatus& ack_status() const;
+  PROTOBUF_NODISCARD ::smart_pkg_delivery::AckStatus* release_ack_status();
+  ::smart_pkg_delivery::AckStatus* mutable_ack_status();
+  void set_allocated_ack_status(::smart_pkg_delivery::AckStatus* value);
+  void unsafe_arena_set_allocated_ack_status(::smart_pkg_delivery::AckStatus* value);
+  ::smart_pkg_delivery::AckStatus* unsafe_arena_release_ack_status();
+
+  private:
+  const ::smart_pkg_delivery::AckStatus& _internal_ack_status() const;
+  ::smart_pkg_delivery::AckStatus* _internal_mutable_ack_status();
+
+  public:
+  // .smart_pkg_delivery.ExecutionStatus execution_status = 2;
+  bool has_execution_status() const;
+  void clear_execution_status() ;
+  const ::smart_pkg_delivery::ExecutionStatus& execution_status() const;
+  PROTOBUF_NODISCARD ::smart_pkg_delivery::ExecutionStatus* release_execution_status();
+  ::smart_pkg_delivery::ExecutionStatus* mutable_execution_status();
+  void set_allocated_execution_status(::smart_pkg_delivery::ExecutionStatus* value);
+  void unsafe_arena_set_allocated_execution_status(::smart_pkg_delivery::ExecutionStatus* value);
+  ::smart_pkg_delivery::ExecutionStatus* unsafe_arena_release_execution_status();
+
+  private:
+  const ::smart_pkg_delivery::ExecutionStatus& _internal_execution_status() const;
+  ::smart_pkg_delivery::ExecutionStatus* _internal_mutable_execution_status();
+
+  public:
+  // .smart_pkg_delivery.ClientRegisterResponse client_register_response = 3;
+  bool has_client_register_response() const;
+  private:
+  bool _internal_has_client_register_response() const;
+
+  public:
+  void clear_client_register_response() ;
+  const ::smart_pkg_delivery::ClientRegisterResponse& client_register_response() const;
+  PROTOBUF_NODISCARD ::smart_pkg_delivery::ClientRegisterResponse* release_client_register_response();
+  ::smart_pkg_delivery::ClientRegisterResponse* mutable_client_register_response();
+  void set_allocated_client_register_response(::smart_pkg_delivery::ClientRegisterResponse* value);
+  void unsafe_arena_set_allocated_client_register_response(::smart_pkg_delivery::ClientRegisterResponse* value);
+  ::smart_pkg_delivery::ClientRegisterResponse* unsafe_arena_release_client_register_response();
+
+  private:
+  const ::smart_pkg_delivery::ClientRegisterResponse& _internal_client_register_response() const;
+  ::smart_pkg_delivery::ClientRegisterResponse* _internal_mutable_client_register_response();
+
+  public:
+  // .smart_pkg_delivery.GetPkgInfoResponse get_pkg_info_response = 4;
+  bool has_get_pkg_info_response() const;
+  private:
+  bool _internal_has_get_pkg_info_response() const;
+
+  public:
+  void clear_get_pkg_info_response() ;
+  const ::smart_pkg_delivery::GetPkgInfoResponse& get_pkg_info_response() const;
+  PROTOBUF_NODISCARD ::smart_pkg_delivery::GetPkgInfoResponse* release_get_pkg_info_response();
+  ::smart_pkg_delivery::GetPkgInfoResponse* mutable_get_pkg_info_response();
+  void set_allocated_get_pkg_info_response(::smart_pkg_delivery::GetPkgInfoResponse* value);
+  void unsafe_arena_set_allocated_get_pkg_info_response(::smart_pkg_delivery::GetPkgInfoResponse* value);
+  ::smart_pkg_delivery::GetPkgInfoResponse* unsafe_arena_release_get_pkg_info_response();
+
+  private:
+  const ::smart_pkg_delivery::GetPkgInfoResponse& _internal_get_pkg_info_response() const;
+  ::smart_pkg_delivery::GetPkgInfoResponse* _internal_mutable_get_pkg_info_response();
+
+  public:
+  // .smart_pkg_delivery.SetElevatorStatusResponse set_elevator_status_response = 5;
+  bool has_set_elevator_status_response() const;
+  private:
+  bool _internal_has_set_elevator_status_response() const;
+
+  public:
+  void clear_set_elevator_status_response() ;
+  const ::smart_pkg_delivery::SetElevatorStatusResponse& set_elevator_status_response() const;
+  PROTOBUF_NODISCARD ::smart_pkg_delivery::SetElevatorStatusResponse* release_set_elevator_status_response();
+  ::smart_pkg_delivery::SetElevatorStatusResponse* mutable_set_elevator_status_response();
+  void set_allocated_set_elevator_status_response(::smart_pkg_delivery::SetElevatorStatusResponse* value);
+  void unsafe_arena_set_allocated_set_elevator_status_response(::smart_pkg_delivery::SetElevatorStatusResponse* value);
+  ::smart_pkg_delivery::SetElevatorStatusResponse* unsafe_arena_release_set_elevator_status_response();
+
+  private:
+  const ::smart_pkg_delivery::SetElevatorStatusResponse& _internal_set_elevator_status_response() const;
+  ::smart_pkg_delivery::SetElevatorStatusResponse* _internal_mutable_set_elevator_status_response();
+
+  public:
+  // .smart_pkg_delivery.MoveDeliveryRobotResponse move_delivery_robot_response = 6;
+  bool has_move_delivery_robot_response() const;
+  private:
+  bool _internal_has_move_delivery_robot_response() const;
+
+  public:
+  void clear_move_delivery_robot_response() ;
+  const ::smart_pkg_delivery::MoveDeliveryRobotResponse& move_delivery_robot_response() const;
+  PROTOBUF_NODISCARD ::smart_pkg_delivery::MoveDeliveryRobotResponse* release_move_delivery_robot_response();
+  ::smart_pkg_delivery::MoveDeliveryRobotResponse* mutable_move_delivery_robot_response();
+  void set_allocated_move_delivery_robot_response(::smart_pkg_delivery::MoveDeliveryRobotResponse* value);
+  void unsafe_arena_set_allocated_move_delivery_robot_response(::smart_pkg_delivery::MoveDeliveryRobotResponse* value);
+  ::smart_pkg_delivery::MoveDeliveryRobotResponse* unsafe_arena_release_move_delivery_robot_response();
+
+  private:
+  const ::smart_pkg_delivery::MoveDeliveryRobotResponse& _internal_move_delivery_robot_response() const;
+  ::smart_pkg_delivery::MoveDeliveryRobotResponse* _internal_mutable_move_delivery_robot_response();
+
+  public:
+  void clear_response_type();
+  ResponseTypeCase response_type_case() const;
+  // @@protoc_insertion_point(class_scope:smart_pkg_delivery.Response)
+ private:
+  class _Internal;
+  void set_has_client_register_response();
+  void set_has_get_pkg_info_response();
+  void set_has_set_elevator_status_response();
+  void set_has_move_delivery_robot_response();
+  inline bool has_response_type() const;
+  inline void clear_has_response_type();
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 6, 6,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const Response& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::smart_pkg_delivery::AckStatus* ack_status_;
+    ::smart_pkg_delivery::ExecutionStatus* execution_status_;
+    union ResponseTypeUnion {
+      constexpr ResponseTypeUnion() : _constinit_{} {}
+      ::google::protobuf::internal::ConstantInitialized _constinit_;
+      ::smart_pkg_delivery::ClientRegisterResponse* client_register_response_;
+      ::smart_pkg_delivery::GetPkgInfoResponse* get_pkg_info_response_;
+      ::smart_pkg_delivery::SetElevatorStatusResponse* set_elevator_status_response_;
+      ::smart_pkg_delivery::MoveDeliveryRobotResponse* move_delivery_robot_response_;
+    } response_type_;
+    ::uint32_t _oneof_case_[1];
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_smart_5fpkg_5fdelivery_2eproto;
+};
+// -------------------------------------------------------------------
+
+class InteractionMsg final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:smart_pkg_delivery.InteractionMsg) */ {
+ public:
+  inline InteractionMsg() : InteractionMsg(nullptr) {}
+  ~InteractionMsg() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(InteractionMsg* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(InteractionMsg));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR InteractionMsg(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline InteractionMsg(const InteractionMsg& from) : InteractionMsg(nullptr, from) {}
+  inline InteractionMsg(InteractionMsg&& from) noexcept
+      : InteractionMsg(nullptr, std::move(from)) {}
+  inline InteractionMsg& operator=(const InteractionMsg& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline InteractionMsg& operator=(InteractionMsg&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const InteractionMsg& default_instance() {
+    return *internal_default_instance();
+  }
+  enum MsgTypeCase {
+    kRequest = 7,
+    kResponse = 8,
+    kNodeEvent = 9,
+    MSG_TYPE_NOT_SET = 0,
+  };
+  static inline const InteractionMsg* internal_default_instance() {
+    return reinterpret_cast<const InteractionMsg*>(
+        &_InteractionMsg_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 0;
+  friend void swap(InteractionMsg& a, InteractionMsg& b) { a.Swap(&b); }
+  inline void Swap(InteractionMsg* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(InteractionMsg* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  InteractionMsg* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<InteractionMsg>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const InteractionMsg& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const InteractionMsg& from) { InteractionMsg::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(InteractionMsg* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "smart_pkg_delivery.InteractionMsg"; }
+
+ protected:
+  explicit InteractionMsg(::google::protobuf::Arena* arena);
+  InteractionMsg(::google::protobuf::Arena* arena, const InteractionMsg& from);
+  InteractionMsg(::google::protobuf::Arena* arena, InteractionMsg&& from) noexcept
+      : InteractionMsg(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
     kSrcNameFieldNumber = 3,
     kDestNameFieldNumber = 6,
-    kAckStatusFieldNumber = 7,
-    kExecutionStatusFieldNumber = 8,
     kSrcTypeFieldNumber = 1,
     kSrcIdFieldNumber = 2,
     kDestTypeFieldNumber = 4,
     kDestIdFieldNumber = 5,
-    kGetPkgInfoResponseFieldNumber = 9,
-    kSetElevatorStatusResponseFieldNumber = 10,
-    kMoveDeliveryRobotResponseFieldNumber = 11,
+    kRequestFieldNumber = 7,
+    kResponseFieldNumber = 8,
+    kNodeEventFieldNumber = 9,
   };
   // string src_name = 3;
   bool has_src_name() const;
@@ -5159,36 +5690,6 @@ class Response final : public ::google::protobuf::Message
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_dest_name(
       const std::string& value);
   std::string* _internal_mutable_dest_name();
-
-  public:
-  // .smart_pkg_delivery.AckStatus ack_status = 7;
-  bool has_ack_status() const;
-  void clear_ack_status() ;
-  const ::smart_pkg_delivery::AckStatus& ack_status() const;
-  PROTOBUF_NODISCARD ::smart_pkg_delivery::AckStatus* release_ack_status();
-  ::smart_pkg_delivery::AckStatus* mutable_ack_status();
-  void set_allocated_ack_status(::smart_pkg_delivery::AckStatus* value);
-  void unsafe_arena_set_allocated_ack_status(::smart_pkg_delivery::AckStatus* value);
-  ::smart_pkg_delivery::AckStatus* unsafe_arena_release_ack_status();
-
-  private:
-  const ::smart_pkg_delivery::AckStatus& _internal_ack_status() const;
-  ::smart_pkg_delivery::AckStatus* _internal_mutable_ack_status();
-
-  public:
-  // .smart_pkg_delivery.ExecutionStatus execution_status = 8;
-  bool has_execution_status() const;
-  void clear_execution_status() ;
-  const ::smart_pkg_delivery::ExecutionStatus& execution_status() const;
-  PROTOBUF_NODISCARD ::smart_pkg_delivery::ExecutionStatus* release_execution_status();
-  ::smart_pkg_delivery::ExecutionStatus* mutable_execution_status();
-  void set_allocated_execution_status(::smart_pkg_delivery::ExecutionStatus* value);
-  void unsafe_arena_set_allocated_execution_status(::smart_pkg_delivery::ExecutionStatus* value);
-  ::smart_pkg_delivery::ExecutionStatus* unsafe_arena_release_execution_status();
-
-  private:
-  const ::smart_pkg_delivery::ExecutionStatus& _internal_execution_status() const;
-  ::smart_pkg_delivery::ExecutionStatus* _internal_mutable_execution_status();
 
   public:
   // .smart_pkg_delivery.NodeType src_type = 1;
@@ -5235,275 +5736,7 @@ class Response final : public ::google::protobuf::Message
   void _internal_set_dest_id(::uint32_t value);
 
   public:
-  // .smart_pkg_delivery.GetPkgInfoResponse get_pkg_info_response = 9;
-  bool has_get_pkg_info_response() const;
-  private:
-  bool _internal_has_get_pkg_info_response() const;
-
-  public:
-  void clear_get_pkg_info_response() ;
-  const ::smart_pkg_delivery::GetPkgInfoResponse& get_pkg_info_response() const;
-  PROTOBUF_NODISCARD ::smart_pkg_delivery::GetPkgInfoResponse* release_get_pkg_info_response();
-  ::smart_pkg_delivery::GetPkgInfoResponse* mutable_get_pkg_info_response();
-  void set_allocated_get_pkg_info_response(::smart_pkg_delivery::GetPkgInfoResponse* value);
-  void unsafe_arena_set_allocated_get_pkg_info_response(::smart_pkg_delivery::GetPkgInfoResponse* value);
-  ::smart_pkg_delivery::GetPkgInfoResponse* unsafe_arena_release_get_pkg_info_response();
-
-  private:
-  const ::smart_pkg_delivery::GetPkgInfoResponse& _internal_get_pkg_info_response() const;
-  ::smart_pkg_delivery::GetPkgInfoResponse* _internal_mutable_get_pkg_info_response();
-
-  public:
-  // .smart_pkg_delivery.SetElevatorStatusResponse set_elevator_status_response = 10;
-  bool has_set_elevator_status_response() const;
-  private:
-  bool _internal_has_set_elevator_status_response() const;
-
-  public:
-  void clear_set_elevator_status_response() ;
-  const ::smart_pkg_delivery::SetElevatorStatusResponse& set_elevator_status_response() const;
-  PROTOBUF_NODISCARD ::smart_pkg_delivery::SetElevatorStatusResponse* release_set_elevator_status_response();
-  ::smart_pkg_delivery::SetElevatorStatusResponse* mutable_set_elevator_status_response();
-  void set_allocated_set_elevator_status_response(::smart_pkg_delivery::SetElevatorStatusResponse* value);
-  void unsafe_arena_set_allocated_set_elevator_status_response(::smart_pkg_delivery::SetElevatorStatusResponse* value);
-  ::smart_pkg_delivery::SetElevatorStatusResponse* unsafe_arena_release_set_elevator_status_response();
-
-  private:
-  const ::smart_pkg_delivery::SetElevatorStatusResponse& _internal_set_elevator_status_response() const;
-  ::smart_pkg_delivery::SetElevatorStatusResponse* _internal_mutable_set_elevator_status_response();
-
-  public:
-  // .smart_pkg_delivery.MoveDeliveryRobotResponse move_delivery_robot_response = 11;
-  bool has_move_delivery_robot_response() const;
-  private:
-  bool _internal_has_move_delivery_robot_response() const;
-
-  public:
-  void clear_move_delivery_robot_response() ;
-  const ::smart_pkg_delivery::MoveDeliveryRobotResponse& move_delivery_robot_response() const;
-  PROTOBUF_NODISCARD ::smart_pkg_delivery::MoveDeliveryRobotResponse* release_move_delivery_robot_response();
-  ::smart_pkg_delivery::MoveDeliveryRobotResponse* mutable_move_delivery_robot_response();
-  void set_allocated_move_delivery_robot_response(::smart_pkg_delivery::MoveDeliveryRobotResponse* value);
-  void unsafe_arena_set_allocated_move_delivery_robot_response(::smart_pkg_delivery::MoveDeliveryRobotResponse* value);
-  ::smart_pkg_delivery::MoveDeliveryRobotResponse* unsafe_arena_release_move_delivery_robot_response();
-
-  private:
-  const ::smart_pkg_delivery::MoveDeliveryRobotResponse& _internal_move_delivery_robot_response() const;
-  ::smart_pkg_delivery::MoveDeliveryRobotResponse* _internal_mutable_move_delivery_robot_response();
-
-  public:
-  void clear_response_type();
-  ResponseTypeCase response_type_case() const;
-  // @@protoc_insertion_point(class_scope:smart_pkg_delivery.Response)
- private:
-  class _Internal;
-  void set_has_get_pkg_info_response();
-  void set_has_set_elevator_status_response();
-  void set_has_move_delivery_robot_response();
-  inline bool has_response_type() const;
-  inline void clear_has_response_type();
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<
-      3, 11, 5,
-      61, 2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(
-        ::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena);
-    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
-                          ::google::protobuf::Arena* arena, const Impl_& from,
-                          const Response& from_msg);
-    ::google::protobuf::internal::HasBits<1> _has_bits_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::internal::ArenaStringPtr src_name_;
-    ::google::protobuf::internal::ArenaStringPtr dest_name_;
-    ::smart_pkg_delivery::AckStatus* ack_status_;
-    ::smart_pkg_delivery::ExecutionStatus* execution_status_;
-    int src_type_;
-    ::uint32_t src_id_;
-    int dest_type_;
-    ::uint32_t dest_id_;
-    union ResponseTypeUnion {
-      constexpr ResponseTypeUnion() : _constinit_{} {}
-      ::google::protobuf::internal::ConstantInitialized _constinit_;
-      ::smart_pkg_delivery::GetPkgInfoResponse* get_pkg_info_response_;
-      ::smart_pkg_delivery::SetElevatorStatusResponse* set_elevator_status_response_;
-      ::smart_pkg_delivery::MoveDeliveryRobotResponse* move_delivery_robot_response_;
-    } response_type_;
-    ::uint32_t _oneof_case_[1];
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_smart_5fpkg_5fdelivery_2eproto;
-};
-// -------------------------------------------------------------------
-
-class WrapperMsg final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:smart_pkg_delivery.WrapperMsg) */ {
- public:
-  inline WrapperMsg() : WrapperMsg(nullptr) {}
-  ~WrapperMsg() PROTOBUF_FINAL;
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(WrapperMsg* msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(WrapperMsg));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR WrapperMsg(
-      ::google::protobuf::internal::ConstantInitialized);
-
-  inline WrapperMsg(const WrapperMsg& from) : WrapperMsg(nullptr, from) {}
-  inline WrapperMsg(WrapperMsg&& from) noexcept
-      : WrapperMsg(nullptr, std::move(from)) {}
-  inline WrapperMsg& operator=(const WrapperMsg& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline WrapperMsg& operator=(WrapperMsg&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const WrapperMsg& default_instance() {
-    return *internal_default_instance();
-  }
-  enum MsgTypeCase {
-    kRequest = 1,
-    kResponse = 2,
-    kNodeEvent = 3,
-    MSG_TYPE_NOT_SET = 0,
-  };
-  static inline const WrapperMsg* internal_default_instance() {
-    return reinterpret_cast<const WrapperMsg*>(
-        &_WrapperMsg_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 0;
-  friend void swap(WrapperMsg& a, WrapperMsg& b) { a.Swap(&b); }
-  inline void Swap(WrapperMsg* other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(WrapperMsg* other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  WrapperMsg* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<WrapperMsg>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const WrapperMsg& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const WrapperMsg& from) { WrapperMsg::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(
-      ::google::protobuf::MessageLite& to_msg,
-      const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* _InternalSerialize(
-      const MessageLite& msg, ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* _InternalSerialize(
-      ::uint8_t* target,
-      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(WrapperMsg* other);
- private:
-  template <typename T>
-  friend ::absl::string_view(
-      ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "smart_pkg_delivery.WrapperMsg"; }
-
- protected:
-  explicit WrapperMsg(::google::protobuf::Arena* arena);
-  WrapperMsg(::google::protobuf::Arena* arena, const WrapperMsg& from);
-  WrapperMsg(::google::protobuf::Arena* arena, WrapperMsg&& from) noexcept
-      : WrapperMsg(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
-  static void* PlacementNew_(const void*, void* mem,
-                             ::google::protobuf::Arena* arena);
-  static constexpr auto InternalNewImpl_();
-  static const ::google::protobuf::internal::ClassDataFull _class_data_;
-
- public:
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kRequestFieldNumber = 1,
-    kResponseFieldNumber = 2,
-    kNodeEventFieldNumber = 3,
-  };
-  // .smart_pkg_delivery.Request request = 1;
+  // .smart_pkg_delivery.Request request = 7;
   bool has_request() const;
   private:
   bool _internal_has_request() const;
@@ -5522,7 +5755,7 @@ class WrapperMsg final : public ::google::protobuf::Message
   ::smart_pkg_delivery::Request* _internal_mutable_request();
 
   public:
-  // .smart_pkg_delivery.Response response = 2;
+  // .smart_pkg_delivery.Response response = 8;
   bool has_response() const;
   private:
   bool _internal_has_response() const;
@@ -5541,7 +5774,7 @@ class WrapperMsg final : public ::google::protobuf::Message
   ::smart_pkg_delivery::Response* _internal_mutable_response();
 
   public:
-  // .smart_pkg_delivery.NodeEvent node_event = 3;
+  // .smart_pkg_delivery.NodeEvent node_event = 9;
   bool has_node_event() const;
   private:
   bool _internal_has_node_event() const;
@@ -5562,7 +5795,7 @@ class WrapperMsg final : public ::google::protobuf::Message
   public:
   void clear_msg_type();
   MsgTypeCase msg_type_case() const;
-  // @@protoc_insertion_point(class_scope:smart_pkg_delivery.WrapperMsg)
+  // @@protoc_insertion_point(class_scope:smart_pkg_delivery.InteractionMsg)
  private:
   class _Internal;
   void set_has_request();
@@ -5572,8 +5805,8 @@ class WrapperMsg final : public ::google::protobuf::Message
   inline void clear_has_msg_type();
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      0, 3, 3,
-      0, 2>
+      3, 9, 3,
+      67, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -5589,7 +5822,15 @@ class WrapperMsg final : public ::google::protobuf::Message
                           ::google::protobuf::Arena* arena);
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
-                          const WrapperMsg& from_msg);
+                          const InteractionMsg& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr src_name_;
+    ::google::protobuf::internal::ArenaStringPtr dest_name_;
+    int src_type_;
+    ::uint32_t src_id_;
+    int dest_type_;
+    ::uint32_t dest_id_;
     union MsgTypeUnion {
       constexpr MsgTypeUnion() : _constinit_{} {}
       ::google::protobuf::internal::ConstantInitialized _constinit_;
@@ -5597,7 +5838,6 @@ class WrapperMsg final : public ::google::protobuf::Message
       ::smart_pkg_delivery::Response* response_;
       ::smart_pkg_delivery::NodeEvent* node_event_;
     } msg_type_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
     ::uint32_t _oneof_case_[1];
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -5619,359 +5859,109 @@ class WrapperMsg final : public ::google::protobuf::Message
 #endif  // __GNUC__
 // -------------------------------------------------------------------
 
-// WrapperMsg
-
-// .smart_pkg_delivery.Request request = 1;
-inline bool WrapperMsg::has_request() const {
-  return msg_type_case() == kRequest;
-}
-inline bool WrapperMsg::_internal_has_request() const {
-  return msg_type_case() == kRequest;
-}
-inline void WrapperMsg::set_has_request() {
-  _impl_._oneof_case_[0] = kRequest;
-}
-inline void WrapperMsg::clear_request() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (msg_type_case() == kRequest) {
-    if (GetArena() == nullptr) {
-      delete _impl_.msg_type_.request_;
-    } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.msg_type_.request_);
-    }
-    clear_has_msg_type();
-  }
-}
-inline ::smart_pkg_delivery::Request* WrapperMsg::release_request() {
-  // @@protoc_insertion_point(field_release:smart_pkg_delivery.WrapperMsg.request)
-  if (msg_type_case() == kRequest) {
-    clear_has_msg_type();
-    auto* temp = _impl_.msg_type_.request_;
-    if (GetArena() != nullptr) {
-      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
-    }
-    _impl_.msg_type_.request_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline const ::smart_pkg_delivery::Request& WrapperMsg::_internal_request() const {
-  return msg_type_case() == kRequest ? *_impl_.msg_type_.request_ : reinterpret_cast<::smart_pkg_delivery::Request&>(::smart_pkg_delivery::_Request_default_instance_);
-}
-inline const ::smart_pkg_delivery::Request& WrapperMsg::request() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:smart_pkg_delivery.WrapperMsg.request)
-  return _internal_request();
-}
-inline ::smart_pkg_delivery::Request* WrapperMsg::unsafe_arena_release_request() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:smart_pkg_delivery.WrapperMsg.request)
-  if (msg_type_case() == kRequest) {
-    clear_has_msg_type();
-    auto* temp = _impl_.msg_type_.request_;
-    _impl_.msg_type_.request_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline void WrapperMsg::unsafe_arena_set_allocated_request(::smart_pkg_delivery::Request* value) {
-  // We rely on the oneof clear method to free the earlier contents
-  // of this oneof. We can directly use the pointer we're given to
-  // set the new value.
-  clear_msg_type();
-  if (value) {
-    set_has_request();
-    _impl_.msg_type_.request_ = value;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:smart_pkg_delivery.WrapperMsg.request)
-}
-inline ::smart_pkg_delivery::Request* WrapperMsg::_internal_mutable_request() {
-  if (msg_type_case() != kRequest) {
-    clear_msg_type();
-    set_has_request();
-    _impl_.msg_type_.request_ =
-        ::google::protobuf::Message::DefaultConstruct<::smart_pkg_delivery::Request>(GetArena());
-  }
-  return _impl_.msg_type_.request_;
-}
-inline ::smart_pkg_delivery::Request* WrapperMsg::mutable_request() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::smart_pkg_delivery::Request* _msg = _internal_mutable_request();
-  // @@protoc_insertion_point(field_mutable:smart_pkg_delivery.WrapperMsg.request)
-  return _msg;
-}
-
-// .smart_pkg_delivery.Response response = 2;
-inline bool WrapperMsg::has_response() const {
-  return msg_type_case() == kResponse;
-}
-inline bool WrapperMsg::_internal_has_response() const {
-  return msg_type_case() == kResponse;
-}
-inline void WrapperMsg::set_has_response() {
-  _impl_._oneof_case_[0] = kResponse;
-}
-inline void WrapperMsg::clear_response() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (msg_type_case() == kResponse) {
-    if (GetArena() == nullptr) {
-      delete _impl_.msg_type_.response_;
-    } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.msg_type_.response_);
-    }
-    clear_has_msg_type();
-  }
-}
-inline ::smart_pkg_delivery::Response* WrapperMsg::release_response() {
-  // @@protoc_insertion_point(field_release:smart_pkg_delivery.WrapperMsg.response)
-  if (msg_type_case() == kResponse) {
-    clear_has_msg_type();
-    auto* temp = _impl_.msg_type_.response_;
-    if (GetArena() != nullptr) {
-      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
-    }
-    _impl_.msg_type_.response_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline const ::smart_pkg_delivery::Response& WrapperMsg::_internal_response() const {
-  return msg_type_case() == kResponse ? *_impl_.msg_type_.response_ : reinterpret_cast<::smart_pkg_delivery::Response&>(::smart_pkg_delivery::_Response_default_instance_);
-}
-inline const ::smart_pkg_delivery::Response& WrapperMsg::response() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:smart_pkg_delivery.WrapperMsg.response)
-  return _internal_response();
-}
-inline ::smart_pkg_delivery::Response* WrapperMsg::unsafe_arena_release_response() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:smart_pkg_delivery.WrapperMsg.response)
-  if (msg_type_case() == kResponse) {
-    clear_has_msg_type();
-    auto* temp = _impl_.msg_type_.response_;
-    _impl_.msg_type_.response_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline void WrapperMsg::unsafe_arena_set_allocated_response(::smart_pkg_delivery::Response* value) {
-  // We rely on the oneof clear method to free the earlier contents
-  // of this oneof. We can directly use the pointer we're given to
-  // set the new value.
-  clear_msg_type();
-  if (value) {
-    set_has_response();
-    _impl_.msg_type_.response_ = value;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:smart_pkg_delivery.WrapperMsg.response)
-}
-inline ::smart_pkg_delivery::Response* WrapperMsg::_internal_mutable_response() {
-  if (msg_type_case() != kResponse) {
-    clear_msg_type();
-    set_has_response();
-    _impl_.msg_type_.response_ =
-        ::google::protobuf::Message::DefaultConstruct<::smart_pkg_delivery::Response>(GetArena());
-  }
-  return _impl_.msg_type_.response_;
-}
-inline ::smart_pkg_delivery::Response* WrapperMsg::mutable_response() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::smart_pkg_delivery::Response* _msg = _internal_mutable_response();
-  // @@protoc_insertion_point(field_mutable:smart_pkg_delivery.WrapperMsg.response)
-  return _msg;
-}
-
-// .smart_pkg_delivery.NodeEvent node_event = 3;
-inline bool WrapperMsg::has_node_event() const {
-  return msg_type_case() == kNodeEvent;
-}
-inline bool WrapperMsg::_internal_has_node_event() const {
-  return msg_type_case() == kNodeEvent;
-}
-inline void WrapperMsg::set_has_node_event() {
-  _impl_._oneof_case_[0] = kNodeEvent;
-}
-inline void WrapperMsg::clear_node_event() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (msg_type_case() == kNodeEvent) {
-    if (GetArena() == nullptr) {
-      delete _impl_.msg_type_.node_event_;
-    } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
-      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.msg_type_.node_event_);
-    }
-    clear_has_msg_type();
-  }
-}
-inline ::smart_pkg_delivery::NodeEvent* WrapperMsg::release_node_event() {
-  // @@protoc_insertion_point(field_release:smart_pkg_delivery.WrapperMsg.node_event)
-  if (msg_type_case() == kNodeEvent) {
-    clear_has_msg_type();
-    auto* temp = _impl_.msg_type_.node_event_;
-    if (GetArena() != nullptr) {
-      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
-    }
-    _impl_.msg_type_.node_event_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline const ::smart_pkg_delivery::NodeEvent& WrapperMsg::_internal_node_event() const {
-  return msg_type_case() == kNodeEvent ? *_impl_.msg_type_.node_event_ : reinterpret_cast<::smart_pkg_delivery::NodeEvent&>(::smart_pkg_delivery::_NodeEvent_default_instance_);
-}
-inline const ::smart_pkg_delivery::NodeEvent& WrapperMsg::node_event() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:smart_pkg_delivery.WrapperMsg.node_event)
-  return _internal_node_event();
-}
-inline ::smart_pkg_delivery::NodeEvent* WrapperMsg::unsafe_arena_release_node_event() {
-  // @@protoc_insertion_point(field_unsafe_arena_release:smart_pkg_delivery.WrapperMsg.node_event)
-  if (msg_type_case() == kNodeEvent) {
-    clear_has_msg_type();
-    auto* temp = _impl_.msg_type_.node_event_;
-    _impl_.msg_type_.node_event_ = nullptr;
-    return temp;
-  } else {
-    return nullptr;
-  }
-}
-inline void WrapperMsg::unsafe_arena_set_allocated_node_event(::smart_pkg_delivery::NodeEvent* value) {
-  // We rely on the oneof clear method to free the earlier contents
-  // of this oneof. We can directly use the pointer we're given to
-  // set the new value.
-  clear_msg_type();
-  if (value) {
-    set_has_node_event();
-    _impl_.msg_type_.node_event_ = value;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:smart_pkg_delivery.WrapperMsg.node_event)
-}
-inline ::smart_pkg_delivery::NodeEvent* WrapperMsg::_internal_mutable_node_event() {
-  if (msg_type_case() != kNodeEvent) {
-    clear_msg_type();
-    set_has_node_event();
-    _impl_.msg_type_.node_event_ =
-        ::google::protobuf::Message::DefaultConstruct<::smart_pkg_delivery::NodeEvent>(GetArena());
-  }
-  return _impl_.msg_type_.node_event_;
-}
-inline ::smart_pkg_delivery::NodeEvent* WrapperMsg::mutable_node_event() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  ::smart_pkg_delivery::NodeEvent* _msg = _internal_mutable_node_event();
-  // @@protoc_insertion_point(field_mutable:smart_pkg_delivery.WrapperMsg.node_event)
-  return _msg;
-}
-
-inline bool WrapperMsg::has_msg_type() const {
-  return msg_type_case() != MSG_TYPE_NOT_SET;
-}
-inline void WrapperMsg::clear_has_msg_type() {
-  _impl_._oneof_case_[0] = MSG_TYPE_NOT_SET;
-}
-inline WrapperMsg::MsgTypeCase WrapperMsg::msg_type_case() const {
-  return WrapperMsg::MsgTypeCase(_impl_._oneof_case_[0]);
-}
-// -------------------------------------------------------------------
-
-// Request
+// InteractionMsg
 
 // .smart_pkg_delivery.NodeType src_type = 1;
-inline bool Request::has_src_type() const {
+inline bool InteractionMsg::has_src_type() const {
   bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
   return value;
 }
-inline void Request::clear_src_type() {
+inline void InteractionMsg::clear_src_type() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.src_type_ = 0;
   _impl_._has_bits_[0] &= ~0x00000004u;
 }
-inline ::smart_pkg_delivery::NodeType Request::src_type() const {
-  // @@protoc_insertion_point(field_get:smart_pkg_delivery.Request.src_type)
+inline ::smart_pkg_delivery::NodeType InteractionMsg::src_type() const {
+  // @@protoc_insertion_point(field_get:smart_pkg_delivery.InteractionMsg.src_type)
   return _internal_src_type();
 }
-inline void Request::set_src_type(::smart_pkg_delivery::NodeType value) {
+inline void InteractionMsg::set_src_type(::smart_pkg_delivery::NodeType value) {
   _internal_set_src_type(value);
   _impl_._has_bits_[0] |= 0x00000004u;
-  // @@protoc_insertion_point(field_set:smart_pkg_delivery.Request.src_type)
+  // @@protoc_insertion_point(field_set:smart_pkg_delivery.InteractionMsg.src_type)
 }
-inline ::smart_pkg_delivery::NodeType Request::_internal_src_type() const {
+inline ::smart_pkg_delivery::NodeType InteractionMsg::_internal_src_type() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return static_cast<::smart_pkg_delivery::NodeType>(_impl_.src_type_);
 }
-inline void Request::_internal_set_src_type(::smart_pkg_delivery::NodeType value) {
+inline void InteractionMsg::_internal_set_src_type(::smart_pkg_delivery::NodeType value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.src_type_ = value;
 }
 
 // uint32 src_id = 2;
-inline bool Request::has_src_id() const {
+inline bool InteractionMsg::has_src_id() const {
   bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
   return value;
 }
-inline void Request::clear_src_id() {
+inline void InteractionMsg::clear_src_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.src_id_ = 0u;
   _impl_._has_bits_[0] &= ~0x00000008u;
 }
-inline ::uint32_t Request::src_id() const {
-  // @@protoc_insertion_point(field_get:smart_pkg_delivery.Request.src_id)
+inline ::uint32_t InteractionMsg::src_id() const {
+  // @@protoc_insertion_point(field_get:smart_pkg_delivery.InteractionMsg.src_id)
   return _internal_src_id();
 }
-inline void Request::set_src_id(::uint32_t value) {
+inline void InteractionMsg::set_src_id(::uint32_t value) {
   _internal_set_src_id(value);
   _impl_._has_bits_[0] |= 0x00000008u;
-  // @@protoc_insertion_point(field_set:smart_pkg_delivery.Request.src_id)
+  // @@protoc_insertion_point(field_set:smart_pkg_delivery.InteractionMsg.src_id)
 }
-inline ::uint32_t Request::_internal_src_id() const {
+inline ::uint32_t InteractionMsg::_internal_src_id() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.src_id_;
 }
-inline void Request::_internal_set_src_id(::uint32_t value) {
+inline void InteractionMsg::_internal_set_src_id(::uint32_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.src_id_ = value;
 }
 
 // string src_name = 3;
-inline bool Request::has_src_name() const {
+inline bool InteractionMsg::has_src_name() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   return value;
 }
-inline void Request::clear_src_name() {
+inline void InteractionMsg::clear_src_name() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.src_name_.ClearToEmpty();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const std::string& Request::src_name() const
+inline const std::string& InteractionMsg::src_name() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:smart_pkg_delivery.Request.src_name)
+  // @@protoc_insertion_point(field_get:smart_pkg_delivery.InteractionMsg.src_name)
   return _internal_src_name();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void Request::set_src_name(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void InteractionMsg::set_src_name(Arg_&& arg,
                                                      Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
   _impl_.src_name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:smart_pkg_delivery.Request.src_name)
+  // @@protoc_insertion_point(field_set:smart_pkg_delivery.InteractionMsg.src_name)
 }
-inline std::string* Request::mutable_src_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* InteractionMsg::mutable_src_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_src_name();
-  // @@protoc_insertion_point(field_mutable:smart_pkg_delivery.Request.src_name)
+  // @@protoc_insertion_point(field_mutable:smart_pkg_delivery.InteractionMsg.src_name)
   return _s;
 }
-inline const std::string& Request::_internal_src_name() const {
+inline const std::string& InteractionMsg::_internal_src_name() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.src_name_.Get();
 }
-inline void Request::_internal_set_src_name(const std::string& value) {
+inline void InteractionMsg::_internal_set_src_name(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
   _impl_.src_name_.Set(value, GetArena());
 }
-inline std::string* Request::_internal_mutable_src_name() {
+inline std::string* InteractionMsg::_internal_mutable_src_name() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
   return _impl_.src_name_.Mutable( GetArena());
 }
-inline std::string* Request::release_src_name() {
+inline std::string* InteractionMsg::release_src_name() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:smart_pkg_delivery.Request.src_name)
+  // @@protoc_insertion_point(field_release:smart_pkg_delivery.InteractionMsg.src_name)
   if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
     return nullptr;
   }
@@ -5982,7 +5972,7 @@ inline std::string* Request::release_src_name() {
   }
   return released;
 }
-inline void Request::set_allocated_src_name(std::string* value) {
+inline void InteractionMsg::set_allocated_src_name(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
@@ -5993,110 +5983,110 @@ inline void Request::set_allocated_src_name(std::string* value) {
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.src_name_.IsDefault()) {
     _impl_.src_name_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:smart_pkg_delivery.Request.src_name)
+  // @@protoc_insertion_point(field_set_allocated:smart_pkg_delivery.InteractionMsg.src_name)
 }
 
 // .smart_pkg_delivery.NodeType dest_type = 4;
-inline bool Request::has_dest_type() const {
+inline bool InteractionMsg::has_dest_type() const {
   bool value = (_impl_._has_bits_[0] & 0x00000010u) != 0;
   return value;
 }
-inline void Request::clear_dest_type() {
+inline void InteractionMsg::clear_dest_type() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.dest_type_ = 0;
   _impl_._has_bits_[0] &= ~0x00000010u;
 }
-inline ::smart_pkg_delivery::NodeType Request::dest_type() const {
-  // @@protoc_insertion_point(field_get:smart_pkg_delivery.Request.dest_type)
+inline ::smart_pkg_delivery::NodeType InteractionMsg::dest_type() const {
+  // @@protoc_insertion_point(field_get:smart_pkg_delivery.InteractionMsg.dest_type)
   return _internal_dest_type();
 }
-inline void Request::set_dest_type(::smart_pkg_delivery::NodeType value) {
+inline void InteractionMsg::set_dest_type(::smart_pkg_delivery::NodeType value) {
   _internal_set_dest_type(value);
   _impl_._has_bits_[0] |= 0x00000010u;
-  // @@protoc_insertion_point(field_set:smart_pkg_delivery.Request.dest_type)
+  // @@protoc_insertion_point(field_set:smart_pkg_delivery.InteractionMsg.dest_type)
 }
-inline ::smart_pkg_delivery::NodeType Request::_internal_dest_type() const {
+inline ::smart_pkg_delivery::NodeType InteractionMsg::_internal_dest_type() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return static_cast<::smart_pkg_delivery::NodeType>(_impl_.dest_type_);
 }
-inline void Request::_internal_set_dest_type(::smart_pkg_delivery::NodeType value) {
+inline void InteractionMsg::_internal_set_dest_type(::smart_pkg_delivery::NodeType value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.dest_type_ = value;
 }
 
 // uint32 dest_id = 5;
-inline bool Request::has_dest_id() const {
+inline bool InteractionMsg::has_dest_id() const {
   bool value = (_impl_._has_bits_[0] & 0x00000020u) != 0;
   return value;
 }
-inline void Request::clear_dest_id() {
+inline void InteractionMsg::clear_dest_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.dest_id_ = 0u;
   _impl_._has_bits_[0] &= ~0x00000020u;
 }
-inline ::uint32_t Request::dest_id() const {
-  // @@protoc_insertion_point(field_get:smart_pkg_delivery.Request.dest_id)
+inline ::uint32_t InteractionMsg::dest_id() const {
+  // @@protoc_insertion_point(field_get:smart_pkg_delivery.InteractionMsg.dest_id)
   return _internal_dest_id();
 }
-inline void Request::set_dest_id(::uint32_t value) {
+inline void InteractionMsg::set_dest_id(::uint32_t value) {
   _internal_set_dest_id(value);
   _impl_._has_bits_[0] |= 0x00000020u;
-  // @@protoc_insertion_point(field_set:smart_pkg_delivery.Request.dest_id)
+  // @@protoc_insertion_point(field_set:smart_pkg_delivery.InteractionMsg.dest_id)
 }
-inline ::uint32_t Request::_internal_dest_id() const {
+inline ::uint32_t InteractionMsg::_internal_dest_id() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.dest_id_;
 }
-inline void Request::_internal_set_dest_id(::uint32_t value) {
+inline void InteractionMsg::_internal_set_dest_id(::uint32_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.dest_id_ = value;
 }
 
 // string dest_name = 6;
-inline bool Request::has_dest_name() const {
+inline bool InteractionMsg::has_dest_name() const {
   bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
   return value;
 }
-inline void Request::clear_dest_name() {
+inline void InteractionMsg::clear_dest_name() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.dest_name_.ClearToEmpty();
   _impl_._has_bits_[0] &= ~0x00000002u;
 }
-inline const std::string& Request::dest_name() const
+inline const std::string& InteractionMsg::dest_name() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:smart_pkg_delivery.Request.dest_name)
+  // @@protoc_insertion_point(field_get:smart_pkg_delivery.InteractionMsg.dest_name)
   return _internal_dest_name();
 }
 template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void Request::set_dest_name(Arg_&& arg,
+inline PROTOBUF_ALWAYS_INLINE void InteractionMsg::set_dest_name(Arg_&& arg,
                                                      Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000002u;
   _impl_.dest_name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:smart_pkg_delivery.Request.dest_name)
+  // @@protoc_insertion_point(field_set:smart_pkg_delivery.InteractionMsg.dest_name)
 }
-inline std::string* Request::mutable_dest_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline std::string* InteractionMsg::mutable_dest_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_dest_name();
-  // @@protoc_insertion_point(field_mutable:smart_pkg_delivery.Request.dest_name)
+  // @@protoc_insertion_point(field_mutable:smart_pkg_delivery.InteractionMsg.dest_name)
   return _s;
 }
-inline const std::string& Request::_internal_dest_name() const {
+inline const std::string& InteractionMsg::_internal_dest_name() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.dest_name_.Get();
 }
-inline void Request::_internal_set_dest_name(const std::string& value) {
+inline void InteractionMsg::_internal_set_dest_name(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000002u;
   _impl_.dest_name_.Set(value, GetArena());
 }
-inline std::string* Request::_internal_mutable_dest_name() {
+inline std::string* InteractionMsg::_internal_mutable_dest_name() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000002u;
   return _impl_.dest_name_.Mutable( GetArena());
 }
-inline std::string* Request::release_dest_name() {
+inline std::string* InteractionMsg::release_dest_name() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:smart_pkg_delivery.Request.dest_name)
+  // @@protoc_insertion_point(field_release:smart_pkg_delivery.InteractionMsg.dest_name)
   if ((_impl_._has_bits_[0] & 0x00000002u) == 0) {
     return nullptr;
   }
@@ -6107,7 +6097,7 @@ inline std::string* Request::release_dest_name() {
   }
   return released;
 }
-inline void Request::set_allocated_dest_name(std::string* value) {
+inline void InteractionMsg::set_allocated_dest_name(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000002u;
@@ -6118,10 +6108,339 @@ inline void Request::set_allocated_dest_name(std::string* value) {
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.dest_name_.IsDefault()) {
     _impl_.dest_name_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:smart_pkg_delivery.Request.dest_name)
+  // @@protoc_insertion_point(field_set_allocated:smart_pkg_delivery.InteractionMsg.dest_name)
 }
 
-// .smart_pkg_delivery.GetPkgInfosRequest get_pkg_infos_request = 7;
+// .smart_pkg_delivery.Request request = 7;
+inline bool InteractionMsg::has_request() const {
+  return msg_type_case() == kRequest;
+}
+inline bool InteractionMsg::_internal_has_request() const {
+  return msg_type_case() == kRequest;
+}
+inline void InteractionMsg::set_has_request() {
+  _impl_._oneof_case_[0] = kRequest;
+}
+inline void InteractionMsg::clear_request() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (msg_type_case() == kRequest) {
+    if (GetArena() == nullptr) {
+      delete _impl_.msg_type_.request_;
+    } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.msg_type_.request_);
+    }
+    clear_has_msg_type();
+  }
+}
+inline ::smart_pkg_delivery::Request* InteractionMsg::release_request() {
+  // @@protoc_insertion_point(field_release:smart_pkg_delivery.InteractionMsg.request)
+  if (msg_type_case() == kRequest) {
+    clear_has_msg_type();
+    auto* temp = _impl_.msg_type_.request_;
+    if (GetArena() != nullptr) {
+      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.msg_type_.request_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::smart_pkg_delivery::Request& InteractionMsg::_internal_request() const {
+  return msg_type_case() == kRequest ? *_impl_.msg_type_.request_ : reinterpret_cast<::smart_pkg_delivery::Request&>(::smart_pkg_delivery::_Request_default_instance_);
+}
+inline const ::smart_pkg_delivery::Request& InteractionMsg::request() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:smart_pkg_delivery.InteractionMsg.request)
+  return _internal_request();
+}
+inline ::smart_pkg_delivery::Request* InteractionMsg::unsafe_arena_release_request() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:smart_pkg_delivery.InteractionMsg.request)
+  if (msg_type_case() == kRequest) {
+    clear_has_msg_type();
+    auto* temp = _impl_.msg_type_.request_;
+    _impl_.msg_type_.request_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void InteractionMsg::unsafe_arena_set_allocated_request(::smart_pkg_delivery::Request* value) {
+  // We rely on the oneof clear method to free the earlier contents
+  // of this oneof. We can directly use the pointer we're given to
+  // set the new value.
+  clear_msg_type();
+  if (value) {
+    set_has_request();
+    _impl_.msg_type_.request_ = value;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:smart_pkg_delivery.InteractionMsg.request)
+}
+inline ::smart_pkg_delivery::Request* InteractionMsg::_internal_mutable_request() {
+  if (msg_type_case() != kRequest) {
+    clear_msg_type();
+    set_has_request();
+    _impl_.msg_type_.request_ =
+        ::google::protobuf::Message::DefaultConstruct<::smart_pkg_delivery::Request>(GetArena());
+  }
+  return _impl_.msg_type_.request_;
+}
+inline ::smart_pkg_delivery::Request* InteractionMsg::mutable_request() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::smart_pkg_delivery::Request* _msg = _internal_mutable_request();
+  // @@protoc_insertion_point(field_mutable:smart_pkg_delivery.InteractionMsg.request)
+  return _msg;
+}
+
+// .smart_pkg_delivery.Response response = 8;
+inline bool InteractionMsg::has_response() const {
+  return msg_type_case() == kResponse;
+}
+inline bool InteractionMsg::_internal_has_response() const {
+  return msg_type_case() == kResponse;
+}
+inline void InteractionMsg::set_has_response() {
+  _impl_._oneof_case_[0] = kResponse;
+}
+inline void InteractionMsg::clear_response() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (msg_type_case() == kResponse) {
+    if (GetArena() == nullptr) {
+      delete _impl_.msg_type_.response_;
+    } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.msg_type_.response_);
+    }
+    clear_has_msg_type();
+  }
+}
+inline ::smart_pkg_delivery::Response* InteractionMsg::release_response() {
+  // @@protoc_insertion_point(field_release:smart_pkg_delivery.InteractionMsg.response)
+  if (msg_type_case() == kResponse) {
+    clear_has_msg_type();
+    auto* temp = _impl_.msg_type_.response_;
+    if (GetArena() != nullptr) {
+      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.msg_type_.response_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::smart_pkg_delivery::Response& InteractionMsg::_internal_response() const {
+  return msg_type_case() == kResponse ? *_impl_.msg_type_.response_ : reinterpret_cast<::smart_pkg_delivery::Response&>(::smart_pkg_delivery::_Response_default_instance_);
+}
+inline const ::smart_pkg_delivery::Response& InteractionMsg::response() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:smart_pkg_delivery.InteractionMsg.response)
+  return _internal_response();
+}
+inline ::smart_pkg_delivery::Response* InteractionMsg::unsafe_arena_release_response() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:smart_pkg_delivery.InteractionMsg.response)
+  if (msg_type_case() == kResponse) {
+    clear_has_msg_type();
+    auto* temp = _impl_.msg_type_.response_;
+    _impl_.msg_type_.response_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void InteractionMsg::unsafe_arena_set_allocated_response(::smart_pkg_delivery::Response* value) {
+  // We rely on the oneof clear method to free the earlier contents
+  // of this oneof. We can directly use the pointer we're given to
+  // set the new value.
+  clear_msg_type();
+  if (value) {
+    set_has_response();
+    _impl_.msg_type_.response_ = value;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:smart_pkg_delivery.InteractionMsg.response)
+}
+inline ::smart_pkg_delivery::Response* InteractionMsg::_internal_mutable_response() {
+  if (msg_type_case() != kResponse) {
+    clear_msg_type();
+    set_has_response();
+    _impl_.msg_type_.response_ =
+        ::google::protobuf::Message::DefaultConstruct<::smart_pkg_delivery::Response>(GetArena());
+  }
+  return _impl_.msg_type_.response_;
+}
+inline ::smart_pkg_delivery::Response* InteractionMsg::mutable_response() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::smart_pkg_delivery::Response* _msg = _internal_mutable_response();
+  // @@protoc_insertion_point(field_mutable:smart_pkg_delivery.InteractionMsg.response)
+  return _msg;
+}
+
+// .smart_pkg_delivery.NodeEvent node_event = 9;
+inline bool InteractionMsg::has_node_event() const {
+  return msg_type_case() == kNodeEvent;
+}
+inline bool InteractionMsg::_internal_has_node_event() const {
+  return msg_type_case() == kNodeEvent;
+}
+inline void InteractionMsg::set_has_node_event() {
+  _impl_._oneof_case_[0] = kNodeEvent;
+}
+inline void InteractionMsg::clear_node_event() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (msg_type_case() == kNodeEvent) {
+    if (GetArena() == nullptr) {
+      delete _impl_.msg_type_.node_event_;
+    } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.msg_type_.node_event_);
+    }
+    clear_has_msg_type();
+  }
+}
+inline ::smart_pkg_delivery::NodeEvent* InteractionMsg::release_node_event() {
+  // @@protoc_insertion_point(field_release:smart_pkg_delivery.InteractionMsg.node_event)
+  if (msg_type_case() == kNodeEvent) {
+    clear_has_msg_type();
+    auto* temp = _impl_.msg_type_.node_event_;
+    if (GetArena() != nullptr) {
+      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.msg_type_.node_event_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::smart_pkg_delivery::NodeEvent& InteractionMsg::_internal_node_event() const {
+  return msg_type_case() == kNodeEvent ? *_impl_.msg_type_.node_event_ : reinterpret_cast<::smart_pkg_delivery::NodeEvent&>(::smart_pkg_delivery::_NodeEvent_default_instance_);
+}
+inline const ::smart_pkg_delivery::NodeEvent& InteractionMsg::node_event() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:smart_pkg_delivery.InteractionMsg.node_event)
+  return _internal_node_event();
+}
+inline ::smart_pkg_delivery::NodeEvent* InteractionMsg::unsafe_arena_release_node_event() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:smart_pkg_delivery.InteractionMsg.node_event)
+  if (msg_type_case() == kNodeEvent) {
+    clear_has_msg_type();
+    auto* temp = _impl_.msg_type_.node_event_;
+    _impl_.msg_type_.node_event_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void InteractionMsg::unsafe_arena_set_allocated_node_event(::smart_pkg_delivery::NodeEvent* value) {
+  // We rely on the oneof clear method to free the earlier contents
+  // of this oneof. We can directly use the pointer we're given to
+  // set the new value.
+  clear_msg_type();
+  if (value) {
+    set_has_node_event();
+    _impl_.msg_type_.node_event_ = value;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:smart_pkg_delivery.InteractionMsg.node_event)
+}
+inline ::smart_pkg_delivery::NodeEvent* InteractionMsg::_internal_mutable_node_event() {
+  if (msg_type_case() != kNodeEvent) {
+    clear_msg_type();
+    set_has_node_event();
+    _impl_.msg_type_.node_event_ =
+        ::google::protobuf::Message::DefaultConstruct<::smart_pkg_delivery::NodeEvent>(GetArena());
+  }
+  return _impl_.msg_type_.node_event_;
+}
+inline ::smart_pkg_delivery::NodeEvent* InteractionMsg::mutable_node_event() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::smart_pkg_delivery::NodeEvent* _msg = _internal_mutable_node_event();
+  // @@protoc_insertion_point(field_mutable:smart_pkg_delivery.InteractionMsg.node_event)
+  return _msg;
+}
+
+inline bool InteractionMsg::has_msg_type() const {
+  return msg_type_case() != MSG_TYPE_NOT_SET;
+}
+inline void InteractionMsg::clear_has_msg_type() {
+  _impl_._oneof_case_[0] = MSG_TYPE_NOT_SET;
+}
+inline InteractionMsg::MsgTypeCase InteractionMsg::msg_type_case() const {
+  return InteractionMsg::MsgTypeCase(_impl_._oneof_case_[0]);
+}
+// -------------------------------------------------------------------
+
+// Request
+
+// .smart_pkg_delivery.ClientRegisterRequest client_register_request = 1;
+inline bool Request::has_client_register_request() const {
+  return request_type_case() == kClientRegisterRequest;
+}
+inline bool Request::_internal_has_client_register_request() const {
+  return request_type_case() == kClientRegisterRequest;
+}
+inline void Request::set_has_client_register_request() {
+  _impl_._oneof_case_[0] = kClientRegisterRequest;
+}
+inline void Request::clear_client_register_request() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (request_type_case() == kClientRegisterRequest) {
+    if (GetArena() == nullptr) {
+      delete _impl_.request_type_.client_register_request_;
+    } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.request_type_.client_register_request_);
+    }
+    clear_has_request_type();
+  }
+}
+inline ::smart_pkg_delivery::ClientRegisterRequest* Request::release_client_register_request() {
+  // @@protoc_insertion_point(field_release:smart_pkg_delivery.Request.client_register_request)
+  if (request_type_case() == kClientRegisterRequest) {
+    clear_has_request_type();
+    auto* temp = _impl_.request_type_.client_register_request_;
+    if (GetArena() != nullptr) {
+      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.request_type_.client_register_request_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::smart_pkg_delivery::ClientRegisterRequest& Request::_internal_client_register_request() const {
+  return request_type_case() == kClientRegisterRequest ? *_impl_.request_type_.client_register_request_ : reinterpret_cast<::smart_pkg_delivery::ClientRegisterRequest&>(::smart_pkg_delivery::_ClientRegisterRequest_default_instance_);
+}
+inline const ::smart_pkg_delivery::ClientRegisterRequest& Request::client_register_request() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:smart_pkg_delivery.Request.client_register_request)
+  return _internal_client_register_request();
+}
+inline ::smart_pkg_delivery::ClientRegisterRequest* Request::unsafe_arena_release_client_register_request() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:smart_pkg_delivery.Request.client_register_request)
+  if (request_type_case() == kClientRegisterRequest) {
+    clear_has_request_type();
+    auto* temp = _impl_.request_type_.client_register_request_;
+    _impl_.request_type_.client_register_request_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void Request::unsafe_arena_set_allocated_client_register_request(::smart_pkg_delivery::ClientRegisterRequest* value) {
+  // We rely on the oneof clear method to free the earlier contents
+  // of this oneof. We can directly use the pointer we're given to
+  // set the new value.
+  clear_request_type();
+  if (value) {
+    set_has_client_register_request();
+    _impl_.request_type_.client_register_request_ = value;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:smart_pkg_delivery.Request.client_register_request)
+}
+inline ::smart_pkg_delivery::ClientRegisterRequest* Request::_internal_mutable_client_register_request() {
+  if (request_type_case() != kClientRegisterRequest) {
+    clear_request_type();
+    set_has_client_register_request();
+    _impl_.request_type_.client_register_request_ =
+        ::google::protobuf::Message::DefaultConstruct<::smart_pkg_delivery::ClientRegisterRequest>(GetArena());
+  }
+  return _impl_.request_type_.client_register_request_;
+}
+inline ::smart_pkg_delivery::ClientRegisterRequest* Request::mutable_client_register_request() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::smart_pkg_delivery::ClientRegisterRequest* _msg = _internal_mutable_client_register_request();
+  // @@protoc_insertion_point(field_mutable:smart_pkg_delivery.Request.client_register_request)
+  return _msg;
+}
+
+// .smart_pkg_delivery.GetPkgInfosRequest get_pkg_infos_request = 2;
 inline bool Request::has_get_pkg_infos_request() const {
   return request_type_case() == kGetPkgInfosRequest;
 }
@@ -6200,7 +6519,7 @@ inline ::smart_pkg_delivery::GetPkgInfosRequest* Request::mutable_get_pkg_infos_
   return _msg;
 }
 
-// .smart_pkg_delivery.SetElevatorStatusRequest set_elevator_status_request = 8;
+// .smart_pkg_delivery.SetElevatorStatusRequest set_elevator_status_request = 3;
 inline bool Request::has_set_elevator_status_request() const {
   return request_type_case() == kSetElevatorStatusRequest;
 }
@@ -6279,7 +6598,7 @@ inline ::smart_pkg_delivery::SetElevatorStatusRequest* Request::mutable_set_elev
   return _msg;
 }
 
-// .smart_pkg_delivery.MoveDeliveryRobotRequest move_delivery_robot_request = 9;
+// .smart_pkg_delivery.MoveDeliveryRobotRequest move_delivery_robot_request = 4;
 inline bool Request::has_move_delivery_robot_request() const {
   return request_type_case() == kMoveDeliveryRobotRequest;
 }
@@ -6371,266 +6690,16 @@ inline Request::RequestTypeCase Request::request_type_case() const {
 
 // Response
 
-// .smart_pkg_delivery.NodeType src_type = 1;
-inline bool Response::has_src_type() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000010u) != 0;
-  return value;
-}
-inline void Response::clear_src_type() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.src_type_ = 0;
-  _impl_._has_bits_[0] &= ~0x00000010u;
-}
-inline ::smart_pkg_delivery::NodeType Response::src_type() const {
-  // @@protoc_insertion_point(field_get:smart_pkg_delivery.Response.src_type)
-  return _internal_src_type();
-}
-inline void Response::set_src_type(::smart_pkg_delivery::NodeType value) {
-  _internal_set_src_type(value);
-  _impl_._has_bits_[0] |= 0x00000010u;
-  // @@protoc_insertion_point(field_set:smart_pkg_delivery.Response.src_type)
-}
-inline ::smart_pkg_delivery::NodeType Response::_internal_src_type() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return static_cast<::smart_pkg_delivery::NodeType>(_impl_.src_type_);
-}
-inline void Response::_internal_set_src_type(::smart_pkg_delivery::NodeType value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.src_type_ = value;
-}
-
-// uint32 src_id = 2;
-inline bool Response::has_src_id() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000020u) != 0;
-  return value;
-}
-inline void Response::clear_src_id() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.src_id_ = 0u;
-  _impl_._has_bits_[0] &= ~0x00000020u;
-}
-inline ::uint32_t Response::src_id() const {
-  // @@protoc_insertion_point(field_get:smart_pkg_delivery.Response.src_id)
-  return _internal_src_id();
-}
-inline void Response::set_src_id(::uint32_t value) {
-  _internal_set_src_id(value);
-  _impl_._has_bits_[0] |= 0x00000020u;
-  // @@protoc_insertion_point(field_set:smart_pkg_delivery.Response.src_id)
-}
-inline ::uint32_t Response::_internal_src_id() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.src_id_;
-}
-inline void Response::_internal_set_src_id(::uint32_t value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.src_id_ = value;
-}
-
-// string src_name = 3;
-inline bool Response::has_src_name() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
-  return value;
-}
-inline void Response::clear_src_name() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.src_name_.ClearToEmpty();
-  _impl_._has_bits_[0] &= ~0x00000001u;
-}
-inline const std::string& Response::src_name() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:smart_pkg_delivery.Response.src_name)
-  return _internal_src_name();
-}
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void Response::set_src_name(Arg_&& arg,
-                                                     Args_... args) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_._has_bits_[0] |= 0x00000001u;
-  _impl_.src_name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:smart_pkg_delivery.Response.src_name)
-}
-inline std::string* Response::mutable_src_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_src_name();
-  // @@protoc_insertion_point(field_mutable:smart_pkg_delivery.Response.src_name)
-  return _s;
-}
-inline const std::string& Response::_internal_src_name() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.src_name_.Get();
-}
-inline void Response::_internal_set_src_name(const std::string& value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_._has_bits_[0] |= 0x00000001u;
-  _impl_.src_name_.Set(value, GetArena());
-}
-inline std::string* Response::_internal_mutable_src_name() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_._has_bits_[0] |= 0x00000001u;
-  return _impl_.src_name_.Mutable( GetArena());
-}
-inline std::string* Response::release_src_name() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:smart_pkg_delivery.Response.src_name)
-  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
-    return nullptr;
-  }
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  auto* released = _impl_.src_name_.Release();
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
-    _impl_.src_name_.Set("", GetArena());
-  }
-  return released;
-}
-inline void Response::set_allocated_src_name(std::string* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-  _impl_.src_name_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.src_name_.IsDefault()) {
-    _impl_.src_name_.Set("", GetArena());
-  }
-  // @@protoc_insertion_point(field_set_allocated:smart_pkg_delivery.Response.src_name)
-}
-
-// .smart_pkg_delivery.NodeType dest_type = 4;
-inline bool Response::has_dest_type() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000040u) != 0;
-  return value;
-}
-inline void Response::clear_dest_type() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.dest_type_ = 0;
-  _impl_._has_bits_[0] &= ~0x00000040u;
-}
-inline ::smart_pkg_delivery::NodeType Response::dest_type() const {
-  // @@protoc_insertion_point(field_get:smart_pkg_delivery.Response.dest_type)
-  return _internal_dest_type();
-}
-inline void Response::set_dest_type(::smart_pkg_delivery::NodeType value) {
-  _internal_set_dest_type(value);
-  _impl_._has_bits_[0] |= 0x00000040u;
-  // @@protoc_insertion_point(field_set:smart_pkg_delivery.Response.dest_type)
-}
-inline ::smart_pkg_delivery::NodeType Response::_internal_dest_type() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return static_cast<::smart_pkg_delivery::NodeType>(_impl_.dest_type_);
-}
-inline void Response::_internal_set_dest_type(::smart_pkg_delivery::NodeType value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.dest_type_ = value;
-}
-
-// uint32 dest_id = 5;
-inline bool Response::has_dest_id() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000080u) != 0;
-  return value;
-}
-inline void Response::clear_dest_id() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.dest_id_ = 0u;
-  _impl_._has_bits_[0] &= ~0x00000080u;
-}
-inline ::uint32_t Response::dest_id() const {
-  // @@protoc_insertion_point(field_get:smart_pkg_delivery.Response.dest_id)
-  return _internal_dest_id();
-}
-inline void Response::set_dest_id(::uint32_t value) {
-  _internal_set_dest_id(value);
-  _impl_._has_bits_[0] |= 0x00000080u;
-  // @@protoc_insertion_point(field_set:smart_pkg_delivery.Response.dest_id)
-}
-inline ::uint32_t Response::_internal_dest_id() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.dest_id_;
-}
-inline void Response::_internal_set_dest_id(::uint32_t value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.dest_id_ = value;
-}
-
-// string dest_name = 6;
-inline bool Response::has_dest_name() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
-  return value;
-}
-inline void Response::clear_dest_name() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.dest_name_.ClearToEmpty();
-  _impl_._has_bits_[0] &= ~0x00000002u;
-}
-inline const std::string& Response::dest_name() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:smart_pkg_delivery.Response.dest_name)
-  return _internal_dest_name();
-}
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void Response::set_dest_name(Arg_&& arg,
-                                                     Args_... args) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_._has_bits_[0] |= 0x00000002u;
-  _impl_.dest_name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:smart_pkg_delivery.Response.dest_name)
-}
-inline std::string* Response::mutable_dest_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_dest_name();
-  // @@protoc_insertion_point(field_mutable:smart_pkg_delivery.Response.dest_name)
-  return _s;
-}
-inline const std::string& Response::_internal_dest_name() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.dest_name_.Get();
-}
-inline void Response::_internal_set_dest_name(const std::string& value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_._has_bits_[0] |= 0x00000002u;
-  _impl_.dest_name_.Set(value, GetArena());
-}
-inline std::string* Response::_internal_mutable_dest_name() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_._has_bits_[0] |= 0x00000002u;
-  return _impl_.dest_name_.Mutable( GetArena());
-}
-inline std::string* Response::release_dest_name() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:smart_pkg_delivery.Response.dest_name)
-  if ((_impl_._has_bits_[0] & 0x00000002u) == 0) {
-    return nullptr;
-  }
-  _impl_._has_bits_[0] &= ~0x00000002u;
-  auto* released = _impl_.dest_name_.Release();
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
-    _impl_.dest_name_.Set("", GetArena());
-  }
-  return released;
-}
-inline void Response::set_allocated_dest_name(std::string* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000002u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000002u;
-  }
-  _impl_.dest_name_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.dest_name_.IsDefault()) {
-    _impl_.dest_name_.Set("", GetArena());
-  }
-  // @@protoc_insertion_point(field_set_allocated:smart_pkg_delivery.Response.dest_name)
-}
-
-// .smart_pkg_delivery.AckStatus ack_status = 7;
+// .smart_pkg_delivery.AckStatus ack_status = 1;
 inline bool Response::has_ack_status() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.ack_status_ != nullptr);
   return value;
 }
 inline void Response::clear_ack_status() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.ack_status_ != nullptr) _impl_.ack_status_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000004u;
+  _impl_._has_bits_[0] &= ~0x00000001u;
 }
 inline const ::smart_pkg_delivery::AckStatus& Response::_internal_ack_status() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
@@ -6648,16 +6717,16 @@ inline void Response::unsafe_arena_set_allocated_ack_status(::smart_pkg_delivery
   }
   _impl_.ack_status_ = reinterpret_cast<::smart_pkg_delivery::AckStatus*>(value);
   if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000004u;
+    _impl_._has_bits_[0] |= 0x00000001u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000004u;
+    _impl_._has_bits_[0] &= ~0x00000001u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:smart_pkg_delivery.Response.ack_status)
 }
 inline ::smart_pkg_delivery::AckStatus* Response::release_ack_status() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
-  _impl_._has_bits_[0] &= ~0x00000004u;
+  _impl_._has_bits_[0] &= ~0x00000001u;
   ::smart_pkg_delivery::AckStatus* released = _impl_.ack_status_;
   _impl_.ack_status_ = nullptr;
   if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
@@ -6677,7 +6746,7 @@ inline ::smart_pkg_delivery::AckStatus* Response::unsafe_arena_release_ack_statu
   ::google::protobuf::internal::TSanWrite(&_impl_);
   // @@protoc_insertion_point(field_release:smart_pkg_delivery.Response.ack_status)
 
-  _impl_._has_bits_[0] &= ~0x00000004u;
+  _impl_._has_bits_[0] &= ~0x00000001u;
   ::smart_pkg_delivery::AckStatus* temp = _impl_.ack_status_;
   _impl_.ack_status_ = nullptr;
   return temp;
@@ -6691,7 +6760,7 @@ inline ::smart_pkg_delivery::AckStatus* Response::_internal_mutable_ack_status()
   return _impl_.ack_status_;
 }
 inline ::smart_pkg_delivery::AckStatus* Response::mutable_ack_status() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  _impl_._has_bits_[0] |= 0x00000004u;
+  _impl_._has_bits_[0] |= 0x00000001u;
   ::smart_pkg_delivery::AckStatus* _msg = _internal_mutable_ack_status();
   // @@protoc_insertion_point(field_mutable:smart_pkg_delivery.Response.ack_status)
   return _msg;
@@ -6708,25 +6777,25 @@ inline void Response::set_allocated_ack_status(::smart_pkg_delivery::AckStatus* 
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
-    _impl_._has_bits_[0] |= 0x00000004u;
+    _impl_._has_bits_[0] |= 0x00000001u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000004u;
+    _impl_._has_bits_[0] &= ~0x00000001u;
   }
 
   _impl_.ack_status_ = reinterpret_cast<::smart_pkg_delivery::AckStatus*>(value);
   // @@protoc_insertion_point(field_set_allocated:smart_pkg_delivery.Response.ack_status)
 }
 
-// .smart_pkg_delivery.ExecutionStatus execution_status = 8;
+// .smart_pkg_delivery.ExecutionStatus execution_status = 2;
 inline bool Response::has_execution_status() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.execution_status_ != nullptr);
   return value;
 }
 inline void Response::clear_execution_status() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.execution_status_ != nullptr) _impl_.execution_status_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000008u;
+  _impl_._has_bits_[0] &= ~0x00000002u;
 }
 inline const ::smart_pkg_delivery::ExecutionStatus& Response::_internal_execution_status() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
@@ -6744,16 +6813,16 @@ inline void Response::unsafe_arena_set_allocated_execution_status(::smart_pkg_de
   }
   _impl_.execution_status_ = reinterpret_cast<::smart_pkg_delivery::ExecutionStatus*>(value);
   if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000008u;
+    _impl_._has_bits_[0] |= 0x00000002u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000008u;
+    _impl_._has_bits_[0] &= ~0x00000002u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:smart_pkg_delivery.Response.execution_status)
 }
 inline ::smart_pkg_delivery::ExecutionStatus* Response::release_execution_status() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
-  _impl_._has_bits_[0] &= ~0x00000008u;
+  _impl_._has_bits_[0] &= ~0x00000002u;
   ::smart_pkg_delivery::ExecutionStatus* released = _impl_.execution_status_;
   _impl_.execution_status_ = nullptr;
   if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
@@ -6773,7 +6842,7 @@ inline ::smart_pkg_delivery::ExecutionStatus* Response::unsafe_arena_release_exe
   ::google::protobuf::internal::TSanWrite(&_impl_);
   // @@protoc_insertion_point(field_release:smart_pkg_delivery.Response.execution_status)
 
-  _impl_._has_bits_[0] &= ~0x00000008u;
+  _impl_._has_bits_[0] &= ~0x00000002u;
   ::smart_pkg_delivery::ExecutionStatus* temp = _impl_.execution_status_;
   _impl_.execution_status_ = nullptr;
   return temp;
@@ -6787,7 +6856,7 @@ inline ::smart_pkg_delivery::ExecutionStatus* Response::_internal_mutable_execut
   return _impl_.execution_status_;
 }
 inline ::smart_pkg_delivery::ExecutionStatus* Response::mutable_execution_status() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  _impl_._has_bits_[0] |= 0x00000008u;
+  _impl_._has_bits_[0] |= 0x00000002u;
   ::smart_pkg_delivery::ExecutionStatus* _msg = _internal_mutable_execution_status();
   // @@protoc_insertion_point(field_mutable:smart_pkg_delivery.Response.execution_status)
   return _msg;
@@ -6804,16 +6873,95 @@ inline void Response::set_allocated_execution_status(::smart_pkg_delivery::Execu
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
-    _impl_._has_bits_[0] |= 0x00000008u;
+    _impl_._has_bits_[0] |= 0x00000002u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000008u;
+    _impl_._has_bits_[0] &= ~0x00000002u;
   }
 
   _impl_.execution_status_ = reinterpret_cast<::smart_pkg_delivery::ExecutionStatus*>(value);
   // @@protoc_insertion_point(field_set_allocated:smart_pkg_delivery.Response.execution_status)
 }
 
-// .smart_pkg_delivery.GetPkgInfoResponse get_pkg_info_response = 9;
+// .smart_pkg_delivery.ClientRegisterResponse client_register_response = 3;
+inline bool Response::has_client_register_response() const {
+  return response_type_case() == kClientRegisterResponse;
+}
+inline bool Response::_internal_has_client_register_response() const {
+  return response_type_case() == kClientRegisterResponse;
+}
+inline void Response::set_has_client_register_response() {
+  _impl_._oneof_case_[0] = kClientRegisterResponse;
+}
+inline void Response::clear_client_register_response() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (response_type_case() == kClientRegisterResponse) {
+    if (GetArena() == nullptr) {
+      delete _impl_.response_type_.client_register_response_;
+    } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.response_type_.client_register_response_);
+    }
+    clear_has_response_type();
+  }
+}
+inline ::smart_pkg_delivery::ClientRegisterResponse* Response::release_client_register_response() {
+  // @@protoc_insertion_point(field_release:smart_pkg_delivery.Response.client_register_response)
+  if (response_type_case() == kClientRegisterResponse) {
+    clear_has_response_type();
+    auto* temp = _impl_.response_type_.client_register_response_;
+    if (GetArena() != nullptr) {
+      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.response_type_.client_register_response_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::smart_pkg_delivery::ClientRegisterResponse& Response::_internal_client_register_response() const {
+  return response_type_case() == kClientRegisterResponse ? *_impl_.response_type_.client_register_response_ : reinterpret_cast<::smart_pkg_delivery::ClientRegisterResponse&>(::smart_pkg_delivery::_ClientRegisterResponse_default_instance_);
+}
+inline const ::smart_pkg_delivery::ClientRegisterResponse& Response::client_register_response() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:smart_pkg_delivery.Response.client_register_response)
+  return _internal_client_register_response();
+}
+inline ::smart_pkg_delivery::ClientRegisterResponse* Response::unsafe_arena_release_client_register_response() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:smart_pkg_delivery.Response.client_register_response)
+  if (response_type_case() == kClientRegisterResponse) {
+    clear_has_response_type();
+    auto* temp = _impl_.response_type_.client_register_response_;
+    _impl_.response_type_.client_register_response_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void Response::unsafe_arena_set_allocated_client_register_response(::smart_pkg_delivery::ClientRegisterResponse* value) {
+  // We rely on the oneof clear method to free the earlier contents
+  // of this oneof. We can directly use the pointer we're given to
+  // set the new value.
+  clear_response_type();
+  if (value) {
+    set_has_client_register_response();
+    _impl_.response_type_.client_register_response_ = value;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:smart_pkg_delivery.Response.client_register_response)
+}
+inline ::smart_pkg_delivery::ClientRegisterResponse* Response::_internal_mutable_client_register_response() {
+  if (response_type_case() != kClientRegisterResponse) {
+    clear_response_type();
+    set_has_client_register_response();
+    _impl_.response_type_.client_register_response_ =
+        ::google::protobuf::Message::DefaultConstruct<::smart_pkg_delivery::ClientRegisterResponse>(GetArena());
+  }
+  return _impl_.response_type_.client_register_response_;
+}
+inline ::smart_pkg_delivery::ClientRegisterResponse* Response::mutable_client_register_response() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::smart_pkg_delivery::ClientRegisterResponse* _msg = _internal_mutable_client_register_response();
+  // @@protoc_insertion_point(field_mutable:smart_pkg_delivery.Response.client_register_response)
+  return _msg;
+}
+
+// .smart_pkg_delivery.GetPkgInfoResponse get_pkg_info_response = 4;
 inline bool Response::has_get_pkg_info_response() const {
   return response_type_case() == kGetPkgInfoResponse;
 }
@@ -6892,7 +7040,7 @@ inline ::smart_pkg_delivery::GetPkgInfoResponse* Response::mutable_get_pkg_info_
   return _msg;
 }
 
-// .smart_pkg_delivery.SetElevatorStatusResponse set_elevator_status_response = 10;
+// .smart_pkg_delivery.SetElevatorStatusResponse set_elevator_status_response = 5;
 inline bool Response::has_set_elevator_status_response() const {
   return response_type_case() == kSetElevatorStatusResponse;
 }
@@ -6971,7 +7119,7 @@ inline ::smart_pkg_delivery::SetElevatorStatusResponse* Response::mutable_set_el
   return _msg;
 }
 
-// .smart_pkg_delivery.MoveDeliveryRobotResponse move_delivery_robot_response = 11;
+// .smart_pkg_delivery.MoveDeliveryRobotResponse move_delivery_robot_response = 6;
 inline bool Response::has_move_delivery_robot_response() const {
   return response_type_case() == kMoveDeliveryRobotResponse;
 }
@@ -7063,257 +7211,7 @@ inline Response::ResponseTypeCase Response::response_type_case() const {
 
 // NodeEvent
 
-// .smart_pkg_delivery.NodeType src_type = 1;
-inline bool NodeEvent::has_src_type() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
-  return value;
-}
-inline void NodeEvent::clear_src_type() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.src_type_ = 0;
-  _impl_._has_bits_[0] &= ~0x00000004u;
-}
-inline ::smart_pkg_delivery::NodeType NodeEvent::src_type() const {
-  // @@protoc_insertion_point(field_get:smart_pkg_delivery.NodeEvent.src_type)
-  return _internal_src_type();
-}
-inline void NodeEvent::set_src_type(::smart_pkg_delivery::NodeType value) {
-  _internal_set_src_type(value);
-  _impl_._has_bits_[0] |= 0x00000004u;
-  // @@protoc_insertion_point(field_set:smart_pkg_delivery.NodeEvent.src_type)
-}
-inline ::smart_pkg_delivery::NodeType NodeEvent::_internal_src_type() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return static_cast<::smart_pkg_delivery::NodeType>(_impl_.src_type_);
-}
-inline void NodeEvent::_internal_set_src_type(::smart_pkg_delivery::NodeType value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.src_type_ = value;
-}
-
-// uint32 src_id = 2;
-inline bool NodeEvent::has_src_id() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
-  return value;
-}
-inline void NodeEvent::clear_src_id() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.src_id_ = 0u;
-  _impl_._has_bits_[0] &= ~0x00000008u;
-}
-inline ::uint32_t NodeEvent::src_id() const {
-  // @@protoc_insertion_point(field_get:smart_pkg_delivery.NodeEvent.src_id)
-  return _internal_src_id();
-}
-inline void NodeEvent::set_src_id(::uint32_t value) {
-  _internal_set_src_id(value);
-  _impl_._has_bits_[0] |= 0x00000008u;
-  // @@protoc_insertion_point(field_set:smart_pkg_delivery.NodeEvent.src_id)
-}
-inline ::uint32_t NodeEvent::_internal_src_id() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.src_id_;
-}
-inline void NodeEvent::_internal_set_src_id(::uint32_t value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.src_id_ = value;
-}
-
-// string src_name = 3;
-inline bool NodeEvent::has_src_name() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
-  return value;
-}
-inline void NodeEvent::clear_src_name() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.src_name_.ClearToEmpty();
-  _impl_._has_bits_[0] &= ~0x00000001u;
-}
-inline const std::string& NodeEvent::src_name() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:smart_pkg_delivery.NodeEvent.src_name)
-  return _internal_src_name();
-}
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void NodeEvent::set_src_name(Arg_&& arg,
-                                                     Args_... args) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_._has_bits_[0] |= 0x00000001u;
-  _impl_.src_name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:smart_pkg_delivery.NodeEvent.src_name)
-}
-inline std::string* NodeEvent::mutable_src_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_src_name();
-  // @@protoc_insertion_point(field_mutable:smart_pkg_delivery.NodeEvent.src_name)
-  return _s;
-}
-inline const std::string& NodeEvent::_internal_src_name() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.src_name_.Get();
-}
-inline void NodeEvent::_internal_set_src_name(const std::string& value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_._has_bits_[0] |= 0x00000001u;
-  _impl_.src_name_.Set(value, GetArena());
-}
-inline std::string* NodeEvent::_internal_mutable_src_name() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_._has_bits_[0] |= 0x00000001u;
-  return _impl_.src_name_.Mutable( GetArena());
-}
-inline std::string* NodeEvent::release_src_name() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:smart_pkg_delivery.NodeEvent.src_name)
-  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
-    return nullptr;
-  }
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  auto* released = _impl_.src_name_.Release();
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
-    _impl_.src_name_.Set("", GetArena());
-  }
-  return released;
-}
-inline void NodeEvent::set_allocated_src_name(std::string* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-  _impl_.src_name_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.src_name_.IsDefault()) {
-    _impl_.src_name_.Set("", GetArena());
-  }
-  // @@protoc_insertion_point(field_set_allocated:smart_pkg_delivery.NodeEvent.src_name)
-}
-
-// .smart_pkg_delivery.NodeType dest_type = 4;
-inline bool NodeEvent::has_dest_type() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000010u) != 0;
-  return value;
-}
-inline void NodeEvent::clear_dest_type() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.dest_type_ = 0;
-  _impl_._has_bits_[0] &= ~0x00000010u;
-}
-inline ::smart_pkg_delivery::NodeType NodeEvent::dest_type() const {
-  // @@protoc_insertion_point(field_get:smart_pkg_delivery.NodeEvent.dest_type)
-  return _internal_dest_type();
-}
-inline void NodeEvent::set_dest_type(::smart_pkg_delivery::NodeType value) {
-  _internal_set_dest_type(value);
-  _impl_._has_bits_[0] |= 0x00000010u;
-  // @@protoc_insertion_point(field_set:smart_pkg_delivery.NodeEvent.dest_type)
-}
-inline ::smart_pkg_delivery::NodeType NodeEvent::_internal_dest_type() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return static_cast<::smart_pkg_delivery::NodeType>(_impl_.dest_type_);
-}
-inline void NodeEvent::_internal_set_dest_type(::smart_pkg_delivery::NodeType value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.dest_type_ = value;
-}
-
-// uint32 dest_id = 5;
-inline bool NodeEvent::has_dest_id() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000020u) != 0;
-  return value;
-}
-inline void NodeEvent::clear_dest_id() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.dest_id_ = 0u;
-  _impl_._has_bits_[0] &= ~0x00000020u;
-}
-inline ::uint32_t NodeEvent::dest_id() const {
-  // @@protoc_insertion_point(field_get:smart_pkg_delivery.NodeEvent.dest_id)
-  return _internal_dest_id();
-}
-inline void NodeEvent::set_dest_id(::uint32_t value) {
-  _internal_set_dest_id(value);
-  _impl_._has_bits_[0] |= 0x00000020u;
-  // @@protoc_insertion_point(field_set:smart_pkg_delivery.NodeEvent.dest_id)
-}
-inline ::uint32_t NodeEvent::_internal_dest_id() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.dest_id_;
-}
-inline void NodeEvent::_internal_set_dest_id(::uint32_t value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.dest_id_ = value;
-}
-
-// string dest_name = 6;
-inline bool NodeEvent::has_dest_name() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
-  return value;
-}
-inline void NodeEvent::clear_dest_name() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.dest_name_.ClearToEmpty();
-  _impl_._has_bits_[0] &= ~0x00000002u;
-}
-inline const std::string& NodeEvent::dest_name() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:smart_pkg_delivery.NodeEvent.dest_name)
-  return _internal_dest_name();
-}
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void NodeEvent::set_dest_name(Arg_&& arg,
-                                                     Args_... args) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_._has_bits_[0] |= 0x00000002u;
-  _impl_.dest_name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:smart_pkg_delivery.NodeEvent.dest_name)
-}
-inline std::string* NodeEvent::mutable_dest_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_dest_name();
-  // @@protoc_insertion_point(field_mutable:smart_pkg_delivery.NodeEvent.dest_name)
-  return _s;
-}
-inline const std::string& NodeEvent::_internal_dest_name() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.dest_name_.Get();
-}
-inline void NodeEvent::_internal_set_dest_name(const std::string& value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_._has_bits_[0] |= 0x00000002u;
-  _impl_.dest_name_.Set(value, GetArena());
-}
-inline std::string* NodeEvent::_internal_mutable_dest_name() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_._has_bits_[0] |= 0x00000002u;
-  return _impl_.dest_name_.Mutable( GetArena());
-}
-inline std::string* NodeEvent::release_dest_name() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:smart_pkg_delivery.NodeEvent.dest_name)
-  if ((_impl_._has_bits_[0] & 0x00000002u) == 0) {
-    return nullptr;
-  }
-  _impl_._has_bits_[0] &= ~0x00000002u;
-  auto* released = _impl_.dest_name_.Release();
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
-    _impl_.dest_name_.Set("", GetArena());
-  }
-  return released;
-}
-inline void NodeEvent::set_allocated_dest_name(std::string* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000002u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000002u;
-  }
-  _impl_.dest_name_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.dest_name_.IsDefault()) {
-    _impl_.dest_name_.Set("", GetArena());
-  }
-  // @@protoc_insertion_point(field_set_allocated:smart_pkg_delivery.NodeEvent.dest_name)
-}
-
-// .smart_pkg_delivery.PkgArrivalEvent pkg_arrival_event = 7;
+// .smart_pkg_delivery.PkgArrivalEvent pkg_arrival_event = 1;
 inline bool NodeEvent::has_pkg_arrival_event() const {
   return event_type_case() == kPkgArrivalEvent;
 }
@@ -7392,7 +7290,7 @@ inline ::smart_pkg_delivery::PkgArrivalEvent* NodeEvent::mutable_pkg_arrival_eve
   return _msg;
 }
 
-// .smart_pkg_delivery.ElevatorStatusEvent elevator_status_event = 8;
+// .smart_pkg_delivery.ElevatorStatusEvent elevator_status_event = 2;
 inline bool NodeEvent::has_elevator_status_event() const {
   return event_type_case() == kElevatorStatusEvent;
 }
@@ -7471,7 +7369,7 @@ inline ::smart_pkg_delivery::ElevatorStatusEvent* NodeEvent::mutable_elevator_st
   return _msg;
 }
 
-// .smart_pkg_delivery.DeliveryStatusEvent delivery_status_event = 9;
+// .smart_pkg_delivery.DeliveryStatusEvent delivery_status_event = 3;
 inline bool NodeEvent::has_delivery_status_event() const {
   return event_type_case() == kDeliveryStatusEvent;
 }
@@ -7760,6 +7658,139 @@ inline void ExecutionStatus::set_allocated_message(std::string* value) {
   }
   // @@protoc_insertion_point(field_set_allocated:smart_pkg_delivery.ExecutionStatus.message)
 }
+
+// -------------------------------------------------------------------
+
+// ClientRegisterRequest
+
+// .smart_pkg_delivery.NodeType identity_type = 1;
+inline bool ClientRegisterRequest::has_identity_type() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline void ClientRegisterRequest::clear_identity_type() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.identity_type_ = 0;
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline ::smart_pkg_delivery::NodeType ClientRegisterRequest::identity_type() const {
+  // @@protoc_insertion_point(field_get:smart_pkg_delivery.ClientRegisterRequest.identity_type)
+  return _internal_identity_type();
+}
+inline void ClientRegisterRequest::set_identity_type(::smart_pkg_delivery::NodeType value) {
+  _internal_set_identity_type(value);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  // @@protoc_insertion_point(field_set:smart_pkg_delivery.ClientRegisterRequest.identity_type)
+}
+inline ::smart_pkg_delivery::NodeType ClientRegisterRequest::_internal_identity_type() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return static_cast<::smart_pkg_delivery::NodeType>(_impl_.identity_type_);
+}
+inline void ClientRegisterRequest::_internal_set_identity_type(::smart_pkg_delivery::NodeType value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.identity_type_ = value;
+}
+
+// uint32 identity_id = 2;
+inline bool ClientRegisterRequest::has_identity_id() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
+  return value;
+}
+inline void ClientRegisterRequest::clear_identity_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.identity_id_ = 0u;
+  _impl_._has_bits_[0] &= ~0x00000004u;
+}
+inline ::uint32_t ClientRegisterRequest::identity_id() const {
+  // @@protoc_insertion_point(field_get:smart_pkg_delivery.ClientRegisterRequest.identity_id)
+  return _internal_identity_id();
+}
+inline void ClientRegisterRequest::set_identity_id(::uint32_t value) {
+  _internal_set_identity_id(value);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  // @@protoc_insertion_point(field_set:smart_pkg_delivery.ClientRegisterRequest.identity_id)
+}
+inline ::uint32_t ClientRegisterRequest::_internal_identity_id() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.identity_id_;
+}
+inline void ClientRegisterRequest::_internal_set_identity_id(::uint32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.identity_id_ = value;
+}
+
+// string identity_name = 3;
+inline bool ClientRegisterRequest::has_identity_name() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline void ClientRegisterRequest::clear_identity_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.identity_name_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& ClientRegisterRequest::identity_name() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:smart_pkg_delivery.ClientRegisterRequest.identity_name)
+  return _internal_identity_name();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void ClientRegisterRequest::set_identity_name(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.identity_name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:smart_pkg_delivery.ClientRegisterRequest.identity_name)
+}
+inline std::string* ClientRegisterRequest::mutable_identity_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_identity_name();
+  // @@protoc_insertion_point(field_mutable:smart_pkg_delivery.ClientRegisterRequest.identity_name)
+  return _s;
+}
+inline const std::string& ClientRegisterRequest::_internal_identity_name() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.identity_name_.Get();
+}
+inline void ClientRegisterRequest::_internal_set_identity_name(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.identity_name_.Set(value, GetArena());
+}
+inline std::string* ClientRegisterRequest::_internal_mutable_identity_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.identity_name_.Mutable( GetArena());
+}
+inline std::string* ClientRegisterRequest::release_identity_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:smart_pkg_delivery.ClientRegisterRequest.identity_name)
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* released = _impl_.identity_name_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.identity_name_.Set("", GetArena());
+  }
+  return released;
+}
+inline void ClientRegisterRequest::set_allocated_identity_name(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.identity_name_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.identity_name_.IsDefault()) {
+    _impl_.identity_name_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:smart_pkg_delivery.ClientRegisterRequest.identity_name)
+}
+
+// -------------------------------------------------------------------
+
+// ClientRegisterResponse
 
 // -------------------------------------------------------------------
 

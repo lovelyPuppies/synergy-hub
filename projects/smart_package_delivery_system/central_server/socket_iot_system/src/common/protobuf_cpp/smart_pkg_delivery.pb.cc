@@ -221,6 +221,53 @@ struct DeliveryRobotDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DeliveryRobotDefaultTypeInternal _DeliveryRobot_default_instance_;
+              template <typename>
+PROTOBUF_CONSTEXPR ClientRegisterResponse::ClientRegisterResponse(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(_class_data_.base()){}
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase() {
+}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+struct ClientRegisterResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ClientRegisterResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ClientRegisterResponseDefaultTypeInternal() {}
+  union {
+    ClientRegisterResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ClientRegisterResponseDefaultTypeInternal _ClientRegisterResponse_default_instance_;
+
+inline constexpr ClientRegisterRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        identity_name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        identity_type_{static_cast< ::smart_pkg_delivery::NodeType >(0)},
+        identity_id_{0u} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR ClientRegisterRequest::ClientRegisterRequest(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct ClientRegisterRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR ClientRegisterRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~ClientRegisterRequestDefaultTypeInternal() {}
+  union {
+    ClientRegisterRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ClientRegisterRequestDefaultTypeInternal _ClientRegisterRequest_default_instance_;
 
 inline constexpr AptAddress::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -493,18 +540,8 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 
 inline constexpr Request::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : _cached_size_{0},
-        src_name_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        dest_name_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        src_type_{static_cast< ::smart_pkg_delivery::NodeType >(0)},
-        src_id_{0u},
-        dest_type_{static_cast< ::smart_pkg_delivery::NodeType >(0)},
-        dest_id_{0u},
-        request_type_{},
+      : request_type_{},
+        _cached_size_{0},
         _oneof_case_{} {}
 
 template <typename>
@@ -529,18 +566,8 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 
 inline constexpr NodeEvent::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : _cached_size_{0},
-        src_name_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        dest_name_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        src_type_{static_cast< ::smart_pkg_delivery::NodeType >(0)},
-        src_id_{0u},
-        dest_type_{static_cast< ::smart_pkg_delivery::NodeType >(0)},
-        dest_id_{0u},
-        event_type_{},
+      : event_type_{},
+        _cached_size_{0},
         _oneof_case_{} {}
 
 template <typename>
@@ -591,18 +618,8 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 inline constexpr Response::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
-        src_name_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        dest_name_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
         ack_status_{nullptr},
         execution_status_{nullptr},
-        src_type_{static_cast< ::smart_pkg_delivery::NodeType >(0)},
-        src_id_{0u},
-        dest_type_{static_cast< ::smart_pkg_delivery::NodeType >(0)},
-        dest_id_{0u},
         response_type_{},
         _oneof_case_{} {}
 
@@ -626,14 +643,24 @@ struct ResponseDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ResponseDefaultTypeInternal _Response_default_instance_;
 
-inline constexpr WrapperMsg::Impl_::Impl_(
+inline constexpr InteractionMsg::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : msg_type_{},
-        _cached_size_{0},
+      : _cached_size_{0},
+        src_name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        dest_name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        src_type_{static_cast< ::smart_pkg_delivery::NodeType >(0)},
+        src_id_{0u},
+        dest_type_{static_cast< ::smart_pkg_delivery::NodeType >(0)},
+        dest_id_{0u},
+        msg_type_{},
         _oneof_case_{} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR WrapperMsg::WrapperMsg(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR InteractionMsg::InteractionMsg(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(_class_data_.base()),
 #else   // PROTOBUF_CUSTOM_VTABLE
@@ -641,16 +668,16 @@ PROTOBUF_CONSTEXPR WrapperMsg::WrapperMsg(::_pbi::ConstantInitialized)
 #endif  // PROTOBUF_CUSTOM_VTABLE
       _impl_(::_pbi::ConstantInitialized()) {
 }
-struct WrapperMsgDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR WrapperMsgDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~WrapperMsgDefaultTypeInternal() {}
+struct InteractionMsgDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR InteractionMsgDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~InteractionMsgDefaultTypeInternal() {}
   union {
-    WrapperMsg _instance;
+    InteractionMsg _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 WrapperMsgDefaultTypeInternal _WrapperMsg_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 InteractionMsgDefaultTypeInternal _InteractionMsg_default_instance_;
 }  // namespace smart_pkg_delivery
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_smart_5fpkg_5fdelivery_2eproto[5];
 static constexpr const ::_pb::ServiceDescriptor**
@@ -658,36 +685,24 @@ static constexpr const ::_pb::ServiceDescriptor**
 const ::uint32_t
     TableStruct_smart_5fpkg_5fdelivery_2eproto::offsets[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
         protodesc_cold) = {
-        ~0u,  // no _has_bits_
-        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::WrapperMsg, _internal_metadata_),
+        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::InteractionMsg, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::InteractionMsg, _internal_metadata_),
         ~0u,  // no _extensions_
-        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::WrapperMsg, _impl_._oneof_case_[0]),
+        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::InteractionMsg, _impl_._oneof_case_[0]),
         ~0u,  // no _weak_field_map_
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::InteractionMsg, _impl_.src_type_),
+        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::InteractionMsg, _impl_.src_id_),
+        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::InteractionMsg, _impl_.src_name_),
+        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::InteractionMsg, _impl_.dest_type_),
+        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::InteractionMsg, _impl_.dest_id_),
+        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::InteractionMsg, _impl_.dest_name_),
         ::_pbi::kInvalidFieldOffsetTag,
         ::_pbi::kInvalidFieldOffsetTag,
         ::_pbi::kInvalidFieldOffsetTag,
-        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::WrapperMsg, _impl_.msg_type_),
-        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::Request, _impl_._has_bits_),
-        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::Request, _internal_metadata_),
-        ~0u,  // no _extensions_
-        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::Request, _impl_._oneof_case_[0]),
-        ~0u,  // no _weak_field_map_
-        ~0u,  // no _inlined_string_donated_
-        ~0u,  // no _split_
-        ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::Request, _impl_.src_type_),
-        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::Request, _impl_.src_id_),
-        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::Request, _impl_.src_name_),
-        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::Request, _impl_.dest_type_),
-        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::Request, _impl_.dest_id_),
-        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::Request, _impl_.dest_name_),
-        ::_pbi::kInvalidFieldOffsetTag,
-        ::_pbi::kInvalidFieldOffsetTag,
-        ::_pbi::kInvalidFieldOffsetTag,
-        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::Request, _impl_.request_type_),
+        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::InteractionMsg, _impl_.msg_type_),
         2,
         3,
         0,
@@ -697,6 +712,19 @@ const ::uint32_t
         ~0u,
         ~0u,
         ~0u,
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::Request, _internal_metadata_),
+        ~0u,  // no _extensions_
+        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::Request, _impl_._oneof_case_[0]),
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        ::_pbi::kInvalidFieldOffsetTag,
+        ::_pbi::kInvalidFieldOffsetTag,
+        ::_pbi::kInvalidFieldOffsetTag,
+        ::_pbi::kInvalidFieldOffsetTag,
+        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::Request, _impl_.request_type_),
         PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::Response, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::Response, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -705,30 +733,20 @@ const ::uint32_t
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::Response, _impl_.src_type_),
-        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::Response, _impl_.src_id_),
-        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::Response, _impl_.src_name_),
-        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::Response, _impl_.dest_type_),
-        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::Response, _impl_.dest_id_),
-        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::Response, _impl_.dest_name_),
         PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::Response, _impl_.ack_status_),
         PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::Response, _impl_.execution_status_),
         ::_pbi::kInvalidFieldOffsetTag,
         ::_pbi::kInvalidFieldOffsetTag,
         ::_pbi::kInvalidFieldOffsetTag,
+        ::_pbi::kInvalidFieldOffsetTag,
         PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::Response, _impl_.response_type_),
-        4,
-        5,
         0,
-        6,
-        7,
         1,
-        2,
-        3,
         ~0u,
         ~0u,
         ~0u,
-        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::NodeEvent, _impl_._has_bits_),
+        ~0u,
+        ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::NodeEvent, _internal_metadata_),
         ~0u,  // no _extensions_
         PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::NodeEvent, _impl_._oneof_case_[0]),
@@ -736,25 +754,10 @@ const ::uint32_t
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::NodeEvent, _impl_.src_type_),
-        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::NodeEvent, _impl_.src_id_),
-        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::NodeEvent, _impl_.src_name_),
-        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::NodeEvent, _impl_.dest_type_),
-        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::NodeEvent, _impl_.dest_id_),
-        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::NodeEvent, _impl_.dest_name_),
         ::_pbi::kInvalidFieldOffsetTag,
         ::_pbi::kInvalidFieldOffsetTag,
         ::_pbi::kInvalidFieldOffsetTag,
         PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::NodeEvent, _impl_.event_type_),
-        2,
-        3,
-        0,
-        4,
-        5,
-        1,
-        ~0u,
-        ~0u,
-        ~0u,
         PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::AckStatus, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::AckStatus, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -779,6 +782,28 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::ExecutionStatus, _impl_.message_),
         1,
         0,
+        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::ClientRegisterRequest, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::ClientRegisterRequest, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::ClientRegisterRequest, _impl_.identity_type_),
+        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::ClientRegisterRequest, _impl_.identity_id_),
+        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::ClientRegisterRequest, _impl_.identity_name_),
+        1,
+        2,
+        0,
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::ClientRegisterResponse, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::GetPkgInfosRequest, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::GetPkgInfosRequest, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -982,37 +1007,41 @@ const ::uint32_t
 
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-        {0, -1, -1, sizeof(::smart_pkg_delivery::WrapperMsg)},
-        {12, 30, -1, sizeof(::smart_pkg_delivery::Request)},
-        {39, 59, -1, sizeof(::smart_pkg_delivery::Response)},
-        {70, 88, -1, sizeof(::smart_pkg_delivery::NodeEvent)},
-        {97, 107, -1, sizeof(::smart_pkg_delivery::AckStatus)},
-        {109, 119, -1, sizeof(::smart_pkg_delivery::ExecutionStatus)},
-        {121, 130, -1, sizeof(::smart_pkg_delivery::GetPkgInfosRequest)},
-        {131, -1, -1, sizeof(::smart_pkg_delivery::GetPkgInfoResponse)},
-        {140, 150, -1, sizeof(::smart_pkg_delivery::MoveDeliveryRobotRequest)},
-        {152, -1, -1, sizeof(::smart_pkg_delivery::MoveDeliveryRobotResponse)},
-        {160, 170, -1, sizeof(::smart_pkg_delivery::SetElevatorStatusRequest)},
-        {172, -1, -1, sizeof(::smart_pkg_delivery::SetElevatorStatusResponse)},
-        {180, 189, -1, sizeof(::smart_pkg_delivery::PkgArrivalEvent)},
-        {190, 200, -1, sizeof(::smart_pkg_delivery::ElevatorStatusEvent)},
-        {202, 212, -1, sizeof(::smart_pkg_delivery::DeliveryStatusEvent)},
-        {214, 224, -1, sizeof(::smart_pkg_delivery::Elevator_Status)},
-        {226, 236, -1, sizeof(::smart_pkg_delivery::Elevator)},
-        {238, 248, -1, sizeof(::smart_pkg_delivery::DeliveryRobot)},
-        {250, 261, -1, sizeof(::smart_pkg_delivery::PkgRoom_Locker)},
-        {264, 274, -1, sizeof(::smart_pkg_delivery::PkgRoom)},
-        {276, 286, -1, sizeof(::smart_pkg_delivery::User)},
-        {288, 301, -1, sizeof(::smart_pkg_delivery::Pkg)},
-        {306, 317, -1, sizeof(::smart_pkg_delivery::AptAddress)},
+        {0, 18, -1, sizeof(::smart_pkg_delivery::InteractionMsg)},
+        {27, -1, -1, sizeof(::smart_pkg_delivery::Request)},
+        {40, 55, -1, sizeof(::smart_pkg_delivery::Response)},
+        {61, -1, -1, sizeof(::smart_pkg_delivery::NodeEvent)},
+        {73, 83, -1, sizeof(::smart_pkg_delivery::AckStatus)},
+        {85, 95, -1, sizeof(::smart_pkg_delivery::ExecutionStatus)},
+        {97, 108, -1, sizeof(::smart_pkg_delivery::ClientRegisterRequest)},
+        {111, -1, -1, sizeof(::smart_pkg_delivery::ClientRegisterResponse)},
+        {119, 128, -1, sizeof(::smart_pkg_delivery::GetPkgInfosRequest)},
+        {129, -1, -1, sizeof(::smart_pkg_delivery::GetPkgInfoResponse)},
+        {138, 148, -1, sizeof(::smart_pkg_delivery::MoveDeliveryRobotRequest)},
+        {150, -1, -1, sizeof(::smart_pkg_delivery::MoveDeliveryRobotResponse)},
+        {158, 168, -1, sizeof(::smart_pkg_delivery::SetElevatorStatusRequest)},
+        {170, -1, -1, sizeof(::smart_pkg_delivery::SetElevatorStatusResponse)},
+        {178, 187, -1, sizeof(::smart_pkg_delivery::PkgArrivalEvent)},
+        {188, 198, -1, sizeof(::smart_pkg_delivery::ElevatorStatusEvent)},
+        {200, 210, -1, sizeof(::smart_pkg_delivery::DeliveryStatusEvent)},
+        {212, 222, -1, sizeof(::smart_pkg_delivery::Elevator_Status)},
+        {224, 234, -1, sizeof(::smart_pkg_delivery::Elevator)},
+        {236, 246, -1, sizeof(::smart_pkg_delivery::DeliveryRobot)},
+        {248, 259, -1, sizeof(::smart_pkg_delivery::PkgRoom_Locker)},
+        {262, 272, -1, sizeof(::smart_pkg_delivery::PkgRoom)},
+        {274, 284, -1, sizeof(::smart_pkg_delivery::User)},
+        {286, 299, -1, sizeof(::smart_pkg_delivery::Pkg)},
+        {304, 315, -1, sizeof(::smart_pkg_delivery::AptAddress)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
-    &::smart_pkg_delivery::_WrapperMsg_default_instance_._instance,
+    &::smart_pkg_delivery::_InteractionMsg_default_instance_._instance,
     &::smart_pkg_delivery::_Request_default_instance_._instance,
     &::smart_pkg_delivery::_Response_default_instance_._instance,
     &::smart_pkg_delivery::_NodeEvent_default_instance_._instance,
     &::smart_pkg_delivery::_AckStatus_default_instance_._instance,
     &::smart_pkg_delivery::_ExecutionStatus_default_instance_._instance,
+    &::smart_pkg_delivery::_ClientRegisterRequest_default_instance_._instance,
+    &::smart_pkg_delivery::_ClientRegisterResponse_default_instance_._instance,
     &::smart_pkg_delivery::_GetPkgInfosRequest_default_instance_._instance,
     &::smart_pkg_delivery::_GetPkgInfoResponse_default_instance_._instance,
     &::smart_pkg_delivery::_MoveDeliveryRobotRequest_default_instance_._instance,
@@ -1034,108 +1063,108 @@ static const ::_pb::Message* const file_default_instances[] = {
 const char descriptor_table_protodef_smart_5fpkg_5fdelivery_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
     "\n\030smart_pkg_delivery.proto\022\022smart_pkg_de"
-    "livery\"\257\001\n\nWrapperMsg\022.\n\007request\030\001 \001(\0132\033"
-    ".smart_pkg_delivery.RequestH\000\0220\n\010respons"
-    "e\030\002 \001(\0132\034.smart_pkg_delivery.ResponseH\000\022"
-    "3\n\nnode_event\030\003 \001(\0132\035.smart_pkg_delivery"
-    ".NodeEventH\000B\n\n\010msg_type\"\263\003\n\007Request\022.\n\010"
-    "src_type\030\001 \001(\0162\034.smart_pkg_delivery.Node"
-    "Type\022\016\n\006src_id\030\002 \001(\r\022\020\n\010src_name\030\003 \001(\t\022/"
-    "\n\tdest_type\030\004 \001(\0162\034.smart_pkg_delivery.N"
-    "odeType\022\017\n\007dest_id\030\005 \001(\r\022\021\n\tdest_name\030\006 "
-    "\001(\t\022G\n\025get_pkg_infos_request\030\007 \001(\0132&.sma"
-    "rt_pkg_delivery.GetPkgInfosRequestH\000\022S\n\033"
-    "set_elevator_status_request\030\010 \001(\0132,.smar"
-    "t_pkg_delivery.SetElevatorStatusRequestH"
-    "\000\022S\n\033move_delivery_robot_request\030\t \001(\0132,"
-    ".smart_pkg_delivery.MoveDeliveryRobotReq"
-    "uestH\000B\016\n\014request_type\"\253\004\n\010Response\022.\n\010s"
-    "rc_type\030\001 \001(\0162\034.smart_pkg_delivery.NodeT"
-    "ype\022\016\n\006src_id\030\002 \001(\r\022\020\n\010src_name\030\003 \001(\t\022/\n"
-    "\tdest_type\030\004 \001(\0162\034.smart_pkg_delivery.No"
-    "deType\022\017\n\007dest_id\030\005 \001(\r\022\021\n\tdest_name\030\006 \001"
-    "(\t\0221\n\nack_status\030\007 \001(\0132\035.smart_pkg_deliv"
-    "ery.AckStatus\022=\n\020execution_status\030\010 \001(\0132"
-    "#.smart_pkg_delivery.ExecutionStatus\022G\n\025"
-    "get_pkg_info_response\030\t \001(\0132&.smart_pkg_"
-    "delivery.GetPkgInfoResponseH\000\022U\n\034set_ele"
-    "vator_status_response\030\n \001(\0132-.smart_pkg_"
-    "delivery.SetElevatorStatusResponseH\000\022U\n\034"
-    "move_delivery_robot_response\030\013 \001(\0132-.sma"
-    "rt_pkg_delivery.MoveDeliveryRobotRespons"
-    "eH\000B\017\n\rresponse_type\"\226\003\n\tNodeEvent\022.\n\010sr"
-    "c_type\030\001 \001(\0162\034.smart_pkg_delivery.NodeTy"
-    "pe\022\016\n\006src_id\030\002 \001(\r\022\020\n\010src_name\030\003 \001(\t\022/\n\t"
-    "dest_type\030\004 \001(\0162\034.smart_pkg_delivery.Nod"
-    "eType\022\017\n\007dest_id\030\005 \001(\r\022\021\n\tdest_name\030\006 \001("
-    "\t\022@\n\021pkg_arrival_event\030\007 \001(\0132#.smart_pkg"
-    "_delivery.PkgArrivalEventH\000\022H\n\025elevator_"
-    "status_event\030\010 \001(\0132\'.smart_pkg_delivery."
-    "ElevatorStatusEventH\000\022H\n\025delivery_status"
-    "_event\030\t \001(\0132\'.smart_pkg_delivery.Delive"
-    "ryStatusEventH\000B\014\n\nevent_type\"\235\001\n\tAckSta"
-    "tus\022=\n\013status_code\030\001 \001(\0162(.smart_pkg_del"
-    "ivery.AckStatus.StatusCode\022\017\n\007message\030\002 "
-    "\001(\t\"@\n\nStatusCode\022\017\n\013UNSPECIFIED\020\000\022\020\n\014AC"
-    "K_RECEIVED\020\001\022\017\n\013ACK_INVALID\020\002\"\237\001\n\017Execut"
-    "ionStatus\022C\n\013status_code\030\001 \001(\0162..smart_p"
-    "kg_delivery.ExecutionStatus.StatusCode\022\017"
-    "\n\007message\030\002 \001(\t\"6\n\nStatusCode\022\017\n\013UNSPECI"
-    "FIED\020\000\022\013\n\007SUCCESS\020\001\022\n\n\006FAILED\020\002\"%\n\022GetPk"
-    "gInfosRequest\022\017\n\007user_id\030\001 \001(\r\";\n\022GetPkg"
-    "InfoResponse\022%\n\004pkgs\030\001 \003(\0132\027.smart_pkg_d"
-    "elivery.Pkg\"r\n\030MoveDeliveryRobotRequest\022"
-    "\031\n\021delivery_robot_id\030\001 \001(\r\022;\n\023destinatio"
-    "n_address\030\002 \001(\0132\036.smart_pkg_delivery.Apt"
-    "Address\"\033\n\031MoveDeliveryRobotResponse\"m\n\030"
-    "SetElevatorStatusRequest\022\023\n\013elevator_id\030"
-    "\001 \001(\r\022<\n\017elevator_status\030\002 \001(\0132#.smart_p"
-    "kg_delivery.Elevator.Status\"\033\n\031SetElevat"
-    "orStatusResponse\"B\n\017PkgArrivalEvent\022/\n\007a"
-    "ddress\030\001 \001(\0132\036.smart_pkg_delivery.AptAdd"
-    "ress\"h\n\023ElevatorStatusEvent\022\023\n\013elevator_"
-    "id\030\001 \001(\r\022<\n\017elevator_status\030\002 \001(\0132#.smar"
-    "t_pkg_delivery.Elevator.Status\"{\n\023Delive"
-    "ryStatusEvent\022\031\n\021delivery_robot_id\030\001 \001(\r"
-    "\022I\n\017delivery_status\030\002 \001(\01620.smart_pkg_de"
-    "livery.DeliveryRobot.DeliveryStatus\"\354\001\n\010"
-    "Elevator\022\n\n\002id\030\001 \001(\r\0223\n\006status\030\002 \001(\0132#.s"
-    "mart_pkg_delivery.Elevator.Status\032f\n\006Sta"
-    "tus\022\025\n\rcurrent_floor\030\001 \001(\r\022E\n\020door_open_"
-    "status\030\002 \001(\0162+.smart_pkg_delivery.Elevat"
-    "or.DoorOpenStatus\"7\n\016DoorOpenStatus\022\017\n\013U"
-    "NSPECIFIED\020\000\022\n\n\006CLOSED\020\001\022\010\n\004OPEN\020\002\"\265\001\n\rD"
-    "eliveryRobot\022\n\n\002id\030\001 \001(\r\022I\n\017delivery_sta"
-    "tus\030\003 \001(\01620.smart_pkg_delivery.DeliveryR"
-    "obot.DeliveryStatus\"M\n\016DeliveryStatus\022\017\n"
-    "\013UNSPECIFIED\020\000\022\013\n\007PENDING\020\001\022\016\n\nIN_TRANSI"
-    "T\020\002\022\r\n\tDELIVERED\020\003\"\214\001\n\007PkgRoom\022\n\n\002id\030\001 \001"
-    "(\r\0223\n\007lockers\030\002 \003(\0132\".smart_pkg_delivery"
-    ".PkgRoom.Locker\032@\n\006Locker\022\021\n\tlocker_id\030\001"
-    " \001(\r\022\023\n\013access_code\030\002 \001(\t\022\016\n\006pkg_id\030\003 \001("
-    "\r\"C\n\004User\022\n\n\002id\030\001 \001(\r\022/\n\007address\030\002 \001(\0132\036"
-    ".smart_pkg_delivery.AptAddress\"\177\n\003Pkg\022\n\n"
-    "\002id\030\001 \001(\r\022/\n\007address\030\002 \001(\0132\036.smart_pkg_d"
-    "elivery.AptAddress\022\021\n\tsender_id\030\003 \001(\r\022\023\n"
-    "\013receiver_id\030\004 \001(\r\022\023\n\013photo_bytes\030\005 \001(\014\""
-    "I\n\nAptAddress\022\023\n\013apt_complex\030\001 \001(\t\022\024\n\014bu"
-    "ilding_num\030\002 \001(\r\022\020\n\010unit_num\030\003 \001(\r*\207\001\n\010N"
-    "odeType\022\017\n\013UNSPECIFIED\020\000\022\n\n\006SERVER\020\001\022\035\n\031"
-    "CLIENT_ADDRESS_RECOGNIZER\020\002\022\017\n\013CLIENT_US"
-    "ER\020\003\022\031\n\025CLIENT_DELIVERY_ROBOT\020\004\022\023\n\017CLIEN"
-    "T_ELEVATOR\020\005b\010editionsp\350\007"
+    "livery\"\332\002\n\016InteractionMsg\022.\n\010src_type\030\001 "
+    "\001(\0162\034.smart_pkg_delivery.NodeType\022\016\n\006src"
+    "_id\030\002 \001(\r\022\020\n\010src_name\030\003 \001(\t\022/\n\tdest_type"
+    "\030\004 \001(\0162\034.smart_pkg_delivery.NodeType\022\017\n\007"
+    "dest_id\030\005 \001(\r\022\021\n\tdest_name\030\006 \001(\t\022.\n\007requ"
+    "est\030\007 \001(\0132\033.smart_pkg_delivery.RequestH\000"
+    "\0220\n\010response\030\010 \001(\0132\034.smart_pkg_delivery."
+    "ResponseH\000\0223\n\nnode_event\030\t \001(\0132\035.smart_p"
+    "kg_delivery.NodeEventH\000B\n\n\010msg_type\"\332\002\n\007"
+    "Request\022L\n\027client_register_request\030\001 \001(\013"
+    "2).smart_pkg_delivery.ClientRegisterRequ"
+    "estH\000\022G\n\025get_pkg_infos_request\030\002 \001(\0132&.s"
+    "mart_pkg_delivery.GetPkgInfosRequestH\000\022S"
+    "\n\033set_elevator_status_request\030\003 \001(\0132,.sm"
+    "art_pkg_delivery.SetElevatorStatusReques"
+    "tH\000\022S\n\033move_delivery_robot_request\030\004 \001(\013"
+    "2,.smart_pkg_delivery.MoveDeliveryRobotR"
+    "equestH\000B\016\n\014request_type\"\324\003\n\010Response\0221\n"
+    "\nack_status\030\001 \001(\0132\035.smart_pkg_delivery.A"
+    "ckStatus\022=\n\020execution_status\030\002 \001(\0132#.sma"
+    "rt_pkg_delivery.ExecutionStatus\022N\n\030clien"
+    "t_register_response\030\003 \001(\0132*.smart_pkg_de"
+    "livery.ClientRegisterResponseH\000\022G\n\025get_p"
+    "kg_info_response\030\004 \001(\0132&.smart_pkg_deliv"
+    "ery.GetPkgInfoResponseH\000\022U\n\034set_elevator"
+    "_status_response\030\005 \001(\0132-.smart_pkg_deliv"
+    "ery.SetElevatorStatusResponseH\000\022U\n\034move_"
+    "delivery_robot_response\030\006 \001(\0132-.smart_pk"
+    "g_delivery.MoveDeliveryRobotResponseH\000B\017"
+    "\n\rresponse_type\"\357\001\n\tNodeEvent\022@\n\021pkg_arr"
+    "ival_event\030\001 \001(\0132#.smart_pkg_delivery.Pk"
+    "gArrivalEventH\000\022H\n\025elevator_status_event"
+    "\030\002 \001(\0132\'.smart_pkg_delivery.ElevatorStat"
+    "usEventH\000\022H\n\025delivery_status_event\030\003 \001(\013"
+    "2\'.smart_pkg_delivery.DeliveryStatusEven"
+    "tH\000B\014\n\nevent_type\"\235\001\n\tAckStatus\022=\n\013statu"
+    "s_code\030\001 \001(\0162(.smart_pkg_delivery.AckSta"
+    "tus.StatusCode\022\017\n\007message\030\002 \001(\t\"@\n\nStatu"
+    "sCode\022\017\n\013UNSPECIFIED\020\000\022\020\n\014ACK_RECEIVED\020\001"
+    "\022\017\n\013ACK_INVALID\020\002\"\237\001\n\017ExecutionStatus\022C\n"
+    "\013status_code\030\001 \001(\0162..smart_pkg_delivery."
+    "ExecutionStatus.StatusCode\022\017\n\007message\030\002 "
+    "\001(\t\"6\n\nStatusCode\022\017\n\013UNSPECIFIED\020\000\022\013\n\007SU"
+    "CCESS\020\001\022\n\n\006FAILED\020\002\"x\n\025ClientRegisterReq"
+    "uest\0223\n\ridentity_type\030\001 \001(\0162\034.smart_pkg_"
+    "delivery.NodeType\022\023\n\013identity_id\030\002 \001(\r\022\025"
+    "\n\ridentity_name\030\003 \001(\t\"\030\n\026ClientRegisterR"
+    "esponse\"%\n\022GetPkgInfosRequest\022\017\n\007user_id"
+    "\030\001 \001(\r\";\n\022GetPkgInfoResponse\022%\n\004pkgs\030\001 \003"
+    "(\0132\027.smart_pkg_delivery.Pkg\"r\n\030MoveDeliv"
+    "eryRobotRequest\022\031\n\021delivery_robot_id\030\001 \001"
+    "(\r\022;\n\023destination_address\030\002 \001(\0132\036.smart_"
+    "pkg_delivery.AptAddress\"\033\n\031MoveDeliveryR"
+    "obotResponse\"m\n\030SetElevatorStatusRequest"
+    "\022\023\n\013elevator_id\030\001 \001(\r\022<\n\017elevator_status"
+    "\030\002 \001(\0132#.smart_pkg_delivery.Elevator.Sta"
+    "tus\"\033\n\031SetElevatorStatusResponse\"B\n\017PkgA"
+    "rrivalEvent\022/\n\007address\030\001 \001(\0132\036.smart_pkg"
+    "_delivery.AptAddress\"h\n\023ElevatorStatusEv"
+    "ent\022\023\n\013elevator_id\030\001 \001(\r\022<\n\017elevator_sta"
+    "tus\030\002 \001(\0132#.smart_pkg_delivery.Elevator."
+    "Status\"{\n\023DeliveryStatusEvent\022\031\n\021deliver"
+    "y_robot_id\030\001 \001(\r\022I\n\017delivery_status\030\002 \001("
+    "\01620.smart_pkg_delivery.DeliveryRobot.Del"
+    "iveryStatus\"\354\001\n\010Elevator\022\n\n\002id\030\001 \001(\r\0223\n\006"
+    "status\030\002 \001(\0132#.smart_pkg_delivery.Elevat"
+    "or.Status\032f\n\006Status\022\025\n\rcurrent_floor\030\001 \001"
+    "(\r\022E\n\020door_open_status\030\002 \001(\0162+.smart_pkg"
+    "_delivery.Elevator.DoorOpenStatus\"7\n\016Doo"
+    "rOpenStatus\022\017\n\013UNSPECIFIED\020\000\022\n\n\006CLOSED\020\001"
+    "\022\010\n\004OPEN\020\002\"\265\001\n\rDeliveryRobot\022\n\n\002id\030\001 \001(\r"
+    "\022I\n\017delivery_status\030\003 \001(\01620.smart_pkg_de"
+    "livery.DeliveryRobot.DeliveryStatus\"M\n\016D"
+    "eliveryStatus\022\017\n\013UNSPECIFIED\020\000\022\013\n\007PENDIN"
+    "G\020\001\022\016\n\nIN_TRANSIT\020\002\022\r\n\tDELIVERED\020\003\"\214\001\n\007P"
+    "kgRoom\022\n\n\002id\030\001 \001(\r\0223\n\007lockers\030\002 \003(\0132\".sm"
+    "art_pkg_delivery.PkgRoom.Locker\032@\n\006Locke"
+    "r\022\021\n\tlocker_id\030\001 \001(\r\022\023\n\013access_code\030\002 \001("
+    "\t\022\016\n\006pkg_id\030\003 \001(\r\"C\n\004User\022\n\n\002id\030\001 \001(\r\022/\n"
+    "\007address\030\002 \001(\0132\036.smart_pkg_delivery.AptA"
+    "ddress\"\177\n\003Pkg\022\n\n\002id\030\001 \001(\r\022/\n\007address\030\002 \001"
+    "(\0132\036.smart_pkg_delivery.AptAddress\022\021\n\tse"
+    "nder_id\030\003 \001(\r\022\023\n\013receiver_id\030\004 \001(\r\022\023\n\013ph"
+    "oto_bytes\030\005 \001(\014\"I\n\nAptAddress\022\023\n\013apt_com"
+    "plex\030\001 \001(\t\022\024\n\014building_num\030\002 \001(\r\022\020\n\010unit"
+    "_num\030\003 \001(\r*\207\001\n\010NodeType\022\017\n\013UNSPECIFIED\020\000"
+    "\022\n\n\006SERVER\020\001\022\035\n\031CLIENT_ADDRESS_RECOGNIZE"
+    "R\020\002\022\017\n\013CLIENT_USER\020\003\022\031\n\025CLIENT_DELIVERY_"
+    "ROBOT\020\004\022\023\n\017CLIENT_ELEVATOR\020\005b\010editionsp\350"
+    "\007"
 };
 static ::absl::once_flag descriptor_table_smart_5fpkg_5fdelivery_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_smart_5fpkg_5fdelivery_2eproto = {
     false,
     false,
-    3625,
+    3601,
     descriptor_table_protodef_smart_5fpkg_5fdelivery_2eproto,
     "smart_pkg_delivery.proto",
     &descriptor_table_smart_5fpkg_5fdelivery_2eproto_once,
     nullptr,
     0,
-    23,
+    25,
     schemas,
     file_default_instances,
     TableStruct_smart_5fpkg_5fdelivery_2eproto::offsets,
@@ -1239,13 +1268,17 @@ bool NodeType_IsValid(int value) {
 }
 // ===================================================================
 
-class WrapperMsg::_Internal {
+class InteractionMsg::_Internal {
  public:
+  using HasBits =
+      decltype(std::declval<InteractionMsg>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(InteractionMsg, _impl_._has_bits_);
   static constexpr ::int32_t kOneofCaseOffset =
-      PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::WrapperMsg, _impl_._oneof_case_);
+      PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::InteractionMsg, _impl_._oneof_case_);
 };
 
-void WrapperMsg::set_allocated_request(::smart_pkg_delivery::Request* request) {
+void InteractionMsg::set_allocated_request(::smart_pkg_delivery::Request* request) {
   ::google::protobuf::Arena* message_arena = GetArena();
   clear_msg_type();
   if (request) {
@@ -1256,9 +1289,9 @@ void WrapperMsg::set_allocated_request(::smart_pkg_delivery::Request* request) {
     set_has_request();
     _impl_.msg_type_.request_ = request;
   }
-  // @@protoc_insertion_point(field_set_allocated:smart_pkg_delivery.WrapperMsg.request)
+  // @@protoc_insertion_point(field_set_allocated:smart_pkg_delivery.InteractionMsg.request)
 }
-void WrapperMsg::set_allocated_response(::smart_pkg_delivery::Response* response) {
+void InteractionMsg::set_allocated_response(::smart_pkg_delivery::Response* response) {
   ::google::protobuf::Arena* message_arena = GetArena();
   clear_msg_type();
   if (response) {
@@ -1269,9 +1302,9 @@ void WrapperMsg::set_allocated_response(::smart_pkg_delivery::Response* response
     set_has_response();
     _impl_.msg_type_.response_ = response;
   }
-  // @@protoc_insertion_point(field_set_allocated:smart_pkg_delivery.WrapperMsg.response)
+  // @@protoc_insertion_point(field_set_allocated:smart_pkg_delivery.InteractionMsg.response)
 }
-void WrapperMsg::set_allocated_node_event(::smart_pkg_delivery::NodeEvent* node_event) {
+void InteractionMsg::set_allocated_node_event(::smart_pkg_delivery::NodeEvent* node_event) {
   ::google::protobuf::Arena* message_arena = GetArena();
   clear_msg_type();
   if (node_event) {
@@ -1282,37 +1315,47 @@ void WrapperMsg::set_allocated_node_event(::smart_pkg_delivery::NodeEvent* node_
     set_has_node_event();
     _impl_.msg_type_.node_event_ = node_event;
   }
-  // @@protoc_insertion_point(field_set_allocated:smart_pkg_delivery.WrapperMsg.node_event)
+  // @@protoc_insertion_point(field_set_allocated:smart_pkg_delivery.InteractionMsg.node_event)
 }
-WrapperMsg::WrapperMsg(::google::protobuf::Arena* arena)
+InteractionMsg::InteractionMsg(::google::protobuf::Arena* arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(arena, _class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:smart_pkg_delivery.WrapperMsg)
+  // @@protoc_insertion_point(arena_constructor:smart_pkg_delivery.InteractionMsg)
 }
-inline PROTOBUF_NDEBUG_INLINE WrapperMsg::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE InteractionMsg::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from, const ::smart_pkg_delivery::WrapperMsg& from_msg)
-      : msg_type_{},
+    const Impl_& from, const ::smart_pkg_delivery::InteractionMsg& from_msg)
+      : _has_bits_{from._has_bits_},
         _cached_size_{0},
+        src_name_(arena, from.src_name_),
+        dest_name_(arena, from.dest_name_),
+        msg_type_{},
         _oneof_case_{from._oneof_case_[0]} {}
 
-WrapperMsg::WrapperMsg(
+InteractionMsg::InteractionMsg(
     ::google::protobuf::Arena* arena,
-    const WrapperMsg& from)
+    const InteractionMsg& from)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
     : ::google::protobuf::Message(arena, _class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  WrapperMsg* const _this = this;
+  InteractionMsg* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, src_type_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, src_type_),
+           offsetof(Impl_, dest_id_) -
+               offsetof(Impl_, src_type_) +
+               sizeof(Impl_::dest_id_));
   switch (msg_type_case()) {
     case MSG_TYPE_NOT_SET:
       break;
@@ -1327,34 +1370,44 @@ WrapperMsg::WrapperMsg(
         break;
   }
 
-  // @@protoc_insertion_point(copy_constructor:smart_pkg_delivery.WrapperMsg)
+  // @@protoc_insertion_point(copy_constructor:smart_pkg_delivery.InteractionMsg)
 }
-inline PROTOBUF_NDEBUG_INLINE WrapperMsg::Impl_::Impl_(
+inline PROTOBUF_NDEBUG_INLINE InteractionMsg::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : msg_type_{},
-        _cached_size_{0},
+      : _cached_size_{0},
+        src_name_(arena),
+        dest_name_(arena),
+        msg_type_{},
         _oneof_case_{} {}
 
-inline void WrapperMsg::SharedCtor(::_pb::Arena* arena) {
+inline void InteractionMsg::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, src_type_),
+           0,
+           offsetof(Impl_, dest_id_) -
+               offsetof(Impl_, src_type_) +
+               sizeof(Impl_::dest_id_));
 }
-WrapperMsg::~WrapperMsg() {
-  // @@protoc_insertion_point(destructor:smart_pkg_delivery.WrapperMsg)
+InteractionMsg::~InteractionMsg() {
+  // @@protoc_insertion_point(destructor:smart_pkg_delivery.InteractionMsg)
   SharedDtor(*this);
 }
-inline void WrapperMsg::SharedDtor(MessageLite& self) {
-  WrapperMsg& this_ = static_cast<WrapperMsg&>(self);
+inline void InteractionMsg::SharedDtor(MessageLite& self) {
+  InteractionMsg& this_ = static_cast<InteractionMsg&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.src_name_.Destroy();
+  this_._impl_.dest_name_.Destroy();
   if (this_.has_msg_type()) {
     this_.clear_msg_type();
   }
   this_._impl_.~Impl_();
 }
 
-void WrapperMsg::clear_msg_type() {
-// @@protoc_insertion_point(one_of_clear_start:smart_pkg_delivery.WrapperMsg)
+void InteractionMsg::clear_msg_type() {
+// @@protoc_insertion_point(one_of_clear_start:smart_pkg_delivery.InteractionMsg)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   switch (msg_type_case()) {
     case kRequest: {
@@ -1389,123 +1442,224 @@ void WrapperMsg::clear_msg_type() {
 }
 
 
-inline void* WrapperMsg::PlacementNew_(const void*, void* mem,
+inline void* InteractionMsg::PlacementNew_(const void*, void* mem,
                                         ::google::protobuf::Arena* arena) {
-  return ::new (mem) WrapperMsg(arena);
+  return ::new (mem) InteractionMsg(arena);
 }
-constexpr auto WrapperMsg::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(WrapperMsg),
-                                            alignof(WrapperMsg));
+constexpr auto InteractionMsg::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(InteractionMsg),
+                                            alignof(InteractionMsg));
 }
 PROTOBUF_CONSTINIT
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::google::protobuf::internal::ClassDataFull WrapperMsg::_class_data_ = {
+const ::google::protobuf::internal::ClassDataFull InteractionMsg::_class_data_ = {
     ::google::protobuf::internal::ClassData{
-        &_WrapperMsg_default_instance_._instance,
+        &_InteractionMsg_default_instance_._instance,
         &_table_.header,
         nullptr,  // OnDemandRegisterArenaDtor
         nullptr,  // IsInitialized
-        &WrapperMsg::MergeImpl,
-        ::google::protobuf::Message::GetNewImpl<WrapperMsg>(),
+        &InteractionMsg::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<InteractionMsg>(),
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-        &WrapperMsg::SharedDtor,
-        ::google::protobuf::Message::GetClearImpl<WrapperMsg>(), &WrapperMsg::ByteSizeLong,
-            &WrapperMsg::_InternalSerialize,
+        &InteractionMsg::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<InteractionMsg>(), &InteractionMsg::ByteSizeLong,
+            &InteractionMsg::_InternalSerialize,
 #endif  // PROTOBUF_CUSTOM_VTABLE
-        PROTOBUF_FIELD_OFFSET(WrapperMsg, _impl_._cached_size_),
+        PROTOBUF_FIELD_OFFSET(InteractionMsg, _impl_._cached_size_),
         false,
     },
-    &WrapperMsg::kDescriptorMethods,
+    &InteractionMsg::kDescriptorMethods,
     &descriptor_table_smart_5fpkg_5fdelivery_2eproto,
     nullptr,  // tracker
 };
-const ::google::protobuf::internal::ClassData* WrapperMsg::GetClassData() const {
+const ::google::protobuf::internal::ClassData* InteractionMsg::GetClassData() const {
   ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
   ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 3, 3, 0, 2> WrapperMsg::_table_ = {
+const ::_pbi::TcParseTable<3, 9, 3, 67, 2> InteractionMsg::_table_ = {
   {
-    0,  // no _has_bits_
+    PROTOBUF_FIELD_OFFSET(InteractionMsg, _impl_._has_bits_),
     0, // no _extensions_
-    3, 0,  // max_field_number, fast_idx_mask
+    9, 56,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967288,  // skipmap
+    4294966784,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    3,  // num_field_entries
+    9,  // num_field_entries
     3,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     _class_data_.base(),
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
     #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::smart_pkg_delivery::WrapperMsg>(),  // to_prefetch
+    ::_pbi::TcParser::GetTable<::smart_pkg_delivery::InteractionMsg>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // .smart_pkg_delivery.NodeType src_type = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(InteractionMsg, _impl_.src_type_), 2>(),
+     {8, 2, 0, PROTOBUF_FIELD_OFFSET(InteractionMsg, _impl_.src_type_)}},
+    // uint32 src_id = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(InteractionMsg, _impl_.src_id_), 3>(),
+     {16, 3, 0, PROTOBUF_FIELD_OFFSET(InteractionMsg, _impl_.src_id_)}},
+    // string src_name = 3;
+    {::_pbi::TcParser::FastUS1,
+     {26, 0, 0, PROTOBUF_FIELD_OFFSET(InteractionMsg, _impl_.src_name_)}},
+    // .smart_pkg_delivery.NodeType dest_type = 4;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(InteractionMsg, _impl_.dest_type_), 4>(),
+     {32, 4, 0, PROTOBUF_FIELD_OFFSET(InteractionMsg, _impl_.dest_type_)}},
+    // uint32 dest_id = 5;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(InteractionMsg, _impl_.dest_id_), 5>(),
+     {40, 5, 0, PROTOBUF_FIELD_OFFSET(InteractionMsg, _impl_.dest_id_)}},
+    // string dest_name = 6;
+    {::_pbi::TcParser::FastUS1,
+     {50, 1, 0, PROTOBUF_FIELD_OFFSET(InteractionMsg, _impl_.dest_name_)}},
     {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     65535, 65535
   }}, {{
-    // .smart_pkg_delivery.Request request = 1;
-    {PROTOBUF_FIELD_OFFSET(WrapperMsg, _impl_.msg_type_.request_), _Internal::kOneofCaseOffset + 0, 0,
+    // .smart_pkg_delivery.NodeType src_type = 1;
+    {PROTOBUF_FIELD_OFFSET(InteractionMsg, _impl_.src_type_), _Internal::kHasBitsOffset + 2, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kOpenEnum)},
+    // uint32 src_id = 2;
+    {PROTOBUF_FIELD_OFFSET(InteractionMsg, _impl_.src_id_), _Internal::kHasBitsOffset + 3, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUInt32)},
+    // string src_name = 3;
+    {PROTOBUF_FIELD_OFFSET(InteractionMsg, _impl_.src_name_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .smart_pkg_delivery.NodeType dest_type = 4;
+    {PROTOBUF_FIELD_OFFSET(InteractionMsg, _impl_.dest_type_), _Internal::kHasBitsOffset + 4, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kOpenEnum)},
+    // uint32 dest_id = 5;
+    {PROTOBUF_FIELD_OFFSET(InteractionMsg, _impl_.dest_id_), _Internal::kHasBitsOffset + 5, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUInt32)},
+    // string dest_name = 6;
+    {PROTOBUF_FIELD_OFFSET(InteractionMsg, _impl_.dest_name_), _Internal::kHasBitsOffset + 1, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // .smart_pkg_delivery.Request request = 7;
+    {PROTOBUF_FIELD_OFFSET(InteractionMsg, _impl_.msg_type_.request_), _Internal::kOneofCaseOffset + 0, 0,
     (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
-    // .smart_pkg_delivery.Response response = 2;
-    {PROTOBUF_FIELD_OFFSET(WrapperMsg, _impl_.msg_type_.response_), _Internal::kOneofCaseOffset + 0, 1,
+    // .smart_pkg_delivery.Response response = 8;
+    {PROTOBUF_FIELD_OFFSET(InteractionMsg, _impl_.msg_type_.response_), _Internal::kOneofCaseOffset + 0, 1,
     (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
-    // .smart_pkg_delivery.NodeEvent node_event = 3;
-    {PROTOBUF_FIELD_OFFSET(WrapperMsg, _impl_.msg_type_.node_event_), _Internal::kOneofCaseOffset + 0, 2,
+    // .smart_pkg_delivery.NodeEvent node_event = 9;
+    {PROTOBUF_FIELD_OFFSET(InteractionMsg, _impl_.msg_type_.node_event_), _Internal::kOneofCaseOffset + 0, 2,
     (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
   }}, {{
     {::_pbi::TcParser::GetTable<::smart_pkg_delivery::Request>()},
     {::_pbi::TcParser::GetTable<::smart_pkg_delivery::Response>()},
     {::_pbi::TcParser::GetTable<::smart_pkg_delivery::NodeEvent>()},
   }}, {{
+    "\41\0\0\10\0\0\11\0\0\0\0\0\0\0\0\0"
+    "smart_pkg_delivery.InteractionMsg"
+    "src_name"
+    "dest_name"
   }},
 };
 
-PROTOBUF_NOINLINE void WrapperMsg::Clear() {
-// @@protoc_insertion_point(message_clear_start:smart_pkg_delivery.WrapperMsg)
+PROTOBUF_NOINLINE void InteractionMsg::Clear() {
+// @@protoc_insertion_point(message_clear_start:smart_pkg_delivery.InteractionMsg)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      _impl_.src_name_.ClearNonDefaultToEmpty();
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _impl_.dest_name_.ClearNonDefaultToEmpty();
+    }
+  }
+  if (cached_has_bits & 0x0000003cu) {
+    ::memset(&_impl_.src_type_, 0, static_cast<::size_t>(
+        reinterpret_cast<char*>(&_impl_.dest_id_) -
+        reinterpret_cast<char*>(&_impl_.src_type_)) + sizeof(_impl_.dest_id_));
+  }
   clear_msg_type();
+  _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::uint8_t* WrapperMsg::_InternalSerialize(
+        ::uint8_t* InteractionMsg::_InternalSerialize(
             const MessageLite& base, ::uint8_t* target,
             ::google::protobuf::io::EpsCopyOutputStream* stream) {
-          const WrapperMsg& this_ = static_cast<const WrapperMsg&>(base);
+          const InteractionMsg& this_ = static_cast<const InteractionMsg&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-        ::uint8_t* WrapperMsg::_InternalSerialize(
+        ::uint8_t* InteractionMsg::_InternalSerialize(
             ::uint8_t* target,
             ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-          const WrapperMsg& this_ = *this;
+          const InteractionMsg& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(serialize_to_array_start:smart_pkg_delivery.WrapperMsg)
+          // @@protoc_insertion_point(serialize_to_array_start:smart_pkg_delivery.InteractionMsg)
           ::uint32_t cached_has_bits = 0;
           (void)cached_has_bits;
+
+          cached_has_bits = this_._impl_._has_bits_[0];
+          // .smart_pkg_delivery.NodeType src_type = 1;
+          if (cached_has_bits & 0x00000004u) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteEnumToArray(
+                1, this_._internal_src_type(), target);
+          }
+
+          // uint32 src_id = 2;
+          if (cached_has_bits & 0x00000008u) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+                2, this_._internal_src_id(), target);
+          }
+
+          // string src_name = 3;
+          if (cached_has_bits & 0x00000001u) {
+            const std::string& _s = this_._internal_src_name();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "smart_pkg_delivery.InteractionMsg.src_name");
+            target = stream->WriteStringMaybeAliased(3, _s, target);
+          }
+
+          // .smart_pkg_delivery.NodeType dest_type = 4;
+          if (cached_has_bits & 0x00000010u) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteEnumToArray(
+                4, this_._internal_dest_type(), target);
+          }
+
+          // uint32 dest_id = 5;
+          if (cached_has_bits & 0x00000020u) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+                5, this_._internal_dest_id(), target);
+          }
+
+          // string dest_name = 6;
+          if (cached_has_bits & 0x00000002u) {
+            const std::string& _s = this_._internal_dest_name();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "smart_pkg_delivery.InteractionMsg.dest_name");
+            target = stream->WriteStringMaybeAliased(6, _s, target);
+          }
 
           switch (this_.msg_type_case()) {
             case kRequest: {
               target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-                  1, *this_._impl_.msg_type_.request_, this_._impl_.msg_type_.request_->GetCachedSize(), target,
+                  7, *this_._impl_.msg_type_.request_, this_._impl_.msg_type_.request_->GetCachedSize(), target,
                   stream);
               break;
             }
             case kResponse: {
               target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-                  2, *this_._impl_.msg_type_.response_, this_._impl_.msg_type_.response_->GetCachedSize(), target,
+                  8, *this_._impl_.msg_type_.response_, this_._impl_.msg_type_.response_->GetCachedSize(), target,
                   stream);
               break;
             }
             case kNodeEvent: {
               target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-                  3, *this_._impl_.msg_type_.node_event_, this_._impl_.msg_type_.node_event_->GetCachedSize(), target,
+                  9, *this_._impl_.msg_type_.node_event_, this_._impl_.msg_type_.node_event_->GetCachedSize(), target,
                   stream);
               break;
             }
@@ -1517,38 +1671,72 @@ PROTOBUF_NOINLINE void WrapperMsg::Clear() {
                 ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
                     this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
           }
-          // @@protoc_insertion_point(serialize_to_array_end:smart_pkg_delivery.WrapperMsg)
+          // @@protoc_insertion_point(serialize_to_array_end:smart_pkg_delivery.InteractionMsg)
           return target;
         }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::size_t WrapperMsg::ByteSizeLong(const MessageLite& base) {
-          const WrapperMsg& this_ = static_cast<const WrapperMsg&>(base);
+        ::size_t InteractionMsg::ByteSizeLong(const MessageLite& base) {
+          const InteractionMsg& this_ = static_cast<const InteractionMsg&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-        ::size_t WrapperMsg::ByteSizeLong() const {
-          const WrapperMsg& this_ = *this;
+        ::size_t InteractionMsg::ByteSizeLong() const {
+          const InteractionMsg& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(message_byte_size_start:smart_pkg_delivery.WrapperMsg)
+          // @@protoc_insertion_point(message_byte_size_start:smart_pkg_delivery.InteractionMsg)
           ::size_t total_size = 0;
 
           ::uint32_t cached_has_bits = 0;
           // Prevent compiler warnings about cached_has_bits being unused
           (void)cached_has_bits;
 
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+          cached_has_bits = this_._impl_._has_bits_[0];
+          if (cached_has_bits & 0x0000003fu) {
+            // string src_name = 3;
+            if (cached_has_bits & 0x00000001u) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_src_name());
+            }
+            // string dest_name = 6;
+            if (cached_has_bits & 0x00000002u) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_dest_name());
+            }
+            // .smart_pkg_delivery.NodeType src_type = 1;
+            if (cached_has_bits & 0x00000004u) {
+              total_size += 1 +
+                            ::_pbi::WireFormatLite::EnumSize(this_._internal_src_type());
+            }
+            // uint32 src_id = 2;
+            if (cached_has_bits & 0x00000008u) {
+              total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+                  this_._internal_src_id());
+            }
+            // .smart_pkg_delivery.NodeType dest_type = 4;
+            if (cached_has_bits & 0x00000010u) {
+              total_size += 1 +
+                            ::_pbi::WireFormatLite::EnumSize(this_._internal_dest_type());
+            }
+            // uint32 dest_id = 5;
+            if (cached_has_bits & 0x00000020u) {
+              total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+                  this_._internal_dest_id());
+            }
+          }
           switch (this_.msg_type_case()) {
-            // .smart_pkg_delivery.Request request = 1;
+            // .smart_pkg_delivery.Request request = 7;
             case kRequest: {
               total_size += 1 +
                             ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.msg_type_.request_);
               break;
             }
-            // .smart_pkg_delivery.Response response = 2;
+            // .smart_pkg_delivery.Response response = 8;
             case kResponse: {
               total_size += 1 +
                             ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.msg_type_.response_);
               break;
             }
-            // .smart_pkg_delivery.NodeEvent node_event = 3;
+            // .smart_pkg_delivery.NodeEvent node_event = 9;
             case kNodeEvent: {
               total_size += 1 +
                             ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.msg_type_.node_event_);
@@ -1562,15 +1750,37 @@ PROTOBUF_NOINLINE void WrapperMsg::Clear() {
                                                      &this_._impl_._cached_size_);
         }
 
-void WrapperMsg::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
-  auto* const _this = static_cast<WrapperMsg*>(&to_msg);
-  auto& from = static_cast<const WrapperMsg&>(from_msg);
+void InteractionMsg::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<InteractionMsg*>(&to_msg);
+  auto& from = static_cast<const InteractionMsg&>(from_msg);
   ::google::protobuf::Arena* arena = _this->GetArena();
-  // @@protoc_insertion_point(class_specific_merge_from_start:smart_pkg_delivery.WrapperMsg)
+  // @@protoc_insertion_point(class_specific_merge_from_start:smart_pkg_delivery.InteractionMsg)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x0000003fu) {
+    if (cached_has_bits & 0x00000001u) {
+      _this->_internal_set_src_name(from._internal_src_name());
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _this->_internal_set_dest_name(from._internal_dest_name());
+    }
+    if (cached_has_bits & 0x00000004u) {
+      _this->_impl_.src_type_ = from._impl_.src_type_;
+    }
+    if (cached_has_bits & 0x00000008u) {
+      _this->_impl_.src_id_ = from._impl_.src_id_;
+    }
+    if (cached_has_bits & 0x00000010u) {
+      _this->_impl_.dest_type_ = from._impl_.dest_type_;
+    }
+    if (cached_has_bits & 0x00000020u) {
+      _this->_impl_.dest_id_ = from._impl_.dest_id_;
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
   if (const uint32_t oneof_from_case = from._impl_._oneof_case_[0]) {
     const uint32_t oneof_to_case = _this->_impl_._oneof_case_[0];
     const bool oneof_needs_init = oneof_to_case != oneof_from_case;
@@ -1616,36 +1826,56 @@ void WrapperMsg::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::goog
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void WrapperMsg::CopyFrom(const WrapperMsg& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:smart_pkg_delivery.WrapperMsg)
+void InteractionMsg::CopyFrom(const InteractionMsg& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:smart_pkg_delivery.InteractionMsg)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 
-void WrapperMsg::InternalSwap(WrapperMsg* PROTOBUF_RESTRICT other) {
+void InteractionMsg::InternalSwap(InteractionMsg* PROTOBUF_RESTRICT other) {
   using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.src_name_, &other->_impl_.src_name_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.dest_name_, &other->_impl_.dest_name_, arena);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(InteractionMsg, _impl_.dest_id_)
+      + sizeof(InteractionMsg::_impl_.dest_id_)
+      - PROTOBUF_FIELD_OFFSET(InteractionMsg, _impl_.src_type_)>(
+          reinterpret_cast<char*>(&_impl_.src_type_),
+          reinterpret_cast<char*>(&other->_impl_.src_type_));
   swap(_impl_.msg_type_, other->_impl_.msg_type_);
   swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
 }
 
-::google::protobuf::Metadata WrapperMsg::GetMetadata() const {
+::google::protobuf::Metadata InteractionMsg::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================
 
 class Request::_Internal {
  public:
-  using HasBits =
-      decltype(std::declval<Request>()._impl_._has_bits_);
-  static constexpr ::int32_t kHasBitsOffset =
-      8 * PROTOBUF_FIELD_OFFSET(Request, _impl_._has_bits_);
   static constexpr ::int32_t kOneofCaseOffset =
       PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::Request, _impl_._oneof_case_);
 };
 
+void Request::set_allocated_client_register_request(::smart_pkg_delivery::ClientRegisterRequest* client_register_request) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_request_type();
+  if (client_register_request) {
+    ::google::protobuf::Arena* submessage_arena = client_register_request->GetArena();
+    if (message_arena != submessage_arena) {
+      client_register_request = ::google::protobuf::internal::GetOwnedMessage(message_arena, client_register_request, submessage_arena);
+    }
+    set_has_client_register_request();
+    _impl_.request_type_.client_register_request_ = client_register_request;
+  }
+  // @@protoc_insertion_point(field_set_allocated:smart_pkg_delivery.Request.client_register_request)
+}
 void Request::set_allocated_get_pkg_infos_request(::smart_pkg_delivery::GetPkgInfosRequest* get_pkg_infos_request) {
   ::google::protobuf::Arena* message_arena = GetArena();
   clear_request_type();
@@ -1697,11 +1927,8 @@ Request::Request(::google::protobuf::Arena* arena)
 inline PROTOBUF_NDEBUG_INLINE Request::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from, const ::smart_pkg_delivery::Request& from_msg)
-      : _has_bits_{from._has_bits_},
+      : request_type_{},
         _cached_size_{0},
-        src_name_(arena, from.src_name_),
-        dest_name_(arena, from.dest_name_),
-        request_type_{},
         _oneof_case_{from._oneof_case_[0]} {}
 
 Request::Request(
@@ -1717,16 +1944,12 @@ Request::Request(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
-  ::memcpy(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, src_type_),
-           reinterpret_cast<const char *>(&from._impl_) +
-               offsetof(Impl_, src_type_),
-           offsetof(Impl_, dest_id_) -
-               offsetof(Impl_, src_type_) +
-               sizeof(Impl_::dest_id_));
   switch (request_type_case()) {
     case REQUEST_TYPE_NOT_SET:
       break;
+      case kClientRegisterRequest:
+        _impl_.request_type_.client_register_request_ = ::google::protobuf::Message::CopyConstruct<::smart_pkg_delivery::ClientRegisterRequest>(arena, *from._impl_.request_type_.client_register_request_);
+        break;
       case kGetPkgInfosRequest:
         _impl_.request_type_.get_pkg_infos_request_ = ::google::protobuf::Message::CopyConstruct<::smart_pkg_delivery::GetPkgInfosRequest>(arena, *from._impl_.request_type_.get_pkg_infos_request_);
         break;
@@ -1743,20 +1966,12 @@ Request::Request(
 inline PROTOBUF_NDEBUG_INLINE Request::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : _cached_size_{0},
-        src_name_(arena),
-        dest_name_(arena),
-        request_type_{},
+      : request_type_{},
+        _cached_size_{0},
         _oneof_case_{} {}
 
 inline void Request::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  ::memset(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, src_type_),
-           0,
-           offsetof(Impl_, dest_id_) -
-               offsetof(Impl_, src_type_) +
-               sizeof(Impl_::dest_id_));
 }
 Request::~Request() {
   // @@protoc_insertion_point(destructor:smart_pkg_delivery.Request)
@@ -1766,8 +1981,6 @@ inline void Request::SharedDtor(MessageLite& self) {
   Request& this_ = static_cast<Request&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
-  this_._impl_.src_name_.Destroy();
-  this_._impl_.dest_name_.Destroy();
   if (this_.has_request_type()) {
     this_.clear_request_type();
   }
@@ -1778,6 +1991,14 @@ void Request::clear_request_type() {
 // @@protoc_insertion_point(one_of_clear_start:smart_pkg_delivery.Request)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   switch (request_type_case()) {
+    case kClientRegisterRequest: {
+      if (GetArena() == nullptr) {
+        delete _impl_.request_type_.client_register_request_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.request_type_.client_register_request_);
+      }
+      break;
+    }
     case kGetPkgInfosRequest: {
       if (GetArena() == nullptr) {
         delete _impl_.request_type_.get_pkg_infos_request_;
@@ -1815,7 +2036,7 @@ inline void* Request::PlacementNew_(const void*, void* mem,
   return ::new (mem) Request(arena);
 }
 constexpr auto Request::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(Request),
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(Request),
                                             alignof(Request));
 }
 PROTOBUF_CONSTINIT
@@ -1846,16 +2067,16 @@ const ::google::protobuf::internal::ClassData* Request::GetClassData() const {
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 9, 3, 60, 2> Request::_table_ = {
+const ::_pbi::TcParseTable<0, 4, 4, 0, 2> Request::_table_ = {
   {
-    PROTOBUF_FIELD_OFFSET(Request, _impl_._has_bits_),
+    0,  // no _has_bits_
     0, // no _extensions_
-    9, 56,  // max_field_number, fast_idx_mask
+    4, 0,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294966784,  // skipmap
+    4294967280,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    9,  // num_field_entries
-    3,  // num_aux_entries
+    4,  // num_field_entries
+    4,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     _class_data_.base(),
     nullptr,  // post_loop_handler
@@ -1865,64 +2086,27 @@ const ::_pbi::TcParseTable<3, 9, 3, 60, 2> Request::_table_ = {
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
     {::_pbi::TcParser::MiniParse, {}},
-    // .smart_pkg_delivery.NodeType src_type = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Request, _impl_.src_type_), 2>(),
-     {8, 2, 0, PROTOBUF_FIELD_OFFSET(Request, _impl_.src_type_)}},
-    // uint32 src_id = 2;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Request, _impl_.src_id_), 3>(),
-     {16, 3, 0, PROTOBUF_FIELD_OFFSET(Request, _impl_.src_id_)}},
-    // string src_name = 3;
-    {::_pbi::TcParser::FastUS1,
-     {26, 0, 0, PROTOBUF_FIELD_OFFSET(Request, _impl_.src_name_)}},
-    // .smart_pkg_delivery.NodeType dest_type = 4;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Request, _impl_.dest_type_), 4>(),
-     {32, 4, 0, PROTOBUF_FIELD_OFFSET(Request, _impl_.dest_type_)}},
-    // uint32 dest_id = 5;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Request, _impl_.dest_id_), 5>(),
-     {40, 5, 0, PROTOBUF_FIELD_OFFSET(Request, _impl_.dest_id_)}},
-    // string dest_name = 6;
-    {::_pbi::TcParser::FastUS1,
-     {50, 1, 0, PROTOBUF_FIELD_OFFSET(Request, _impl_.dest_name_)}},
-    {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     65535, 65535
   }}, {{
-    // .smart_pkg_delivery.NodeType src_type = 1;
-    {PROTOBUF_FIELD_OFFSET(Request, _impl_.src_type_), _Internal::kHasBitsOffset + 2, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kOpenEnum)},
-    // uint32 src_id = 2;
-    {PROTOBUF_FIELD_OFFSET(Request, _impl_.src_id_), _Internal::kHasBitsOffset + 3, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kUInt32)},
-    // string src_name = 3;
-    {PROTOBUF_FIELD_OFFSET(Request, _impl_.src_name_), _Internal::kHasBitsOffset + 0, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // .smart_pkg_delivery.NodeType dest_type = 4;
-    {PROTOBUF_FIELD_OFFSET(Request, _impl_.dest_type_), _Internal::kHasBitsOffset + 4, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kOpenEnum)},
-    // uint32 dest_id = 5;
-    {PROTOBUF_FIELD_OFFSET(Request, _impl_.dest_id_), _Internal::kHasBitsOffset + 5, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kUInt32)},
-    // string dest_name = 6;
-    {PROTOBUF_FIELD_OFFSET(Request, _impl_.dest_name_), _Internal::kHasBitsOffset + 1, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // .smart_pkg_delivery.GetPkgInfosRequest get_pkg_infos_request = 7;
-    {PROTOBUF_FIELD_OFFSET(Request, _impl_.request_type_.get_pkg_infos_request_), _Internal::kOneofCaseOffset + 0, 0,
+    // .smart_pkg_delivery.ClientRegisterRequest client_register_request = 1;
+    {PROTOBUF_FIELD_OFFSET(Request, _impl_.request_type_.client_register_request_), _Internal::kOneofCaseOffset + 0, 0,
     (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
-    // .smart_pkg_delivery.SetElevatorStatusRequest set_elevator_status_request = 8;
-    {PROTOBUF_FIELD_OFFSET(Request, _impl_.request_type_.set_elevator_status_request_), _Internal::kOneofCaseOffset + 0, 1,
+    // .smart_pkg_delivery.GetPkgInfosRequest get_pkg_infos_request = 2;
+    {PROTOBUF_FIELD_OFFSET(Request, _impl_.request_type_.get_pkg_infos_request_), _Internal::kOneofCaseOffset + 0, 1,
     (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
-    // .smart_pkg_delivery.MoveDeliveryRobotRequest move_delivery_robot_request = 9;
-    {PROTOBUF_FIELD_OFFSET(Request, _impl_.request_type_.move_delivery_robot_request_), _Internal::kOneofCaseOffset + 0, 2,
+    // .smart_pkg_delivery.SetElevatorStatusRequest set_elevator_status_request = 3;
+    {PROTOBUF_FIELD_OFFSET(Request, _impl_.request_type_.set_elevator_status_request_), _Internal::kOneofCaseOffset + 0, 2,
+    (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .smart_pkg_delivery.MoveDeliveryRobotRequest move_delivery_robot_request = 4;
+    {PROTOBUF_FIELD_OFFSET(Request, _impl_.request_type_.move_delivery_robot_request_), _Internal::kOneofCaseOffset + 0, 3,
     (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
   }}, {{
+    {::_pbi::TcParser::GetTable<::smart_pkg_delivery::ClientRegisterRequest>()},
     {::_pbi::TcParser::GetTable<::smart_pkg_delivery::GetPkgInfosRequest>()},
     {::_pbi::TcParser::GetTable<::smart_pkg_delivery::SetElevatorStatusRequest>()},
     {::_pbi::TcParser::GetTable<::smart_pkg_delivery::MoveDeliveryRobotRequest>()},
   }}, {{
-    "\32\0\0\10\0\0\11\0\0\0\0\0\0\0\0\0"
-    "smart_pkg_delivery.Request"
-    "src_name"
-    "dest_name"
   }},
 };
 
@@ -1933,22 +2117,7 @@ PROTOBUF_NOINLINE void Request::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000003u) {
-    if (cached_has_bits & 0x00000001u) {
-      _impl_.src_name_.ClearNonDefaultToEmpty();
-    }
-    if (cached_has_bits & 0x00000002u) {
-      _impl_.dest_name_.ClearNonDefaultToEmpty();
-    }
-  }
-  if (cached_has_bits & 0x0000003cu) {
-    ::memset(&_impl_.src_type_, 0, static_cast<::size_t>(
-        reinterpret_cast<char*>(&_impl_.dest_id_) -
-        reinterpret_cast<char*>(&_impl_.src_type_)) + sizeof(_impl_.dest_id_));
-  }
   clear_request_type();
-  _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -1967,67 +2136,28 @@ PROTOBUF_NOINLINE void Request::Clear() {
           ::uint32_t cached_has_bits = 0;
           (void)cached_has_bits;
 
-          cached_has_bits = this_._impl_._has_bits_[0];
-          // .smart_pkg_delivery.NodeType src_type = 1;
-          if (cached_has_bits & 0x00000004u) {
-            target = stream->EnsureSpace(target);
-            target = ::_pbi::WireFormatLite::WriteEnumToArray(
-                1, this_._internal_src_type(), target);
-          }
-
-          // uint32 src_id = 2;
-          if (cached_has_bits & 0x00000008u) {
-            target = stream->EnsureSpace(target);
-            target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
-                2, this_._internal_src_id(), target);
-          }
-
-          // string src_name = 3;
-          if (cached_has_bits & 0x00000001u) {
-            const std::string& _s = this_._internal_src_name();
-            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "smart_pkg_delivery.Request.src_name");
-            target = stream->WriteStringMaybeAliased(3, _s, target);
-          }
-
-          // .smart_pkg_delivery.NodeType dest_type = 4;
-          if (cached_has_bits & 0x00000010u) {
-            target = stream->EnsureSpace(target);
-            target = ::_pbi::WireFormatLite::WriteEnumToArray(
-                4, this_._internal_dest_type(), target);
-          }
-
-          // uint32 dest_id = 5;
-          if (cached_has_bits & 0x00000020u) {
-            target = stream->EnsureSpace(target);
-            target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
-                5, this_._internal_dest_id(), target);
-          }
-
-          // string dest_name = 6;
-          if (cached_has_bits & 0x00000002u) {
-            const std::string& _s = this_._internal_dest_name();
-            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "smart_pkg_delivery.Request.dest_name");
-            target = stream->WriteStringMaybeAliased(6, _s, target);
-          }
-
           switch (this_.request_type_case()) {
+            case kClientRegisterRequest: {
+              target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                  1, *this_._impl_.request_type_.client_register_request_, this_._impl_.request_type_.client_register_request_->GetCachedSize(), target,
+                  stream);
+              break;
+            }
             case kGetPkgInfosRequest: {
               target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-                  7, *this_._impl_.request_type_.get_pkg_infos_request_, this_._impl_.request_type_.get_pkg_infos_request_->GetCachedSize(), target,
+                  2, *this_._impl_.request_type_.get_pkg_infos_request_, this_._impl_.request_type_.get_pkg_infos_request_->GetCachedSize(), target,
                   stream);
               break;
             }
             case kSetElevatorStatusRequest: {
               target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-                  8, *this_._impl_.request_type_.set_elevator_status_request_, this_._impl_.request_type_.set_elevator_status_request_->GetCachedSize(), target,
+                  3, *this_._impl_.request_type_.set_elevator_status_request_, this_._impl_.request_type_.set_elevator_status_request_->GetCachedSize(), target,
                   stream);
               break;
             }
             case kMoveDeliveryRobotRequest: {
               target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-                  9, *this_._impl_.request_type_.move_delivery_robot_request_, this_._impl_.request_type_.move_delivery_robot_request_->GetCachedSize(), target,
+                  4, *this_._impl_.request_type_.move_delivery_robot_request_, this_._impl_.request_type_.move_delivery_robot_request_->GetCachedSize(), target,
                   stream);
               break;
             }
@@ -2057,54 +2187,26 @@ PROTOBUF_NOINLINE void Request::Clear() {
           // Prevent compiler warnings about cached_has_bits being unused
           (void)cached_has_bits;
 
-          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
-          cached_has_bits = this_._impl_._has_bits_[0];
-          if (cached_has_bits & 0x0000003fu) {
-            // string src_name = 3;
-            if (cached_has_bits & 0x00000001u) {
-              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                              this_._internal_src_name());
-            }
-            // string dest_name = 6;
-            if (cached_has_bits & 0x00000002u) {
-              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                              this_._internal_dest_name());
-            }
-            // .smart_pkg_delivery.NodeType src_type = 1;
-            if (cached_has_bits & 0x00000004u) {
-              total_size += 1 +
-                            ::_pbi::WireFormatLite::EnumSize(this_._internal_src_type());
-            }
-            // uint32 src_id = 2;
-            if (cached_has_bits & 0x00000008u) {
-              total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
-                  this_._internal_src_id());
-            }
-            // .smart_pkg_delivery.NodeType dest_type = 4;
-            if (cached_has_bits & 0x00000010u) {
-              total_size += 1 +
-                            ::_pbi::WireFormatLite::EnumSize(this_._internal_dest_type());
-            }
-            // uint32 dest_id = 5;
-            if (cached_has_bits & 0x00000020u) {
-              total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
-                  this_._internal_dest_id());
-            }
-          }
           switch (this_.request_type_case()) {
-            // .smart_pkg_delivery.GetPkgInfosRequest get_pkg_infos_request = 7;
+            // .smart_pkg_delivery.ClientRegisterRequest client_register_request = 1;
+            case kClientRegisterRequest: {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.request_type_.client_register_request_);
+              break;
+            }
+            // .smart_pkg_delivery.GetPkgInfosRequest get_pkg_infos_request = 2;
             case kGetPkgInfosRequest: {
               total_size += 1 +
                             ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.request_type_.get_pkg_infos_request_);
               break;
             }
-            // .smart_pkg_delivery.SetElevatorStatusRequest set_elevator_status_request = 8;
+            // .smart_pkg_delivery.SetElevatorStatusRequest set_elevator_status_request = 3;
             case kSetElevatorStatusRequest: {
               total_size += 1 +
                             ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.request_type_.set_elevator_status_request_);
               break;
             }
-            // .smart_pkg_delivery.MoveDeliveryRobotRequest move_delivery_robot_request = 9;
+            // .smart_pkg_delivery.MoveDeliveryRobotRequest move_delivery_robot_request = 4;
             case kMoveDeliveryRobotRequest: {
               total_size += 1 +
                             ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.request_type_.move_delivery_robot_request_);
@@ -2127,28 +2229,6 @@ void Request::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google:
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  cached_has_bits = from._impl_._has_bits_[0];
-  if (cached_has_bits & 0x0000003fu) {
-    if (cached_has_bits & 0x00000001u) {
-      _this->_internal_set_src_name(from._internal_src_name());
-    }
-    if (cached_has_bits & 0x00000002u) {
-      _this->_internal_set_dest_name(from._internal_dest_name());
-    }
-    if (cached_has_bits & 0x00000004u) {
-      _this->_impl_.src_type_ = from._impl_.src_type_;
-    }
-    if (cached_has_bits & 0x00000008u) {
-      _this->_impl_.src_id_ = from._impl_.src_id_;
-    }
-    if (cached_has_bits & 0x00000010u) {
-      _this->_impl_.dest_type_ = from._impl_.dest_type_;
-    }
-    if (cached_has_bits & 0x00000020u) {
-      _this->_impl_.dest_id_ = from._impl_.dest_id_;
-    }
-  }
-  _this->_impl_._has_bits_[0] |= cached_has_bits;
   if (const uint32_t oneof_from_case = from._impl_._oneof_case_[0]) {
     const uint32_t oneof_to_case = _this->_impl_._oneof_case_[0];
     const bool oneof_needs_init = oneof_to_case != oneof_from_case;
@@ -2160,6 +2240,15 @@ void Request::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google:
     }
 
     switch (oneof_from_case) {
+      case kClientRegisterRequest: {
+        if (oneof_needs_init) {
+          _this->_impl_.request_type_.client_register_request_ =
+              ::google::protobuf::Message::CopyConstruct<::smart_pkg_delivery::ClientRegisterRequest>(arena, *from._impl_.request_type_.client_register_request_);
+        } else {
+          _this->_impl_.request_type_.client_register_request_->MergeFrom(from._internal_client_register_request());
+        }
+        break;
+      }
       case kGetPkgInfosRequest: {
         if (oneof_needs_init) {
           _this->_impl_.request_type_.get_pkg_infos_request_ =
@@ -2204,18 +2293,7 @@ void Request::CopyFrom(const Request& from) {
 
 void Request::InternalSwap(Request* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* arena = GetArena();
-  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.src_name_, &other->_impl_.src_name_, arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.dest_name_, &other->_impl_.dest_name_, arena);
-  ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Request, _impl_.dest_id_)
-      + sizeof(Request::_impl_.dest_id_)
-      - PROTOBUF_FIELD_OFFSET(Request, _impl_.src_type_)>(
-          reinterpret_cast<char*>(&_impl_.src_type_),
-          reinterpret_cast<char*>(&other->_impl_.src_type_));
   swap(_impl_.request_type_, other->_impl_.request_type_);
   swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
 }
@@ -2235,6 +2313,19 @@ class Response::_Internal {
       PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::Response, _impl_._oneof_case_);
 };
 
+void Response::set_allocated_client_register_response(::smart_pkg_delivery::ClientRegisterResponse* client_register_response) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  clear_response_type();
+  if (client_register_response) {
+    ::google::protobuf::Arena* submessage_arena = client_register_response->GetArena();
+    if (message_arena != submessage_arena) {
+      client_register_response = ::google::protobuf::internal::GetOwnedMessage(message_arena, client_register_response, submessage_arena);
+    }
+    set_has_client_register_response();
+    _impl_.response_type_.client_register_response_ = client_register_response;
+  }
+  // @@protoc_insertion_point(field_set_allocated:smart_pkg_delivery.Response.client_register_response)
+}
 void Response::set_allocated_get_pkg_info_response(::smart_pkg_delivery::GetPkgInfoResponse* get_pkg_info_response) {
   ::google::protobuf::Arena* message_arena = GetArena();
   clear_response_type();
@@ -2288,8 +2379,6 @@ inline PROTOBUF_NDEBUG_INLINE Response::Impl_::Impl_(
     const Impl_& from, const ::smart_pkg_delivery::Response& from_msg)
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
-        src_name_(arena, from.src_name_),
-        dest_name_(arena, from.dest_name_),
         response_type_{},
         _oneof_case_{from._oneof_case_[0]} {}
 
@@ -2307,22 +2396,18 @@ Response::Response(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
   ::uint32_t cached_has_bits = _impl_._has_bits_[0];
-  _impl_.ack_status_ = (cached_has_bits & 0x00000004u) ? ::google::protobuf::Message::CopyConstruct<::smart_pkg_delivery::AckStatus>(
+  _impl_.ack_status_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::smart_pkg_delivery::AckStatus>(
                               arena, *from._impl_.ack_status_)
                         : nullptr;
-  _impl_.execution_status_ = (cached_has_bits & 0x00000008u) ? ::google::protobuf::Message::CopyConstruct<::smart_pkg_delivery::ExecutionStatus>(
+  _impl_.execution_status_ = (cached_has_bits & 0x00000002u) ? ::google::protobuf::Message::CopyConstruct<::smart_pkg_delivery::ExecutionStatus>(
                               arena, *from._impl_.execution_status_)
                         : nullptr;
-  ::memcpy(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, src_type_),
-           reinterpret_cast<const char *>(&from._impl_) +
-               offsetof(Impl_, src_type_),
-           offsetof(Impl_, dest_id_) -
-               offsetof(Impl_, src_type_) +
-               sizeof(Impl_::dest_id_));
   switch (response_type_case()) {
     case RESPONSE_TYPE_NOT_SET:
       break;
+      case kClientRegisterResponse:
+        _impl_.response_type_.client_register_response_ = ::google::protobuf::Message::CopyConstruct<::smart_pkg_delivery::ClientRegisterResponse>(arena, *from._impl_.response_type_.client_register_response_);
+        break;
       case kGetPkgInfoResponse:
         _impl_.response_type_.get_pkg_info_response_ = ::google::protobuf::Message::CopyConstruct<::smart_pkg_delivery::GetPkgInfoResponse>(arena, *from._impl_.response_type_.get_pkg_info_response_);
         break;
@@ -2340,8 +2425,6 @@ inline PROTOBUF_NDEBUG_INLINE Response::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : _cached_size_{0},
-        src_name_(arena),
-        dest_name_(arena),
         response_type_{},
         _oneof_case_{} {}
 
@@ -2350,9 +2433,9 @@ inline void Response::SharedCtor(::_pb::Arena* arena) {
   ::memset(reinterpret_cast<char *>(&_impl_) +
                offsetof(Impl_, ack_status_),
            0,
-           offsetof(Impl_, dest_id_) -
+           offsetof(Impl_, execution_status_) -
                offsetof(Impl_, ack_status_) +
-               sizeof(Impl_::dest_id_));
+               sizeof(Impl_::execution_status_));
 }
 Response::~Response() {
   // @@protoc_insertion_point(destructor:smart_pkg_delivery.Response)
@@ -2362,8 +2445,6 @@ inline void Response::SharedDtor(MessageLite& self) {
   Response& this_ = static_cast<Response&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
-  this_._impl_.src_name_.Destroy();
-  this_._impl_.dest_name_.Destroy();
   delete this_._impl_.ack_status_;
   delete this_._impl_.execution_status_;
   if (this_.has_response_type()) {
@@ -2376,6 +2457,14 @@ void Response::clear_response_type() {
 // @@protoc_insertion_point(one_of_clear_start:smart_pkg_delivery.Response)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   switch (response_type_case()) {
+    case kClientRegisterResponse: {
+      if (GetArena() == nullptr) {
+        delete _impl_.response_type_.client_register_response_;
+      } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+        ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.response_type_.client_register_response_);
+      }
+      break;
+    }
     case kGetPkgInfoResponse: {
       if (GetArena() == nullptr) {
         delete _impl_.response_type_.get_pkg_info_response_;
@@ -2413,7 +2502,7 @@ inline void* Response::PlacementNew_(const void*, void* mem,
   return ::new (mem) Response(arena);
 }
 constexpr auto Response::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(Response),
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(Response),
                                             alignof(Response));
 }
 PROTOBUF_CONSTINIT
@@ -2444,16 +2533,16 @@ const ::google::protobuf::internal::ClassData* Response::GetClassData() const {
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 11, 5, 61, 2> Response::_table_ = {
+const ::_pbi::TcParseTable<1, 6, 6, 0, 2> Response::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(Response, _impl_._has_bits_),
     0, // no _extensions_
-    11, 56,  // max_field_number, fast_idx_mask
+    6, 8,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294965248,  // skipmap
+    4294967232,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    11,  // num_field_entries
-    5,  // num_aux_entries
+    6,  // num_field_entries
+    6,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     _class_data_.base(),
     nullptr,  // post_loop_handler
@@ -2462,77 +2551,41 @@ const ::_pbi::TcParseTable<3, 11, 5, 61, 2> Response::_table_ = {
     ::_pbi::TcParser::GetTable<::smart_pkg_delivery::Response>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // .smart_pkg_delivery.ExecutionStatus execution_status = 8;
+    // .smart_pkg_delivery.ExecutionStatus execution_status = 2;
     {::_pbi::TcParser::FastMtS1,
-     {66, 3, 1, PROTOBUF_FIELD_OFFSET(Response, _impl_.execution_status_)}},
-    // .smart_pkg_delivery.NodeType src_type = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Response, _impl_.src_type_), 4>(),
-     {8, 4, 0, PROTOBUF_FIELD_OFFSET(Response, _impl_.src_type_)}},
-    // uint32 src_id = 2;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Response, _impl_.src_id_), 5>(),
-     {16, 5, 0, PROTOBUF_FIELD_OFFSET(Response, _impl_.src_id_)}},
-    // string src_name = 3;
-    {::_pbi::TcParser::FastUS1,
-     {26, 0, 0, PROTOBUF_FIELD_OFFSET(Response, _impl_.src_name_)}},
-    // .smart_pkg_delivery.NodeType dest_type = 4;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Response, _impl_.dest_type_), 6>(),
-     {32, 6, 0, PROTOBUF_FIELD_OFFSET(Response, _impl_.dest_type_)}},
-    // uint32 dest_id = 5;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Response, _impl_.dest_id_), 7>(),
-     {40, 7, 0, PROTOBUF_FIELD_OFFSET(Response, _impl_.dest_id_)}},
-    // string dest_name = 6;
-    {::_pbi::TcParser::FastUS1,
-     {50, 1, 0, PROTOBUF_FIELD_OFFSET(Response, _impl_.dest_name_)}},
-    // .smart_pkg_delivery.AckStatus ack_status = 7;
+     {18, 1, 1, PROTOBUF_FIELD_OFFSET(Response, _impl_.execution_status_)}},
+    // .smart_pkg_delivery.AckStatus ack_status = 1;
     {::_pbi::TcParser::FastMtS1,
-     {58, 2, 0, PROTOBUF_FIELD_OFFSET(Response, _impl_.ack_status_)}},
+     {10, 0, 0, PROTOBUF_FIELD_OFFSET(Response, _impl_.ack_status_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // .smart_pkg_delivery.NodeType src_type = 1;
-    {PROTOBUF_FIELD_OFFSET(Response, _impl_.src_type_), _Internal::kHasBitsOffset + 4, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kOpenEnum)},
-    // uint32 src_id = 2;
-    {PROTOBUF_FIELD_OFFSET(Response, _impl_.src_id_), _Internal::kHasBitsOffset + 5, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kUInt32)},
-    // string src_name = 3;
-    {PROTOBUF_FIELD_OFFSET(Response, _impl_.src_name_), _Internal::kHasBitsOffset + 0, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // .smart_pkg_delivery.NodeType dest_type = 4;
-    {PROTOBUF_FIELD_OFFSET(Response, _impl_.dest_type_), _Internal::kHasBitsOffset + 6, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kOpenEnum)},
-    // uint32 dest_id = 5;
-    {PROTOBUF_FIELD_OFFSET(Response, _impl_.dest_id_), _Internal::kHasBitsOffset + 7, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kUInt32)},
-    // string dest_name = 6;
-    {PROTOBUF_FIELD_OFFSET(Response, _impl_.dest_name_), _Internal::kHasBitsOffset + 1, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // .smart_pkg_delivery.AckStatus ack_status = 7;
-    {PROTOBUF_FIELD_OFFSET(Response, _impl_.ack_status_), _Internal::kHasBitsOffset + 2, 0,
+    // .smart_pkg_delivery.AckStatus ack_status = 1;
+    {PROTOBUF_FIELD_OFFSET(Response, _impl_.ack_status_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-    // .smart_pkg_delivery.ExecutionStatus execution_status = 8;
-    {PROTOBUF_FIELD_OFFSET(Response, _impl_.execution_status_), _Internal::kHasBitsOffset + 3, 1,
+    // .smart_pkg_delivery.ExecutionStatus execution_status = 2;
+    {PROTOBUF_FIELD_OFFSET(Response, _impl_.execution_status_), _Internal::kHasBitsOffset + 1, 1,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-    // .smart_pkg_delivery.GetPkgInfoResponse get_pkg_info_response = 9;
-    {PROTOBUF_FIELD_OFFSET(Response, _impl_.response_type_.get_pkg_info_response_), _Internal::kOneofCaseOffset + 0, 2,
+    // .smart_pkg_delivery.ClientRegisterResponse client_register_response = 3;
+    {PROTOBUF_FIELD_OFFSET(Response, _impl_.response_type_.client_register_response_), _Internal::kOneofCaseOffset + 0, 2,
     (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
-    // .smart_pkg_delivery.SetElevatorStatusResponse set_elevator_status_response = 10;
-    {PROTOBUF_FIELD_OFFSET(Response, _impl_.response_type_.set_elevator_status_response_), _Internal::kOneofCaseOffset + 0, 3,
+    // .smart_pkg_delivery.GetPkgInfoResponse get_pkg_info_response = 4;
+    {PROTOBUF_FIELD_OFFSET(Response, _impl_.response_type_.get_pkg_info_response_), _Internal::kOneofCaseOffset + 0, 3,
     (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
-    // .smart_pkg_delivery.MoveDeliveryRobotResponse move_delivery_robot_response = 11;
-    {PROTOBUF_FIELD_OFFSET(Response, _impl_.response_type_.move_delivery_robot_response_), _Internal::kOneofCaseOffset + 0, 4,
+    // .smart_pkg_delivery.SetElevatorStatusResponse set_elevator_status_response = 5;
+    {PROTOBUF_FIELD_OFFSET(Response, _impl_.response_type_.set_elevator_status_response_), _Internal::kOneofCaseOffset + 0, 4,
+    (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .smart_pkg_delivery.MoveDeliveryRobotResponse move_delivery_robot_response = 6;
+    {PROTOBUF_FIELD_OFFSET(Response, _impl_.response_type_.move_delivery_robot_response_), _Internal::kOneofCaseOffset + 0, 5,
     (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
   }}, {{
     {::_pbi::TcParser::GetTable<::smart_pkg_delivery::AckStatus>()},
     {::_pbi::TcParser::GetTable<::smart_pkg_delivery::ExecutionStatus>()},
+    {::_pbi::TcParser::GetTable<::smart_pkg_delivery::ClientRegisterResponse>()},
     {::_pbi::TcParser::GetTable<::smart_pkg_delivery::GetPkgInfoResponse>()},
     {::_pbi::TcParser::GetTable<::smart_pkg_delivery::SetElevatorStatusResponse>()},
     {::_pbi::TcParser::GetTable<::smart_pkg_delivery::MoveDeliveryRobotResponse>()},
   }}, {{
-    "\33\0\0\10\0\0\11\0\0\0\0\0\0\0\0\0"
-    "smart_pkg_delivery.Response"
-    "src_name"
-    "dest_name"
   }},
 };
 
@@ -2544,26 +2597,15 @@ PROTOBUF_NOINLINE void Response::Clear() {
   (void) cached_has_bits;
 
   cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x0000000fu) {
+  if (cached_has_bits & 0x00000003u) {
     if (cached_has_bits & 0x00000001u) {
-      _impl_.src_name_.ClearNonDefaultToEmpty();
-    }
-    if (cached_has_bits & 0x00000002u) {
-      _impl_.dest_name_.ClearNonDefaultToEmpty();
-    }
-    if (cached_has_bits & 0x00000004u) {
       ABSL_DCHECK(_impl_.ack_status_ != nullptr);
       _impl_.ack_status_->Clear();
     }
-    if (cached_has_bits & 0x00000008u) {
+    if (cached_has_bits & 0x00000002u) {
       ABSL_DCHECK(_impl_.execution_status_ != nullptr);
       _impl_.execution_status_->Clear();
     }
-  }
-  if (cached_has_bits & 0x000000f0u) {
-    ::memset(&_impl_.src_type_, 0, static_cast<::size_t>(
-        reinterpret_cast<char*>(&_impl_.dest_id_) -
-        reinterpret_cast<char*>(&_impl_.src_type_)) + sizeof(_impl_.dest_id_));
   }
   clear_response_type();
   _impl_._has_bits_.Clear();
@@ -2586,80 +2628,42 @@ PROTOBUF_NOINLINE void Response::Clear() {
           (void)cached_has_bits;
 
           cached_has_bits = this_._impl_._has_bits_[0];
-          // .smart_pkg_delivery.NodeType src_type = 1;
-          if (cached_has_bits & 0x00000010u) {
-            target = stream->EnsureSpace(target);
-            target = ::_pbi::WireFormatLite::WriteEnumToArray(
-                1, this_._internal_src_type(), target);
-          }
-
-          // uint32 src_id = 2;
-          if (cached_has_bits & 0x00000020u) {
-            target = stream->EnsureSpace(target);
-            target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
-                2, this_._internal_src_id(), target);
-          }
-
-          // string src_name = 3;
+          // .smart_pkg_delivery.AckStatus ack_status = 1;
           if (cached_has_bits & 0x00000001u) {
-            const std::string& _s = this_._internal_src_name();
-            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "smart_pkg_delivery.Response.src_name");
-            target = stream->WriteStringMaybeAliased(3, _s, target);
-          }
-
-          // .smart_pkg_delivery.NodeType dest_type = 4;
-          if (cached_has_bits & 0x00000040u) {
-            target = stream->EnsureSpace(target);
-            target = ::_pbi::WireFormatLite::WriteEnumToArray(
-                4, this_._internal_dest_type(), target);
-          }
-
-          // uint32 dest_id = 5;
-          if (cached_has_bits & 0x00000080u) {
-            target = stream->EnsureSpace(target);
-            target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
-                5, this_._internal_dest_id(), target);
-          }
-
-          // string dest_name = 6;
-          if (cached_has_bits & 0x00000002u) {
-            const std::string& _s = this_._internal_dest_name();
-            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "smart_pkg_delivery.Response.dest_name");
-            target = stream->WriteStringMaybeAliased(6, _s, target);
-          }
-
-          // .smart_pkg_delivery.AckStatus ack_status = 7;
-          if (cached_has_bits & 0x00000004u) {
             target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-                7, *this_._impl_.ack_status_, this_._impl_.ack_status_->GetCachedSize(), target,
+                1, *this_._impl_.ack_status_, this_._impl_.ack_status_->GetCachedSize(), target,
                 stream);
           }
 
-          // .smart_pkg_delivery.ExecutionStatus execution_status = 8;
-          if (cached_has_bits & 0x00000008u) {
+          // .smart_pkg_delivery.ExecutionStatus execution_status = 2;
+          if (cached_has_bits & 0x00000002u) {
             target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-                8, *this_._impl_.execution_status_, this_._impl_.execution_status_->GetCachedSize(), target,
+                2, *this_._impl_.execution_status_, this_._impl_.execution_status_->GetCachedSize(), target,
                 stream);
           }
 
           switch (this_.response_type_case()) {
+            case kClientRegisterResponse: {
+              target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+                  3, *this_._impl_.response_type_.client_register_response_, this_._impl_.response_type_.client_register_response_->GetCachedSize(), target,
+                  stream);
+              break;
+            }
             case kGetPkgInfoResponse: {
               target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-                  9, *this_._impl_.response_type_.get_pkg_info_response_, this_._impl_.response_type_.get_pkg_info_response_->GetCachedSize(), target,
+                  4, *this_._impl_.response_type_.get_pkg_info_response_, this_._impl_.response_type_.get_pkg_info_response_->GetCachedSize(), target,
                   stream);
               break;
             }
             case kSetElevatorStatusResponse: {
               target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-                  10, *this_._impl_.response_type_.set_elevator_status_response_, this_._impl_.response_type_.set_elevator_status_response_->GetCachedSize(), target,
+                  5, *this_._impl_.response_type_.set_elevator_status_response_, this_._impl_.response_type_.set_elevator_status_response_->GetCachedSize(), target,
                   stream);
               break;
             }
             case kMoveDeliveryRobotResponse: {
               target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-                  11, *this_._impl_.response_type_.move_delivery_robot_response_, this_._impl_.response_type_.move_delivery_robot_response_->GetCachedSize(), target,
+                  6, *this_._impl_.response_type_.move_delivery_robot_response_, this_._impl_.response_type_.move_delivery_robot_response_->GetCachedSize(), target,
                   stream);
               break;
             }
@@ -2691,62 +2695,38 @@ PROTOBUF_NOINLINE void Response::Clear() {
 
           ::_pbi::Prefetch5LinesFrom7Lines(&this_);
           cached_has_bits = this_._impl_._has_bits_[0];
-          if (cached_has_bits & 0x000000ffu) {
-            // string src_name = 3;
+          if (cached_has_bits & 0x00000003u) {
+            // .smart_pkg_delivery.AckStatus ack_status = 1;
             if (cached_has_bits & 0x00000001u) {
-              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                              this_._internal_src_name());
-            }
-            // string dest_name = 6;
-            if (cached_has_bits & 0x00000002u) {
-              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                              this_._internal_dest_name());
-            }
-            // .smart_pkg_delivery.AckStatus ack_status = 7;
-            if (cached_has_bits & 0x00000004u) {
               total_size += 1 +
                             ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.ack_status_);
             }
-            // .smart_pkg_delivery.ExecutionStatus execution_status = 8;
-            if (cached_has_bits & 0x00000008u) {
+            // .smart_pkg_delivery.ExecutionStatus execution_status = 2;
+            if (cached_has_bits & 0x00000002u) {
               total_size += 1 +
                             ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.execution_status_);
             }
-            // .smart_pkg_delivery.NodeType src_type = 1;
-            if (cached_has_bits & 0x00000010u) {
-              total_size += 1 +
-                            ::_pbi::WireFormatLite::EnumSize(this_._internal_src_type());
-            }
-            // uint32 src_id = 2;
-            if (cached_has_bits & 0x00000020u) {
-              total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
-                  this_._internal_src_id());
-            }
-            // .smart_pkg_delivery.NodeType dest_type = 4;
-            if (cached_has_bits & 0x00000040u) {
-              total_size += 1 +
-                            ::_pbi::WireFormatLite::EnumSize(this_._internal_dest_type());
-            }
-            // uint32 dest_id = 5;
-            if (cached_has_bits & 0x00000080u) {
-              total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
-                  this_._internal_dest_id());
-            }
           }
           switch (this_.response_type_case()) {
-            // .smart_pkg_delivery.GetPkgInfoResponse get_pkg_info_response = 9;
+            // .smart_pkg_delivery.ClientRegisterResponse client_register_response = 3;
+            case kClientRegisterResponse: {
+              total_size += 1 +
+                            ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.response_type_.client_register_response_);
+              break;
+            }
+            // .smart_pkg_delivery.GetPkgInfoResponse get_pkg_info_response = 4;
             case kGetPkgInfoResponse: {
               total_size += 1 +
                             ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.response_type_.get_pkg_info_response_);
               break;
             }
-            // .smart_pkg_delivery.SetElevatorStatusResponse set_elevator_status_response = 10;
+            // .smart_pkg_delivery.SetElevatorStatusResponse set_elevator_status_response = 5;
             case kSetElevatorStatusResponse: {
               total_size += 1 +
                             ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.response_type_.set_elevator_status_response_);
               break;
             }
-            // .smart_pkg_delivery.MoveDeliveryRobotResponse move_delivery_robot_response = 11;
+            // .smart_pkg_delivery.MoveDeliveryRobotResponse move_delivery_robot_response = 6;
             case kMoveDeliveryRobotResponse: {
               total_size += 1 +
                             ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.response_type_.move_delivery_robot_response_);
@@ -2770,14 +2750,8 @@ void Response::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google
   (void) cached_has_bits;
 
   cached_has_bits = from._impl_._has_bits_[0];
-  if (cached_has_bits & 0x000000ffu) {
+  if (cached_has_bits & 0x00000003u) {
     if (cached_has_bits & 0x00000001u) {
-      _this->_internal_set_src_name(from._internal_src_name());
-    }
-    if (cached_has_bits & 0x00000002u) {
-      _this->_internal_set_dest_name(from._internal_dest_name());
-    }
-    if (cached_has_bits & 0x00000004u) {
       ABSL_DCHECK(from._impl_.ack_status_ != nullptr);
       if (_this->_impl_.ack_status_ == nullptr) {
         _this->_impl_.ack_status_ =
@@ -2786,7 +2760,7 @@ void Response::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google
         _this->_impl_.ack_status_->MergeFrom(*from._impl_.ack_status_);
       }
     }
-    if (cached_has_bits & 0x00000008u) {
+    if (cached_has_bits & 0x00000002u) {
       ABSL_DCHECK(from._impl_.execution_status_ != nullptr);
       if (_this->_impl_.execution_status_ == nullptr) {
         _this->_impl_.execution_status_ =
@@ -2794,18 +2768,6 @@ void Response::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google
       } else {
         _this->_impl_.execution_status_->MergeFrom(*from._impl_.execution_status_);
       }
-    }
-    if (cached_has_bits & 0x00000010u) {
-      _this->_impl_.src_type_ = from._impl_.src_type_;
-    }
-    if (cached_has_bits & 0x00000020u) {
-      _this->_impl_.src_id_ = from._impl_.src_id_;
-    }
-    if (cached_has_bits & 0x00000040u) {
-      _this->_impl_.dest_type_ = from._impl_.dest_type_;
-    }
-    if (cached_has_bits & 0x00000080u) {
-      _this->_impl_.dest_id_ = from._impl_.dest_id_;
     }
   }
   _this->_impl_._has_bits_[0] |= cached_has_bits;
@@ -2820,6 +2782,15 @@ void Response::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google
     }
 
     switch (oneof_from_case) {
+      case kClientRegisterResponse: {
+        if (oneof_needs_init) {
+          _this->_impl_.response_type_.client_register_response_ =
+              ::google::protobuf::Message::CopyConstruct<::smart_pkg_delivery::ClientRegisterResponse>(arena, *from._impl_.response_type_.client_register_response_);
+        } else {
+          _this->_impl_.response_type_.client_register_response_->MergeFrom(from._internal_client_register_response());
+        }
+        break;
+      }
       case kGetPkgInfoResponse: {
         if (oneof_needs_init) {
           _this->_impl_.response_type_.get_pkg_info_response_ =
@@ -2864,15 +2835,11 @@ void Response::CopyFrom(const Response& from) {
 
 void Response::InternalSwap(Response* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* arena = GetArena();
-  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.src_name_, &other->_impl_.src_name_, arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.dest_name_, &other->_impl_.dest_name_, arena);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Response, _impl_.dest_id_)
-      + sizeof(Response::_impl_.dest_id_)
+      PROTOBUF_FIELD_OFFSET(Response, _impl_.execution_status_)
+      + sizeof(Response::_impl_.execution_status_)
       - PROTOBUF_FIELD_OFFSET(Response, _impl_.ack_status_)>(
           reinterpret_cast<char*>(&_impl_.ack_status_),
           reinterpret_cast<char*>(&other->_impl_.ack_status_));
@@ -2887,10 +2854,6 @@ void Response::InternalSwap(Response* PROTOBUF_RESTRICT other) {
 
 class NodeEvent::_Internal {
  public:
-  using HasBits =
-      decltype(std::declval<NodeEvent>()._impl_._has_bits_);
-  static constexpr ::int32_t kHasBitsOffset =
-      8 * PROTOBUF_FIELD_OFFSET(NodeEvent, _impl_._has_bits_);
   static constexpr ::int32_t kOneofCaseOffset =
       PROTOBUF_FIELD_OFFSET(::smart_pkg_delivery::NodeEvent, _impl_._oneof_case_);
 };
@@ -2946,11 +2909,8 @@ NodeEvent::NodeEvent(::google::protobuf::Arena* arena)
 inline PROTOBUF_NDEBUG_INLINE NodeEvent::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from, const ::smart_pkg_delivery::NodeEvent& from_msg)
-      : _has_bits_{from._has_bits_},
+      : event_type_{},
         _cached_size_{0},
-        src_name_(arena, from.src_name_),
-        dest_name_(arena, from.dest_name_),
-        event_type_{},
         _oneof_case_{from._oneof_case_[0]} {}
 
 NodeEvent::NodeEvent(
@@ -2966,13 +2926,6 @@ NodeEvent::NodeEvent(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
-  ::memcpy(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, src_type_),
-           reinterpret_cast<const char *>(&from._impl_) +
-               offsetof(Impl_, src_type_),
-           offsetof(Impl_, dest_id_) -
-               offsetof(Impl_, src_type_) +
-               sizeof(Impl_::dest_id_));
   switch (event_type_case()) {
     case EVENT_TYPE_NOT_SET:
       break;
@@ -2992,20 +2945,12 @@ NodeEvent::NodeEvent(
 inline PROTOBUF_NDEBUG_INLINE NodeEvent::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : _cached_size_{0},
-        src_name_(arena),
-        dest_name_(arena),
-        event_type_{},
+      : event_type_{},
+        _cached_size_{0},
         _oneof_case_{} {}
 
 inline void NodeEvent::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  ::memset(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, src_type_),
-           0,
-           offsetof(Impl_, dest_id_) -
-               offsetof(Impl_, src_type_) +
-               sizeof(Impl_::dest_id_));
 }
 NodeEvent::~NodeEvent() {
   // @@protoc_insertion_point(destructor:smart_pkg_delivery.NodeEvent)
@@ -3015,8 +2960,6 @@ inline void NodeEvent::SharedDtor(MessageLite& self) {
   NodeEvent& this_ = static_cast<NodeEvent&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
-  this_._impl_.src_name_.Destroy();
-  this_._impl_.dest_name_.Destroy();
   if (this_.has_event_type()) {
     this_.clear_event_type();
   }
@@ -3064,7 +3007,7 @@ inline void* NodeEvent::PlacementNew_(const void*, void* mem,
   return ::new (mem) NodeEvent(arena);
 }
 constexpr auto NodeEvent::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(NodeEvent),
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(NodeEvent),
                                             alignof(NodeEvent));
 }
 PROTOBUF_CONSTINIT
@@ -3095,15 +3038,15 @@ const ::google::protobuf::internal::ClassData* NodeEvent::GetClassData() const {
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 9, 3, 62, 2> NodeEvent::_table_ = {
+const ::_pbi::TcParseTable<0, 3, 3, 0, 2> NodeEvent::_table_ = {
   {
-    PROTOBUF_FIELD_OFFSET(NodeEvent, _impl_._has_bits_),
+    0,  // no _has_bits_
     0, // no _extensions_
-    9, 56,  // max_field_number, fast_idx_mask
+    3, 0,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294966784,  // skipmap
+    4294967288,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    9,  // num_field_entries
+    3,  // num_field_entries
     3,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     _class_data_.base(),
@@ -3114,53 +3057,16 @@ const ::_pbi::TcParseTable<3, 9, 3, 62, 2> NodeEvent::_table_ = {
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
     {::_pbi::TcParser::MiniParse, {}},
-    // .smart_pkg_delivery.NodeType src_type = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(NodeEvent, _impl_.src_type_), 2>(),
-     {8, 2, 0, PROTOBUF_FIELD_OFFSET(NodeEvent, _impl_.src_type_)}},
-    // uint32 src_id = 2;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(NodeEvent, _impl_.src_id_), 3>(),
-     {16, 3, 0, PROTOBUF_FIELD_OFFSET(NodeEvent, _impl_.src_id_)}},
-    // string src_name = 3;
-    {::_pbi::TcParser::FastUS1,
-     {26, 0, 0, PROTOBUF_FIELD_OFFSET(NodeEvent, _impl_.src_name_)}},
-    // .smart_pkg_delivery.NodeType dest_type = 4;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(NodeEvent, _impl_.dest_type_), 4>(),
-     {32, 4, 0, PROTOBUF_FIELD_OFFSET(NodeEvent, _impl_.dest_type_)}},
-    // uint32 dest_id = 5;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(NodeEvent, _impl_.dest_id_), 5>(),
-     {40, 5, 0, PROTOBUF_FIELD_OFFSET(NodeEvent, _impl_.dest_id_)}},
-    // string dest_name = 6;
-    {::_pbi::TcParser::FastUS1,
-     {50, 1, 0, PROTOBUF_FIELD_OFFSET(NodeEvent, _impl_.dest_name_)}},
-    {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     65535, 65535
   }}, {{
-    // .smart_pkg_delivery.NodeType src_type = 1;
-    {PROTOBUF_FIELD_OFFSET(NodeEvent, _impl_.src_type_), _Internal::kHasBitsOffset + 2, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kOpenEnum)},
-    // uint32 src_id = 2;
-    {PROTOBUF_FIELD_OFFSET(NodeEvent, _impl_.src_id_), _Internal::kHasBitsOffset + 3, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kUInt32)},
-    // string src_name = 3;
-    {PROTOBUF_FIELD_OFFSET(NodeEvent, _impl_.src_name_), _Internal::kHasBitsOffset + 0, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // .smart_pkg_delivery.NodeType dest_type = 4;
-    {PROTOBUF_FIELD_OFFSET(NodeEvent, _impl_.dest_type_), _Internal::kHasBitsOffset + 4, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kOpenEnum)},
-    // uint32 dest_id = 5;
-    {PROTOBUF_FIELD_OFFSET(NodeEvent, _impl_.dest_id_), _Internal::kHasBitsOffset + 5, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kUInt32)},
-    // string dest_name = 6;
-    {PROTOBUF_FIELD_OFFSET(NodeEvent, _impl_.dest_name_), _Internal::kHasBitsOffset + 1, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // .smart_pkg_delivery.PkgArrivalEvent pkg_arrival_event = 7;
+    // .smart_pkg_delivery.PkgArrivalEvent pkg_arrival_event = 1;
     {PROTOBUF_FIELD_OFFSET(NodeEvent, _impl_.event_type_.pkg_arrival_event_), _Internal::kOneofCaseOffset + 0, 0,
     (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
-    // .smart_pkg_delivery.ElevatorStatusEvent elevator_status_event = 8;
+    // .smart_pkg_delivery.ElevatorStatusEvent elevator_status_event = 2;
     {PROTOBUF_FIELD_OFFSET(NodeEvent, _impl_.event_type_.elevator_status_event_), _Internal::kOneofCaseOffset + 0, 1,
     (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
-    // .smart_pkg_delivery.DeliveryStatusEvent delivery_status_event = 9;
+    // .smart_pkg_delivery.DeliveryStatusEvent delivery_status_event = 3;
     {PROTOBUF_FIELD_OFFSET(NodeEvent, _impl_.event_type_.delivery_status_event_), _Internal::kOneofCaseOffset + 0, 2,
     (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
   }}, {{
@@ -3168,10 +3074,6 @@ const ::_pbi::TcParseTable<3, 9, 3, 62, 2> NodeEvent::_table_ = {
     {::_pbi::TcParser::GetTable<::smart_pkg_delivery::ElevatorStatusEvent>()},
     {::_pbi::TcParser::GetTable<::smart_pkg_delivery::DeliveryStatusEvent>()},
   }}, {{
-    "\34\0\0\10\0\0\11\0\0\0\0\0\0\0\0\0"
-    "smart_pkg_delivery.NodeEvent"
-    "src_name"
-    "dest_name"
   }},
 };
 
@@ -3182,22 +3084,7 @@ PROTOBUF_NOINLINE void NodeEvent::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000003u) {
-    if (cached_has_bits & 0x00000001u) {
-      _impl_.src_name_.ClearNonDefaultToEmpty();
-    }
-    if (cached_has_bits & 0x00000002u) {
-      _impl_.dest_name_.ClearNonDefaultToEmpty();
-    }
-  }
-  if (cached_has_bits & 0x0000003cu) {
-    ::memset(&_impl_.src_type_, 0, static_cast<::size_t>(
-        reinterpret_cast<char*>(&_impl_.dest_id_) -
-        reinterpret_cast<char*>(&_impl_.src_type_)) + sizeof(_impl_.dest_id_));
-  }
   clear_event_type();
-  _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -3216,67 +3103,22 @@ PROTOBUF_NOINLINE void NodeEvent::Clear() {
           ::uint32_t cached_has_bits = 0;
           (void)cached_has_bits;
 
-          cached_has_bits = this_._impl_._has_bits_[0];
-          // .smart_pkg_delivery.NodeType src_type = 1;
-          if (cached_has_bits & 0x00000004u) {
-            target = stream->EnsureSpace(target);
-            target = ::_pbi::WireFormatLite::WriteEnumToArray(
-                1, this_._internal_src_type(), target);
-          }
-
-          // uint32 src_id = 2;
-          if (cached_has_bits & 0x00000008u) {
-            target = stream->EnsureSpace(target);
-            target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
-                2, this_._internal_src_id(), target);
-          }
-
-          // string src_name = 3;
-          if (cached_has_bits & 0x00000001u) {
-            const std::string& _s = this_._internal_src_name();
-            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "smart_pkg_delivery.NodeEvent.src_name");
-            target = stream->WriteStringMaybeAliased(3, _s, target);
-          }
-
-          // .smart_pkg_delivery.NodeType dest_type = 4;
-          if (cached_has_bits & 0x00000010u) {
-            target = stream->EnsureSpace(target);
-            target = ::_pbi::WireFormatLite::WriteEnumToArray(
-                4, this_._internal_dest_type(), target);
-          }
-
-          // uint32 dest_id = 5;
-          if (cached_has_bits & 0x00000020u) {
-            target = stream->EnsureSpace(target);
-            target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
-                5, this_._internal_dest_id(), target);
-          }
-
-          // string dest_name = 6;
-          if (cached_has_bits & 0x00000002u) {
-            const std::string& _s = this_._internal_dest_name();
-            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "smart_pkg_delivery.NodeEvent.dest_name");
-            target = stream->WriteStringMaybeAliased(6, _s, target);
-          }
-
           switch (this_.event_type_case()) {
             case kPkgArrivalEvent: {
               target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-                  7, *this_._impl_.event_type_.pkg_arrival_event_, this_._impl_.event_type_.pkg_arrival_event_->GetCachedSize(), target,
+                  1, *this_._impl_.event_type_.pkg_arrival_event_, this_._impl_.event_type_.pkg_arrival_event_->GetCachedSize(), target,
                   stream);
               break;
             }
             case kElevatorStatusEvent: {
               target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-                  8, *this_._impl_.event_type_.elevator_status_event_, this_._impl_.event_type_.elevator_status_event_->GetCachedSize(), target,
+                  2, *this_._impl_.event_type_.elevator_status_event_, this_._impl_.event_type_.elevator_status_event_->GetCachedSize(), target,
                   stream);
               break;
             }
             case kDeliveryStatusEvent: {
               target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-                  9, *this_._impl_.event_type_.delivery_status_event_, this_._impl_.event_type_.delivery_status_event_->GetCachedSize(), target,
+                  3, *this_._impl_.event_type_.delivery_status_event_, this_._impl_.event_type_.delivery_status_event_->GetCachedSize(), target,
                   stream);
               break;
             }
@@ -3306,54 +3148,20 @@ PROTOBUF_NOINLINE void NodeEvent::Clear() {
           // Prevent compiler warnings about cached_has_bits being unused
           (void)cached_has_bits;
 
-          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
-          cached_has_bits = this_._impl_._has_bits_[0];
-          if (cached_has_bits & 0x0000003fu) {
-            // string src_name = 3;
-            if (cached_has_bits & 0x00000001u) {
-              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                              this_._internal_src_name());
-            }
-            // string dest_name = 6;
-            if (cached_has_bits & 0x00000002u) {
-              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                              this_._internal_dest_name());
-            }
-            // .smart_pkg_delivery.NodeType src_type = 1;
-            if (cached_has_bits & 0x00000004u) {
-              total_size += 1 +
-                            ::_pbi::WireFormatLite::EnumSize(this_._internal_src_type());
-            }
-            // uint32 src_id = 2;
-            if (cached_has_bits & 0x00000008u) {
-              total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
-                  this_._internal_src_id());
-            }
-            // .smart_pkg_delivery.NodeType dest_type = 4;
-            if (cached_has_bits & 0x00000010u) {
-              total_size += 1 +
-                            ::_pbi::WireFormatLite::EnumSize(this_._internal_dest_type());
-            }
-            // uint32 dest_id = 5;
-            if (cached_has_bits & 0x00000020u) {
-              total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
-                  this_._internal_dest_id());
-            }
-          }
           switch (this_.event_type_case()) {
-            // .smart_pkg_delivery.PkgArrivalEvent pkg_arrival_event = 7;
+            // .smart_pkg_delivery.PkgArrivalEvent pkg_arrival_event = 1;
             case kPkgArrivalEvent: {
               total_size += 1 +
                             ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.event_type_.pkg_arrival_event_);
               break;
             }
-            // .smart_pkg_delivery.ElevatorStatusEvent elevator_status_event = 8;
+            // .smart_pkg_delivery.ElevatorStatusEvent elevator_status_event = 2;
             case kElevatorStatusEvent: {
               total_size += 1 +
                             ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.event_type_.elevator_status_event_);
               break;
             }
-            // .smart_pkg_delivery.DeliveryStatusEvent delivery_status_event = 9;
+            // .smart_pkg_delivery.DeliveryStatusEvent delivery_status_event = 3;
             case kDeliveryStatusEvent: {
               total_size += 1 +
                             ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.event_type_.delivery_status_event_);
@@ -3376,28 +3184,6 @@ void NodeEvent::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::googl
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  cached_has_bits = from._impl_._has_bits_[0];
-  if (cached_has_bits & 0x0000003fu) {
-    if (cached_has_bits & 0x00000001u) {
-      _this->_internal_set_src_name(from._internal_src_name());
-    }
-    if (cached_has_bits & 0x00000002u) {
-      _this->_internal_set_dest_name(from._internal_dest_name());
-    }
-    if (cached_has_bits & 0x00000004u) {
-      _this->_impl_.src_type_ = from._impl_.src_type_;
-    }
-    if (cached_has_bits & 0x00000008u) {
-      _this->_impl_.src_id_ = from._impl_.src_id_;
-    }
-    if (cached_has_bits & 0x00000010u) {
-      _this->_impl_.dest_type_ = from._impl_.dest_type_;
-    }
-    if (cached_has_bits & 0x00000020u) {
-      _this->_impl_.dest_id_ = from._impl_.dest_id_;
-    }
-  }
-  _this->_impl_._has_bits_[0] |= cached_has_bits;
   if (const uint32_t oneof_from_case = from._impl_._oneof_case_[0]) {
     const uint32_t oneof_to_case = _this->_impl_._oneof_case_[0];
     const bool oneof_needs_init = oneof_to_case != oneof_from_case;
@@ -3453,18 +3239,7 @@ void NodeEvent::CopyFrom(const NodeEvent& from) {
 
 void NodeEvent::InternalSwap(NodeEvent* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* arena = GetArena();
-  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.src_name_, &other->_impl_.src_name_, arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.dest_name_, &other->_impl_.dest_name_, arena);
-  ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(NodeEvent, _impl_.dest_id_)
-      + sizeof(NodeEvent::_impl_.dest_id_)
-      - PROTOBUF_FIELD_OFFSET(NodeEvent, _impl_.src_type_)>(
-          reinterpret_cast<char*>(&_impl_.src_type_),
-          reinterpret_cast<char*>(&other->_impl_.src_type_));
   swap(_impl_.event_type_, other->_impl_.event_type_);
   swap(_impl_._oneof_case_[0], other->_impl_._oneof_case_[0]);
 }
@@ -4017,6 +3792,424 @@ void ExecutionStatus::InternalSwap(ExecutionStatus* PROTOBUF_RESTRICT other) {
 
 ::google::protobuf::Metadata ExecutionStatus::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class ClientRegisterRequest::_Internal {
+ public:
+  using HasBits =
+      decltype(std::declval<ClientRegisterRequest>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(ClientRegisterRequest, _impl_._has_bits_);
+};
+
+ClientRegisterRequest::ClientRegisterRequest(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:smart_pkg_delivery.ClientRegisterRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE ClientRegisterRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::smart_pkg_delivery::ClientRegisterRequest& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        identity_name_(arena, from.identity_name_) {}
+
+ClientRegisterRequest::ClientRegisterRequest(
+    ::google::protobuf::Arena* arena,
+    const ClientRegisterRequest& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  ClientRegisterRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, identity_type_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, identity_type_),
+           offsetof(Impl_, identity_id_) -
+               offsetof(Impl_, identity_type_) +
+               sizeof(Impl_::identity_id_));
+
+  // @@protoc_insertion_point(copy_constructor:smart_pkg_delivery.ClientRegisterRequest)
+}
+inline PROTOBUF_NDEBUG_INLINE ClientRegisterRequest::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : _cached_size_{0},
+        identity_name_(arena) {}
+
+inline void ClientRegisterRequest::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, identity_type_),
+           0,
+           offsetof(Impl_, identity_id_) -
+               offsetof(Impl_, identity_type_) +
+               sizeof(Impl_::identity_id_));
+}
+ClientRegisterRequest::~ClientRegisterRequest() {
+  // @@protoc_insertion_point(destructor:smart_pkg_delivery.ClientRegisterRequest)
+  SharedDtor(*this);
+}
+inline void ClientRegisterRequest::SharedDtor(MessageLite& self) {
+  ClientRegisterRequest& this_ = static_cast<ClientRegisterRequest&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.identity_name_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* ClientRegisterRequest::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) ClientRegisterRequest(arena);
+}
+constexpr auto ClientRegisterRequest::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(ClientRegisterRequest),
+                                            alignof(ClientRegisterRequest));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull ClientRegisterRequest::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_ClientRegisterRequest_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &ClientRegisterRequest::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<ClientRegisterRequest>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &ClientRegisterRequest::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<ClientRegisterRequest>(), &ClientRegisterRequest::ByteSizeLong,
+            &ClientRegisterRequest::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(ClientRegisterRequest, _impl_._cached_size_),
+        false,
+    },
+    &ClientRegisterRequest::kDescriptorMethods,
+    &descriptor_table_smart_5fpkg_5fdelivery_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* ClientRegisterRequest::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<2, 3, 0, 62, 2> ClientRegisterRequest::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(ClientRegisterRequest, _impl_._has_bits_),
+    0, // no _extensions_
+    3, 24,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967288,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    3,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::smart_pkg_delivery::ClientRegisterRequest>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+    // .smart_pkg_delivery.NodeType identity_type = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ClientRegisterRequest, _impl_.identity_type_), 1>(),
+     {8, 1, 0, PROTOBUF_FIELD_OFFSET(ClientRegisterRequest, _impl_.identity_type_)}},
+    // uint32 identity_id = 2;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(ClientRegisterRequest, _impl_.identity_id_), 2>(),
+     {16, 2, 0, PROTOBUF_FIELD_OFFSET(ClientRegisterRequest, _impl_.identity_id_)}},
+    // string identity_name = 3;
+    {::_pbi::TcParser::FastUS1,
+     {26, 0, 0, PROTOBUF_FIELD_OFFSET(ClientRegisterRequest, _impl_.identity_name_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .smart_pkg_delivery.NodeType identity_type = 1;
+    {PROTOBUF_FIELD_OFFSET(ClientRegisterRequest, _impl_.identity_type_), _Internal::kHasBitsOffset + 1, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kOpenEnum)},
+    // uint32 identity_id = 2;
+    {PROTOBUF_FIELD_OFFSET(ClientRegisterRequest, _impl_.identity_id_), _Internal::kHasBitsOffset + 2, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUInt32)},
+    // string identity_name = 3;
+    {PROTOBUF_FIELD_OFFSET(ClientRegisterRequest, _impl_.identity_name_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\50\0\0\15\0\0\0\0"
+    "smart_pkg_delivery.ClientRegisterRequest"
+    "identity_name"
+  }},
+};
+
+PROTOBUF_NOINLINE void ClientRegisterRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:smart_pkg_delivery.ClientRegisterRequest)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    _impl_.identity_name_.ClearNonDefaultToEmpty();
+  }
+  if (cached_has_bits & 0x00000006u) {
+    ::memset(&_impl_.identity_type_, 0, static_cast<::size_t>(
+        reinterpret_cast<char*>(&_impl_.identity_id_) -
+        reinterpret_cast<char*>(&_impl_.identity_type_)) + sizeof(_impl_.identity_id_));
+  }
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* ClientRegisterRequest::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const ClientRegisterRequest& this_ = static_cast<const ClientRegisterRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* ClientRegisterRequest::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const ClientRegisterRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:smart_pkg_delivery.ClientRegisterRequest)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          cached_has_bits = this_._impl_._has_bits_[0];
+          // .smart_pkg_delivery.NodeType identity_type = 1;
+          if (cached_has_bits & 0x00000002u) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteEnumToArray(
+                1, this_._internal_identity_type(), target);
+          }
+
+          // uint32 identity_id = 2;
+          if (cached_has_bits & 0x00000004u) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+                2, this_._internal_identity_id(), target);
+          }
+
+          // string identity_name = 3;
+          if (cached_has_bits & 0x00000001u) {
+            const std::string& _s = this_._internal_identity_name();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "smart_pkg_delivery.ClientRegisterRequest.identity_name");
+            target = stream->WriteStringMaybeAliased(3, _s, target);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:smart_pkg_delivery.ClientRegisterRequest)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t ClientRegisterRequest::ByteSizeLong(const MessageLite& base) {
+          const ClientRegisterRequest& this_ = static_cast<const ClientRegisterRequest&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t ClientRegisterRequest::ByteSizeLong() const {
+          const ClientRegisterRequest& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:smart_pkg_delivery.ClientRegisterRequest)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+          cached_has_bits = this_._impl_._has_bits_[0];
+          if (cached_has_bits & 0x00000007u) {
+            // string identity_name = 3;
+            if (cached_has_bits & 0x00000001u) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_identity_name());
+            }
+            // .smart_pkg_delivery.NodeType identity_type = 1;
+            if (cached_has_bits & 0x00000002u) {
+              total_size += 1 +
+                            ::_pbi::WireFormatLite::EnumSize(this_._internal_identity_type());
+            }
+            // uint32 identity_id = 2;
+            if (cached_has_bits & 0x00000004u) {
+              total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+                  this_._internal_identity_id());
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void ClientRegisterRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<ClientRegisterRequest*>(&to_msg);
+  auto& from = static_cast<const ClientRegisterRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:smart_pkg_delivery.ClientRegisterRequest)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000007u) {
+    if (cached_has_bits & 0x00000001u) {
+      _this->_internal_set_identity_name(from._internal_identity_name());
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _this->_impl_.identity_type_ = from._impl_.identity_type_;
+    }
+    if (cached_has_bits & 0x00000004u) {
+      _this->_impl_.identity_id_ = from._impl_.identity_id_;
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void ClientRegisterRequest::CopyFrom(const ClientRegisterRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:smart_pkg_delivery.ClientRegisterRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void ClientRegisterRequest::InternalSwap(ClientRegisterRequest* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.identity_name_, &other->_impl_.identity_name_, arena);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(ClientRegisterRequest, _impl_.identity_id_)
+      + sizeof(ClientRegisterRequest::_impl_.identity_id_)
+      - PROTOBUF_FIELD_OFFSET(ClientRegisterRequest, _impl_.identity_type_)>(
+          reinterpret_cast<char*>(&_impl_.identity_type_),
+          reinterpret_cast<char*>(&other->_impl_.identity_type_));
+}
+
+::google::protobuf::Metadata ClientRegisterRequest::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class ClientRegisterResponse::_Internal {
+ public:
+};
+
+ClientRegisterResponse::ClientRegisterResponse(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(arena_constructor:smart_pkg_delivery.ClientRegisterResponse)
+}
+ClientRegisterResponse::ClientRegisterResponse(
+    ::google::protobuf::Arena* arena,
+    const ClientRegisterResponse& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  ClientRegisterResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:smart_pkg_delivery.ClientRegisterResponse)
+}
+
+inline void* ClientRegisterResponse::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) ClientRegisterResponse(arena);
+}
+constexpr auto ClientRegisterResponse::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(ClientRegisterResponse),
+                                            alignof(ClientRegisterResponse));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull ClientRegisterResponse::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_ClientRegisterResponse_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &ClientRegisterResponse::MergeImpl,
+        ::google::protobuf::internal::ZeroFieldsBase::GetNewImpl<ClientRegisterResponse>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &ClientRegisterResponse::SharedDtor,
+        ::google::protobuf::internal::ZeroFieldsBase::GetClearImpl<ClientRegisterResponse>(), &ClientRegisterResponse::ByteSizeLong,
+            &ClientRegisterResponse::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(ClientRegisterResponse, _impl_._cached_size_),
+        false,
+    },
+    &ClientRegisterResponse::kDescriptorMethods,
+    &descriptor_table_smart_5fpkg_5fdelivery_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* ClientRegisterResponse::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 0, 0, 0, 2> ClientRegisterResponse::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    0, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967295,  // skipmap
+    offsetof(decltype(_table_), field_names),  // no field_entries
+    0,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::smart_pkg_delivery::ClientRegisterResponse>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }},
+  // no field_entries, or aux_entries
+  {{
+  }},
+};
+
+
+
+
+
+
+
+
+::google::protobuf::Metadata ClientRegisterResponse::GetMetadata() const {
+  return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================
 

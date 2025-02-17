@@ -32,9 +32,17 @@ CREATE TABLE IF NOT EXISTS whitelist_clients (
 
 
 CREATE TABLE IF NOT EXISTS users (
-    id                  INT AUTO_INCREMENT PRIMARY KEY    COMMENT '사용자 고유 식별자',
-    name                VARCHAR(255) NOT NULL             COMMENT '사용자 이름',
-    is_deleted          BOOLEAN DEFAULT FALSE             COMMENT 'SOFT DELETE (TRUE = 삭제됨)'
+    id                  INT AUTO_INCREMENT PRIMARY KEY          COMMENT '사용자 고유 식별자',
+    name                VARCHAR(255) NOT NULL                   COMMENT '사용자 이름',
+    node_type           ENUM('SERVER', 'CLIENT_USER', 'CLIENT_DELIVERY_ROBOT', 'CLIENT_ELEVATOR', 'CLIENT_ADDRESS_RECOGNIZER') NOT NULL
+                                                                COMMENT '노드 유형',
+    node_id             INT NOT NULL                            COMMENT '노드 고유 식별자 (type별 unique)',
+    node_name           VARCHAR(127)                            COMMENT '노드 이름',
+    created_at          DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '계정 생성일시',
+    updated_at          DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+                                                                COMMENT '마지막 수정일시',
+    is_deleted          BOOLEAN DEFAULT FALSE                   COMMENT 'SOFT DELETE (TRUE = 삭제됨)',
+    UNIQUE KEY unique_node (node_type, node_id)                 COMMENT '(node_type, node_id) 쌍은 고유함'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 

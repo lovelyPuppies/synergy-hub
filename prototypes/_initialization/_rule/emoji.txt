@@ -13,7 +13,7 @@ Emoji 🔗 from VS Code Extension :emojisense: ;https://marketplace.visualstudio
   🗒️      :spiral_notepad:              "Contents"                          Used to distinguish the "Contents" section within a Wikipedia article from other articles that I have logically grouped, for better clarity and organization.
   📎      :paperclip:                   ""                                  Used to indicate that the reader has skimmed only the summary or abstract portion of the content.
   🔍      :mag:                         ["FAQ", "Help"], " <Title>"         Used to view a collection of questions and answers or help topics.
-
+  🔎      :mag_right:                   ""                                  Used to indicate a possibility, assumption, or guess, such as "may be," "could be," or "might be."
 
   🚨      :rotating_light:              "(Issue: Error); <Title>"
   🚨      :rotating_light:              "(Issue: Bug); <Title>"

@@ -167,22 +167,22 @@ import time
 InteractiveShell.ast_node_interactivity = "all"
 
 
-wrapper_msg = smart_pkg_delivery_pb2.WrapperMsg()
-msg1_node_event = wrapper_msg.node_event
+interaction_msg = smart_pkg_delivery_pb2.InteractionMsg()
+msg1_node_event = interaction_msg.node_event
 address = msg1_node_event.pkg_arrival_event.address
 address.building_num = 105
 address.unit_num = 505
 
-print(f"Before encoded:\n {wrapper_msg}\n\n")
+print(f"Before encoded:\n {interaction_msg}\n\n")
 
 # Method
-x: str = wrapper_msg.SerializePartialToString()
+x: str = interaction_msg.SerializePartialToString()
 print(f"Encoded string (size: {len(x)} bytes):\n{x}\n\n")
 
 # Method
-wrapper_msg2 = smart_pkg_delivery_pb2.WrapperMsg()
-y: int = wrapper_msg2.ParseFromString(x)
-print(f"Decoded string (size: {y} bytes):\n{wrapper_msg2}\n\n")
+interaction_msg2 = smart_pkg_delivery_pb2.InteractionMsg()
+y: int = interaction_msg2.ParseFromString(x)
+print(f"Decoded string (size: {y} bytes):\n{interaction_msg2}\n\n")
 
 
 # %% 🧪🆗 Test Socket communication
@@ -207,19 +207,19 @@ def main():
         ## ⚙️ --------------------------------------------------
         # 3회 전송 테스트
         for i in range(3):
-            wrapper_msg = smart_pkg_delivery_pb2.WrapperMsg()
-            wrapper_msg.node_event.src_type = (
+            interaction_msg = smart_pkg_delivery_pb2.InteractionMsg()
+            interaction_msg.node_event.src_type = (
                 smart_pkg_delivery_pb2.CLIENT_ADDRESS_RECOGNIZER
             )
-            wrapper_msg.node_event.src_id = 1
-            wrapper_msg.node_event.dest_type = smart_pkg_delivery_pb2.SERVER
-            wrapper_msg.node_event.dest_id = 1
-            msg1_arrival_event = wrapper_msg.node_event.pkg_arrival_event
+            interaction_msg.node_event.src_id = 1
+            interaction_msg.node_event.dest_type = smart_pkg_delivery_pb2.SERVER
+            interaction_msg.node_event.dest_id = 1
+            msg1_arrival_event = interaction_msg.node_event.pkg_arrival_event
             msg1_arrival_event.address.building_num = 105
             msg1_arrival_event.address.unit_num = 505 + i * 100
             if client_socket:
                 try:
-                    client_socket.sendall(wrapper_msg.SerializePartialToString())
+                    client_socket.sendall(interaction_msg.SerializePartialToString())
                 except Exception as e:
                     print(f"데이터 전송 실패: {e}")
             time.sleep(2)

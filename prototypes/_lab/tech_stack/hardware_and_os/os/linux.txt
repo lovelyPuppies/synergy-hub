@@ -623,6 +623,14 @@ Linux 🔪 Man pages
 
   ⚓ netcat (🧮 nc) (📦 netcat-openbsd) ; https://netcat.sourceforge.net/
 
+  ⚓ vim (📦 netcat-openbsd) ; https://netcat.sourceforge.net/
+    https://github.com/vim/vim
+    ⚓🧮 vim ; https://www.mankier.com/1/vim
+    ⚓🧮 xxd ; https://www.mankier.com/1/xxd
+      ; 🔎 eXtended heXaDump
+      make a hex dump or do the reverse. 
+      -📍 -i | -include
+        Output in C include file style. A complete static array definition is written (named after the input file), unless xxd reads from stdin. Can be combined with -b.
 
 ----------------------------------------------
 Linux 🔪 library only
