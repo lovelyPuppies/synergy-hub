@@ -20534,3 +20534,25 @@ endforeach()
 # Debug
 message(STATUS "EXAMPLE_ENV_VAR: $ENV{EXAMPLE_ENV_VAR}")
 message(STATUS "VCPKG_ROOT: $ENV{VCPKG_ROOT}")
+
+The following settings can be used temporarily when CMakePresets integration is enabled.
+https://github.com/microsoft/vscode-cmake-tools/blob/HEAD/docs/cmake-presets.md
+
+  ❗ CMakePresets.json should be the source of truth for all settings related to configure, build, and test, except for settings that can be used as temporary overrides (see below)
+  The following settings in settings.json either duplicate options in CMakePresets.json or no longer apply. These settings will be ignored when CMakePresets.json integration is enabled.
+    - cmake.environment         configurePresets.environment
+
+
+🚨 (Issue: Bug) ; https://github.com/microsoft/vscode-cmake-tools/issues/4253
+  When configuring a project with a configuration preset, $env{<environment-variable>} is not picking up environment variables defined in extension setting cmake.environment.
+    Same result when setting cmake.configureEnvironment
+  ... Since when I run AN_ENV_VARIABLE=hello cmake --preset ninja directly from CLI, behavior is as expected (output of message is hello/preset).
+
+
+    ...
+  However the settings we provide like cmake.environment, etc, aren't from Presets, they are from the extension and for context, originate from when the extension only had Kits support a long time ago.
+
+... vscode settings.json 에서 오버라이드하면 안된다. 왜냐하면 이건, 단일 파일에 대해서만 적용
+  cmake.configureEnvironment
+
+일단 그건 알고있어? Cmakelists.txt 에서 env 를 파싱해서 가지고 있어봣자, preset.json 이 먼저 해석되므로 별로 의미가 없어. 

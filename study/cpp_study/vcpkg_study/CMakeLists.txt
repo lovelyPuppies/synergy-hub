@@ -11,7 +11,6 @@ add_executable(fmt_example main.cpp)
 target_link_libraries(fmt_example PRIVATE fmt::fmt)
 
 
-
 ##### 🌀 Title: Creating a Symbolic Link or Copying compile_commands.json to build/compile_commands.json for IntelliSense in VSCode with the clangd Extension 📅 2025-01-06 07:07:23
 ## Define the paths for compile_commands.json
 #   - COMPILE_COMMANDS_SRC: Path where 🚣 compile_commands.json is generated during 🪱 the configure phase 

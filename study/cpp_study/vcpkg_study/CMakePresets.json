@@ -10,7 +10,7 @@
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/build/x64-linux-gnu",
       "environment": {
-        "PATH": "bin:/usr/bin:/home/linuxbrew/.linuxbrew/bin"
+        "PATH": "/home/linuxbrew/.linuxbrew/bin:bin:/usr/bin"
       },
       "cacheVariables": {
         "CMAKE_CXX_COMPILER": "clang++",
@@ -20,7 +20,7 @@
         "CMAKE_CXX_STANDARD_REQUIRED": "ON",
         "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
         "CMAKE_PREFIX_PATH": "cmake",
-        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOTa}/scripts/buildsystems/vcpkg.cmake"
       }
     }
   ]

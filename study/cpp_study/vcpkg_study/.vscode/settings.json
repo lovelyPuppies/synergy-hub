@@ -1,5 +1,5 @@
 {
   "cmake.configureEnvironment": {
-    "VCPKG_ROOT": "/home/wbfw109v2/repos/vcpkg"
+    "VCPKG_ROOTa": "/home/wbfw109v2/repos/vcpkg"
   }
 }
