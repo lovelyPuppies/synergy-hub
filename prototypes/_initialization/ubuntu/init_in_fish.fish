@@ -864,7 +864,35 @@ brew install poetry
   https://formulae.brew.sh/formula/conan#default
 '
 brew install conan
+: '
+📦 vcpkg
+  https://repology.org/project/vcpkg/versions
+  https://formulae.brew.sh/formula/vcpkg#default
+  https://github.com/microsoft/vcpkg
 
+  ==> Caveats
+    This formula provides only the `vcpkg` executable. To use vcpkg:
+      git clone https://github.com/microsoft/vcpkg "$HOME/vcpkg"
+      export VCPKG_ROOT="$HOME/repos/vcpkg"
+
+  C++ Library Manager
+'
+brew install vcpkg
+
+# Define the unique comment line to identify the settings.
+set unique_comment "## [vcpkg] add binary dir to path"
+# Check if the unique comment line exists in the configuration file.
+if not grep -Fxq "$unique_comment" "$FISH_CONFIG_PATH"
+    # Append the new configuration block only if the unique line is not found.
+    echo "
+    $unique_comment"'
+    # Note that whenever upgrade this package, manually it requiress to run  🧮 `cd $HOME/repos/vcpkg && git pull origin; cd -`
+    set -gx VCPKG_ROOT $HOME/repos/vcpkg
+    ' | prettify_indent_via_pipe | tee -a $FISH_CONFIG_PATH >/dev/null
+    echo -e "\n" >>"$FISH_CONFIG_PATH"
+end
+
+git clone https://github.com/microsoft/vcpkg $HOME/repos/vcpkg
 
 
 : '
@@ -1001,11 +1029,11 @@ brew install mariadb-connector-c
 set unique_comment "## [mariadb-connector-c] add binary dir to path"
 if not grep -Fxq "$unique_comment" "$FISH_CONFIG_PATH"
     echo "
-$unique_comment
-fish_add_path /home/linuxbrew/.linuxbrew/opt/mariadb-connector-c/bin
-set -gx LDFLAGS \$LDFLAGS -L/home/linuxbrew/.linuxbrew/opt/mariadb-connector-c/lib
-set -gx CPPFLAGS \$CPPFLAGS -I/home/linuxbrew/.linuxbrew/opt/mariadb-connector-c/include
-" | prettify_indent_via_pipe | tee -a $FISH_CONFIG_PATH >/dev/null
+    $unique_comment
+    fish_add_path /home/linuxbrew/.linuxbrew/opt/mariadb-connector-c/bin
+    set -gx LDFLAGS \$LDFLAGS -L/home/linuxbrew/.linuxbrew/opt/mariadb-connector-c/lib
+    set -gx CPPFLAGS \$CPPFLAGS -I/home/linuxbrew/.linuxbrew/opt/mariadb-connector-c/include
+    " | prettify_indent_via_pipe | tee -a $FISH_CONFIG_PATH >/dev/null
     echo -e "\n" >>"$FISH_CONFIG_PATH"
 end
 

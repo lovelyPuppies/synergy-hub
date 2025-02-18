@@ -16,6 +16,18 @@ trap on_interrupt SIGINT
 
 set script_dir /home/wbfw109v2/repos/synergy-hub/prototypes/_initialization/ubuntu
 
+# Define the unique comment line to identify the settings.
+set unique_comment "## [vcpkg] add binary dir to path"
+# Check if the unique comment line exists in the configuration file.
+if not grep -Fxq "$unique_comment" "$FISH_CONFIG_PATH"
+    # Append the new configuration block only if the unique line is not found.
+    echo "
+    $unique_comment"'
+    # Note that whenever upgrade this package, manually it requires to run  🧮 `cd $HOME/repos/vcpkg && git pull origin; cd -`
+    set -gx VCPKG_ROOT $HOME/repos/vcpkg
+    ' | prettify_indent_via_pipe | tee -a $FISH_CONFIG_PATH >/dev/null
+    echo -e "\n" >>"$FISH_CONFIG_PATH"
+end
 
 ### FFmpeg build ; https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu
 
