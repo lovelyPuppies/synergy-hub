@@ -20507,3 +20507,30 @@ mariadb-connector-cpp provides CMake targets:
   find_package(unofficial-mariadb-connector-cpp CONFIG REQUIRED)
   target_link_libraries(main PRIVATE unofficial::mariadb-connector-cpp::mariadbcpp)
 
+
+
+
+
+
+
+
+>>>>>>>>> dotenv
+
+how can I load environment file (.env) when run cmake command? ; https://stackoverflow.com/questions/68824042/how-can-i-load-environment-file-env-when-run-cmake-command
+How do I use CMake presets environment variables in the CMake build step? ; https://stackoverflow.com/questions/78026615/how-do-i-use-cmake-presets-environment-variables-in-the-cmake-build-step
+
+
+
+##### 🌀 Title: Load environment file (.env) when run cmake command 📅 2025-02-19 04:22:08
+# Reference
+#   - https://stackoverflow.com/a/79128191
+file(STRINGS ${CMAKE_HOME_DIRECTORY}/.env ENV_FILE)
+foreach(VAR ${ENV_FILE})
+    string(REGEX MATCH "^[^=]*" KEY ${VAR})
+    string(REGEX REPLACE "^[^=]*=" "" VALUE ${VAR})
+    set(ENV{${KEY}} ${VALUE})
+endforeach()
+
+# Debug
+message(STATUS "EXAMPLE_ENV_VAR: $ENV{EXAMPLE_ENV_VAR}")
+message(STATUS "VCPKG_ROOT: $ENV{VCPKG_ROOT}")

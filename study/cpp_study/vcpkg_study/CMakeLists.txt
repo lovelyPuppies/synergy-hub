@@ -44,3 +44,6 @@ else()
     # Successfully created the symbolic link, log a status message
     message(STATUS "Successfully created symbolic link: ${COMPILE_COMMANDS_DEST}")
 endif()
+
+
+
