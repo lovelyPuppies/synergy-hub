@@ -20356,7 +20356,7 @@ Active Time Battle (ATB)
 
  C++에서 InfluxDB용 Query Builde
 C++20 Query Object Pattern 
-  ✔️ **"Query Object Pattern"**은 Martin Fowler의 Patterns of Enterprise Application Architecture에 소개된 정식 설계 패턴입니다.
+  ✔️ **"Query Object"**은 Martin Fowler의 Patterns of Enterprise Application Architecture에 소개된 mm
   ✔️ C++20 Query Object Pattern은 C++20의 Concepts, Templates, Fluent Interface 패턴을 기반으로 구현한 현대적인 Query Object 설계 방식입니다.
   ✔️ ORM 라이브러리 내부에서는 이미 유사한 설계 패턴이 널리 사용 중입니다.
 💡 5. 실제로 TSDB에서는 ORM 대신 이런 방식을 사용하나?
@@ -20367,3 +20367,27 @@ C++20 Query Object Pattern
   TimescaleDB는 PostgreSQL 기반이므로 **PostgreSQL ORM(TinyORM, ODB)**과 함께 사용할 수 있습니다.
 B. Query를 모듈화하고, 파일 기반으로 관리
 
+
+
+!!! 🚀 4. DTO를 사용하는 이유 (왜 Entity만으로는 부족한가?)
+  오. DTO 를 사용하는 경우, .execute(raw query) 에 대해서도 대처 가능한가? .field_name 으로 접근 가능하게
+  오. DTO 를 사용하는 경우, .execute(raw query) 에 대해서도 대처 가능한가? .field_name 으로 접근 가능하게. emplace_back? 키 확인 안하고 이거를 차례대로 넣어주면 간단히 완성되려나?
+  UserDTO dto;
+    std::tie(dto.id, dto.name, dto.salary) = std::make_tuple(
+        stoi(row[0]), 
+        row[1] ? row[1] : "", 
+        stod(row[2] ? row[2] : "0")
+    );
+    dtos.emplace_back(dto);
+
+https://www.codesynthesis.com/products/odb/doc/manual.xhtml
+
+https://www.codesynthesis.com/products/odb/download.xhtml
+
+http://wiki.codesynthesis.com/Using_ODB_on_Android
+
+
+기본적으로 Vcpkg는 글로벌(Global) 설치 방식이며, 전통적으로는 프로젝트별 버전 관리 기능이 부족했습니다. 하지만, **2021년 이후 'Vcpkg Manifest 모드'**가 도입되면서, 프로젝트별 버전 및 의존성 관리가 가능해졌습니다
+
+
+https://github.com/microsoft/vcpkg
