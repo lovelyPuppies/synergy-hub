@@ -20556,3 +20556,53 @@ https://github.com/microsoft/vscode-cmake-tools/blob/HEAD/docs/cmake-presets.md
   cmake.configureEnvironment
 
 일단 그건 알고있어? Cmakelists.txt 에서 env 를 파싱해서 가지고 있어봣자, preset.json 이 먼저 해석되므로 별로 의미가 없어. 
+
+🚀 💡 해결 방안: .env + CMakePresets.json 문제 해결하기
+💡 방법 1: VSCode에서 cmake.configureArgs를 사용해 .env 로드 (추천)
+📝 .vscode/settings.json
+json
+Copy
+Edit
+{
+  "cmake.configureArgs": [
+    "--no-warn-unused-cli",
+    "-DENV_FILE=${workspaceFolder}/.env"
+  ]
+}
+📝 CMakePresets.json
+json
+Copy
+Edit
+{
+  "version": 3,
+  "configurePresets": [
+    {
+      "name": "debug",
+      "generator": "Ninja",
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+      }
+    }
+  ]
+}
+📝 CMakeLists.txt
+cmake
+Copy
+Edit
+if (DEFINED ENV_FILE)
+    file(STRINGS "${ENV_FILE}" ENV_FILE_CONTENT)
+    foreach(VAR ${ENV_FILE_CONTENT})
+        if (VAR MATCHES "^([^#].+)=([^#].*)$")
+            string(STRIP "${CMAKE_MATCH_1}" KEY)
+            string(STRIP "${CMAKE_MATCH_2}" VALUE)
+            set(ENV{${KEY}} "${VALUE}")
+        endif()
+    endforeach()
+endif()
+
+# Debug
+message(STATUS "VCPKG_ROOT from .env: $ENV{VCPKG_ROOT}")
+✅ 효과:
+.vscode/settings.json에서 .env 경로를 전달.
+CMakePresets.json은 $env{}로 .env 변수 참조 가능.
+CMakeLists.txt는 ENV_FILE 값을 전달받아 .env를 로드.
