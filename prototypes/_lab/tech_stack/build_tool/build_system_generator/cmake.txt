@@ -108,6 +108,7 @@ list of level 1 subjects
 
         ⚓ set_target_properties() ; https://cmake.org/cmake/help/latest/command/set_target_properties.html
 
+        ⚓ add_subdirectory() ; https://cmake.org/cmake/help/latest/command/add_subdirectory.html
 
     ⚓ cmake-presets ; https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html 
       #️⃣ Format ; https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html#format

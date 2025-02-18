@@ -35,6 +35,29 @@
 
     
 자동차용: 유라코퍼레이션 ; https://www.saramin.co.kr/zf_user/company-info/view-inner-recruit?csn=ei9KYXFOajFpSzFiSFBhRDdnZForZz09
+📰❗ 전기 기사
+  전기 신호를 증폭한다는 것은 전압을 증폭하는 것을 의미
+  과전류를 견디려면
+    - Capacitor (축전기)
+      전류의 급격한 변화(서지)를 완화하거나 전류를 저장했다가 공급.
+    - Fuse (퓨즈)
+      과전류 발생 시 회로를 단락(끊어서) 보호.
+    - Resistor (저항)
+      전류의 흐름을 제한해 과전류를 예방.
+    - Circuit Breaker (회로 차단기)
+      일정 전류를 초과하면 자동으로 회로를 차단.
+
+  과전압을 견디려면
+    - Regulator (전압 레귤레이터)
+      입력 전압을 안정된 일정 전압으로 조절.
+    - Zener Diode (제너 다이오드)
+      특정 전압 이상에서 전류를 흘려 과전압을 보호.
+    - MOV (Metal Oxide Varistor, 배리스터)
+      순간적인 고전압(서지)을 흡수해 회로를 보호.
+    - Surge Protector (서지 보호기)
+      낙뢰나 전력 스파이크 등의 고전압 충격을 차단.
+    - Transformer (트랜스, 변압기)
+      전압을 올리거나 낮추어 필요한 전압만 공급.
 
 
 📰 Aumtoatmino
@@ -20413,3 +20436,34 @@ vcpkg search mariadb
 ls $VCPKG_ROOT/installed
 
 https://marketplace.visualstudio.com/items?itemName=Arm.environment-manager
+
+
+cmake_minimum_required(VERSION 3.20)
+  project(MyProject LANGUAGES CXX)
+
+  # pkg-config로 Protobuf 찾기
+  find_package(PkgConfig REQUIRED)
+  pkg_check_modules(Protobuf REQUIRED IMPORTED protobuf)
+
+  message(STATUS "Protobuf CFLAGS: ${Protobuf_CFLAGS}")
+  message(STATUS "Protobuf LIBRARIES: ${Protobuf_LIBRARIES}")
+
+  add_executable(myapp main.cpp)
+  target_include_directories(myapp PRIVATE ${Protobuf_INCLUDE_DIRS})
+  target_link_libraries(myapp PRIVATE ${Protobuf_LIBRARIES})
+
+cmake_minimum_required(VERSION 3.20)
+  project(MyProtobufProject LANGUAGES CXX)
+
+  # Protobuf 경로 설정
+  set(CMAKE_PREFIX_PATH "/opt/protobuf/release-static")
+
+  # Protobuf 찾기
+  find_package(Protobuf CONFIG REQUIRED)
+
+  message(STATUS "Protobuf_INCLUDE_DIRS: ${Protobuf_INCLUDE_DIRS}")
+  message(STATUS "Protobuf_LIBRARIES: ${Protobuf_LIBRARIES}")
+
+  add_executable(myapp main.cpp)
+  target_link_libraries(myapp PRIVATE protobuf::libprotobuf)
+

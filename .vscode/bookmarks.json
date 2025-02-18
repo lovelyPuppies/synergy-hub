@@ -119,6 +119,26 @@
 					"label": ""
 				}
 			]
+		},
+		{
+			"path": "prototypes/_lab/tech_stack/build_tool/build_system_generator/cmake.txt",
+			"bookmarks": [
+				{
+					"line": 68,
+					"column": 6,
+					"label": ""
+				},
+				{
+					"line": 81,
+					"column": 6,
+					"label": ""
+				},
+				{
+					"line": 100,
+					"column": 6,
+					"label": ""
+				}
+			]
 		}
 	]
 }
