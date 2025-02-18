@@ -1,0 +1,162 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    // 🌀 Title: Compile: Protocal Buffers, NanoPB
+    {
+      "label": "Run (protoc, nanopb_generator)",
+      "type": "shell",
+      "command": "source $(poetry env info --path)/bin/activate.fish && protoc -I=interconnection_protocol/src --python_out=socket_iot_system-iot_client-python/src/external/protobuf --pyi_out=socket_iot_system-iot_client-python/src/external/protobuf --cpp_out=socket_iot_system/src/common/protobuf_cpp smart_pkg_delivery.proto && nanopb_generator --proto-path interconnection_protocol/src --options-file=smart_pkg_delivery-nanopb.options --output-dir=socket_iot_system/src/common/protobuf_c smart_pkg_delivery.proto",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    // 🌀 Title: target: Raspberry Pi
+    {
+      "label": "conan-raspberry_pi_4-release-clang-19-armv8 - 1. Conan Install",
+      "type": "shell",
+      "command": "cd socket_iot_system && conan install . --build=missing --profile:build profiles/linux-debug-clang-19-x86_64 --profile:host profiles/raspberry_pi_4-release-clang-19-armv8",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "conan-raspberry_pi_4-release-clang-19-armv8 - 2. Conan Configure",
+      "type": "shell",
+      "command": "cd socket_iot_system && cmake --preset conan-raspberry_pi_4-release-clang-19-armv8",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "conan-raspberry_pi_4-release-clang-19-armv8 - 3. Conan Build",
+      "type": "shell",
+      "command": "cmake --build --preset conan-raspberry_pi_4-release-clang-19-armv8 && file build/raspberry_pi_4-release-clang-19-armv8/iot_server",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "conan-raspberry_pi_4-release-clang-19-armv8 - Clean",
+      "type": "shell",
+      "command": "cd socket_iot_system && rm -fr build/raspberry_pi_4-release-clang-19-armv8",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "never"
+      },
+      "problemMatcher": []
+    },
+    // 🌀 Title: target: Host
+    {
+      "label": "conan-linux-debug-clang-19-x86_64 - 1. Conan Install",
+      "type": "shell",
+      "command": "cd socket_iot_system && conan install . --build=missing --profile:all profiles/linux-debug-clang-19-x86_64",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "conan-linux-debug-clang-19-x86_64 - 2. Conan Configure",
+      "type": "shell",
+      "command": "cd socket_iot_system && cmake --preset conan-linux-debug-clang-19-x86_64",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "conan-linux-debug-clang-19-x86_64 - 3. Conan Build",
+      "type": "shell",
+      "command": "cd socket_iot_system && cmake --build --preset conan-linux-debug-clang-19-x86_64 && file build/linux-debug-clang-19-x86_64/iot_server",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "conan-linux-debug-clang-19-x86_64 - 4. Conan Run",
+      "type": "shell",
+      "command": "socket_iot_system/build/linux-debug-clang-19-x86_64/iot_server",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "conan-linux-debug-clang-19-x86_64 - 🧪 Build and Run",
+      "dependsOn": [
+        "conan-linux-debug-clang-19-x86_64 - 3. Conan Build",
+        "conan-linux-debug-clang-19-x86_64 - 4. Conan Run"
+      ],
+      "dependsOrder": "sequence",
+      "runOptions": {
+        "runOn": "default"
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "conan-linux-debug-clang-19-x86_64 - Clean",
+      "type": "shell",
+      "command": "cd socket_iot_system && rm -fr build/linux-debug-clang-19-x86_64",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "never"
+      },
+      "problemMatcher": []
+    }
+  ]
+}

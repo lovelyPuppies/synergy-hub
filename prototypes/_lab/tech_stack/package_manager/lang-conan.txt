@@ -1,11 +1,39 @@
 list of level 1 subjects
   - Conan
   
+
+⭕ Use vcpkg instead of 🗑️ conan 📅 2025-02-19 01:17:44
+  Conan limitations:
+    - Conan cannot search for supported platforms directly ; https://docs.conan.io/2/reference/commands/search.html
+      Users must check online, but even then, only desktop architectures are supported
+      ; other architectures like ARM64 are not included.
+      🛍️ e.g. zlib: https://conan.io/center/recipes/zlib?version=1.3.1
+        Available packages:
+          Linux
+          Windows
+          macOS
+          macOS Apple Silicon
+    - Offers fewer packages than vcpkg (e.g., nanopb, MariaDB C++ Connector are unavailable).
+  
+  vcpkg advantages:
+    - Simple and efficient installation:
+      No need for Docker or manual dependency resolution.
+    - Strong multi-architecture and cross-platform support:
+      - Broad triplet support (official and community) for diverse CPU architectures.
+      - Seamless deployment for IoT, embedded, and mobile platforms.
+      - Efficient workflows that streamline cross-platform development.
+    - Faster updates
+      Supports and integrates newer package versions more quickly than Conan.
+    - Backed by Microsoft:
+      Developed and maintained with support from a major tech company, ensuring reliability, longevity, and frequent updates.
+
+
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
 🐞 Issue Tracking
   https://github.com/conan-io/conan-center-index/issues/25075
     [package] pulseaudio/14.2 : I'm using clang 18 but error; Compiler does not support -std=gnu11
-⚓⭕ Conan ; https://docs.conan.io/2/
+
+⚓❌ Conan ; https://docs.conan.io/2/
   Conan 2 - C and C++ Package Manager
 
 

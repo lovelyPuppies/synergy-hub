@@ -1,0 +1,35 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "[ROS Master] Initialize: Start Core",
+      "type": "shell",
+      "command": "roscore",
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    // Run with login shell with command 📅 2025-01-15 15:45:06
+    {
+      "label": "[Turtle Bot] Initialize: Drivers",
+      "type": "shell",
+      "command": "echo 'roslaunch turtlebot3_bringup turtlebot3_robot.launch' | sshpass -p turtlebot ssh -tt ubuntu@10.10.14.119 'bash --login'",
+      "args": [],
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ],
+  "inputs": [
+    {
+      "id": "ssh_password",
+      "type": "promptString",
+      "description": "Enter the SSH password for the Turtlebot",
+      "password": true
+    }
+  ]
+}

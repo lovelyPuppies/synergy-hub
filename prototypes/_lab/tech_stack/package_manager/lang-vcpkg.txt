@@ -1,0 +1,121 @@
+list of level 1 subjects
+  - vcpkg
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓⭕ vcpkg ; https://en.wikipedia.org/wiki/Vcpkg
+  vcpkg is a cross-platform open source package manager by Microsoft.
+  https://github.com/microsoft/vcpkg
+
+
+(✍️ vcpkg 🔪 study)
+
+
+----------------------------------------------
+vcpkg 🔪⚓ Docs ; https://learn.microsoft.com/en-us/vcpkg/
+  #🔰 Concepts
+    # Build system integration
+      ⚓ CMake integration ; https://learn.microsoft.com/en-us/vcpkg/users/buildsystems/cmake-integration
+        # CMAKE_TOOLCHAIN_FILE
+          ⭕ We recommend using CMake Presets to specify your toolchain file. 
+            "cacheVariables": {
+              "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+            }
+        # Using Libraries
+          vcpkg does not automatically add any include or links paths into your project.
+          To use a header-only library you can use find_path() which will correctly work on all platforms: ...
+        # IDE Integration
+        # Using Multiple Toolchain Files
+        # Settings Reference
+  # Reference
+    #🧮 Command-Line
+      ⚓ vcpkg help ; https://learn.microsoft.com/en-us/vcpkg/commands/help
+        🔰 %shell> vcpkg help triplet
+          >> 
+          Built-in Triplets:
+            arm-neon-android
+            arm64-android
+            arm64-osx
+            arm64-uwp
+            arm64-windows-static-md
+            arm64-windows
+            x64-android
+            x64-linux
+            x64-osx
+            x64-uwp
+            x64-windows-release
+            x64-windows-static-md
+            x64-windows-static
+            x64-windows
+            x86-windows
+          Community Triplets:
+            arm-android
+            arm-ios
+            arm-linux-release
+            arm-linux
+            arm-mingw-dynamic
+            arm-mingw-static
+            arm-uwp-static-md
+            arm-uwp
+            arm-windows-static
+            arm-windows
+            arm64-ios-release
+            arm64-ios-simulator-release
+            arm64-ios-simulator
+            arm64-ios
+            arm64-linux-release
+            arm64-linux
+            arm64-mingw-dynamic
+            arm64-mingw-static
+            arm64-osx-dynamic
+            arm64-osx-release
+            arm64-uwp-static-md
+            arm64-windows-static-release
+            arm64-windows-static
+            arm64ec-windows
+            armv6-android
+            loongarch32-linux-release
+            loongarch32-linux
+            loongarch64-linux-release
+            loongarch64-linux
+            mips64-linux
+            ppc64le-linux-release
+            ppc64le-linux
+            riscv32-linux-release
+            riscv32-linux
+            riscv64-linux-release
+            riscv64-linux
+            s390x-linux-release
+            s390x-linux
+            wasm32-emscripten
+            x64-freebsd
+            x64-ios
+            x64-linux-dynamic
+            x64-linux-release
+            x64-mingw-dynamic
+            x64-mingw-static
+            x64-openbsd
+            x64-osx-dynamic
+            x64-osx-release
+            x64-uwp-static-md
+            x64-windows-static-md-release
+            x64-windows-static-release
+            x64-xbox-scarlett-static
+            x64-xbox-scarlett
+            x64-xbox-xboxone-static
+            x64-xbox-xboxone
+            x86-android
+            x86-freebsd
+            x86-ios
+            x86-linux
+            x86-mingw-dynamic
+            x86-mingw-static
+            x86-uwp-static-md
+            x86-uwp
+            x86-windows-static-md
+            x86-windows-static
+            x86-windows-v120
+          See https://learn.microsoft.com/vcpkg/users/triplets?WT.mc_id=vcpkg_inproduct_cli for more information.
+      ⚓ vcpkg new ; https://learn.microsoft.com/en-us/vcpkg/commands/new
+
+
+

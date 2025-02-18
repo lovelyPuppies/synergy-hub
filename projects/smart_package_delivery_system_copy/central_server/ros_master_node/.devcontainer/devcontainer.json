@@ -1,0 +1,60 @@
+{
+  // ❔ `name`: Defines the name displayed in the VS Code Devcontainer UI.
+  "name": "ros-noetic-turtlebot3-node_master",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "app",
+  // ⚖️ Change the default source code mount ; https://code.visualstudio.com/remote/advancedcontainers/change-default-source-mount
+  // "workspaceMount": "source=${localWorkspaceFolder}, target=/workspace,type=bind",
+  // ❔ `workspaceFolder`: Defines the working directory inside the container that VS Code will open.
+  "workspaceFolder": "/workspace",
+  // 👇 Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+  "remoteUser": "vscode",
+  // 👇 Features to add to the Dev Container. More info: https://containers.dev/implementors/features.
+  "features": {
+    // "ghcr.io/devcontainers-extra/features/fish-apt-get:1": {}
+    // "ghcr.io/devcontainers/features/github-cli:1": {}
+    // "ghcr.io/devcontainers/features/python:1": {
+    //   "version": "3.11",
+    //   "installTools": true,
+    //   "toolsToInstall": "black,pytest",
+    //   "installJupyterlab": true
+    // }
+  },
+  // "runArgs": [],
+  // 👇 Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // "forwardPorts": [],
+  // 👇 Use 'postCreateCommand' to run commands  after the container is created.
+  "postCreateCommand": "fish /workspace/init_ros_noetic.fish",
+  // 👇 Configure tool-specific properties.
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        // 🌀 Title: ROS
+        // https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/
+        "ms-iot.vscode-ros",
+        "ms-vscode.cmake-tools",
+        "ms-azuretools.vscode-docker",
+        "platformio.platformio-ide",
+        //
+        "bmalehorn.vscode-fish",
+        "esdmr.fish-completion",
+        "PKief.material-icon-theme",
+        "jsynowiec.vscode-insertdatestring",
+        "yzhang.markdown-all-in-one",
+        "esbenp.prettier-vscode",
+        "ms-azuretools.vscode-docker"
+        // "ms-python.python",
+        // "njpwerner.autodocstring",
+        // "ms-toolsai.jupyter",
+        // "ms-python.black-formatter",
+        // "ms-python.isort"
+      ],
+      "settings": {
+        // "python.analysis.extraPaths": ["/ultralytics"],
+        "files.exclude": {
+          "**/*.egg-info": true
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,277 @@
+edition = "2023";
+
+// <company_domain>.<project_name>.<feature_name>
+//    ; Smart Package Delivery
+package smart_pkg_delivery;
+
+// 🚧 Prerequisites
+//    Database
+//      - The `User` table must contain actual records (rows).
+//      - The `PkgRoom` table must contain actual records (rows).
+// ❓ TODO:
+//    - ❗ Note that this draft does not consider multiple pkgs for one user. It distinguishes users by a fixed address rather than by invoice ID or user ID.
+//      When a pkg first arrives at the package room, its address information is sent to the server. Likewise, when a user checks their incoming pkgs, the address information is also sent. 
+//      However, since the database retrieves data based on the user, additional logic is required to handle this.
+//    - 비밀번호로 인증을 할 때, 비밀번호는 암호화된 채로 보내져야 한다. 즉, 평문으로 클라이언트 코드 안에 삽입되면 안된다.
+// 🧮 Run %shell>
+//    source (poetry env info --path)
+//    protoc -I=. --cpp_out=../../socket_iot_system/src/common/protobuf_cpp smart_pkg_delivery.proto
+//    nanopb_generator --options-file=smart_pkg_delivery-nanopb.options --output-dir=../../socket_iot_system/src/common/protobuf_c smart_pkg_delivery.proto
+
+
+
+// ❔ Sockets for Communication
+//    - Server (c++)
+//    - Address Recognizer (c or python)
+//    - User (c++)
+//    - Delivery Robot (c++)
+//    - Elevator (c)
+enum NodeType {
+  UNSPECIFIED = 0;
+  SERVER = 1;
+  CLIENT_ADDRESS_RECOGNIZER = 2;
+  CLIENT_USER = 3;
+  CLIENT_DELIVERY_ROBOT = 4;
+  CLIENT_ELEVATOR = 5;
+}
+
+
+
+// -------------------------
+// 🌀 Request, Response, Event (like Notification)
+// -------------------------
+// Wrapper to distinguish between Request, Response, and Event messages.
+//    ❔ Name `ExchangeMessage` is inspired by the message exchange process after HTTPS Handshake.
+message InteractionMsg {
+  // 📝 Note that src_* are set in Server. Never set manually in Client.
+  NodeType src_type = 1;
+  uint32 src_id = 2;
+  string src_name = 3;
+  //
+  NodeType dest_type = 4;
+  uint32 dest_id = 5;
+  string dest_name = 6;
+  // Payload
+  oneof msg_type {
+    Request request = 7;
+    Response response = 8;
+    NodeEvent node_event = 9;
+  }
+}
+
+// 📨 A request message that expects a response from the destination.
+message Request {
+  oneof request_type {
+    AuthRequest auth_request = 1;
+    // user (c++) ---> server
+    GetPkgInfosRequest get_pkg_infos_request = 2;
+    // client-delivery_robot (c++) ---> server ---> client-elevator (c)
+    SetElevatorStatusRequest set_elevator_status_request = 3;
+    // client-user (c++) ---> server ---> client-delivery_robot (c++)
+    MoveDeliveryRobotRequest move_delivery_robot_request = 4;
+  }
+}
+
+// 📩 A response message to a request that does not expect further replies, including ✅ ACK.
+message Response {
+  AckStatus ack_status = 1;
+  ExecutionStatus execution_status = 2;
+  oneof response_type {
+    AuthResponse client_register_response = 3;
+    // server ---> user (c++)
+    GetPkgInfoResponse get_pkg_info_response = 4;
+    // client-elevator (c) ---> server ---> client-delivery_robot (c++)
+    SetElevatorStatusResponse set_elevator_status_response = 5;
+    // client-delivery_robot (c++) ---> server ---> client-user (c++)
+    MoveDeliveryRobotResponse move_delivery_robot_response = 6;
+  }
+}
+
+// ⏬ Events; A one-way message that notifies the system about status updates without expecting any response.
+message NodeEvent {
+  oneof event_type {
+    // client-pkg_room (python) ---> server
+    PkgArrivalEvent pkg_arrival_event = 1;
+    // client-elevator (c++) ---> server ---> client-delivery_robot (c++)
+    ElevatorStatusEvent elevator_status_event = 2;
+    // client-delivery_robot (c++) ---> server
+    DeliveryStatusEvent delivery_status_event = 3;
+  }
+}
+
+
+// -------------------------
+// -------------------------
+// Indicates whether a Request has been successfully received by the Destination from the Source.
+message AckStatus {
+  enum StatusCode {
+    UNSPECIFIED = 0;
+    ACK_RECEIVED = 1;
+    ACK_INVALID = 2;
+  }
+  StatusCode status_code = 1;
+  string message = 2;
+}
+
+// Indicates the execution result of the received Request.
+message ExecutionStatus {
+  enum StatusCode {
+    UNSPECIFIED = 0;
+    SUCCESS = 1;
+    FAILED = 2;
+  }
+  StatusCode status_code = 1;
+  string message = 2;
+}
+
+// -------------------------
+// 🌀 Request, Response, Event 🔪 Details
+// -------------------------
+// 🔰 Sent by the client to identify itself during the initial registration.
+message AuthRequest {
+  enum AuthType {
+    UNSPECIFIED = 0;
+    LOGIN = 1;
+    // LOGOUT = 2;
+    // TOKEN_REFRESH = 3;
+    // CHANGE_PASSWORD = 4;
+  }
+  AuthType auth_type = 1;
+  string manufacturer = 2;
+  string model_name = 3;
+  // string refresh_token = 4;
+}
+message AuthResponse {
+  // string session_token = 1;
+  // string refresh_token = 2;
+}
+
+// -------------------------
+// -------------------------
+
+
+message GetPkgInfosRequest {
+  uint32 user_id = 1;
+}
+
+message GetPkgInfoResponse {
+  repeated Pkg pkgs = 1;
+}
+
+
+// -------------------------
+
+message MoveDeliveryRobotRequest {
+  uint32 delivery_robot_id = 1;
+  AptAddress destination_address = 2;
+}
+
+message MoveDeliveryRobotResponse {}
+
+
+// -------------------------
+message SetElevatorStatusRequest {
+  uint32 elevator_id = 1;
+  Elevator.Status elevator_status = 2;
+}
+
+message SetElevatorStatusResponse {}
+
+
+// -------------------------
+// -------------------------
+message PkgArrivalEvent {
+  AptAddress address = 1;
+  // Pkg.Status pkg_status = 2;
+}
+
+
+message ElevatorStatusEvent {
+  uint32 elevator_id = 1;
+  Elevator.Status elevator_status = 2;
+}
+
+
+message DeliveryStatusEvent {
+  uint32 delivery_robot_id = 1;
+  DeliveryRobot.DeliveryStatus delivery_status = 2;
+}
+
+
+// -------------------------
+// 🌀 Nodes
+// -------------------------
+// 🛗
+message Elevator {
+  uint32 id = 1;
+  Status status = 2;
+
+  enum DoorOpenStatus {
+    UNSPECIFIED = 0;
+    CLOSED = 1;
+    OPEN = 2;
+  }
+
+  message Status {
+    uint32 current_floor = 1;
+    DoorOpenStatus door_open_status = 2;
+  }
+}
+
+
+// 🚛
+message DeliveryRobot {
+  uint32 id = 1;
+  // Status status = 2;
+  DeliveryStatus delivery_status = 3;
+
+  enum DeliveryStatus {
+    UNSPECIFIED = 0;
+    PENDING = 1;
+    IN_TRANSIT = 2;
+    DELIVERED = 3;
+  }
+}
+
+
+// 🏬 Package Room
+message PkgRoom {
+  uint32 id = 1;
+  repeated Locker lockers = 2;
+
+  // 🔒
+  message Locker {
+    uint32 locker_id = 1;
+    string access_code = 2;
+    uint32 pkg_id = 3;
+  }
+}
+
+
+// 👤 User (Wall Pad)
+message User {
+  uint32 id = 1;
+  AptAddress address = 2;
+}
+
+// 📦
+message Pkg {
+  uint32 id = 1;
+  AptAddress address = 2;
+  uint32 sender_id = 3;
+  uint32 receiver_id = 4;
+  // 🖼️ Raw JPEG Image Data (Binary); Estimated size for 1920x1080 JPEG: (1920 * 1080 * 3) / 10 (JPEG compression) ≈ 622 KB
+  bytes photo_bytes = 5;
+}
+
+// -------------------------
+// 🌀 Nodes 🔪 Sub-nodes
+// -------------------------
+
+
+message AptAddress {
+  string apt_complex = 1;
+  uint32 building_num = 2;
+  uint32 unit_num = 3;
+}
+

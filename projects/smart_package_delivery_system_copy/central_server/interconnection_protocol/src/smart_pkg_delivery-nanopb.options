@@ -1,0 +1,36 @@
+# This file defines the nanopb-specific options for the messages defined
+# in fileproto.proto.
+#
+# If you come from high-level programming background, the hardcoded
+# maximum lengths may disgust you. However, if your microcontroller only
+# has a few kB of ram to begin with, setting reasonable limits for
+# filenames is ok.
+#
+# On the other hand, using the callback interface, it is not necessary
+# to set a limit on the number of files in the response.
+
+# * include:"sys/types.h"
+# * include:"dirent.h"
+
+smart_pkg_delivery.Request.src_name                 max_size:64
+smart_pkg_delivery.Request.dest_name                max_size:64
+smart_pkg_delivery.Response.src_name                max_size:64
+smart_pkg_delivery.Response.dest_name               max_size:64
+smart_pkg_delivery.NodeEvent.src_name               max_size:64
+smart_pkg_delivery.NodeEvent.dest_name              max_size:64
+
+smart_pkg_delivery.AckStatus.message                max_size:256
+smart_pkg_delivery.ExecutionStatus.message          max_size:256
+
+smart_pkg_delivery.PkgRoom.Locker.access_code       max_size:32
+
+# `photo_bytes` field is not required in STM32.
+#   smart_pkg_delivery.Pkg.photo_bytes              max_size:688128    #  + 10% extra size
+smart_pkg_delivery.Pkg.photo_bytes                  type:FT_IGNORE
+
+smart_pkg_delivery.AptAddress.apt_complex  max_size:128
+
+
+
+smart_pkg_delivery.GetPkgInfoResponse.pkgs          max_count:10
+smart_pkg_delivery.PkgRoom.lockers                  max_count:10
