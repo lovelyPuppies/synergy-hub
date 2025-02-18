@@ -13,7 +13,7 @@
   "files.associations": {
     // "*.S": "arm",
     ".clangd": "yaml",
-    "CMakeLists.txt": "CMake"
+    "CMakeLists.txt": "cmake"
   },
   // 🌀 Title: Indexing
   "files.exclude": {

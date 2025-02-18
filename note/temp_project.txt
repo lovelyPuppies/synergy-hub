@@ -20411,3 +20411,5 @@ vcpkg search mariadb
   
 
 ls $VCPKG_ROOT/installed
+
+https://marketplace.visualstudio.com/items?itemName=Arm.environment-manager
