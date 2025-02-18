@@ -20420,6 +20420,7 @@ https://github.com/microsoft/vcpkg
 vcpkg update
 vcpkg search mariadb
 
+❯ vcpkg install mariadb-connector-cpp:arm64-linux
 ❯ vcpkg install mariadb-connector-cpp:x64-linux
 
   Computing installation plan...
@@ -20431,7 +20432,36 @@ vcpkg search mariadb
     * vcpkg-cmake-config:x64-linux@2024-05-23
     * vcpkg-cmake-get-vars:x64-linux@2024-09-22
     * zlib:x64-linux@1.3.1
-  
+
+-- Configuring x64-linux-dbg
+-- Configuring x64-linux-rel
+-- Building x64-linux-dbg
+-- Building x64-linux-rel
+Total install time: 1.1 min
+mariadb-connector-cpp provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(unofficial-mariadb-connector-cpp CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE unofficial::mariadb-connector-cpp::mariadbcpp)
+
+Completed submission of libmariadb:x64-linux to 1 binary cache(s) in 673 ms
+
+wbfw109v2 in 🌐 iot-04 in vcpkg/installed/x64-linux on  master via 🐍 v3.13.2 (python-study-py3.13) 
+❯ fd -e a
+  lib/libcrypto.a
+  lib/libmariadb.a
+  lib/libmariadbclient.a
+  lib/libmariadbcpp-static.a
+  lib/libmariadbcpp.a
+  lib/libssl.a
+  lib/libz.a
+
+wbfw109v2 in 🌐 iot-04 in vcpkg/installed/x64-linux on  master via 🐍 v3.13.2 (python-study-py3.13) 
+❯ fd -e so
+  plugins/libmariadb/client_ed25519.so
+
+
+
 
 ls $VCPKG_ROOT/installed
 
@@ -20467,3 +20497,134 @@ cmake_minimum_required(VERSION 3.20)
   add_executable(myapp main.cpp)
   target_link_libraries(myapp PRIVATE protobuf::libprotobuf)
 
+Starting submission of mariadb-connector-cpp:x64-linux to 1 binary cache(s) in the background
+Elapsed time to handle mariadb-connector-cpp:x64-linux: 17 s
+mariadb-connector-cpp:x64-linux package ABI: 7d2f4d0d21ab804a559d3d498c1a59965adfa35e73c97b77c0c1a2106c5d82d0
+Total install time: 1.1 min
+mariadb-connector-cpp provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(unofficial-mariadb-connector-cpp CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE unofficial::mariadb-connector-cpp::mariadbcpp)
+
+
+
+
+
+
+
+
+ vcpkg help triplet
+Built-in Triplets:
+  arm-neon-android
+  arm64-android
+  arm64-osx
+  arm64-uwp
+  arm64-windows-static-md
+  arm64-windows
+  x64-android
+  x64-linux
+  x64-osx
+  x64-uwp
+  x64-windows-release
+  x64-windows-static-md
+  x64-windows-static
+  x64-windows
+  x86-windows
+Community Triplets:
+  arm-android
+  arm-ios
+  arm-linux-release
+  arm-linux
+  arm-mingw-dynamic
+  arm-mingw-static
+  arm-uwp-static-md
+  arm-uwp
+  arm-windows-static
+  arm-windows
+  arm64-ios-release
+  arm64-ios-simulator-release
+  arm64-ios-simulator
+  arm64-ios
+  arm64-linux-release
+  arm64-linux
+  arm64-mingw-dynamic
+  arm64-mingw-static
+  arm64-osx-dynamic
+  arm64-osx-release
+  arm64-uwp-static-md
+  arm64-windows-static-release
+  arm64-windows-static
+  arm64ec-windows
+  armv6-android
+  loongarch32-linux-release
+  loongarch32-linux
+  loongarch64-linux-release
+  loongarch64-linux
+  mips64-linux
+  ppc64le-linux-release
+  ppc64le-linux
+  riscv32-linux-release
+  riscv32-linux
+  riscv64-linux-release
+  riscv64-linux
+  s390x-linux-release
+  s390x-linux
+  wasm32-emscripten
+  x64-freebsd
+  x64-ios
+  x64-linux-dynamic
+  x64-linux-release
+  x64-mingw-dynamic
+  x64-mingw-static
+  x64-openbsd
+  x64-osx-dynamic
+  x64-osx-release
+  x64-uwp-static-md
+  x64-windows-static-md-release
+  x64-windows-static-release
+  x64-xbox-scarlett-static
+  x64-xbox-scarlett
+  x64-xbox-xboxone-static
+  x64-xbox-xboxone
+  x86-android
+  x86-freebsd
+  x86-ios
+  x86-linux
+  x86-mingw-dynamic
+  x86-mingw-static
+  x86-uwp-static-md
+  x86-uwp
+  x86-windows-static-md
+  x86-windows-static
+  x86-windows-v120
+See https://learn.microsoft.com/vcpkg/users/triplets?WT.mc_id=vcpkg_inproduct_cli for more information.
+
+
+❯ conan search opencv --remote=conancenter
+conan inspect opencv --remote=conancenter
+
+
+https://docs.conan.io/2/reference/commands/search.html
+  코난은 platform 검색된 패키지가 지원하는 platform 을 검색하지 못한다.
+  온라인에서 찾아봐야 한다. 예: zlib: https://conan.io/center/recipes/zlib?version=1.3.1
+    Available packages
+      Linux
+      Windows
+      macOS
+      macOS Apple Silicon
+
+
+
+
+이야 진짜 설치하기 엄청 편하네. 말도 안되게. 원래는 도커를 만들어서 일일이 필요한 패키지가 뭔지 오류과정을 찾아보면서 빌드해야 하는데.
+conan 이랑 vcpkg 둘 다 써보니까 알겟어. 다양한 CPU 아키텍처 (기기)를 지원하는데 있어서 vcpkg 가 무조건 낫네. 애초에 conan 은 triplet 도 host pc 용밖에 지원하지도 않고. 
+그에 반해 vcpkg 는 엄청나게 많은 target triple 을 지원하고 설치도 엄청 간편해.
+
+Conan가 뭐 사용자 정의가 용이하다고 햇는데 애초에 CPU 아키텍처를 지원을 거의 안해서 PC 용만 개발하는게 아니라면 쓸 수가 없어.
+
+맞아요, Conan은 기본적으로 Host 시스템 중심으로 동작하고, 다양한 아키텍처 지원은 profile을 통한 크로스컴파일이나 별도 설정을 요구하기 때문에 멀티플랫폼 및 임베디드 환경에서는 불편함이 큽니다. 특히 Raspberry Pi, Android NDK 등 다양한 아키텍처를 즉시 지원하는 vcpkg에 비해 진입 장벽이 높은 편이죠.
+
+Vcpkg는 광범위한 triplet(공식 + 커뮤니티)으로 다양한 CPU 아키텍처와 크로스컴파일 환경을 즉시 지원하기 때문에 IoT, 임베디드, 모바일 등 다양한 환경에서 손쉬운 배포와 빠른 개발 환경 구성이 가능합니다.
+
+실무에서도 점점 vcpkg가 여러 아키텍처를 지원하는 프로젝트나 대규모 크로스플랫폼 프로젝트에서 선호되는 이유가 바로 이런 점 때문입니다.
