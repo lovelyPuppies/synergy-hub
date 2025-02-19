@@ -67,7 +67,7 @@ list of level 1 subjects
   # Reference Manuals
     ⚓🔰📍⭕ cmake-presets(7) ; https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html
       📝 Recommended from Microsoft ; https://learn.microsoft.com/en-us/vcpkg/users/buildsystems/cmake-integration#visual-studio--visual-studio-code
-      #️⃣ Introduction ; https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html#introduction
+      #️⃣📎 Introduction ; https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html#introduction
         CMakePresets.json and CMakeUserPresets.json live in the project's root directory.
           They both have exactly the same format, and both are optional (though at least one must be present if --preset is specified).
           ⚖️ CMakePresets.json is meant to specify project-wide build details, while CMakeUserPresets.json is meant for developers to specify their own local build details.
@@ -75,6 +75,8 @@ list of level 1 subjects
         ❗ CMakePresets.json may be checked into a version control system, and CMakeUserPresets.json should NOT be checked in.
           For example, if a project is using Git, CMakePresets.json may be tracked, and CMakeUserPresets.json should be added to the .gitignore.
       #️⃣ Format ; https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html#format
+        "configurePresets": ...
+        
         "environment": {
           "MY_ENVIRONMENT_VARIABLE": "Test",
           "PATH": "$env{HOME}/ninja/bin:$penv{PATH}"    //  🚣 $env{HOME}

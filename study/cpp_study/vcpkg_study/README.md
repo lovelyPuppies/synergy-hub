@@ -35,4 +35,6 @@ The package fmt provides CMake targets:
 
 
 qemu-system-aarch64
+
+qemu-aarch64 -L /usr/aarch64-linux-gnu build/aarch64-linux-gnu/fmt_example
 ```

@@ -24,8 +24,10 @@ vcpkg 🔪⚓ Docs ; https://learn.microsoft.com/en-us/vcpkg/
           vcpkg does not automatically add any include or links paths into your project.
           To use a header-only library you can use find_path() which will correctly work on all platforms: ...
         # IDE Integration
-        # Using Multiple Toolchain Files
+
+        #📍 Using Multiple Toolchain Files
         # Settings Reference
+          -📍 VCPKG_TARGET_TRIPLET
   # Reference
     #🧮 Command-Line
       ⚓ vcpkg help ; https://learn.microsoft.com/en-us/vcpkg/commands/help

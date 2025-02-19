@@ -20638,4 +20638,7 @@ C++ ORM 라이브러리 비교.
   https://stackoverflow.com/questions/54539682/how-to-set-up-cmake-to-cross-compile-with-clang-for-arm-embedded-on-windows
 
 
-  
+https://github.com/microsoft/vscode-cmake-tools/issues/1361
+
+qemu-aarch64	사용자 모드 에뮬레이션	특정 AArch64 실행 파일만 변환하여 실행
+qemu-system-aarch64	전체 시스템 에뮬레이션	AArch64 하드웨어 전체를 가상화 (커널 및 OS 필요)
