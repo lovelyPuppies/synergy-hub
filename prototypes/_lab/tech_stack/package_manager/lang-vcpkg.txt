@@ -117,9 +117,15 @@ vcpkg 🔪⚓ Docs ; https://learn.microsoft.com/en-us/vcpkg/
             x86-windows-static
             x86-windows-v120
           See https://learn.microsoft.com/vcpkg/users/triplets?WT.mc_id=vcpkg_inproduct_cli for more information.
+      ⚓ vcpkg new ; https://learn.microsoft.com/en-us/vcpkg/commands/new
+        🔰 %shell> vcpkg new --application
+        Creates a manifest file (vcpkg.json) and a default configuration file (vcpkg-configuration.json) ready to use in your project in the current working directory.
+      ⚓ vcpkg add ; https://learn.microsoft.com/en-us/vcpkg/commands/add
+        🔰 %shell> vcpkg add port [options] <port-name>...
+        The vcpkg add port command allows you to update the vcpkg.json manifest file by adding new package dependencies to your C++ project.
+
       ⚓ vcpkg list ; https://learn.microsoft.com/en-us/vcpkg/commands/list
 
-      ⚓ vcpkg new ; https://learn.micr osoft.com/en-us/vcpkg/commands/new
 
 
 

@@ -11,6 +11,8 @@
 
 # https://learn.microsoft.com/en-us/vcpkg/users/buildsystems/cmake-integration
 # vcpkg does not automatically add any include or links paths into your project. To use a header-only library you can use find_path() which will correctly work on all platforms:
+
+# https://vcpkg.io/en/package/fmt
 vcpkg install fmt:x64-linux fmt:arm64-linux
 
 -- Building arm64-linux-dbg
@@ -52,5 +54,11 @@ libcrypto.a  libfmtd.a  libmariadb.a@  libmariadbclient.a  libmariadbcpp.a@  lib
 
 %VSCode> CMake: Run Without Debugging
 
+
+# https://github.com/microsoft/vcpkg-docs/blob/main/vcpkg/get_started/get-started-vscode.md
+vcpkg new --application
+vcpkg add port spdlog
+vcpkg add port spdlog:x64-linux spdlog:arm64-linux
+# https://vcpkg.io/en/package/spdlog
 
 ```

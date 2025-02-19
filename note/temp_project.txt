@@ -20679,3 +20679,24 @@ Function (함수)
 
 Emulating Raspberry Pi 4 with Qemu
   https://gist.github.com/cGandom/23764ad5517c8ec1d7cd904b923ad863
+
+
+
+👍 !!!! Triplets 체크할 것
+https://vcpkg.io/en/package/fmt
+  Supports
+    This package supports the following triplets:
+    Supported on all triplets
+
+https://github.com/Intelight/vcpkg/blob/master/triplets/x86-windows-mixed.cmake
+
+
+
+
+
+
+
+🖇️ Classic mode ; https://learn.microsoft.com/en-us/vcpkg/concepts/classic-mode
+https://learn.microsoft.com/en-us/vcpkg/concepts/manifest-mode
+
+https://learn.microsoft.com/en-us/vcpkg/concepts/triplets
