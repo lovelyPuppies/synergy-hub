@@ -2,7 +2,17 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Run QEMU for AArch64",
+      "label": "Run debug-x64-linux-gnu-clang without Debug (QEMU)",
+      "type": "shell",
+      "command": "qemu-aarch64 -L /usr/aarch64-linux-gnu ${workspaceRoot}/build/debug-aarch64-linux-gnu-clang/fmt_example",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Run debug-x64-linux-gnu-clang",
       "type": "shell",
       "command": "qemu-aarch64 -g 1234 -L /usr/aarch64-linux-gnu build/debug-aarch64-linux-gnu-clang",
       "presentation": {

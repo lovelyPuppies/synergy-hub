@@ -5,22 +5,22 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "debug-aarch64-linux-gnu-clang",
       "type": "lldb-dap",
       "request": "launch",
-      "name": "Launch",
       "program": "${workspaceRoot}/build/debug-x64-linux-gnu-clang/fmt_example",
       "args": [],
       "env": [],
       "cwd": "${workspaceRoot}"
     },
     {
-      "name": "Debug AArch64 (QEMU)",
+      "name": "debug-x64-linux-gnu-clang (QEMU)",
       "type": "lldb-dap",
       "request": "attach",
       "program": "${workspaceRoot}/build/debug-aarch64-linux-gnu-clang/fmt_example",
       "gdb-remote-port": 1234,
       "gdb-remote-hostname": "localhost",
-      "preLaunchTask": "Run QEMU for AArch64"
+      "preLaunchTask": "Run debug-x64-linux-gnu-clang"
     }
   ]
 }

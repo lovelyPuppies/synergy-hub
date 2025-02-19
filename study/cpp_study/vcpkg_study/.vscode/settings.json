@@ -12,5 +12,6 @@
     "CMakeLists.txt": "cmake",
     "*.conf": "bitbake",
     "*.inc": "bitbake"
-  }
+  },
+  "cmake.debugConfig": {}
 }

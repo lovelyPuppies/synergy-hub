@@ -53,6 +53,8 @@ VS code 🔪 Docs ; https://code.visualstudio.com/docs
       
 
   # LANGUAGES
+    ⚓ C++ ; https://code.visualstudio.com/docs/cpp/launch-json-reference
+      🚣 A launch.json file is used to configure the debugger in Visual Studio Code.
     ⚓🖇️ Rust ; https://code.visualstudio.com/docs/languages/rust 📅 2024-11-30 21:31:58
       # Installation
         ⭕📖
