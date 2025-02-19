@@ -20542,8 +20542,8 @@ https://github.com/microsoft/vscode-cmake-tools/blob/HEAD/docs/cmake-presets.md
   The following settings in settings.json either duplicate options in CMakePresets.json or no longer apply. These settings will be ignored when CMakePresets.json integration is enabled.
     - cmake.environment         configurePresets.environment
 
-
-🚨 (Issue: Bug) ; https://github.com/microsoft/vscode-cmake-tools/issues/4253
+🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 
+🚨 (Issue: Bug (Limitation)) ; https://github.com/microsoft/vscode-cmake-tools/issues/4253
   When configuring a project with a configuration preset, $env{<environment-variable>} is not picking up environment variables defined in extension setting cmake.environment.
     Same result when setting cmake.configureEnvironment
   ... Since when I run AN_ENV_VARIABLE=hello cmake --preset ninja directly from CLI, behavior is as expected (output of message is hello/preset).
@@ -20556,6 +20556,7 @@ https://github.com/microsoft/vscode-cmake-tools/blob/HEAD/docs/cmake-presets.md
   cmake.configureEnvironment
 
 일단 그건 알고있어? Cmakelists.txt 에서 env 를 파싱해서 가지고 있어봣자, preset.json 이 먼저 해석되므로 별로 의미가 없어. 
+
 
 🚀 💡 해결 방안: .env + CMakePresets.json 문제 해결하기
 💡 방법 1: VSCode에서 cmake.configureArgs를 사용해 .env 로드 (추천)
@@ -20674,3 +20675,7 @@ Function (함수)
   특징: 일반적으로 어떤 값을 계산하고 그 결과를 돌려줍니다.
   요약하면, identifier는 이름 자체를 가리키고, symbol은 그 이름과 관련
 
+
+
+Emulating Raspberry Pi 4 with Qemu
+  https://gist.github.com/cGandom/23764ad5517c8ec1d7cd904b923ad863
