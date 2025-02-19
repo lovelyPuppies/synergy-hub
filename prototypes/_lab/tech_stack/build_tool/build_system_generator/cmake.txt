@@ -65,7 +65,7 @@ list of level 1 subjects
         #️⃣ --log-level=<level> ; https://cmake.org/cmake/help/latest/manual/cmake.1.html#cmdoption-cmake-log-level
 
   # Reference Manuals
-    ⚓⭕ cmake-presets(7) ; https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html
+    ⚓🔰📍⭕ cmake-presets(7) ; https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html
       📝 Recommended from Microsoft ; https://learn.microsoft.com/en-us/vcpkg/users/buildsystems/cmake-integration#visual-studio--visual-studio-code
       #️⃣ Introduction ; https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html#introduction
         CMakePresets.json and CMakeUserPresets.json live in the project's root directory.
@@ -130,3 +130,8 @@ list of level 1 subjects
  
 
     ⚓ cmake-toolchains ; https://cmake.org/cmake/help/latest/manual/cmake-toolchains.7.html
+
+
+
+
+

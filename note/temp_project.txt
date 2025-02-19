@@ -20633,3 +20633,9 @@ https://softeer.ai/index
 
 
 C++ ORM 라이브러리 비교.
+
+📍📍📍📍📍📍📍📍📍📍📍📍
+  https://stackoverflow.com/questions/54539682/how-to-set-up-cmake-to-cross-compile-with-clang-for-arm-embedded-on-windows
+
+
+  

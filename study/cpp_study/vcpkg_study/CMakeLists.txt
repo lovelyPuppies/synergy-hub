@@ -1,9 +1,6 @@
 cmake_minimum_required(VERSION 3.19)
 project(fmt_example LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
 find_package(fmt CONFIG REQUIRED)
 
 
@@ -46,3 +43,39 @@ endif()
 
 
 
+
+##### 🌀 Title: Automatically detect and create symbolic links for all executable files Whenever build
+function(create_executable_symlinks)
+    # Retrieve the list of all registered executable targets in the current directory
+    get_directory_property(TARGETS BUILDSYSTEM_TARGETS)
+
+    foreach(TARGET ${TARGETS})
+        # Check if the target is an executable
+        get_target_property(TARGET_TYPE ${TARGET} TYPE)
+        if(NOT TARGET_TYPE STREQUAL "EXECUTABLE")
+            continue()
+        endif()
+
+        # Get the executable file path
+        get_target_property(EXECUTABLE_PATH ${TARGET} RUNTIME_OUTPUT_DIRECTORY)
+        if(NOT EXECUTABLE_PATH)
+            # Set default build directory
+            set(EXECUTABLE_PATH "${CMAKE_BINARY_DIR}")
+        endif()
+        set(EXECUTABLE_FILE "${EXECUTABLE_PATH}/${TARGET}")
+        # Desired symbolic link location
+        set(SYMLINK_PATH "${CMAKE_SOURCE_DIR}/build/${TARGET}")
+
+        # Create the symbolic link
+        add_custom_command(
+            TARGET ${TARGET} POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E create_symlink "${EXECUTABLE_FILE}" "${SYMLINK_PATH}"
+            COMMENT "Creating symbolic link for ${TARGET}: ${SYMLINK_PATH} -> ${EXECUTABLE_FILE}"
+        )
+
+        message(STATUS "Created symbolic link for ${TARGET}: ${SYMLINK_PATH} -> ${EXECUTABLE_FILE}")
+    endforeach()
+endfunction()
+
+# Execute the function (Automatically runs in the CMake project)
+create_executable_symlinks()

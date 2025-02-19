@@ -5,12 +5,13 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "lldb",
+      "type": "lldb-dap",
       "request": "launch",
-      "name": "Debug",
-      "program": "${workspaceFolder}/build/x64-linux-gnu/fmt_example",
+      "name": "Launch",
+      "program": "${workspaceRoot}/build/x64-linux-gnu/fmt_example",
       "args": [],
-      "cwd": "${workspaceFolder}"
+      "env": [],
+      "cwd": "${workspaceRoot}"
     }
   ]
 }
