@@ -37,3 +37,8 @@ else
     set current_pwd (pwd)
     echo "  Already `$cmake_user_preset_file_name` file configured or not required in current path: $current_pwd."
 end
+
+
+echo "  🎱 Install Triplet"
+vcpkg install --triplet x64-linux
+vcpkg install --triplet arm64-linux

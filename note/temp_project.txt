@@ -20697,6 +20697,7 @@ https://github.com/Intelight/vcpkg/blob/master/triplets/x86-windows-mixed.cmake
 
 
 🖇️ Classic mode ; https://learn.microsoft.com/en-us/vcpkg/concepts/classic-mode
+  테스트 결과 cmaepreset.json 에서는 manifest mode 를 사용하든 안하든 바꿀 것이 없다. 자동 인식함.
 https://learn.microsoft.com/en-us/vcpkg/concepts/manifest-mode
 
 https://learn.microsoft.com/en-us/vcpkg/concepts/triplets

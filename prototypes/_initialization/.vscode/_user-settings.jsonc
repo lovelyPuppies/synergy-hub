@@ -79,7 +79,14 @@
   },
   // 🌀 Code Visualization and Comment Management
   // Code Spell Checker ; https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker
-  "cSpell.userWords": ["Blockman", "Hancom", "linuxbrew", "wbfw"],
+  "cSpell.userWords": [
+    "Blockman",
+    "Hancom",
+    "linuxbrew",
+    "pkgs",
+    "spdlog",
+    "wbfw"
+  ],
   // indent-rainbow ; https://marketplace.visualstudio.com/items?itemName=oderwat.indent-rainbow
   "indentRainbow.updateDelay": 1000,
   "indentRainbow.colors": [

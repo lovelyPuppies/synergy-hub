@@ -91,6 +91,7 @@ list of level 1 subjects
         ⚓🖇️🔰 CMAKE_BINARY_DIR ; https://cmake.org/cmake/help/latest/variable/CMAKE_BINARY_DIR.html 📅 2025-02-20 07:53:35
       #️⃣ Variables that Change Behavior ; https://cmake.org/cmake/help/latest/manual/cmake-variables.7.html#variables-that-change-behavior
         ⚓🖇️🔰 CMAKE_BUILD_TYPE ; https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html
+          📝 If CMAKE_BUILD_TYPE is set to Debug, it automatically adds debugging symbols during compilation.
           Typical values include Debug, Release, RelWithDebInfo and MinSizeRel, but custom build types can also be defined.
           ... ❗ The default value is often an empty string, but this is usually not desirable and one of the other standard build types is usually more appropriate.
         ⚓📍 CMAKE_EXPORT_COMPILE_COMMANDS ; https://cmake.org/cmake/help/latest/variable/CMAKE_EXPORT_COMPILE_COMMANDS.html
