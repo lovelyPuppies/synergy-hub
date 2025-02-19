@@ -20629,4 +20629,7 @@ VSCode 확장(cmake.environment/cmake.configureEnvironment)은 CMakePresets 내�
 https://devblogs.microsoft.com/cppblog/cmake-presets-integration-in-visual-studio-and-visual-studio-code/
   Project-specific information can always be checked in. CMake supports two files: CMakePresets.json and CMakeUserPresets.json. CMakePresets.json is intended to save project-wide presets, while CMakeUserPresets.json is intended for developers to save their own local presets. This ensures project-specific information can always be checked into source control and makes it easier for new team members to get up-and-running. It also makes it easier for teams to synchronize changes to their CMake builds across the entire team. Both CMakePresets.json and CMakeUserPresets.json are supported in Visual Studio and Visual Studio Code.
 
-  
+https://softeer.ai/index
+
+
+C++ ORM 라이브러리 비교.
