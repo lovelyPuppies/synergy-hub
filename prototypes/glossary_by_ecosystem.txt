@@ -19,6 +19,17 @@ Wikipedia
       🗒️ Contents
         # Recovery
           The kernels of operating systems such as Linux will attempt to recover from this type of OOM condition by terminating one or more processes, a mechanism known as 🪱 the OOM Killer
+
+    ⚓📎 Symbol Table ; https://en.wikipedia.org/wiki/Symbol_table
+      🗒️ Contents
+        In computer science, a symbol table is a data structure used by a language translator such as a compiler or interpreter
+          , where each identifier, symbol, constant, procedure and function in a program's source code is associated with information relating to its declaration or appearance in the source.
+      ⚓📎 Debug symbol ; << https://en.wikipedia.org/wiki/Debug_symbol
+        🗒️ Contents
+          ... This information allows a symbolic debugger to gain access to information from the source code of the binary, such as the names of identifiers, including variables and routines.
+
+
+    
   (OS 🔪 Linux)
     ----------------------------------------------
     ⚓🖇️ Input Field Separators (IFS) ; https://en.wikipedia.org/wiki/Input_Field_Separators
