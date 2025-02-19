@@ -58,6 +58,7 @@
     "ms-vscode.cpptools-extension-pack",
     "josetr.cmake-language-support-vscode",
     "llvm-vs-code-extensions.vscode-clangd",
+    "llvm-vs-code-extensions.lldb-dap", // LLDB DAP (Debug Adapter Protocol) ; https://marketplace.visualstudio.com/items?itemName=llvm-vs-code-extensions.lldb-dap
     "cschlosser.doxdocgen",
     //  *.cs, .csx (C#)
     //  CMake Language Support (josetr.cmake-language-support-vscode) depends on .NET Install Tool (ms-dotnettools.vscode-dotnet-runtime)

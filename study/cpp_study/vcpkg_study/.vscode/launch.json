@@ -20,14 +20,7 @@
       "program": "${workspaceRoot}/build/aarch64-linux-gnu/fmt_example",
       "gdb-remote-port": 1234,
       "gdb-remote-hostname": "localhost",
-      // "cwd": "${workspaceRoot}",
-      // "stopOnEntry": true,
-      "initCommands": [
-        "target create ${workspaceRoot}/build/aarch64-linux-gnu/fmt_example",
-        "target remote localhost:1234",
-        "b main",
-        "c"
-      ]
+      "preLaunchTask": "Run QEMU for AArch64"
     }
   ]
 }
