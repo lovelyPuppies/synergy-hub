@@ -1,4 +1,3 @@
-// 📝 Create User-specific `CMakeUserPresets.json`
 {
   "version": 3,
   "configurePresets": [
@@ -6,7 +5,7 @@
       "name": "local-debug-x64-linux-gnu-clang",
       "inherits": "debug-x64-linux-gnu-clang",
       "environment": {
-        "VCPKG_ROOT": "/home/wbfw109v2/repos/vcpkg"
+        "VCPKG_ROOT": "$env{HOME}/repos/vcpkg"
       }
     }
   ]

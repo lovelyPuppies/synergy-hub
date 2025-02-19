@@ -1,5 +1,9 @@
 ```bash
 #!/usr/bin/env fish
+
+# ⚙️ Adjust your environment variable for cmake
+./setup_dev_env.fish
+
 # https://learn.microsoft.com/en-us/vcpkg/users/buildsystems/cmake-integration
 # vcpkg does not automatically add any include or links paths into your project. To use a header-only library you can use find_path() which will correctly work on all platforms:
 vcpkg install fmt:x64-linux fmt:arm64-linux
@@ -28,4 +32,7 @@ The package fmt provides CMake targets:
     target_link_libraries(main PRIVATE fmt::fmt-header-only)
 
 # cmake -B build -S /my/project --preset debug
+
+
+qemu-system-aarch64
 ```
