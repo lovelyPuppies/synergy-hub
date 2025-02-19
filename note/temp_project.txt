@@ -20606,3 +20606,25 @@ message(STATUS "VCPKG_ROOT from .env: $ENV{VCPKG_ROOT}")
 .vscode/settings.json에서 .env 경로를 전달.
 CMakePresets.json은 $env{}로 .env 변수 참조 가능.
 CMakeLists.txt는 ENV_FILE 값을 전달받아 .env를 로드.
+
+
+⚠️ 결론: 왜 .vscode/settings.json으로 .env를 전달해야 하나?
+CMakePresets.json은 CLI 또는 Preset 내부 environment만 참조
+.vscode/settings.json의 cmake.configureEnvironment는 Preset 단계의 $env{}에 영향을 못 줌
+cmake.configureArgs를 통해 .env 경로를 전달하는 것이 가장 깔끔함.
+
+
+
+📌 🚨 왜 cmake.configureEnvironment는 안 됐나?
+CMakePresets.json의 $env{}는 CMakePresets.json의 "environment" 필드나 CLI 환경변수만 참조.
+VSCode 확장(cmake.environment/cmake.configureEnvironment)은 CMakePresets 내부 $env{}에는 영향을 주지 않음.
+공식적인 해결책은 CMakeUserPresets.json이지만, 다중 상속 문제와 중복 문제로 비효율적.
+  "configurePresets": [{
+    "cacheVariables": {
+      "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOTa}/scripts/buildsystems/vcpkg.cmake"
+    }
+  }]
+
+
+https://devblogs.microsoft.com/cppblog/cmake-presets-integration-in-visual-studio-and-visual-studio-code/
+  Project-specific information can always be checked in. CMake supports two files: CMakePresets.json and CMakeUserPresets.json. CMakePresets.json is intended to save project-wide presets, while CMakeUserPresets.json is intended for developers to save their own local presets. This ensures project-specific information can always be checked into source control and makes it easier for new team members to get up-and-running. It also makes it easier for teams to synchronize changes to their CMake builds across the entire team. Both CMakePresets.json and CMakeUserPresets.json are supported in Visual Studio and Visual Studio Code.
