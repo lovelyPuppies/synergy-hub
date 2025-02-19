@@ -142,6 +142,7 @@
   },
   // 🌀 Title: C/Cpp
   // cmake ; https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools
+  "cmake.allowCommentsInPresetsFile": true,
   "cmake.showOptionsMovedNotification": false,
   "cmake.options.statusBarVisibility": "hidden",
   "cmake.cmakePath": "/home/linuxbrew/.linuxbrew/bin/cmake",

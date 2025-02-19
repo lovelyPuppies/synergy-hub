@@ -87,9 +87,13 @@ list of level 1 subjects
 
     ⚓ cmake-variables(7) ; https://cmake.org/cmake/help/latest/manual/cmake-variables.7.html
       #️⃣ Variables that Change Behavior ; https://cmake.org/cmake/help/latest/manual/cmake-variables.7.html#variables-that-change-behavior
+        ⚓🖇️🔰 CMAKE_BUILD_TYPE ; https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html
+          Typical values include Debug, Release, RelWithDebInfo and MinSizeRel, but custom build types can also be defined.
+          ... ❗ The default value is often an empty string, but this is usually not desirable and one of the other standard build types is usually more appropriate.
         ⚓📍 CMAKE_EXPORT_COMPILE_COMMANDS ; https://cmake.org/cmake/help/latest/variable/CMAKE_EXPORT_COMPILE_COMMANDS.html
         ⚓📍 CMAKE_PREFIX_PATH ; https://cmake.org/cmake/help/latest/variable/CMAKE_PREFIX_PATH.html
         ⚓📍 CMAKE_MODULE_PATH ; https://cmake.org/cmake/help/latest/variable/CMAKE_MODULE_PATH.html
+
     ⚓ cmake-env-variables(7) ; https://cmake.org/cmake/help/latest/manual/cmake-env-variables.7.html
       # Environment Variables that Change Behavior
         ⚓ CMAKE_PREFIX_PATH ; https://cmake.org/cmake/help/latest/envvar/CMAKE_PREFIX_PATH.html

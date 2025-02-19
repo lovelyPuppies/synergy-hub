@@ -42,4 +42,10 @@ The package fmt provides CMake targets:
 qemu-system-aarch64
 
 qemu-aarch64 -L /usr/aarch64-linux-gnu build/aarch64-linux-gnu/fmt_example
+qemu-aarch64 -g 1234 -L /usr/aarch64-linux-gnu build/aarch64-linux-gnu/fmt_example
+
+❯ ls $VCPKG_ROOT/installed/x64-linux/debug/lib
+libcrypto.a  libfmtd.a  libmariadb.a@  libmariadbclient.a  libmariadbcpp.a@  libmariadbcpp-static.a  libssl.a  libz.a  pkgconfig/
+
+
 ```

@@ -117,6 +117,8 @@ vcpkg 🔪⚓ Docs ; https://learn.microsoft.com/en-us/vcpkg/
             x86-windows-static
             x86-windows-v120
           See https://learn.microsoft.com/vcpkg/users/triplets?WT.mc_id=vcpkg_inproduct_cli for more information.
+      ⚓ vcpkg list ; https://learn.microsoft.com/en-us/vcpkg/commands/list
+
       ⚓ vcpkg new ; https://learn.micr osoft.com/en-us/vcpkg/commands/new
 
 
