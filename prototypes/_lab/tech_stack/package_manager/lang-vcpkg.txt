@@ -28,6 +28,9 @@ vcpkg 🔪⚓ Docs ; https://learn.microsoft.com/en-us/vcpkg/
         #📍 Using Multiple Toolchain Files
         # Settings Reference
           -📍 VCPKG_TARGET_TRIPLET
+          - VCPKG_MANIFEST_MODE
+            This variable forces vcpkg to operate in 🌳 either manifest mode or classic mode.
+            Defaults to ON when VCPKG_MANIFEST_DIR is non-empty or ${CMAKE_SOURCE_DIR}/vcpkg.json exists.
   # Reference
     #🧮 Command-Line
       ⚓ vcpkg help ; https://learn.microsoft.com/en-us/vcpkg/commands/help

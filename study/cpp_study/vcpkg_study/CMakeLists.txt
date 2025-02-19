@@ -1,11 +1,12 @@
 cmake_minimum_required(VERSION 3.19)
 project(fmt_example LANGUAGES CXX)
 
-find_package(fmt CONFIG REQUIRED)
 
 
 add_executable(fmt_example main.cpp)
-target_link_libraries(fmt_example PRIVATE fmt::fmt)
+find_package(fmt CONFIG REQUIRED)
+find_package(spdlog CONFIG REQUIRED)
+target_link_libraries(fmt_example PRIVATE fmt::fmt spdlog::spdlog)
 
 
 ##### 🌀 Title: Creating a Symbolic Link or Copying compile_commands.json to build/compile_commands.json for IntelliSense in VSCode with the clangd Extension 📅 2025-01-06 07:07:23

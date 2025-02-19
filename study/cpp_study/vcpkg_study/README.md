@@ -58,7 +58,20 @@ libcrypto.a  libfmtd.a  libmariadb.a@  libmariadbclient.a  libmariadbcpp.a@  lib
 # https://github.com/microsoft/vcpkg-docs/blob/main/vcpkg/get_started/get-started-vscode.md
 vcpkg new --application
 vcpkg add port spdlog
-vcpkg add port spdlog:x64-linux spdlog:arm64-linux
 # https://vcpkg.io/en/package/spdlog
+# https://github.com/microsoft/vcpkg/issues/18865
+vcpkg install --triplet x64-linux
+vcpkg install --triplet arm64-linux
 
+
+The package spdlog provides CMake targets:
+
+    find_package(spdlog CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE spdlog::spdlog)
+
+    # Or use the header-only version
+    find_package(spdlog CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE spdlog::spdlog_header_only)
+
+    
 ```

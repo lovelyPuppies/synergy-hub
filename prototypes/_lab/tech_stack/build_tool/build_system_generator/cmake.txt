@@ -86,6 +86,9 @@ list of level 1 subjects
           - ${sourceDir}
 
     ⚓ cmake-variables(7) ; https://cmake.org/cmake/help/latest/manual/cmake-variables.7.html
+      #️⃣ Variables that Provide Information ; https://cmake.org/cmake/help/latest/manual/cmake-variables.7.html#id2
+        ⚓🖇️🔰 CMAKE_SOURCE_DIR ; https://cmake.org/cmake/help/latest/variable/CMAKE_SOURCE_DIR.html 📅 2025-02-20 07:53:18
+        ⚓🖇️🔰 CMAKE_BINARY_DIR ; https://cmake.org/cmake/help/latest/variable/CMAKE_BINARY_DIR.html 📅 2025-02-20 07:53:35
       #️⃣ Variables that Change Behavior ; https://cmake.org/cmake/help/latest/manual/cmake-variables.7.html#variables-that-change-behavior
         ⚓🖇️🔰 CMAKE_BUILD_TYPE ; https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html
           Typical values include Debug, Release, RelWithDebInfo and MinSizeRel, but custom build types can also be defined.
