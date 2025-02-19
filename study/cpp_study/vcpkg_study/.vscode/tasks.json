@@ -4,7 +4,7 @@
     {
       "label": "Run QEMU for AArch64",
       "type": "shell",
-      "command": "echo Started && qemu-aarch64 -g 1234 -L /usr/aarch64-linux-gnu build/aarch64-linux-gnu/fmt_example",
+      "command": "qemu-aarch64 -g 1234 -L /usr/aarch64-linux-gnu build/debug-aarch64-linux-gnu-clang",
       "presentation": {
         "reveal": "always",
         "panel": "new"

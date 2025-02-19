@@ -8,7 +8,7 @@
     {
       "name": "debug-x64-linux-gnu-clang",
       "generator": "Ninja",
-      "binaryDir": "${sourceDir}/build/x64-linux-gnu",
+      "binaryDir": "${sourceDir}/build/debug-x64-linux-gnu-clang",
       "environment": {
         "PATH": "/home/linuxbrew/.linuxbrew/bin:bin:/usr/bin"
       },
@@ -28,7 +28,7 @@
     {
       "name": "debug-aarch64-linux-gnu-clang",
       "generator": "Ninja",
-      "binaryDir": "${sourceDir}/build/aarch64-linux-gnu",
+      "binaryDir": "${sourceDir}/build/debug-aarch64-linux-gnu-clang",
       "environment": {
         "PATH": "/usr/aarch64-linux-gnu/bin:/home/linuxbrew/.linuxbrew/bin:bin:/usr/bin"
       },
