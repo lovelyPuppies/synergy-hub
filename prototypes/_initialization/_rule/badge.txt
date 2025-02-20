@@ -15,5 +15,5 @@ Badge Format 🔪 Precedence
          ENCODED_STRING = (curl -s https://vcpkg.io/assets/mark/mark.svg | base64 -w 0)
       ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-%23FFFFFF.svg?style=plastic&logo=data:image/svg+xml;base64,ENCODED_STRING)
          ENCODED_STRING = base64 vscode.svg -w 0  🔗 from https://code.visualstudio.com/brand
-
+         📝📰 ??? Not works in only web browser
 
