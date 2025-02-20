@@ -20511,9 +20511,6 @@ mariadb-connector-cpp provides CMake targets:
 
 
 
-
-
-
 >>>>>>>>> dotenv
 
 how can I load environment file (.env) when run cmake command? ; https://stackoverflow.com/questions/68824042/how-can-i-load-environment-file-env-when-run-cmake-command
@@ -20561,45 +20558,6 @@ https://github.com/microsoft/vscode-cmake-tools/blob/HEAD/docs/cmake-presets.md
 🚀 💡 해결 방안: .env + CMakePresets.json 문제 해결하기
 💡 방법 1: VSCode에서 cmake.configureArgs를 사용해 .env 로드 (추천)
 📝 .vscode/settings.json
-json
-Copy
-Edit
-{
-  "cmake.configureArgs": [
-    "--no-warn-unused-cli",
-    "-DENV_FILE=${workspaceFolder}/.env"
-  ]
-}
-📝 CMakePresets.json
-json
-Copy
-Edit
-{
-  "version": 3,
-  "configurePresets": [
-    {
-      "name": "debug",
-      "generator": "Ninja",
-      "cacheVariables": {
-        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
-      }
-    }
-  ]
-}
-📝 CMakeLists.txt
-cmake
-Copy
-Edit
-if (DEFINED ENV_FILE)
-    file(STRINGS "${ENV_FILE}" ENV_FILE_CONTENT)
-    foreach(VAR ${ENV_FILE_CONTENT})
-        if (VAR MATCHES "^([^#].+)=([^#].*)$")
-            string(STRIP "${CMAKE_MATCH_1}" KEY)
-            string(STRIP "${CMAKE_MATCH_2}" VALUE)
-            set(ENV{${KEY}} "${VALUE}")
-        endif()
-    endforeach()
-endif()
 
 # Debug
 message(STATUS "VCPKG_ROOT from .env: $ENV{VCPKG_ROOT}")

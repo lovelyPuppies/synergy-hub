@@ -17,8 +17,33 @@ list of level 1 subjects
 
 
 (✍️ vcpkg 🔪 study)
-❔ (About) Why ARM dynamic triplet 은.. ...
-  
+  ❔ About: Why ARM64 dynamic triplets are not supported by default 📅 2025-02-21 06:00:44
+    ARM64 dynamic triplets are not officially supported in vcpkg by default.
+      This is mainly due to cross-compilation difficulties, runtime and deployment challenges, and potential performance bottlenecks. 
+      Static linking is generally preferred for ARM64 because it simplifies cross-platform development, reduces compatibility issues, and streamlines deployment. 
+      Since dynamic libraries must be built and tested separately for different platforms, they introduce additional complexity.
+      Given these challenges, vcpkg is configured to use static libraries by default for ARM64 environments.
+    
+    1️⃣ Cross-compilation difficulties
+      - Cross-compiling dynamic libraries is inherently more complex than static libraries.
+      - Dynamic libraries depend on a target-specific runtime linker (e.g., ld-linux.so) and shared object (.so) dependencies that must match the target environment.
+      - When cross-compiling, the host system does not have the exact target runtime, making it difficult to ensure compatibility.
+      - In contrast, static libraries (.a) embed all dependencies directly, making cross-compilation simpler and more reliable.
+
+    2️⃣ Deployment and runtime environment challenges
+      - Static libraries ensure that the binary works independently, whereas dynamic libraries require distributing additional shared objects (.so).
+      - If the target system has a different version of libc or other system libraries, dynamic linking can break.
+      - Embedded and mobile environments have stricter runtime constraints, making it difficult to rely on shared libraries.
+      - Dynamic libraries require additional runtime loading operations, which can slow down execution.
+      - On embedded Linux systems using Yocto or Buildroot, dynamic libraries 
+        increase maintenance overhead, as they need to be preloaded properly.
+      - Containers (🛍️ e.g., Docker) can isolate dependencies, but they do not solve performance issues in embedded devices.
+
+    3️⃣ Performance concerns in embedded & mobile systems
+      - Embedded devices prioritize fast startup times and deterministic behavior.
+      - Dynamic linking introduces overhead in loading and symbol resolution, which can slow down boot times.
+      - Mobile platforms like Android and iOS often enforce strict policies 
+        for shared library distribution, making static linking the safer choice.
 
 ----------------------------------------------
 vcpkg 🔪⚓ Docs ; https://learn.microsoft.com/en-us/vcpkg/
