@@ -9,4 +9,7 @@ Badge Format 🔪 Precedence
       ![Homebrew](https://img.shields.io/badge/Homebrew-%23FBB040.svg?style=plastic&logo=homebrew&logoColor=white)
       ![Make](https://img.shields.io/badge/Make-%236D00CC.svg?style=plastic&logo=make&logoColor=white)
       ![Bazel](https://img.shields.io/badge/Bazel-%2343A047.svg?style=plastic&logo=bazel&logoColor=white)
-      
+   
+   - Custom Icon ; https://shields.io/docs/logos
+      ![vcpkg](https://img.shields.io/badge/vcpkg-%23FFFFFF.svg?style=plastic&logo=data:image/svg+xml;base64,ENCODED_STRING)
+         ENCODED_STRING = (curl -s https://vcpkg.io/assets/mark/mark.svg | base64 -w 0)

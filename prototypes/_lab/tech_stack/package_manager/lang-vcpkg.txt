@@ -1,10 +1,19 @@
 list of level 1 subjects
   - vcpkg
 
+
+❗ Firstly, Check Packages's supported Triplets at the site ; https://vcpkg.io/en/packages📅 2025-02-20 20:55:26
+  🛍️ e.g. fmt ; https://vcpkg.io/en/package/fmt
+    - Supports
+      This package supports the following triplets:
+        Supported on all triplets
+
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
 ⚓⭕ vcpkg ; https://en.wikipedia.org/wiki/Vcpkg
   vcpkg is a cross-platform open source package manager by Microsoft.
   https://github.com/microsoft/vcpkg
+  
+  https://vcpkg.io/en/packages
 
 
 (✍️ vcpkg 🔪 study)
@@ -13,6 +22,10 @@ list of level 1 subjects
 ----------------------------------------------
 vcpkg 🔪⚓ Docs ; https://learn.microsoft.com/en-us/vcpkg/
   #🔰 Concepts
+    ⚓🖇️ classic Mode ; https://learn.microsoft.com/en-us/vcpkg/concepts/classic-mode
+      📝 User can install by 🛍️ e.g. running `vcpkg install fmt:x64-linux fmt:arm64-linux`
+
+
     # Build system integration
       ⚓ CMake integration ; https://learn.microsoft.com/en-us/vcpkg/users/buildsystems/cmake-integration
         # CMAKE_TOOLCHAIN_FILE
@@ -31,6 +44,9 @@ vcpkg 🔪⚓ Docs ; https://learn.microsoft.com/en-us/vcpkg/
           - VCPKG_MANIFEST_MODE
             This variable forces vcpkg to operate in 🌳 either manifest mode or classic mode.
             Defaults to ON when VCPKG_MANIFEST_DIR is non-empty or ${CMAKE_SOURCE_DIR}/vcpkg.json exists.
+
+
+            
   # Reference
     #🧮 Command-Line
       ⚓ vcpkg help ; https://learn.microsoft.com/en-us/vcpkg/commands/help
@@ -131,3 +147,6 @@ vcpkg 🔪⚓ Docs ; https://learn.microsoft.com/en-us/vcpkg/
 
 
 
+  테스트 결과 cmaepreset.json 에서는 manifest mode 를 사용하든 안하든 바꿀 것이 없다. 자동 인식함.
+https://learn.microsoft.com/en-us/vcpkg/concepts/manifest-mode
+https://learn.microsoft.com/en-us/vcpkg/concepts/triplets
