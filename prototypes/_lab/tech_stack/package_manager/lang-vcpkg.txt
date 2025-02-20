@@ -1,5 +1,5 @@
 list of level 1 subjects
-  - vcpkg
+  - vcpkg (Visual C++ Package Manager)
 
 
 ❗ Firstly, Check Packages's supported Triplets at the site ; https://vcpkg.io/en/packages📅 2025-02-20 20:55:26
@@ -17,17 +17,44 @@ list of level 1 subjects
 
 
 (✍️ vcpkg 🔪 study)
-
+❔ (About) Why ARM dynamic triplet 은.. ...
+  
 
 ----------------------------------------------
 vcpkg 🔪⚓ Docs ; https://learn.microsoft.com/en-us/vcpkg/
   #🔰 Concepts
     ⚓🖇️ classic Mode ; https://learn.microsoft.com/en-us/vcpkg/concepts/classic-mode
       📝 User can install by 🛍️ e.g. running `vcpkg install fmt:x64-linux fmt:arm64-linux`
+      In classic mode, vcpkg maintains a central installed tree inside the vcpkg instance built up by individual vcpkg install and vcpkg remove commands.
+        This central set of packages can then be shared by any number of projects.
+      🚣 Because the set of installed packages is not associated with an individual project, classic mode operates similarly to tools like brew or apt.
+        However ...
+    ⚓ Manifest mode ; https://learn.microsoft.com/en-us/vcpkg/concepts/manifest-mode
+      📝 CMakePresets.json 와 함께 사용할 때, Classic Mode 와 동일하게 설정하면 된다. 📅 2025-02-21 05:19:05
+        자동으로 프로젝트 경로에 manifest 파일이 있느냐 없느냐에 따라 "VCPKG_MANIFEST_MODE" 가 설정되기 때문.
+          🛍️ e.g. 
+            "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+            "VCPKG_TARGET_TRIPLET": "arm64-linux"
+        단 그 이 전에, 프로젝트 경로에서 다음 명령어를 수행해서 manifest 파일을 만들어야 한다.
+          %shell> vcpkg new --application
+
+      # Manifest files in ports
+      #📎 Manifest files in projects
+        The main purpose of using a manifest file in your project is to declare your dependencies.
+        🔰 When using a project manifest, you're able to specify version constraints and overrides to lock specific versions of your dependencies. This feature is not available in classic mode.
+      # Configuration file
+      # Installing packages in manifest mode
+        To install packages using a manifest file you use the vcpkg install command without any package arguments.
+        🪱 vcpkg_installed
+      # Using 🪱 features in project manifests
+        💡 Manifest files can define additive sets of functionality, behavior, and dependencies through the use of "features".
+
+    ⚓ Triplets ; https://learn.microsoft.com/en-us/vcpkg/concepts/triplets
+      Triplet is a standard term used in cross-compiling as a way to completely capture the target environment (CPU, OS, compiler, runtime, etc.) in a single, convenient name.
 
 
     # Build system integration
-      ⚓ CMake integration ; https://learn.microsoft.com/en-us/vcpkg/users/buildsystems/cmake-integration
+      ⚓🔰 CMake integration ; https://learn.microsoft.com/en-us/vcpkg/users/buildsystems/cmake-integration
         # CMAKE_TOOLCHAIN_FILE
           ⭕ We recommend using CMake Presets to specify your toolchain file. 
             "cacheVariables": {
@@ -38,15 +65,15 @@ vcpkg 🔪⚓ Docs ; https://learn.microsoft.com/en-us/vcpkg/
           To use a header-only library you can use find_path() which will correctly work on all platforms: ...
         # IDE Integration
 
-        #📍 Using Multiple Toolchain Files
+        #🚣 Using Multiple Toolchain Files
         # Settings Reference
           -📍 VCPKG_TARGET_TRIPLET
           - VCPKG_MANIFEST_MODE
             This variable forces vcpkg to operate in 🌳 either manifest mode or classic mode.
             Defaults to ON when VCPKG_MANIFEST_DIR is non-empty or ${CMAKE_SOURCE_DIR}/vcpkg.json exists.
+          -📍 VCPKG_MANIFEST_FEATURES
 
 
-            
   # Reference
     #🧮 Command-Line
       ⚓ vcpkg help ; https://learn.microsoft.com/en-us/vcpkg/commands/help
@@ -145,8 +172,3 @@ vcpkg 🔪⚓ Docs ; https://learn.microsoft.com/en-us/vcpkg/
 
       ⚓ vcpkg list ; https://learn.microsoft.com/en-us/vcpkg/commands/list
 
-
-
-  테스트 결과 cmaepreset.json 에서는 manifest mode 를 사용하든 안하든 바꿀 것이 없다. 자동 인식함.
-https://learn.microsoft.com/en-us/vcpkg/concepts/manifest-mode
-https://learn.microsoft.com/en-us/vcpkg/concepts/triplets
