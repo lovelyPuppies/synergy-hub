@@ -20461,13 +20461,6 @@ wbfw109v2 in 🌐 iot-04 in vcpkg/installed/x64-linux on  master via 🐍 v3.
   plugins/libmariadb/client_ed25519.so
 
 
-
-
-ls $VCPKG_ROOT/installed
-
-https://marketplace.visualstudio.com/items?itemName=Arm.environment-manager
-
-
 cmake_minimum_required(VERSION 3.20)
   project(MyProject LANGUAGES CXX)
 
@@ -20506,8 +20499,6 @@ mariadb-connector-cpp provides CMake targets:
   # this is heuristically generated, and may not be correct
   find_package(unofficial-mariadb-connector-cpp CONFIG REQUIRED)
   target_link_libraries(main PRIVATE unofficial::mariadb-connector-cpp::mariadbcpp)
-
-
 
 
 
@@ -20583,6 +20574,11 @@ VSCode 확장(cmake.environment/cmake.configureEnvironment)은 CMakePresets 내�
       "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOTa}/scripts/buildsystems/vcpkg.cmake"
     }
   }]
+
+  
+❯ ls $VCPKG_ROOT/installed/x64-linux/debug/lib
+libcrypto.a  libfmtd.a  libmariadb.a@  libmariadbclient.a  libmariadbcpp.a@  libmariadbcpp-static.a  libssl.a  libz.a  pkgconfig/
+
 
 
 https://devblogs.microsoft.com/cppblog/cmake-presets-integration-in-visual-studio-and-visual-studio-code/

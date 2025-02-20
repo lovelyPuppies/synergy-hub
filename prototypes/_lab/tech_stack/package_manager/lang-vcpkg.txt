@@ -13,9 +13,6 @@ list of level 1 subjects
   vcpkg is a cross-platform open source package manager by Microsoft.
   https://github.com/microsoft/vcpkg
   
-  https://vcpkg.io/en/packages
-
-
 (✍️ vcpkg 🔪 study)
   ❔ About: Why ARM64 dynamic triplets are not supported by default 📅 2025-02-21 06:00:44
     ARM64 dynamic triplets are not officially supported in vcpkg by default.
@@ -45,8 +42,16 @@ list of level 1 subjects
       - Mobile platforms like Android and iOS often enforce strict policies 
         for shared library distribution, making static linking the safer choice.
 
+
+⚓ vcpkg 🔪 Package Index ; https://vcpkg.io/en/packages
+  - fmt ; https://vcpkg.io/en/package/fmt
+  - spdlog ; https://vcpkg.io/en/package/spdlog
+
 ----------------------------------------------
 vcpkg 🔪⚓ Docs ; https://learn.microsoft.com/en-us/vcpkg/
+  #🔰 Get started
+    ⚓ Install and use packages with CMake in Visual Studio Code ; https://learn.microsoft.com/en-us/vcpkg/get_started/get-started-vscode?pivots=shell-bash
+
   #🔰 Concepts
     ⚓🖇️ classic Mode ; https://learn.microsoft.com/en-us/vcpkg/concepts/classic-mode
       📝 User can install by 🛍️ e.g. running `vcpkg install fmt:x64-linux fmt:arm64-linux`
@@ -55,13 +60,16 @@ vcpkg 🔪⚓ Docs ; https://learn.microsoft.com/en-us/vcpkg/
       🚣 Because the set of installed packages is not associated with an individual project, classic mode operates similarly to tools like brew or apt.
         However ...
     ⚓ Manifest mode ; https://learn.microsoft.com/en-us/vcpkg/concepts/manifest-mode
-      📝 CMakePresets.json 와 함께 사용할 때, Classic Mode 와 동일하게 설정하면 된다. 📅 2025-02-21 05:19:05
-        자동으로 프로젝트 경로에 manifest 파일이 있느냐 없느냐에 따라 "VCPKG_MANIFEST_MODE" 가 설정되기 때문.
-          🛍️ e.g. 
-            "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
-            "VCPKG_TARGET_TRIPLET": "arm64-linux"
-        단 그 이 전에, 프로젝트 경로에서 다음 명령어를 수행해서 manifest 파일을 만들어야 한다.
-          %shell> vcpkg new --application
+      📝🚧 Prerequisite 📅 2025-02-21 05:19:05
+        - 프로젝트 경로에서 다음 명령어를 수행해서 manifest 파일고 만들고, 사용할 라이브러리를 추가해야 한다.
+          %shell>
+            vcpkg new --application
+            vcpkg add port spdlog     # 🛍️ e.g. spdlog   
+        - CMakePresets.json 와 함께 사용할 때, Classic Mode 와 동일하게 설정하면 된다.
+          자동으로 프로젝트 경로에 manifest 파일이 있느냐 없느냐에 따라 "VCPKG_MANIFEST_MODE" 가 설정되기 때문.
+            🛍️ e.g. 
+              "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+              "VCPKG_TARGET_TRIPLET": "arm64-linux"
 
       # Manifest files in ports
       #📎 Manifest files in projects
@@ -86,7 +94,7 @@ vcpkg 🔪⚓ Docs ; https://learn.microsoft.com/en-us/vcpkg/
               "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
             }
         # Using Libraries
-          vcpkg does not automatically add any include or links paths into your project.
+          🚣 vcpkg does not automatically add any include or links paths into your project.
           To use a header-only library you can use find_path() which will correctly work on all platforms: ...
         # IDE Integration
 
