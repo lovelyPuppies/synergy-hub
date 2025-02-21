@@ -20589,7 +20589,9 @@ https://softeer.ai/index
 C++ ORM 라이브러리 비교.
 📍📍📍📍📍📍📍📍📍📍📍📍
   https://stackoverflow.com/questions/54539682/how-to-set-up-cmake-to-cross-compile-with-clang-for-arm-embedded-on-windows
-
+  https://stackoverflow.com/a/75784325
+  https://formulae.brew.sh/formula/mingw-w64
+  https://formulae.brew.sh/formula/xwin#default
 https://github.com/microsoft/vscode-cmake-tools/issues/1361
 
 
@@ -20690,6 +20692,9 @@ https://github.com/Jake-Shadle/xwin
 
 brew install xwin
   xwin은 Rust 기반으로 작성된 Windows 크로스컴파일 지원 도구이며, Homebrew (brew)에서도 설치 가능합니다.
+## `xwin` package 📅 2025-02-21 19:49:33
+.xwin-cache
+
 xwin --accept-license download
 
 // --help 설명: Allows downloading and repacking the MSVC CRT and Windows SDK for cross compilation
@@ -20712,3 +20717,5 @@ Options:
 
 CRT( C Runtime Library )는 Windows에서 C와 C++ 프로그램이 실행될 때 필수적인 런타임 라이브러리
 리눅스에서 stdlib 인가? stdc 인가 glibc 필요한것처럼..
+
+https://github.com/messense/xwin

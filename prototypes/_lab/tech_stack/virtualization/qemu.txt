@@ -11,7 +11,10 @@ list of level 1 subjects
 ----------------------------------------------
 QEMU 🔪⚓ User Mode emulation (QEMU User space emulator) ; https://qemu.readthedocs.io/en/master/user/main.html
   This section of the manual is the overall guide for users using QEMU for user-mode emulation. In this mode, QEMU can launch processes compiled for one CPU on another CPU.
-  # Supported Operating Systems
+  #⚖️ Supported Operating Systems
+    📝 not supports Windows
+    Linux (referred as qemu-linux-user)
+    BSD (referred as qemu-bsd-user)
   # Features
   # Linux User space emulator
   # BSD User space emulator
