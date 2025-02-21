@@ -20670,9 +20670,6 @@ arm-linux-gnueabihf-gcc
 
 음 arm 64비트용과, 모든 
 
-gcc-arm-none-eabi
-gdb-arm-none-eabi
-
 
 rustc --print target-list | rg "eabi|aarch64|linux|windows"
 x86_64-pc-windows-msvc
@@ -20720,3 +20717,46 @@ CRT( C Runtime Library )는 Windows에서 C와 C++ 프로그램이 실행될 때
 리눅스에서 stdlib 인가? stdc 인가 glibc 필요한것처럼..
 
 https://github.com/messense/xwin
+
+이거 아키텍처가  다르고  abi가 같으면 무조건 호환성이 보장되나?
+
+  아니요, 아키텍처가 다르지만 ABI가 같다고 해서 반드시 호환성이 보장되는 것은 아닙니다.
+  ABI(Application Binary Interface)가 같으면 일부 바이너리는 공유할 수 있지만, CPU 아키텍처의 차이로 인해 실행이 불가능한 경우도 많습니다.
+
+  1. ABI와 호환성의 관계
+  ABI(응용 이진 인터페이스, Application Binary Interface)는 주로 다음을 정의합니다.
+  이진값 수준에서 인터페이스를 뜻한다.
+    📌 1. "함수 실행 흐름" 순서대로 정리
+    💡 프로그램이 실행될 때 일어나는 순서대로 정리하면 기억하기 쉬움!
+    1️⃣ 바이너리 형식 (Binary Format, ELF/PE 등)
+      → 프로그램이 어떻게 저장되고 로드되는가?
+      → (예: ELF, PE)
+    2️⃣ 시스템 호출 인터페이스 (Syscall)
+      → OS와 어떻게 상호작용하는가?
+      → (예: 파일 입출력, 메모리 할당)
+    3️⃣ 함수 호출 규약 (Calling Convention)
+      → 함수 간에 데이터를 어떻게 주고받는가?
+      → (예: ARM AAPCS, x86 cdecl)
+    4️⃣ 레지스터 사용 규칙
+      → 어떤 레지스터를 어떻게 사용할 것인가?
+      → (예: R0~R3은 함수 인자 전달용)
+    5️⃣ 스택 프레임 구조 (Stack Frame Layout)
+      → 함수 호출 시 스택이 어떻게 정리되는가?
+      → (예: 리턴 주소, 지역 변수 위치)
+    6️⃣ 메모리 정렬 및 데이터 크기 (Endianness, Data Size)
+      → 메모리에 데이터가 어떻게 저장되는가?
+      → (예: Little Endian vs. Big Endian)
+  즉, 같은 ABI라면 함수 호출 규약과 바이너리 구조는 동일하지만, CPU 명령어 셋(ISA, Instruction Set Architecture)이 다르면 실행이 불가능할 수 있습니다.
+
+
+
+
+https://clang.llvm.org/docs/CrossCompilation.html
+  <arch><sub>-<vendor>-<sys>-<env>
+
+STM32
+  gcc-arm-none-eabi
+  gdb-arm-none-eabi
+
+  arm	none	none	eabihf (Hard Float)
+gcc-arm-linux-gnueabihf
