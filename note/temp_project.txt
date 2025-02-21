@@ -20610,11 +20610,6 @@ Emulating Raspberry Pi 4 with Qemu
 
 
 
-
-5-1. -fno-exceptions
-  C++의 예외(exception) 처리를 비활성화합니다.
-  try-catch 구문을 사용할 수 없지만, 코드 크기가 줄어들고 실행 속도가 빨라집니다.
-  임베디드 시스템이나 성능이 중요한 환경에서 자주 사용됨.
 5-2. -fno-threadsafe-statics
   C++에서 정적 지역 변수(static local variable) 는 기본적으로 스레드 안전(thread-safe) 을 보장하기 위해 내부적인 락(lock)을 사용합니다.
   하지만 대부분의 경우 싱글 스레드 환경에서 불필요한 오버헤드를 초래할 수 있음.
@@ -20646,3 +20641,74 @@ Emulating Raspberry Pi 4 with Qemu
 또한, ioctl과 같은 인터페이스를 활용하여 사용자 공간에서 디바이스 드라이버에 특정 명령이나 데이터를 전달할 수 있습니다. 이는 표준 입출력 함수로 처리하기 어려운 다양한 제어 명령을 전달하는 데 사용되며, 디바이스 드라이버는 이러한 명령을 해석하여 하드웨어를 제어하거나 상태 정보를 반환합니다.
 
 이러한 구조를 통해 리눅스 시스템은 사용자 공간과 커널 공간 간의 효율적이고 안전한 통신을 구현하며, 디바이스 드라이버는 하드웨어와 소프트웨어 간의 원활한 상호 작용을 지원합니다.
+
+
+
+헉.. 이게 혹시 모션 제어가, 단순히 선풍기 모터 (속도 제어) 하는 거도 포함되나?
+  네, 모션 제어는 모터나 액추에이터의 움직임을 정밀하게 제어하는 기술을 의미하며, 선풍기 모터의 속도 제어도 모션 제어의 한 형태로 볼 수 있습니다. 특히, 선풍기에서 BLDC(Brushless DC) 모터를 사용하면 발열이 적고 효율이 높아 정밀한 속도 제어가 가능합니다. 
+  따라서, 선풍기 모터의 속도 제어는 모션 제어의 범주에 포함되며, 이를 통해 사용자는 원하는 바람 세기와 방향을 정확하게 조절할 수 있습니다.
+
+
+  Telegraf
+
+Independent software vendor
+
+
+
+gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
+
+
+🧮 %shell> rustc --print target-list
+  https://llvm.org/doxygen/classllvm_1_1Triple.html
+
+arm-linux-gnueabihf-gcc
+
+-<env> 가 추가된거구나. ㅇㅇ
+
+음 arm 64비트용과, 모든 
+
+gcc-arm-none-eabi
+gdb-arm-none-eabi
+
+
+rustc --print target-list | rg "eabi|aarch64|linux|windows"
+x86_64-pc-windows-msvc
+
+
+sudo apt install mingw-w64
+
+sudo apt i
+
+xwin
+Install command:
+brew install xwin
+  📋
+  Microsoft CRT and Windows SDK headers and libraries loader
+
+https://github.com/Jake-Shadle/xwin
+
+
+brew install xwin
+  xwin은 Rust 기반으로 작성된 Windows 크로스컴파일 지원 도구이며, Homebrew (brew)에서도 설치 가능합니다.
+xwin --accept-license download
+
+// --help 설명: Allows downloading and repacking the MSVC CRT and Windows SDK for cross compilation
+Options:
+  --accept-license                       Doesn't display the prompt to accept the license [env: XWIN_ACCEPT_LICENSE=]
+🧮 xwin --accept-license download
+❯  xwin --accept-license download
+  Manifest
+  CRT.headers
+  CRT.libs.x86_64.desktop
+  CRT.libs.x86_64.store
+  SDK.headers.all.none
+  SDK.headers.all.none
+  SDK.headers.all.store
+  SDK.headers.all.store
+  SDK.headers.x86_64.none
+  SDK.libs.x86_64
+  SDK.libs.store.all
+  SDK.ucrt.all
+
+CRT( C Runtime Library )는 Windows에서 C와 C++ 프로그램이 실행될 때 필수적인 런타임 라이브러리
+리눅스에서 stdlib 인가? stdc 인가 glibc 필요한것처럼..

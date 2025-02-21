@@ -21,7 +21,10 @@ list of level 1 subjects
 ----------------------------------------------
 ⚓ clang 🔪 docs ; https://clang.llvm.org/docs/
   ⚓🔰 Cross-compilation using Clang ; https://clang.llvm.org/docs/CrossCompilation.html
-    #🪱 Target Triple
+    #📍🪱 Target Triple
+      📝 <env> 
+      <arch><sub>-<vendor>-<sys>-<env>
+
     # Toolchain Options
       📍 There are two main ways to have a cross-compiler: ...
         - --sysroot=<path>
@@ -45,6 +48,20 @@ clang 🔪 docs 🔪 Using Clang as a Compiler
         Note: executables (e.g. ld) used by the compiler are not overridden by the selected GCC installation
     # Compilation options
       #️⃣ Target-independent compilation options ; https://clang.llvm.org/docs/ClangCommandLineReference.html#target-independent-compilation-options
+        (⭕ For Embedded device)
+          📎 -fexceptions, -fno-exceptions
+            The -fno-exceptions compiler option disables C++ exception handling, reducing code size and improving performance, making it beneficial for embedded systems and performance-critical applications.
+              Compiling with -fno-exceptions disables exceptions support and uses the variant of C++ libraries without exceptions. Use of try, catch, or throw results in an error message.
+            🔗 https://developer.arm.com/documentation/dui0774/l/Compiler-Command-line-Options/-fexceptions---fno-exceptions
+            Enable support for exception handling
+          📎 -fthreadsafe-statics, -fno-threadsafe-statics
+            Do not emit the extra code to use the routines specified in the C++ ABI for thread-safe initialization of local statics.
+            You can use this option to reduce code size slightly in code that doesn’t need to be thread-safe.
+              🔗 https://gcc.gnu.org/onlinedocs/gcc/C_002b_002b-Dialect-Options.html#index-fno-threadsafe-statics
+            With STM32CubeIDE v1.5.0, the option “Disable thread-safe initialization of local static objects (-fnothreadsafe-statics)” has changed the default value from “true” to “false”.
+            This means that both flash memory and RAM usages are slightly increased with respect to previous versions of STM32CubeIDE, with the benefit of removing a potential race condition in the embedded code
+              🔗 https://www.eevblog.com/forum/programming/what-is-thread-safe-initialization-of-local-static-objects/
+
         -fpic, -fno-pic,    -fPIC, -fno-PIC
           🔗 https://gcc.gnu.org/onlinedocs/gcc/Code-Gen-Options.html#index-fpic
         -march=<arg>

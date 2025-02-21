@@ -13,6 +13,12 @@ Wikipedia
 
 
   (Operating System (OS))
+    ⚓ Application binary interface (ABI) ;  https://en.wikipedia.org/wiki/Application_binary_interface
+      🆚
+        An ABI defines how data structures or computational routines are accessed in machine code, which is a low-level, hardware-dependent format.
+        In contrast, an application programming interface (API) defines this access in source code, which is a relatively high-level, hardware-independent, often human-readable format.
+
+        🚣 Adhering to an ABI (which may or may not be officially standardized) is usually the job of a compiler, operating system, or library author.
     ⚓📎 Out of memory (OOM) ; https://en.wikipedia.org/wiki/Out_of_memory
       Out of memory (OOM) is an often undesired state of computer operation where no additional memory can be allocated for use by programs or the operating system. Such a system will be unable to load any additional programs, and since many programs may load additional data into memory during execution, these will cease to function correctly. This usually occurs because all available memory, including disk swap space, has been allocated.
       
