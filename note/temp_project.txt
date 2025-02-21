@@ -20592,6 +20592,7 @@ C++ ORM 라이브러리 비교.
   https://stackoverflow.com/a/75784325
   https://formulae.brew.sh/formula/mingw-w64
   https://formulae.brew.sh/formula/xwin#default
+  libstdc++, ... 비교.
 https://github.com/microsoft/vscode-cmake-tools/issues/1361
 
 
