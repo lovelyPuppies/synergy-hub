@@ -130,13 +130,15 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
 
 ## 📌 Project Shortcuts
 
-- 🎱 📰 (Doing) [**스마트 택배 시스템**](projects/smart_package_delivery_system/central_server)
+- 🎱 📰 (Doing) [**스마트 택배 배달 시스템**](projects/smart_package_delivery_system/central_server)
 
   📅 2025-01-20 ~
 
-  🏷️ Tag: Turtlebot 3, ROS 1 Noetic, STM32 (Nucleo F411RE), Conan, CMake, Cross-Compilation, MariaDB, TCP/IP, Qt
+  🏷️ Tag: Turtlebot 3, ROS 1 Noetic, ESP32, Conan, CMake, Cross-Compilation, MariaDB, TCP/IP, Qt
 
   - 팀원: 6
+
+    📜 역할: **서버-노드 간 언어별 API 설계 및 구현​**
 
   <!-- **STM32 Nucleo F411RE 기반 디지털 시계 및 알람 시스템** + -->
 
