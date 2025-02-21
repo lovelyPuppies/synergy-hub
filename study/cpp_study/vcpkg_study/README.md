@@ -12,5 +12,4 @@
 ❯ ls $VCPKG_ROOT/installed/x64-linux/debug/lib
 libcrypto.a  libfmtd.a  libmariadb.a@  libmariadbclient.a  libmariadbcpp.a@  libmariadbcpp-static.a  libssl.a  libz.a  pkgconfig/
 
-    
 ```

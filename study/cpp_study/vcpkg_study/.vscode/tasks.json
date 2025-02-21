@@ -12,9 +12,9 @@
       "problemMatcher": []
     },
     {
-      "label": "Run debug-x64-linux-gnu-clang",
+      "label": "Run debug-aarch64-linux-gnu-clang",
       "type": "shell",
-      "command": "qemu-aarch64 -g 1234 -L /usr/aarch64-linux-gnu build/debug-aarch64-linux-gnu-clang",
+      "command": "echo '' && qemu-aarch64 -g 1234 -L /usr/aarch64-linux-gnu ${workspaceRoot}/build/debug-aarch64-linux-gnu-clang/fmt_example",
       "presentation": {
         "reveal": "always",
         "panel": "new"

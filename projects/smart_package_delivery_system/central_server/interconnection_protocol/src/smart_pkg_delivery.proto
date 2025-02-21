@@ -137,6 +137,7 @@ message AuthRequest {
     // CHANGE_PASSWORD = 4;
   }
   AuthType auth_type = 1;
+  // 📰
   string manufacturer = 2;
   string model_name = 3;
   // string refresh_token = 4;

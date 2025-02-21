@@ -5,7 +5,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "debug-aarch64-linux-gnu-clang",
+      "name": "debug-x64-linux-gnu-clang",
       "type": "lldb-dap",
       "request": "launch",
       "program": "${workspaceRoot}/build/debug-x64-linux-gnu-clang/fmt_example",
@@ -14,13 +14,13 @@
       "cwd": "${workspaceRoot}"
     },
     {
-      "name": "debug-x64-linux-gnu-clang (QEMU)",
+      "name": "debug-aarch64-linux-gnu-clang (QEMU)",
       "type": "lldb-dap",
       "request": "attach",
       "program": "${workspaceRoot}/build/debug-aarch64-linux-gnu-clang/fmt_example",
       "gdb-remote-port": 1234,
       "gdb-remote-hostname": "localhost",
-      "preLaunchTask": "Run debug-x64-linux-gnu-clang"
+      "preLaunchTask": "Run debug-aarch64-linux-gnu-clang"
     }
   ]
 }
