@@ -824,6 +824,14 @@ c+cpp
     ⚓ initializer_list ; https://en.cppreference.com/w/cpp/utility/initializer_list
   ⚓ Concepts library ; https://en.cppreference.com/w/cpp/concepts
   ⚓ Diagnostics library ; https://en.cppreference.com/w/cpp/error
+    #🔰 Assertions
+      Assertions help to implement checking of preconditions in programs.
+      Defined in header <cassert>
+      ⚓ assert ; https://en.cppreference.com/w/cpp/error/assert
+        aborts the program if the user-specified condition is not true. May be disabled for release builds. (function macro)
+        The definition of the macro assert depends on another macro, 🪱 NDEBUG, which is not defined by the standard library.
+          1) If NDEBUG is defined as a macro name at the point in the source code where <cassert> or <assert.h> is included, the assertion is disabled: assert does nothing.
+
     ⚓ exception ; https://en.cppreference.com/w/cpp/error/exception
     ⚓ System error ; https://en.cppreference.com/w/cpp/error#System_error
     ⚓ basic_stacktrace ; https://en.cppreference.com/w/cpp/utility/basic_stacktrace
@@ -1180,7 +1188,13 @@ c+cpp
   ⚓ Type support ; https://en.cppreference.com/w/c/types
   ⚓ Program utilities ; https://en.cppreference.com/w/c/program
   ⚓ Variadic functions ; https://en.cppreference.com/w/c/variadic
-  ⚓ Diagnostics library ; https://en.cppreference.com/w/c/error
+  ⚓ Diagnostics library (Error handling) ; https://en.cppreference.com/w/c/error
+    #🔰 Assertions
+      Defined in header <assert.h>
+      ⚓ assert ; https://en.cppreference.com/w/c/error/assert
+        aborts the program if the user-specified condition is not true. May be disabled for release builds (function macro)
+        If 🪱 NDEBUG is defined as a macro name at the point in the source code where <assert.h> is included, then assert does nothing.
+
   ⚓ Dynamic memory management ; https://en.cppreference.com/w/c/memory
   ⚓ Strings library ; https://en.cppreference.com/w/c/string
     ⚓ byte ; https://en.cppreference.com/w/c/string/byte

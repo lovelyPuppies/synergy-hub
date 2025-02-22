@@ -33,6 +33,7 @@
   옵트에이아이 ; https://www.saramin.co.kr/zf_user/company-info/view-inner-recruit?csn=R1NScnY5elFFU0Y4VjVWdlZYd0wrQT09
     https://www.jobplanet.co.kr/companies/410180/interviews/%EC%98%B5%ED%8A%B8%EC%97%90%EC%9D%B4%EC%95%84%EC%9D%B4
 
+📰 ⭕ STM32 -> Semihosting
     
 자동차용: 유라코퍼레이션 ; https://www.saramin.co.kr/zf_user/company-info/view-inner-recruit?csn=ei9KYXFOajFpSzFiSFBhRDdnZForZz09
 📰❗ 전기 기사
@@ -658,6 +659,52 @@ pip install jupyter
 
   이거는 모든 브라우저 공통이야?
   Popup View for Google™ Translate ; https://addons.mozilla.org/ko/firefox/addon/dictionary-anywhere/
+
+settings 
+  in WSL
+    📦 Rust ; https://www.rust-lang.org/tools/install
+      %shell> curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    📦 https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer
+      >>> Output
+        Welcome to Rust!
+
+        This will download and install the official compiler for the Rust
+        programming language, and its package manager, Cargo.
+
+        Rustup metadata and toolchains will be installed into the Rustup
+        home directory, located at:
+
+          /home/wbfw109v2/.rustup
+
+        This can be modified with the RUSTUP_HOME environment variable.
+
+        The Cargo home directory is located at:
+
+          /home/wbfw109v2/.cargo
+
+        This can be modified with the CARGO_HOME environment variable.
+
+        The cargo, rustc, rustup and other commands will be added to
+        Cargo's bin directory, located at:
+
+          /home/wbfw109v2/.cargo/bin
+
+        This path will then be added to your PATH environment variable by
+        modifying the profile files located at:
+
+          /home/wbfw109v2/.profile
+          /home/wbfw109v2/.bashrc
+
+        You can uninstall at any time with rustup self uninstall and
+        these changes will be reverted.
+
+        Current installation options:
+
+
+          default host triple: x86_64-unknown-linux-gnu
+            default toolchain: stable (default)
+                      profile: default
+          modify PATH variable: yes
 
 
 ========= 왕성식 교수님
@@ -20772,11 +20819,19 @@ Clang에서 어떤 C 표준 라이브러리(glibc, musl 등)를 사용할지 결
   https://musl.libc.org/
 ⚓📎 Newlib ; https://en.wikipedia.org/wiki/Newlib
   http://www.sourceware.org/newlib/
-⚓ picolibc ; https://keithp.com/picolibc/ 
+⚓ picolibc ; https://github.com/picolibc/picolibc/tree/main
   Picolibc is library offering standard C library APIs that targets small embedded systems with limited RAM.
   ❗ Picolibc was formed by blending code from 🪱 Newlib and 🪱 AVR Libc.
-  https://github.com/picolibc/picolibc/tree/main
+  https://keithp.com/picolibc/
   https://chromium.googlesource.com/chromiumos/third_party/zephyr/picolibc/+/b92edfda8ac6853772d87cadaeeeaa21b78609b6/README.md
+  
+  # Documentation
+    ⚓ Building Picolibc ; https://github.com/picolibc/picolibc/blob/main/doc/build.md
+    ⚓ Using Picolibc ; https://github.com/picolibc/picolibc/blob/main/doc/using.md
+      gcc --specs=picolibc.specs -c foo.c
+
+
+  
 ⚓ avr-libc ; https://github.com/avrdudes/avr-libc
 
 https://formulae.brew.sh/formula/arm-none-eabi-gcc
@@ -20820,3 +20875,7 @@ avr-libc
   "gcc-arm-none-eabi": Toolchain; 컴파일러, 사용할 라이브러리 등이 이미 지정됨.
 
   GNU compiler collection for arm-none-eabi
+
+arm-none-eabi-gcc --help
+    -specs=<file>            Override built-in specs with the contents of <file>.
+    

@@ -1,6 +1,23 @@
 list of level 1 subjects
   - CMake
-  
+
+- ⭕ Use CMakePresets.json, CMakeUserPresets.json 📅 2025-02-23 02:18:14
+  If the target package to be distributed is an executable:
+    - Use a single-config generator like "Ninja".
+    - Create separate presets for DEBUG (for development) and RELEASE.
+  If the target package is a library:
+    - Use a single-config generator like "Ninja" to create a DEBUG (for development) preset.
+    - Use a multi-config generator like "Ninja Multi-Config" to create a preset that allows building both DEBUG and RELEASE simultaneously.
+
+  Reference
+    %shell> cmake --help
+    >>
+      Generators
+        The following generators are available on this platform (* marks default):
+          Ninja                        = Generates build.ninja files.
+          Ninja Multi-Config           = Generates build-<Config>.ninja files.
+
+
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
 ⚓ CMake ; https://cmake.org/
   CMake is the de-facto standard for building C++ code,
@@ -101,12 +118,15 @@ list of level 1 subjects
     ⚓ cmake-env-variables(7) ; https://cmake.org/cmake/help/latest/manual/cmake-env-variables.7.html
       # Environment Variables that Change Behavior
         ⚓ CMAKE_PREFIX_PATH ; https://cmake.org/cmake/help/latest/envvar/CMAKE_PREFIX_PATH.html
+    ⚓ cmake-properties(7) ; https://cmake.org/cmake/help/latest/manual/cmake-properties.7.html
+      # Properties on Directories
+      # Properties on Targets
 
 
-    ⚓ cmake-commands ; https://cmake.org/cmake/help/latest/manual/cmake-commands.7.
 
 
-      #️⃣ Scripting Commands ; https://cmake.org/cmake/help/latest/manual/cmake-commands.7.html#id3
+    ⚓ cmake-commands(7) ; https://cmake.org/cmake/help/latest/manual/cmake-commands.7.
+      #️⃣ Scripting Commands ; https://cmake.org/cmake/help/latest/manual/cmake-commands.7.html#scripting-commands
         ⚓🔰 message ; https://cmake.org/cmake/help/latest/command/message.html
           # WARNING
           # STATUS
@@ -122,16 +142,26 @@ list of level 1 subjects
         ⚓ cmake_minimum_required() ; https://cmake.org/cmake/help/latest/command/cmake_minimum_required.html
         ⚓ find_package() ; https://cmake.org/cmake/help/latest/command/find_package.html
         ⚓ set() ; https://cmake.org/cmake/help/latest/command/set.html
+        ⚓🔰 set_property ; https://cmake.org/cmake/help/latest/command/set_property.html
+          - GLOBAL
+          - DIRECTORY
+          - TARGET
+
         # Comparisons
           - if(<variable|string> STREQUAL <variable|string>)
 
-      #️⃣ Project Commands ; https://cmake.org/cmake/help/latest/manual/cmake-commands.7.html#id4
-
+      #️⃣ Project Commands ; https://cmake.org/cmake/help/latest/manual/cmake-commands.7.html#project-commands
         ⚓ project() ; https://cmake.org/cmake/help/latest/command/project.html
           ... Supported languages are C, CXX (i.e. C++), ...
         ⚓ add_executable() ; https://cmake.org/cmake/help/latest/command/add_executable.html
         ⚓ target_link_libraries() ; https://cmake.org/cmake/help/latest/command/target_link_libraries.html
 
+        ⚓🖇️ add_compile_definitions() ; https://cmake.org/cmake/help/latest/command/add_compile_definitions.html 📅 2025-02-23 00:47:04
+          ... They are also added to the 🪱 COMPILE_DEFINITIONS target property for each target in the current CMakeLists file.
+          Definitions are specified using the syntax VAR or VAR=value. Function-style definitions are not supported.
+          ⚖️ Added in version 3.26: Any leading -D on an item will be removed.
+          
+          Arguments to add_compile_definitions may use generator expressions with the syntax $<...>.
 
         ⚓ set_target_properties() ; https://cmake.org/cmake/help/latest/command/set_target_properties.html
 
@@ -139,9 +169,7 @@ list of level 1 subjects
 
  
 
-    ⚓ cmake-toolchains ; https://cmake.org/cmake/help/latest/manual/cmake-toolchains.7.html
-
-
-
+    ⚓ cmake-toolchains(7) ; https://cmake.org/cmake/help/latest/manual/cmake-toolchains.7.html
+    ⚓ cmake-buildsystem(7) ; https://cmake.org/cmake/help/latest/manual/cmake-buildsystem.7.html
 
 
