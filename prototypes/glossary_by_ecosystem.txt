@@ -19,12 +19,6 @@ Wikipedia
         In contrast, an application programming interface (API) defines this access in source code, which is a relatively high-level, hardware-independent, often human-readable format.
 
         🚣 Adhering to an ABI (which may or may not be officially standardized) is usually the job of a compiler, operating system, or library author.
-    ⚓📎 Out of memory (OOM) ; https://en.wikipedia.org/wiki/Out_of_memory
-      Out of memory (OOM) is an often undesired state of computer operation where no additional memory can be allocated for use by programs or the operating system. Such a system will be unable to load any additional programs, and since many programs may load additional data into memory during execution, these will cease to function correctly. This usually occurs because all available memory, including disk swap space, has been allocated.
-      
-      🗒️ Contents
-        # Recovery
-          The kernels of operating systems such as Linux will attempt to recover from this type of OOM condition by terminating one or more processes, a mechanism known as 🪱 the OOM Killer
 
     ⚓📎 Symbol Table ; https://en.wikipedia.org/wiki/Symbol_table
       🗒️ Contents
@@ -34,6 +28,26 @@ Wikipedia
         🗒️ Contents
           ... This information allows a symbolic debugger to gain access to information from the source code of the binary, such as the names of identifiers, including variables and routines.
 
+    ⚓🖇️ Toolchain ; https://en.wikipedia.org/wiki/Toolchain 📅 2025-02-23 05:16:13
+      A toolchain is a set of software development tools used to build and otherwise develop software.
+      🗒️ Contents
+        A relatively common and simple toolchain consists of the tools to build for a particular operating system (OS) and CPU architecture
+          ; consisting of a compiler, a linker, and a debugger.
+          With a cross-compiler, a toolchain can support cross-platform development.
+          
+      ⚓📎 Linker (computing) ; << https://en.wikipedia.org/wiki/Linker_(computing)
+        A linker or link editor is a computer program that combines intermediate software build files such as object and library files into a single executable file such a program or library.
+        🗒️ Contents
+          A linker is often part of a 🪱 toolchain that includes a compiler and/or assembler that generates intermediate files that the linker processes.
+            The linker may be integrated with other toolchain tools such that the user does not interact with the linker directly.
+          A simpler version that writes its output directly to memory is called the 🪱 loader, though 🪱 loading is typically considered a separate process.
+
+    ⚓📎 Out of memory (OOM) ; https://en.wikipedia.org/wiki/Out_of_memory
+      Out of memory (OOM) is an often undesired state of computer operation where no additional memory can be allocated for use by programs or the operating system. Such a system will be unable to load any additional programs, and since many programs may load additional data into memory during execution, these will cease to function correctly. This usually occurs because all available memory, including disk swap space, has been allocated.
+      
+      🗒️ Contents
+        # Recovery
+          The kernels of operating systems such as Linux will attempt to recover from this type of OOM condition by terminating one or more processes, a mechanism known as 🪱 the OOM Killer
 
     
   (OS 🔪 Linux)

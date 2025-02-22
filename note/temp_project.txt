@@ -20829,10 +20829,8 @@ Clang에서 어떤 C 표준 라이브러리(glibc, musl 등)를 사용할지 결
     ⚓ Building Picolibc ; https://github.com/picolibc/picolibc/blob/main/doc/build.md
     ⚓ Using Picolibc ; https://github.com/picolibc/picolibc/blob/main/doc/using.md
       gcc --specs=picolibc.specs -c foo.c
-
-
-  
 ⚓ avr-libc ; https://github.com/avrdudes/avr-libc
+
 
 https://formulae.brew.sh/formula/arm-none-eabi-gcc
 brew install gcc-arm-none-eabi gdb-arm-none-eabi
@@ -20856,8 +20854,25 @@ Installing dependencies:
 %shell> arm-none-eabi-gcc -print-file-name=libc.a
   >> /usr/lib/gcc/arm-none-eabi/13.2.1/../../../arm-none-eabi/lib/libc.a
 
+❯ dpkg -L gcc-arm-none-eabi | grep bin
+/usr/bin
+/usr/bin/arm-none-eabi-c++
+/usr/bin/arm-none-eabi-cpp
+/usr/bin/arm-none-eabi-g++
+/usr/bin/arm-none-eabi-gcc
+/usr/bin/arm-none-eabi-gcc-13.2.1
+/usr/bin/arm-none-eabi-gcc-ar
+/usr/bin/arm-none-eabi-gcc-nm
+/usr/bin/arm-none-eabi-gcc-ranlib
+/usr/bin/arm-none-eabi-gcov
+/usr/bin/arm-none-eabi-gcov-dump
+/usr/bin/arm-none-eabi-gcov-tool
+/usr/bin/arm-none-eabi-lto-dump
+
+gdb-multiarch
 dpkg --listfiles gcc-arm-none-eabi
     
+gdb-multiarch
 
 
 🧮❯ dpkg --help | grep -- -L
@@ -20879,3 +20894,5 @@ avr-libc
 arm-none-eabi-gcc --help
     -specs=<file>            Override built-in specs with the contents of <file>.
     
+
+gdb-arm-none-eabi
