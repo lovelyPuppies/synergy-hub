@@ -47,6 +47,17 @@
       ST-LINK를 통해 STM32 보드와 직접 통신 가능.
       OpenOCD 없이도 STM32 디버깅이 가능.
     하지만, vscode 에서 semihosting 을 사용하려면 open-ocd 가 필요하다고 한다.
+    
+    %shell> openocd -f interface/stlink.cfg -f target/stm32f4x.cfg -c "monitor arm semihosting enable"
+    이후, launch.json
+      {
+        "name": "LLDB Debug with OpenOCD",
+        "type": "lldb-dap",
+        "request": "attach",
+        "program": "${workspaceFolder}/build/your_firmware.elf",
+        "gdb-remote-port": 3333,
+        "gdb-remote-hostname": "localhost"
+      }
 
     
 자동차용: 유라코퍼레이션 ; https://www.saramin.co.kr/zf_user/company-info/view-inner-recruit?csn=ei9KYXFOajFpSzFiSFBhRDdnZForZz09
@@ -20917,3 +20928,13 @@ What means.. c 라이브러리 등록?
 개념	역할	예시
 LSP (Language Server Protocol)	다양한 프로그래밍 언어의 문법 분석(IntelliSense, 자동완성, 오류 감지)을 표준화	clangd, pylsp, tsserver 등
 DAP (Debug Adapter Protocol)	다양한 디버거(GDB, LLDB, J-Link 등)와 IDE의 통신을 표준화	gdb-dap, lldb-dap, java-debug-adapter 등
+
+
+👉 JetBrains IDE는 자체적으로 문법 분석기를 가지고 있었고, Eclipse는 또 다른 방식을 사용했음.
+  💡 그래서 **LSP(Language Server Protocol)**이 등장했어!
+
+⚓ Language Serfver Protocol
+  clangd 같은 외부 언어 서버를  ..
+
+
+원격 GDB 서버 연결 (gdb-remote-port 설정)	✅ 필요	OpenOCD, QEMU, J-Link 같은 GDB 서버 필요
