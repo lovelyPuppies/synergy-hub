@@ -66,7 +66,11 @@ list of level 1 subjects
       ```
 
 
-
+----------------------------------------------
+⚓ Mastering CMake ; https://cmake.org/cmake/help/book/mastering-cmake/index.html
+  # Mastering CMake
+    ⚓ Key Concepts ; https://cmake.org/cmake/help/book/mastering-cmake/chapter/Key%20Concepts.html
+    
 ----------------------------------------------
 ⚓ Reference ; https://cmake.org/cmake/help/latest/index.html
   # Command-Line Tools
@@ -82,6 +86,12 @@ list of level 1 subjects
         #️⃣ --log-level=<level> ; https://cmake.org/cmake/help/latest/manual/cmake.1.html#cmdoption-cmake-log-level
 
   # Reference Manuals
+    ⚓ cmake-language(7) ; https://cmake.org/cmake/help/latest/manual/cmake-language.7.html
+      # Syntax
+        #️⃣ Comments ; https://cmake.org/cmake/help/latest/manual/cmake-language.7.html#comments
+      #️⃣ Variables ; https://cmake.org/cmake/help/latest/manual/cmake-language.7.html#variables
+      #️⃣ Lists ; https://cmake.org/cmake/help/latest/manual/cmake-language.7.html#id33
+
     ⚓🔰📍⭕ cmake-presets(7) ; https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html
       📝 Recommended from Microsoft ; https://learn.microsoft.com/en-us/vcpkg/users/buildsystems/cmake-integration#visual-studio--visual-studio-code
       #️⃣📎 Introduction ; https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html#introduction
@@ -99,6 +109,12 @@ list of level 1 subjects
           "PATH": "$env{HOME}/ninja/bin:$penv{PATH}"    //  🚣 $env{HOME}
         },
 
+        #️⃣🔰 Configure Preset ; https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html#configure-preset
+          #📎 inherits
+            The preset will inherit all of the fields from the inherits presets by default (❗ except name, hidden, inherits, description, and displayName), but can override them as desired.
+            If multiple inherits presets provide conflicting values for the same field, ❗ the earlier preset in the inherits array will be preferred.
+
+
         #️⃣ Macro Expansion ; https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html#macro-expansion
           - ${sourceDir}
 
@@ -114,6 +130,22 @@ list of level 1 subjects
         ⚓📍 CMAKE_EXPORT_COMPILE_COMMANDS ; https://cmake.org/cmake/help/latest/variable/CMAKE_EXPORT_COMPILE_COMMANDS.html
         ⚓📍 CMAKE_PREFIX_PATH ; https://cmake.org/cmake/help/latest/variable/CMAKE_PREFIX_PATH.html
         ⚓📍 CMAKE_MODULE_PATH ; https://cmake.org/cmake/help/latest/variable/CMAKE_MODULE_PATH.html
+      #️⃣ Variables for Languages ; https://cmake.org/cmake/help/latest/manual/cmake-variables.7.html#variables-for-languages
+        ⚓🖇️🔰 CMAKE_<LANG>_FLAGS_<CONFIG> ; https://cmake.org/cmake/help/latest/variable/CMAKE_LANG_FLAGS_CONFIG.html 📅 2025-02-23 04:17:10
+          The flags in this variable will be passed after those in the CMAKE_<LANG>_FLAGS variable. 
+          On invocations driving compiling, flags from both variables will be passed 🚣 before flags added by commands such as add_compile_options() and target_compile_options().
+          On invocations driving linking, they will be passed 🚣 before flags added by commands such as add_link_options() and target_link_options().
+
+          ⚓ CMAKE_<LANG>_FLAGS ; << https://cmake.org/cmake/help/latest/variable/CMAKE_LANG_FLAGS.html
+            - CMAKE_C_FLAGS
+            - CMAKE_CXX_FLAGS
+            ...
+          📝 <CONFIG> can be one of 🔗 Build Configurations
+            ⚓ CMAKE_<LANG>_FLAGS_DEBUG ; << https://cmake.org/cmake/help/latest/variable/CMAKE_LANG_FLAGS_DEBUG.html
+            ⚓ CMAKE_<LANG>_FLAGS_RELEASE ; << https://cmake.org/cmake/help/latest/variable/CMAKE_LANG_FLAGS_RELEASE.html
+            ⚓ CMAKE_<LANG>_FLAGS_RELWITHDEBINFO ; << https://cmake.org/cmake/help/latest/variable/CMAKE_LANG_FLAGS_RELWITHDEBINFO.html
+            ⚓ CMAKE_<LANG>_FLAGS_MINSIZEREL ; << https://cmake.org/cmake/help/latest/variable/CMAKE_LANG_FLAGS_MINSIZEREL.html
+            ...
 
     ⚓ cmake-env-variables(7) ; https://cmake.org/cmake/help/latest/manual/cmake-env-variables.7.html
       # Environment Variables that Change Behavior
@@ -171,5 +203,18 @@ list of level 1 subjects
 
     ⚓ cmake-toolchains(7) ; https://cmake.org/cmake/help/latest/manual/cmake-toolchains.7.html
     ⚓ cmake-buildsystem(7) ; https://cmake.org/cmake/help/latest/manual/cmake-buildsystem.7.html
+      #️⃣ Build Configurations ; https://cmake.org/cmake/help/latest/manual/cmake-buildsystem.7.html#build-configurations
+        Configurations determine specifications for a certain type of build, such as Release or Debug.
+        #️⃣📎⚖️ Default And Custom Configurations ; https://cmake.org/cmake/help/latest/manual/cmake-buildsystem.7.html#default-and-custom-configurations
+          By default, CMake defines a number of standard configurations:
+            - Debug
+            - Release
+            - RelWithDebInfo
+            - MinSizeRel
+          - In 🪱 multi-config generators, the 🪱 CMAKE_CONFIGURATION_TYPES variable will be populated 
+          - For 🪱 single-config generators, the configuration is specified with the 🪱 CMAKE_BUILD_TYPE variable at configure time and cannot be changed at build time.
+            ❗ A common misunderstanding is that this is the same as Debug, but that is not the case. Users should always explicitly specify the build type instead to avoid this common problem.
+          The above standard configuration types provide reasonable behavior on most platforms, but they 🚣 can be extended to provide other types.
 
+    ⚓ cmake-generator-expressions(7) ; https://cmake.org/cmake/help/latest/manual/cmake-generator-expressions.7.html
 

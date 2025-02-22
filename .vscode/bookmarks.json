@@ -134,23 +134,23 @@
 			"path": "prototypes/_lab/tech_stack/build_tool/build_system_generator/cmake.txt",
 			"bookmarks": [
 				{
-					"line": 105,
-					"column": 16,
+					"line": 94,
+					"column": 4,
 					"label": ""
 				},
 				{
-					"line": 108,
+					"line": 120,
 					"column": 6,
 					"label": ""
 				},
 				{
-					"line": 128,
-					"column": 6,
+					"line": 159,
+					"column": 14,
 					"label": ""
 				},
 				{
-					"line": 152,
-					"column": 6,
+					"line": 184,
+					"column": 28,
 					"label": ""
 				}
 			]

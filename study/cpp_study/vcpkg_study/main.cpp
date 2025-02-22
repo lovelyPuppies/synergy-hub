@@ -2,9 +2,12 @@
 #include <fmt/color.h>
 #include <fmt/core.h>
 #include <iostream>
+#include <math.h>
 #include <spdlog/spdlog.h>
 
 int main() {
+  double y = sqrt(9.0); // sqrt() 함수 호출
+  std::cout << y << std::endl;
   int x = 0;
 #ifdef DEBUG
   fmt::print(fmt::fg(fmt::color::aqua), "{}!\n", "DEBUG is set!");
