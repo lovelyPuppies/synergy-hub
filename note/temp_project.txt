@@ -34,6 +34,20 @@
     https://www.jobplanet.co.kr/companies/410180/interviews/%EC%98%B5%ED%8A%B8%EC%97%90%EC%9D%B4%EC%95%84%EC%9D%B4
 
 📰 ⭕ STM32 -> Semihosting
+  * 내가 이거를 아래처럼 설치해서 사용했엇는데
+    brew install arm-none-eabi-gcc arm-none-eabi-gdb
+    이거 두개를 대신 stm32 디버깅하는데 사용할 수 있는지 모르겟음.
+      sudo apt install gcc-arm-none-eabi gdb-multiarch
+    실제로 프로젝젝트 진행할 때 테스트 필요.
+    dpkg -L gcc-arm-none-eabi | grep bin
+  * brew install open-ocd   // Semihosting 하는데 필요하다고 함..?
+    On-chip debugging, in-system programming and boundary-scan testing
+    STM32CubeIDE는 기본적으로 ST-LINK GDB Server 를 사용한다.
+      STMicroelectronics에서 제공하는 전용 GDB 서버.
+      ST-LINK를 통해 STM32 보드와 직접 통신 가능.
+      OpenOCD 없이도 STM32 디버깅이 가능.
+    하지만, vscode 에서 semihosting 을 사용하려면 open-ocd 가 필요하다고 한다.
+
     
 자동차용: 유라코퍼레이션 ; https://www.saramin.co.kr/zf_user/company-info/view-inner-recruit?csn=ei9KYXFOajFpSzFiSFBhRDdnZForZz09
 📰❗ 전기 기사
@@ -20893,6 +20907,13 @@ avr-libc
 
 arm-none-eabi-gcc --help
     -specs=<file>            Override built-in specs with the contents of <file>.
-    
 
-gdb-arm-none-eabi
+What means.. c 라이브러리 등록?
+--target=aarch64-linux-gnu
+
+
+
+🔹 LSP vs DAP 비교
+개념	역할	예시
+LSP (Language Server Protocol)	다양한 프로그래밍 언어의 문법 분석(IntelliSense, 자동완성, 오류 감지)을 표준화	clangd, pylsp, tsserver 등
+DAP (Debug Adapter Protocol)	다양한 디버거(GDB, LLDB, J-Link 등)와 IDE의 통신을 표준화	gdb-dap, lldb-dap, java-debug-adapter 등

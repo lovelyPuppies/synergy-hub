@@ -1,4 +1,6 @@
 # Common Issues
+// 삭제 예정. 잘못된 부분도 있음..
+brew install arm-none-eabi-gcc arm-none-eabi-gdb
 
 #### ☑️🚨 (Issue: Error); Could not determine GDB version using command: arm-none-eabi-gdb --version
 
