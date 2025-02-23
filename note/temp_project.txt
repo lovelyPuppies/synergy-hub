@@ -91,7 +91,7 @@
       ISM43340-M4G-L44
       SPWF01SA (ST 자체 Wi-Fi 모듈)
     ESP8266 은 없어서 직접 만들어야 한다 .
-📰 binfmt_misc 
+📰 binfmt_misc  .. 정의 다시 보고 정리하기 (toolchain.txt 에)
   https://github.com/lovelyPuppies/QTonRaspberryPi
     https://en.wikipedia.org/wiki/Binfmt_misc
     https://github.com/multiarch/qemu-user-static
@@ -14799,9 +14799,6 @@ WSL 에서 카메라 적용하려면 커스텀 커널 빌드해야 하고 카메
 study 여기 정리 + ppt 정리.
 
 
-❗ cat /proc/sys/fs/binfmt_misc/status
-
-
 5951 줄 ~ 시작
 
 onlyoffice 도 정리
@@ -19782,9 +19779,6 @@ pb.h
 pb_common.h pb_common.c pb_decode.h pb_decode.c pb_encode.h pb_encode.c
 
 
-📰 면접: binfmt_misc
-
-
 
 CFLAGS 초기화: .. clangd 디버깅 정보에도 추가하기!! TODO: 📰
 
@@ -20876,8 +20870,6 @@ https://github.com/messense/xwin
   즉, 같은 ABI라면 함수 호출 규약과 바이너리 구조는 동일하지만, CPU 명령어 셋(ISA, Instruction Set Architecture)이 다르면 실행이 불가능할 수 있습니다.
 
 
-
-
 https://clang.llvm.org/docs/CrossCompilation.html
   <arch><sub>-<vendor>-<sys>-<env>
 
@@ -20890,8 +20882,6 @@ gcc-arm-linux-gnueabihf
 
 
 ✅ C 코드(clang)를 컴파일할 때는 -stdlib= 옵션을 사용할 필요가 없음.
-
-
 
 https://formulae.brew.sh/formula/arm-none-eabi-gcc
 brew install gcc-arm-none-eabi gdb-arm-none-eabi
@@ -20972,7 +20962,6 @@ Uniform Resource Identifier (URI), formerly Universal Resource Identifier ; http
 
 
 내가 지금 하는거도 RPC 인가? 음.. 흠..
-
 
 ⚓ gdbserver ; https://en.wikipedia.org/wiki/Gdbserver
 

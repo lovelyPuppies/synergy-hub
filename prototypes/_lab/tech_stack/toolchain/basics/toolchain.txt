@@ -22,21 +22,31 @@ list of level 1 subjects
 
   ----------------------------------------------
   (Compilation & Linking)
-  ⚓🔰 Application binary interface (ABI) ;  https://en.wikipedia.org/wiki/Application_binary_interface
-    an application binary interface (ABI) is an interface between two binary program modules.
+  ⚓🔰 Application binary interface (ABI) ; https://en.wikipedia.org/wiki/Application_binary_interface
     🗒️ Contents
+      In computer software, an application binary interface (ABI) is an interface between two binary program modules.
+        🚣 Often, one of these modules is a library or operating system facility, and the other is a program that is being run by a user.
       🆚 An ABI defines how data structures or computational routines are accessed in machine code, which is a low-level, hardware-dependent format.
         In contrast, an application programming interface (API) defines this access in source code, which is a relatively high-level, hardware-independent, often human-readable format.
       🚣 Adhering to an ABI (which may or may not be officially standardized) is usually the job of a compiler, operating system, or library author.
 
-
-    ⚓📎 vmlinux ; << https://en.wikipedia.org/wiki/Vmlinux
-      vmlinux is a 🚣 statically linked executable file that contains the Linux kernel in one of the object file formats supported by Linux
-        , which includes Executable and Linkable Format (ELF) and Common Object File Format (COFF).
-      🗒️ Contents
-        💡 The vmlinux file might be required for kernel debugging, symbol table generation or other operations
-        , 💡 but must be made bootable before being used as an operating system kernel by adding a multiboot header, bootsector and setup routines.
-      ⚓🏛 Multiboot specification << https://en.wikipedia.org/wiki/Multiboot_specification
+      #️⃣ Description ; https://en.wikipedia.org/wiki/Application_binary_interface#Description
+        📝🛍️ e.g. 🆚 x64-Linux vs. ARM64-Linux (Raspberry Pi) ABI Comparison
+          | Category                                       | x64-Linux (x86_64 SysV ABI)                       | ARM64-Linux (Raspberry Pi, ARM64 SysV ABI)       |
+          | ---------------------------------------------- | ------------------------------------------------- | ------------------------------------------------ |
+          | File - Binary Format                           | ELF (Executable and Linkable Format)              | ELF (Executable and Linkable Format)             |
+          | CPU - Processor Instruction Set                | x86-64 (CISC)                                     | ARMv8-A (RISC)                                   |
+          | CPU - Register File Structure                  | 16 general-purpose registers (RAX, RBX, ..., R15) | 31 general-purpose registers (X0 ~ X30)          |
+          | CPU - Memory Access Types                      | Little Endian                                     | Little Endian (Big Endian mode available)        |
+          | Memory - Stack Organization                    | Grows from high to low addresses                  | Grows from high to low addresses                 |
+          | Memory - Sizes and Alignments of Data          | int = 4 bytes, long = 8 bytes, pointer = 8 bytes  | int = 4 bytes, long = 8 bytes, pointer = 8 bytes |
+          | Calling Convention - Register Argument Passing | First 6 arguments in RDI, RSI, RDX, RCX, R8, R9   | First 8 arguments in X0 ~ X7                     |
+          | Calling Convention - Stack Argument Passing    | More than 6 arguments passed on the stack         | More than 8 arguments passed on the stack        |
+          | Calling Convention - Stack Cleanup             | Caller is responsible                             | Caller is responsible                            |
+          | Calling Convention - Return Value Registers    | RAX (single value), RDX:RAX (64-bit integer)      | X0 (single value), X1:X0 (64-bit integer)        |
+          | OS - System Call Invocation                    | syscall instruction                               | svc 0 instruction                                |
+          | OS - System Call Number Register               | rax holds system call number                      | x8 holds system call number                      |
+    ⚓ Calling convention ; << https://en.wikipedia.org/wiki/Calling_convention
 
   ⚓📎 Linker (computing) ; << https://en.wikipedia.org/wiki/Linker_(computing)
     A linker or link editor is a computer program that combines intermediate software build files such as object and library files into a single executable file such a program or library.
@@ -78,17 +88,41 @@ list of level 1 subjects
         #️⃣ Format indicators ; https://en.wikipedia.org/wiki/Magic_number_(programming)#Format_indicators
           #️⃣ In files ; https://en.wikipedia.org/wiki/Magic_number_(programming)#In_files
             🛍️ e.g. ...
-              - ELF
-              - 
+              - Unix or Linux scripts may start with a shebang ("#!", 23 21) followed by the path to an interpreter, if the interpreter is likely to be different from the one from which the script was invoked
+              - ELF executables start with the byte 7F followed by "ELF" (7F 45 4C 46).
 
       ⚓ Shebang (Unix) ; << https://en.wikipedia.org/wiki/Shebang_(Unix)
         🗒️ Contents
           📎 from https://en.wiktionary.org/wiki/shebang#Etymology_2
             Etymology 2 ... From hash + bang or sharp + bang, after Etymology 1.
-
-
-
+    ⚓ List of 🪱 file signatures ; https://en.wikipedia.org/wiki/List_of_file_signatures
+  ⚓ List of file formats ; https://en.wikipedia.org/wiki/List_of_file_formats
+    #️⃣ Object code, executable files, shared and dynamically linked libraries ; https://en.wikipedia.org/wiki/List_of_file_formats#Object_code,_executable_files,_shared_and_dynamically_linked_libraries
+      -🗑️ a.out – (no suffix for executable image, .o for object files, .so for shared object files) classic Unix object format, now often superseded by ELF
+      - 📎 ELF – (no suffix for executable image, .o for object files, .so for shared object files) used in many modern Unix and Unix-like systems ; https://en.wikipedia.org/wiki/Executable_and_Linkable_Format
+        , including Solaris, other System V Release 4 derivatives, Linux, and BSD)
+        ; Executable and Linkable Format
+        In computing, the Executable and Linkable Format[2] (ELF, formerly named Extensible Linking Format) is a common standard file format for executable files, object code, shared libraries, and core dumps.
+        🗒️ Contents
+          -⚖️ Filename extension	
+            none, .axf, .bin, .elf, .o, .out, .prx, .puff, .ko, .mod, and .so
+          📈 By design, the ELF format is flexible, extensible, and cross-platform. ...
+            For instance, it supports different endiannesses and address sizes so it does not exclude any particular CPU or instruction set architecture.
+            This has allowed it to be adopted by many different operating systems on many different hardware platforms.
   ⚓ Filename extension ; https://en.wikipedia.org/wiki/Filename_extension
+
+  ⚓ binfmt_misc ; << https://en.wikipedia.org/wiki/Binfmt_misc
+
+
+  ⚓📎 vmlinux ; << https://en.wikipedia.org/wiki/Vmlinux
+    vmlinux is a 🚣 statically linked executable file that contains the Linux kernel in one of the object file formats supported by Linux
+      , which includes Executable and Linkable Format (ELF) and Common Object File Format (COFF).
+    🗒️ Contents
+      💡 The vmlinux file might be required for kernel debugging, symbol table generation or other operations
+      , 💡 but must be made bootable before being used as an operating system kernel by adding a multiboot header, bootsector and setup routines.
+    
+
+  ⚓🏛 Multiboot specification << https://en.wikipedia.org/wiki/Multiboot_specification
 
   ----------------------------------------------
   (Execution & Debugging)
