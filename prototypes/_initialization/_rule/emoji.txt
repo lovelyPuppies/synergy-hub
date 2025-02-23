@@ -20,6 +20,8 @@ Emoji 🔗 from VS Code Extension :emojisense: ;https://marketplace.visualstudio
 
   🕵️      :detective:                   "Exploit: <Title>"                  Used to indicate a security vulnerability, exploit, or hacking investigation.
   🛡️      :shield:                      "Security Patch"                    Used to represent security solutions, fixes, and defense mechanisms.
+  📈      :chart_with_upwards_trend:    ""                                  Pros
+  📉      :chart_with_downwards_trend:  ""                                  Cons
 
 
 

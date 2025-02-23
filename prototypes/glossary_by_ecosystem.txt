@@ -13,6 +13,23 @@ Wikipedia
 
 
   (Operating System (OS))
+    ⚓📎 Firmware ; https://en.wikipedia.org/wiki/Firmware
+      In computing, firmware is software that provides low-level control of computing device hardware.
+      🗒️ Contents
+        Firmware is stored in non-volatile memory – either read-only memory (ROM) or programmable memory such as EPROM, EEPROM, or flash.
+    ⚓🖇️ Board support package (BS) ; https://en.wikipedia.org/wiki/Board_support_package 📅 2025-02-24 03:00:19
+      In embedded systems, a board support package (BSP) is the layer of software containing hardware-specific boot loaders, device drivers and other routines that allow a given embedded operating system, ...
+      🗒️ Contents
+        The board support package is usually provided by the SoC manufacturer (such as Qualcomm), and it can be modified by the OEM.
+
+        # Software
+          💡 BSPs are typically customizable, allowing the user to specify which drivers and routines should be included in the build based on their selection of hardware and software options.
+          🚣 Some suppliers also provide a root file system, a toolchain for building programs to run on the embedded system, and utilities to configure the device (while running) along with the BSP.
+
+    ⚓📎 System call ; https://en.wikipedia.org/wiki/System_call
+      System calls provide an essential interface between a process and the operating system.
+
+
     ⚓📎 Out of memory (OOM) ; https://en.wikipedia.org/wiki/Out_of_memory
       Out of memory (OOM) is an often undesired state of computer operation where no additional memory can be allocated for use by programs or the operating system. Such a system will be unable to load any additional programs, and since many programs may load additional data into memory during execution, these will cease to function correctly. This usually occurs because all available memory, including disk swap space, has been allocated.
       
@@ -182,7 +199,10 @@ Wiktionary
     Adjective
       lean (comparative leaner, superlative leanest)
         6. (business) Efficient, economic, frugal, agile, slimmed-down; pertaining to the modern industrial principles of "lean manufacturing
-
+  - pros and cons ; https://en.wiktionary.org/wiki/pros_and_cons#English
+    Noun
+      pros and cons pl (plural only)
+        1.(plural only) The positive and negative attributes of arguments.
 
 
   - nil ; https://en.wiktionary.org/wiki/nil#English
@@ -204,6 +224,12 @@ Wiktionary
     Verb
       2. inflate (third-person singular simple present inflates, present participle inflating, simple past and past participle inflated)
         (transitive, computing) To decompress (data) that was previously deflated.
+
+
+  - lend itself to ; https://en.wiktionary.org/wiki/lend_itself_to#English 
+    Verb
+      lend itself to (third-person singular simple present lends itself to, present participle lending itself to, simple past and past participle lent itself to)
+        1. (transitive, idiomatic) To be suitable for. 
 
 
 ----------------------------------------------
@@ -242,3 +268,5 @@ Wiktionary 🔪 Abbreviation
       Noun
         num (plural nums)
           1. Abbreviation of number.
+
+

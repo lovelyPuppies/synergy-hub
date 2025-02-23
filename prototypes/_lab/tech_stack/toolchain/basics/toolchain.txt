@@ -20,15 +20,23 @@ list of level 1 subjects
   (Source Code & Language Support)
   🔗 language_server.txt
 
-
   ----------------------------------------------
   (Compilation & Linking)
-  ⚓ Application binary interface (ABI) ;  https://en.wikipedia.org/wiki/Application_binary_interface
-    🆚
-      An ABI defines how data structures or computational routines are accessed in machine code, which is a low-level, hardware-dependent format.
-      In contrast, an application programming interface (API) defines this access in source code, which is a relatively high-level, hardware-independent, often human-readable format.
-
+  ⚓🔰 Application binary interface (ABI) ;  https://en.wikipedia.org/wiki/Application_binary_interface
+    an application binary interface (ABI) is an interface between two binary program modules.
+    🗒️ Contents
+      🆚 An ABI defines how data structures or computational routines are accessed in machine code, which is a low-level, hardware-dependent format.
+        In contrast, an application programming interface (API) defines this access in source code, which is a relatively high-level, hardware-independent, often human-readable format.
       🚣 Adhering to an ABI (which may or may not be officially standardized) is usually the job of a compiler, operating system, or library author.
+
+
+    ⚓📎 vmlinux ; << https://en.wikipedia.org/wiki/Vmlinux
+      vmlinux is a 🚣 statically linked executable file that contains the Linux kernel in one of the object file formats supported by Linux
+        , which includes Executable and Linkable Format (ELF) and Common Object File Format (COFF).
+      🗒️ Contents
+        💡 The vmlinux file might be required for kernel debugging, symbol table generation or other operations
+        , 💡 but must be made bootable before being used as an operating system kernel by adding a multiboot header, bootsector and setup routines.
+      ⚓🏛 Multiboot specification << https://en.wikipedia.org/wiki/Multiboot_specification
 
   ⚓📎 Linker (computing) ; << https://en.wikipedia.org/wiki/Linker_(computing)
     A linker or link editor is a computer program that combines intermediate software build files such as object and library files into a single executable file such a program or library.
@@ -36,6 +44,51 @@ list of level 1 subjects
       A linker is often part of a 🪱 toolchain that includes a compiler and/or assembler that generates intermediate files that the linker processes.
         The linker may be integrated with other toolchain tools such that the user does not interact with the linker directly.
       A simpler version that writes its output directly to memory is called the 🪱 loader, though 🪱 loading is typically considered a separate process.
+  ----------------------------------------------
+  (Executable & Library Formats)
+  ⚓ File format ; https://en.wikipedia.org/wiki/File_format
+    A file format is a standard way that information is encoded for storage in a computer file.
+    🗒️ Contents
+      #️⃣ Identifying file type ; https://en.wikipedia.org/wiki/File_format#Identifying_file_type
+        #️⃣ Internal metadata ; https://en.wikipedia.org/wiki/File_format#Internal_metadata
+          #➡️ Magic number
+
+    ⚓ Magic number (programming) ; << https://en.wikipedia.org/wiki/Magic_number_(programming)    
+      🗒️ Contents
+        📎 from https://en.wikipedia.org/wiki/File_format#Magic_number
+          🚣 One way to incorporate file type metadata, often associated with Unix and its derivatives, is to store a "magic number" inside the file itself.
+          Originally, this term was used for a specific set of 2-byte identifiers at the beginnings of files
+            💡, but since any binary sequence can be regarded as a number, any feature of a file format which uniquely distinguishes it can be used for identification.
+            ... Many file types, especially plain-text files, are harder to spot by this method.
+
+          The magic number approach offers 📈 better guarantees that the format will be identified correctly, and can often determine more precise information about the file.
+            Since reasonably reliable "magic number" tests can be fairly complex, and each file must effectively be tested against every possibility in the 🪱 magic database
+            , 📉 this approach is relatively inefficient, especially for displaying large lists of files
+            (in contrast, 🪱 file name and 🪱 metadata-based methods need to check only one piece of data, and match it against a sorted index).
+            Also, data must be read from the file itself, increasing 📉 latency as opposed to metadata stored in the directory
+
+          💡 Where file types do not lend themselves to recognition in this way, the system must fall back to metadata.
+            It is, however, the best way for a program to check if the file it has been told to process is of the correct format while the file's name or metadata may be altered independently of its content
+            , failing a well-designed magic number test is a pretty sure sign that the file is either corrupt or of the wrong type.
+            On the other hand, a valid magic number does not guarantee that the file is not corrupt or is of a correct type.
+
+          So-called 🪱 shebang lines in script files are a special case of magic numbers.
+            There, 🚣 the magic number consists of human-readable text within the file that identifies a specific command interpreter and options to be passed to it.
+
+        #️⃣ Format indicators ; https://en.wikipedia.org/wiki/Magic_number_(programming)#Format_indicators
+          #️⃣ In files ; https://en.wikipedia.org/wiki/Magic_number_(programming)#In_files
+            🛍️ e.g. ...
+              - ELF
+              - 
+
+      ⚓ Shebang (Unix) ; << https://en.wikipedia.org/wiki/Shebang_(Unix)
+        🗒️ Contents
+          📎 from https://en.wiktionary.org/wiki/shebang#Etymology_2
+            Etymology 2 ... From hash + bang or sharp + bang, after Etymology 1.
+
+
+
+  ⚓ Filename extension ; https://en.wikipedia.org/wiki/Filename_extension
 
   ----------------------------------------------
   (Execution & Debugging)
@@ -54,4 +107,4 @@ list of level 1 subjects
     ⚓📎 Debug symbol ; << https://en.wikipedia.org/wiki/Debug_symbol
       🗒️ Contents
         ... This information allows a symbolic debugger to gain access to information from the source code of the binary, such as the names of identifiers, including variables and routines.
-  
+
