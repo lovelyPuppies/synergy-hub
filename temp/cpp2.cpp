@@ -86,6 +86,15 @@ cpp2.exe: PE32+ executable (console) x86-64, for MS Windows, 19 sections
 ❯ wine cpp2.exe
 00f0:err:module:import_dll Library libstdc++-6.dll (which is needed by L"Z:\\home\\wbfw109v2\\repos\\synergy-hub\\temp\\cpp2.exe") not found
 00f0:err:module:loader_init Importing dlls for L"Z:\\home\\wbfw109v2\\repos\\synergy-hub\\temp\\cpp2.exe" failed, status c0000135
+
+🧪🆗 clang++ -v --target=x86_64-linux-gnu -o cpp2 cpp2.cpp
+
+내 기본 타겟 확인
+🧪🆗 ❯ clang --print-target-triple
+x86_64-unknown-linux-gnu
+🧪🆗 clang++ -v cpp2.cpp -o cpp2
+
+
 */
 #include <iostream>
 

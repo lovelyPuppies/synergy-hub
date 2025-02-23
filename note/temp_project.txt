@@ -136,6 +136,12 @@
       Number of section headers:         44
       Section header string table index: 42
 
+    ❯ hexyl study/cpp_study/vcpkg_study/build/debug-aarch64-linux-gnu-clang/fmt_example | head -n 2
+    ┌────────┬─────────────────────────┬─────────────────────────┬────────┬────────┐
+    │00000000│ 7f 45 4c 46 02 01 01 00 ┊ 00 00 00 00 00 00 00 00 │•ELF•••⋄┊⋄⋄⋄⋄⋄⋄⋄⋄│
+
+
+
 자동차용: 유라코퍼레이션 ; https://www.saramin.co.kr/zf_user/company-info/view-inner-recruit?csn=ei9KYXFOajFpSzFiSFBhRDdnZForZz09
 📰❗ 전기 기사
   전기 신호를 증폭한다는 것은 전압을 증폭하는 것을 의미
@@ -20782,9 +20788,6 @@ Independent software vendor
 gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
 
 
-🧮 %shell> rustc --print target-list
-  https://llvm.org/doxygen/classllvm_1_1Triple.html
-
 arm-linux-gnueabihf-gcc
 
 -<env> 가 추가된거구나. ㅇㅇ
@@ -20797,8 +20800,6 @@ x86_64-pc-windows-msvc
 
 
 sudo apt install mingw-w64
-
-sudo apt i
 
 xwin
 Install command:
@@ -20838,36 +20839,6 @@ CRT( C Runtime Library )는 Windows에서 C와 C++ 프로그램이 실행될 때
 리눅스에서 stdlib 인가? stdc 인가 glibc 필요한것처럼..
 
 https://github.com/messense/xwin
-
-이거 아키텍처가  다르고  abi가 같으면 무조건 호환성이 보장되나?
-
-  아니요, 아키텍처가 다르지만 ABI가 같다고 해서 반드시 호환성이 보장되는 것은 아닙니다.
-  ABI(Application Binary Interface)가 같으면 일부 바이너리는 공유할 수 있지만, CPU 아키텍처의 차이로 인해 실행이 불가능한 경우도 많습니다.
-
-  1. ABI와 호환성의 관계
-  ABI(응용 이진 인터페이스, Application Binary Interface)는 주로 다음을 정의합니다.
-  이진값 수준에서 인터페이스를 뜻한다.
-    📌 1. "함수 실행 흐름" 순서대로 정리
-    💡 프로그램이 실행될 때 일어나는 순서대로 정리하면 기억하기 쉬움!
-    1️⃣ 바이너리 형식 (Binary Format, ELF/PE 등)
-      → 프로그램이 어떻게 저장되고 로드되는가?
-      → (예: ELF, PE)
-    2️⃣ 시스템 호출 인터페이스 (Syscall)
-      → OS와 어떻게 상호작용하는가?
-      → (예: 파일 입출력, 메모리 할당)
-    3️⃣ 함수 호출 규약 (Calling Convention)
-      → 함수 간에 데이터를 어떻게 주고받는가?
-      → (예: ARM AAPCS, x86 cdecl)
-    4️⃣ 레지스터 사용 규칙
-      → 어떤 레지스터를 어떻게 사용할 것인가?
-      → (예: R0~R3은 함수 인자 전달용)
-    5️⃣ 스택 프레임 구조 (Stack Frame Layout)
-      → 함수 호출 시 스택이 어떻게 정리되는가?
-      → (예: 리턴 주소, 지역 변수 위치)
-    6️⃣ 메모리 정렬 및 데이터 크기 (Endianness, Data Size)
-      → 메모리에 데이터가 어떻게 저장되는가?
-      → (예: Little Endian vs. Big Endian)
-  즉, 같은 ABI라면 함수 호출 규약과 바이너리 구조는 동일하지만, CPU 명령어 셋(ISA, Instruction Set Architecture)이 다르면 실행이 불가능할 수 있습니다.
 
 
 https://clang.llvm.org/docs/CrossCompilation.html
@@ -20931,8 +20902,6 @@ gdb-multiarch
 
 
 
-avr-libc
-
 >> gcc-arm-none-eabi
 :
   "arm-none-eabi": Target Triple
@@ -20986,6 +20955,39 @@ Clang에서 어떤 C 표준 라이브러리(glibc, musl 등)를 사용할지 결
 
 
 
-❯ hexyl study/cpp_study/vcpkg_study/build/debug-aarch64-linux-gnu-clang/fmt_example | head -n 2
-┌────────┬─────────────────────────┬─────────────────────────┬────────┬────────┐
-│00000000│ 7f 45 4c 46 02 01 01 00 ┊ 00 00 00 00 00 00 00 00 │•ELF•••⋄┊⋄⋄⋄⋄⋄⋄⋄⋄│
+즉, --print-targets는 Clang이 지원하는 CPU 종류만 보여줌
+clang --print-supported-targets
+
+
+
+
+🧮 %shell> rustc --print target-list
+  https://llvm.org/doxygen/classllvm_1_1Triple.html
+
+  clang -v --target-help
+거 target 이 사실상  지원한느 목록 그런건 ㅇ벗고 그 값을 바탕으로 사용자의 /usr/에서 찾도록 하는 지시문인가?
+❯ ls /usr/aarch64-linux-gnu
+bin/  include/  lib/
+ChatGPT said:
+네, 정확합니다! Clang의 --target=<triple> 옵션은 사실상 지원되는 목록을 출력하는 것이 아니라, 해당 값을 기반으로 사용자의 /usr/ 아래에서 적절한 크로스 컴파일 환경을 찾도록 지시하는 역할을 합니다. 🚀
+
+❯ clang --target=aarch64-linux-gnu -print-search-dirs
+
+programs: =/home/linuxbrew/.linuxbrew/Cellar/llvm/19.1.7/bin:/usr/lib/gcc-cross/aarch64-linux-gnu/14/../../../../aarch64-linux-gnu/bin
+libraries: =/home/linuxbrew/.linuxbrew/Cellar/llvm/19.1.7/lib/clang/19:/usr/lib/gcc-cross/aarch64-linux-gnu/14:/usr/lib/gcc-cross/aarch64-linux-gnu/14/../../../../lib64:/lib/aarch64-linux-gnu:/lib/../lib64:/usr/lib/aarch64-linux-gnu:/usr/lib/../lib64:/usr/lib/gcc-cross/aarch64-linux-gnu/14/../../../../aarch64-linux-gnu/lib:/lib:/usr/lib
+
+❯ clang --target=aarch64-linux-gnu -E -xc - -v
+#   -E                      Only run the preprocessor
+#  -x <language>           Treat subsequent input files as having type <language>
+
+
+Clang이 /usr/aarch64-linux-gnu/ 같은 경로를 자동으로 찾지 못하는 경우, 수동으로 경로를 지정할 수도 있음.
+  1) --sysroot
+  2) or CMAKE_SYSROOT
+
+
+
+
+📍📍📍📍📍📍📍📍 TRY_COMPILE_TARGET_TYPE 
+
+Universal CRT; https://support.microsoft.com/en-us/topic/update-for-universal-c-runtime-in-windows-c0514201-7fe6-95a3-b0a5-287930f3560c
