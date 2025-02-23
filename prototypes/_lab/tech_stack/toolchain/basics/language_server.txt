@@ -1,0 +1,40 @@
+list of level 1 subjects
+  - Language Server Protocol (LSP)
+
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓⭕📎🔰 LSP ; https://en.wikipedia.org/wiki/Language_Server_Protocol
+  📝 LSP works by having the IDE (client) call RPC methods on the language server (server), which provides language-related functionalities in response.
+  The Language Server Protocol (LSP) is an open, 🪱 JSON-RPC-based protocol for use between source code editors or integrated development environments (IDEs) and servers that provide "language intelligence tools"
+    :[1] programming language-specific features like 🛍️ e.g. ➕ code formatting, code completion, syntax highlighting and marking of warnings and errors, as well as refactoring routines.
+  🗒️ Contents
+    The goal of the protocol is to allow programming language support to be implemented and distributed independently of any given editor or IDE.
+  
+  https://microsoft.github.io/language-server-protocol/
+    ⚓🖇️ LSP Overview ; https://microsoft.github.io/language-server-protocol/overviews/lsp/overview 📅 2025-02-23 21:57:11
+      The idea behind a Language Server is to provide the language-specific smarts inside a server that can communicate with development tooling over a protocol that enables inter-process communication.
+        LSP is a win for both language providers and tooling vendors!
+      The idea behind the Language Server Protocol (LSP) is to standardize the protocol for how tools and servers communicate,  ..
+      
+      # How it works 🛍️ e.g.
+        - The user opens a file (referred to as a document) in the tool: 
+          From now on, 📍 the truth about the contents of the document is no longer on the file system but kept by the tool in memory.
+            The contents now has to be synchronized between the tool and the language server.
+        - ...
+      
+        These data types are programming language 🚣 neutral and apply to all programming languages.
+          The data types are not at the level of a programming language domain model which would usually provide abstract syntax trees and compiler symbols (for example, resolved types, namespaces, …).
+          The fact that the data types are simple and programming language neutral simplifies the protocol significantly.
+          It is much simpler to standardize a 🚣 text document URI or a 🚣 cursor position compared with standardizing an abstract syntax tree and compiler symbols across different programming languages.
+      
+      #🪱 Capabilities
+        A development tool and the language server announce their supported features using capabilities.
+        💡 Notice the actual integration of a language server into a particular tool is not defined by the language server protocol and is left to the tool implementors.
+      
+      # Libraries (SDKs) for LSP providers and consumers
+        ...
+    ⚓ LSIF Overview ; https://microsoft.github.io/language-server-protocol/overviews/lsif/overview
+      ; 🪱 Language Server Index Format (LSIF, pronounced like “else if”)
+    ⚓ LSP Specification ; https://microsoft.github.io/language-server-protocol/specifications/specification-current
+
+⚓ List of Language Servers ; << https://microsoft.github.io/language-server-protocol/implementors/servers/

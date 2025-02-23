@@ -16,9 +16,9 @@
 ## 🔧 Tech Stack
 
 tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)  
- ├── 📂 development_toolchain  
+ ├── 📂 toolchain  
  │&nbsp;&nbsp;&nbsp;&nbsp;└── 📂：![LLVM](https://img.shields.io/badge/LLVM-%23262D3A.svg?style=plastic&logo=llvm&logoColor=white)  
- │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [**clang**](prototypes/_lab/tech_stack/development_toolchain/llvm_stack/clang.txt)  
+ │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [**clang**](prototypes/_lab/tech_stack/toolchain/llvm/clang.txt)  
  ├── 📂 build_tool  
  │&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 build_system  
  │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 meta_build_system  

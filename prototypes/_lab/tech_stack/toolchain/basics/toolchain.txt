@@ -1,0 +1,57 @@
+list of level 1 subjects
+  - Toolchain
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓🖇️ Toolchain ; https://en.wikipedia.org/wiki/Toolchain 📅 2025-02-23 05:16:13
+  A toolchain is a set of software development tools used to build and otherwise develop software.
+  🗒️ Contents
+    A relatively common and simple toolchain consists of the tools to build for a particular operating system (OS) and CPU architecture
+      ; consisting of a compiler, a linker, and a debugger.
+      With a cross-compiler, a toolchain can support cross-platform development.
+    # See also
+      Buildroot – Tool for building Linux
+      DevOps toolchain – DevOps toolchain release package.
+      Framework – Type of library that helps structure other software
+      Library –z Collection of resources used to develop a computer program
+      GNU toolchain – Collection of programming tools produced by the GNU Project
+      LLVM – Compiler backend for multiple programming languages
+
+  ----------------------------------------------
+  (Source Code & Language Support)
+  🔗 language_server.txt
+
+
+  ----------------------------------------------
+  (Compilation & Linking)
+  ⚓ Application binary interface (ABI) ;  https://en.wikipedia.org/wiki/Application_binary_interface
+    🆚
+      An ABI defines how data structures or computational routines are accessed in machine code, which is a low-level, hardware-dependent format.
+      In contrast, an application programming interface (API) defines this access in source code, which is a relatively high-level, hardware-independent, often human-readable format.
+
+      🚣 Adhering to an ABI (which may or may not be officially standardized) is usually the job of a compiler, operating system, or library author.
+
+  ⚓📎 Linker (computing) ; << https://en.wikipedia.org/wiki/Linker_(computing)
+    A linker or link editor is a computer program that combines intermediate software build files such as object and library files into a single executable file such a program or library.
+    🗒️ Contents
+      A linker is often part of a 🪱 toolchain that includes a compiler and/or assembler that generates intermediate files that the linker processes.
+        The linker may be integrated with other toolchain tools such that the user does not interact with the linker directly.
+      A simpler version that writes its output directly to memory is called the 🪱 loader, though 🪱 loading is typically considered a separate process.
+
+  ----------------------------------------------
+  (Execution & Debugging)
+  ⚓ Debugger ; << https://en.wikipedia.org/wiki/Debugger
+
+  ⚓⭕📎🔰 Debug Adapter Protocol (DAP) << ;  https://microsoft.github.io/debug-adapter-protocol/
+    by Microsoft
+  ⚓ List of debuggers ; << https://en.wikipedia.org/wiki/List_of_debuggers
+    ⚓ Open On-Chip debugger Debugger (OpenOCD) ; << https://openocd.org/openocd-0120-released.html
+      https://openocd.org/
+
+  ⚓📎 Symbol Table ; https://en.wikipedia.org/wiki/Symbol_table
+    🗒️ Contents
+      In computer science, a symbol table is a data structure used by a language translator such as a compiler or interpreter
+        , where each identifier, symbol, constant, procedure and function in a program's source code is associated with information relating to its declaration or appearance in the source.
+    ⚓📎 Debug symbol ; << https://en.wikipedia.org/wiki/Debug_symbol
+      🗒️ Contents
+        ... This information allows a symbolic debugger to gain access to information from the source code of the binary, such as the names of identifiers, including variables and routines.
+  

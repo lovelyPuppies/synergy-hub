@@ -1,5 +1,6 @@
-📰📰 [Project] LSP 사용해서 Rust로 langugae server protocol 만드는 프로젝트?..
+📰📰 [Project] LSP 사용해서 Rust로 LSP 만드는 프로젝트?.. 
   neovim 보다는 helix 가 좋아보이긴 하는데... 아직 제대로 지원되는 것이 없다. fish-lsp 라는 것을 사용해봣지만 빌드까지 과정이 불편하고 충돌발생.
+  찾아봤는데 현재까지 존재하는 구현된 fish LSP 가 없음. https://microsoft.github.io/language-server-protocol/implementors/servers/ 📅 2025-02-23 22:16:42
 
 
   volta install yarn ... 느림..
@@ -38,14 +39,35 @@
       sudo apt install gcc-arm-none-eabi gdb-multiarch
     실제로 프로젝젝트 진행할 때 테스트 필요.
     dpkg -L gcc-arm-none-eabi | grep bin
-  * brew install open-ocd   // Semihosting 하는데 필요하다고 함..?
-    On-chip debugging, in-system programming and boundary-scan testing
-    STM32CubeIDE는 기본적으로 ST-LINK GDB Server 를 사용한다.
-      STMicroelectronics에서 제공하는 전용 GDB 서버.
-      ST-LINK를 통해 STM32 보드와 직접 통신 가능.
-      OpenOCD 없이도 STM32 디버깅이 가능.
-    하지만, vscode 에서 semihosting 을 사용하려면 open-ocd 가 필요하다고 한다.
+
+  * TODO: brew install open-ocd   // Required for Semihosting? 📅 2025-02-23 23:30:29
+    https://www.designnews.com/embedded-systems/how-to-debug-a-microcontroller-using-visual-studio-code-vs-code-
+      from https://community.st.com/t5/stm32-vscode-extension-mcus/debugging-with-openocd-and-stlink-v3-in-vscode/td-p/612674
     
+    open-ocd: On-chip debugging, in-system programming, and boundary-scan testing.
+
+    What is OpenOCD?
+      - OpenOCD (Open On-Chip Debugger) is an open-source debugging tool for embedded systems.
+      - It serves as a GDB server, allowing remote debugging via GDB.
+      - Used for programming, debugging, and testing microcontrollers and embedded processors.
+      - Supports various hardware debugging interfaces, including:
+        - JTAG (Joint Test Action Group) 
+        - SWD (Serial Wire Debug)
+        - ST-LINK (STM32 debugging and flashing tool)
+        - CMSIS-DAP (ARM standard debug interface)
+
+    Debugging STM32 with OpenOCD:
+      - To debug an STM32 board using OpenOCD, a hardware debugging interface such as ST-LINK or SWD is required.
+      - For STM32F411RE Nucleo boards, which have a built-in ST-LINK module, no additional debugging hardware or pin connections are needed.
+      - However, for standalone STM32F411RE MCUs (not on a Nucleo board), an external ST-LINK module and SWD pin connections are required.
+
+    STM32CubeIDE primarily uses the ST-LINK GDB Server:
+      - Official GDB server provided by STMicroelectronics.
+      - Communicates directly with STM32 boards via ST-LINK.
+      - Allows debugging STM32 without OpenOCD.
+
+    However, OpenOCD is required for using Semihosting in VSCode.
+
     %shell> openocd -f interface/stlink.cfg -f target/stm32f4x.cfg -c "monitor arm semihosting enable"
     이후, launch.json
       {
@@ -20836,25 +20858,6 @@ gcc-arm-linux-gnueabihf
 
 
 
-Clang에서 어떤 C 표준 라이브러리(glibc, musl 등)를 사용할지 결정하는 것은 --target 옵션
-⚓📎 Musl ; https://en.wikipedia.org/wiki/Musl
-  Musl is a C standard library intended for operating systems based on the Linux kernel, released under the MIT License
-  https://musl.libc.org/
-⚓📎 Newlib ; https://en.wikipedia.org/wiki/Newlib
-  http://www.sourceware.org/newlib/
-⚓ picolibc ; https://github.com/picolibc/picolibc/tree/main
-  Picolibc is library offering standard C library APIs that targets small embedded systems with limited RAM.
-  ❗ Picolibc was formed by blending code from 🪱 Newlib and 🪱 AVR Libc.
-  https://keithp.com/picolibc/
-  https://chromium.googlesource.com/chromiumos/third_party/zephyr/picolibc/+/b92edfda8ac6853772d87cadaeeeaa21b78609b6/README.md
-  
-  # Documentation
-    ⚓ Building Picolibc ; https://github.com/picolibc/picolibc/blob/main/doc/build.md
-    ⚓ Using Picolibc ; https://github.com/picolibc/picolibc/blob/main/doc/using.md
-      gcc --specs=picolibc.specs -c foo.c
-⚓ avr-libc ; https://github.com/avrdudes/avr-libc
-
-
 https://formulae.brew.sh/formula/arm-none-eabi-gcc
 brew install gcc-arm-none-eabi gdb-arm-none-eabi
 
@@ -20903,8 +20906,6 @@ gdb-multiarch
 
 
 
-
-
 avr-libc
 
 >> gcc-arm-none-eabi
@@ -20931,17 +20932,31 @@ What means.. c 라이브러리 등록?
     실행할 때 처음 호출되는 함수는 PLT/GOT를 통해 실제 심볼 주소를 해석해서 호출됨.
     📌 즉, ldd는 Symbol Table을 직접 사용
 
-🔹 LSP vs DAP 비교
-개념	역할	예시
-LSP (Language Server Protocol)	다양한 프로그래밍 언어의 문법 분석(IntelliSense, 자동완성, 오류 감지)을 표준화	clangd, pylsp, tsserver 등
-DAP (Debug Adapter Protocol)	다양한 디버거(GDB, LLDB, J-Link 등)와 IDE의 통신을 표준화	gdb-dap, lldb-dap, java-debug-adapter 등
+
+Uniform Resource Identifier (URI), formerly Universal Resource Identifier ; https://en.wikipedia.org/wiki/Uniform_Resource_Identifier
 
 
-👉 JetBrains IDE는 자체적으로 문법 분석기를 가지고 있었고, Eclipse는 또 다른 방식을 사용했음.
-  💡 그래서 **LSP(Language Server Protocol)**이 등장했어!
-
-⚓ Language Serfver Protocol
-  clangd 같은 외부 언어 서버를  ..
+내가 지금 하는거도 RPC 인가? 음.. 흠..
 
 
-원격 GDB 서버 연결 (gdb-remote-port 설정)	✅ 필요	OpenOCD, QEMU, J-Link 같은 GDB 서버 필요
+⚓ gdbserver ; https://en.wikipedia.org/wiki/Gdbserver
+
+
+Clang에서 어떤 C 표준 라이브러리(glibc, musl 등)를 사용할지 결정하는 것은 --target 옵션
+⚓📎 Musl ; https://en.wikipedia.org/wiki/Musl
+  Musl is a C standard library intended for operating systems based on the Linux kernel, released under the MIT License
+  https://musl.libc.org/
+⚓📎 Newlib ; https://en.wikipedia.org/wiki/Newlib
+  http://www.sourceware.org/newlib/
+⚓ picolibc ; https://github.com/picolibc/picolibc/tree/main
+  Picolibc is library offering standard C library APIs that targets small embedded systems with limited RAM.
+  ❗ Picolibc was formed by blending code from 🪱 Newlib and 🪱 AVR Libc.
+  https://keithp.com/picolibc/
+  https://chromium.googlesource.com/chromiumos/third_party/zephyr/picolibc/+/b92edfda8ac6853772d87cadaeeeaa21b78609b6/README.md
+  
+  # Documentation
+    ⚓ Building Picolibc ; https://github.com/picolibc/picolibc/blob/main/doc/build.md
+    ⚓ Using Picolibc ; https://github.com/picolibc/picolibc/blob/main/doc/using.md
+      gcc --specs=picolibc.specs -c foo.c
+⚓ avr-libc ; https://github.com/avrdudes/avr-libc
+
