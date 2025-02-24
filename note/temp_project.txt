@@ -140,7 +140,10 @@
     ┌────────┬─────────────────────────┬─────────────────────────┬────────┬────────┐
     │00000000│ 7f 45 4c 46 02 01 01 00 ┊ 00 00 00 00 00 00 00 00 │•ELF•••⋄┊⋄⋄⋄⋄⋄⋄⋄⋄│
 
-
+  
+  🧮 %shell> rustc --print target-list
+    https://llvm.org/doxygen/classllvm_1_1Triple.html
+    
 
 자동차용: 유라코퍼레이션 ; https://www.saramin.co.kr/zf_user/company-info/view-inner-recruit?csn=ei9KYXFOajFpSzFiSFBhRDdnZForZz09
 📰❗ 전기 기사
@@ -20914,46 +20917,8 @@ Installing dependencies:
 %shell> arm-none-eabi-gcc -print-file-name=libc.a
   >> /usr/lib/gcc/arm-none-eabi/13.2.1/../../../arm-none-eabi/lib/libc.a
 
-❯ dpkg -L gcc-arm-none-eabi | grep bin
-/usr/bin
-/usr/bin/arm-none-eabi-c++
-/usr/bin/arm-none-eabi-cpp
-/usr/bin/arm-none-eabi-g++
-/usr/bin/arm-none-eabi-gcc
-/usr/bin/arm-none-eabi-gcc-13.2.1
-/usr/bin/arm-none-eabi-gcc-ar
-/usr/bin/arm-none-eabi-gcc-nm
-/usr/bin/arm-none-eabi-gcc-ranlib
-/usr/bin/arm-none-eabi-gcov
-/usr/bin/arm-none-eabi-gcov-dump
-/usr/bin/arm-none-eabi-gcov-tool
-/usr/bin/arm-none-eabi-lto-dump
 
-gdb-multiarch
-dpkg --listfiles gcc-arm-none-eabi
-    
-gdb-multiarch
-
-
-🧮❯ dpkg --help | grep -- -L
-  -L|--listfiles <package>...      List files 'owned' by package(s).
-
-
-
->> gcc-arm-none-eabi
-:
-  "arm-none-eabi": Target Triple
-  "gcc-arm-none-eabi": Toolchain; 컴파일러, 사용할 라이브러리 등이 이미 지정됨.
-
-  GNU compiler collection for arm-none-eabi
-
-arm-none-eabi-gcc --help
-    -specs=<file>            Override built-in specs with the contents of <file>.
-
-What means.. c 라이브러리 등록?
---target=aarch64-linux-gnu
-
-그럼 Symbol Table은 언제 필요할까?
+📰 그럼 Symbol Table은 언제 필요할까?
   💡 ldd가 직접 Symbol Table을 읽지는 않지만, 실행 중에는 동적 링커(Dynamic Linker, ld.so)가 심볼 테이블을 참조할 수도 있어.
   📌 Symbol Table이 필요한 경우
   1️⃣ 동적 링킹(dlsym(), dlopen())
@@ -20968,10 +20933,7 @@ What means.. c 라이브러리 등록?
 Uniform Resource Identifier (URI), formerly Universal Resource Identifier ; https://en.wikipedia.org/wiki/Uniform_Resource_Identifier
 
 
-내가 지금 하는거도 RPC 인가? 음.. 흠..
-
 ⚓ gdbserver ; https://en.wikipedia.org/wiki/Gdbserver
-
 
 Clang에서 어떤 C 표준 라이브러리(glibc, musl 등)를 사용할지 결정하는 것은 --target 옵션
 ⚓📎 Musl ; https://en.wikipedia.org/wiki/Musl
@@ -20992,84 +20954,11 @@ Clang에서 어떤 C 표준 라이브러리(glibc, musl 등)를 사용할지 결
 ⚓ avr-libc ; https://github.com/avrdudes/avr-libc
 
 
-
-즉, --print-targets는 Clang이 지원하는 CPU 종류만 보여줌
-clang --print-supported-targets
-
-
-🧮 %shell> rustc --print target-list
-  https://llvm.org/doxygen/classllvm_1_1Triple.html
-
-  clang -v --target-help
-거 target 이 사실상  지원한느 목록 그런건 ㅇ벗고 그 값을 바탕으로 사용자의 /usr/에서 찾도록 하는 지시문인가?
-❯ ls /usr/aarch64-linux-gnu
-bin/  include/  lib/
-ChatGPT said:
-네, 정확합니다! Clang의 --target=<triple> 옵션은 사실상 지원되는 목록을 출력하는 것이 아니라, 해당 값을 기반으로 사용자의 /usr/ 아래에서 적절한 크로스 컴파일 환경을 찾도록 지시하는 역할을 합니다. 🚀
-
-❯ clang --target=aarch64-linux-gnu -print-search-dirs
-
-programs: =/home/linuxbrew/.linuxbrew/Cellar/llvm/19.1.7/bin:/usr/lib/gcc-cross/aarch64-linux-gnu/14/../../../../aarch64-linux-gnu/bin
-libraries: =/home/linuxbrew/.linuxbrew/Cellar/llvm/19.1.7/lib/clang/19:/usr/lib/gcc-cross/aarch64-linux-gnu/14:/usr/lib/gcc-cross/aarch64-linux-gnu/14/../../../../lib64:/lib/aarch64-linux-gnu:/lib/../lib64:/usr/lib/aarch64-linux-gnu:/usr/lib/../lib64:/usr/lib/gcc-cross/aarch64-linux-gnu/14/../../../../aarch64-linux-gnu/lib:/lib:/usr/lib
-
-❯ clang --target=aarch64-linux-gnu -E -xc - -v
-#   -E                      Only run the preprocessor
-#  -x <language>           Treat subsequent input files as having type <language>
-
-
-Clang이 /usr/aarch64-linux-gnu/ 같은 경로를 자동으로 찾지 못하는 경우, 수동으로 경로를 지정할 수도 있음.
-  1) --sysroot
-  2) or CMAKE_SYSROOT
-
-
 📍📍📍📍📍📍📍📍 TRY_COMPILE_TARGET_TYPE 
 
 Universal CRT; https://support.microsoft.com/en-us/topic/update-for-universal-c-runtime-in-windows-c0514201-7fe6-95a3-b0a5-287930f3560c
 ❓
 
-음 그러면 세부 사항이 주로 구현 내부에 포함되어 있는데 공식문서에 쓰여있지 않아 정확히 어떤 내부 메커니즘인지 알 수가 없다. 해당 값을 기반으로 사용자의 /usr/ 아래에서 적절한 크로스 컴파일 환경을 찾도록 지시하는 역할을 하는 듯 하다. 
 
 
- clang --target aarch64-linux-gnu --print-search-dirs
- clang --target=aarch64-linux-gnu --print-search-dirs
-
-
-존재하지 않더라도 검색 경로에 등록되서 찾으려고 하는구나.
-wbfw109v2 in 🌐 iot-04 in synergy-hub on  main [!] is 📦 v0.1.0 via 🐍 v3.13.2 (python-study-py3.13) 
-❯ clang --target=aarch64-linux-gnu --print-search-dirs
-programs: =/home/linuxbrew/.linuxbrew/Cellar/llvm/19.1.7/bin:/usr/lib/gcc-cross/aarch64-linux-gnu/14/../../../../aarch64-linux-gnu/bin
-libraries: =/home/linuxbrew/.linuxbrew/Cellar/llvm/19.1.7/lib/clang/19:/usr/lib/gcc-cross/aarch64-linux-gnu/14:/usr/lib/gcc-cross/aarch64-linux-gnu/14/../../../../lib64:/lib/aarch64-linux-gnu:/lib/../lib64:/usr/lib/aarch64-linux-gnu:/usr/lib/../lib64:/usr/lib/gcc-cross/aarch64-linux-gnu/14/../../../../aarch64-linux-gnu/lib:/lib:/usr/lib
-
-wbfw109v2 in 🌐 iot-04 in synergy-hub on  main [!] is 📦 v0.1.0 via 🐍 v3.13.2 (python-study-py3.13) 
-❯ clang --print-search-dirs
-programs: =/home/linuxbrew/.linuxbrew/Cellar/llvm/19.1.7/bin:/usr/lib/gcc/x86_64-linux-gnu/14/../../../../x86_64-linux-gnu/bin
-libraries: =/home/linuxbrew/.linuxbrew/Cellar/llvm/19.1.7/lib/clang/19:/home/linuxbrew/.linuxbrew/Cellar/llvm/19.1.7/bin/../lib/x86_64-unknown-linux-gnu:/home/linuxbrew/.linuxbrew/Cellar/llvm/19.1.7/lib/clang/19/lib/x86_64-unknown-linux-gnu:/usr/lib/gcc/x86_64-linux-gnu/14:/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib64:/lib/x86_64-linux-gnu:/lib/../lib64:/usr/lib/x86_64-linux-gnu:/usr/lib/../lib64:/lib:/usr/lib
-
-
- wbfw109v2 in 🌐 iot-04 in synergy-hub on  main [!] is 📦 v0.1.0 via 🐍 v3.13.2 (python-study-py3.13) 
-❯ ls /usr/lib/gcc/x86_64-linux-gnu/14/../../../../x86_64-linux-gnu/bin
-ls: cannot access '/usr/lib/gcc/x86_64-linux-gnu/14/../../../../x86_64-linux-gnu/bin': No such file or directory
-
-wbfw109v2 in 🌐 iot-04 in synergy-hub on  main [!] is 📦 v0.1.0 via 🐍 v3.13.2 (python-study-py3.13) 
-❯ ls /usr/lib/gcc-cross/aarch64-linux-gnu/14/../../../../aarch64-linux-gnu/bin
-ar@  as@  gold@  ld@  ld.bfd@  ld.gold@  nm@  objcopy@  objdump@  ranlib@  readelf@  strip@
-
-wbfw109v2 in 🌐 iot-04 in synergy-hub on  main [!] is 📦 v0.1.0 via 🐍 v3.13.2 (python-study-py3.13) 
-❯ clang --help | grep sysroot
-  -iframeworkwithsysroot <directory>
-                          Add directory to SYSTEM framework search path, absolute paths are relative to -isysroot
-  -isysroot <dir>         Set the system root directory (usually /)
-  -iwithsysroot <directory>
-                          Add directory to SYSTEM include search path, absolute paths are relative to -isysroot
-
-📝 Note that clang does not have "--sysroot" option
-❯ clang --help
-  -I <dir>                Add directory to the end of the list of include search paths
-  -L <dir>                Add directory to library search path
-  -B <prefix>             Search $prefix$file for executables, libraries, and data files. If $prefix is a directory, search $prefix/$file
-
-
-
-
-CFLAGS=--target=aarch64-linux-gnu --gcc-install-dir=/usr/lib/gcc-cross/aarch64-linux-gnu/12 -march=armv8-a -mtune=cortex-a72 -O3 -flto -pipe
-CXXFLAGS=--target=aarch64-linux-gnu --gcc-install-dir=/usr/lib/gcc-cross/aarch64-linux-gnu/12 -march=armv8-a -mtune=cortex-a72 -O3 -flto -pipe
+내가 지금 하는거도 RPC 인가? 음.. 흠..

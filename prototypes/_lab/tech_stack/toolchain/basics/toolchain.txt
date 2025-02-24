@@ -1,8 +1,12 @@
 list of level 1 subjects
   - Toolchain
+  - Target Triple
   
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
-⚓🖇️ Toolchain ; https://en.wikipedia.org/wiki/Toolchain 📅 2025-02-23 05:16:13
+⚓🔰🖇️ Toolchain ; https://en.wikipedia.org/wiki/Toolchain 📅 2025-02-23 05:16:13
+  📝 Examples of Target Triple 🆚 Toolchain 📅 2025-02-25 06:05:04
+    - Toolchain:      gcc-aarch64-linux-gnu (Ubuntu package), arm-none-eabi-gcc (Homebrew package)
+    - Target Triple:  aarch64-linux-gnu,                      arm-none-eabi
   A toolchain is a set of software development tools used to build and otherwise develop software.
   🗒️ Contents
     A relatively common and simple toolchain consists of the tools to build for a particular operating system (OS) and CPU architecture
@@ -141,4 +145,28 @@ list of level 1 subjects
     ⚓📎 Debug symbol ; << https://en.wikipedia.org/wiki/Debug_symbol
       🗒️ Contents
         ... This information allows a symbolic debugger to gain access to information from the source code of the binary, such as the names of identifiers, including variables and routines.
+
+
+#🔰🖇️ Target Triple from 🔗 https://clang.llvm.org/docs/CrossCompilation.html 📅 2025-02-25 06:23:56
+  📝 The term "Target Triple" originates from the three key components (architecture, vendor, and system) before the environment field (env) became commonly used. 📅 2025-02-25 06:22:36
+  <arch><sub>-<vendor>-<sys>-<env>
+
+  The basic option is to define the target architecture. For that, use -target <triple>.
+    If you don’t specify the target, CPU names won’t match (since Clang assumes the host triple), and the compilation will go ahead, creating code for the host platform, which will break later on when assembling or linking.
+
+  The triple has the general format <arch><sub>-<vendor>-<sys>-<env>, where:
+    - arch = x86_64, i386, arm, thumb, mips, etc.
+    - sub = for ex. on ARM: v5, v6m, v7a, v7m, etc.
+      The sub-architecture ⚖️ options are available for their own architectures, of course, so “x86v7a” doesn’t make sense.
+    - vendor = pc, apple, nvidia, ibm, etc.
+      The vendor needs to be specified only if there’s a relevant change, for instance between PC and Apple.
+        Most of the time it can be ⚖️ omitted (and Unknown) will be assumed, which sets the defaults for the specified architecture.
+    - sys = none, linux, win32, darwin, cuda, etc.
+      The system name is generally the OS (linux, darwin), but could be special like the bare-metal “none”.
+    - env = eabi, gnu, android, macho, elf, etc.
+      Finally, the env (environment) option is something that will pick default CPU/FPU
+        , define the specific behaviour of your code (PCS, extensions), and also choose the ❗ correct library calls, etc.
+
+  When a parameter is not important, it can be omitted, or you can choose unknown and the defaults will be used.
+    ❗ If you choose a parameter that Clang doesn’t know, like blerg, it’ll ignore and assume unknown, which is not always desired, so be careful.
 

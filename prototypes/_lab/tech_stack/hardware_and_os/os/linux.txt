@@ -826,3 +826,26 @@ Linux Kernel
 
 
 
+================================================
+Debian ; https://en.wikipedia.org/wiki/Debian
+  https://www.debian.org/
+  https://github.com/debian
+  ⚓ Debian Docs ; https://www.debian.org/doc/
+
+----------------------------------------------
+Debian Docs 🔪⚓ Debian Manpages ; https://manpages.debian.org/
+  ⚓🧮 dpkg ; https://manpages.debian.org/bookworm/dpkg/dpkg.1.en.html
+    # ACTIONS
+      dpkg-query actions
+        See dpkg-query(1) for more information about the following actions, and other actions and options not exposed by the dpkg front-end.
+
+        -L, --listfiles package-name...
+          List files installed to your system from package-name
+          
+----------------------------------------------
+Debian Docs 🔪⚓ Debian Reference ; https://www.debian.org/doc/manuals/debian-reference/
+  a terse user guide, focussing on shell commands
+  #️⃣ 2. Debian package management ; https://www.debian.org/doc/manuals/debian-reference/ch02.en.html
+    #️⃣ 2.5. Debian package management internals ; https://www.debian.org/doc/manuals/debian-reference/ch02.en.html#_debian_package_management_internals
+      #️⃣ 2.5.9. 🧮 The dpkg command ; https://www.debian.org/doc/manuals/debian-reference/ch02.en.html#_the_dpkg_command
+  
