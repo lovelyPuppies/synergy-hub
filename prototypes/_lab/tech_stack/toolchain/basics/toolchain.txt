@@ -1,12 +1,15 @@
 list of level 1 subjects
   - Toolchain
   - Target Triple
-  
+
+
+
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
 ⚓🔰🖇️ Toolchain ; https://en.wikipedia.org/wiki/Toolchain 📅 2025-02-23 05:16:13
-  📝 Examples of Target Triple 🆚 Toolchain 📅 2025-02-25 06:05:04
+  📝🛍️ e.g. Target Triple 🆚 Toolchain 📅 2025-02-25 06:05:04
     - Toolchain:      gcc-aarch64-linux-gnu (Ubuntu package), arm-none-eabi-gcc (Homebrew package)
     - Target Triple:  aarch64-linux-gnu,                      arm-none-eabi
+  
   A toolchain is a set of software development tools used to build and otherwise develop software.
   🗒️ Contents
     A relatively common and simple toolchain consists of the tools to build for a particular operating system (OS) and CPU architecture
@@ -51,6 +54,10 @@ list of level 1 subjects
           | OS - System Call Invocation                    | syscall instruction                               | svc 0 instruction                                |
           | OS - System Call Number Register               | rax holds system call number                      | x8 holds system call number                      |
     ⚓ Calling convention ; << https://en.wikipedia.org/wiki/Calling_convention
+
+
+  ⚓ Compiler ; https://en.wikipedia.org/wiki/Compiler
+    In computing, a compiler is a computer program that translates computer code written in one programming language (the source language) into another language (the target language).
 
   ⚓📎 Linker (computing) ; << https://en.wikipedia.org/wiki/Linker_(computing)
     A linker or link editor is a computer program that combines intermediate software build files such as object and library files into a single executable file such a program or library.
@@ -169,4 +176,62 @@ list of level 1 subjects
 
   When a parameter is not important, it can be omitted, or you can choose unknown and the defaults will be used.
     ❗ If you choose a parameter that Clang doesn’t know, like blerg, it’ll ignore and assume unknown, which is not always desired, so be careful.
+
+API is the same, but ABI is different; therefore, distinguishing these libraries is crucial.
+
+Compatibility of C Standard Libraries (libc) and C++ Standard Libraries (STL) Across Different Environments
+
+  1. Compatibility of C Standard Libraries (libc)
+    C standard libraries are closely tied to the OS and define basic runtime functionality such as `malloc()`, `printf()`, and system calls. Their compatibility depends on the target platform.
+
+    glibc (GNU C Library)
+      Primary Usage: General-purpose Linux distros (Ubuntu, Fedora, Debian, etc.)
+      Compatible OS: Linux
+      Commonly Used Compilers: GCC, Clang
+      Default in Clang?: Yes (on Linux)
+
+    musl (Musl C Library)
+      Primary Usage: Lightweight Linux (Alpine Linux, embedded systems)
+      Compatible OS: Linux
+      Commonly Used Compilers: musl-gcc, Clang
+      Default in Clang?: No (must explicitly link with `-target x86_64-linux-musl`)
+
+    MSVCRT (Microsoft C Runtime)
+      Primary Usage: Windows XP~10 (MinGW default)
+      Compatible OS: Windows
+      Commonly Used Compilers: MinGW-w64 (GCC-based)
+      Default in Clang?: No (MinGW Clang default)
+
+    UCRT (Universal C Runtime)
+      Primary Usage: Windows 10+ (Visual Studio default)
+      Compatible OS: Windows
+      Commonly Used Compilers: MSVC (Visual Studio), Clang (`-target x86_64-pc-windows-msvc`)
+      Default in Clang?: Yes (for MSVC target)
+
+    newlib (Newlib C Library)
+      Primary Usage: Embedded systems (bare-metal, RTOS)
+      Compatible OS: Bare-metal
+      Commonly Used Compilers: GCC (arm-none-eabi)
+      Default in Clang?: No (requires explicit toolchain setup)
+
+  2. Compatibility of C++ Standard Libraries (STL)
+    C++ standard libraries provide STL components (`std::vector`, `std::string`, `std::thread`, etc.), so their compatibility depends on the compiler and target OS.
+
+    libstdc++ (GNU Standard C++ Library)
+      Primary Usage: Linux (default for GCC)
+      Compatible OS: Linux
+      Commonly Used Compilers: GCC, Clang
+      Default in Clang?: Yes (on Linux unless overridden)
+
+    libc++ (LLVM C++ Standard Library)
+      Primary Usage: macOS, LLVM-based projects
+      Compatible OS: Linux, macOS, Windows (Clang)
+      Commonly Used Compilers: Clang
+      Default in Clang?: No (must specify `-stdlib=libc++`)
+
+    MSVC STL (Microsoft C++ Standard Library)
+      Primary Usage: Windows (Visual Studio)
+      Compatible OS: Windows
+      Commonly Used Compilers: MSVC (Visual Studio), Clang (`-target x86_64-pc-windows-msvc`)
+      Default in Clang?: Yes (for MSVC target)
 

@@ -42,7 +42,7 @@ list of level 1 subjects
   ⚓🔰 Cross-compilation using Clang ; https://clang.llvm.org/docs/CrossCompilation.html
     # Cross compilation issues
       🆚 In GCC world, every host/target combination has its own set of binaries, headers, libraries, etc. So, it’s usually simple to download a package with all files in, unzip to a directory and point the build system to that compiler, that will know about its location and find all it needs to when compiling your code
-        On the other hand, Clang/LLVM is natively a cross-compiler, meaning that one set of programs can compile to all targets by setting the -target option. That makes it a lot easier for programmers wishing to compile to different platforms and architectures, and for compiler developers that only have to maintain one b
+        On the other hand, 💡 Clang/LLVM is natively a cross-compiler, meaning that one set of programs can compile to all targets by setting the -target option. That makes it a lot easier for programmers wishing to compile to different platforms and architectures, and for compiler developers that only have to maintain one b
 
     #🪱➡️ Target Triple in toolchain.txt
 

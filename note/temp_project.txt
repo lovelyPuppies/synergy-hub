@@ -227,6 +227,78 @@
 
 
   ## 3. 스마트 쓰레기통 관리 시스템
+    https://www.mermaidchart.com/app/projects/638a6e76-1714-4b3d-93c1-a0fa3196a871/diagrams/658593b0-9340-48f1-8359-cab46641bed1/version/v0.1/edit
+
+
+
+    ```
+    flowchart TD
+        %% Declaration with styling
+
+        subgraph "User Access Group"
+            MobileApp["TCP Connector (Mobile App)"]:::user
+            WebBrowser["Web Browser"]:::user
+        end
+
+        subgraph "Raspberry Pi Control Group"
+            RaspberryPi["Raspberry Pi"]:::pi
+            APM["Apache, MariaDB, PHP"]:::software
+        end
+
+        subgraph "Smart Trash Bin Unit"
+          subgraph "External STM32 Control Group"
+              ButtonModule["Button Module (Send Command)"]:::sensor
+              BluetoothModuleExt["Bluetooth Module (External)"]:::software
+          end
+          subgraph "Internal STM32 Control Group"
+            InternalSTM32["Internal STM32"]:::internal
+            UltrasonicSensor["Ultrasonic Sensor (Load Measurement)"]:::sensor
+            MotorControl["Motor Control Module"]:::actuator
+            SubMotorControl["Sub Motor Control (Lid Open/Close)"]:::actuator
+            LCD["LCD Display (Show Load Data)"]:::display
+            BluetoothModuleInt["Bluetooth Module (Internal)"]:::software
+            WiFiModule["WiFi Module"]:::software
+          end
+        end
+
+        %% Processes
+        ButtonModule -->|"Button Press (Send Command)"| BluetoothModuleExt:::command
+        BluetoothModuleExt -->|"Transmit Command (via Bluetooth)"| RaspberryPi:::command
+        RaspberryPi -->|"Forward Command to Internal STM32"| BluetoothModuleInt:::data
+        BluetoothModuleInt -->|"Receive Command"| InternalSTM32:::data
+
+        InternalSTM32 -->|"Load Level Measurement"| UltrasonicSensor:::sensor
+        UltrasonicSensor -->|"Load Data"| InternalSTM32:::data
+        InternalSTM32 -->|"Show Load Data"| LCD:::display
+        InternalSTM32 -->|"Send Load Data"| WiFiModule:::data
+        WiFiModule -->|"Send Load Data"| RaspberryPi:::data
+
+        InternalSTM32 -->|"Lid Open/Close"| SubMotorControl:::command
+
+        RaspberryPi -->|"Log Load Data and Commands"| APM:::log
+        WebBrowser -->|"Access Logs and Statistics"| APM:::log
+
+        %% Garbage Bag Sealing Command Group
+        MobileApp -. "Garbage Bag Sealing Command" .-> APM
+        APM -. "Garbage Bag Sealing Command" .-> RaspberryPi
+        RaspberryPi -. "Garbage Bag Sealing Command" .-> InternalSTM32
+        InternalSTM32 -->|"Garbage Bag Sealing Command"| MotorControl:::command
+
+        %% Node and Edge Styling
+        classDef external fill:#B3D9FF,stroke:#1C6EA4,stroke-width:2px;
+        classDef internal fill:#C3FDB8,stroke:#4CAF50,stroke-width:2px;
+        classDef pi fill:#FFE4B5,stroke:#FF8C00,stroke-width:2px;
+        classDef user fill:#FFD1DC,stroke:#FF69B4,stroke-width:2px;
+        classDef sensor fill:#F0E68C,stroke:#DAA520,stroke-width:1.5px;
+        classDef actuator fill:#D8BFD8,stroke:#9932CC,stroke-width:1.5px;
+        classDef software fill:#E0FFFF,stroke:#20B2AA,stroke-width:2px;
+        classDef command stroke-dasharray: 5 5,stroke:#000,stroke-width:2px;
+        classDef data stroke:#4682B4,stroke-width:2px;
+        classDef log fill:#FFFACD,stroke:#FFD700,stroke-width:2px;
+        classDef display fill:#E6E6FA,stroke:#8A2BE2,stroke-width:2px;
+
+    ```
+
   - 목적**: 쓰레기통이 가득 차면
    알려주고, 쓰레기통이 열리고 닫히는 것을 자동화하여 위생적으로 관리하는 시스템.
   - **Architecture**:
@@ -20881,34 +20953,8 @@ CRT( C Runtime Library )는 Windows에서 C와 C++ 프로그램이 실행될 때
 
 https://github.com/messense/xwin
 
-
-https://clang.llvm.org/docs/CrossCompilation.html
-  <arch><sub>-<vendor>-<sys>-<env>
-
-STM32
-  gcc-arm-none-eabi
-  gdb-arm-none-eabi
-
-  arm	none	none	eabihf (Hard Float)
-gcc-arm-linux-gnueabihf
-
-
 ✅ C 코드(clang)를 컴파일할 때는 -stdlib= 옵션을 사용할 필요가 없음.
 
-https://formulae.brew.sh/formula/arm-none-eabi-gcc
-brew install gcc-arm-none-eabi gdb-arm-none-eabi
-
-❯ sudo apt install gcc-arm-none-eabi
-[sudo] password for wbfw109v2: 
-The following package was automatically installed and is no longer required:
-  libkf5networkmanagerqt6
-Use 'sudo apt autoremove' to remove it.
-
-Installing:
-  gcc-arm-none-eabi
-
-Installing dependencies:
-  binutils-arm-none-eabi  libnewlib-arm-none-eabi  libnewlib-dev  libstdc++-arm-none-eabi-dev  libstdc++-arm-none-eabi-newlib
 
 %shell> apt-cache show gcc-arm-none-eabi | grep -E "Depends|Recommends"
   >>

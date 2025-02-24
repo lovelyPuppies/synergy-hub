@@ -9,6 +9,8 @@ export WINSDK_PATH="$HOME/winsdk"
 xwin --accept-license splat --preserve-ms-arch-notation --output "$WINSDK_PATH"
 
 
+
+#❗ Build with UCRT (Universal C Runtime) + MSVC STL (C++ Standard Library) + MSVC ABI"
 clang -o cpp2.exe \
   -target x86_64-pc-windows-msvc \
   -isystem "$WINSDK_PATH/crt/include" \
@@ -24,7 +26,15 @@ clang -o cpp2.exe \
   cpp2.cpp
 
 
-
+❓ How to debug.. winedbg or 
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Launch",
+      "program": "${workspaceFolder}/<program>",
+      "args": [],
+      "cwd": "${workspaceFolder}"
+    },
 wbfw109v2@iot-04:~/repos/synergy-hub/temp$ wine cpp2.exe
 Hello world
 
