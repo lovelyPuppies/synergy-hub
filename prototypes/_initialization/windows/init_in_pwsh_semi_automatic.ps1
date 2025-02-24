@@ -25,20 +25,16 @@ wsl --install
 
 
 
-#### 🌱 System
-<# 🚧 In a Settings window,
-System
+#### 🚧 In a Settings window,
+<#
+🌱 System
   - Notifications
     - ✔️ Do not disturb
   - Multitasking
     - Show tabs from apps when snapping or pressing Alt + Tab
       - ✔️ Don't show tabs
-#>
 
-
-#### 🌱 Personalization
-<# 🚧 In a Settings window,
-Personalization
+🌱 Personalization
   - Colors
     - Choose your mode
       - ✔️ Dark
@@ -47,16 +43,32 @@ Personalization
       - ✔️ Automatically hide the taskbar
       - When using multiple displays, show my taskbar apps on
         ✔️ Taskbar where window is open
-#>
+  - Start
+    - ✖️ Show recently opened items in Start, Jump Lists, and File Explorer
 
-#### 🌱 Time & language
-<# 🚧 In a Settings window,
-Time & language - Language & region
-  - Language
-    - Korean - More Options - Language Options
+🌱 Time & language
+  - Language & region
+    - Language
+      - Korean - More Options - Language Options
         - Keyboards - Installed keyboards - Add a keyboard
           - ✔️ Microsoft IME
-  # ✔️ and remains one keyboard for each Language
+    # ✔️ and remains one keyboard for each Language
+
+🌱 Privacy & security
+  - Windows permissions
+    - Search permissions
+      - Cloud content search
+        - ✖️ Microsoft account
+        - ✖️ Work or School account
+      - History
+        - ✖️ Search history on this device
+      - More settings
+        - ✖️ Show search highlights
+    - Activity history
+      - ✖️ Store my activity history on this device
+      - ✔️ Clear history
+
+
 #>
 
 

@@ -9038,6 +9038,44 @@ https://github.com/RobertCNelson/u-boot
 https://source.denx.de/u-boot/u-boot
 https://www.denx.de/project/u-boot/
 
+  Flatpack ; https://docs.flatpak.org/en/latest/basic-concepts.html
+* Architecture
+  * Software component
+    ❔ Plug-in ; https://en.wikipedia.org/wiki/Plug-in_(computing)
+    ❔ Shell ; https://en.wikipedia.org/wiki/Shell_(computing)
+    ❔ Sandbox ; https://en.wiktionary.org/wiki/sandbox
+    ❔ Time Window ; ...
+    ❔ Nix ; ...
+    ❔ Middleware ; ...
+      애플리케이션이 다양한 데이터베이스와 통신할 수 있게 해줍니다.
+      메시지 브로커는 분산 시스템에서 데이터를 교환하는 애플리케이션 간의 메시지를 중계합니다
+      웹 애플리케이션 서버는 클라이언트(예: 웹 브라우저)와 백엔드 애플리케이션 간의 통신을 관리합니다
+  * ❔ How Embedded Linux Works ; ...
+* Hardware
+  ❔ LSB, MSB; Least/Most Significant Bit.
+    Big endian, Ltitle endian
+  ❔ X Window System ; https://en.wikipedia.org/wiki/X_Window_System
+* Programming
+  ❔ Full qualified name ; https://en.wikipedia.org/wiki/Fully_qualified_name
+  ❔ Reification ; https://en.wikipedia.org/wiki/Reification_(computer_science)
+  ❔ OOP ; ...
+    ❔ Polymorphism ; ...
+  ❔🆚 Value Categories ; ...
+    https://learn.microsoft.com/en-us/cpp/cpp/lvalues-and-rvalues-visual-cpp?view=msvc-170  
+  ❔ Evaluation Strategy ; https://en.wikipedia.org/wiki/Evaluation_strategy#Call_by_copy-restore
+    ... side effect
+  ❔ Object copying ; https://en.wikipedia.org/wiki/Object_copying
+    📍 Reference copy, Sahllow copy, Deep copy
+  ❔ Inheritance ; .. 장점 ,,, 계층적 분류 및 관리의 용이함., 재사용과 확장을 통한 소프트웨어의 생산성 향상
+    ❔🆚 upcast, downcast
+    ❔ dominance, virtual ... ➡️ Multiple base classes
+  ❔ C++ - References (&)
+  ❔ C++ - static.. 생명주기, 공간 특성 (사용 범위/🚣공유. static 은 함수 사이에 공유 목적!) 시간적 특성, 
+  ❔ C++ - operator overloading
+    friend 가 필요할 때와 그 이유.
+* Tools
+  ❔ Development Containers ; https://containers.dev/
+
 
 U-boot
 
@@ -20959,8 +20997,6 @@ Clang에서 어떤 C 표준 라이브러리(glibc, musl 등)를 사용할지 결
 clang --print-supported-targets
 
 
-
-
 🧮 %shell> rustc --print target-list
   https://llvm.org/doxygen/classllvm_1_1Triple.html
 
@@ -20986,8 +21022,7 @@ Clang이 /usr/aarch64-linux-gnu/ 같은 경로를 자동으로 찾지 못하는 
   2) or CMAKE_SYSROOT
 
 
-
-
 📍📍📍📍📍📍📍📍 TRY_COMPILE_TARGET_TYPE 
 
 Universal CRT; https://support.microsoft.com/en-us/topic/update-for-universal-c-runtime-in-windows-c0514201-7fe6-95a3-b0a5-287930f3560c
+❓
