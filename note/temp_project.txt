@@ -21026,3 +21026,50 @@ Clang이 /usr/aarch64-linux-gnu/ 같은 경로를 자동으로 찾지 못하는 
 
 Universal CRT; https://support.microsoft.com/en-us/topic/update-for-universal-c-runtime-in-windows-c0514201-7fe6-95a3-b0a5-287930f3560c
 ❓
+
+음 그러면 세부 사항이 주로 구현 내부에 포함되어 있는데 공식문서에 쓰여있지 않아 정확히 어떤 내부 메커니즘인지 알 수가 없다. 해당 값을 기반으로 사용자의 /usr/ 아래에서 적절한 크로스 컴파일 환경을 찾도록 지시하는 역할을 하는 듯 하다. 
+
+
+ clang --target aarch64-linux-gnu --print-search-dirs
+ clang --target=aarch64-linux-gnu --print-search-dirs
+
+
+존재하지 않더라도 검색 경로에 등록되서 찾으려고 하는구나.
+wbfw109v2 in 🌐 iot-04 in synergy-hub on  main [!] is 📦 v0.1.0 via 🐍 v3.13.2 (python-study-py3.13) 
+❯ clang --target=aarch64-linux-gnu --print-search-dirs
+programs: =/home/linuxbrew/.linuxbrew/Cellar/llvm/19.1.7/bin:/usr/lib/gcc-cross/aarch64-linux-gnu/14/../../../../aarch64-linux-gnu/bin
+libraries: =/home/linuxbrew/.linuxbrew/Cellar/llvm/19.1.7/lib/clang/19:/usr/lib/gcc-cross/aarch64-linux-gnu/14:/usr/lib/gcc-cross/aarch64-linux-gnu/14/../../../../lib64:/lib/aarch64-linux-gnu:/lib/../lib64:/usr/lib/aarch64-linux-gnu:/usr/lib/../lib64:/usr/lib/gcc-cross/aarch64-linux-gnu/14/../../../../aarch64-linux-gnu/lib:/lib:/usr/lib
+
+wbfw109v2 in 🌐 iot-04 in synergy-hub on  main [!] is 📦 v0.1.0 via 🐍 v3.13.2 (python-study-py3.13) 
+❯ clang --print-search-dirs
+programs: =/home/linuxbrew/.linuxbrew/Cellar/llvm/19.1.7/bin:/usr/lib/gcc/x86_64-linux-gnu/14/../../../../x86_64-linux-gnu/bin
+libraries: =/home/linuxbrew/.linuxbrew/Cellar/llvm/19.1.7/lib/clang/19:/home/linuxbrew/.linuxbrew/Cellar/llvm/19.1.7/bin/../lib/x86_64-unknown-linux-gnu:/home/linuxbrew/.linuxbrew/Cellar/llvm/19.1.7/lib/clang/19/lib/x86_64-unknown-linux-gnu:/usr/lib/gcc/x86_64-linux-gnu/14:/usr/lib/gcc/x86_64-linux-gnu/14/../../../../lib64:/lib/x86_64-linux-gnu:/lib/../lib64:/usr/lib/x86_64-linux-gnu:/usr/lib/../lib64:/lib:/usr/lib
+
+
+ wbfw109v2 in 🌐 iot-04 in synergy-hub on  main [!] is 📦 v0.1.0 via 🐍 v3.13.2 (python-study-py3.13) 
+❯ ls /usr/lib/gcc/x86_64-linux-gnu/14/../../../../x86_64-linux-gnu/bin
+ls: cannot access '/usr/lib/gcc/x86_64-linux-gnu/14/../../../../x86_64-linux-gnu/bin': No such file or directory
+
+wbfw109v2 in 🌐 iot-04 in synergy-hub on  main [!] is 📦 v0.1.0 via 🐍 v3.13.2 (python-study-py3.13) 
+❯ ls /usr/lib/gcc-cross/aarch64-linux-gnu/14/../../../../aarch64-linux-gnu/bin
+ar@  as@  gold@  ld@  ld.bfd@  ld.gold@  nm@  objcopy@  objdump@  ranlib@  readelf@  strip@
+
+wbfw109v2 in 🌐 iot-04 in synergy-hub on  main [!] is 📦 v0.1.0 via 🐍 v3.13.2 (python-study-py3.13) 
+❯ clang --help | grep sysroot
+  -iframeworkwithsysroot <directory>
+                          Add directory to SYSTEM framework search path, absolute paths are relative to -isysroot
+  -isysroot <dir>         Set the system root directory (usually /)
+  -iwithsysroot <directory>
+                          Add directory to SYSTEM include search path, absolute paths are relative to -isysroot
+
+📝 Note that clang does not have "--sysroot" option
+❯ clang --help
+  -I <dir>                Add directory to the end of the list of include search paths
+  -L <dir>                Add directory to library search path
+  -B <prefix>             Search $prefix$file for executables, libraries, and data files. If $prefix is a directory, search $prefix/$file
+
+
+
+
+CFLAGS=--target=aarch64-linux-gnu --gcc-install-dir=/usr/lib/gcc-cross/aarch64-linux-gnu/12 -march=armv8-a -mtune=cortex-a72 -O3 -flto -pipe
+CXXFLAGS=--target=aarch64-linux-gnu --gcc-install-dir=/usr/lib/gcc-cross/aarch64-linux-gnu/12 -march=armv8-a -mtune=cortex-a72 -O3 -flto -pipe

@@ -18,6 +18,12 @@ list of level 1 subjects
   🧮 clang++ --help
       -Wl,<arg>               Pass the comma separated arguments in <arg> to the linker
 
+(✍️ clang 🔪 study)
+  ⚖️ Default Target in Ubuntu x86_64 📅 2025-02-25 04:11:32
+    ❯ clang -v 2>&1 | grep Target
+      Target: x86_64-unknown-linux-gnu
+
+
 ----------------------------------------------
 ⚓ clang 🔪 docs ; https://clang.llvm.org/docs/
   ⚓🔰 Cross-compilation using Clang ; https://clang.llvm.org/docs/CrossCompilation.html
@@ -42,6 +48,7 @@ clang 🔪 docs 🔪 Using Clang as a Compiler
         📝📖 Refer https://gcc.gnu.org/onlinedocs/gcc/Option-Index.html for some descriptions
 
       --target=<arg>, -target <arg>
+        📝 
         Generate code for the given target
       --gcc-install-dir=<arg>
         Use GCC installation in the specified directory. The directory ends with path components like ‘lib{,32,64}/gcc{,-cross}/$triple/$version’.
