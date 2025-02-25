@@ -1,6 +1,9 @@
 list of level 1 subjects
   - TinyORM
-  
+
+❌ Dot not use this. It does not supports Target Triplet in vcpkg: (uwp | arm | android | emscripten | osx | ios | xbox | freebsd | openbsd | wasm32) 📅 2025-02-26 02:15:28
+  https://vcpkg.io/en/package/tinyorm
+
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
 ⚓ TinyORM ; https://www.tinyorm.org/
   Modern C++ ORM library

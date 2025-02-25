@@ -1,0 +1,9 @@
+list of level 1 subjects
+  - odb
+
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ odb ; https://www.codesynthesis.com/products/odb/
+  ODB: C++ Object-Relational Mapping (ORM)
+
+

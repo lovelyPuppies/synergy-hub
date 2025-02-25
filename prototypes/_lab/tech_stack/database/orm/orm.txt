@@ -47,7 +47,10 @@ list of level 1 subjects
   * Lightweight & Short-Lived Applications
     - For simple scripts, microservices, or one-off database operations, raw SQL might be more efficient.
 
-
+⚠️ But, ... TODO
+  이게 c++ 에서 orm 이 유명하지 않은 이유를 알겟구나.. 생태계도 작고, permissive 오픈소스가 없구나.. 
+  ,,
+  그냥 raw sql 을 쓰는게 나은듯 하다.
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
 ⚓⭕ ORM ; https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping
 
