@@ -7,11 +7,37 @@
 #include <spdlog/spdlog.h>
 
 int cmake_options_set();
+int mariadb_cpp_test();
 
 int main() {
   // cmake_options_set();
+  mariadb_cpp_test();
+
   std::cout << 100 << std::endl;
   return 0;
+}
+
+int mariadb_cpp_test() {
+  try {
+    // Instantiate Driver
+    sql::Driver *driver = sql::mariadb::get_driver_instance();
+
+    // Configure Connection
+    sql::SQLString url("jdbc:mariadb://localhost:3306/smart_pkg_db");
+    sql::Properties properties(
+        {{"user", "wbfw109v2_dev"}, {"password", "wbfw109v2_dev"}});
+
+    // Establish Connection
+    std::unique_ptr<sql::Connection> db_connection(
+        driver->connect(url, properties));
+    db_connection->close();
+
+  } catch (sql::SQLException &e) {
+    std::cerr << "Error Connecting to MariaDB Platform: " << e.what()
+              << std::endl;
+    // Exit (Failed)
+    return 1;
+  }
 }
 
 int cmake_options_set() {
