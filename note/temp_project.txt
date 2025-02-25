@@ -21098,3 +21098,6 @@ The following packages will be built and installed:
   * vcpkg-cmake:x64-linux@2024-04-23 -- /home/wbfw109v2/.cache/vcpkg/registries/git-trees/e74aa1e8f93278a8e71372f1fa08c3df420eb840
   * vcpkg-cmake-config:x64-linux@2024-05-23 -- /home/wbfw109v2/.cache/vcpkg/registries/git-trees/97a63e4bc1a17422ffe4eff71da53b4b561a7841
 Additional packages (*) will be modified to complete this operation.
+
+
+vcpkg install 

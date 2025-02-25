@@ -2,6 +2,7 @@
 #include <fmt/color.h>
 #include <fmt/core.h>
 #include <iostream>
+#include <mariadb/conncpp.hpp>
 #include <math.h>
 #include <spdlog/spdlog.h>
 

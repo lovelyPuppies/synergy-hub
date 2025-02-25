@@ -893,6 +893,8 @@ if not grep -Fxq "$unique_comment" "$FISH_CONFIG_PATH"
 end
 
 git clone https://github.com/microsoft/vcpkg $HOME/repos/vcpkg
+source $FISH_CONFIG_PATH
+vcpkg install asio:x64-linux mariadb-connector-cpp:x64-linux protobuf:x64-linux nanopb:x64-linux
 
 
 : '

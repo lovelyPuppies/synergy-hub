@@ -1,8 +1,9 @@
 {
   "dependencies": [
+    "asio",
     "nanopb",
     "protobuf",
     "spdlog",
-    "asio"
+    "mariadb-connector-cpp"
   ]
 }

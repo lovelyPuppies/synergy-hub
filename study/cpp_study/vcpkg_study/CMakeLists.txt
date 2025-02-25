@@ -9,11 +9,14 @@ find_package(spdlog CONFIG REQUIRED)
 find_package(protobuf CONFIG REQUIRED)
 find_package(nanopb CONFIG REQUIRED)
 find_package(asio CONFIG REQUIRED)
+find_package(unofficial-mariadb-connector-cpp CONFIG REQUIRED)
 target_link_libraries(fmt_example PRIVATE
     fmt::fmt
     spdlog::spdlog
-    protobuf::libprotobuf
     asio::asio
+    unofficial::mariadb-connector-cpp::mariadbcpp
+    protobuf::libprotobuf
+    nanopb::protobuf-nanopb-static
 )
 
 
