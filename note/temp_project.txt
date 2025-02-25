@@ -32,6 +32,9 @@
   옵트에이아이 ; https://www.saramin.co.kr/zf_user/company-info/view-inner-recruit?csn=R1NScnY5elFFU0Y4VjVWdlZYd0wrQT09
     https://www.jobplanet.co.kr/companies/410180/interviews/%EC%98%B5%ED%8A%B8%EC%97%90%EC%9D%B4%EC%95%84%EC%9D%B4
 
+📰 Cross compile... BUILD_SHARED_LIBS ON, CMAKE_EXE_LINKER_FLAGS -static
+   CMake의 BUILD_SHARED_LIBS나 CMAKE_EXE_LINKER_FLAGS는 표준 라이브러리(예: libc, libstdc++)에만 영향을 미칩니다.
+   실무에서는 기본적으로 동적 링크 사용.
 📰⭕ STM32 -> Semihosting
   * 내가 이거를 아래처럼 설치해서 사용했엇는데
     brew install arm-none-eabi-gcc arm-none-eabi-gdb
@@ -91,6 +94,26 @@
       ISM43340-M4G-L44
       SPWF01SA (ST 자체 Wi-Fi 모듈)
     ESP8266 은 없어서 직접 만들어야 한다 .
+  * Alphine Linux on Raspberry Pi 4B ... with musl... https://wiki.alpinelinux.org/wiki/Alpine_on_ARM
+    🆚 Alphine Linux (경량), Yocto (완전한 커스터마이징)
+    ⚓ gdbserver ; https://en.wikipedia.org/wiki/Gdbserver
+
+    ⚓📎 Musl ; https://en.wikipedia.org/wiki/Musl
+      Musl is a C standard library intended for operating systems based on the Linux kernel, released under the MIT License
+      https://musl.libc.org/
+    ⚓📎 Newlib ; https://en.wikipedia.org/wiki/Newlib
+      http://www.sourceware.org/newlib/
+    ⚓ picolibc ; https://github.com/picolibc/picolibc/tree/main
+      Picolibc is library offering standard C library APIs that targets small embedded systems with limited RAM.
+      ❗ Picolibc was formed by blending code from 🪱 Newlib and 🪱 AVR Libc.
+      https://keithp.com/picolibc/
+      https://chromium.googlesource.com/chromiumos/third_party/zephyr/picolibc/+/b92edfda8ac6853772d87cadaeeeaa21b78609b6/README.md
+      
+      # Documentation
+        ⚓ Building Picolibc ; https://github.com/picolibc/picolibc/blob/main/doc/build.md
+        ⚓ Using Picolibc ; https://github.com/picolibc/picolibc/blob/main/doc/using.md
+          gcc --specs=picolibc.specs -c foo.c
+    ⚓ avr-libc ; https://github.com/avrdudes/avr-libc
 📰 binfmt_misc  .. 정의 다시 보고 정리하기 (toolchain.txt 에)
   https://github.com/lovelyPuppies/QTonRaspberryPi
     https://en.wikipedia.org/wiki/Binfmt_misc
@@ -20829,10 +20852,19 @@ https://softeer.ai/index
 C++ ORM 라이브러리 비교.
 📍📍📍📍📍📍📍📍📍📍📍📍
   https://stackoverflow.com/questions/54539682/how-to-set-up-cmake-to-cross-compile-with-clang-for-arm-embedded-on-windows
+CMAKE_TRY_COMPILE_TARGET_TYPE은 어디에 필요한 거야?
+  try_compile()이 기본적으로 실행 파일(EXECUTABLE)을 만들려고 하는데, 어떤 환경에서는 실행 파일을 만들 수 없는 경우가 있음.
+
+  예를 들면:
+
+    크로스 컴파일러(임베디드 환경)에서는 실행 파일을 만들 수 없음.
+    특정 플랫폼에서는 링커가 없어서 실행 파일을 생성하지 못할 수도 있음.
+    이럴 때, CMAKE_TRY_COMPILE_TARGET_TYPE을 STATIC_LIBRARY로 설정하면 실행 파일을 만들지 않고, 단순히 "컴파일만 되는지" 확인할 수 있습니다.
+      set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
+  이렇게 설정하면 try_compile()이 실행 파일을 만들지 않고, 정적 라이브러리를 생성하는 방식으로 컴파일 테스트를 수행합니다.
+
+
   https://stackoverflow.com/a/75784325
-  https://formulae.brew.sh/formula/mingw-w64
-  https://formulae.brew.sh/formula/xwin#default
-  libstdc++, ... 비교.
 https://github.com/microsoft/vscode-cmake-tools/issues/1361
 
 
@@ -20979,25 +21011,7 @@ https://github.com/messense/xwin
 Uniform Resource Identifier (URI), formerly Universal Resource Identifier ; https://en.wikipedia.org/wiki/Uniform_Resource_Identifier
 
 
-⚓ gdbserver ; https://en.wikipedia.org/wiki/Gdbserver
 
-Clang에서 어떤 C 표준 라이브러리(glibc, musl 등)를 사용할지 결정하는 것은 --target 옵션
-⚓📎 Musl ; https://en.wikipedia.org/wiki/Musl
-  Musl is a C standard library intended for operating systems based on the Linux kernel, released under the MIT License
-  https://musl.libc.org/
-⚓📎 Newlib ; https://en.wikipedia.org/wiki/Newlib
-  http://www.sourceware.org/newlib/
-⚓ picolibc ; https://github.com/picolibc/picolibc/tree/main
-  Picolibc is library offering standard C library APIs that targets small embedded systems with limited RAM.
-  ❗ Picolibc was formed by blending code from 🪱 Newlib and 🪱 AVR Libc.
-  https://keithp.com/picolibc/
-  https://chromium.googlesource.com/chromiumos/third_party/zephyr/picolibc/+/b92edfda8ac6853772d87cadaeeeaa21b78609b6/README.md
-  
-  # Documentation
-    ⚓ Building Picolibc ; https://github.com/picolibc/picolibc/blob/main/doc/build.md
-    ⚓ Using Picolibc ; https://github.com/picolibc/picolibc/blob/main/doc/using.md
-      gcc --specs=picolibc.specs -c foo.c
-⚓ avr-libc ; https://github.com/avrdudes/avr-libc
 
 
 📍📍📍📍📍📍📍📍 TRY_COMPILE_TARGET_TYPE 

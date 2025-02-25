@@ -8,7 +8,12 @@
 export WINSDK_PATH="$HOME/winsdk"
 xwin --accept-license splat --preserve-ms-arch-notation --output "$WINSDK_PATH"
 
-
+📍📍 https://stackoverflow.com/a/75784325
+xwin
+  A utility for downloading and packaging the Microsoft CRT headers and libraries, and Windows SDK headers and libraries needed for compiling and linking programs targeting Windows.
+🧮 brew install mingw-w64 xwin
+  https://formulae.brew.sh/formula/mingw-w64
+  https://formulae.brew.sh/formula/xwin#default
 
 #❗ Build with UCRT (Universal C Runtime) + MSVC STL (C++ Standard Library) + MSVC ABI"
 clang -o cpp2.exe \

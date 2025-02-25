@@ -93,7 +93,12 @@ list of level 1 subjects
       #️⃣ Lists ; https://cmake.org/cmake/help/latest/manual/cmake-language.7.html#id33
 
     ⚓🔰📍⭕ cmake-presets(7) ; https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html
-      📝 Recommended from Microsoft ; https://learn.microsoft.com/en-us/vcpkg/users/buildsystems/cmake-integration#visual-studio--visual-studio-code
+      📝
+        - Recommended from Microsoft ; https://learn.microsoft.com/en-us/vcpkg/users/buildsystems/cmake-integration#visual-studio--visual-studio-code
+        - Note that CMakePresets.json is read before CMakeLists.txt. 📅 2025-02-25 10:02:45
+          Therefore, we cannot pass environment variables directly to CMakePresets.json from the VSCode CMake extension settings or from CMakeLists.txt that reads .env.
+          Instead, we must use CMakeUserPresets.json.
+
       #️⃣📎 Introduction ; https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html#introduction
         CMakePresets.json and CMakeUserPresets.json live in the project's root directory.
           They both have exactly the same format, and both are optional (though at least one must be present if --preset is specified).
@@ -123,13 +128,16 @@ list of level 1 subjects
         ⚓🖇️🔰 CMAKE_SOURCE_DIR ; https://cmake.org/cmake/help/latest/variable/CMAKE_SOURCE_DIR.html 📅 2025-02-20 07:53:18
         ⚓🖇️🔰 CMAKE_BINARY_DIR ; https://cmake.org/cmake/help/latest/variable/CMAKE_BINARY_DIR.html 📅 2025-02-20 07:53:35
       #️⃣ Variables that Change Behavior ; https://cmake.org/cmake/help/latest/manual/cmake-variables.7.html#variables-that-change-behavior
-        ⚓🖇️🔰 CMAKE_BUILD_TYPE ; https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html
+        ⚓🖇️🔰 CMAKE_BUILD_TYPE ; https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html 📅 2025-02-25 09:47:32
           📝 If CMAKE_BUILD_TYPE is set to Debug, it automatically adds debugging symbols during compilation.
           Typical values include Debug, Release, RelWithDebInfo and MinSizeRel, but custom build types can also be defined.
           ... ❗ The default value is often an empty string, but this is usually not desirable and one of the other standard build types is usually more appropriate.
         ⚓📍 CMAKE_EXPORT_COMPILE_COMMANDS ; https://cmake.org/cmake/help/latest/variable/CMAKE_EXPORT_COMPILE_COMMANDS.html
-        ⚓📍 CMAKE_PREFIX_PATH ; https://cmake.org/cmake/help/latest/variable/CMAKE_PREFIX_PATH.html
-        ⚓📍 CMAKE_MODULE_PATH ; https://cmake.org/cmake/help/latest/variable/CMAKE_MODULE_PATH.html
+        ⚓🖇️📍 CMAKE_PREFIX_PATH ; https://cmake.org/cmake/help/latest/variable/CMAKE_PREFIX_PATH.html 📅 2025-02-25 09:47:11
+          Semicolon-separated 🚣list of directories specifying installation prefixes to be searched by the find_package(), find_program(), find_library(), find_file(), and find_path() commands.
+            Each command will add appropriate subdirectories (like bin, lib, or include) as specified in its own documentation.
+          ⚖️ By default this is empty. It is intended to be set by the project.
+        ⚓ CMAKE_MODULE_PATH ; https://cmake.org/cmake/help/latest/variable/CMAKE_MODULE_PATH.html
       #️⃣ Variables for Languages ; https://cmake.org/cmake/help/latest/manual/cmake-variables.7.html#variables-for-languages
         ⚓🖇️🔰 CMAKE_<LANG>_FLAGS_<CONFIG> ; https://cmake.org/cmake/help/latest/variable/CMAKE_LANG_FLAGS_CONFIG.html 📅 2025-02-23 04:17:10
           The flags in this variable will be passed after those in the CMAKE_<LANG>_FLAGS variable. 

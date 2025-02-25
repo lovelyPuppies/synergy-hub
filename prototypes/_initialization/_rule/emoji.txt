@@ -15,6 +15,7 @@ Emoji 🔗 from VS Code Extension :emojisense: ;https://marketplace.visualstudio
   🔍      :mag:                         ["FAQ", "Help"], " <Title>"         Used to view a collection of questions and answers or help topics.
   🔎      :mag_right:                   ""                                  Used to indicate a possibility, assumption, or guess, such as "may be," "could be," or "might be."
 
+  ℹ️      :information_source:          "(About); <Title>"
   🚨      :rotating_light:              "(Issue: Error); <Title>"
   🚨      :rotating_light:              "(Issue: Bug); <Title>"
 
