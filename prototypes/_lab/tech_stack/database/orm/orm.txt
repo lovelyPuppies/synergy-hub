@@ -47,10 +47,23 @@ list of level 1 subjects
   * Lightweight & Short-Lived Applications
     - For simple scripts, microservices, or one-off database operations, raw SQL might be more efficient.
 
-⚠️ But, ... TODO
-  이게 c++ 에서 orm 이 유명하지 않은 이유를 알겟구나.. 생태계도 작고, permissive 오픈소스가 없구나.. 
-  ,,
-  그냥 raw sql 을 쓰는게 나은듯 하다.
+⚠️ However, ORM is not widely used in C++. 📅 2025-02-26 03:19:44
+  Unlike Java or Python, C++ does not have a strong ORM ecosystem
+  , mainly due to a small developer community and the lack of permissive open-source ORM libraries.
+    Most C++ ORM solutions come with restrictive licenses or limited platform support. Here’s why:
+      - ODB: Uses a dual-licensing model. Under GPL/NCUEL, you must release your source code if distributed. A commercial license (CPL) is required to keep your code private, starting at $1,500.
+      - SQLite-ORM: Uses AGPL by default, requiring full source code disclosure for public use. If you want to keep your code closed-source, you need to purchase an MIT license for $50.
+      - TinyORM: While it provides ORM features, it has limited target triple support, restricting its usability in various environments.
+
+  Given these limitations, I have decided to use raw SQL instead.
+    - I looked for libraries that abstract database drivers for multiple DBMSs, but most options are not well-maintained.
+      - SOCI: Last major update was a long time ago and does not support MariaDB.
+
+  ➡️ Conclusion
+    Instead of relying on ORM or a third-party abstraction layer, it is best to use the official database drivers provided by each DBMS for better reliability and performance.
+    🛍️ e.g. mariadb-connector-cpp
+
+
+
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
 ⚓⭕ ORM ; https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping
-
