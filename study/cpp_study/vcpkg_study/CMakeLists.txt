@@ -16,9 +16,9 @@ target_link_libraries(fmt_example PRIVATE
     fmt::fmt
     spdlog::spdlog
     unofficial::mariadb-connector-cpp::mariadbcpp
+    unofficial::argon2::libargon2
     protobuf::libprotobuf
     nanopb::protobuf-nanopb-static
-    unofficial::argon2::libargon2
     Boost::asio
     Boost::redis
 )

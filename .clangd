@@ -69,5 +69,5 @@ CompileFlags:
   Add:
     - -I/opt/protobuf/debug-static/include
     - -I/opt/nanopb/include
-    - -I/opt/boost/debug-static/include
+    # - -I/opt/boost/debug-static/include
 

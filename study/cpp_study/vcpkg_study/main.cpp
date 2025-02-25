@@ -1,3 +1,7 @@
+#include <boost/asio.hpp>
+#include <boost/asio/use_awaitable.hpp>
+#include <boost/redis.hpp>
+#include <boost/redis/src.hpp>
 #include <cassert>
 #include <fmt/color.h>
 #include <fmt/core.h>
@@ -8,14 +12,40 @@
 
 int cmake_options_set();
 int mariadb_cpp_test();
+int boost_redis_test();
 
 int main() {
   // cmake_options_set();
-  mariadb_cpp_test();
+  // mariadb_cpp_test();
+  boost::redis::config redis_cfg;
+  redis_cfg.addr.host = "127.0.0.1";
+  redis_cfg.addr.port = "6379";
+
+  // boost_redis_test();
 
   std::cout << 100 << std::endl;
   return 0;
 }
+auto co_main(boost::redis::config const &cfg) -> boost::asio::awaitable<void> {
+  auto redis_connection = std::make_shared<boost::redis::connection>(
+      co_await boost::asio::this_coro::executor);
+  redis_connection->async_run(
+      cfg, {}, boost::asio::consign(boost::asio::detached, redis_connection));
+
+  // A request containing only a ping command.
+  boost::redis::request req;
+  req.push("PING", "Hello world");
+
+  // Response object.
+  boost::redis::response<std::string> resp;
+
+  // Executes the request.
+  co_await redis_connection->async_exec(req, resp, boost::asio::use_awaitable);
+  redis_connection->cancel();
+
+  std::cout << "PING: " << std::get<0>(resp).value() << std::endl;
+}
+int boost_redis_test() {}
 
 int mariadb_cpp_test() {
   try {

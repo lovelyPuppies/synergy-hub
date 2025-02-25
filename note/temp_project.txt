@@ -21113,3 +21113,29 @@ https://think-async.com/Asio/
   ⚓ Asio and Boost.Asio ; https://think-async.com/Asio/AsioAndBoostAsio.html
     Asio comes in two variants: (non-Boost) Asio and Boost.Asio. More…​
 
+boost-redis ; https://www.boost.org/doc/libs/1_87_0/libs/redis/doc/html/index.html
+
+
+brew install redis
+
+📰 실제로 라즈베리파이 구매해서 테스트 필요...
+  - 왜냐하면 mariadb, redis 가 호스트에서는 homebrew 를 통해 설치햇엇기 떄문..
+  in raspberry pi 
+    sudo apt install mariadb-server
+
+
+%shell> 
+brew install redis
+brew services start redis
+
+❯ redis-cli INFO | grep -i tcp
+  tcp_port:6379
+  listener0:name=tcp,bind=127.0.0.1,bind=::1,port=6379
+
+
+⚓📎 decltype ; https://en.wikipedia.org/wiki/Decltype
+  
+⚓🖇️ Trailing return type ; https://en.wikipedia.org/wiki/Trailing_return_type 📅 2025-02-26 06:22:15
+  A trailing return type, a syntax feature available since C++11, is like a traditional return type, except that it is specified in a different location.
+
+
