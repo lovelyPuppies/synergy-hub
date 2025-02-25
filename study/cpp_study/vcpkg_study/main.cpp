@@ -45,7 +45,7 @@ auto co_main(boost::redis::config const &cfg) -> boost::asio::awaitable<void> {
 
   std::cout << "PING: " << std::get<0>(resp).value() << std::endl;
 }
-int boost_redis_test() {}
+int boost_redis_test() { return 0; }
 
 int mariadb_cpp_test() {
   try {
@@ -68,6 +68,7 @@ int mariadb_cpp_test() {
     // Exit (Failed)
     return 1;
   }
+  return 0;
 }
 
 int cmake_options_set() {
