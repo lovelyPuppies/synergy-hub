@@ -5,7 +5,15 @@
 #include <math.h>
 #include <spdlog/spdlog.h>
 
+int cmake_options_set();
+
 int main() {
+  // cmake_options_set();
+  std::cout << 100 << std::endl;
+  return 0;
+}
+
+int cmake_options_set() {
   double y = sqrt(9.0);
   std::cout << y << std::endl;
   int x = 0;

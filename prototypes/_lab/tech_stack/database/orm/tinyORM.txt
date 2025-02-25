@@ -1,0 +1,31 @@
+list of level 1 subjects
+  - TinyORM
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓⭕ TinyORM ; https://www.tinyorm.org/
+  Modern C++ ORM library
+  MIT License
+  https://github.com/silverqx/TinyORM
+
+
+
+----------------------------------------------
+TinyORM 🔪 Database
+  ⚓🔰 Getting Started
+    Currently, TinyORM provides first-party support for four databases:
+      - MySQL >=5.7 (Version Policy)
+      - MariaDB >=10.3 (Version Policy)
+      - PostgreSQL >=11 (Version Policy)
+      - SQLite >=3.8.8
+        - native rename column >=3.25.0 (docs , release notes)
+        - generated columns >=3.31.0 (docs, release notes)
+        - native drop column >=3.35.0 (docs, release notes)
+
+    #️⃣ Running SQL Queries ; https://www.tinyorm.org/database/getting-started#running-sql-queries
+      #️⃣ Running A General Statement ; https://www.tinyorm.org/database/getting-started#running-a-general-statement
+        ❗ Tip
+          DB::statement method should be used for DDL queries, don't use it for "select" queries because it internally calls recordsHaveBeenModified method.
+      #️⃣❌ Running An Unprepared Statement ; https://www.tinyorm.org/database/getting-started#running-an-unprepared-statement
+         Since unprepared statements do not bind parameters, they may be vulnerable to SQL injection.
+         You should never allow user controlled values within an unprepared statement.
+  

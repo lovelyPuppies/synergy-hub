@@ -21018,11 +21018,16 @@ Uniform Resource Identifier (URI), formerly Universal Resource Identifier ; http
 
 Universal CRT; https://support.microsoft.com/en-us/topic/update-for-universal-c-runtime-in-windows-c0514201-7fe6-95a3-b0a5-287930f3560c
 ❓
+Collation ;https://en.wikipedia.org/wiki/Collation
+  In library, information and computer science, collation is the process of assembling written information into a standard order.
 
 
 
 내가 지금 하는거도 RPC 인가? 음.. 흠..
 
 
-⚓🔰 List of of open-source C++ libraries ; https://en.cppreference.com/w/cpp/links/libs
-  
+
+Active Record 패턴과 Query Builder를 제공해 ORM 활용이 쉬움.
+
+TinyORM - Modern C++ ORM library
+  MIT
