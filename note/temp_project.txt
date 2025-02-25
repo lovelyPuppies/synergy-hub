@@ -21101,3 +21101,15 @@ Additional packages (*) will be modified to complete this operation.
 
 
 vcpkg install 
+boost-redis ; https://www.boost.org/doc/libs/develop/libs/redis/doc/html/index.html
+  비동기 기반이면 redis-plus-plus 보다 boost-redis 가 더 낫다는듯. 
+  https://www.boost.org/libs/redis
+asio 가 두 개가 있네.
+🚀 비동기 서버, 멀티스레드 환경
+
+
+https://think-async.com/Asio/
+  https://think-async.com/Asio/Documentation.html
+  ⚓ Asio and Boost.Asio ; https://think-async.com/Asio/AsioAndBoostAsio.html
+    Asio comes in two variants: (non-Boost) Asio and Boost.Asio. More…​
+

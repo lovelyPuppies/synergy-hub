@@ -8,17 +8,20 @@ find_package(fmt CONFIG REQUIRED)
 find_package(spdlog CONFIG REQUIRED)
 find_package(protobuf CONFIG REQUIRED)
 find_package(nanopb CONFIG REQUIRED)
-find_package(asio CONFIG REQUIRED)
 find_package(unofficial-mariadb-connector-cpp CONFIG REQUIRED)
+find_package(unofficial-argon2 CONFIG REQUIRED)
+find_package(boost_asio REQUIRED CONFIG)
+find_package(boost_redis REQUIRED CONFIG)
 target_link_libraries(fmt_example PRIVATE
     fmt::fmt
     spdlog::spdlog
-    asio::asio
     unofficial::mariadb-connector-cpp::mariadbcpp
     protobuf::libprotobuf
     nanopb::protobuf-nanopb-static
+    unofficial::argon2::libargon2
+    Boost::asio
+    Boost::redis
 )
-
 
 ##### 🌀 Title: Creating a Symbolic Link or Copying compile_commands.json to build/compile_commands.json for IntelliSense in VSCode with the clangd Extension 📅 2025-01-06 07:07:23
 ## Define the paths for compile_commands.json

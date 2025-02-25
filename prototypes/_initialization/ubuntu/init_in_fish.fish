@@ -894,7 +894,9 @@ end
 
 git clone https://github.com/microsoft/vcpkg $HOME/repos/vcpkg
 source $FISH_CONFIG_PATH
-vcpkg install asio:x64-linux mariadb-connector-cpp:x64-linux protobuf:x64-linux nanopb:x64-linux
+vcpkg install mariadb-connector-cpp:x64-linux argon2:x64-linux \
+    protobuf:x64-linux nanopb:x64-linux \
+    boost-asio:x64-linux boost-redis:x64-linux
 
 
 : '
