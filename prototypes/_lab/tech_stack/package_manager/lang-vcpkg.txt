@@ -62,9 +62,11 @@ vcpkg 🔪⚓ Docs ; https://learn.microsoft.com/en-us/vcpkg/
     ⚓ Manifest mode ; https://learn.microsoft.com/en-us/vcpkg/concepts/manifest-mode
       📝🚧 Prerequisite 📅 2025-02-21 05:19:05
         - 프로젝트 경로에서 다음 명령어를 수행해서 manifest 파일고 만들고, 사용할 라이브러리를 추가해야 한다.
-          %shell>
+          🛍️ e.g. %shell>
             vcpkg new --application
-            vcpkg add port spdlog     # 🛍️ e.g. spdlog   
+            vcpkg add port spdlog
+            vcpkg add port tinyorm[build-mysql-driver,orm,mysql-ping]
+  
         - CMakePresets.json 와 함께 사용할 때, Classic Mode 와 동일하게 설정하면 된다.
           자동으로 프로젝트 경로에 manifest 파일이 있느냐 없느냐에 따라 "VCPKG_MANIFEST_MODE" 가 설정되기 때문.
             🛍️ e.g. 
@@ -203,5 +205,13 @@ vcpkg 🔪⚓ Docs ; https://learn.microsoft.com/en-us/vcpkg/
         🔰 %shell> vcpkg add port [options] <port-name>...
         The vcpkg add port command allows you to update the vcpkg.json manifest file by adding new package dependencies to your C++ project.
 
-      ⚓ vcpkg list ; https://learn.microsoft.com/en-us/vcpkg/commands/list
+     
+      ⚓ vcpkg install ; https://learn.microsoft.com/en-us/vcpkg/commands/install
+        # --dry-run
 
+      ⚓ vcpkg list ; https://learn.microsoft.com/en-us/vcpkg/commands/list
+      
+
+      ⚓ vcpkg x-update-baseline ; https://learn.microsoft.com/en-us/vcpkg/commands/update-baseline
+        vcpkg x-update-baseline [options] [--add-initial-baseline]
+  

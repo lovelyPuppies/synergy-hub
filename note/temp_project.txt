@@ -21031,3 +21031,70 @@ Active Record 패턴과 Query Builder를 제공해 ORM 활용이 쉬움.
 
 TinyORM - Modern C++ ORM library
   MIT
+
+
+커머스 백엔드 개발에서 ORM 활용?
+  이커머스 백엔드 개발에서 ORM 사용 여부를 보면, 대부분 ORM을 적극적으로 활용하는 추세..
+  🛍️ e.g. 2023년 현대오토에버 공고
+  AUTOSAR .. no ORM
+
+흠 그럼 내가 지금 현재 라즈베리파이 서버를 중심으로 사용자 (qt GUI), 배달로봇, 택배보관함 (OCR python), 엘레베이터의 4개의 클라이언트 노드가 통신하는 시스템을 개발중이거든? 메시지는 protobuf, nanopb 로 표준화하기는 했지만, DB 를 ORM 을 넣을지 안넣을지를 모르겟네.
+이러한 iot 서버에서는 추세가 어떤 편이야? 하드웨어적인 실시간 처리를 보장하는것까지는 필요가 없어서  ORM 을 쓰는 편이야?
+
+https://en.wikipedia.org/wiki/Reflective_programming
+  Reflection(리플렉션) 이란, 프로그램이 실행 중에(런타임) 객체의 타입, 메서드, 필드 등을 동적으로 분석하고 조작하는 기능
+
+🚀 서버에서 ORM을 고려할 핵심 요소
+서버에서 ORM을 사용할지 말지는 **"서버가 어떤 역할을 하는지"**에 따라 결정해야 함.
+지금 네 IoT 서버는 중앙 데이터 저장소 + API 제공 역할을 하므로, ORM을 충분히 사용할 수 있음.
+
+📌 ORM이 적절한 경우 (서버 내 데이터 관리 용도)
+
+  사용자 계정 관리
+  배달 로봇의 상태 로그 저장
+  택배 보관함의 패키지 등록/삭제 기록
+  엘리베이터 호출 기록 저장
+  장비 설정값 저장 및 변경 관리
+📌 ORM이 필요 없는 경우 (클라이언트의 실시간 제어)
+
+  배달 로봇의 실시간 네트워크 통신 및 제어 (이건 클라이언트가 알아서)
+  엘리베이터의 버튼 입력 감지 및 모터 동작
+  택배 보관함의 도어락 개폐
+  💡 즉, 서버에서 "데이터베이스 관리 + API 제공" 역할을 한다면 ORM을 사용해도 무방함!
+
+🚀 최종 결론: 네 IoT 서버에서는 ORM을 사용하는 것이 합리적
+  서버는 클라이언트(로봇, 보관함 등)의 데이터를 저장하고 관리하는 역할을 하므로 ORM을 사용할 수 있음.
+  ORM을 사용하면 유지보수성이 향상되고, 코드의 가독성이 높아져 개발 속도가 빨라짐.
+  하지만 성능 최적화를 위해 N+1 문제, 캐싱, Batch Insert 등을 고려해야 함.
+  클라이언트 노드에서 실시간 제어를 수행하는 부분과 서버의 ORM 사용은 무관하므로 걱정할 필요 없음.
+  결론: 네 IoT 서버는 ORM을 사용하되, 성능이 중요한 부분에서는 원시 SQL과 혼용하는 것이 최적! 🚀
+  즉, 서버에서 ORM을 사용하는 것은 충분히 현실적인 선택이며, 실시간 제어 성능과도 무관하므로 걱정할 필요 없음. 😃
+
+장기 보관이 필요한 데이터는 DB가 아니라 NoSQL, TSDB, 분산 로그 시스템을 활용.
+
+✅ 대부분의 데이터가 메시지 큐(Kafka, RabbitMQ, Redis Streams)에서 실시간으로 처리됨.
+✅ 장기 보관이 필요한 데이터는 TSDB(InfluxDB, Prometheus)나 분산 로그 시스템(Elasticsearch)으로 저장하는 것이 더 적합함.
+
+ok. 다시 아까 그 주제로 돌아와서, 그럼 애초에 센서데이터에 대한 로그는 ORM 을 통해서 보내는게 아니니까 (당연한 말), 전장 SW 에서도 ORM 을 함께 사용하나?
+
+
+https://www.reddit.com/r/AskProgramming/comments/1gaw39x/why_would_you_ever_use_an_orm/
+https://news.hada.io/topic?id=9523&utm_source=chatgpt.com
+
+vcpkg 모드는 클래식 모드에서만 작동한다.
+
+❯ vcpkg install --dry-run
+
+Fetching registry information from https://github.com/microsoft/vcpkg (HEAD)...
+Detecting compiler hash for triplet x64-linux...
+Compiler found: /usr/bin/c++
+The following packages will be built and installed:
+  * abseil:x64-linux@20250127.0 -- /home/wbfw109v2/.cache/vcpkg/registries/git-trees/274bd7ad7d033b67d78f202b33b280904763c5c7
+  * fmt:x64-linux@11.0.2#1 -- /home/wbfw109v2/.cache/vcpkg/registries/git-trees/07a73a7565e5de9eb42e90c16c133bdfdfebbcda
+    nanopb:x64-linux@0.4.9 -- /home/wbfw109v2/.cache/vcpkg/registries/git-trees/1f5737c00d41a894367cab2acb6ef934043fcd8e
+    protobuf:x64-linux@5.29.3 -- /home/wbfw109v2/.cache/vcpkg/registries/git-trees/53c97b927087d1919f2a7ef6c34e4caf1a00cdf9
+    spdlog:x64-linux@1.15.1 -- /home/wbfw109v2/.cache/vcpkg/registries/git-trees/7eecd9f58a522cf0ed8f081356617dbd7b4947de
+  * utf8-range:x64-linux@5.29.3 -- /home/wbfw109v2/.cache/vcpkg/registries/git-trees/67a0b0ded179b27dc30195bab68549fab519e1e2
+  * vcpkg-cmake:x64-linux@2024-04-23 -- /home/wbfw109v2/.cache/vcpkg/registries/git-trees/e74aa1e8f93278a8e71372f1fa08c3df420eb840
+  * vcpkg-cmake-config:x64-linux@2024-05-23 -- /home/wbfw109v2/.cache/vcpkg/registries/git-trees/97a63e4bc1a17422ffe4eff71da53b4b561a7841
+Additional packages (*) will be modified to complete this operation.

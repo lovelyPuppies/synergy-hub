@@ -1,5 +1,8 @@
 {
   "dependencies": [
-    "spdlog"
+    "nanopb",
+    "protobuf",
+    "spdlog",
+    "asio"
   ]
 }

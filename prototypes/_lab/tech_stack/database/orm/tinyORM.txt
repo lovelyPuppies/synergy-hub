@@ -2,7 +2,7 @@ list of level 1 subjects
   - TinyORM
   
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
-⚓⭕ TinyORM ; https://www.tinyorm.org/
+⚓ TinyORM ; https://www.tinyorm.org/
   Modern C++ ORM library
   MIT License
   https://github.com/silverqx/TinyORM
@@ -11,7 +11,7 @@ list of level 1 subjects
 
 ----------------------------------------------
 TinyORM 🔪 Database
-  ⚓🔰 Getting Started
+  ⚓🔰 Getting Started ; https://www.tinyorm.org/database/getting-started
     Currently, TinyORM provides first-party support for four databases:
       - MySQL >=5.7 (Version Policy)
       - MariaDB >=10.3 (Version Policy)
@@ -28,4 +28,31 @@ TinyORM 🔪 Database
       #️⃣❌ Running An Unprepared Statement ; https://www.tinyorm.org/database/getting-started#running-an-unprepared-statement
          Since unprepared statements do not bind parameters, they may be vulnerable to SQL injection.
          You should never allow user controlled values within an unprepared statement.
-  
+----------------------------------------------
+TinyORM 🔪 TinyDrivers
+  ⚓ Getting Started ; https://www.tinyorm.org/tinydrivers/getting-started
+    #️⃣ Differences from QtSql ; https://www.tinyorm.org/tinydrivers/getting-started#differences-from-qtsql
+      #️⃣💡 Performance ; https://www.tinyorm.org/tinydrivers/getting-started#performance
+
+
+
+----------------------------------------------
+temp
+  can not install.. and also tinyorm in vcpkg not supports arm acrhiecture
+
+  %shell> vcpkg install tinyorm
+    Installing 9/41 libxcrypt:x64-linux@4.4.36#2...
+      Building libxcrypt:x64-linux@4.4.36#2...
+      libxcrypt currently requires the following libraries from the system package manager:
+          autoconf automake libtool pkg-config
+      sudo apt update
+      sudo apt install -y autoconf automake libtool pkg-config
+
+    https://github.com/microsoft/vcpkg/issues/35553
+      Program python3 (jinja2) found: NO
+      ../src/v256.4-825386a66f.clean/meson.build:1725:15: ERROR: python3 is missing modules: jinja2
+        python-jinja2
+      apt-get install python3-jinja2
+    ❓ not works..
+
+
