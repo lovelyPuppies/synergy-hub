@@ -210,7 +210,8 @@ c+cpp
     ⚓ Aliases and typedefs ; https://learn.microsoft.com/en-us/cpp/cpp/aliases-and-typedefs-cpp
     ⚓ using declaration ; https://learn.microsoft.com/en-us/cpp/cpp/using-declaration
     ⚓ volatile ; https://learn.microsoft.com/en-us/cpp/cpp/volatile-cpp
-    ⚓ decltype ; https://learn.microsoft.com/en-us/cpp/cpp/decltype-cpp
+    ⚓🪱 decltype ; https://learn.microsoft.com/en-us/cpp/cpp/decltype-cpp
+
     ⚓ Attributes ; https://learn.microsoft.com/en-us/cpp/cpp/attributes
 
 

@@ -21141,9 +21141,12 @@ brew services start redis
     that differ only in the set of types on which they operate when used, thus reducing duplicate code.
 
 
+
+
+
 ⚓📎 decltype ; https://en.wikipedia.org/wiki/Decltype
 
-⚓🖇️ Trailing return type ; https://en.wikipedia.org/wiki/Trailing_return_type 📅 2025-02-26 06:22:15
+⚓🖇️🪱 Trailing return type ; https://en.wikipedia.org/wiki/Trailing_return_type 📅 2025-02-26 06:22:15
   A trailing return type, a syntax feature available since C++11, is like a traditional return type, except that it is specified in a different location.
 
 
