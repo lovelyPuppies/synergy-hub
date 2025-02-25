@@ -6,7 +6,7 @@
 #include <spdlog/spdlog.h>
 
 int main() {
-  double y = sqrt(9.0); // sqrt() 함수 호출
+  double y = sqrt(9.0);
   std::cout << y << std::endl;
   int x = 0;
 #ifdef DEBUG

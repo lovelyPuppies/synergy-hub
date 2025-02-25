@@ -21022,3 +21022,7 @@ Universal CRT; https://support.microsoft.com/en-us/topic/update-for-universal-c-
 
 
 내가 지금 하는거도 RPC 인가? 음.. 흠..
+
+
+⚓🔰 List of of open-source C++ libraries ; https://en.cppreference.com/w/cpp/links/libs
+  
