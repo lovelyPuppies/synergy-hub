@@ -21812,3 +21812,186 @@ brew services start redis
   #️⃣ BDD, cucumber, tex 수학 표기법..
 
 
+
+
+🧪 Test..
+  #include <boost/asio.hpp>
+  #include <boost/redis.hpp>
+  #include <mariadb/conncpp.hpp>
+  #include <iostream>
+  #include <memory>
+  #include <thread>
+  #include <unordered_map>
+  #include <string>
+
+  namespace net = boost::asio;
+  using boost::redis::connection;
+  using boost::redis::request;
+  using boost::redis::response;
+  using boost::asio::ip::tcp;
+
+  // ✅ 각 스레드별 MariaDB 및 Redis Connection을 관리 (thread_local)
+  thread_local std::unique_ptr<sql::Connection> thread_db_conn;
+  thread_local std::unique_ptr<connection> thread_redis_conn;
+
+  // ✅ MariaDB Connection을 가져오는 함수
+  sql::Connection* get_db_connection() {
+      if (!thread_db_conn) {
+          sql::Driver* driver = sql::mariadb::get_driver_instance();
+          sql::Properties properties({{"user", "my_user"}, {"password", "my_password"}});
+          thread_db_conn = std::unique_ptr<sql::Connection>(driver->connect("jdbc:mariadb://localhost:3306/my_database", properties));
+      }
+      return thread_db_conn.get();
+  }
+
+  // ✅ Redis Connection을 가져오는 함수
+  connection* get_redis_connection(net::io_context& io) {
+      if (!thread_redis_conn) {
+          thread_redis_conn = std::make_unique<connection>(io);
+          thread_redis_conn->async_run({}, net::detached);
+      }
+      return thread_redis_conn.get();
+  }
+
+  // 🎱 Session class: Handles client requests (with Redis + MariaDB)
+  class Session : public std::enable_shared_from_this<Session> {
+  public:
+      explicit Session(tcp::socket socket, net::io_context& io)
+          : socket_(std::move(socket)), io_context_(io) {}
+
+      void start() { doRead(); }
+
+  private:
+      tcp::socket socket_;
+      net::io_context& io_context_;
+      char buffer_[1024];
+
+      // 📌 (1) 비동기적으로 MariaDB에서 데이터를 가져오고 Redis에 캐싱
+      boost::asio::awaitable<std::string> async_fetch_data_from_db(int id) {
+          auto db_conn = get_db_connection();
+          std::unique_ptr<sql::PreparedStatement> stmt(db_conn->prepareStatement("SELECT name FROM users WHERE id = ?"));
+          stmt->setInt(1, id);
+
+          std::unique_ptr<sql::ResultSet> res(stmt->executeQuery());
+          if (res->next()) {
+              std::string name = res->getString("name");
+
+              // 🔹 (1-1) 가져온 데이터를 Redis에 캐싱
+              auto redis_conn = get_redis_connection(io_context_);
+              request req;
+              req.push("SET", "user:" + std::to_string(id), name, "EX", "60"); // 60초 TTL
+
+              response<boost::redis::ignore_t> resp;
+              co_await redis_conn->async_exec(req, resp, net::use_awaitable);
+
+              co_return name;
+          }
+          co_return "NOT FOUND";
+      }
+
+      // 📌 (2) Redis에서 캐싱된 데이터 조회
+      boost::asio::awaitable<std::string> async_get_data(int id) {
+          auto redis_conn = get_redis_connection(io_context_);
+
+          // 🔹 (2-1) Redis 조회
+          request req;
+          req.push("GET", "user:" + std::to_string(id));
+
+          response<std::optional<std::string>> resp;
+          co_await redis_conn->async_exec(req, resp, net::use_awaitable);
+
+          if (resp.value()) {
+              co_return *resp.value();
+          } else {
+              // 🔹 (2-2) Redis에 없으면 DB에서 가져오기
+              co_return co_await async_fetch_data_from_db(id);
+          }
+      }
+
+      // 📌 (3) 클라이언트 요청 처리 (Redis -> DB 순서로 조회)
+      void doRead() {
+          auto self(shared_from_this());
+          socket_.async_read_some(
+              boost::asio::buffer(buffer_),
+              [this, self](boost::system::error_code ec, std::size_t length) {
+                  if (!ec) {
+                      std::string request(buffer_, length);
+                      int user_id = std::stoi(request); // 요청에서 사용자 ID 파싱
+
+                      // 🔹 (3-1) 비동기적으로 DB/Redis 조회 수행
+                      boost::asio::co_spawn(io_context_, async_get_data(user_id), 
+                          [this, self](std::string data) {
+                              doWrite(data);
+                          });
+                  }
+              });
+      }
+
+      // 📌 (4) 클라이언트 응답 전송
+      void doWrite(const std::string& response) {
+          auto self(shared_from_this());
+          boost::asio::async_write(
+              socket_, boost::asio::buffer(response),
+              [this, self](boost::system::error_code ec, std::size_t) {
+                  if (!ec) {
+                      doRead();
+                  }
+              });
+      }
+  };
+
+  // 🎱 Server class: Accepts client connections and creates a new Session
+  class Server {
+  public:
+      Server(net::io_context& io_context, short port)
+          : acceptor_(io_context, tcp::endpoint(tcp::v4(), port)) {
+          doAccept();
+      }
+
+  private:
+      tcp::acceptor acceptor_;
+
+      void doAccept() {
+          acceptor_.async_accept(
+              [this](boost::system::error_code ec, tcp::socket socket) {
+                  if (!ec) {
+                      std::make_shared<Session>(std::move(socket), acceptor_.get_executor().context())->start();
+                  }
+                  doAccept();
+              });
+      }
+  };
+
+  // 🎱 Start IoT Server (멀티스레드 지원)
+  void start_iot_server() {
+      try {
+          net::io_context io_context;
+          Server server(io_context, 1234);
+
+          unsigned int thread_count = std::thread::hardware_concurrency();
+          thread_count = (thread_count > 1) ? (thread_count / 2) : 1;
+
+          std::vector<std::thread> threads;
+          for (unsigned int i = 0; i < thread_count; ++i) {
+              threads.emplace_back([&io_context]() {
+                  io_context.run();
+              });
+          }
+
+          for (auto& t : threads) {
+              t.join();
+          }
+      } catch (std::exception& e) {
+          std::cerr << "Exception: " << e.what() << "\n";
+      }
+  }
+
+
+
+
+
+✅ 멀티스레딩 안에서 각 스레드에서 코루틴 기법을 사용할 수 있는가?
+  ✔ 네, 가능합니다!
+  멀티스레딩 환경에서도 각 스레드에서 독립적으로 C++ 코루틴을 실행할 수 있습니다.
+  각 스레드는 독립적으로 실행되며, 각 스레드 내에서 co_await를 사용하여 비동기 실행이 가능합니다.
+

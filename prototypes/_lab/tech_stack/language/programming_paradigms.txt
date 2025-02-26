@@ -47,8 +47,14 @@ Programming Paradigms
 
 ================================================
 (Concurrent, Distributed, Parallel)
+
+(✍️ (Concurrent, Distributed, Parallel) 🔪 study)
+  🆚 Concurrent Computing, Parallel Computing 🔗 from https://en.wikipedia.org/wiki/Concurrency_(computer_science)#Related_concepts
+    Parallelism executes tasks independently on multiple CPU cores
+    , while concurrency manages multiple tasks on one or more cores, switching between threads or time-slicing without completing each one.
+    Programs may exhibit parallelism only, concurrency only, both parallelism and concurrency, neither.
 ----------------------------------------------
-⚓ Concurrent computing, 병행 컴퓨팅 ; << https://en.wikipedia.org/wiki/Concurrent_computing
+⚓ Concurrent computing | 병행 컴퓨팅 ; << https://en.wikipedia.org/wiki/Concurrent_computing
 
   ----------------------------------------------
   ⚓📎 Yield ; << https://en.wikipedia.org/wiki/Yield_(multithreading)
@@ -60,5 +66,10 @@ Programming Paradigms
 ⚓ Yield (multithreading) ; https://en.wikipedia.org/wiki/Yield_(multithreading)
   In computer science, yield is an action that occurs in a computer program during multithreading, of forcing a processor to relinquish control of the current running thread, and sending it to the end of the running queue, of the same scheduling priority.
 ----------------------------------------------
-⚓ Parallel computing, 병렬 컴퓨팅 ; https://en.wikipedia.org/wiki/Parallel_computing
+⚓ Parallel computing | 병렬 컴퓨팅 ; https://en.wikipedia.org/wiki/Parallel_computing
 
+
+
+Blocking, Non-blocking
+Synchronous, Asynchronous
+  
