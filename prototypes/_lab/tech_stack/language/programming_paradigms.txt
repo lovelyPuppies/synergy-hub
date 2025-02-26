@@ -68,8 +68,52 @@ Programming Paradigms
 ----------------------------------------------
 ⚓ Parallel computing | 병렬 컴퓨팅 ; https://en.wikipedia.org/wiki/Parallel_computing
 
+⚓📎 Futures and promises ; https://en.wikipedia.org/wiki/Futures_and_promises
+  ... are constructs used for 📍 synchronizing program execution in some 💡 concurrent programming languages.
+  Each is an object that acts as a proxy for a result that is initially unknown, usually because the computation of its value is not yet complete.
+    🆚 Specifically, when usage is distinguished, a future is a read-only placeholder view of a variable, while a promise is a writable, single assignment container which sets the value of the future. 
 
 
 Blocking, Non-blocking
-Synchronous, Asynchronous
+Synchronous, Asynchronous I/O
   
+
+ "Synchronous(동기적)"라는 건, 요청을 보내면 "즉시" 결과를 받는다는 의미다.
+✔ 네 코드에서는 read()가 호출되었을 때, 결과가 바로 반환된다.
+✔ 즉, read() 호출한 그 자리에서 데이터를 받아야만 다음 코드가 실행될 수 있다.
+
+ 비동기(Asynchronous)는 요청을 보낸 후, 결과를 "나중에" 받을 수 있어야 한다.
+✔ 즉, read()를 호출했을 때 즉시 반환해야 하고, 결과는 나중에 받을 수 있어야 한다.
+✔ 하지만 네 코드에서는 결과가 준비될 때까지 read()에서 멈춰 있음(Blocking).
+✔ "비동기적"이라는 건, read()를 호출한 후에도 다른 작업을 수행할 수 있어야 한다.
+
+Blocking + Synchronous I/O
+  I/O 요청을 보내고, 결과가 나올 때까지 기다림. cpu는 계쏙해서 상태 확인을 위해 loop 를 돌고있는 상태..?  또는 sleep? sleep 에서 이벤트가 오면 처리하는건 비동기 방식인가?
+  - 일단 확실한건 blocking 이라는건 알겟어. 신호가 오든 안오든 오기 전까지 다른 일을 안하고 있잖아? 맞지?
+
+Blocking +  Asynchronous I/O
+  ???
+Non-Blocking +  Synchronous I/O
+  ???
+Non-Blocking +  Asynchronous I/O
+  🆗 (이해 완료) 논블로킹이며, I/O 요청을 보내고 즉시 반환. 결과는 나중에 별도 이벤트로 처리됨.
+
+from 🔗 https://en.wikipedia.org/wiki/Synchronization#Communication
+  In computer science (especially parallel computing), synchronization is the coordination of simultaneous threads or processes to complete a task with correct runtime order and no unexpected race conditions; see synchronization (computer science) for details.
+Synchronization (computer science) ; https://en.wikipedia.org/wiki/Synchronization_(computer_science)
+  In computer science, synchronization is the task of coordinating multiple processes to join up or handshake at a certain point, in order to reach an agreement or commit to a certain sequence of action.
+
+
+💡 즉, "동기화(Synchronization)"는 "어떤 방식으로든 실행을 맞추는 것"을 의미하지, 반드시 블로킹(Blocking) 방식을 뜻하는 것이 아니다!
+📌 비동기(Asynchronous) 프로그래밍은 "동기화(Synchronization)가 필요 없는 것"이 아니다!
+📌 오히려 비동기 시스템에서도 "정확한 타이밍에 데이터를 가져와야 하는 동기화"가 필요하다.
+
+✔ 비동기 환경에서도 필요한 동기화의 예시:
+  네트워크 요청을 보낸 후, 응답이 오면 특정 작업을 수행해야 함.
+  파일을 비동기적으로 읽은 후, 결과를 특정 스레드에서 처리해야 함.
+  여러 개의 비동기 작업이 완료된 후에만 다음 단계로 진행해야 함.
+
+동기화(Synchronization)"는 단순히 "여러 개의 스레드나 프로세스가 일정한 시점에 맞춰 실행되도록 하는 것"을 의미한다.
+
+스레드가 특정 이벤트를 기다리면서 멈춰 있음.	mutex, condition_variable
+비동기적으로 실행되지만, 필요한 시점에 값을 동기화 가능.	Future, Promise

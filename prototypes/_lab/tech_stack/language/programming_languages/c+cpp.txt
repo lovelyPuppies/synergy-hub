@@ -822,18 +822,6 @@ c+cpp
     ⚓ Exceptions ; https://en.cppreference.com/w/cpp/language/exceptions
     ⚓ Freestanding implementations ; https://en.cppreference.com/w/cpp/freestanding
 
-  ⚓ Named requirements ; https://en.cppreference.com/w/cpp/named_req
-  ⚓ Feature test macros ; https://en.cppreference.com/w/cpp/feature_test
-  ⚓ Language support library ; https://en.cppreference.com/w/cpp/utility#Language_support
-    ⚓ Program utilities ; https://en.cppreference.com/w/cpp/utility/program
-    ⚓ source_location ; https://en.cppreference.com/w/cpp/utility/source_location
-    ⚓ Coroutine support ; https://en.cppreference.com/w/cpp/coroutine
-    ⚓ Three-way comparison ; https://en.cppreference.com/w/cpp/utility#Three-way_comparison
-    ⚓ Type support ; https://en.cppreference.com/w/cpp/types
-    ⚓ numeric_limits ; https://en.cppreference.com/w/cpp/types/numeric_limits
-    ⚓ type_info ; https://en.cppreference.com/w/cpp/types/type_info
-    ⚓ initializer_list ; https://en.cppreference.com/w/cpp/utility/initializer_list
-  ⚓ Concepts library ; https://en.cppreference.com/w/cpp/concepts
   ⚓ Diagnostics library ; https://en.cppreference.com/w/cpp/error
     #🔰 Assertions
       Assertions help to implement checking of preconditions in programs.
@@ -857,6 +845,45 @@ c+cpp
           
     ⚓ Allocators ; https://en.cppreference.com/w/cpp/memory#Allocators
     ⚓ Low level management ; https://en.cppreference.com/w/cpp/memory/new
+  
+  ⚓🔰 Concurrency support library ; https://en.cppreference.com/w/cpp/thread
+    🗒️ Contents
+      #️⃣ Mutual exclusion ; https://en.cppreference.com/w/cpp/thread#Mutual_exclusion
+      #️⃣ Semaphores ; https://en.cppreference.com/w/cpp/thread#Semaphores
+      #️⃣ Condition variables ; https://en.cppreference.com/w/cpp/thread#Condition_variables
+      #️⃣ Futures ; https://en.cppreference.com/w/cpp/thread#Futures & https://en.cppreference.com/w/cpp/header/future
+        The standard library provides facilities to obtain values that are returned and to catch exceptions that are thrown by asynchronous tasks (i.e. functions launched in separate threads).
+        These values are communicated in a 🪱 shared state, in which the asynchronous task may write its return value or store an exception
+          , and which may be examined, waited for, and otherwise manipulated by other threads that hold instances of 🪱 std::future or 🪱 std::shared_future that reference that shared state.
+        # Classes
+          ⚓ promise ; https://en.cppreference.com/w/cpp/thread/promise
+          ⚓ future ; https://en.cppreference.com/w/cpp/thread/future
+
+      #️⃣ Safe Reclamation ; https://en.cppreference.com/w/cpp/thread#Safe_Reclamation
+
+    ⚓ thread ; https://en.cppreference.com/w/cpp/thread/thread
+    ⚓ jthread ; https://en.cppreference.com/w/cpp/thread/jthread
+    ⚓ atomic ; https://en.cppreference.com/w/cpp/atomic/atomic
+    ⚓ atomic_flag ; https://en.cppreference.com/w/cpp/atomic/atomic_flag
+    ⚓ atomic_ref ; https://en.cppreference.com/w/cpp/atomic/atomic_ref
+    ⚓ memory_order ; https://en.cppreference.com/w/cpp/atomic/memory_order
+    ⚓ latch ; https://en.cppreference.com/w/cpp/thread/latch
+    ⚓ barrier ; https://en.cppreference.com/w/cpp/thread/barrier
+
+
+
+  ⚓ Named requirements ; https://en.cppreference.com/w/cpp/named_req
+  ⚓ Feature test macros ; https://en.cppreference.com/w/cpp/feature_test
+  ⚓ Language support library ; https://en.cppreference.com/w/cpp/utility#Language_support
+    ⚓ Program utilities ; https://en.cppreference.com/w/cpp/utility/program
+    ⚓ source_location ; https://en.cppreference.com/w/cpp/utility/source_location
+    ⚓ Coroutine support ; https://en.cppreference.com/w/cpp/coroutine
+    ⚓ Three-way comparison ; https://en.cppreference.com/w/cpp/utility#Three-way_comparison
+    ⚓ Type support ; https://en.cppreference.com/w/cpp/types
+    ⚓ numeric_limits ; https://en.cppreference.com/w/cpp/types/numeric_limits
+    ⚓ type_info ; https://en.cppreference.com/w/cpp/types/type_info
+    ⚓ initializer_list ; https://en.cppreference.com/w/cpp/utility/initializer_list
+  ⚓ Concepts library ; https://en.cppreference.com/w/cpp/concepts
   ⚓ Metaprogramming library ; https://en.cppreference.com/w/cpp/meta
     ⚓ Type traits ; https://en.cppreference.com/w/cpp/meta#Type_traits
     ⚓ ratio ; https://en.cppreference.com/w/cpp/numeric/ratio
@@ -900,20 +927,6 @@ c+cpp
     ⚓ basic_regex ; https://en.cppreference.com/w/cpp/regex/basic_regex
     ⚓ Algorithms ; https://en.cppreference.com/w/cpp/regex#Algorithms
     ⚓ Default regular expression grammar ; https://en.cppreference.com/w/cpp/regex/ecmascript
-  ⚓ Concurrency support library ; https://en.cppreference.com/w/cpp/thread
-    ⚓ thread ; https://en.cppreference.com/w/cpp/thread/thread
-    ⚓ jthread ; https://en.cppreference.com/w/cpp/thread/jthread
-    ⚓ atomic ; https://en.cppreference.com/w/cpp/atomic/atomic
-    ⚓ atomic_flag ; https://en.cppreference.com/w/cpp/atomic/atomic_flag
-    ⚓ atomic_ref ; https://en.cppreference.com/w/cpp/atomic/atomic_ref
-    ⚓ memory_order ; https://en.cppreference.com/w/cpp/atomic/memory_order
-    ⚓ Mutual exclusion ; https://en.cppreference.com/w/cpp/thread#Mutual_exclusion
-    ⚓ Semaphores ; https://en.cppreference.com/w/cpp/thread#Semaphores
-    ⚓ Condition variables ; https://en.cppreference.com/w/cpp/thread#Condition_variables
-    ⚓ Futures ; https://en.cppreference.com/w/cpp/thread#Futures
-    ⚓ latch ; https://en.cppreference.com/w/cpp/thread/latch
-    ⚓ barrier ; https://en.cppreference.com/w/cpp/thread/barrier
-    ⚓ Safe Reclamation ; https://en.cppreference.com/w/cpp/thread#Safe_Reclamation
   ⚓ Standard library extensions ; https://en.cppreference.com/w/cpp/experimental/lib_extensions
     ⚓ resource_adaptor ; https://en.cppreference.com/w/cpp/experimental/resource_adaptor
     ⚓ invocation_type ; https://en.cppreference.com/w/cpp/experimental/invocation_type
