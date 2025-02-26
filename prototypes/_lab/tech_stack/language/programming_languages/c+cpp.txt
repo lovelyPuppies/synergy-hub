@@ -777,7 +777,17 @@ c+cpp
     ⚓ C++23 ; https://en.cppreference.com/w/cpp/compiler_support/23
     ⚓ C++26 ; https://en.cppreference.com/w/cpp/compiler_support/26
   ⚓ Language ; https://en.cppreference.com/w/cpp/language
-    ⚓ Keywords ; https://en.cppreference.com/w/cpp/keyword
+    ⚓🔑 Keywords ; https://en.cppreference.com/w/cpp/keyword
+      - co_await (C++20)
+      - co_return (C++20)
+      - co_yield (C++20)
+
+    ⚓📍 Value categories ; https://en.cppreference.com/w/cpp/language/value_category
+      rvalue, pravlue,
+    ⚓ Functions ; https://en.cppreference.com/w/cpp/language/functions
+      ⚓ Coroutines (C++20) ; https://en.cppreference.com/w/cpp/language/coroutines
+      
+    
     ⚓ Preprocessor ; https://en.cppreference.com/w/cpp/preprocessor
     ⚓ ASCII chart ; https://en.cppreference.com/w/cpp/language/ascii
     ⚓ Basic concepts ; https://en.cppreference.com/w/cpp/language/basic_concepts
@@ -788,8 +798,7 @@ c+cpp
     ⚓ fundamental types ; https://en.cppreference.com/w/cpp/language/types
     ⚓ Themainfunction ; https://en.cppreference.com/w/cpp/language/main_function
     ⚓ Expressions ; https://en.cppreference.com/w/cpp/language/expressions
-    ⚓📍 Value categories ; https://en.cppreference.com/w/cpp/language/value_category
-      rvalue, pravlue,
+
     ⚓ Evaluation order ; https://en.cppreference.com/w/cpp/language/eval_order
     ⚓ Operators ; https://en.cppreference.com/w/cpp/language/expressions#Operators
     ⚓ precedence ; https://en.cppreference.com/w/cpp/language/operator_precedence
@@ -804,7 +813,8 @@ c+cpp
     ⚓ do-while ; https://en.cppreference.com/w/cpp/language/do
     ⚓ Declarations ; https://en.cppreference.com/w/cpp/language/declarations
     ⚓ Initialization ; https://en.cppreference.com/w/cpp/language/initialization
-    ⚓ Functions ; https://en.cppreference.com/w/cpp/language/functions
+
+
     ⚓ Overloading ; https://en.cppreference.com/w/cpp/language/overload_resolution
     ⚓ Classes ; https://en.cppreference.com/w/cpp/language/classes
     ⚓ unions ; https://en.cppreference.com/w/cpp/language/union

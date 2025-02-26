@@ -1,0 +1,64 @@
+list of level 1 subjects
+  - Programming Paradigms
+  
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※  
+Programming Paradigms
+
+----------------------------------------------
+⚓ Meta-programming ; https://en.wikipedia.org/wiki/Metaprogramming
+  Metaprogramming is a computer programming technique in which computer programs have the ability to treat other programs as their data.
+  🗒️ Contents
+  
+  ⚓ Generic programming ; https://en.wikipedia.org/wiki/Generic_programming
+    Generic programming is a style of computer programming in which algorithms are written in terms of data types to-be-specified-later that 🚣 are then instantiated when needed for specific types provided as parameters.
+    📈 This approach, ..., permits writing common functions or data types
+      that differ only in the set of types on which they operate when used, thus reducing duplicate code.
+
+
+    ⚓📎 decltype ; << https://en.wikipedia.org/wiki/Decltype
+      As generic programming techniques became increasingly popular, ...
+        Many compiler vendors implemented their own versions of the operator, typically called 🪱 typeof,
+        ... the C++ language, and suggested the name 🪱 "decltype", to reflect that the operator would yield the "declared type" of an expression.
+      📍 Like the sizeof[1] operator, decltype's operand is not evaluated.
+    ⚓ typeof ; << https://en.wikipedia.org/wiki/Typeof
+
+
+    ⚓⭕🖇️🪱 Trailing return type ; << https://en.wikipedia.org/wiki/Trailing_return_type 📅 2025-02-26 06:22:15
+      📝 Recommend using the trailing return type style for the following three reasons: 📅 2025-02-26 16:53:55
+        - Improved readability
+          Keeping the function name and parameters 🚣 first makes code easier to read, especially with complex return types.
+        - Better compatibility with coroutines and templates
+          Allows for flexible type deduction and cleaner syntax in generic and asynchronous functions.
+        - Consistency with Modern C++ style
+          Aligns with Boost.Redis and other modern C++ libraries, ensuring maintainability and a uniform coding style.
+          🚣 Similar to Python’s type hint syntax, making code more intuitive and expressive.
+      A trailing return type, a syntax feature available since C++11, is like a traditional return type, except that it is specified in a different location.
+      # Distinction from other language features
+        📝 Summary: Trailing return type uses the auto keyword but does not perform type inference, serving only as a syntactic element.
+      # Rationale
+        📝 Summary: Trailing return type was introduced to support generic programming, as traditional syntax requires the return type before parameters
+          , making type deduction from parameters impossible at the declaration stage.
+
+
+  ⚓📎 Reflective programming | reflection ; https://en.wikipedia.org/wiki/Reflective_programming
+    In computer science, reflective programming or reflection is the ability of a process to examine, introspect, and modify its own structure and behavior.
+
+
+================================================
+(Concurrent, Distributed, Parallel)
+----------------------------------------------
+⚓ Concurrent computing, 병행 컴퓨팅 ; << https://en.wikipedia.org/wiki/Concurrent_computing
+
+  ----------------------------------------------
+  ⚓📎 Yield ; << https://en.wikipedia.org/wiki/Yield_(multithreading)
+  ⚓📎🚣 Cooperative multitasking, non-preemptive multitasking ; << https://en.wikipedia.org/wiki/Cooperative_multitasking
+    - cooperative scheduler
+  ⚓📎 Coroutine ; << https://en.wikipedia.org/wiki/Coroutine
+    
+
+⚓ Yield (multithreading) ; https://en.wikipedia.org/wiki/Yield_(multithreading)
+  In computer science, yield is an action that occurs in a computer program during multithreading, of forcing a processor to relinquish control of the current running thread, and sending it to the end of the running queue, of the same scheduling priority.
+----------------------------------------------
+⚓ Parallel computing, 병렬 컴퓨팅 ; https://en.wikipedia.org/wiki/Parallel_computing
+

@@ -11431,6 +11431,575 @@ Doxygen Documentation Generator
   
 
 
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+🌟 Software Development ; https://en.wikipedia.org/wiki/Software_development
+  📝 &comment 📍: software design guideline
+    Agile development with XP in DevOps using toolchain 🔗 "Agile software development methods", "DevOps"
+    1. Concept creation, Requirements specification, Design: (DDD, OOAD)
+    2. Code, Test: ATDD (specially BDD)      
+    3. CI/CD
+
+  # Core activities
+    ⚓ software development process, Software Development Life Cycle (SDLC) ; https://en.wikipedia.org/wiki/Software_development_process
+     & ⚓ Systems Development Life Cycle (SDLC), application development life-cycle ; https://en.wikipedia.org/wiki/Systems_development_life_cycle
+    
+    ⚓ debugging ; https://en.wikipedia.org/wiki/Debugging
+      Debugging tactics can involve interactive debugging, control flow analysis, unit testing, integration testing
+      , log file analysis, monitoring at the application or system level, memory dumps, and profiling.
+    ⚓ Requirements analysis ; https://en.wikipedia.org/wiki/Requirements_analysis
+    
+    ⚓ Software Configuration Management (SCM), S/W CM ; << https://en.wikipedia.org/wiki/Software_configuration_management
+    🔗 V&V 🔗 software testing
+  # Paradigms and models
+    ⚓ Systems engineering ; << https://en.wikipedia.org/wiki/Systems_engineering
+      # Processes
+        ⚓📎 Requirements engineering (RE) ; https://en.wikipedia.org/wiki/Requirements_engineering
+        ⚓📎 Verification and validation (V&V) ; https://en.wikipedia.org/wiki/Verification_and_validation
+          - Independent verification and validation (IV&V)
+        ⚓ Project Management Body of Knowledge (PMBOK), 프로젝트 관리 지식 체계 ; << https://en.wikipedia.org/wiki/Project_Management_Body_of_Knowledge
+      # Tools
+        ⚓📎 Work breakdown structure (WBS), 업무 분업 구조 ; https://en.wikipedia.org/wiki/Work_breakdown_structure
+        ⚓ Function modelling ; https://en.wikipedia.org/wiki/Function_model
+    ⚓ Software engineering ; https://en.wikipedia.org/wiki/Software_engineering
+      # Concepts
+        ⚓ Software Archiecture ; https://en.wikipedia.org/wiki/Software_Architecture
+          #️⃣ Software architecture topics ; https://en.wikipedia.org/wiki/Software_architecture#Software_architecture_topics
+            ⚓ REST ; https://en.wikipedia.org/wiki/Representational_state_transfer
+              #️⃣💡 Architectural constraints ; https://en.wikipedia.org/wiki/Representational_state_transfer#Architectural_constraints 
+                (Client–server architecture, Statelessness, Cacheability, Layered system, Code on demand (optional), Uniform interface)
+                ⚓ Hypermedia as the Engine of Application State (HATEOAS) ; https://en.wikipedia.org/wiki/HATEOAS
+        ⚓ Software framework ; << https://en.wikipedia.org/wiki/Software_framework
+        ⚓ Software quality ; https://en.wikipedia.org/wiki/Software_quality
+          # Qualities
+            # Internal
+              ⚓ Software portability ; https://en.wikipedia.org/wiki/Software_portability
+          ⚓🖇️💡 Functional requirement ; << https://en.wikipedia.org/wiki/Functional_requirement 📅 2023-01-02 11:14:06
+            Behavioral requirements describe all the cases where the system uses the functional requirements, these are captured in 🚣 use cases.
+            
+            🚣 As defined in requirements engineering, functional requirements specify particular results of a system. This should be contrasted with non-functional requirements, which specify overall characteristics such as cost and reliability.
+            🚣 Functional requirements drive the application architecture of a system, while non-functional requirements drive the technical architecture of a system.
+            The hierarchy of functional requirements collection and change, broadly speaking, is: user/stakeholder request → analyze → use case → incorporate. Often, though ...
+
+            #️⃣ Process ; https://en.wikipedia.org/wiki/Functional_requirement#Process
+              🚣 A typical functional requirement will contain a unique name and number, a brief summary, and a rationale. 
+              🚣 Many requirements may be uncovered during the use case development. When this happens, the requirements analyst may create a placeholder requirement with a name and summary, and research the details later, to be filled in when they are better known.
+          ⚓📎 Non-Functional requirement (NFR), quality requirements ; << https://en.wikipedia.org/wiki/Non-functional_requirement
+            📝 &comment ; terms: quality requirements 🔗https://en.wikipedia.org/wiki/Functional_requirement
+            🚣 The plan for implementing functional requirements is detailed in the system design. The plan for implementing non-functional requirements is detailed in the system architecture, because they are usually architecturally significant requirements.
+
+            #️⃣📎 1 Definition ; https://en.wikipedia.org/wiki/Non-functional_requirement#Definition
+              Broadly, functional requirements define what a system is supposed to do and non-functional requirements define how a system is supposed to be. ... 🆚
+              Qualities—that is non-functional requirements—can be divided into two main categories: ... 
+            #️⃣📍 2 Examples ; https://en.wikipedia.org/wiki/Non-functional_requirement#Examples
+          #️⃣🖇️ ility : Noun ; << https://en.wiktionary.org/wiki/ility#English 📅 2023-01-02 11:45:22
+
+
+          ⚓ Techinical debt ; << https://en.wikipedia.org/wiki/Technical_debt
+          ⚓📎 Software entropy ; << https://en.wikipedia.org/wiki/Software_entropy
+          ⚓ Software rot ; << https://en.wikipedia.org/wiki/Software_rot
+            (| bit rot | code rot | software erosion | software decay | software entropy)
+
+    ⚓ Agile software development, agile ; https://en.wikipedia.org/wiki/Agile_software_development
+      #️⃣ 6 💡 Agile software development methods ; https://en.wikipedia.org/wiki/Agile_software_development#Agile_software_development_methods
+  # Methodologies and frameworks
+    ⚓📎 DevOps ; https://en.wikipedia.org/wiki/DevOps
+      #️⃣ 🖇️ 1 Definition ; https://en.wikipedia.org/wiki/DevOps#Definition
+        ... cross-functional combination (and a portmanteau too) of the terms and concepts for "development" and "operations, ...
+        ... "a set of practices intended to reduce the time between committing a change to a system and the change being placed into normal production, while ensuring high quality" ...
+      #️⃣ 3 Relationship to other approaches ; https://en.wikipedia.org/wiki/DevOps#Relationship_to_other_approaches
+      #️⃣ 3.1 Agile ; https://en.wikipedia.org/wiki/DevOps#Agile
+      #️⃣ 3.2 ArchOps ; https://en.wikipedia.org/wiki/DevOps#ArchOps
+      #️⃣📎 3.3 CI/CD ; https://en.wikipedia.org/wiki/DevOps#CI/CD
+        Plus, improved collaboration and communication between and within teams helps achieve faster time to market, with reduced risks
+       & ⚓🖇️💡 CI/CD ; https://en.wikipedia.org/wiki/CI/CD 📅 2022-12-31 11:50:52
+        📝 &comment; #️⃣ roll out ; https://en.wiktionary.org/wiki/roll_out#English
+        #️⃣ 1 Comparison ; https://en.wikipedia.org/wiki/CI/CD#Comparison
+          ...
+          ⚓📎 Continuous integration (CI) ; https://en.wikipedia.org/wiki/Continuous_integration
+          ⚓📎 Continuous delivery (CD) ; https://en.wikipedia.org/wiki/Continuous_delivery
+          ⚓📎 Continuous deployment (CD) ; https://en.wikipedia.org/wiki/Continuous_deployment
+        #️⃣ 2 Motivation ; https://en.wikipedia.org/wiki/CI/CD#Motivation
+      #️⃣⭕ 5. GitOps ; https://en.wikipedia.org/wiki/DevOps#GitOps
+    ⚓⭕ DevOps toolchain ; https://en.wikipedia.org/wiki/DevOps_toolchain
+      #️⃣ 1 Toolchains ; https://en.wikipedia.org/wiki/DevOps_toolchain#Toolchains
+      #️⃣ 2 Stages of DevOps ; https://en.wikipedia.org/wiki/DevOps_toolchain#Stages_of_DevOps
+        #️⃣📎 2.1 Plan ; https://en.wikipedia.org/wiki/DevOps_toolchain#Plan
+          Plan is composed of two things: "define" and "plan. ...
+        #️⃣ 2.2 Create ; https://en.wikipedia.org/wiki/DevOps_toolchain#Create
+          Create is composed of the building, coding, and configuring of the software development process.
+          The specific activities are:
+            - Design of the software and configuration
+            - Coding including code quality and performance
+              code development and review, source code management tools, code merging.
+            - Software build and build performance
+              continuous integration tools, build status.
+            - Release candidate
+        #️⃣ 2.3 Verify ; https://en.wikipedia.org/wiki/DevOps_toolchain#Verify
+          Verify is directly associated with ensuring the quality of the software release; activities designed to ensure code quality is maintained and the highest quality is deployed to production.
+          The main activities in this are:
+            - provide quick and timely feedback on business risks.
+            - Testing: Acceptance testing, Regression testing, ...
+            - Security and vulnerability analysis
+            - Performance
+            - Configuration testing
+          Solutions for verify related activities generally fall under four main categories: Test automation, Static analysis, Test Lab, and Security.
+        #️⃣ 2.4 Packaging ; https://en.wikipedia.org/wiki/DevOps_toolchain#Packaging
+          Packaging refers to the activities involved once the release is ready for deployment, often also referred to as staging or Preproduction / "preprod".[8]
+          This often includes tasks and activities such as:
+            - artifact repository
+            - Approval/preapprovals
+            - Package configuration
+            - Triggered releases
+            - Release staging and holding
+              application pre-deployment staging
+        #️⃣ 2.5 Release ; https://en.wikipedia.org/wiki/DevOps_toolchain#Release
+          Release related activities include schedule, orchestration, provisioning and deploying software into production and targeted environment.[9]
+          The specific Release activities include:
+            - Release coordination
+              change management, release approvals, release automation.
+            - Deploying and promoting applications
+            - Fallbacks and recovery
+            - Scheduled/timed releases
+          Solutions that cover this aspect of the toolchain include application release automation, deployment automation and release management.
+        #️⃣ 2.6 Configure ; https://en.wikipedia.org/wiki/DevOps_toolchain#Configure
+          Configure activities fall under the operation side of DevOps. Once software is deployed, there may be additional IT infrastructure provisioning and configuration activities required.[8]
+          Specific activities including:
+            - Infrastructure management: storage, database and network provisioning and configuring
+              infrastructure as code tools
+            - Application provision and configuration.
+          The main types of solutions that facilitate these activities are continuous configuration automation, configuration management, and infrastructure as code tools.
+        #️⃣ 2.7 Monitor ; https://en.wikipedia.org/wiki/DevOps_toolchain#Monitor
+          Monitoring is an important link in a DevOps toolchain. It allows IT organization to identify specific issues of specific releases and to understand the impact on end-users.[8]
+          A summary of Monitor related activities are:
+            - Performance of IT infrastructure
+            - End-user response and experience
+            - Production metrics and statistics
+          Information from monitoring activities often impacts Plan activities required for changes and for new release cycles.
+        #️⃣ 2.8 Version Control ; https://en.wikipedia.org/wiki/DevOps_toolchain#Version_Control
+          Version Control is an important link in a DevOps toolchain and a component of software configuration management.
+          Version Control is the management of changes to documents, computer programs, large web sites, and other collections of information.[8]
+          A summary of Version Control related activities are:
+            - Non-linear development
+            - Distributed development
+            - Compatibility with existent systems and protocols
+            - Toolkit-based design
+          Information from Version Control often supports Release activities required for changes and for new release cycles.
+    ⚓ Rational Unified Process (RUP) ; https://en.wikipedia.org/wiki/Rational_Unified_Process
+
+  # Practices
+    ⚓ Domain-Driven Design (DDD) ; https://en.wikipedia.org/wiki/Domain-driven_design
+      #️⃣ 1 Overview ; https://en.wikipedia.org/wiki/Domain-driven_design#Overview
+        - ubiquitous language, common language
+      ⚓ domain model ; << https://en.wikipedia.org/wiki/Domain_model
+      ⚓ Domain-Specific Language, DSL ; << https://en.wikipedia.org/wiki/Domain-specific_language
+      ⚓ Domain-Specific modeling, DSM ; << https://en.wikipedia.org/wiki/Domain-specific_modeling
+      
+      ⚓ general-purpose language ; << https://en.wikipedia.org/wiki/General-purpose_language
+    ⚓ Object-Oriented Analysis and Design (OOAD) ; << https://en.wikipedia.org/wiki/Object-oriented_analysis_and_design
+
+    ⚓⭕ Acceptance Test-Driven Development (ATDD) ; https://en.wikipedia.org/wiki/Acceptance_test-driven_development
+      ⚓ Specification by example (SBE) ; << https://en.wikipedia.org/wiki/Specification_by_example
+      ⚓ Test-Driven Development (TDD) ; << https://en.wikipedia.org/wiki/Test-driven_development
+      ⚓📍 Behavior-Driven Development (BDD) ; << https://en.wikipedia.org/wiki/Behavior-driven_development
+        BDD is considered an effective technical practice especially when the "problem space" of the business problem to solve is complex.
+        #️⃣ 2 💡 History ; https://en.wikipedia.org/wiki/Behavior-driven_development#History
+          The first story-based framework in RSpec was later replaced by Cucumber mainly developed by Aslak Hellesøy.
+          Capybara, which is a part of the Cucumber testing framework is one such web-based test automation software.
+        #️⃣ 2 Principles of BDD ; https://en.wikipedia.org/wiki/Behavior-driven_development#Principles_of_BDD
+        #️⃣ 2.1 💡 Behavioral specifications ; https://en.wikipedia.org/wiki/Behavior-driven_development#Behavioral_specifications
+          BDD does not have any formal requirements for exactly how these user stories must be written down, but it does insist that each team using BDD come up with a simple, standardized format for writing down the user stories which includes the elements listed above.[5][16] However, in 2007 Dan North suggested a template for a textual format which has found wide following in different BDD software tools.[16] A very brief example of this format might look like this:
+          ...
+    ⚓ Extreme programming practices (XP) ; https://en.wikipedia.org/wiki/Extreme_programming_practices
+      #️⃣ 3 💡 Shared understanding ; https://en.wikipedia.org/wiki/Extreme_programming_practices#Shared_understanding
+        #️⃣ 3.1 Coding standard ; https://en.wikipedia.org/wiki/Extreme_programming_practices#Coding_standard
+        #️⃣ 3.2 Collective code ownership, CCO ; https://en.wikipedia.org/wiki/Extreme_programming_practices#Collective_code_ownership
+        #️⃣ 3.3 Simple design ; https://en.wikipedia.org/wiki/Extreme_programming_practices#Simple_design
+        #️⃣ 3.4 System metaphor ; https://en.wikipedia.org/wiki/Extreme_programming_practices#System_metaphor
+      ⚓ Pair programming (PP) ; << https://en.wikipedia.org/wiki/Pair_programming
+
+
+  
+  # Tools
+    ⚓ debugger, debugging tool ; https://en.wikipedia.org/wiki/Debugger
+    ⚓ Debug Adapter Protocol, DAP << https://github.com/Microsoft/debug-adapter-protocol
+     & https://microsoft.github.io/debug-adapter-protocol/
+
+  ⚓ User story ; << https://en.wikipedia.org/wiki/User_story
+  ⚓ Coding conventions << https://en.wikipedia.org/wiki/Coding_conventions
+    - Coding standards
+(Software Development basics)
+  * code snippet; code snippet
+      - 문법이 아닌 복잡한 알고리즘과 code snippet 은 여기에 기록한다. 문법은 개별 언어의 문단에 기록한다.
+    + 각 process 를 pseudo-code 로 처리가 가능하도록 서술한다.
+    + 복잡한 알고리즘인 경우 code snippet 이 있다면,
+      - [집, 회사] 에서의 프로젝트의 개발, 테스트까지 모두 끝나먄 개인 라이브러리에 [기록, 변경] 한다.
+      - 어떻게든 회사에서 사용한다면 버전별 차이가 생길 수밖에 없다. 최대한 통합하기 위해 utility 패키지에 추가 및 병합하도록 한다.
+      - code snippet 이 존재하면 Time complexity 바로 다음줄에 reference 표시한다.
+  - command; command of subject or command
+  ⚓ Software benchmarks ; https://star-history.com/
+
+
+  ❓ FAQ <<
+    🆚 (comparsion); property    vs    method
+      🔗 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Property_Accessors#description
+
+  ⚓ Expression language ; https://en.wikipedia.org/wiki/Expression_language
+    - e.g. XPath
+
+  ⚓ third-party source ; https://en.wikipedia.org/wiki/Third-party_source
+  ⚓ third-party software component ; https://en.wikipedia.org/wiki/Third-party_software_component
+
+  ⚓ artifact ; https://en.wikipedia.org/wiki/Artifact_(software_development)
+  ⚓ concern ; https://en.wikipedia.org/wiki/Concern_(computer_science)
+  ⚓ permalink, permanent link ; https://en.wikipedia.org/wiki/Permalink
+
+  ⚓ Cohesion | 응집도 ; https://en.wikipedia.org/wiki/Cohesion_(computer_science)
+  ⚓ coupling | 결합도 ; https://en.wikipedia.org/wiki/Coupling_(computer_programming)
+  ⚓ Application service provider (ASP) ; https://en.wikipedia.org/wiki/Application_service_provider
+  ⚓ Read-Eval-Print-Loop (REPL), interactive toplevel, language shell ; https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop
+
+  ⚓ Emoji ; https://en.wikipedia.org/wiki/Emoji
+    https://unicode.org/emoji/charts/full-emoji-list.html
+  ⚓ User Interface Design, user interface engineering, UID ; https://en.wikipedia.org/wiki/User_interface_design
+  ⚓ User experience Design, UXD, UED, XD ; https://en.wikipedia.org/wiki/User_experience_design
+
+  ⚓ Middleware ; https://en.wikipedia.org/wiki/Middleware
+  ⚓ Pipeline, data pipeline ; https://en.wikipedia.org/wiki/Pipeline_(computing)
+
+  ⚓ Killer feature ; https://en.wikipedia.org/wiki/Killer_feature
+
+----------------------------------------------
+⚓📎 input–process–output (IPO) model ; https://en.wikipedia.org/wiki/IPO_model
+  #️⃣🖇️ fall-through : Noun ; << https://en.wiktionary.org/wiki/fall-through#English 📅 2023-01-02 11:39:02
+
+  ⚓ Black box systems ; https://en.wikipedia.org/wiki/Black_box
+================================================
+⚓ software testing ; https://en.wikipedia.org/wiki/Software_testing
+  # Contents
+    #️⃣ 4 Testing levels ; https://en.wikipedia.org/wiki/Software_testing#Testing_levels
+      #️⃣ 4.1 Unit testing ; https://en.wikipedia.org/wiki/Software_testing#Unit_testing
+        & https://en.wikipedia.org/wiki/Unit_testing
+        ⚓📎 Test Anything Protocol (TAP) ; https://en.wikipedia.org/wiki/Test_Anything_Protocol
+        
+      #️⃣ 4.2 Integration testing ; https://en.wikipedia.org/wiki/Software_testing#Integration_testing
+        & https://en.wikipedia.org/wiki/Integration_testing
+
+      #️⃣ 4.3 System testing ; https://en.wikipedia.org/wiki/Software_testing#System_testing
+        & https://en.wikipedia.org/wiki/System_testing
+
+      #️⃣ 4.4 Acceptance testing ; https://en.wikipedia.org/wiki/Software_testing#Acceptance_testing
+        & https://en.wikipedia.org/wiki/Acceptance_testing
+  ⚓ test harness, automated test framework ; << https://en.wikipedia.org/wiki/Test_harness
+  ⚓ test automation ; << https://en.wikipedia.org/wiki/Test_automation
+    📝 &comment
+      ⚓ test hardness, automated test framework ; https://en.wikipedia.org/wiki/Test_harness
+⚓ List of unit testing frameworks ; https://en.wikipedia.org/wiki/List_of_unit_testing_frameworks
+
+
+================================================
+⚓📎 Software distribution ; https://en.wikipedia.org/wiki/Software_distribution
+  - distro, binary distribution
+  In recent years, the term has come to refer to nearly any "finished" software
+
+  ⚓ Software license ; https://en.wikipedia.org/wiki/Software_licence
+    ⚓ GNU General Public License, GNU GPL, GPL ; https://en.wikipedia.org/wiki/GNU_General_Public_License
+      📝 &comment; 
+        https://namu.wiki/w/GNU%20%EC%9D%BC%EB%B0%98%20%EA%B3%B5%EC%A4%91%20%EC%82%AC%EC%9A%A9%20%ED%97%88%EA%B0%80%EC%84%9C
+        "소스 코드" 가 포함되어있는 배포에 대한 권리인듯. 때문에 docs generator 을 사용하여 생산된 산출물은 포함되지 않는 것으로 보임.
+    
+    ⚓ Comparison of free and open-source software licences ; << https://en.wikipedia.org/wiki/Comparison_of_free_and_open-source_software_licences
+  # Compensation models
+    # Pay what you want
+      ⚓ Donationware ; https://en.wikipedia.org/wiki/Donationware
+      ⚓ Careware, charityware, helpware, goodware ; https://en.wikipedia.org/wiki/Careware
+  # Delivery methods
+    ⚓ On-premises software, on-prem ; https://en.wikipedia.org/wiki/On-premises_software
+    ⚓ 🔗 Software as a service ; https://en.wikipedia.org/wiki/Software_as_a_service
+----------------------------------------------
+(Open source software)
+  ⚓ Open-source software (OSS) ; https://en.wikipedia.org/wiki/Open-source_software
+  ⚓ Free and open-source software (FOSS) ; https://en.wikipedia.org/wiki/Free_and_open-source_software
+    # Challenges
+      ⚓ Digital rights management (DRM) ; https://en.wikipedia.org/wiki/Digital_rights_management
+
+  ⚓ Open-source-software movement ; https://en.wikipedia.org/wiki/Open-source-software_movement
+    # Concepts and practices
+      # Economy, production, and development
+        # Economic principles
+          ⚓ Open standard ; https://en.wikipedia.org/wiki/Open_standard
+
+================================================
+(software release)
+  ⚓ Software release life cycle ; https://en.wikipedia.org/wiki/Software_release_life_cycle
+    #️⃣ Stages of development ; https://en.wikipedia.org/wiki/Software_release_life_cycle#Stages_of_development
+      #️⃣ 2.1 Pre-alpha ; https://en.wikipedia.org/wiki/Software_release_life_cycle#Pre-alpha
+      #️⃣ 2.2 Alpha ; https://en.wikipedia.org/wiki/Software_release_life_cycle#Alpha
+      #️⃣ 2.3 Beta ; https://en.wikipedia.org/wiki/Software_release_life_cycle#Beta
+        #️⃣ 2.3.1 Perpetual beta ; https://en.wikipedia.org/wiki/Software_release_life_cycle#Perpetual_beta
+        #️⃣ 2.3.2 Open and closed beta ; https://en.wikipedia.org/wiki/Software_release_life_cycle#Open_and_closed_beta
+    #️⃣ Release candidate (RC) ; https://en.wikipedia.org/wiki/Software_release_life_cycle#Release_candidate
+    #️⃣ Stable release ; https://en.wikipedia.org/wiki/Software_release_life_cycle#Stable_release
+    #️⃣📍 Release ; https://en.wikipedia.org/wiki/Software_release_life_cycle#Release
+      #️⃣ Release to manufacturing (RTM) ; https://en.wikipedia.org/wiki/Software_release_life_cycle#Release_to_manufacturing_(RTM)
+      #️⃣ General availability (GA) ; https://en.wikipedia.org/wiki/Software_release_life_cycle#General_availability_(GA)
+        ⚓ End of life announcement (EOLA) ; https://en.wikipedia.org/wiki/End_of_life_announcement
+        ⚓ Last order date (LOD) ; https://en.wikipedia.org/wiki/Last_order_date
+        ⚓ End-of-life product (EOL product) ; https://en.wikipedia.org/wiki/End-of-life_product
+      #️⃣ Release to the Web (RTW) ; https://en.wikipedia.org/wiki/Software_release_life_cycle#Release_to_the_Web_(RTW)
+    
+  ⚓ Release management ; https://en.wikipedia.org/wiki/Release_management
+    it includes testing and deploying software releases.
+
+  ⚓ Application-Release automation (ARA) ; https://en.wikipedia.org/wiki/Application-release_automation
+
+  ⚓ Deployment environment ; << https://en.wikipedia.org/wiki/Deployment_environment
+    #️⃣ 2 Environments ; https://en.wikipedia.org/wiki/Deployment_environment#Environments
+      #️⃣ 2.4 Production ; https://en.wikipedia.org/wiki/Deployment_environment#Production
+        The production environment is also known as live, particularly for servers, as it is the environment that users directly interact with.
+----------------------------------------------
+⚓ Cucumber (software) ; https://en.wikipedia.org/wiki/Cucumber_(software)
+  📝 &comment ; read https://cucumber.io/docs/gherkin/reference/ and use pytest-bdd if use python
+  MIT License (MIT)
+ & https://cucumber.io/
+  #️⃣ 1 Gherkin language ; https://en.wikipedia.org/wiki/Cucumber_(software)#Gherkin_language
+   & https://cucumber.io/docs/gherkin
+    ⚓ 🖇️ Gherkin Reference ; https://cucumber.io/docs/gherkin/reference/ 📅 2022-12-04 17:07:53
+      #️⃣ Keywords ; https://cucumber.io/docs/gherkin/reference/#keywords
+        #️⃣ Feature ; https://cucumber.io/docs/gherkin/reference/#feature
+          These description lines are ignored by Cucumber at runtime, but are available for reporting (they are included by reporting tools like the official HTML formatter).
+          You can only have a single Feature in a .feature file.
+        #️⃣ Rule (as of Gherkin 6) ; https://cucumber.io/docs/gherkin/reference/#rule
+          The purpose of the Rule keyword is to represent one business rule that should be implemented. It provides additional information for a feature.
+        #️⃣ Example (or Scenario) ; https://cucumber.io/docs/gherkin/reference/#example
+          It consists of a list of steps.
+        # Steps
+          Each step starts with Given, When, Then, And, or But.
+          #️⃣ Given ; https://cucumber.io/docs/gherkin/reference/#given
+          #️⃣ When ; https://cucumber.io/docs/gherkin/reference/#when
+            It’s strongly recommended you only have a single When step per Scenario. If you feel compelled to add more, it’s usually a sign that you should split the scenario up into multiple scenarios.
+          #️⃣ Then ; https://cucumber.io/docs/gherkin/reference/#then
+            An outcome should be on an observable output. That is, something that comes out of the system (report, user interface, message), and not a behaviour deeply buried inside the system (like a record in a database).
+          #️⃣ And, But ; https://cucumber.io/docs/gherkin/reference/#and-but
+          #️⃣ * ; https://cucumber.io/docs/gherkin/reference/#Asterisk
+        #️⃣ Background ; https://cucumber.io/docs/gherkin/reference/#background
+          A Background is placed before the first Scenario/Example, at the same level of indentation.
+          Background is also supported at the Rule level, for example:
+          For a less explicit alternative to Background, check out conditional hooks.
+          # 💡 Tips for using Background
+        #️⃣ Scenario Outline (or Scenario Template) ; https://cucumber.io/docs/gherkin/reference/#scenario-outline
+        #️⃣ Examples (or Scenarios) ; https://cucumber.io/docs/gherkin/reference/#examples
+      #️⃣ Step Arguments ; https://cucumber.io/docs/gherkin/reference/#step-arguments
+        # Doc Strings
+          Doc strings also support using three backticks as the delimiter:
+          It’s possible to annotate the DocString with the type of content it contains.
+          You specify the content type after the triple quote, as follows: """markdown ...
+        # Doc Tables
+          # Table Cell Escaping
+          ⚓ ❎ Data Table API ; https://github.com/cucumber/cucumber-jvm/tree/main/datatable
+      #️⃣ Spoken Language ; https://cucumber.io/docs/gherkin/reference/#spoken-languages
+        The language you choose for Gherkin should be the same language your users and domain experts use when they talk about the domain. Translating between two languages should be avoided.
+        A # language: header on the first line of a feature file tells Cucumber what spoken language to use - for example # language: fr for French. If you omit this header, Cucumber will default to English (en).
+        Some Cucumber implementations also let you set the default language in the configuration, so you don’t need to place the # language header in every file.
+    ⚓ Localisation ; https://cucumber.io/docs/gherkin/languages/
+
+
+
+
+
+※※※※※※※※※※※※※※
+(Software Principles, Softare Design Patterns)
+  📝⭕ &comment
+    Design look and feel
+  ⚓ SOLID ; https://en.wikipedia.org/wiki/SOLID
+    ⚓ Single-Responsibility Principle, SRP ; https://en.wikipedia.org/wiki/Single-responsibility_principle
+    ⚓ Open-closed principle ; https://en.wikipedia.org/wiki/Open%E2%80%93closed_principle
+    ⚓ Liskov substitution principle, Substitutability, LSP, (strong) behavioral subtyping ; https://en.wikipedia.org/wiki/Liskov_substitution_principle
+    ⚓ Interface Segregation Principle, ISP ; https://en.wikipedia.org/wiki/Interface_segregation_principle
+      - role interfaces
+    ⚓ Dependency inversion principle ; https://en.wikipedia.org/wiki/Dependency_inversion_principle
+      📝 &comment; refer to 🔗 Mixin, mix-in
+
+  ⚓ Reinventing the wheel ; << https://en.wikipedia.org/wiki/Reinventing_the_wheel
+  ⚓ Do not Repeat Yourself (DRY) ; https://en.wikipedia.org/wiki/Don%27t_repeat_yourself
+    - WET; Write Everything Twice, Write Every Time, We Enjoy Typing, Waste Everyone's Time
+    - AHA; Avoid Hasty Abstractions
+
+  ⚓ single source of truth (SSOT), single point of truth (SPOT), 단일 진실 공급원 ; https://en.wikipedia.org/wiki/Single_source_of_truth
+
+  ⚓ Separation of Concerns (SoC), 관심사 분리 ; https://en.wikipedia.org/wiki/Separation_of_concerns
+    3 Examples
+      3.1 Internet protocol stack
+      3.2 HTML, CSS, JavaScript
+      3.3 Subject-oriented programming
+      3.4 Aspect-oriented programming
+      3.5 Levels of analysis in artificial intelligence
+      3.6 Normalized systems
+      3.7 SoC via partial classes
+        3.7.1 SoC via partial classes in Ruby
+
+
+  ⚓ Solution architecture ; https://en.wikipedia.org/wiki/Solution_architecture
+
+================================================
+⚓ Programming Paradigms ; https://en.wikipedia.org/wiki/Programming_paradigm
+  ⚓ declarative programming ; https://en.wikipedia.org/wiki/Declarative_programming
+    ⚓ functional programming ; https://en.wikipedia.org/wiki/Functional_programming
+      It is a declarative programming paradigm in which function definitions are trees of expressions that map values to other values, rather than a sequence of imperative statements which update the running state of the program.
+    ⚓ Dataflow programming ; https://en.wikipedia.org/wiki/Dataflow_programming
+    ⚓🚣 Logic programming ; https://en.wikipedia.org/wiki/Logic_programming
+  ⚓ Imperative programming ; https://en.wikipedia.org/wiki/Imperative_programming
+    ⚓ Object-oriented programming, OOP ; https://en.wikipedia.org/wiki/Object-oriented_programming
+      ⚓ Multiple inheritance ; << https://en.wikipedia.org/wiki/Multiple_inheritance
+        - Method Resolution Order (MRO)
+      ⚓⭕ Mixin, mix-in ; https://en.wikipedia.org/wiki/Mixin
+        Mixins are sometimes described as being "included" rather than "inherited".
+        Mixins encourage code reuse and can be used to avoid the inheritance ambiguity that multiple inheritance can cause[5] (the "diamond problem"), or to work around lack of support for multiple inheritance in a language.
+        A mixin can also be viewed as an interface with implemented methods.
+        This pattern is an example of enforcing the dependency inversion principle.
+
+  ⚓ Concurrent computing, 병행 컴퓨팅 << https://en.wikipedia.org/wiki/Concurrent_computing
+    ⚓ Semaphore ; << https://en.wikipedia.org/wiki/Semaphore_(programming)
+    ⚓ Critical section ; << https://en.wikipedia.org/wiki/Critical_section
+
+    # Classic problems
+      ⚓ Deadlock ; https://en.wikipedia.org/wiki/Deadlock
+      ⚓ race condition | race hazard ; https://en.wikipedia.org/wiki/Race_condition
+  ⚓ Parallel computing, 병렬 컴퓨팅 ; << https://en.wikipedia.org/wiki/Parallel_computing
+    # General
+      Distributed computing ; << https://en.wikipedia.org/wiki/Distributed_computing
+    # Elements 
+      ⚓📎 Thread ; https://en.wikipedia.org/wiki/Thread_(computing)
+        #️⃣ Threads and data synchronization ; https://en.wikipedia.org/wiki/Thread_(computing)#Single-threaded_vs_multithreaded_programs
+          ⚓ Thread safety ; << https://en.wikipedia.org/wiki/Thread_safety
+      ⚓ Process ; https://en.wikipedia.org/wiki/Process_(computing)
+
+        ⚓ Processor scheduling ; << https://en.wikipedia.org/wiki/Scheduling_(computing)
+          ⚓📎 Process state ; << https://en.wikipedia.org/wiki/Process_state
+            #️⃣ 1 Primary process states ; https://en.wikipedia.org/wiki/Process_state#Primary_process_states
+              #️⃣ 1.1 Created, New ; https://en.wikipedia.org/wiki/Process_state#Created
+              #️⃣ 1.2 Ready, waiting ; https://en.wikipedia.org/wiki/Process_state#Ready
+              #️⃣📎 1.3 Running ; https://en.wikipedia.org/wiki/Process_state#Running
+                The process's instructions are executed by one of the CPUs (or cores) of the system.
+                There is at most one running process per CPU or core.
+                A process can run in either of the two modes, namely kernel mode or user mod
+               & ⚓ Run Queue ; https://en.wikipedia.org/wiki/Run_queue
+                #️⃣ 1.3.1 Kernel mode ; https://en.wikipedia.org/wiki/Process_state#Kernel_mode
+                #️⃣ 1.3.2 User mode ; https://en.wikipedia.org/wiki/Process_state#User_mode
+              #️⃣ 1.4 Blocked ; https://en.wikipedia.org/wiki/Process_state#Blocked
+              #️⃣ 1.5 Terminated ; https://en.wikipedia.org/wiki/Process_state#Terminated
+          ⚓ Starvation ; https://en.wikipedia.org/wiki/Starvation_(computer_science)
+        ⚓ Process management ; << https://en.wikipedia.org/wiki/Process_management_(computing)
+          # Concepts
+            ⚓📎 Context switch ; https://en.wikipedia.org/wiki/Context_switch
+              📝 &comment ; 🆚 (comparsion) ; context switch in (multi-thread, multi-processing)
+                https://stackoverflow.com/questions/5440128/thread-context-switch-vs-process-context-switch
+                - Thread switching is very efficient and much cheaper because it involves switching out only identities and resources such as the program counter, registers and stack pointers. 
+                - The process of switching in and out of the OS kernel along with the cost of switching out the registers is the largest fixed cost of performing a context switch.
+        ⚓ Inter-process communication, interprocess communication (IPC) ; << https://en.wikipedia.org/wiki/Inter-process_communication
+    # Coordination
+      ⚓💡 Synchronization ; https://en.wikipedia.org/wiki/Synchronization_(computer_science)
+        Process synchronization, Data synchronization
+        #️⃣ Minimizing synchronization ; https://en.wikipedia.org/wiki/Synchronization_(computer_science)#Minimizing_synchronization
+          #️⃣ Implementation of Synchronization ; https://en.wikipedia.org/wiki/Synchronization_(computer_science)#Implementation_of_Synchronization
+            ⚓ Barriers ; https://en.wikipedia.org/wiki/Barrier_(computer_science)
+    # Programming ; 🔗 Stream processing, 🔗 Dataflow programming
+    # Hardware  
+      ⚓ Flynn's taxonomy
+        # Multiple data streams
+          ⚓ Single instruction, multiple data (SIMD) ; https://en.wikipedia.org/wiki/Single_instruction,_multiple_data
+
+
+    ⚓ Consistency Model ; << https://en.wikipedia.org/wiki/Consistency_model
+      ⚓ Eventual consistency ; << https://en.wikipedia.org/wiki/Eventual_consistency
+    ⚓ Load balancing (computing) ; << https://en.wikipedia.org/wiki/Load_balancing_(computing)
+  
+  ⚓ Metaprogramming ; https://en.wikipedia.org/wiki/Metaprogramming
+  ⚓ Dynamic/Scripting programming language ; https://en.wikipedia.org/wiki/Dynamic_programming_language
+  ⚓ Stream processing, event stream processing, data stream processing, distributed stream processing ; << https://en.wikipedia.org/wiki/Stream_processing
+
+  ⚓ Comparison of multi-paradigm programming languages ; << https://en.wikipedia.org/wiki/Comparison_of_multi-paradigm_programming_languages  
+
+※※※※※※※※※※※※※※
+⚓ type system ; https://en.wikipedia.org/wiki/Type_system
+  ⚓ covariance and contravariance, 공변성과 반공변성 ; << https://en.wikipedia.org/wiki/Covariance_and_contravariance_(computer_science)
+    📝 &comment
+      detail description: https://velog.io/@lsb156/covariance-contravariance
+                                      Kotlin       Java
+        covariance (upper bound)      Type<out T>  Type<? extends T>
+        contravariance (lower bound)  Type<in T>   Type<? super T>
+
+    - Variance
+
+※※※※※※※※※※※※※※
+(Evaluation strategy)
+  ⚓ Evaluation strategy ; https://en.wikipedia.org/wiki/Evaluation_strategy
+    # Contents
+      #️⃣ Strict binding strategies ; https://en.wikipedia.org/wiki/Evaluation_strategy#Strict_binding_strategies
+        #️⃣ 3.1 Call by value ; https://en.wikipedia.org/wiki/Evaluation_strategy#Call_by_value
+          #️⃣ 3.1.1 Implicit limitations ; https://en.wikipedia.org/wiki/Evaluation_strategy#Implicit_limitations
+        #️⃣ 3.2 Call by reference ; https://en.wikipedia.org/wiki/Evaluation_strategy#Call_by_reference
+        #️⃣ 📎📍 3.3 Call by sharing ; https://en.wikipedia.org/wiki/Evaluation_strategy#Call_by_sharing
+          e.g. python, java, javascript
+        #️⃣ 3.4 Call by copy-restore ; https://en.wikipedia.org/wiki/Evaluation_strategy#Call_by_copy-restore
+      #️⃣ Non-strict binding strategies ; https://en.wikipedia.org/wiki/Evaluation_strategy#Non-strict_binding_strategies
+        #️⃣ 4.1 Call by name ; https://en.wikipedia.org/wiki/Evaluation_strategy#Call_by_name
+        #️⃣ 4.2 Call by need ; https://en.wikipedia.org/wiki/Evaluation_strategy#Call_by_need
+        #️⃣ 4.3 Call by macro expansion ; https://en.wikipedia.org/wiki/Evaluation_strategy#Call_by_macro_expansion
+        #️⃣ 4.4 Call by future ; https://en.wikipedia.org/wiki/Evaluation_strategy#Call_by_future
+        #️⃣ 4.5 Optimistic evaluation ; https://en.wikipedia.org/wiki/Evaluation_strategy#Optimistic_evaluation
+    ⚓ Eager evaluation, strict evaluation ; https://en.wikipedia.org/wiki/Eager_evaluation
+    ⚓📎⭕ Lazy evaluation ; https://en.wikipedia.org/wiki/Lazy_evaluation
+  
+  ⚓ Expression | 식, 式 ; https://en.wikipedia.org/wiki/Expression_(computer_science)
+    📝💡 &comment; some Statement can be considered as also Expression in Python. e.g. function
+      - a statement may have internal components but it not means the statement is also expression.
+      🛍️ e.g. statement ∩ expression: function.
+      🛍️ e.g. only statement: if-else, loops
+  ⚓ Statement | 문, 文 ; https://en.wikipedia.org/wiki/Statement_(computer_science)
+  ⚓ Name resolution (programming languages) ; https://en.wikipedia.org/wiki/Name_resolution_(programming_languages)
+(Evaluation strategy basics)
+  🆚 Property, Attribute
+    Property
+      (computing) An editable or read-only parameter associated with an application, component or class.
+    Attribute
+      (computing, object-oriented programming) An option or setting belonging to some object.
+
+    references    
+      https://stackoverflow.com/questions/258469/what-is-the-difference-between-attribute-and-property
+      Properties are generally abstract, while attributes are generally concrete (think class/object).
+      Humans have properties: hasHair and hairColor. "John" has attributes: hasHair="true" and hairColor="purple" (John is a Twisted Sister fan)
+
+================================================
+Natural language processing (NLP) ; https://en.wikipedia.org/wiki/Lexical_analysis
+  ⚓ Text mining, text data mining (TDM) ; https://en.wikipedia.org/wiki/Text_mining
+    - similar to text analytics
+    ⚓ Text segmentation ; https://en.wikipedia.org/wiki/Text_segmentation
+      ⚓ Lexical analysis, lexing, tokenization ; https://en.wikipedia.org/wiki/Lexical_analysis
+# Automata theory: formal languages and formal grammars ; 
+  ⚓ Automata theory ; https://en.wikipedia.org/wiki/Automata_theory
+  ⚓ Formal language, 형식 언어, 形式言語 ; https://en.wikipedia.org/wiki/Formal_language
+  ⚓ Formal grammar ; https://en.wikipedia.org/wiki/Formal_grammar
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 📰🧮 원격에서 실시간 출력 보기 >> tasks. json 만들기? task explorer 로 task 분류?.. raspberry_pi?
   ssh r-pi.local '
   /mnt/host/drivers/kernel_timer_app 0xF0
@@ -21135,18 +21704,111 @@ brew services start redis
   listener0:name=tcp,bind=127.0.0.1,bind=::1,port=6379
 
 
-⚓ Generic programming ; https://en.wikipedia.org/wiki/Generic_programming
-  Generic programming is a style of computer programming in which algorithms are written in terms of data types to-be-specified-later that 🚣 are then instantiated when needed for specific types provided as parameters.
-  📈 This approach, ..., permits writing common functions or data types
-    that differ only in the set of types on which they operate when used, thus reducing duplicate code.
+🆚 Deduction > Inference ; https://philosophy.stackexchange.com/questions/57567/what-is-the-difference-between-inference-and-deduction
+  Deduction ⊂ Inference
 
 
 
 
 
-⚓📎 decltype ; https://en.wikipedia.org/wiki/Decltype
+  - PNG와 JPG의 차이점은? ➡️ JPG 는 손실 압축 방식을 사용하고 파일크기가 PNG에 비해 작습니다. PNG 는 무손실 압축 방식을 사용하고 투명도를 지원합니다.
+  - Dynamic Programming이란? ➡️ 복잡한 문제를 더 간단한 작은 문제들로 분해하여 단순화하는 것을 의미합니다.
+    --> Divide-and-conquer algorithm 랑 비슷한 개념..  다르긴 함
+      https://www.google.com/search?q=Divide-and-conquer+same+dynamic+programming%3F&oq=Divide-and-conquer+same+dynamic+programming%3F&aqs=edge..69i57j0i22i30l2j0i15i22i30j0i22i30l3j0i390.3782j0j1&sourceid=chrome&ie=UTF-8
+  - Virtual Memory란? ➡️ 기기 내 이용가능한 리소스의 추상화를 제공하는 메모리 관리 기술입니다. 가상 주소 공간은 메모리 관리 장치(MMU)에 의해서 물리 주소로 변환됩니다. 
+  - Semaphore란? ➡️ 동시성을 가진 시스템에서 임계 구역의 문제를 피하기 위해, 공용 자원의 접근을 제어하는 데 사용되는 변수나 추상 데이터 타입입니다.
+  - Cache란? ➡️ 미래에 데이터의 요청을 빠르게 제공할 수 있도록 데이터를 저장하는 하드웨어나 소프트웨어 구성요소입니다.
+  - Garbage Collection이란?  ➡️ 프로그램이 할당했지만 더 이상 참조하지 않는 메모리를 회수하는 자동 메모리 관리 형태입니다.
+  - Database Index 추가의 장단점은?
+    https://mangkyu.tistory.com/96
+  - NoSQL의 장단점은?
+  - 공유기의 원리는? ISP 업체로부터 할당된 IP 주소(공인 주소)를 공유기에 설정하고 그 공유기에 각 컴퓨터를 연결하면, 컴퓨터에 각각의 IP 주소(가상 주소)가 자동 할당되어 각 컴퓨터가 공유기를 거쳐 동시에 인터넷에 접속되는 것이다.
+  - 비대칭 암호화란?
+  - Node.js의 특징은? -> 잘 모르겠음.
+  - HDD, SSD, DRAM 각각의 성능은? ➡️ NAND 플래시 메모리가 적용된 SSD 는 순수 전자식으로 작동하므로 기계식인 HDD 보다 빠르고, DRAM 보다는 느립니다.
+  - Memory Leak 디버깅은? ➡️ 동적 메모리의 할당과 할당 해제와 관련된 버그로 나타나는 메모리 유출을 발견하고 해결하기 위한 프로세스입니다.
+  - GIT의 장점은? ➡️ 버전 관리를 할 수 있어 협업에 유리하고, 백업과 이슈 트래킹을 쉽게 할 수 있습니다.
+  - Base64 인코딩이란?
+    binary-to-text 인코딩 방식으로 주로 웹에서 이미지 파일을 포함시킬 때 사용합니다.
+  - 사용자 패스워드를 전송/보관하는 방법은?
+    솔트라는 암호화 방식을 사용하여 동일한 비밀번호라도 키값에 따라 해시값이 달라져 안전한 것만 숙지하고 있습니다.
+  - system call이란?
+    운영체제에서 커널을 통해 작업을 수행하도록 지시하는 호출방법으로, 파일 입출력, 프로세스 관리 등에 사용됩니다.
+  - .so와 .a 파일의 차이는?      
+    둘 모두 Unix-like 운영체제에서 사용되며
+    .so 는 shared object 의 약자로 윈도우에서 DLL 과 비슷한 동적 라이브러리에 사용되는 파일을,
+    .a 는 archive 의 약자로 정적 라이브러리에 사용되는 파일입니다.
+  - MySQL과 MongoDB의 차이점은?
+    MySQL 은 Relational-DBMS 중 하나로 데이터 무결성과 키 값에 의한 접근이 중요한 프로젝트에서 사용되고,
+    MongoDB 는 Non-Relational DBMS 중 하나인 NoSQL 의 문서 지향 DB로, 비정형화된 데이터를 저장하여 컨텐츠 관리나 빅데이터/머신러닝이 필요한 프로젝트에서 사용됩니다.
+  - HTTP/2의 특징은?
+    TLS 프로토콜을 사용하여 HTTPS 를 지원하고, 파일 전송시 다중 스트림과 우선순위를 지정 가능합니다.
+    현재 HTTP/3 까지 발표됐고, 주요 특징은 UDP 대신, 구글이 만들고 현재 검색엔진에 사용되고 있는 QUIC 프로토콜을 사용하는 것으로 알고 있습니다.
+  - Firewall의 동작 원리는?
+    OSI 2계층 데이터 계층에서 3계층 네트워크 계층으로 전달되는 패킷을 가로채서 패킷에 지정된 IP 와 포트를 비교하여 필터링하는 방식으로 동작합니다.
+  - Docker와 Virtual Machine의 차이점은?
+    VM 은 하이퍼바이저 위 Guest OS 위에서 프로그램이 작동하고, Docker 는 도커 엔진 위에서 프로그램이 작동하여 Docker 가 더 가볍습니다.
+    도커는 컨테이너라는 프로그램 실행에 필요한 코드를 패키징한 유닛을 사용하여 플랫폼 독립적으로 사용이 가능합니다.
+    단, 윈도우 컨테이너는 윈도우에서만 사용이 가능합니다.
+  - AMD와 Intel CPU의 차이점은?   -> 잘 모르겠습니다. https://tgd.kr/s/handongsuk/22217464
+  - CRDT란?       -> 잘 모르겠습니다. 피그마에서 사용하는 알고리즘.
+  - CORS란?
+    웹 상의 리소스를 출처가 다른 도메인으로부터 호출을 허용하게 하는 것입니다.
+    종종 프론트엔드/벡앤드가 분리된 환경에서 동일한 출처로부터 리소스를 사용하는 경우에 사용됩니다.
+  - 동시 사용자 1만명을 지원하는 채팅 서버를 어떻게 만들겠는가?
+    MQTT 프로토콜를 사용하여 클라이언트/구독 형태로 메시지 브로커를 만들어 구현할 것입니다.
+  - 최근 사회적 이슈가 된 보안 관련 사고 몇가지의 원인과 대책은?
+    log4j 사태: JNDI, LDAP 가 원인. 대책은 log4j 에서 JNDI 파싱을 하지 못하게 막는 것으로,
+    간단한 대처방안인 log4j 를 최신 버전으로 업데이트하거나 최신버전의 Logback 으로 교체하는 대책만 숙지하고 있습니다.
+  - 대용량 로그 시스템을 구축한다면 어떻게 하겠는가?
+    이벤트 처리 플랫폼인 Kafka 를 선택하여 NoSQL 과 같은 비관계형 DB 에 저장되도록 하고,
+    서비스는 도커를 사용하여 컨테이너 형태로 배포하고, 대용량의 데이터의 전달을 로드밸런싱하기 위해 쿠버네티스를 사용할 것입니다.
 
-⚓🖇️🪱 Trailing return type ; https://en.wikipedia.org/wiki/Trailing_return_type 📅 2025-02-26 06:22:15
-  A trailing return type, a syntax feature available since C++11, is like a traditional return type, except that it is specified in a different location.
+  - Sigmoid의 단점은? ➡️
+  - Validation 세트, Test 세트의 각각의 역할은? ➡️
+  - Auto Encoder란?
+  - Dropout의 효과는? ➡️
+  - CNN의 장점은? ➡️
+  - Word2Vec의 원리는?
+  - Adam Optimizer의 동작은? ➡️
+  - Batch Normalization의 동작은? ➡️
+  - CycleGAN이란?
+  - Loss Surface란? ➡️
+  - Attention이란?
+  - Transformer란?
+  - Collaborative filtering이란?
+  - Few-Shot Learning이란?
+  - Federated Learning이란?
+  - SVD란? ➡️
+  - 중심극한정리란?
+  정규화... https://en.wikipedia.org/wiki/Normalization_(statistics)
+
+  **0. 보통의 경우에는 항상 다음 질문으로 시작합니다.**
+    c. 마지막으로 어떤 개발 환경이나 도구를 좋아하시나요?
+      ➡️ 개발 환경은 집에서 익숙하게 사용하는 WSL2를 좋아하고, 그 안에서 VS code 를 사용하여 작업하는 것을 좋아합니다.
+      작업하는데 필요한 확장 프로그램을 선택해서 설치하고 원하지 않으면 삭제할 수 있어서 가볍기 때문입니다.        
+      그 외 브라우저는 엣지를 선호하는데, 그룹으로 나눌 수 있고 Sleeping Tab 기능으로 사용하지 않는 탭은 비활성화되어 메모리 관리에 도움이 되기 때문입니다.
+
+    OSI 7 layers
+    https://en.wikipedia.org/wiki/Data_science
+    CS? DS?
+    Algorithm?
+    운영체제 Windows  vs.  Unix-like ?
+    Non-RDB vs. RDB
+    Network? TCP vs. UDP? OSI 7 layers?
+    100GB 파일을 Server to Server로 복사하면 얼마나 걸릴까.
+    NAS 전송 파일 단위 전송        
+    신경망 학습시킬 때 가중치 초기값이 0 이면 어떻게 할 것인가.. 
+    • React란?
+    • Web Browser 의 프로세싱 중 Reflow란?
+    • 함수형 프로그래밍 패러다임이란?
+    • Callback hell이란?
+    • async I/O란?
+    • 프로세스 간 통신(IPC)이란?
+    • C++ 에서 다형성이란?
+    • 그래픽카드를 이용한 하드웨어 가속이란?
+    UTF-8이란?
+    AES 암호화 통신? overlay network?
+  #️⃣ BDD, cucumber, tex 수학 표기법..
 
 

@@ -1,3 +1,4 @@
+#include <argon2.h>
 #include <boost/asio.hpp>
 #include <boost/asio/use_awaitable.hpp>
 #include <boost/redis.hpp>
