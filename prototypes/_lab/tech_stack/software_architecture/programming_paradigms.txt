@@ -276,6 +276,14 @@ Programming Paradigms
   ⚓📎 Coroutine ; << https://en.wikipedia.org/wiki/Coroutine
     Coroutines are computer program components that allow execution to be suspended and resumed, generalizing subroutines for cooperative multitasking
       They have been described as "functions whose execution you can pause
+    #️⃣ Definition and types
+      Besides that, a coroutine implementation has 3 features:
+        - ...
+        - whether a coroutine is able to suspend its execution from within nested function calls.
+          Such a coroutine is a 🪱 stackful coroutine. One to the contrary is called 🪱 stackless coroutines, where unless marked as coroutine, a regular function can't use the keyword yield.
+          📝🛍️ e.g. 
+            - stackful coroutine:   C++ boost:coroutine
+            - stackless coroutine:   C++ built-in Coroutines (C++20), Python built-in Coroutines
 
 
 

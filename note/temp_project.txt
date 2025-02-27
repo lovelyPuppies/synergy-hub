@@ -22019,3 +22019,29 @@ stack 이 거꾸로 성장한다? x64 에서는 그렇다는데.
 
 ❓ 면접 준비 red-black tree
   리눅스 커널 run queue 에서 사용하는 구조..
+
+
+
+# Stackful vs. Stackless Coroutine
+
+| Feature                            | Stackful Coroutine                                       | Stackless Coroutine                                                                   |
+| ---------------------------------- | -------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| Stack Usage                        | Allocates a separate stack for all operations            | Uses the regular thread stack, with separate memory allocation for asynchronous calls |
+| Memory Allocation                  | Pre-allocates the entire stack (potential memory waste)  | Allocates only as needed (Heap Allocation Elision possible)                           |
+| Suspendability in Nested Functions | ✅ Yes (Can suspend even inside regular functions)        | ❌ No (Only coroutine-marked functions can suspend)                                    |
+| Context Switching                  | Saves and restores stack and instruction pointer (IP)    | Saves and restores coroutine frame separately                                         |
+| CPU Cache Efficiency               | ✅ High (Contiguous memory access)                        | ❌ Lower (Heap fragmentation possible)                                                 |
+| Performance Overhead               | Higher context switching cost (stack saving & restoring) | Heap allocation overhead (can be optimized)                                           |
+| Execution Flow Preservation        | ✅ Maintains regular function call stack                  | ❌ Does not preserve the call stack, execution flow is split                           |
+| Use Cases                          | Game engines, network servers, OS internals              | Asynchronous I/O, event loops                                                         |
+
+### Key Difference in State Storage
+- Stackful Coroutine: Stores execution state in a separate stack (stores function call information, local variables, and return addresses).
+- Stackless Coroutine: Stores execution state in a coroutine frame (stores only necessary local variables and state information, not the entire call stack).
+  Refernece
+    https://news.ycombinator.com/item?id=37104591
+    https://stackoverflow.com/questions/57163510/are-stackless-c20-coroutines-a-problem
+
+📰 iot_server.cpp
+  현재 콜백 기반 코드가 이미 충분히 효율적임.
+    추가적인 CPU 바운드 연산이 없기 때문에 코루틴을 통해 얻는 성능 향상이 미미할 수 있음.
