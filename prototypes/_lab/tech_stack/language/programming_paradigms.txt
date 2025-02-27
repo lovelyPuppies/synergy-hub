@@ -49,10 +49,122 @@ Programming Paradigms
 (Concurrent, Distributed, Parallel)
 
 (✍️ (Concurrent, Distributed, Parallel) 🔪 study)
-  🆚 Concurrent Computing, Parallel Computing 🔗 from https://en.wikipedia.org/wiki/Concurrency_(computer_science)#Related_concepts
+  ℹ️ (About); (🆚 Concurrent Computing, Parallel Computing) 📅 2025-02-27 11:41:29
+    🔗 from https://en.wikipedia.org/wiki/Concurrency_(computer_science)#Related_concepts
     Parallelism executes tasks independently on multiple CPU cores
     , while concurrency manages multiple tasks on one or more cores, switching between threads or time-slicing without completing each one.
     Programs may exhibit parallelism only, concurrency only, both parallelism and concurrency, neither.
+  ℹ️ (About); Combination of (🆚 Blocking, Non-blocking), (🆚 Synchronous, Asynchronous) 📅 2025-02-27 11:40:50
+    🛍️ e.g. Real-world Situation: A customer orders food at a restaurant, and the chef prepares the meal.
+
+    🆚 Blocking, Non-blocking
+      ; A process that is blocked is waiting for some event, such as a resource becoming available or the completion of an 📍 I/O operation.
+        from 🔗 https://en.wikipedia.org/wiki/Blocking_(computing)
+      ❔ How customers (processes) wait after ordering food
+
+      - Blocking
+        A customer waits in line after ordering until the food is ready (🚣 cannot do anything else).
+
+      - Non-blocking
+        A customer orders food and immediately sits down, doing other things until notified that the food is ready.
+    🆚 Synchronous, Asynchronous
+      ;  How chefs (tasks) prepare food (results) after an order
+      ; Asynchrony, in computer programming, refers to the occurrence of events independent of the main program flow and ways to deal with such events.
+        from 🔗 https://en.wikipedia.org/wiki/Asynchrony_(computer_programming)
+      
+      - Synchronous
+        The chef prepares one meal at a time, 🚣 in order.
+
+      - Asynchronous
+        The chef works on multiple orders at once and serves them as they are completed, 🚣 which may not be in the order they were requested.
+      
+      📍 Combination
+        ❗ CPU perspective does not matter. It should be considered from the I/O perspective.
+
+        * Blocking      + Synchronous     I/O 
+          The process remains blocked until the I/O request completes.
+
+          🛍️ e.g.
+            ```C++
+            char buffer[1024];
+            // 🚣 The thread (or process) waits and cannot proceed until the I/O operation is completed.
+            read(socket_fd, buffer, sizeof(buffer));  
+            printf("Received: %s\n", buffer);  
+            ```
+
+        * Blocking      + Asynchronous    I/O
+          🛍️ e.g. Blocking + Asynchronous I/O with std::async() (Blocking on 🚣 Result Retrieval)
+            ```C++
+            // The I/O request is executed asynchronously; the 🚣 request returns immediately.
+            //  ❗ Note that "the request returns immediately" does not mean the I/O request is completed.
+            std::future<int> future = std::async(std::launch::async, [] {
+              std::this_thread::sleep_for(std::chrono::seconds(2));  // Simulates an asynchronous task that takes 2 seconds
+              return 42;
+            });
+
+            // 🚣 Other work can be done here without waiting for the result
+            printf("Doing other work...\n");
+
+            // 🚣 However, retrieving the result is blocking. The program must wait here.
+            int result = std::future.get();  
+            printf("Result: %d\n", result);
+            ```
+
+        * Non-Blocking  + Synchronous     I/O
+          💡 select, poll, and epoll are blocking by default but can be used in a non-blocking manner by setting the timeout to 0.
+            - Key differences between select, poll, and epoll:
+              - FD management:          select/poll scans all FDs, while epoll only tracks FDs with events.
+              - FD limit:               select has a hard limit (1024 by default), poll and epoll have no practical limit.
+              - FD registration method: select/poll requires passing the full list each time, epoll registers FDs once and manages them efficiently.
+
+          🛍️ e.g. I/O Multiplexing using select()
+            ```C++
+            /* ❗ Note that "select()" itself is NOT Non-Blocking + Synchronous I/O.
+              It is a tool for multiplexing synchronous I/O operations (e.g., read(), write()).
+              This code is Non-Blocking + Synchronous I/O because read() is synchronous, 
+              but select() helps avoid blocking until data is available.
+            */
+
+            fd_set read_fds;
+            FD_ZERO(&read_fds);
+            FD_SET(socket_fd, &read_fds);
+
+            struct timeval timeout;
+            timeout.tv_sec = 0;     // Non-blocking mode
+            # timeout.tv_sec = 1;   // 1 second wait
+            timeout.tv_usec = 0;
+
+            /* 🚣 select() checks if data is available.
+              If data is present, it returns immediately.
+              If no data is available, it returns immediately with a value of 0.
+            */
+            int ret = select(socket_fd + 1, &read_fds, NULL, NULL, &timeout);
+            if (ret > 0) {
+              char buffer[1024];
+
+              /* 🚣 read() is a synchronous I/O operation.
+                Even though select() helps avoid blocking before calling read(),
+                , read() itself is still a synchronous function.
+              */
+              read(socket_fd, buffer, sizeof(buffer));
+
+              printf("Received: %s\n", buffer);
+            } else {
+              printf("No data available, retrying...\n");
+            }
+            ```
+
+            Reference
+              https://stackoverflow.com/questions/57298111/why-is-select2-called-synchronous-multiplexing
+              https://stackoverflow.com/questions/7209057/does-poll-epoll-block-how-is-it-different-from-async-io
+
+        * Non-Blocking  + Asynchronous    I/O
+          The request returns immediately, and the result is later handled through an event or callback.
+
+          🛍️ e.g. boost asio ...
+
+
+
 ----------------------------------------------
 ⚓ Concurrent computing | 병행 컴퓨팅 ; << https://en.wikipedia.org/wiki/Concurrent_computing
 
@@ -74,222 +186,9 @@ Programming Paradigms
     🆚 Specifically, when usage is distinguished, a future is a read-only placeholder view of a variable, while a promise is a writable, single assignment container which sets the value of the future. 
 
 
-Blocking, Non-blocking
-Synchronous, Asynchronous I/O
-  
-
-✅ Blocking vs. Non-blocking - (음식 주문 후 손님(프로세스)의 대기 방식)
-  ;  In computing, a process that is blocked is waiting for some event, such as a resource becoming available or the completion of an 🚣 I/O operation.
-  손님이 주문 후, 음식이 나올 때까지 줄 서서 기다림. (아무것도 못함)
-    read() 호출 시, 데이터가 도착할 때까지 스레드가 멈춤
-  vs 손님이 주문 후, 바로 자리로 가서 다른 일 가능. (음식이 준비되면 알람이 울림)
-    read(O_NONBLOCK) 호출 시, 데이터가 없으면 즉시 반환됨
-
-✅ Synchronous vs. Asynchronous - (음식 주문 후 요리사(작업)의 음식(결과)을 준비하는 방식 (작업 처리 관점))
-  ; Asynchrony, in computer programming, refers to the occurrence of events independent of the main program flow and ways to deal with such events.
-  요리사가 한 번에 한 개의 음식만 순차적으로 만듦. (동기 실행)
-    read() 호출 시, I/O 요청과 응답이 즉시 연결됨
-  vs 요리사가 여러 개의 음식을 동시에 만들고, 완료된 음식부터 제공 (비동기 실행)
-    aio_read() 호출 시, 요청 후 기다릴 필요 없이 다른 작업 수행 가능
-Blocking + Synchronous I/O
-  ❗ CPU 가 아니라 I/O 관점에서 봐야 한다.
-  I/O 요청 후, 결과가 나올 때까지 블로킹됨.
-  ✔ Blocking(블로킹):
-    현재 스레드(또는 프로세스)가 I/O 작업 완료를 기다리면서 멈춰 있음.
-  
-  🛍️ e.g. 
-    ```
-    char buffer[1024];
-    read(socket_fd, buffer, sizeof(buffer));  // 데이터가 도착할 때까지 멈춰 있음
-    printf("Received: %s\n", buffer);  // 데이터가 도착해야 실행됨
-    // 예제: read() → 데이터를 다 읽을 때까지 스레드가 멈춰 있음.
-    ```
-Blocking +  Asynchronous I/O
-  ❗ CPU 가 아니라 I/O 관점에서 봐야 한다.
-    - I/O 요청은 비동기적으로 실행되지만; 요청 후 "우선적으로" 이 요청에 대해 기다릴 필요는 없다. 요청에 대한 결과를 받기 전까지는 다른 일을 할 수 있음.
-      하지만 그렇다고 non-blocking 을 의미하는 것이 아니다. I/O 관점에서 봐야 함!.. 결과를 받을 때는 블로킹. 
-  🛍️ e.g. 
-    ```C++
-    std::future<int> future = std::async(std::launch::async, [] {
-      std::this_thread::sleep_for(std::chrono::seconds(2));  // 2초 뒤에 값 반환
-      return 42;
-    });
-
-    // 여기서 다른 작업 수행 가능
-    printf("Doing other work...\n");
-
-    // 결과를 받을 때까지 블로킹됨
-    int result = future.get();  
-    printf("Result: %d\n", result);
-    ```
-Non-Blocking +  Synchronous I/O
-  ❗ CPU 가 아니라 I/O 관점에서 봐야 한다.
-
-  I/O 요청을 보냈을 때 결과가 없으면 즉시 반환되지만, 직접 다시 요청해야 함.
-  🛍️ e.g. polling (반복해서 상태 확인), select(), poll()
-Non-Blocking +  Asynchronous I/O
-  ❗ CPU 가 아니라 I/O 관점에서 봐야 한다.
-
-  요청 후, 기다리지 않고, 결과가 나중에 이벤트/콜백으로 전달됨.
-  🛍️ e.g. epoll(), aio_read(), io_uring, kqueue
-
-
-ℹ️ (About); Combination of (🆚 Blocking, Non-blocking), (🆚 Synchronous, Asynchronous)
-  🛍️ e.g. Real-world Situation: A customer orders food at a restaurant, and the chef prepares the meal.
-
-  🆚 Blocking, Non-blocking
-    ; A process that is blocked is waiting for some event, such as a resource becoming available or the completion of an 📍 I/O operation.
-      from 🔗 https://en.wikipedia.org/wiki/Blocking_(computing)
-    ❔ How customers (processes) wait after ordering food
-
-    - Blocking
-      A customer waits in line after ordering until the food is ready (🚣 cannot do anything else).
-
-    - Non-blocking
-      A customer orders food and immediately sits down, doing other things until notified that the food is ready.
-
-
-  🆚 Synchronous, Asynchronous
-    ;  How chefs (tasks) prepare food (results) after an order
-    ; Asynchrony, in computer programming, refers to the occurrence of events independent of the main program flow and ways to deal with such events.
-      from 🔗 https://en.wikipedia.org/wiki/Asynchrony_(computer_programming)
-    
-    - Synchronous
-      The chef prepares one meal at a time, 🚣 in order.
-
-    - Asynchronous
-      The chef works on multiple orders at once and serves them as they are completed, 🚣 which may not be in the order they were requested.
-  
-  Combination
-    ❗ CPU perspective does not matter. It should be considered from the I/O perspective.
-
-* Blocking + Synchronous I/O 
-  The process remains blocked until the I/O request completes.
-
-  🛍️ e.g.
-    ```C++
-    char buffer[1024];
-    // 🚣 The thread (or process) waits and cannot proceed until the I/O operation is completed.
-    read(socket_fd, buffer, sizeof(buffer));  
-    printf("Received: %s\n", buffer);  
-    ```
-
-* Blocking + Asynchronous I/O
-  🛍️ e.g. Blocking + Asynchronous I/O with std::async() (Blocking on 🚣 Result Retrieval)
-    ```C++
-    // The I/O request is executed asynchronously; the 🚣 request returns immediately.
-    //  ❗ Note that "the request returns immediately" does not mean the I/O request is completed.
-    std::future<int> future = std::async(std::launch::async, [] {
-      std::this_thread::sleep_for(std::chrono::seconds(2));  // Simulates an asynchronous task that takes 2 seconds
-      return 42;
-    });
-
-    // 🚣 Other work can be done here without waiting for the result
-    printf("Doing other work...\n");
-
-    // 🚣 However, retrieving the result is blocking. The program must wait here.
-    int result = std::future.get();  
-    printf("Result: %d\n", result);
-    ```
-
-* Non-Blocking + Synchronous I/O
-  🛍️ e.g. I/O Multiplexing using select()
-    ```C++
-    /* ❗ Note that "select()" itself is NOT Non-Blocking + Synchronous I/O.
-      It is a tool for multiplexing synchronous I/O operations (e.g., read(), write()).
-      This code is Non-Blocking + Synchronous I/O because read() is synchronous, but select() helps avoid blocking until data is available.
-    */
-
-    fd_set read_fds;
-    FD_ZERO(&read_fds);
-    FD_SET(socket_fd, &read_fds);
-
-    struct timeval timeout;
-    timeout.tv_sec = 1;  // 1 second wait
-    timeout.tv_usec = 0;
-
-    /* 🚣 select() checks if data is available.
-      If data is present, it returns immediately.
-      If no data is available, it waits until either data arrives or the timeout expires.
-    */
-    int ret = select(socket_fd + 1, &read_fds, NULL, NULL, &timeout);
-    if (ret > 0) {
-      char buffer[1024];
-
-      /* 🚣 read() is a synchronous I/O operation.
-        Even though select() helps avoid blocking before calling read(), read() itself is still a synchronous function.
-      */
-      read(socket_fd, buffer, sizeof(buffer));
-
-      printf("Received: %s\n", buffer);
-    } else {
-      printf("No data available, retrying...\n");
-    }
-
-    ```
-    Reference
-      https://stackoverflow.com/questions/57298111/why-is-select2-called-synchronous-multiplexing
-
-*  Non-Blocking + Asynchronous I/O
-  The request returns immediately, and the result is later handled through an event or callback.
-
-  🛍️ e.g. aio_read(), io_uring
-    ```C++
-    // Non-blocking + Asynchronous example using epoll()
-    int epoll_fd = epoll_create1(0);
-    struct epoll_event event;
-    event.events = EPOLLIN;
-    event.data.fd = socket_fd;
-
-    // Register socket with epoll
-    epoll_ctl(epoll_fd, EPOLL_CTL_ADD, socket_fd, &event);
-
-    while (true) {
-        struct epoll_event events[1];
-        int event_count = epoll_wait(epoll_fd, events, 1, -1);
-
-        if (event_count > 0 && (events[0].events & EPOLLIN)) {
-            char buffer[1024];
-            read(socket_fd, buffer, sizeof(buffer));
-            printf("Received: %s\n", buffer);
-        }
-    }
-    ```
-
-Summary
-  | Type                          | Description                                      | Example |
-  |--------------------------------|------------------------------------------------|---------|
-  | Blocking + Synchronous         | The process waits for completion before continuing. | `read()` |
-  | Blocking + Asynchronous        | The request returns immediately, but fetching the result is blocking. | `std::future.get()`, `aio_suspend()` |
-  | Non-Blocking + Synchronous     | The request returns immediately but requires polling. | `select()`, `poll()` |
-  | Non-Blocking + Asynchronous    | The request returns immediately, and results are handled via an event or callback. | `epoll()`, `io_uring` |
-
-Final Notes
-  - Blocking vs. Non-blocking is about whether the process (or thread) must wait for I/O to complete.
-  - Synchronous vs. Asynchronous is about when the result is received after making a request.
-  - This distinction is crucial for understanding performance optimizations in I/O handling.
-
-
-
-
 
 
 from 🔗 https://en.wikipedia.org/wiki/Synchronization#Communication
   In computer science (especially parallel computing), synchronization is the coordination of simultaneous threads or processes to complete a task with correct runtime order and no unexpected race conditions; see synchronization (computer science) for details.
 Synchronization (computer science) ; https://en.wikipedia.org/wiki/Synchronization_(computer_science)
   In computer science, synchronization is the task of coordinating multiple processes to join up or handshake at a certain point, in order to reach an agreement or commit to a certain sequence of action.
-
-
-💡 즉, "동기화(Synchronization)"는 "어떤 방식으로든 실행을 맞추는 것"을 의미하지, 반드시 블로킹(Blocking) 방식을 뜻하는 것이 아니다!
-📌 비동기(Asynchronous) 프로그래밍은 "동기화(Synchronization)가 필요 없는 것"이 아니다!
-📌 오히려 비동기 시스템에서도 "정확한 타이밍에 데이터를 가져와야 하는 동기화"가 필요하다.
-
-✔ 비동기 환경에서도 필요한 동기화의 예시:
-  네트워크 요청을 보낸 후, 응답이 오면 특정 작업을 수행해야 함.
-  파일을 비동기적으로 읽은 후, 결과를 특정 스레드에서 처리해야 함.
-  여러 개의 비동기 작업이 완료된 후에만 다음 단계로 진행해야 함.
-
-동기화(Synchronization)"는 단순히 "여러 개의 스레드나 프로세스가 일정한 시점에 맞춰 실행되도록 하는 것"을 의미한다.
-
-스레드가 특정 이벤트를 기다리면서 멈춰 있음.	mutex, condition_variable
-비동기적으로 실행되지만, 필요한 시점에 값을 동기화 가능.	Future, Promise

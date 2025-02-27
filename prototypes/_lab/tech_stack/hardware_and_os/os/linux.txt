@@ -3,6 +3,19 @@ list of level 1 subjects
   - Linux Kernel
   
 
+#️⃣📍 Manual sections from 🔗 https://en.wikipedia.org/wiki/Man_page#Manual_sections 📅 2025-02-27 10:49:35
+  Common    Description
+  ---------------------------
+  1         General commands
+  2         System calls
+  3         Library functions, covering in particular the C standard library
+  4         Special files (usually devices, those found in /dev) and drivers
+  5         File formats and conventions
+  6         Games and screensavers
+  7         Miscellaneous
+  8         System administration commands and daemons
+
+
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
 ⚓ Linux ; https://github.com/torvalds/linux
   https://en.wikipedia.org/wiki/Linux
@@ -74,17 +87,7 @@ list of level 1 subjects
 ----------------------------------------------
 Linux 🔪 Man pages
   ⚓ Man pages ; https://en.wikipedia.org/wiki/Man_page
-    #️⃣📍 Manual sections ; https://en.wikipedia.org/wiki/Man_page#Manual_sections
-      Common    Description
-      ---------------------------
-      1         General commands
-      2         System calls
-      3         Library functions, covering in particular the C standard library
-      4         Special files (usually devices, those found in /dev) and drivers
-      5         File formats and conventions
-      6         Games and screensavers
-      7         Miscellaneous
-      8         System administration commands and daemons
+    #➡️ Manual sections
 
   📝 Some Packages' complete manuals are available only after building the source (no official prebuilt man page available) 📅 2025-01-01 00:30:11
     , because e2fsprogs utilities (e.g., e2label.8.in) use templates for generating man pages.
@@ -494,12 +497,6 @@ Linux 🔪 Man pages
           },
 
 
-  ⚓ syscalls ; https://man7.org/linux/man-pages/man2/syscalls.2.html
-    📝 It seems that syscalls may be maintained by https://www.kernel.org/ but, the site redirect to the man7.org for docs.
-    The list of system calls that are available as at Linux 5.14 (or in a few cases only on older kernels) is as follows: ...
-
-    ⚓ ioctl(2) ; https://man7.org/linux/man-pages/man2/ioctl.2.html
-
 
 
   ⚓⭕🧮 netplan (📦 netplan.io) ; https://netplan.io/
@@ -676,6 +673,7 @@ Linux 🔪 library only
 
 
 
+
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
 Linux Kernel
 
@@ -821,7 +819,13 @@ Linux Kernel
       # GPIO
         #❌ Obsolete GPIO Userspace APIs
           ⚓ GPIO Sysfs Interface for Userspace ; https://www.kernel.org/doc/html/latest/userspace-api/gpio/sysfs.html
-          
+
+  # syscalls ; << https://man7.org/linux/man-pages/man2/syscalls.2.html
+    📝 It seems that syscalls may be maintained by https://www.kernel.org/ but, the site redirect to the man7.org for docs.
+      but I will use https://www.mankier.com/ instead for readability.
+    The list of system calls that are available as at Linux 5.14 (or in a few cases only on older kernels) is as follows: ...
+
+
 
 
 

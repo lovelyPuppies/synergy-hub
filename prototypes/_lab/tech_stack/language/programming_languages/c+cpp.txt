@@ -1252,31 +1252,3 @@ c+cpp
 
 
  
-※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
-⚓ C POSIX library ; https://en.wikipedia.org/wiki/C_POSIX_library
-  https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/
-  https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/contents.html
-
-  ⚓ unistd.h ; https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/unistd.h.html#tag_14_82
-    ; UNIx STanDard Header
-    ⚓ read() ; https://pubs.opengroup.org/onlinepubs/9799919799/functions/read.html#tag_17_476
-    ⚓ write() ; https://pubs.opengroup.org/onlinepubs/9799919799/functions/write.html#tag_17_699
-  ⚓ arpa/inet.h ; https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/arpa_inet.h.html#tag_14_02
-    ; Advanced Research Projects Agency INterNET Header
-
-    ⚓ htonl(), htons(), ntohl(), ntohs() ; https://pubs.opengroup.org/onlinepubs/9799919799/functions/htonl.html
-      # SYNOPSIS
-        uint32_t htonl(uint32_t hostlong);
-          ; Host TO Network Long
-        uint16_t htons(uint16_t hostshort);
-          ; Host TO Network Short
-        uint32_t ntohl(uint32_t netlong);
-          ; Network TO Host Long
-        uint16_t ntohs(uint16_t netshort);
-          ; Network TO Host Short
-  ⚓ netinet/in.h  ; https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/netinet_in.h.html#tag_14_34
-    ; Network INterNET Header
-  
-  ⚓ sys/socket.h ; https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/sys_socket.h.html#tag_14_65
-    ; SYStem SOCKET Header
-
