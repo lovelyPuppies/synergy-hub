@@ -1,0 +1,62 @@
+list of level 1 subjects
+  - Operating Systems (OS)
+  
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※  
+⚓ OS ; https://en.wikipedia.org/wiki/Operating_system
+
+================================================
+⚓ Process management ; https://en.wikipedia.org/wiki/Process_management_(computing)
+  🗒️ Contents
+
+# Process management 🔪 Concepts
+  ⚓ Context switch ; https://en.wikipedia.org/wiki/Context_switch
+    In computing, a context switch is the process of storing the state of a process or thread, so that it can be restored and resume execution at a later point, and then restoring a different, previously saved, state.
+    📝 &comment ; 🆚 (comparsion) ; context switch in (multi-thread, multi-processing)
+      https://stackoverflow.com/questions/5440128/thread-context-switch-vs-process-context-switch
+      - Thread switching is very efficient and much cheaper because it involves switching out only identities and resources such as the program counter, registers and stack pointers. 
+      - The process of switching in and out of the OS kernel along with the cost of switching out the registers is the largest fixed cost of performing a context switch.
+
+  ⚓ Computer multitasking ; https://en.wikipedia.org/wiki/Computer_multitasking
+    ⚓📎 Non-preemptive multitasking | Cooperative multitasking ; https://en.wikipedia.org/wiki/Cooperative_multitasking
+      ... is a style of computer multitasking in which 🚣 the operating system never initiates a context switch from a running process to another process.
+        Instead, in order to run multiple applications concurrently, processes 🔑 voluntarily 🪱 yield control
+          - periodically
+          - or when idle
+          - or logically blocked
+      This type of multitasking is called 🪱 cooperative because all programs must cooperate for the scheduling scheme to work.
+      🪱 cooperative scheduler
+
+    ⚓ Preemption (computing) ; https://en.wikipedia.org/wiki/Preemption_(computing)
+      🗒️ Contents
+        ... Such changes to the currently executing task of a processor are known as 🪱 context switching.
+        #️⃣ Preemptive multitasking ; https://en.wikipedia.org/wiki/Preemption_(computing)#Preemptive_multitasking
+          #️⃣🪱 Time slice | Quantum ; https://en.wikipedia.org/wiki/Preemption_(computing)#Time_slice
+            The period of time for which a process is allowed to run in a preemptive multitasking system is generally called the time slice or quantum
+----------------------------------------------
+⚓ Processor scheduling ; https://en.wikipedia.org/wiki/Scheduling_(computing)
+  # Scheduling Algorithms
+    ⚓⭕ Earliest eligible virtual deadline first (EEVDF) scheduling ; https://en.wikipedia.org/wiki/Earliest_eligible_virtual_deadline_first_scheduling
+      EEVDF is a dynamic priority proportional share scheduling algorithm for soft real-time systems
+
+(✍️ Processor scheduling 🔪 Basics)
+  ⚓🖇️ Run queue ; https://en.wikipedia.org/wiki/Run_queue 📅 2025-02-28 05:16:31
+    In modern computers many processes run at once. Active processes are placed in an array called a 🪱 run queue, or runqueue.
+      The run queue may contain 🪱 priority values for each process, which will be used by the scheduler to determine which process to run next.
+      📍 To ensure each program has a fair share of resources, each one is run for some 🪱 time period (quantum) before it is paused and placed back into the run queue.
+      When a program is stopped to let another run, the program with the highest priority in the run queue is then allowed to execute.
+    💡 Processes are also removed from the run queue when
+      - they ask to sleep
+      - , are waiting on a resource to become available
+      - , or have been terminated.
+    
+    ... ➡️ Earliest eligible virtual deadline first
+
+    - In UNIX or Linux, the 🧮 sar command is used to check the run queue.
+    - The vmstat UNIX or Linux command can also be used to determine the number of processes that are queued to run or waiting to run. These appear in the 'r' column.
+    
+    🌳 There are two models for Run queues:
+      - one that assigns a Run Queue to each physical processor
+      - the other has only one Run Queue in the system
+      
+----------------------------------------------

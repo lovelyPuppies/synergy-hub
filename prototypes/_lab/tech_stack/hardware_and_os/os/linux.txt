@@ -360,7 +360,7 @@ Linux 🔪 Man pages
       #️⃣ 23.3 🧮 nice: Run a command with modified niceness ; https://www.gnu.org/software/coreutils/manual/coreutils.html#nice-invocation
       #️⃣ 23.4 🧮 nohup: Run a command immune to hangups ; https://www.gnu.org/software/coreutils/manual/coreutils.html#nohup-invocation
         nohup command [arg]...
-          ⚠️ command must not be a special built-in utility (see Special built-in utilities
+          ⚠️ command must not be a special built-in utility (see Special built-in utilities)
       #️⃣ 23.5 🧮 stdbuf: Run a command with modified I/O stream buffering ; https://www.gnu.org/software/coreutils/manual/coreutils.html#stdbuf-invocation
       #️⃣ 23.6 🧮 timeout: Run a command with a time limit ; https://www.gnu.org/software/coreutils/manual/coreutils.html#timeout-invocation
     #️⃣ 24 Process control ; https://www.gnu.org/software/coreutils/manual/coreutils.html#Process-control
@@ -505,6 +505,18 @@ Linux 🔪 Man pages
       # Checking Netplan configuration files
         💡 /etc/netplan/
     ⚓ netplan YAML ; https://netplan.readthedocs.io/en/latest/netplan-yaml/
+
+
+  ⚓ sysstat ; https://en.wikipedia.org/wiki/Sysstat
+    ; SYSystem STATistics
+    Performance monitoring tools for Linux
+    https://github.com/sysstat/sysstat?tab=readme-ov-file#sysstat---system-performance-tools-for-the-linux-operating-system
+    ⚓🧮 sar (System Activity Reporter); https://www.mankier.com/1/sar
+      Collect, report, or save system activity information
+      # System statistics collected by sar from 🔗 https://github.com/sysstat/sysstat?tab=readme-ov-file#system-statistics-collected-by-sar
+        - 🪱 Run queue and system load statistics
+    ...
+
 
 
   ⚓ kmod ; https://github.com/kmod-project/kmod/tree/master/man

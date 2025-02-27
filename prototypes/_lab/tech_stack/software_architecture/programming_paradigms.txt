@@ -45,8 +45,12 @@ Programming Paradigms
     In computer science, reflective programming or reflection is the ability of a process to examine, introspect, and modify its own structure and behavior.
 
 ※※※※※※※※※※※※※※※
-((Concurrent, Distributed, Parallel, Asynchronous) 🔪 study)
+(Concurrent, Distributed, Parallel, Asynchronous)
 
+
+(✍️ (Concurrent, Distributed, Parallel, Asynchronous) 🔪 study)
+  📝👁️ Do study to following items in order!
+  ----------------------------------------------
   ℹ️ (About); (🆚 Concurrent Computing, Parallel Computing) 📅 2025-02-27 11:41:29
     🔗 from https://en.wikipedia.org/wiki/Concurrency_(computer_science)#Related_concepts
     Parallelism executes tasks independently on multiple CPU cores
@@ -167,9 +171,6 @@ Programming Paradigms
           🏗️: Proactor pattern
 
 
-
-
-(Dataflow programming 🔪 Asynchrony 🔪 Basics)
   ⚓ Synchronization (computer science) ; https://en.wikipedia.org/wiki/Synchronization_(computer_science)
     In computer science, synchronization is the task of coordinating multiple processes to join up or 🪱 handshake at a certain point, in order to reach an agreement or commit to a certain sequence of action.
 
@@ -177,7 +178,8 @@ Programming Paradigms
       In computer science (especially parallel computing), synchronization is the coordination of simultaneous threads or processes to complete a task with correct runtime order and no unexpected race conditions; see synchronization (computer science) for details.
 
 
-  ⚓🖇️ Asynchrony ; https://en.wikipedia.org/wiki/Asynchrony_(computer_programming) 📅 2025-02-28 00:26:27
+  ⚓🖇️ Asynchronous programming | Asynchrony ; https://en.wikipedia.org/wiki/Asynchrony_(computer_programming) 📅 2025-02-28 00:26:27
+    📝 Note that clicking on "asynchronous programming" at https://en.wikipedia.org/wiki/Cooperative_multitasking redirects to this page.
     📍 Asynchrony, in computer programming, refers to the occurrence of events independent of the main program flow and ways to deal with such events.
       These may be 🚣 "outside" events such as the arrival of signals, or 🚣 actions instigated by a program that take place concurrently with program execution
       , 💡 without the program hanging to wait for results.
@@ -261,6 +263,22 @@ Programming Paradigms
       - 🪱 Wait-freedom
       - 🪱 Lock-freedom
 
+
+
+  ----------------------------------------------
+  ⚓🖇️ Yield (multithreading) ; << https://en.wikipedia.org/wiki/Yield_(multithreading) 📅 2025-02-28 05:47:11
+    In computer science, yield is an action that occurs in a computer program during multithreading, of forcing a processor to 🔑 relinquish control of the current running thread
+      , and sending it to the end of the running queue, of the same scheduling priority.
+      📝 `sending it to the end of the running queue, of the same scheduling priority.`
+        == 동일한 우선순위를 가진 다른 스레드들이 대기하는 실행 큐에서 마지막 순서로 이동하게 만드는 동작을 의미한다.
+    # In coroutines
+      They may enable specifying 🚣 another function to take control. Coroutines that explicitly yield allow 🪱 cooperative multitasking.
+  ⚓📎 Coroutine ; << https://en.wikipedia.org/wiki/Coroutine
+    Coroutines are computer program components that allow execution to be suspended and resumed, generalizing subroutines for cooperative multitasking
+      They have been described as "functions whose execution you can pause
+
+
+
 ================================================
 ⚓ Declarative Programming ; https://en.wikipedia.org/wiki/Declarative_programming
   ⚓ Dataflow programming ; https://en.wikipedia.org/wiki/Dataflow_programming
@@ -275,16 +293,7 @@ Programming Paradigms
 ----------------------------------------------
 ⚓ Concurrent computing | 병행 컴퓨팅 ; << https://en.wikipedia.org/wiki/Concurrent_computing
 
-  ----------------------------------------------
-  ⚓📎 Yield (multithreading) ; << https://en.wikipedia.org/wiki/Yield_(multithreading)
-    In computer science, yield is an action that occurs in a computer program during multithreading, of forcing a processor to relinquish control of the current running thread, and sending it to the end of the running queue, of the same scheduling priority.
-
-  ⚓📎🚣 Cooperative multitasking, non-preemptive multitasking ; << https://en.wikipedia.org/wiki/Cooperative_multitasking
-    - cooperative scheduler
-  ⚓📎 Coroutine ; << https://en.wikipedia.org/wiki/Coroutine
-    
 
 ----------------------------------------------
 ⚓ Parallel computing | 병렬 컴퓨팅 ; https://en.wikipedia.org/wiki/Parallel_computing
-
 

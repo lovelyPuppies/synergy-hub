@@ -7,6 +7,7 @@ list of level 1 subjects
 Wikipedia
   (Data structure)
     ⚓ Red–black tree ; https://en.wikipedia.org/wiki/Red%E2%80%93black_tree
+      📝📰 리눅스 6.6~ 에서도 run queue 로서 사용되는 구조인듯 보임.
       #️⃣ Terminology
         🪱 NIL, parent, uncle
           ❗ The leaf nodes of red–black trees (NIL in figure 1) do not contain keys or data.

@@ -11889,13 +11889,6 @@ Doxygen Documentation Generator
               #️⃣ 1.4 Blocked ; https://en.wikipedia.org/wiki/Process_state#Blocked
               #️⃣ 1.5 Terminated ; https://en.wikipedia.org/wiki/Process_state#Terminated
           ⚓ Starvation ; https://en.wikipedia.org/wiki/Starvation_(computer_science)
-        ⚓ Process management ; << https://en.wikipedia.org/wiki/Process_management_(computing)
-          # Concepts
-            ⚓📎 Context switch ; https://en.wikipedia.org/wiki/Context_switch
-              📝 &comment ; 🆚 (comparsion) ; context switch in (multi-thread, multi-processing)
-                https://stackoverflow.com/questions/5440128/thread-context-switch-vs-process-context-switch
-                - Thread switching is very efficient and much cheaper because it involves switching out only identities and resources such as the program counter, registers and stack pointers. 
-                - The process of switching in and out of the OS kernel along with the cost of switching out the registers is the largest fixed cost of performing a context switch.
         ⚓ Inter-process communication, interprocess communication (IPC) ; << https://en.wikipedia.org/wiki/Inter-process_communication
     # Coordination
       ⚓💡 Synchronization ; https://en.wikipedia.org/wiki/Synchronization_(computer_science)
@@ -22004,3 +21997,25 @@ brew services start redis
 https://namu.wiki/w/%EB%A1%A0%20%ED%8A%B8%EB%A0%88%EC%9D%BC
 명일방주 lonetrail kristen
 명일방주 UnderTides Quintus
+
+
+프로세스 컨텍스트 스위칭은 실행 컨텍스트(레지스터, 스택)뿐만 아니라 메모리 주소 공간(Page Table), TLB 캐시까지 변경해야 하므로 오버헤드가 크고, TLB 플러싱으로 캐싱 효율이 급감한다.
+반면, 스레드는 같은 주소 공간을 공유하므로 실행 컨텍스트(레지스터, 스택)만 교체하면 되어, 메모리 재할당이나 TLB 플러싱이 없어 훨씬 빠르다
+  - 레지스터는 현재 실행 중인 연산 상태(PC, SP, 연산 결과 등)를 저장해야 해서 포함됨.
+  - 스택은 함수 호출 정보(지역 변수, 리턴 주소)를 저장하며, 컨텍스트 스위칭 후 다시 돌아왔을 때 실행을 이어가기 위해 반드시 포함되어야 함.
+  https://en.wikipedia.org/wiki/Translation_lookaside_buffer
+
+
+
+stack 이 거꾸로 성장한다? x64 에서는 그렇다는데.
+  Memory - Stack Organization                    | Grows from high to low addresses  
+이게 무슨 의미? 왜?
+
+
+❓ Reason why CFS scheduler using red black tree?
+  https://stackoverflow.com/questions/33191110/reason-why-cfs-scheduler-using-red-black-tree
+
+
+
+❓ 면접 준비 red-black tree
+  리눅스 커널 run queue 에서 사용하는 구조..
