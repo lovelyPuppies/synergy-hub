@@ -22081,4 +22081,10 @@ stack 이 거꾸로 성장한다? x64 에서는 그렇다는데.
   Non-blocking이란?
 현재 코루틴은 중단되지만, 이벤트 루프는 계속 동작하고 다른 작업을 수행할 수 있음.
   
-  
+
+
+async_run() 자체가 비동기 함수이므로, 호출한 순간 즉시 반환되며, 코루틴이 이 함수를 기다리지 않고 계속 진행합니다.
+3) consign(detached, redis_connection) 은 객체가 유지되도록 보장
+  boost::asio::consign(handler, object) 는 특정 객체(redis_connection)를 핸들러와 함께 유지하도록 보장합니다.
+  즉, 이 핸들러(비동기 작업)가 끝날 때까지 redis_connection이 소멸되지 않도록 함.
+  detached를 사용하여, 이 핸들러의 완료 처리를 별도로 하지 않고, 백그라운드에서 실행되도록 설정.
