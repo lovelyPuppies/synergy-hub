@@ -22045,3 +22045,24 @@ stack 이 거꾸로 성장한다? x64 에서는 그렇다는데.
 📰 iot_server.cpp
   현재 콜백 기반 코드가 이미 충분히 효율적임.
     추가적인 CPU 바운드 연산이 없기 때문에 코루틴을 통해 얻는 성능 향상이 미미할 수 있음.
+
+
+📰❓ why stack grows downwards
+
+  (높은 주소) ───────────────────
+              | Heap           |
+              | (위로 성장)     |
+              ────────────────
+              | Stack          |
+              | (아래로 성장)   |
+  (낮은 주소) ───────────────────
+
+  https://en.wikipedia.org/wiki/Stack-based_memory_allocation
+  https://stackoverflow.com/a/54391533
+  https://eli.thegreenplace.net/2011/02/04/where-the-top-of-the-stack-is-on-x86/
+  스택이 하향 성장(높은 주소 → 낮은 주소) 하면, 최근에 push한 값이 더 낮은 주소에 저장됩니다.
+    즉, ESP + offset의 **offset이 "양수(positive)"**이므로 양수 인덱싱을 사용할 수 있음.
+  스택에서 값을 제거할 때는 "음수 인덱싱"을 직접 참조하지 않고, 대신 pop 명령을 사용하여 값을 자동으로 가져온 후 스택 포인터를 증가시키는 방식으로 처리됩니다.
+
+  힙(Heap)은 스택과 다르게 "스택 포인터" 같은 레지스터를 기준으로 동작하지 않기 때문에, 양의 오프셋이나 인덱싱 방식이 큰 의미가 없습니다.
+
