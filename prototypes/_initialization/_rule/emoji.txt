@@ -45,4 +45,5 @@ Emoji 🔗 from VS Code Extension :emojisense: ;https://marketplace.visualstudio
 
 ----------------------------------------------
 Temp
-  🪶      :feather:           "<Title> 🔪 Glossary"               Glossaryc
+  🪶      :feather:           "<Title> 🔪 Glossary"               Glossary
+  🖊      :pen:               ""                                  Used to indicate minor edits or clarifications in a document

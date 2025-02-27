@@ -1,0 +1,13 @@
+
+----------------------------------------------
+⚓ Function (computer programming) ; https://en.wikipedia.org/wiki/Function_(computer_programming)
+  | procedure | method | subroutine | routine | subprogram
+
+  ⚓📎 Callback (computer programming) ; << https://en.wikipedia.org/wiki/Callback_(computer_programming)
+    In computer programming, a callback is a function that is stored as data (a reference) and designed to be called by another function – often back to the original abstraction layer.
+    📝 In programming, 'call back' means that a function is executed later than its originally expected timing, rather than immediately.
+      🌳
+      A function that accepts a callback parameter may be designed to call back 🖊️ a callback before returning to its caller
+        , which is known as 🪱 synchronous or blocking.
+      The function that accepts a callback may be designed to 🚣 store the callback so that it (🖊️ ; callback) can be called back after returning
+        , which is known as 🪱 asynchronous, non-blocking or deferred.

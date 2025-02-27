@@ -9,13 +9,25 @@ list of level 1 subjects
   
   ⚓ Dispose pattern ; << https://en.wikipedia.org/wiki/Dispose_pattern
 
-----------------------------------------------
+
+(✍️ Software Design Pattern 🔪 study)
+  ℹ️ (About); (🆚 Reactor pattern, Proactor pattern) 📅 2025-02-27 19:17:49
+    - Reactor Pattern
+      The application 🚣 directly checks for I/O events by calling an event monitoring function.
+      → If the data is ready to be read, the application 🚣 directly executes the 🪱 Completion Handler, which then calls read().
+
+    - Proactor Pattern
+      The application requests an asynchronous read operation, and the OS 🚣 directly performs the read (read() completes).
+      → Once the read operation is finished, the OS 🚣 directly executes the 🪱 Completion Handler.
+
+  ----------------------------------------------
 ⚓ Creational pattern ; https://en.wikipedia.org/wiki/Creational_pattern
   ⚓ Builder pattern ; https://en.wikipedia.org/wiki/Builder_pattern
     ... The intent of the Builder design pattern is to separate the construction of a complex object from its representation.
   ⚓📎⭕ Interning ; << https://en.wikipedia.org/wiki/Interning_(computer_science)
     #️⃣📎 Motivation ; https://en.wikipedia.org/wiki/Interning_(computer_science)#Motivation
 
+----------------------------------------------
 ⚓ Concurrency pattern ; https://en.wikipedia.org/wiki/Concurrency_pattern
   ⚓📎 Reactor ; https://en.wikipedia.org/wiki/Reactor_pattern
     🗒️ Contents
@@ -54,11 +66,13 @@ list of level 1 subjects
       ... ❗ a thread pool maintains multiple threads waiting for tasks to be allocated for concurrent execution by the supervising program.
         ❗ By maintaining a pool of threads, the model increases performance and avoids latency in execution due to frequent creation and destruction of threads for short-lived tasks
 
-
+----------------------------------------------
 ⚓ Structural patterns ; https://en.wikipedia.org/wiki/Structural_pattern
 
+----------------------------------------------
 # Behavioral patterns
 
+----------------------------------------------
 ⚓ Architectural pattern ; https://en.wikipedia.org/wiki/Architectural_pattern
   The architectural patterns address various issues in software engineering, such as computer hardware performance limitations, high availability and minimization of a business risk. Some architectural patterns have been implemented within software frameworks.
   🔗 Publish-subscribe pattern
@@ -152,6 +166,8 @@ list of level 1 subjects
   
   ⚓ Architecturally significant requirements ; << https://en.wikipedia.org/wiki/Architecturally_significant_requirements
   
+
+----------------------------------------------
 # Other patterns (Specialized Patterns)
   ⚓ lazy loading, asynchronous loading ; https://en.wikipedia.org/wiki/Lazy_loading
     - eager loading
@@ -181,18 +197,8 @@ list of level 1 subjects
       This property is useful when constructing data replication systems.
 
 ----------------------------------------------
-Resource management technique ; 
+📰 Resource management technique
 
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
 
 
-----------------------------------------------
-⚓Creational patterns
-Structural patterns
-Behavioral patterns
-Concurrency patterns
-Documentation
-Criticism
-See also
-References
-Further reading
