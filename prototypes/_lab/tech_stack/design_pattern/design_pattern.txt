@@ -20,7 +20,7 @@ list of level 1 subjects
   ⚓📎 Reactor ; https://en.wikipedia.org/wiki/Reactor_pattern
     🗒️ Contents
       The reactor software design pattern is an event handling strategy that can respond to many potential service requests concurrently.
-      ❗ The pattern's key component is an event loop, running in a single thread or process, which 🪱 demultiplexes incoming requests and dispatches them to the correct request handler.
+      🔑 The pattern's key component is an event loop, running in a single thread or process, which 🪱 demultiplexes incoming requests and dispatches them to the correct request handler.
         By relying on event-based mechanisms rather than blocking I/O or multi-threading, a reactor can handle many concurrent I/O bound requests with minimal delay.
       ❗ A reactor also allows for easily modifying or expanding specific request handler routines, though the pattern does have some drawbacks and limitations.
         🌳 Derivations such as the 🪱 multireactor and 🪱 proactor also exist for special cases where even greater throughput, performance, or request complexity are necessary.

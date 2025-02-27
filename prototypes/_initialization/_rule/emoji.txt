@@ -39,6 +39,7 @@ Emoji 🔗 from VS Code Extension :emojisense: ;https://marketplace.visualstudio
   ♾️      :infinity:                    "<Title> Pipeline"                  Pipeline.
 
 
+  🏗️      :building_construction:       ": <Title, ...>"                    Used to indicate using design patterns
   🛠️      :hammer_and_wrench:           ""                                  Only for Debugging
 
 

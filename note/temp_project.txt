@@ -21996,6 +21996,12 @@ brew services start redis
   각 스레드는 독립적으로 실행되며, 각 스레드 내에서 co_await를 사용하여 비동기 실행이 가능합니다.
 
 
+1. Imperative (명령형) 프로그래밍
+  명령형 프로그래밍은 "어떻게 (How)" 수행할 것인지에 초점을 맞춥니다. 즉, 프로그램이 수행해야 할 일련의 명령(절차, 과정) 을 순서대로 기술하는 방식입니다.
+
+2. Declarative (선언형) 프로그래밍
+  선언형 프로그래밍은 "무엇을 (What)" 수행할 것인지에 초점을 맞춥니다. 즉, 프로그램이 해야 할 결과를 정의하는 방식 이며, "어떻게" 수행할지는 내부 구현에 맡깁니다.
+
 https://namu.wiki/w/%EB%A1%A0%20%ED%8A%B8%EB%A0%88%EC%9D%BC
 명일방주 lonetrail kristen
 명일방주 UnderTides Quintus

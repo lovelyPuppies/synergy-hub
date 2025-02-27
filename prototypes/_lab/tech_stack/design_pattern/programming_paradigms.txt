@@ -46,6 +46,12 @@ Programming Paradigms
 
 
 ================================================
+⚓ Declarative Programming ; https://en.wikipedia.org/wiki/Declarative_programming
+  ⚓ Dataflow programming ; https://en.wikipedia.org/wiki/Dataflow_programming
+    ⚓ Synchronous programming language ; https://en.wikipedia.org/wiki/Synchronous_programming_language
+      | synchronous reactive programming (SRP)
+
+================================================
 (Concurrent, Distributed, Parallel)
 
 (✍️ (Concurrent, Distributed, Parallel) 🔪 study)
@@ -118,6 +124,7 @@ Programming Paradigms
               - FD registration method: select/poll requires passing the full list each time, epoll registers FDs once and manages them efficiently.
 
           🛍️ e.g. I/O Multiplexing using select()
+            🏗️: Reactor pattern 
             ```C++
             /* ❗ Note that "select()" itself is NOT Non-Blocking + Synchronous I/O.
               It is a tool for multiplexing synchronous I/O operations (e.g., read(), write()).
@@ -162,6 +169,7 @@ Programming Paradigms
           The request returns immediately, and the result is later handled through an event or callback.
 
           🛍️ e.g. boost asio ...
+            🏗️: Proactor pattern
 
 
 
