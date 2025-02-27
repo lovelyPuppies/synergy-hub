@@ -34,17 +34,18 @@ auto co_main(boost::redis::config const &cfg) -> boost::asio::awaitable<void> {
       cfg, {}, boost::asio::consign(boost::asio::detached, redis_connection));
 
   // A request containing only a ping command.
-  boost::redis::request req;
-  req.push("PING", "Hello world");
+  boost::redis::request request;
+  request.push("PING", "Hello world");
 
   // Response object.
-  boost::redis::response<std::string> resp;
+  boost::redis::response<std::string> response;
 
   // Executes the request.
-  co_await redis_connection->async_exec(req, resp, boost::asio::use_awaitable);
+  co_await redis_connection->async_exec(request, response,
+                                        boost::asio::use_awaitable);
   redis_connection->cancel();
 
-  std::cout << "PING: " << std::get<0>(resp).value() << std::endl;
+  std::cout << "PING: " << std::get<0>(response).value() << std::endl;
 }
 int boost_redis_test() { return 0; }
 
