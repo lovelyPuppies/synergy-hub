@@ -16,15 +16,12 @@
 ## 🔧 Tech Stack
 
 tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)  
- ├── 📂 toolchain  
- │&nbsp;&nbsp;&nbsp;&nbsp;└── 📂：![LLVM](https://img.shields.io/badge/LLVM-%23262D3A.svg?style=plastic&logo=llvm&logoColor=white)  
- │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [**clang**](prototypes/_lab/tech_stack/toolchain/llvm/clang.txt)  
  ├── 📂 build_tool  
  │&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 build_system  
  │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 meta_build_system  
  │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 yocto_project  
- │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [**BitBake**](prototypes/_lab/tech_stack/build_tool/build_system/meta_build_system/yocto_project/bitbake.txt)  
- │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [**Yocto**](prototypes/_lab/tech_stack/build_tool/build_system/meta_build_system/yocto_project/yocto.txt)  
+ │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── [**BitBake**](prototypes/_lab/tech_stack/build_tool/build_system/meta_build_system/yocto_project/bitbake.txt)  
+ │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [**Yocto**](prototypes/_lab/tech_stack/build_tool/build_system/meta_build_system/yocto_project/yocto.txt)  
  │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;├── [![Bazel](https://img.shields.io/badge/Bazel-%2343A047.svg?style=plastic&logo=bazel&logoColor=white)](prototypes/_lab/tech_stack/build_tool/build_system/bazel.txt)  
  │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── [![PlatformIO](https://img.shields.io/badge/PlatformIO-%23222.svg?style=plastic&logo=platformio&logoColor=%23f5822a)](prototypes/_lab/tech_stack/build_tool/build_system/platformio.txt)  
  │&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 build_system_generator  
@@ -39,9 +36,12 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
  ├── 📂 database  
  │&nbsp;&nbsp;&nbsp;&nbsp;└── [![MariaDB](https://img.shields.io/badge/MariaDB-003545?style=plastic&logo=mariadb&logoColor=white)](prototypes/_lab/tech_stack/database/mariadb.txt)  
  ├── 📂 software_architecture  
- │&nbsp;&nbsp;&nbsp;&nbsp;├── [d2](prototypes/_lab/tech_stack/software_architecture/d2.txt)  
- │&nbsp;&nbsp;&nbsp;&nbsp;├── [programming_paradigms](prototypes/_lab/tech_stack/software_architecture/programming_paradigms.txt)  
  │&nbsp;&nbsp;&nbsp;&nbsp;└── [design_pattern](prototypes/_lab/tech_stack/software_architecture/design_pattern.txt)  
+ │&nbsp;&nbsp;&nbsp;&nbsp;├── [os](prototypes/_lab/tech_stack/software_architecture/os.txt)  
+ │&nbsp;&nbsp;&nbsp;&nbsp;├── [programming_paradigms](prototypes/_lab/tech_stack/software_architecture/programming_paradigms.txt)  
+ │&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 toolchain  
+ │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── 📂：![LLVM](https://img.shields.io/badge/LLVM-%23262D3A.svg?style=plastic&logo=llvm&logoColor=white)  
+ │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [**clang**](prototypes/_lab/tech_stack/toolchain/llvm/clang.txt)  
  ├── 📂 editor  
  │&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 gui_based-ide  
  │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;├── [![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=plastic&logo=visual-studio-code&logoColor=white)](prototypes/_lab/tech_stack/editor/gui_based-ide/vs_code.txt)  
