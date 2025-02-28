@@ -1,0 +1,13 @@
+list of level 1 subjects
+  - User Interface (UI)
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ User Interface (UI) ; https://en.wikipedia.org/wiki/User_interface
+  🗒️ Contents
+    User interfaces are composed of one or more layers, including a 🪱 human–machine interface (HMI) that typically interfaces machines with ...
+    A device that implements an HMI is called a 🪱 human interface device (HID)
+
+  ⚓ Human Interface Device (HID) ; << https://en.wikipedia.org/wiki/Human_interface_device
+
+
+

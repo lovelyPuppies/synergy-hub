@@ -75,6 +75,7 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
  │&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 robot  
  │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [![ROS](https://img.shields.io/badge/ros-%230A0FF9.svg?style=plastic&logo=ROS&logoColor=white)](prototypes/_lab/tech_stack/libraries_and_frameworks/robot/framework-ros.txt)  
  │&nbsp;&nbsp;&nbsp;&nbsp;└── [![Qt](https://img.shields.io/badge/Qt-%23217346.svg?style=plastic&logo=Qt&logoColor=white)](prototypes/_lab/tech_stack/libraries_and_frameworks/framework-qt.txt)  
+ │&nbsp;&nbsp;&nbsp;&nbsp;└── [Avalonia](prototypes/_lab/tech_stack/libraries_and_frameworks/ui/framework-avalonia.txt)  
  ├── 📂 mathematics  
  │&nbsp;&nbsp;&nbsp;&nbsp;├── [mathematics_symbols](prototypes/_lab/tech_stack/mathematics/mathematics_symbols.txt)  
  │&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 ml  

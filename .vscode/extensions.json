@@ -87,6 +87,7 @@
     //    Qt UI ; https://marketplace.visualstudio.com/items?itemName=TheQtCompany.qt-ui
     //    Qt C++ ; https://marketplace.visualstudio.com/items?itemName=TheQtCompany.qt-cpp
     "theqtcompany.qt", // ⚓ Qt Extension Pack ; https://marketplace.visualstudio.com/items?itemName=TheQtCompany.qt
+    "avaloniateam.vscode-avalonia", // Avalonia for VSCode ; https://marketplace.visualstudio.com/items?itemName=AvaloniaTeam.vscode-avalonia
     // 🌀 Embedded ~
     "ms-vscode.vscode-serial-monitor",
     "platformio.platformio-ide",
