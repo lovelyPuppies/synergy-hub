@@ -44,7 +44,7 @@ Programming Paradigms
   ⚓📎 Reflective programming | reflection ; https://en.wikipedia.org/wiki/Reflective_programming
     In computer science, reflective programming or reflection is the ability of a process to examine, introspect, and modify its own structure and behavior.
 
-※※※※※※※※※※※※※※※
+※※※※※※※※※※※※※※
 (Concurrent, Distributed, Parallel, Asynchronous)
 
 

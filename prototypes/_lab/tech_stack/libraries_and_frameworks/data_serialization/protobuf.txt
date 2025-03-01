@@ -414,7 +414,7 @@ protobuf 🔪⚓ Docs ; https://protobuf.dev/
         return type(getattr(wrapper_msg2, message_type_name))
 
 
-※※※※※※※※※※※※※※※
+※※※※※※※※※※※※※※
 # nanoPB 🔪 Docs
   ⚓ Overview ; https://jpa.kapsi.fi/nanopb/docs/index.html
   ⚓ Basic concepts ; https://jpa.kapsi.fi/nanopb/docs/concepts.html
