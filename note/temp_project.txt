@@ -22255,3 +22255,9 @@ A central control unit (CCU) is a device in a train that controls and monitors t
 File - Options - Advanced -Cut, copy, and paperswithcode
   - Insert/paste picture as: ✔️ In front of text
     https://support.microsoft.com/ko-kr/office/%EC%9D%B4%EB%AF%B8%EC%A7%80%EC%97%90-%EB%8C%80%ED%95%9C-%EA%B8%B0%EB%B3%B8-%ED%85%8D%EC%8A%A4%ED%8A%B8-%EC%A4%84-%EB%B0%94%EA%BF%88-%EC%84%A4%EC%A0%95-%EB%B3%80%EA%B2%BD-3f9f0e39-9114-4138-90f9-5c3e528862bb
+
+
+
+Proator 패턴?.. Reacotr 패턴 둘 다? 
+  Inversion of Control
+    콜백 함수(핸들러)를 통해 이벤트를 처리 (역제어: Inversion of Control
