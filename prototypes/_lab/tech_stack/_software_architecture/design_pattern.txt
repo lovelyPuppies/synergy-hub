@@ -11,6 +11,10 @@ list of level 1 subjects
 
 
 (✍️ Software Design Pattern 🔪 study)
+  📝👁️ Do study to following items in order!
+  ⚓📎 Event loop ; https://en.wikipedia.org/wiki/Event_loop
+
+
   ℹ️ (About); Additional (🆚 Reactor pattern, Proactor pattern) 📅 2025-02-27 19:17:49
     - Reactor Pattern
       The application 🚣 directly checks for I/O events by calling an event monitoring function.
@@ -20,7 +24,7 @@ list of level 1 subjects
       The application requests an asynchronous read operation, and the OS 🚣 directly performs the read (read() completes).
       → Once the read operation is finished, the OS 🚣 directly executes the 🪱 Completion Handler.
 
-  ----------------------------------------------
+----------------------------------------------
 ⚓ Creational pattern ; https://en.wikipedia.org/wiki/Creational_pattern
   ⚓ Builder pattern ; https://en.wikipedia.org/wiki/Builder_pattern
     ... The intent of the Builder design pattern is to separate the construction of a complex object from its representation.
