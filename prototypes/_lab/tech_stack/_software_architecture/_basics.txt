@@ -59,8 +59,23 @@
 
 
 ----------------------------------------------
-⚓📎 Polling (computer science) | interrogation ; https://en.wikipedia.org/wiki/Polling_(computer_science)
-  ... refers to 🔑 actively 🚣 sampling the status of an external device by a client program as a 🔑 synchronous activity.
-  Polling is most often used in terms of input/output (I/O), and is also referred to as 🪱 polled I/O or 🪱 software-driven I/O.
-    🛍️ A good example of hardware implementation is a 💡 watchdog timer.
+(Control flow)
+  ⚓📎 Polling (computer science) | interrogation ; https://en.wikipedia.org/wiki/Polling_(computer_science)
+    ... refers to 🔑 actively 🚣 sampling the status of an external device by a client program as a 🔑 synchronous activity.
+    Polling is most often used in terms of input/output (I/O), and is also referred to as 🪱 polled I/O or 🪱 software-driven I/O.
+      🛍️ A good example of hardware implementation is a 💡 watchdog timer.
+
+  - dispatch ; https://en.wiktionary.org/wiki/dispatch#English
+    Verb
+      dispatch (third-person singular simple present dispatches, present participle dispatching, simple past and past participle dispatched)
+        9. (transitive, computing) To pass on for further processing, especially via a dispatch table (often with to). 
+  ⚓📎 Event loop ; https://en.wikipedia.org/wiki/Event_loop
+    In computer science, the event loop (also known as message dispatcher, message loop, message pump, or run loop) is a programming construct or design pattern that waits for and dispatches events or messages in a program.
+      The event loop works by making a request to some internal or external "🪱 event provider" (that generally blocks the request until an event has arrived), then calls the relevant 🪱 event handler ("dispatches the event").
+      It is also commonly implemented in servers such as web servers.
+    The event-loop may be used in conjunction with a reactor
+      🛍️ e.g. if the event provider follows the file interface, which can be selected or 'polled' (the Unix system call, not actual polling).
+      The event loop almost always operates asynchronously with the 🪱 message originator.
+    When the event loop forms the central control flow construct of a program, as it often does, it may be termed the main loop or 🪱 main event loop.
+      This title is appropriate, because such an event loop is at the highest level of control within the program.
 

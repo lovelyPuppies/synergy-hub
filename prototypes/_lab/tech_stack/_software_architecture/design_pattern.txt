@@ -11,8 +11,6 @@ list of level 1 subjects
 
 
 (✍️ Software Design Pattern 🔪 study)
-  📝👁️ Do study to following items in order!
-  ⚓📎 Event loop ; https://en.wikipedia.org/wiki/Event_loop
 
 
   ℹ️ (About); Additional (🆚 Reactor pattern, Proactor pattern) 📅 2025-02-27 19:17:49

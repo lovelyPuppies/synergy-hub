@@ -123,8 +123,6 @@ Programming Paradigms
             - FD registration method: select/poll requires passing the full list each time, epoll registers FDs once and manages them efficiently.
 
         🛍️ e.g. I/O Multiplexing using select()
-
-        
           🏗️: The example: The Reactor pattern inherently performing 🚣 multitasking
           
           ```C++
@@ -147,41 +145,45 @@ Programming Paradigms
               This mechanism aligns with the Reactor pattern, where the program continuously monitors multiple I/O sources and processes events as they become available.
           */
 
-          fd_set read_fds;
-          FD_ZERO(&read_fds);
-          FD_SET(socket1, &read_fds);
-          FD_SET(socket2, &read_fds);
-          FD_SET(socket3, &read_fds);
-
           // Set the highest file descriptor number + 1
           int max_fd = socket3 + 1;
 
-          // Set timeout to 5 seconds
-          struct timeval timeout = {5, 0};
+          // Set timeout to 1 second
+          struct timeval timeout = {1, 0};
 
-          // select() detects all 🚣 ready file descriptors at once
-          int ret = select(max_fd, &read_fds, NULL, NULL, &timeout);
-          if (ret > 0) {
-              // Check if socket1 has data available
-              if (FD_ISSET(socket1, &read_fds)) {
-                  printf("Data available on socket1\n");
+          // 🪱 Main Event Loop
+          while (true) {
+              FD_ZERO(&read_fds);
+              FD_SET(socket1, &read_fds);
+              FD_SET(socket2, &read_fds);
+              FD_SET(socket3, &read_fds);
+
+              // 🪱 Event Provider: select() monitors multiple file descriptors
+              //    select() detects all 🚣 ready file descriptors at once.
+              //    The detected data comes from the 🪱 message originator (e.g., a client sending data).
+              int ret = select(max_fd, &read_fds, NULL, NULL, &timeout);
+
+              if (ret > 0) {
+                  // 🪱 Event Dispatcher: Dispatches events to corresponding handlers
+                  if (FD_ISSET(socket1, &read_fds)) {
+                      printf("Data available on socket1\n");
+                  }
+                  if (FD_ISSET(socket2, &read_fds)) {
+                      printf("Data available on socket2\n");
+                  }
+                  if (FD_ISSET(socket3, &read_fds)) {
+                      printf("Data available on socket3\n");
+                  }
+              } else if (ret == 0) {
+                  // Timeout case: No data available
+                  printf("Timeout: No data available.\n");
+              } else {
+                  // Handle select() error
+                  perror("select error");
+                  break;
               }
-              // Check if socket2 has data available
-              if (FD_ISSET(socket2, &read_fds)) {
-                  printf("Data available on socket2\n");
-              }
-              // Check if socket3 has data available
-              if (FD_ISSET(socket3, &read_fds)) {
-                  printf("Data available on socket3\n");
-              }
-          } else if (ret == 0) {
-              // Timeout case: No data available
-              printf("Timeout: No data available.\n");
-          } else {
-              // Handle select() error
-              perror("select error");
           }
-
+ 
           ```
           Reference
             https://stackoverflow.com/questions/57298111/why-is-select2-called-synchronous-multiplexing
