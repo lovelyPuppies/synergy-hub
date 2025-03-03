@@ -16058,7 +16058,8 @@ echo "Kernel setup and module build complete!"
 
 
 영상 찍는거 시나리오 생각.
-
+❗ 관계대명사(relative pronoun)는 본질적으로 대명사이기 때문에, 일반적인 명사처럼 전치사의 목적어로 사용될 수 있습니다.
+  즉, 문장에서 전치사 + 관계대명사(which, whom 등)의 형태로 쓰일 수 있는 이유는 which 자체가 명사 역할을 하기 때문이에요.
 
 메모리 업데이트됨
 빠르게 동작을 시연하는 영상 시나리오는 다음과 같이 구성할 수 있습니다:
@@ -22261,3 +22262,35 @@ File - Options - Advanced -Cut, copy, and paperswithcode
 Proator 패턴?.. Reacotr 패턴 둘 다? 
   Inversion of Control
     콜백 함수(핸들러)를 통해 이벤트를 처리 (역제어: Inversion of Control
+
+SW개발 세계에서, 입출력 다중화는 하나의 프로세스 또는 쓰레드에서 여러 입력과 출력을 다루는 기법을 말한다.
+
+ex) 리눅스의 select, epoll. 윈도우의 IOCP. 맥의 Kqueue 를 기반으로 함
+출처: https://sjh836.tistory.com/184 [빨간색코딩:티스토리]
+
+
+⚓ Multiplexing ; https://en.wikipedia.org/wiki/Multiplexing
+  https://en.wikipedia.org/wiki/Multiplexing
+
+🪱 Multiplexing ; https://en.wikipedia.org/wiki/Multiplexing
+  In computing, I/O multiplexing can also be used to refer to the concept of processing multiple input/output events from a single event loop, with system calls like poll[1] and select (Unix).
+
+| Feature | **Reactor Pattern** | **Proactor Pattern** |
+|------|----------------|----------------|
+| **I/O Handling Method** | **Synchronous + Non-blocking I/O** | **Asynchronous + Non-blocking I/O** |
+| **Event Detection Method** | Uses `select()`, `epoll()`, `poll()` to **monitor I/O readiness** and calls `read()` when ready | OS kernel performs **fully asynchronous I/O** and triggers a **completion handler** when finished |
+| **Who Handles Data Processing?** | **User code explicitly calls `read()` or `write()`** | **OS kernel processes data asynchronously and automatically triggers the handler upon completion** |
+| **Blocking Behavior** | `select()` enables Non-blocking I/O multiplexing, but `read()` remains synchronous | Uses `aio_read()`, `io_uring`, etc., for **fully asynchronous (Non-blocking + Asynchronous) I/O** |
+| **Callback Execution Timing** | `select()` detects ready FDs and then `read()` is manually executed | OS completes the I/O operation and **automatically triggers the Completion Handler (callback)** |
+| **Example APIs** | `select()`, `poll()`, `epoll()` + `read()`/`write()` | `aio_read()`, `io_uring`, Windows IOCP (Completion Port) |
+
+
+1. "during"과 "over"의 차이점
+  👉 **"during"**은 특정한 시간 범위 내에서 어떤 일이 한 번 이상 발생할 수 있다는 의미야.
+  👉 **"over"**는 특정한 기간 전체에 걸쳐 지속적으로 진행됨을 강조해.
+
+📌 비교 예시
+  "It rained during the night."
+    → 밤이라는 시간 동안 어느 한 시점에 비가 왔음을 의미. (밤새 계속 내렸는지는 불명확)
+  "It rained over the night."
+    → 밤 시간 내내 지속적으로 비가 왔음을 강조.

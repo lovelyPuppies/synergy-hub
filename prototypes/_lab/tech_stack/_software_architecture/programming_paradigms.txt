@@ -128,7 +128,24 @@ Programming Paradigms
           /* ❗ Note that "select()" itself is NOT Non-Blocking + Synchronous I/O.
             It is a tool for multiplexing synchronous I/O operations (e.g., read(), write()).
             This code is Non-Blocking + Synchronous I/O because read() is synchronous, 
+          */
+
+          /* ❗ Note that "select()" itself is NOT Non-Blocking + Synchronous I/O.
+            `It` is a tool for multiplexing synchronous I/O operations (e.g., read(), write()).
+            This code is Non-Blocking + Synchronous I/O because read() is synchronous, 
             but select() helps avoid blocking until data is available.
+          
+          * Concurrency in this code:
+            - The `select()` function enables concurrency by monitoring multiple sockets simultaneously.
+            - It allows the program to check multiple file descriptors (FDs) at once and process only the ready ones.
+            - This prevents the program from blocking on a single `read()` operation, enabling efficient time-slicing between multiple connections.
+            - While `read()` itself is synchronous, `select()` ensures that the program does not get stuck on any single I/O operation.
+            - This provides concurrency by handling multiple tasks in a single-threaded event loop.
+          
+          * Time-Slicing Effect:
+            - `select()` enables a form of time-slicing by checking multiple sockets and only processing those that are ready.
+            - This avoids unnecessary CPU time being wasted on waiting, similar to how an OS scheduler switches between processes.
+            - The effect is that multiple I/O-bound tasks can progress concurrently, even though they are handled sequentially.
           */
 
           fd_set read_fds;
@@ -140,17 +157,19 @@ Programming Paradigms
           # timeout.tv_sec = 1;   // 1 second wait
           timeout.tv_usec = 0;
 
-          /* 🚣 select() checks if data is available.
-            If data is present, it returns immediately.
-            If no data is available, it returns immediately with a value of 0.
+          /* 🚣 `select()` checks if data is available.
+            This allows the program to efficiently check multiple I/O sources 🚣 without blocking.
+            - If data is present, it returns immediately.
+            - If no data is available, it returns immediately with a value of 0.
           */
           int ret = select(socket_fd + 1, &read_fds, NULL, NULL, &timeout);
           if (ret > 0) {
             char buffer[1024];
 
-            /* 🚣 read() is a synchronous I/O operation.
-              Even though select() helps avoid blocking before calling read(),
-              , read() itself is still a synchronous function.
+            /* 💡 `read()` is a Synchronous + Blocking I/O operation.
+              Normally, `read()` would block if there is no data.
+                However, `select()` ensures that `read()` is only called 🚣 when data is available.
+                📈 The `select()` prevents `read()` from blocking unnecessarily, effectively making it behave as Non-blocking I/O.
             */
             read(socket_fd, buffer, sizeof(buffer));
 
@@ -300,6 +319,7 @@ Programming Paradigms
 (Concurrent, Distributed, Parallel)
 ----------------------------------------------
 ⚓ Concurrent computing | 병행 컴퓨팅 ; << https://en.wikipedia.org/wiki/Concurrent_computing
+
 
 
 ----------------------------------------------
