@@ -1,0 +1,10 @@
+list of level 1 subjects
+  - statistics
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ statistics ; https://en.wikipedia.org/wiki/Statistics
+
+  ⚓ Survey methodology ; https://en.wikipedia.org/wiki/Survey_methodology
+    ⚓🔰 Sampling ; << https://en.wikipedia.org/wiki/Sampling_(statistics)
+      ... is the selection of a subset or a statistical sample (termed sample for short) of individuals from within a statistical population to estimate characteristics of the whole population.
+

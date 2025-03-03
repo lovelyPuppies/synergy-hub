@@ -119,12 +119,12 @@
 					"label": ""
 				},
 				{
-					"line": 185,
+					"line": 208,
 					"column": 10,
 					"label": ""
 				},
 				{
-					"line": 236,
+					"line": 265,
 					"column": 15,
 					"label": ""
 				}
@@ -151,6 +151,21 @@
 				{
 					"line": 192,
 					"column": 28,
+					"label": ""
+				}
+			]
+		},
+		{
+			"path": "prototypes/_lab/tech_stack/_software_architecture/network_science.txt",
+			"bookmarks": [
+				{
+					"line": 8,
+					"column": 0,
+					"label": ""
+				},
+				{
+					"line": 47,
+					"column": 11,
 					"label": ""
 				}
 			]

@@ -1,18 +1,22 @@
 list of level 1 subjects
-  - Computer Network
+  - Network science
+    Computer Network
+    Telecommunications network
   
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
-⚓ Computer Network ; https://en.wikipedia.org/wiki/Computer_network
+⚓ Network science ; https://en.wikipedia.org/wiki/Telecommunications_network
+※※※※※※※※※※※※※※※
+Network types 🔪⚓ Computer Network ; https://en.wikipedia.org/wiki/Computer_network
+  # Network types
+    ⚓ Multiplexing ; https://en.wikipedia.org/wiki/Multiplexing
+      In telecommunications and computer networking, multiplexing (sometimes contracted to muxing) is a method by which multiple analog or digital signals are combined into one signal over a shared medium.
 
 
 
-
-
-
-⚓🔰 syncword | sync character | sync sequence | preamble ; https://en.wikipedia.org/wiki/Syncword
+⚓📰🔰 syncword | sync character | sync sequence | preamble ; https://en.wikipedia.org/wiki/Syncword
   ... is used to synchronize a data transmission by indicating the end of header information and the start of data.
     The syncword is a known sequence of data used to identify the 🚣 start of a frame, and is also called 🪱 reference signal or 🪱 midamble 🚣 in wireless communications.
-Prefix codes allow unambiguous identification of synchronization sequences and may serve as self-synchronizing code.
+  Prefix codes allow unambiguous identification of synchronization sequences and may serve as self-synchronizing code.
 
 
 
@@ -34,13 +38,14 @@ DNS 🪶 Glossary (still not grouped)
 
 
 
-⚓ 
-Datagram nomenclature
-OSI layer	Name
-Layer 4	TCP segment
-Layer 3	Network packet
-Layer 2
-  Ethernet frame (IEEE 802.3)
-  Wireless LAN frame (IEEE 802.11)
-Layer 1	Chip (CDMA)
+
+
+
+
+
+
+※※※※※※※※※※※※※※※
+Network types 🔪⚓ Telecommunications network ; https://en.wikipedia.org/wiki/Telecommunications_network
+  ⚓ Multiplexing ; https://en.wikipedia.org/wiki/Multiplexing
+    In telecommunications and computer networking, multiplexing (sometimes contracted to muxing) is a method by which multiple analog or digital signals are combined into one signal over a shared medium.
 

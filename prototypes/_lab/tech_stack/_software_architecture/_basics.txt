@@ -1,5 +1,18 @@
 
 ----------------------------------------------
+⚓📎 Task (computing) ; https://en.wikipedia.org/wiki/Task_(computing)
+  In computing, a task is a unit of execution or a unit of work.
+  The term is 🔑 ambiguous; precise alternative terms include process, light-weight process, thread (for execution), step, request, or query (for work).
+      🛍️ e.g. 🖼️ In the adjacent diagram, there are queues of incoming work to do and outgoing completed work, and a thread pool of threads to perform this work.
+    Either the work units themselves or the threads that perform the work can be referred to as "tasks"
+    , and these can be referred to respectively as requests/responses/threads, incoming tasks/completed tasks/threads (as illustrated), or requests/responses/tasks.
+
+⚓📎 Instance (computer science) ; https://en.wikipedia.org/wiki/Instance_(computer_science)
+  In computer science, an instance is an occurrence of a software element that is based on a type definition.
+  When created, an occurrence is said to have been 🪱 instantiated, and both the creation process and the result of creation are called 🪱 instantiation.
+
+
+----------------------------------------------
 ⚓ Function (computer programming) ; https://en.wikipedia.org/wiki/Function_(computer_programming)
   | procedure | method | subroutine | routine | subprogram
 
@@ -11,3 +24,43 @@
         , which is known as 🪱 synchronous or blocking.
       The function that accepts a callback may be designed to 🚣 store the callback so that it (🖊️ ; callback) can be called back after returning
         , which is known as 🪱 asynchronous, non-blocking or deferred.
+
+
+⚓ Process (computing) ; https://en.wikipedia.org/wiki/Process_(computing)
+  In computing, a process is the instance of a computer program that is being executed by one or many threads.
+  🖼️📍 (🆚 Program, Process, Thread) and (Scheduling, Preemption, Context Switching)
+    📝 Description
+      1. Program to Process Transformation
+        - 💡 A program stored on a disk is a set of instructions.
+        - When executed by the operating system (OS), it is instantiated as a process and loaded into RAM.
+          The "Instantiate" process converts a program into a running process.
+
+      2. Relationship Between Process and Thread
+        - A process is an independent execution unit residing in RAM.
+        - A process can contain multiple threads, which 🚣 share the process’s resources.
+          The lower right section of the image illustrates that each process (Process #1, #2, #M) contains multiple threads.
+
+      3. CPU Scheduling, Context Switching, and Thread Prioritization
+        - The CPU must select one process/thread to execute at any given time.
+          The scheduler (part of the OS) chooses which thread to run next based on priority.
+        - Context switching occurs when the CPU switches from one thread to another.
+          Preemption occurs when a running thread is interrupted and replaced by another thread.
+        - Each thread has a priority level, determining its likelihood of execution.
+          🛍️ e.g.
+            - Thread #1 (High Priority) → More likely to be executed first.
+            - Thread #4 (Low Priority) → Less likely to be executed soon.
+          The scheduler decides the execution order based on priority.
+
+⚓📎 Thread (computing) ; https://en.wikipedia.org/wiki/Thread_(computing)
+  In computer science, a thread of execution is the smallest sequence of programmed instructions that can be managed independently by a scheduler, which is typically a part of the operating system.
+  📍 The multiple threads of a given process may be executed concurrently (via multithreading capabilities), sharing resources such as memory, while different processes do not share these resources.
+    In particular, the threads of a process share its executable code and the values of its dynamically allocated variables and non-thread-local global variables at any given time.
+  🚣 The implementation of threads and processes differs between operating systems.
+
+
+----------------------------------------------
+⚓📎 Polling (computer science) | interrogation ; https://en.wikipedia.org/wiki/Polling_(computer_science)
+  ... refers to 🔑 actively 🚣 sampling the status of an external device by a client program as a 🔑 synchronous activity.
+  Polling is most often used in terms of input/output (I/O), and is also referred to as 🪱 polled I/O or 🪱 software-driven I/O.
+    🛍️ A good example of hardware implementation is a 💡 watchdog timer.
+

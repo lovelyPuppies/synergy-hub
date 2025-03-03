@@ -162,6 +162,29 @@ Wikipedia
 
 
 
+
+  ⚓ A watchdog timer (WDT) | computer operating properly timer (COP timer) ; https://en.wikipedia.org/wiki/Watchdog_timer
+    📝🛍️ e.g. Watchdog Timer (WDT) Presence in Arduino Uno R3, Raspberry Pi 4B, and STM32F411RE 📅 2025-03-04 05:46:09
+      Arduino Uno R3
+        - Built-in WDT in ATmega328P microcontroller.
+        - Controlled via WDTCSR (Watchdog Timer Control Register).
+        - Enabled using avr/wdt.h in the Arduino IDE.
+
+      Raspberry Pi 4B
+        - Built-in WDT in BCM2711 SoC.
+        - Configurable via bcm2835_wdt driver in Linux.
+        - Can be managed using /dev/watchdog after installing the watchdog package.
+
+      STM32F411RE
+        - Supports both Independent (IWDG) and Windowed (WWDG) Watchdog Timers.
+        - IWDG runs in low power mode and resets the system if unresponsive.
+        - Configurable using the STM32 HAL library.
+    ... is an electronic or software timer that is used to detect and recover from computer malfunctions.
+    Watchdog timers are widely used in computers to facilitate automatic correction of temporary hardware faults, and to prevent errant or malevolent software from disrupting system operation.
+
+    📍 Microcontrollers often include an integrated, on-chip watchdog. In other computers the watchdog may reside in a nearby chip that connects directly to the CPU, or it may be located on an external expansion card in the computer's chassis.
+
+
 ----------------------------------------------
 (temp; Still not ground)
 
@@ -204,6 +227,10 @@ Wiktionary
     Noun
       pros and cons pl (plural only)
         1.(plural only) The positive and negative attributes of arguments.
+  - lend itself to ; https://en.wiktionary.org/wiki/lend_itself_to#English 
+    Verb
+      lend itself to (third-person singular simple present lends itself to, present participle lending itself to, simple past and past participle lent itself to)
+        1. (transitive, idiomatic) To be suitable for. 
 
 
   - nil ; https://en.wiktionary.org/wiki/nil#English
@@ -216,7 +243,6 @@ Wiktionary
         1. (computing) An instruction or operation that has no effect; a null operation.
   
   
-
   - deflate ; https://en.wiktionary.org/wiki/deflate#English
     Verb
       deflate (third-person singular simple present deflates, present participle deflating, simple past and past participle deflated)
@@ -226,12 +252,15 @@ Wiktionary
       2. inflate (third-person singular simple present inflates, present participle inflating, simple past and past participle inflated)
         (transitive, computing) To decompress (data) that was previously deflated.
 
-
-  - lend itself to ; https://en.wiktionary.org/wiki/lend_itself_to#English 
-    Verb
-      lend itself to (third-person singular simple present lends itself to, present participle lending itself to, simple past and past participle lent itself to)
-        1. (transitive, idiomatic) To be suitable for. 
-
+  🔰 (with Proposition)
+    - during ; https://en.wiktionary.org/wiki/during#English
+      Preposition
+        during
+          2. At any time or period within a given time interval.
+    - over ; https://en.wiktionary.org/wiki/over#English
+      Preposition
+        over
+          3. During or throughout (a time period). 
 
 ----------------------------------------------
 Wiktionary 🔪 Abbreviation

@@ -123,62 +123,66 @@ Programming Paradigms
             - FD registration method: select/poll requires passing the full list each time, epoll registers FDs once and manages them efficiently.
 
         🛍️ e.g. I/O Multiplexing using select()
-          🏗️: Reactor pattern 
-          ```C++
-          /* ❗ Note that "select()" itself is NOT Non-Blocking + Synchronous I/O.
-            It is a tool for multiplexing synchronous I/O operations (e.g., read(), write()).
-            This code is Non-Blocking + Synchronous I/O because read() is synchronous, 
-          */
 
-          /* ❗ Note that "select()" itself is NOT Non-Blocking + Synchronous I/O.
-            `It` is a tool for multiplexing synchronous I/O operations (e.g., read(), write()).
-            This code is Non-Blocking + Synchronous I/O because read() is synchronous, 
-            but select() helps avoid blocking until data is available.
+        
+          🏗️: The example: The Reactor pattern inherently performing 🚣 multitasking
           
-          * Concurrency in this code:
-            - The `select()` function enables concurrency by monitoring multiple sockets simultaneously.
-            - It allows the program to check multiple file descriptors (FDs) at once and process only the ready ones.
-            - This prevents the program from blocking on a single `read()` operation, enabling efficient time-slicing between multiple connections.
-            - While `read()` itself is synchronous, `select()` ensures that the program does not get stuck on any single I/O operation.
-            - This provides concurrency by handling multiple tasks in a single-threaded event loop.
-          
-          * Time-Slicing Effect:
-            - `select()` enables a form of time-slicing by checking multiple sockets and only processing those that are ready.
-            - This avoids unnecessary CPU time being wasted on waiting, similar to how an OS scheduler switches between processes.
-            - The effect is that multiple I/O-bound tasks can progress concurrently, even though they are handled sequentially.
+          ```C++
+          /*
+            About select():
+              `select()` is a synchronous I/O multiplexing function that allows a program to monitor multiple file descriptors (FDs) simultaneously.
+                - It checks which FDs are ready for I/O operations and 🚣 returns the set of FDs that are available, 🚣 avoiding unnecessary blocking.
+            
+            📈 Synchronous + Non-Blocking I/O:
+              This code follows the Synchronous + Non-Blocking I/O model.
+                `select()` prevents blocking by ensuring that `read()` is only called when data is available.
+              ❗ However, `read()` itself remains a synchronous operation and does not perform non-blocking reads.
+
+            📈 Concurrency and Reactor Pattern:
+              This code enables concurrency by allowing multiple I/O operations to be managed within a single thread.
+                - `select()` detects ready sockets and allows the program to process multiple I/O events efficiently.
+                  🔑 The detected input is forwarded to the appropriate handler for processing, and the loop in the `while` statement repeats.
+                  This ensures that multiple tasks are handled in a 🚣 time-slicing manner, thus satisfying the definition of concurrency.
+                - `select()` itself is not event-driven but performs 🚣 polling to determine available I/O events.
+              This mechanism aligns with the Reactor pattern, where the program continuously monitors multiple I/O sources and processes events as they become available.
           */
 
           fd_set read_fds;
           FD_ZERO(&read_fds);
-          FD_SET(socket_fd, &read_fds);
+          FD_SET(socket1, &read_fds);
+          FD_SET(socket2, &read_fds);
+          FD_SET(socket3, &read_fds);
 
-          struct timeval timeout;
-          timeout.tv_sec = 0;     // Non-blocking mode
-          # timeout.tv_sec = 1;   // 1 second wait
-          timeout.tv_usec = 0;
+          // Set the highest file descriptor number + 1
+          int max_fd = socket3 + 1;
 
-          /* 🚣 `select()` checks if data is available.
-            This allows the program to efficiently check multiple I/O sources 🚣 without blocking.
-            - If data is present, it returns immediately.
-            - If no data is available, it returns immediately with a value of 0.
-          */
-          int ret = select(socket_fd + 1, &read_fds, NULL, NULL, &timeout);
+          // Set timeout to 5 seconds
+          struct timeval timeout = {5, 0};
+
+          // select() detects all 🚣 ready file descriptors at once
+          int ret = select(max_fd, &read_fds, NULL, NULL, &timeout);
           if (ret > 0) {
-            char buffer[1024];
-
-            /* 💡 `read()` is a Synchronous + Blocking I/O operation.
-              Normally, `read()` would block if there is no data.
-                However, `select()` ensures that `read()` is only called 🚣 when data is available.
-                📈 The `select()` prevents `read()` from blocking unnecessarily, effectively making it behave as Non-blocking I/O.
-            */
-            read(socket_fd, buffer, sizeof(buffer));
-
-            printf("Received: %s\n", buffer);
+              // Check if socket1 has data available
+              if (FD_ISSET(socket1, &read_fds)) {
+                  printf("Data available on socket1\n");
+              }
+              // Check if socket2 has data available
+              if (FD_ISSET(socket2, &read_fds)) {
+                  printf("Data available on socket2\n");
+              }
+              // Check if socket3 has data available
+              if (FD_ISSET(socket3, &read_fds)) {
+                  printf("Data available on socket3\n");
+              }
+          } else if (ret == 0) {
+              // Timeout case: No data available
+              printf("Timeout: No data available.\n");
           } else {
-            printf("No data available, retrying...\n");
+              // Handle select() error
+              perror("select error");
           }
-          ```
 
+          ```
           Reference
             https://stackoverflow.com/questions/57298111/why-is-select2-called-synchronous-multiplexing
             https://stackoverflow.com/questions/7209057/does-poll-epoll-block-how-is-it-different-from-async-io
@@ -187,7 +191,7 @@ Programming Paradigms
         The request returns immediately, and the result is later handled through an event or callback.
 
         🛍️ e.g. boost asio ...
-          🏗️: Proactor pattern
+          🏗️: Proactor pattern (Event-driven)
 
 
   ⚓ Synchronization (computer science) ; https://en.wikipedia.org/wiki/Synchronization_(computer_science)
