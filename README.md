@@ -36,9 +36,10 @@ tree [**prototypes/\_lab/tech_stack**](prototypes/_lab/tech_stack)
  ├── 📂 database  
  │&nbsp;&nbsp;&nbsp;&nbsp;└── [![MariaDB](https://img.shields.io/badge/MariaDB-003545?style=plastic&logo=mariadb&logoColor=white)](prototypes/_lab/tech_stack/database/mariadb.txt)  
  ├── 📂 software_architecture  
- │&nbsp;&nbsp;&nbsp;&nbsp;└── [design_pattern](prototypes/_lab/tech_stack/_software_architecture/design_pattern.txt)  
  │&nbsp;&nbsp;&nbsp;&nbsp;├── [os](prototypes/_lab/tech_stack/_software_architecture/os.txt)  
- │&nbsp;&nbsp;&nbsp;&nbsp;├── [programming_paradigms](prototypes/_lab/tech_stack/_software_architecture/programming_paradigms.txt)  
+ │&nbsp;&nbsp;&nbsp;&nbsp;├── 📂 programming_models  
+ │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;├── [design_pattern](prototypes/_lab/tech_stack/_software_architecture/programming_models/design_pattern.txt)  
+ │&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── [programming_paradigms](prototypes/_lab/tech_stack/_software_architecture/programming_models/programming_paradigms.txt)  
  │&nbsp;&nbsp;&nbsp;&nbsp;└── 📂 toolchain  
  │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── 📂：![LLVM](https://img.shields.io/badge/LLVM-%23262D3A.svg?style=plastic&logo=llvm&logoColor=white)  
  │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── [**clang**](prototypes/_lab/tech_stack/toolchain/llvm/clang.txt)  

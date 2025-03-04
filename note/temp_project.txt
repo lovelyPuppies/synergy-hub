@@ -22168,11 +22168,7 @@ Prefix codes allow unambiguous identification of synchronization sequences and m
 
 # ISO 21384:...: Unmanned aircraft systems
 
-Organization
-  ⚓ SAE (Society of Automotive Engineers) International ; https://en.wikipedia.org/wiki/SAE_International
-  ⚓ Internet Engineering Task Force (IETF) ; https://en.wikipedia.org/wiki/Internet_Engineering_Task_Force
-  ⚓ International Organization for Standardization (IEC) ; https://en.wikipedia.org/wiki/International_Organization_for_Standardization
-  
+
 
 
 
@@ -22383,3 +22379,49 @@ fieldbus ??
   필드버스(fieldbus)는 실시간 분산 제어를 위해 사용되는 산업용 컴퓨터 네트워크 프로토콜 집합의 통칭으로서, 현재 IEC 61158로 표준화되어 있다.
 
 
+
+
+1. TI microprocessor 
+
+PIC (Peripheral Interface Controller)
+  PIC MCU는 다양한 주변 장치와의 연결을 위해 여러 인터페이스를 제공함.
+  대표적인 인터페이스: UART, SPI, I²C, CAN, USB, GPIO 등
+
+⚓ Processor (computing) ; https://en.wikipedia.org/wiki/Processor_(computing)
+  ⚓ Computer architecture ; https://en.wikipedia.org/wiki/Computer_architecture
+    ⚓ Von Neumann architecture ; https://en.wikipedia.org/wiki/Von_Neumann_architecture
+    ⚓ Harvard architecture ; https://en.wikipedia.org/wiki/Harvard_architecture
+    ⚓ Modified Harvard architecture ; https://en.wikipedia.org/wiki/Modified_Harvard_architecture
+PC
+  폰 노이만(Neumann) 아키텍처를
+    프로그램 코드와 데이터를 하나의 메모리에서 저장하고 하나의 버스로 접근
+    메모리를 유동적으로 사용할 수 있음 (ex. 프로그램 실행 중에 코드 메모리를 동적으로 변경 가능)
+    코드를 쉽게 수정하고 업데이트 가능
+    
+    // 명령어와 데이터 동시 처리 가능 → 빠른 속도
+    // 일반 PC, x86 & ARM CPU, 서버, 스마트폰
+  하버드(Harvard) 아키텍처
+    프로그램 코드와 데이터를 분리된 메모리에 저장하고, 각각의 버스로 접근
+    메모리 구조가 복잡해지고, 하드웨어 비용이 증가
+    메모리 낭비가 발생할 가능성 → 명령어 메모리가 남아도 데이터 메모리가 부족할 수도 있고, 반대로 데이터 공간이 남아도 코드 메모리가 부족할 수도 있음.
+
+    // 메모리 효율적, 범용 OS와 호환, 소프트웨어 개발 용이
+    // 임베디드 시스템, DSP(디지털 신호 처리), 마이크로컨트롤러    
+
+
+코드 메모리 (Code Memory)
+  역할: 실행할 프로그램의 명령어(Instructions)를 저장하는 공간
+데이터 메모리 (Data Memory)
+  역할: 실행 중에 생성되고 변경되는 데이터(변수, 스택 등)를 저장하는 공간
+
+
+1. 어떤 움직이는 물체에 RF 신호를 주어 도플러효과?반사파?를 사용해서 FFT 변환해서? DMA? 인터럽트? 방식으로 ADC 를 구현했다. 라고 하던데.. 
+  ❓ 이게 문장이 뭔소린지도 모르겟고 각 용어도 하나도 모르겟어: ❓ RF 신호, ❓ 도플러효과, ❓ FFT 변환, ❓ DMA/인터럽트 방식? ❓ ADC? 
+2. ❓ RS 232, 482, 485 이런게 뭐지? 그리고 어떤 것들에 대해 jig1 ~ jig8 까지 있는데. ❓ jig 는 뭐지?
+  각 jig 는 6개의 시리얼 포트가 있는데, 이거를 stm32 에 연결해서 이 각 시리얼에서 오는 신호(이름..이 있나? 구분가능한가 이름으로? ❓ udev?) 를 패킷으로 만들어서 PC 에 전송해야 해.
+  ❓ 그래서 최소 6개의 입력 시리얼 포트 + 출력 + 내장 디버깅 포트/모듈이 있는 stm32 제품 추천해줘. (2025년 기준)
+  ❓ 그리고 패킷 이거.. 무결성 유지하려면 어떻게 만들어서 전송해야하지? 시리엁 통신? TCP? syncword? 
+3. ❓ rtsp vs webrtc 중에 뭐가 더빠르지? 스트리밍해야하는데.. 아니면 또다른 최신 (2025년 기준) 프로토콜이 있나?
+  지연이 없어야 해. 
+  그리고 ❓ overshoot ? 뭐라고하던데? 카메라 포착중에 다른것을 포착하도록 해야할때 카메라가 급작스럽게 변하지 않도록 하는 용어가.. 뭐더라.
+  

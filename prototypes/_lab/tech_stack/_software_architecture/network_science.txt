@@ -52,4 +52,3 @@ Network types 🔪⚓ Telecommunications network ; https://en.wikipedia.org/wiki
   ⚓ Multiplexing ; https://en.wikipedia.org/wiki/Multiplexing
     In telecommunications and computer networking, multiplexing (sometimes contracted to muxing) is a method by which multiple analog or digital signals are combined into one signal over a shared medium.
   
-  ⚓ Self-synchronizing code ; https://en.wikipedia.org/wiki/Self-synchronizing_code

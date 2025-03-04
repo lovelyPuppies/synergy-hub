@@ -80,3 +80,11 @@
     When the event loop forms the central control flow construct of a program, as it often does, it may be termed the main loop or 🪱 main event loop.
       This title is appropriate, because such an event loop is at the highest level of control within the program.
 
+
+
+----------------------------------------------
+(Organization for Standardization)
+  ⚓ SAE (Society of Automotive Engineers) International ; https://en.wikipedia.org/wiki/SAE_International
+  ⚓ Internet Engineering Task Force (IETF) ; https://en.wikipedia.org/wiki/Internet_Engineering_Task_Force
+  ⚓ International Organization for Standardization (IEC) ; https://en.wikipedia.org/wiki/International_Organization_for_Standardization
+  
