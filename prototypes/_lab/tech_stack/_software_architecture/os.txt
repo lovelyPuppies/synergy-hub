@@ -5,6 +5,22 @@ list of level 1 subjects
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※  
 ⚓ OS ; https://en.wikipedia.org/wiki/Operating_system
 
+
+================================================
+⚓ Kernel (operating system) ; https://en.wikipedia.org/wiki/Kernel_(operating_system)
+  
+  # Components
+    ⚓📎🪱 User space (| userland) and kernel space ; https://en.wikipedia.org/wiki/User_space_and_kernel_space
+      🗒️ Contents
+        A modern computer operating system usually uses virtual memory to provide separate address spaces or separate regions of a single address space, called user space and kernel space.[
+        Primarily, this separation serves to provide memory protection and hardware protection from malicious or errant software behaviour.
+          - Kernel space is strictly reserved for running a privileged operating system kernel, 🪱 kernel extensions, and most device drivers.
+          - In contrast, user space is the memory area where application software and some drivers execute, typically one address space per process.
+        #️⃣ Overview ; https://en.wikipedia.org/wiki/User_space_and_kernel_space#Overview
+          🖼️ Various layers within Linux, also showing separation between the userland and kernel space
+
+
+
 ================================================
 ⚓ Process management ; https://en.wikipedia.org/wiki/Process_management_(computing)
   🗒️ Contents
@@ -16,7 +32,7 @@ list of level 1 subjects
       ... specifies and tracks the process state (i.e. new, ready, running, waiting or terminated).
       #️⃣ Structure ; https://en.wikipedia.org/wiki/Process_control_block
 
-  ⚓ Context switch ; https://en.wikipedia.org/wiki/Context_switch
+  ⚓🪱 Context switch ; https://en.wikipedia.org/wiki/Context_switch
     In computing, a context switch is the process of storing the state of a process or thread, so that it can be restored and resume execution at a later point, and then restoring a different, previously saved, state.
     🗒️ Contents
       The precise meaning of the phrase "context switch" varies. ...
@@ -41,10 +57,10 @@ list of level 1 subjects
               In the end, there is actually a necessary 🚣 partial context switch when entering the kernel through a system call but 🚣 it doesn't involve switching the whole process.
                 🖊️ Since each process has a dedicated kernel stack, which includes space for storing CPU registers during a system call, the overhead is minimized as the kernel doesn't need to modify the page tables.
 
-              ... (💡 details)
-              The process has all its instructions and data in the lower half while the kernel is stored in the top half.
-              The kernel is shared between all processes by making the top half of the virtual address space global in the page tables.
-              This makes sure that, when the CR3 register is changed, the TLB is not flushed for this portion.
+              ... (💡 details for x86-based system)
+                The process has all its instructions and data in the lower half while the kernel is stored in the top half.
+                📍 The kernel is shared between all processes by making the top half of the virtual address space global in the page tables.
+                This makes sure that, when the CR3 register is changed, the TLB is not flushed for this portion.
 
   ⚓ Interrupt | trap ; https://en.wikipedia.org/wiki/Interrupt
 
@@ -102,7 +118,7 @@ list of level 1 subjects
 ----------------------------------------------
 
 
-================================================
+※※※※※※※※※※※※※※※
 ⚓ Memory Management ; https://en.wikipedia.org/wiki/Memory_management
   # Hardware
     ⚓ Memory management unit (MMU) ; https://en.wikipedia.org/wiki/Memory_management_unit
@@ -115,3 +131,11 @@ list of level 1 subjects
     ⚓ Page table ; https://en.wikipedia.org/wiki/Page_table
       A page table is a data structure used by a virtual memory system in a computer to store mappings between virtual addresses and physical addresses.
     
+
+
+  # Memory management, resource protection ; << 
+    ⚓🪱 Protection ring | hierarchical protection domains ; https://en.wikipedia.org/wiki/Protection_ring
+      # Modes
+        #️⃣ Supervisor mode ; https://en.wikipedia.org/wiki/Protection_ring#Supervisor_mode
+        #️⃣ Hypervisor mode ; https://en.wikipedia.org/wiki/Protection_ring#Hypervisor_mode
+
