@@ -27,8 +27,6 @@ Wikipedia
           💡 BSPs are typically customizable, allowing the user to specify which drivers and routines should be included in the build based on their selection of hardware and software options.
           🚣 Some suppliers also provide a root file system, a toolchain for building programs to run on the embedded system, and utilities to configure the device (while running) along with the BSP.
 
-    ⚓📎 System call ; https://en.wikipedia.org/wiki/System_call
-      System calls provide an essential interface between a process and the operating system.
 
 
     ⚓📎 Out of memory (OOM) ; https://en.wikipedia.org/wiki/Out_of_memory

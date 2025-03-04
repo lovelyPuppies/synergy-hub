@@ -51,6 +51,7 @@
             - Thread #4 (Low Priority) → Less likely to be executed soon.
           The scheduler decides the execution order based on priority.
 
+
 ⚓📎 Thread (computing) ; https://en.wikipedia.org/wiki/Thread_(computing)
   In computer science, a thread of execution is the smallest sequence of programmed instructions that can be managed independently by a scheduler, which is typically a part of the operating system.
   📍 The multiple threads of a given process may be executed concurrently (via multithreading capabilities), sharing resources such as memory, while different processes do not share these resources.
