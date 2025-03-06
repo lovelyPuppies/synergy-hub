@@ -22425,3 +22425,94 @@ PC
   지연이 없어야 해. 
   그리고 ❓ overshoot ? 뭐라고하던데? 카메라 포착중에 다른것을 포착하도록 해야할때 카메라가 급작스럽게 변하지 않도록 하는 용어가.. 뭐더라.
   
+Tapered 
+
+
+그러면 송신 측과 수신 측의 CRC 테이블이 같아야 할까?
+  ✅ 맞다. 송신 측과 수신 측이 동일한 CRC 알고리즘과 테이블을 사용해야 동일한 결과가 나온다.
+
+
+
+CRC8, CRC16, CRC32 등의 숫자는 CRC의 다항식 길이를 의미합니다.
+
+CRC8: 8비트 (1바이트)로 표현되는 CRC 값 (ex: 0x07)
+CRC16: 16비트 (2바이트)로 표현되는 CRC 값 (ex: 0x1021)
+CRC32: 32비트 (4바이트)로 표현되는 CRC 값 (ex: 0x04C11DB7)
+
+
+
+CRC-8 CCITT 표준
+
+>> QT 가 비동기코드가 필요한가?
+6 쓰레드?
+윈도우 Comport 로 들어가나 이게?
+엑셀기능.
+ 
+?소켓통신인가 이거 머지? serial print 에 한 거를  어떻게 가능한가
+
+
+- 광택 있는 테이퍼드 팬츠
+- 새틴 나일론 슬림핏 팬츠
+- 고급스러운 광택 팬츠 남성 / 실키한 남자 바지
+- 셔츠랑 어울리는 슬림핏 나일론 팬츠
+- 슬림핏 새틴 팬츠 / 광택 나는 슬림핏 조거
+- 샤이니 나일론 테이퍼드 팬츠
+- 미니멀 조거 팬츠 / 테이퍼드 핏 나일론 팬츠
+- 세미 정장 느낌 나는 트랙팬츠
+- 캐주얼 사원복 바지 남성
+
+⚓ Change Request | Change Control Request (CCR) ; https://en.wikipedia.org/wiki/Change_request
+
+
+
+uint8_t calculate_crc8(uint8_t *data, int length) {
+    uint8_t crc = 0x00; // 초기값
+    for (int i = 0; i < length; i++) {
+        crc = crc8_table[crc ^ data[i]];  // ❓ 근데 왜 crc ^ data[i] 에 대한 index 에 해당되는 cc8_table 의 값을 crc 에 할당함?
+    }
+    return crc;
+}
+
+
+다음 너가 써준 것에 대해서 실제 예시로 열려줘. 어떻게 진행되는지 각 루프에서..
+```
+(crc & 0x80) 조건의 의미
+CRC 계산은 비트 단위 연산을 수행하는데,
+데이터를 처리할 때 **비트가 왼쪽으로 한 칸씩 이동(shift)**하면서 나눗셈을 진행합니다.
+
+if (crc & 0x80)
+    crc = (crc << 1) ^ polynomial;
+else
+    crc <<= 1;
+(crc & 0x80)는 가장 왼쪽 비트(최상위 비트)가 1인지 확인하는 조건입니다.
+최상위 비트가 1이면, CRC 연산 중 다항식(polynomial)을 XOR 합니다.
+→ 다항식으로 나누는 과정에서 나머지를 조정하는 과정.
+최상위 비트가 0이면, 그냥 crc <<= 1 해서 다음 비트로 진행합니다.
+→ 이 경우, 특별한 조정 없이 그냥 이동만 합니다.
+💡 왜 0x80을 체크할까?
+
+CRC8은 8비트 연산을 하므로 최상위 비트(8번째 비트)가 1인지 확인해야 함.
+만약 1이면 다항식을 XOR하여 보정해야 올바른 CRC 값이 나옴.
+```
+
+
+#️⃣ Introduction ; https://en.wikipedia.org/wiki/Cyclic_redundancy_check#Introduction
+  Specification of a CRC code requires definition of a so-called 🪱 generator polynomial.
+  This polynomial becomes the 🪱 divisor in a polynomial long division
+    , which takes the message as the dividend and in which the quotient is discarded and the remainder becomes the result.
+#️⃣ Polynomial representations ; https://en.wikipedia.org/wiki/Cyclic_redundancy_check
+  - 🪱 CRC-8-CCITT
+
+📍 이진수에서는 XOR이 뺄셈 역할을 한다
+  1 - 1 = 0
+  1 - 0 = 1
+  0 - 1 = 1 (이진수에서는 반대로 되기 때문에, XOR로 해결)
+
+
+2️⃣ CRC 계산 과정 (다항식 나눗셈)
+  이진수에서는 나눗셈을 할 때,
+    첫 번째 비트가 1이면 나누는 다항식과 XOR 연산을 수행한다.
+    첫 번째 비트가 0이면 XOR을 하지 않고 그냥 다음 비트를 추가한다.
+
+다항식의 나눗셈; https://golbanglibrary.tistory.com/20
+  

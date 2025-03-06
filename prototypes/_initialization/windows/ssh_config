@@ -2,8 +2,8 @@
 
 # from tailscale
 Host tailscale-machine
-  HostName 100.89.132.110
-  User wbfw109v2
+  HostName 100.127.117.68
+  User dst01
   ForwardX11Trusted yes
   ForwardX11 yes
   # start comamnd with %shell> code ~/repos/synergy-hub/.vscode/synergy-hub.code-workspace
