@@ -22639,9 +22639,10 @@ FEC 알고리즘(특히 LDPC, 터보 코드 등)은 수학적으로 복잡하며
 
 
 
+# cp 명령어로 ./dataset 폴더를 제외하고 현재 폴더의 모든 파일 및 폴더 복사하는 방법
+rsync -av --progress --exclude=dataset ./ /복사할_디렉토리/
+
 TODO
   - Gitlab self-hosting with TLS and DNS resolve
   - QT crosscompile in Pure ubuntu or WSL to target Native Windows (not using MinGW).
 
-
-a

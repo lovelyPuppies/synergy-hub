@@ -211,17 +211,61 @@ Git 🔪 Docs ; https://git-scm.com/docs
   # Plumbing Commands
 
 (✍️ Git study)
-  - [Trend] ❌ Do not use git checkout ; https://github.blog/open-source/git/highlights-from-git-2-23/ 📅 2024-12-10 18:57:04
+  📰🚨 (Issue: Bug); Git Rebase --root -i + Squash Issue Analysis 📅 2025-03-09 04:10:05
+    📝📰 TODO: This issue highlights the need for verifying post-rebase changes carefully.
+    ➡️ Workaround
+      git reset --soft <commit_to_keep>
+
+      # Check the size of all files tracked by Git
+      git ls-files | xargs du -sh
+
+      git rm -r --cached .
+      git add .
+      git commit -m "Rebase --soft"
+
+
+    Occurred Scenario:
+      - Executed `git rebase --root -i`.
+      - Picked only the first and second commits, squashed all others.
+      - A merge commit existed from another branch in the commit history.
+      - Rebase failed fast-forwarding and caused conflicts.
+      - Conflict occurred in `temp_project.txt`, resolved successfully.
+      - However, after squash, some newly created or modified files (e.g., `_lab/cloathing.txt`) were missing.
+      - Git reported the rebase as "successful," but some changes were lost.
+
+    📰❓ Possible Root Cause Analysis:
+      1. Merge Commit in History Prevents Fast-Forward
+        - Normally, `git rebase --root -i` applies commits sequentially.
+        - If a merge commit exists, Git cannot perform a simple linear rebase.
+        - Instead, it forces conflict resolution, which can lead to incorrect file merging.
+        - `_lab/cloathing.txt` may have been omitted during this process.
+
+      2. Fast-Forward Not Possible, Causing Partial Merge Omissions
+        - If fast-forward is possible, Git simply stacks changes.
+        - When fast-forward is not possible due to a merge commit, Git internally `cherry-picks` commits.
+        - This re-application of changes may cause Git to ignore certain files based on conflict resolution logic.
+
+      3. Squash Conflicts May Lead to Automatic Change Omission
+        - Squash merges changes into the first `pick` commit.
+        - If conflicts occur, only the explicitly resolved files are retained.
+        - Unresolved or unmerged changes may be silently discarded by Git.
+        - Example: `temp_project.txt` conflict was resolved, but `_lab/cloathing.txt` might have been lost.
+
+    Additional Checks Needed:
+      - Run `git diff --name-status HEAD@{1} HEAD` to compare pre- and post-squash changes.
+      - Run `git log -- _lab/cloathing.txt` to check its commit history.
+      - Investigate how Git handles `cherry-pick` in the presence of a merge commit.
+  ℹ️ (About); ⭕ Do not use 🗑️ git checkout ; https://github.blog/open-source/git/highlights-from-git-2-23/ 📅 2024-12-10 18:57:04
     instead, use "git switch" and "git restore"
 
-  - ✅ (how-to); ways of Git remote access 📅 2023-01-11 19:00:56
+  ✅ (how-to); ways of Git remote access 📅 2023-01-11 19:00:56
     when git remote add origin <link> and on a state in which git credentials is not registered.
       - <link> = git@github.com:{username}/{project}.git
         This is treated as a remote address for SSH.
       - <link> = https://{username}:{password}@github.com/{username}/{project}.git
         This is treated as a remote address for HTTPS.
 
-  - ✅ (how-to); how to compress LZMA like .7z by filtering files list in .gitignore 📅 2022-12-15 00:58:00
+  ✅ (how-to); how to compress LZMA like .7z by filtering files list in .gitignore 📅 2022-12-15 00:58:00
     #!/bin/bash
     git archive main --format=tar | xz -vz --threads=2 > ../study-python.tar.xz
 
@@ -229,7 +273,9 @@ Git 🔪 Docs ; https://git-scm.com/docs
     # Note that xz and 7z use the same compression algorithm (LZMA). You can then unpack it with xz -d.
     # .tar (tape archive) does not compress size, only archive.
     # When I testing, .tar with xz will have most small size.
-  - ✅ (how-to); use SSH in git
+
+
+  ✅ (how-to); use SSH in git
     Solution
       (create SSH key)
         a. create ssh key in a host and save the key into arbitrary path.
@@ -251,7 +297,7 @@ Git 🔪 Docs ; https://git-scm.com/docs
       (clone) 
         %shell> git clone <ssh git URL> --config core.sshCommand="ssh -i <public key file>"
         git clone git@bitbucket.org:triiiplet/gs_store.git --config core.sshCommand="ssh -i gs_store_ssh_key"
-  - ✅ (how-to); create pull request
+  ✅ (how-to); create pull request
     Solution
       1 folk <original_repository> using source-code-hosting facilities.
       2 %shell> git clone <folked_repository>
