@@ -1,0 +1,333 @@
+list of level 1 subjects
+  - Programming Paradigms
+  
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※  
+Programming Paradigms
+
+----------------------------------------------
+⚓ Meta-programming ; https://en.wikipedia.org/wiki/Metaprogramming
+  Metaprogramming is a computer programming technique in which computer programs have the ability to treat other programs as their data.
+  🗒️ Contents
+  
+  ⚓ Generic programming ; https://en.wikipedia.org/wiki/Generic_programming
+    Generic programming is a style of computer programming in which algorithms are written in terms of data types to-be-specified-later that 🚣 are then instantiated when needed for specific types provided as parameters.
+    📈 This approach, ..., permits writing common functions or data types
+      that differ only in the set of types on which they operate when used, thus reducing duplicate code.
+
+
+    ⚓📎 decltype ; << https://en.wikipedia.org/wiki/Decltype
+      As generic programming techniques became increasingly popular, ...
+        Many compiler vendors implemented their own versions of the operator, typically called 🪱 typeof,
+        ... the C++ language, and suggested the name 🪱 "decltype", to reflect that the operator would yield the "declared type" of an expression.
+      📍 Like the sizeof[1] operator, decltype's operand is not evaluated.
+    ⚓ typeof ; << https://en.wikipedia.org/wiki/Typeof
+
+
+    ⚓⭕🖇️🪱 Trailing return type ; << https://en.wikipedia.org/wiki/Trailing_return_type 📅 2025-02-26 06:22:15
+      📝 Recommend using the trailing return type style for the following three reasons: 📅 2025-02-26 16:53:55
+        - Improved readability
+          Keeping the function name and parameters 🚣 first makes code easier to read, especially with complex return types.
+        - Better compatibility with coroutines and templates
+          Allows for flexible type deduction and cleaner syntax in generic and asynchronous functions.
+        - Consistency with Modern C++ style
+          Aligns with Boost.Redis and other modern C++ libraries, ensuring maintainability and a uniform coding style.
+          🚣 Similar to Python’s type hint syntax, making code more intuitive and expressive.
+      A trailing return type, a syntax feature available since C++11, is like a traditional return type, except that it is specified in a different location.
+      # Distinction from other language features
+        📝 Summary: Trailing return type uses the auto keyword but does not perform type inference, serving only as a syntactic element.
+      # Rationale
+        📝 Summary: Trailing return type was introduced to support generic programming, as traditional syntax requires the return type before parameters
+          , making type deduction from parameters impossible at the declaration stage.
+
+
+  ⚓📎 Reflective programming | reflection ; https://en.wikipedia.org/wiki/Reflective_programming
+    In computer science, reflective programming or reflection is the ability of a process to examine, introspect, and modify its own structure and behavior.
+
+※※※※※※※※※※※※※※
+(Concurrent, Distributed, Parallel, Asynchronous)
+
+
+(✍️ (Concurrent, Distributed, Parallel, Asynchronous) 🔪 study)
+  📝👁️ Do study to following items in order!
+  ----------------------------------------------
+  ℹ️ (About); (🆚 Concurrent Computing, Parallel Computing) 📅 2025-02-27 11:41:29
+    🔗 from https://en.wikipedia.org/wiki/Concurrency_(computer_science)#Related_concepts
+    Parallelism executes tasks independently on multiple CPU cores
+    , while concurrency manages multiple tasks on one or more cores, switching between threads or time-slicing without completing each one.
+    Programs may exhibit parallelism only, concurrency only, both parallelism and concurrency, neither.
+  ℹ️ (About); Combination of (🆚 Blocking, Non-blocking), (🆚 Synchronous, Asynchronous) 📅 2025-02-28 03:48:02
+    📝📍 Note that (Asynchronous ≠ Asynchronous I/O) and (Synchronous ≠ Synchronous I/O)
+      , while (Asynchronous I/O == Non-blocking I/O) and (Synchronous I/O == Blocking I/O) are valid concepts.
+    🛍️ e.g. Real-world Situation: A customer orders food at a restaurant, and the chef prepares the meal.
+
+    🆚 Synchronous, Asynchronous
+      ;  How chefs (tasks) prepare food (results) after an order
+      ; Asynchrony, in computer programming, refers to the occurrence of events independent of the main program flow and ways to deal with such events.
+        from 🔗 https://en.wikipedia.org/wiki/Asynchrony_(computer_programming)
+      
+      - Synchronous
+        The chef prepares one meal at a time, 🚣 in order.
+
+      - Asynchronous
+        The chef works on multiple orders at once and serves them as they are completed, 🚣 which may not be in the order they were requested.
+    
+    🆚 Blocking, Non-blocking
+      ; A process that is blocked is waiting for some event, such as a resource becoming available or the completion of an 📍 I/O operation.
+        from 🔗 https://en.wikipedia.org/wiki/Blocking_(computing)
+      ❔ How customers (processes) wait after ordering food
+
+      - Blocking
+        A customer waits in line after ordering until the food is ready (🚣 cannot do anything else).
+
+      - Non-blocking
+        A customer orders food and immediately sits down, doing other things until notified that the food is ready.
+
+    📍 Combination
+      ❗ CPU perspective does not matter. It should be considered from the I/O perspective.
+
+      * Synchronous      +  Blocking I/O
+        The process remains blocked until the I/O request completes.
+
+        🛍️ e.g.
+          ```C++
+          char buffer[1024];
+          // 🚣 The thread (or process) waits and cannot proceed until the I/O operation is completed.
+          read(socket_fd, buffer, sizeof(buffer));  
+          printf("Received: %s\n", buffer);  
+          ```
+
+      * Asynchronous     +  Blocking I/O
+        🛍️ e.g. Blocking + Asynchronous I/O with std::async() (Blocking on 🚣 Result Retrieval)
+          ```C++
+          // The I/O request is executed asynchronously; the 🚣 request returns immediately.
+          //  ❗ Note that "the request returns immediately" does not mean the I/O request is completed.
+          std::future<int> future = std::async(std::launch::async, [] {
+            std::this_thread::sleep_for(std::chrono::seconds(2));  // Simulates an asynchronous task that takes 2 seconds
+            return 42;
+          });
+
+          // 🚣 Other work can be done here without waiting for the result
+          printf("Doing other work...\n");
+
+          // 🚣 However, retrieving the result is blocking. The program must wait here.
+          int result = std::future.get();  
+          printf("Result: %d\n", result);
+          ```
+
+      * Synchronous     +   Non-Blocking I/O
+        💡 select, poll, and epoll are blocking by default but can be used in a non-blocking manner by setting the timeout to 0.
+          - Key differences between select, poll, and epoll:
+            - FD management:          select/poll scans all FDs, while epoll only tracks FDs with events.
+            - FD limit:               select has a hard limit (1024 by default), poll and epoll have no practical limit.
+            - FD registration method: select/poll requires passing the full list each time, epoll registers FDs once and manages them efficiently.
+
+        🛍️ e.g. I/O Multiplexing using select()
+          🏗️: The example: The Reactor pattern inherently performing 🚣 multitasking
+          
+          ```C++
+          /*
+            About select():
+              `select()` is a synchronous I/O multiplexing function that allows a program to monitor multiple file descriptors (FDs) simultaneously.
+                - It checks which FDs are ready for I/O operations and 🚣 returns the set of FDs that are available, 🚣 avoiding unnecessary blocking.
+            
+            📈 Synchronous + Non-Blocking I/O:
+              This code follows the Synchronous + Non-Blocking I/O model.
+                `select()` prevents blocking by ensuring that `read()` is only called when data is available.
+              ❗ However, `read()` itself remains a synchronous operation and does not perform non-blocking reads.
+
+            📈 Concurrency and Reactor Pattern:
+              This code enables concurrency by allowing multiple I/O operations to be managed within a single thread.
+                - `select()` detects ready sockets and allows the program to process multiple I/O events efficiently.
+                  🔑 The detected input is forwarded to the appropriate handler for processing, and the loop in the `while` statement repeats.
+                  This ensures that multiple tasks are handled in a 🚣 time-slicing manner, thus satisfying the definition of concurrency.
+                - `select()` itself is not event-driven but performs 🚣 polling to determine available I/O events.
+              This mechanism aligns with the Reactor pattern, where the program continuously monitors multiple I/O sources and processes events as they become available.
+          */
+
+          // Set the highest file descriptor number + 1
+          int max_fd = socket3 + 1;
+
+          // Set timeout to 1 second
+          struct timeval timeout = {1, 0};
+
+          // 🪱 Main Event Loop
+          while (true) {
+              FD_ZERO(&read_fds);
+              FD_SET(socket1, &read_fds);
+              FD_SET(socket2, &read_fds);
+              FD_SET(socket3, &read_fds);
+
+              // 🪱 Event Provider: select() monitors multiple file descriptors
+              //    select() detects all 🚣 ready file descriptors at once.
+              //    The detected data comes from the 🪱 message originator (e.g., a client sending data).
+              int ret = select(max_fd, &read_fds, NULL, NULL, &timeout);
+
+              if (ret > 0) {
+                  // 🪱 Event Dispatcher: Dispatches events to corresponding handlers
+                  if (FD_ISSET(socket1, &read_fds)) {
+                      printf("Data available on socket1\n");
+                  }
+                  if (FD_ISSET(socket2, &read_fds)) {
+                      printf("Data available on socket2\n");
+                  }
+                  if (FD_ISSET(socket3, &read_fds)) {
+                      printf("Data available on socket3\n");
+                  }
+              } else if (ret == 0) {
+                  // Timeout case: No data available
+                  printf("Timeout: No data available.\n");
+              } else {
+                  // Handle select() error
+                  perror("select error");
+                  break;
+              }
+          }
+ 
+          ```
+          Reference
+            https://stackoverflow.com/questions/57298111/why-is-select2-called-synchronous-multiplexing
+            https://stackoverflow.com/questions/7209057/does-poll-epoll-block-how-is-it-different-from-async-io
+
+      * Asynchronous    +   Non-Blocking I/O
+        The request returns immediately, and the result is later handled through an event or callback.
+
+        🛍️ e.g. boost asio ...
+          🏗️: Proactor pattern (Event-driven)
+
+
+  ⚓ Synchronization (computer science) ; https://en.wikipedia.org/wiki/Synchronization_(computer_science)
+    In computer science, synchronization is the task of coordinating multiple processes to join up or 🪱 handshake at a certain point, in order to reach an agreement or commit to a certain sequence of action.
+
+    from 🔗 https://en.wikipedia.org/wiki/Synchronization#Communication
+      In computer science (especially parallel computing), synchronization is the coordination of simultaneous threads or processes to complete a task with correct runtime order and no unexpected race conditions; see synchronization (computer science) for details.
+
+
+  ⚓🖇️ Asynchronous programming | Asynchrony ; https://en.wikipedia.org/wiki/Asynchrony_(computer_programming) 📅 2025-02-28 00:26:27
+    📝 Note that clicking on "asynchronous programming" at https://en.wikipedia.org/wiki/Cooperative_multitasking redirects to this page.
+    📍 Asynchrony, in computer programming, refers to the occurrence of events independent of the main program flow and ways to deal with such events.
+      These may be 🚣 "outside" events such as the arrival of signals, or 🚣 actions instigated by a program that take place concurrently with program execution
+      , 💡 without the program hanging to wait for results.
+        Asynchronous input/output is an example of the latter case of asynchrony, and lets programs issue commands to storage or network devices that service these requests while the processor continues executing the program.
+      Doing so provides a degree of 🪱 concurrency.
+    A common way for dealing with asynchrony in a programming interface is to provide
+      - subroutines that return a 🪱 future or 🪱 promise that represents the ongoing operation
+      - and a synchronizing operation that blocks until the future or promise is completed.
+
+
+    🛍️ Examples of asynchrony include the following:
+      - 🪱 Asynchronous procedure call, a method to run a procedure concurrently, a lightweight 🚣 alternative to threads.
+      - 🚣 Asynchronous method dispatch (AMD)
+        1. The servicing of a client request is immediately dispatched to an available thread from a pool of threads and the client is put in a blocking state.
+        2. Upon the completion of the task, the server is notified by a 🪱 callback.
+        3. The server unblocks the client and transmits the response back to the client.
+
+        In case of thread starvation, clients are blocked waiting for threads to become available.
+
+  ⚓🖇️ Asynchronous procedure call (APC) ; https://en.wikipedia.org/wiki/Asynchronous_procedure_call 📅 2025-02-27 23:54:34
+    An asynchronous procedure call (APC) is a function that executes asynchronously in the context of a particular thread.
+      from 🔗 https://learn.microsoft.com/en-us/windows/win32/sync/asynchronous-procedure-calls
+    
+    # Definition
+      Procedure calls can be synchronous or asynchronous.
+        Synchronous procedure calls are made on one thread in a series, with each call waiting for the prior call to complete on some thread.
+        APCs instead are made without waiting for prior calls to complete.
+    
+    # Structure
+      An APC is typically formed as an object with a small amount of memory and this object is passed to a service which handles the 🪱 wait interval
+      , activating it when the appropriate event (e.g., user input) occurs.
+
+      The life cycle of an APC 🌳 consists of 2 stages: 
+        - the passive stage, when it passively waits for input data
+        - and active state, when that data is calculated in the same way as at the usual procedure call.
+
+      A 🚣 reusable asynchronous procedure is termed 🪱 Actor.    // It is not a reusable asynchronous procedure "call",
+        📝 Simply calling the same asynchronous function twice does not necessarily mean it is "reusable." 📅 2025-02-27 23:47:02
+          A reusable asynchronous procedure maintains its state, continuously waits for new input, and automatically re-executes when triggered.
+        In the Actor model 🌳 two ports are used:
+          - one to receive input,
+          - and another (hidden) port to handle the input.
+        In Dataflow programming many ports are used, passing to an execution service when all inputs are present.
+    
+    # Implementations
+      🌳 APCs can be generated by the system (kernel-mode APCs) or by an application (user mode APCs).
+  ⚓📎 Futures and promises ; https://en.wikipedia.org/wiki/Futures_and_promises
+    In computer science, futures, promises, delays, and deferreds are constructs used for 📍 synchronizing program execution in some 📍 concurrent programming languages
+
+    🆚 Specifically, when usage is distinguished,
+      - a future is a read-only placeholder view of a variable
+        🖊 A future is an object that acts as a 🪱 proxy for a result that is initially unknown, usually because the computation of its value is not yet complete.
+      - a promise is a writable, single assignment container which sets the value of the future.
+
+    🌳
+    Notably, a future may be defined without specifying which specific promise will set its value
+      , and different possible promises may set the value of a given future
+      , ⚖️ though this can be done only once for a given future.
+    In other cases a future and a promise are created together and associated with each other:
+      - the future is the value
+      - the promise is the function that sets the value – essentially the return value (future) of an asynchronous function (promise).
+    
+    Setting the value of a future is also called 🪱 resolving, fulfilling, or binding it.
+
+
+
+  ⚓ Blocking (computing) ; https://en.wikipedia.org/wiki/Blocking_(computing)
+    In computing, a process that is blocked is waiting for some event, such as a resource becoming available or the completion of an I/O operation.
+
+
+  ⚓ Asynchronous I/O | Non-blocking I/O | Non-sequential I/O ; https://en.wikipedia.org/wiki/Asynchronous_I/O#Select(/poll)_loops
+    📝 Note that clicking on "non-blocking I/O" at https://en.wikipedia.org/wiki/Non-blocking_algorithm redirects to this page.
+    🪱 Synchronous I/O | Blocking I/O
+    #️⃣📍 Forms ; https://en.wikipedia.org/wiki/Asynchronous_I/O#Forms
+      🛍️ Forms of I/O and examples of POSIX functions:
+                Blocking	      Non-blocking	                  Asynchronous
+        API	    write, read	    write, read + poll / select	    aio_write, aio_read
+
+  ⚓ Non-blocking algorithm ; << https://en.wikipedia.org/wiki/Non-blocking_algorithm
+      In computer science, an algorithm is called non-blocking if failure or suspension of any thread cannot cause failure or suspension of another thread;
+      - 🪱 Wait-freedom
+      - 🪱 Lock-freedom
+
+
+
+  ----------------------------------------------
+  ⚓🖇️ Yield (multithreading) ; << https://en.wikipedia.org/wiki/Yield_(multithreading) 📅 2025-02-28 05:47:11
+    In computer science, yield is an action that occurs in a computer program during multithreading, of forcing a processor to 🔑 relinquish control of the current running thread
+      , and sending it to the end of the running queue, of the same scheduling priority.
+      📝 `sending it to the end of the running queue, of the same scheduling priority.`
+        == 동일한 우선순위를 가진 다른 스레드들이 대기하는 실행 큐에서 마지막 순서로 이동하게 만드는 동작을 의미한다.
+    # In coroutines
+      They may enable specifying 🚣 another function to take control. Coroutines that explicitly yield allow 🪱 cooperative multitasking.
+  ⚓📎 Coroutine ; << https://en.wikipedia.org/wiki/Coroutine
+    Coroutines are computer program components that allow execution to be suspended and resumed, generalizing subroutines for cooperative multitasking
+      They have been described as "functions whose execution you can pause
+    #️⃣ Definition and types
+      Besides that, a coroutine implementation has 3 features:
+        - ...
+        - whether a coroutine is able to suspend its execution from within nested function calls.
+          Such a coroutine is a 🪱 stackful coroutine. One to the contrary is called 🪱 stackless coroutines, where unless marked as coroutine, a regular function can't use the keyword yield.
+          📝🛍️ e.g. 
+            - stackful coroutine:   C++ boost:coroutine
+            - stackless coroutine:   C++ built-in Coroutines (C++20), Python built-in Coroutines
+
+
+
+================================================
+⚓ Declarative Programming ; https://en.wikipedia.org/wiki/Declarative_programming
+  ⚓ Dataflow programming ; https://en.wikipedia.org/wiki/Dataflow_programming
+    ⚓ Synchronous programming language ; https://en.wikipedia.org/wiki/Synchronous_programming_language
+      | synchronous reactive programming (SRP)
+
+
+
+    
+================================================
+(Concurrent, Distributed, Parallel)
+----------------------------------------------
+⚓ Concurrent computing | 병행 컴퓨팅 ; << https://en.wikipedia.org/wiki/Concurrent_computing
+
+
+
+----------------------------------------------
+⚓ Parallel computing | 병렬 컴퓨팅 ; https://en.wikipedia.org/wiki/Parallel_computing
+

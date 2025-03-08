@@ -1,0 +1,338 @@
+list of level 1 subjects
+  - ROS 2
+  - ROS 1
+  
+⭕ Use "catkin build" (package: python3-catkin-tools) instead of "catkin_make" 📅 2025-01-09 15:17:27
+  - Improved build output
+    "catkin build" provides cleaner and color-coded output, making it easier to understand build progress, warnings, and errors at a glance.
+  - Better performance with parallel builds
+    "catkin build" optimizes build times by efficiently handling parallel builds, especially in large workspaces with multiple packages.
+  - Advanced package management
+    It allows selective builds (build specific packages only) and offers more flexible workspace configurations.
+  - Dedicated log management
+    Logs for each package are stored separately, making it easier to debug build issues without cluttered output.
+  - Modern and actively maintained
+    "catkin build" is part of the catkin_tools package, which is more actively maintained and better suited for modern ROS workflows compared to "catkin_make".
+
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ ROS 2 ; https://www.ros.org/
+  https://en.wikipedia.org/wiki/Robot_Operating_System
+----------------------------------------------
+ROS 2 🔪 Docs ; https://docs.ros.org/en/jazzy/index.html
+  # Concepts
+    # Basic Concepts
+      ⚓ Nodes ; https://docs.ros.org/en/jazzy/Concepts/Basic/About-Nodes.html
+      ⚓ Discovery ; https://docs.ros.org/en/jazzy/Concepts/Basic/About-Discovery.html
+      ⚓ Interfaces ; https://docs.ros.org/en/jazzy/Concepts/Basic/About-Interfaces.html
+      ⚓ Topics ; https://docs.ros.org/en/jazzy/Concepts/Basic/About-Topics.html
+      ⚓ Services ; https://docs.ros.org/en/jazzy/Concepts/Basic/About-Services.html
+      ⚓ Actions ; https://docs.ros.org/en/jazzy/Concepts/Basic/About-Actions.html
+      ⚓ Parameters ; https://docs.ros.org/en/jazzy/Concepts/Basic/About-Parameters.html
+      ⚓ Introspection with command line tools ; https://docs.ros.org/en/jazzy/Concepts/Basic/About-Command-Line-Tools.html
+      ⚓ Launch ; https://docs.ros.org/en/jazzy/Concepts/Basic/About-Launch.html
+      ⚓ Client libraries ; https://docs.ros.org/en/jazzy/Concepts/Basic/About-Client-Libraries.html
+    # Intermediate Concepts
+    
+    # Advanced Concepts
+
+
+
+
+
+
+
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ ROS 1 ; https://wiki.ros.org/
+
+
+(✍️ ROS 1 🔪 study)
+  🚨 (Issue: Error); Running ROS commands in Container exhausts memory 📅 2025-01-15 11:28:59
+    ❔➡️ Workaround:
+        - Set Hard limit to docker-compose.yml, and fluidly adjust Soft limit in a shell session.
+          🛍️ e.g. 
+
+            ```yaml
+            # 🗄️ docker-compose.yml
+            services:
+              app:
+                ulimits:
+                  # Maximum number of processes a single node or process can create in multi-process systems like ROS.
+                  nproc: 65535
+                  nofile:
+                    ## Error: services.app.ulimits.nofile soft is required 📅 2025-01-14 21:55:00
+                    # 🚨 (Issue: Bug): ulimit soft not working in devcontainer from docker-compose.yml. 📅 2025-01-15 09:27:03
+                    #   However, when using `docker compose up` and `exec` to access the container, soft settings are applied as expected.
+
+                    # Maximum number of file descriptors a process can use at a time, including files, sockets, pipes, and other resources.
+                    soft: 1024
+                    hard: 524288
+            ```
+            Or, Or, set the same limits for each terminal session.
+            ```bash
+            #!/usr/bin/bash
+            ulimit -Hn 524288   # 4 MiB
+            ulimit -Sn 1024     # 1 KiB
+            ```
+
+          📝 Explanation of memory calculation:
+            - Each `pollfd` structure consumes 8 bytes.
+            - For 524,288 file descriptors:
+              - Memory consumption = 524,288 file descriptors × 8 bytes = 4,194,304 bytes.
+              - 4,194,304 bytes = 4 MiB (Mebibytes).
+
+        - Check value using command 🧮 %shell> ulimit -Sn && ulimit -Hn
+
+    ❔ When
+        in Docker ROS 1 noetic container,
+
+        1. in ROS master
+          %shell> roscore
+        2. in turtlebot 3, bring up 
+          %shell> roslaunch turtlebot3_bringup turtlebot3_robot.launch
+        3. in ROS master
+          %shell:fish> 
+            rosrun rviz rviz -d (rospack find turtlebot3_description)/rviz/model.rviz
+            # or 
+            roslaunch turtlebot3_slam turtlebot3_slam.launch
+
+    ❔ Symptom
+      The container consumes all available memory, often exceeding 8GB, causing the computer to freeze or crash
+      , with all other programs exiting except the desktop environment.
+
+      >> 
+        [turtlebot3_slam_gmapping-2] process has died [pid 15991, exit code -9, cmd /opt/ros/noetic/lib/gmapping/slam_gmapping __name:=turtlebot3_slam_gmapping __log:=/home/vscode/.ros/log/a631a2c4-d257-11ef-8d09-0242ac120002/turtlebot3_slam_gmapping-2.log].
+        [robot_state_publisher-1] process has died [pid 15990, exit code -9, cmd /opt/ros/noetic/lib/robot_state_publisher/robot_state_publisher __name:=robot_state_publisher __log:=/home/vscode/.ros/log/a631a2c4-d257-11ef-8d09-0242ac120002/robot_state_publisher-1.log].
+        ...
+      >>
+        [roslaunch][ERROR] 2025-01-14 10:20:53,352: ================================================================================REQUIRED process [rviz-3] has died!
+          process has died [pid 1328, exit code -9, cmd /opt/ros/noetic/lib/rviz/rviz -d /opt/ros/noetic/share/turtlebot3_slam/rviz/turtlebot3_gmapping.rviz __name:=rviz __log:=/home/vscode/.ros/log/ae21d00e-d215-11ef-93ce-0242ac120002/rviz-3.log].
+        ...
+
+    ❔🤔 Inference
+      %shell> top
+      
+      Swap memory usage increases significantly, with some processes consuming up to 512 MiB per process.
+      It seems that there is a memory leak in ROS 1.
+
+      🚣 OOM Killer in action
+        %shell> sudo dmesg | grep -i "out of memory"
+        >> 
+          [ 5143.550034] Memory cgroup out of memory: Killed process 85970 (rosout) total-vm:8434156kB, anon-rss:7290240kB, file-rss:9788kB, shmem-rss:0kB, UID:1000 pgtables:14360kB oom_score_adj:0
+          [ 5145.739000] Memory cgroup out of memory: Killed process 86022 (rosout) total-vm:8434156kB, anon-rss:7283072kB, file-rss:9836kB, shmem-rss:0kB, UID:1000 pgtables:14344kB oom_score_adj:0
+
+      
+    ❔ Root Cause
+      The core issue stems from the design of the XmlRpcServer in ROS, which handles asynchronous socket communication using the pollfd structure. This structure, defined in /usr/include/poll.h, is used to monitor file descriptors. The excessive memory consumption occurs due to the following reasons:
+
+      - pollfd Structure and Memory Usage:
+        The pollfd structure is defined as:
+        ```c
+        struct pollfd {
+            int fd;           /* File descriptor to poll. */
+            short int events; /* Requested events to watch. */
+            short int revents; /* Returned events. */
+        };
+        ```
+
+        Each pollfd occupies 8 bytes:
+          - 4 bytes for the int field.
+          - 2 bytes each for the short int fields.
+          - Includes alignment padding for memory efficiency on 64-bit systems.
+
+      - The XmlRpcServer initializes a 🚣 std::vector<pollfd> with a size equal to the system's file descriptor limit (ulimit -n).
+        This design results in significant memory allocation.
+        In many Docker container environments, this limit is often set to an extremely high value (same with Host system's value), such as 1,073,741,816.
+        
+        This leads to excessive memory allocation: ❗ 1,073,741,816 × 8 bytes = 8GB per ROS node.
+
+        However, even in sufficient RAM environments, excessive pollfd allocation and communication overhead lead to memory exhaustion
+          XML-RPC-Based Communication Overhead:
+            - Node-to-node communication:
+              Each rosrun or roslaunch instance establishes multiple network socket connections, increasing memory usage for sockets.
+            - Message queues and buffers:
+              Topic caches, data buffers, and message queues add additional memory overhead.
+            - High swap memory usage:
+              ❗ Observations show that even running roscore alone can result in processes consuming up to 512 MiB of swap memory per process.
+              Swap memory usage spikes, further degrading system performance.
+
+    ❔ References
+      - roscore using up all available memory ; https://answers.ros.org/question/416357/
+      - rosout high memory usage ; https://robotics.stackexchange.com/questions/93752/rosout-high-memory-usage
+      - XmlRpcServer.cpp ; https://github.com/ros/ros_comm/blob/noetic-devel/utilities/xmlrpcpp/src/XmlRpcServer.cpp
+
+
+
+----------------------------------------------
+⚓🔰 ROS 1 🔪 Tutorials ; https://wiki.ros.org/ROS/Tutorials
+  # Core ROS Tutorials
+    # Beginner Level
+      2.🖇️⚓ Navigating the ROS Filesystem ; https://wiki.ros.org/ROS/Tutorials/NavigatingTheFilesystem 📅 2025-01-09 19:50:38
+        # Filesystem Tools
+          #️⃣🧮 Using rospack ; https://wiki.ros.org/ROS/Tutorials/NavigatingTheFilesystem#ROS.2FTutorials.2Fcatkin.2FNavigatingTheFilesystem.Using_rospack
+          #️⃣🧮 Using roscd ; https://wiki.ros.org/ROS/Tutorials/NavigatingTheFilesystem#ROS.2FTutorials.2Fcatkin.2FNavigatingTheFilesystem.Using_roscd
+            🚣 Note that roscd, like other ROS tools, will only find ROS packages that are within the directories listed in your ROS_PACKAGE_PATH. To see what is in your ROS_PACKAGE_PATH, type:
+              %shell> echo $ROS_PACKAGE_PATH
+
+            # Subdirectories
+
+          #️⃣🧮 roscd log ; https://wiki.ros.org/ROS/Tutorials/NavigatingTheFilesystem#ROS.2FTutorials.2Fcatkin.2FNavigatingTheFilesystem.roscd_log
+            roscd log will take you to the folder where ROS stores log files.
+            🚣 Note that if you have not run any ROS programs yet, this will yield an error saying that it does not yet exist.
+
+
+          #️⃣🧮 Using rosls ; https://wiki.ros.org/ROS/Tutorials/NavigatingTheFilesystem#ROS.2FTutorials.2Fcatkin.2FNavigatingTheFilesystem.Using_rosls
+
+
+      3.🖇️⚓ Creating a ROS Package ; https://wiki.ros.org/ROS/Tutorials/CreatingPackage 📅 2025-01-09 16:17:17
+        #️⃣ What makes up a catkin Package? ; https://wiki.ros.org/ROS/Tutorials/CreatingPackage#ROS.2FTutorials.2Fcatkin.2FCreatingPackage.What_makes_up_a_catkin_Package.3F
+        #️⃣💡🗺️ Packages in a catkin Workspace ; https://wiki.ros.org/ROS/Tutorials/CreatingPackage#ROS.2FTutorials.2Fcatkin.2FCreatingPackage.Packages_in_a_catkin_Workspace
+        #️⃣ Creating a catkin Package ; https://wiki.ros.org/ROS/Tutorials/CreatingPackage#ROS.2FTutorials.2Fcatkin.2FCreatingPackage.Creating_a_catkin_Package
+          ❕ catkin_create_pkg <package_name> [depend1] [depend2] [depend3]
+          %shell>
+            mkdir -p /workspace/src && cd /workspace/src && \
+            catkin_create_pkg beginner_tutorials std_msgs rospy roscpp &&  \
+        #️⃣ Building a catkin workspace and sourcing the setup file ; https://wiki.ros.org/ROS/Tutorials/CreatingPackage#ROS.2FTutorials.2Fcatkin.2FCreatingPackage.Building_a_catkin_workspace_and_sourcing_the_setup_file
+          %shell>
+            cd /workspace && \
+            catkin_make && replay source /workspace/devel/setup.bash
+        #️⃣ package dependencies ; https://wiki.ros.org/ROS/Tutorials/CreatingPackage#ROS.2FTutorials.2Fcatkin.2FCreatingPackage.package_dependencies
+          📝 You need to run this before checking dependencies to ensure that all dependencies are resolved and up-to-date.
+            ❗ %shell> rosdep update
+          # 🪱 First-order dependencies
+            ❔ When using catkin_create_pkg earlier, a few package dependencies were provided.
+              These first-order dependencies can now be reviewed with the rospack tool.
+            %shell>
+              rospack depends1 beginner_tutorials
+              # These dependencies for a package are stored in the package.xml file:
+              #   %shell> roscd beginner_tutorials && cat package.xml
+          # 🪱 Indirect dependencies
+            In many cases, a dependency will also have its own dependencies. ...
+            %shell> rospack depends1 rospy
+            
+            🚣 A package can have quite a few indirect dependencies. Luckily rospack can recursively determine all nested dependencie
+            %shell> rospack depends rospy
+
+        #️⃣ Customizing Your Package ; https://wiki.ros.org/ROS/Tutorials/CreatingPackage#ROS.2FTutorials.2Fcatkin.2FCreatingPackage.Customizing_Your_Package
+          # Customizing the package.xml
+            # description tag
+            # maintainer tags
+            # license tags
+            # dependencies tags
+              https://wiki.ros.org/catkin/package.xml#Build.2C_Run.2C_and_Test_Dependencies
+                - 🪱 Build Dependencies
+                  Dependencies required to build this package itself.
+                - 🪱 Build Export Dependencies
+                  Dependencies required during the build process when another package depends on this package.
+                - Execution Dependencies
+                - Test Dependencies
+                - Build Tool Dependencies
+                  e.g. catkin, ament_cmake
+                - Documentation Tool Dependencies
+            # Final package.xml
+          # Customizing the CMakeLists.txt
+
+      10.🖇️⚓ Creating a ROS msg and srv ; https://wiki.ros.org/ROS/Tutorials/CreatingMsgAndSrv 📅 2025-01-09 16:18:05
+        #️⃣ Introduction to 🪱 msg (message) and 🪱 srv (service); https://wiki.ros.org/ROS/Tutorials/CreatingMsgAndSrv#Creating_a_srv
+          msg: msg files are simple text files that describe the fields of a ROS message. They are used to generate source code for messages in different languages.
+          srv: an srv file describes a service. It is composed of two parts: a 🪱 request and a response.
+        #️⃣ Using msg ; https://wiki.ros.org/ROS/Tutorials/CreatingMsgAndSrv#Using_msg
+          # Creating a msg
+            %shell:fish> roscd beginner_tutorials && mkdir -p msg && echo "int64 num" > msg/Num.msg
+
+            ⚠️ You may notice that sometimes your project builds fine even if you did not call find_package with all dependencies.
+              This is because catkin combines all your projects into one, so if an earlier project calls find_package, yours is configured with the same values.
+              But forgetting the call means your project can easily break when built in isolation.
+
+        #️⃣ Using rosmsg ; https://wiki.ros.org/ROS/Tutorials/CreatingMsgAndSrv#Using_rosmsg
+          ❕ %shell:fish> rosmsg show [message type]
+
+          %shell:fish> rosmsg show beginner_tutorials/Num
+
+          🚣 If you can't remember which Package a msg is in, you can leave out the package name. Try:
+            %shell:fish> rosmsg show Num
+        #️⃣ Using srv ; https://wiki.ros.org/ROS/Tutorials/CreatingMsgAndSrv#Using_srv
+          #️⃣ Creating a srv ; https://wiki.ros.org/ROS/Tutorials/CreatingMsgAndSrv#Creating_a_srv
+            ❕ shell:fish> roscp [package_name] [file_to_copy_path] [copy_path]
+            %shell:fish>
+              roscd beginner_tutorials && mkdir srv && \
+              roscp rospy_tutorials srv/AddTwoInts.srv srv/AddTwoInts.srv
+            
+            Unless you have done so already, open package.xml, and make sure these two lines are in it and uncommented ...
+            ❕ As before, note that at build time, we need "message_generation", while at runtime, we only need "message_runtime".
+            ❗ (Despite its name, message_generation works for both msg and srv.)
+
+          #️⃣ Using rossrv ; https://wiki.ros.org/ROS/Tutorials/CreatingMsgAndSrv#Using_rossrv
+            %shell:fish>
+              rossrv show beginner_tutorials/AddTwoInts
+              echo "========================="
+              # Here, two services are shown. The first is the one you just created in the beginner_tutorials package, and the second is the pre-existing one from the rospy_tutorials package.
+              rossrv show AddTwoInts
+        #️⃣ Common step for msg and srv ; https://wiki.ros.org/ROS/Tutorials/CreatingMsgAndSrv#Common_step_for_msg_and_srv
+          %shell:fish>
+            roscd beginner_tutorials && cd ../.. && \
+            catkin_make
+            cd -
+          Or, use catkin build (⭕ More Flexible! )
+          %shell:fish>
+            roscd beginner_tutorials && cd ../.. && \
+            catkin build
+            cd -
+
+          https://wiki.ros.org/action/show/msg
+          📍 Any .msg file in the msg directory will generate code for use in all supported languages. 
+            # c++ files
+            tree /workspacedevel/include
+            # python files
+            tree /workspace/devel/lib/python3/dist-packages
+            # lisp files
+            tree /workspace/devel/share/common-lisp
+          ⚖️ Similarly, any .srv files in the srv directory will have generated code in supported languages.
+            For C++, this will generate header files in the same directory as the message header files.
+            For Python and Lisp, there will be an 'srv' folder beside the 'msg' folders.
+        #️⃣ Getting Help ; https://wiki.ros.org/ROS/Tutorials/CreatingMsgAndSrv#Getting_Help
+          %shell>
+            rosmsg show -h
+            rosmsg list | grep beginner_tutorials
+            rospack find beginner_tutorials
+            rospack find rospy_tutorials
+        #️⃣ Review ; https://wiki.ros.org/ROS/Tutorials/CreatingMsgAndSrv#Review
+          Let's just list some of the commands we've used so far:
+            - rospack = ros+pack(age) : provides information related to ROS packages
+            - roscd = ros+cd : changes directory to a ROS package or stack
+            - rosls = ros+ls : lists files in a ROS package
+            - roscp = ros+cp : copies files from/to a ROS package
+            - rosmsg = ros+msg : provides information related to ROS message definitions
+            - rossrv = ros+srv : provides information related to ROS service definitions
+            - catkin_make : makes (compiles) a ROS package
+              rosmake = ros+make : makes (compiles) a ROS package (if you're not using a catkin workspace)
+            - ❗ catkin build: makes (compiles) a ROS package in an isolated manner while maintaining efficiency due to parallelisation
+              catkin_make + catkin_make_isolated
+
+
+    # Intermediate Level  
+
+----------------------------------------------
+🥞 ROS 1 🔪 Packages
+  ⚓ rosbash ; https://wiki.ros.org/rosbash
+    # Other Shells
+      fish    
+    # Command line utilities
+      - 🧮 roscd
+        change directory starting with package, stack, or location name
+        <package-or-stack>[/subdir]
+      - 🧮 rospd
+        lists directories in the directory-stack
+      - 🧮 rosd
+        list files of a ros package
+      - 🧮 rosls
+      - 🧮 rosed
+        edit a file in a package
+      - 🧮 roscp
+        copy a file from a package
+      - 🧮 rosrun
+        run executables of a ros package
+        rosrun <package> <executable>
+  ⚓ rospy_tutorials ; https://wiki.ros.org/rospy_tutorials
+

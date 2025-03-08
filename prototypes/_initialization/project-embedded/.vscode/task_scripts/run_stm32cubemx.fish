@@ -1,5 +1,5 @@
 #!/usr/bin/env fish
-# Written at 📅 2024-11-27 00:24:38
+# 📅 Written at 2024-11-27 00:24:38
 : ' 
 🔄 Attempts
     - STM32CubeMX must be run from the specified base directory to avoid JRE-related errors.

@@ -1,0 +1,61 @@
+list of level 1 subjects
+  - TinyORM
+
+❌ Dot not use this. It does not supports Target Triplet in vcpkg: (uwp | arm | android | emscripten | osx | ios | xbox | freebsd | openbsd | wasm32) 📅 2025-02-26 02:15:28
+  https://vcpkg.io/en/package/tinyorm
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ TinyORM ; https://www.tinyorm.org/
+  Modern C++ ORM library
+  MIT License
+  https://github.com/silverqx/TinyORM
+
+
+
+----------------------------------------------
+TinyORM 🔪 Database
+  ⚓🔰 Getting Started ; https://www.tinyorm.org/database/getting-started
+    Currently, TinyORM provides first-party support for four databases:
+      - MySQL >=5.7 (Version Policy)
+      - MariaDB >=10.3 (Version Policy)
+      - PostgreSQL >=11 (Version Policy)
+      - SQLite >=3.8.8
+        - native rename column >=3.25.0 (docs , release notes)
+        - generated columns >=3.31.0 (docs, release notes)
+        - native drop column >=3.35.0 (docs, release notes)
+
+    #️⃣ Running SQL Queries ; https://www.tinyorm.org/database/getting-started#running-sql-queries
+      #️⃣ Running A General Statement ; https://www.tinyorm.org/database/getting-started#running-a-general-statement
+        ❗ Tip
+          DB::statement method should be used for DDL queries, don't use it for "select" queries because it internally calls recordsHaveBeenModified method.
+      #️⃣❌ Running An Unprepared Statement ; https://www.tinyorm.org/database/getting-started#running-an-unprepared-statement
+         Since unprepared statements do not bind parameters, they may be vulnerable to SQL injection.
+         You should never allow user controlled values within an unprepared statement.
+----------------------------------------------
+TinyORM 🔪 TinyDrivers
+  ⚓ Getting Started ; https://www.tinyorm.org/tinydrivers/getting-started
+    #️⃣ Differences from QtSql ; https://www.tinyorm.org/tinydrivers/getting-started#differences-from-qtsql
+      #️⃣💡 Performance ; https://www.tinyorm.org/tinydrivers/getting-started#performance
+
+
+
+----------------------------------------------
+temp
+  can not install.. and also tinyorm in vcpkg not supports arm acrhiecture
+
+  %shell> vcpkg install tinyorm
+    Installing 9/41 libxcrypt:x64-linux@4.4.36#2...
+      Building libxcrypt:x64-linux@4.4.36#2...
+      libxcrypt currently requires the following libraries from the system package manager:
+          autoconf automake libtool pkg-config
+      sudo apt update
+      sudo apt install -y autoconf automake libtool pkg-config
+
+    https://github.com/microsoft/vcpkg/issues/35553
+      Program python3 (jinja2) found: NO
+      ../src/v256.4-825386a66f.clean/meson.build:1725:15: ERROR: python3 is missing modules: jinja2
+        python-jinja2
+      apt-get install python3-jinja2
+    ❓ not works..
+
+

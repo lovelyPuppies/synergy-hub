@@ -1,4 +1,5 @@
 {
+  "version": "2.0.0",
   "tasks": [
     // 🌀 Title: git
     {
@@ -75,7 +76,7 @@
         "-c",
         "${file}", // Compile the current file
         "-o",
-        "${fileDirname}/lib/${fileBasenameNoExtension}.a" // Output .a file to lib/ folder
+        "${fileDirname}/lib/${fileBasenameNoExtension}.o" // Output .a file to lib/ folder
       ],
       "group": "build",
       "problemMatcher": ["$gcc"],
@@ -90,7 +91,7 @@
         "-Wextra",
         "-g",
         "${file}", // Object file in lib folder
-        "${fileDirname}/lib/*.a", // Link all .a files in lib folder
+        "${fileDirname}/lib/*.o", // Link all .a files in lib folder
         "-o",
         "${fileDirname}/${fileBasenameNoExtension}.out" // Output executable
       ],
@@ -99,6 +100,5 @@
       "problemMatcher": ["$gcc"],
       "detail": "Links the .o files and builds the executable in the parent folder"
     }
-  ],
-  "version": "2.0.0"
+  ]
 }

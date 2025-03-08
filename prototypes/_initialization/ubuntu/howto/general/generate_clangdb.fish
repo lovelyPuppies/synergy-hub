@@ -1,6 +1,6 @@
 #!/usr/bin/env fish
 
-# Written at 📅 2024-12-17 20:34:28 
+# 📅 Written at 2024-12-17 20:34:28 
 
 function on_interrupt
     echo -e "\nScript interrupted. Exiting..."
@@ -32,7 +32,7 @@ echo ""
 # Prompt for BASE_DIR
 while true
     echo "Enter the base directory for driver modules:"
-    echo "  🛍️ e.g. prototypes/study/bsp_study/raspberry_pi/drivers"
+    echo "  🛍️ e.g. study/bsp_study/raspberry_pi/drivers"
     read -g BASE_DIR
 
     # Check if the directory is valid

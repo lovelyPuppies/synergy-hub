@@ -1,0 +1,27 @@
+//
+// !!! WARNING !!! AUTO-GENERATED FILE!
+// PLEASE DO NOT MODIFY IT AND USE "platformio.ini":
+// https://docs.platformio.org/page/projectconf/section_env_build.html#build-flags
+//
+{
+  "configurations": [
+    {
+      "name": "ROS noetic",
+      "includePath": [
+        "/workspace/src",
+        "/opt/ros/noetic/include",
+        // "${workspaceFolder}/**",
+        // "${workspaceFolder}/src/**",
+        ""
+      ],
+      "browse": {
+        "limitSymbolsToIncludedHeaders": true,
+        "path": ["/workspace/src", "/opt/ros/noetic/include", ""]
+      },
+      "cStandard": "c23",
+      "cppStandard": "c++23"
+      // "compilerPath": "/home/vscode/.platformio/packages/toolchain-atmelavr/bin/avr-gcc",
+    }
+  ],
+  "version": 4
+}

@@ -1,5 +1,5 @@
 #!/usr/bin/env fish
-# Written at 📅 2024-10-28 13:48:11
+# 📅 Written at 2024-10-28 13:48:11
 function list_eth_interfaces
     : '    
     🔧 Usage
@@ -50,4 +50,3 @@ function list_wlan_interfaces
     find /sys/class/net -mindepth 1 -maxdepth 1 \
         -lname '*virtual*' -prune -o -printf '%f\n' | grep '^w'
 end
-

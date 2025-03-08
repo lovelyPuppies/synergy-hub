@@ -1,0 +1,84 @@
+Compiled Package Path naming
+  ➡️ Format: /opt/<package_name>/<🔗target_triple>/<build_mode>-<link-type>
+    🛍️ e.g. 
+      /opt/protobuf
+      ├── x86_64-linux-gnu
+      │   ├── debug-shared
+      │   ├── debug-static
+      │   └── release-shared
+      └── aarch64-linux-gnu
+          └── release-shared
+
+  ----------------------------------------------
+  Target Triple naming (target_triple)
+    📅 Written at 2025-02-04 09:37:52
+    ➡️ Format: <arch><sub>-<vendor>-<sys>-<env>
+      - "<sub>" and "<vendor>" can be omitted 🔘 unless: (OR condition)
+        - they affect ABI
+        - they are required for specific platforms like Apple, Windows (MinGW vs MSVC), or specialized environments (e.g., NVIDIA CUDA)."
+
+    Reference
+      https://clang.llvm.org/docs/CrossCompilation.html
+      https://docs.conan.io/2/reference/config_files/settings.html
+        
+    🛍️ e.g. 
+      🎱 ARM-based
+        | Target Triple           | Description                                                     |
+        | ----------------------- | --------------------------------------------------------------- |
+        | `arm-none-eabi`         | **No OS**, Embedded system (Bare-metal)                         |
+        | `arm-none-eabihf`       | **No OS**, Hardware floating-point support (Hard Float)         |
+        | `arm-linux-gnueabi`     | **32-bit ARM**, GNU glibc, Software floating-point (Soft Float) |
+        | `arm-linux-gnueabihf`   | **32-bit ARM**, GNU glibc, Hardware floating-point (Hard Float) |
+        | `arm-linux-androideabi` | **32-bit ARM**, Android                                         |
+        | `aarch64-linux-gnu`     | **64-bit ARM**, GNU glibc                                       |
+        | `aarch64-linux-musl`    | **64-bit ARM**, musl libc                                       |
+        | `aarch64-linux-android` | **64-bit ARM**, Android                                         |
+        | `aarch64-none-elf`      | **No OS**, Bare-metal environment                               |
+        | `aarch64-linux-elf`     | **64-bit ARM**, Clang's `libc++`, no `glibc` dependency         |
+        | `thumbv7m-none-eabi`    | **ARM Cortex-M**, No OS, Embedded environment                   |
+
+      🎱 x86-based
+        | Target Triple              | Description                                            |
+        | -------------------------- | ------------------------------------------------------ |
+        | `i386-pc-linux-gnu`        | **32-bit x86**, GNU glibc                              |
+        | `x86_64-pc-linux-gnu`      | **64-bit x86**, GNU glibc                              |
+        | `x86_64-alpine-linux-musl` | **64-bit x86**, musl libc (Alpine Linux)               |
+        | `x86_64-linux-android`     | **64-bit x86**, Android                                |
+        | `x86_64-w64-mingw32`       | **64-bit x86**, Windows MinGW environment              |
+        | `x86_64-linux-elf`         | **64-bit x86**, Clang's `libc++`, no `glibc` dependency |
+
+      🎱 Apple / macOS
+        | Target Triple         | Description                                      |
+        | --------------------- | ------------------------------------------------ |
+        | `x86_64-apple-darwin` | **64-bit macOS**, macOS & Xcode toolchain        |
+        | `arm64-apple-darwin`  | **64-bit macOS (Apple Silicon)**                 |
+        | `arm64-apple-ios`     | **iOS (Apple M1/A14/A15, etc.)**                 |
+        | `armv7-apple-ios`     | **iOS (Older 32-bit ARM, iPhone 5 and earlier)** |
+
+      🎱 Windows
+        | Target Triple            | Description                              |
+        | ------------------------ | ---------------------------------------- |
+        | `x86_64-w64-mingw32`     | **64-bit Windows**, MinGW (GCC-based)    |
+        | `x86_64-pc-windows-msvc` | **64-bit Windows**, MSVC (Visual Studio) |
+
+      🎱 RISC-V-based
+        | Target Triple               | Description                           |
+        | --------------------------- | ------------------------------------- |
+        | `riscv32-unknown-linux-gnu` | **32-bit RISC-V**, GNU glibc          |
+        | `riscv64-unknown-linux-gnu` | **64-bit RISC-V**, GNU glibc          |
+        | `riscv64-linux-musl`        | **64-bit RISC-V**, musl libc          |
+        | `riscv64-none-elf`          | **64-bit RISC-V**, No OS (Bare-metal) |
+
+      🎱 PowerPC-based
+        | Target Triple                   | Description                                   |
+        | ------------------------------- | --------------------------------------------- |
+        | `powerpc-unknown-linux-gnu`     | **32-bit PowerPC**, GNU glibc                 |
+        | `powerpc64-unknown-linux-gnu`   | **64-bit PowerPC**, GNU glibc                 |
+        | `powerpc64le-unknown-linux-gnu` | **64-bit PowerPC (Little Endian)**, GNU glibc |
+
+      🎱 Other Special Environments
+        | Target Triple               | Description                                |
+        | --------------------------- | ------------------------------------------ |
+        | `nvptx64-nvidia-cuda`       | **NVIDIA CUDA PTX**, GPU compilation       |
+        | `wasm32-unknown-emscripten` | **WebAssembly (emscripten)**               |
+        | `xtensalx6-none-elf`        | **ESP32 Xtensa LX6 processor**, Bare-metal |

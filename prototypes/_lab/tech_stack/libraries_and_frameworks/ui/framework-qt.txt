@@ -1,0 +1,127 @@
+list of level 1 subjects
+  - Qt modules
+  - Qt embedded
+  
+⭕ collections
+  - Performance enhancement guidelines ; https://doc.qt.io/qt-6/embedded-linux.html#performance-enhancement-guidelines
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ Qt modules ; https://doc.qt.io/qt-6/index.html
+
+
+----------------------------------------------
+Qt 🔪 Getting Started
+  ⚓ Get and Install Qt ; https://doc.qt.io/qt-6/get-and-install-qt.html
+    ⚓ Building Qt Sources ; https://doc.qt.io/qt-6/build-sources.html 
+      # Embedded Linux
+        ⚓🖇️ Configure an Embedded Linux Device ; https://doc.qt.io/qt-6/configure-linux-device.html 📅 2025-01-05 11:58:57
+          Cross-compiling Qt for a given device requires a 🪱 toolchain and a 🪱 sysroot.
+            The toolchain is expected to contain a version of gcc, or another compiler, and associated tools built for cross-compilation.
+            This means these tools run on the host system (typically x64), while producing binaries for the target architecture (for example, 32 or 64 bit ARM).
+            The sysroot contains the headers and libraries for the target system, allowing compiling and linking libraries and applications on the host.
+
+          This overview page describes to the generic approach, where no distribution building systems, such as Yocto or Buildroot, are used. It is always possible to cross-compile and deploy Qt onto a device as long as a suitable toolchain and sysroot are available.
+          When running Qt-based applications without a windowing system, such as X11 or Wayland, some devices require vendor-specific adaptation code for 🪱 EGL and 🪱 OpenGL ES support.
+
+          # Toolchain Files versus Device Makespecs
+            In Qt 5, you would typically use a device spec under the 🚣 qtbase/mkspecs/devices directory. ...
+            🛍️ For example, you could have configured a Qt 5 build for a Raspberry Pi 2 with a configure command like the following:
+
+            ⭕ Note: configure always uses the Ninja generator and build tool if a ninja executable is available.
+              Ninja is cross-platform, feature-rich, performant, and recommended on all platforms. The use of other generators might work but is not officially supported.
+
+
+            With Qt 6 and CMake, this approach is no longer sufficient on its own. Rather, a CMake toolchain file must be provided before configuring can happen.
+              It is in this file where customization with regards to compiler and linker flags, and toolchain and sysroot specific quirks, happens.
+            In the below sections we will present a toolchain file that can be used in many cases, with minimal customization.
+              It is based on the approach presented in 🛍️📍this blog post. ; https://www.qt.io/blog/standalone-boot2qt-/-yocto-sdk-cmake-toolchain
+
+            🚣 While CMake is the only supported build system for building Qt itself, applications may still be built using qmake in Qt 6.0.
+
+          # Host Tools
+            💡 Cross-compiling Qt requires a host build of Qt being available.
+              During the build, tools such as 🚣 moc, rcc, qmlcachegen, qsb, and others, are invoked from there.
+              For example, if one cross-compiles for ARM on an x64 machine, a local x64 build of the same Qt version must be made available first.
+          #🚧 Configuring Qt
+            Let's assume that the following are available:
+              - a toolchain and sysroot under $HOME/rpi-sdk,
+              - a checkout of Qt, at minimum the qtbase module, under $HOME/qt-cross,
+              - a host build of Qt in $HOME/qt-host.
+            In addition, the following must be decided before configuring:
+              - Where will the Qt build be installed on the local system once the build completes? In the example we will use $HOME/qt6-rpi.
+              - Where will the Qt build be deployed on the device? In the example we will use /usr/local/qt6.
+
+            
+            To enable applications to be built with 🚣 qmake (legacy) as well, the Qt 5 style device spec and device options must be specified, in addition to all arguments shown above:
+
+            By default, when cross-compiling, only the Qt libraries and tools that are supposed to run on the target device are built.
+              ⚖️ Build-related tools like moc and uic are not built. Building such tools can be enabled by setting QT_FORCE_BUILD_TOOLS to ON.
+              📝❔ moc (Meta-Object Compiler), uic (User Interface Compiler)
+                By default, these tools are excluded during cross-compilation because they are development utilities, not runtime dependencies.
+                - moc (Meta-Object Compiler): Generates code to support Qt's signal-slot mechanism and introspection features. Not needed on target devices as these are precompiled.
+                - uic (User Interface Compiler): Converts .ui files created in Qt Designer into C++ code. Used during development but not required for runtime on target devices.
+                  
+            Once configuration completes without errors, run cmake --build . --parallel to build.
+            Once built, run cmake --install .to install the results to $HOME/qt6-rpi.
+            From there the Qt build can be deployed to the device by using rsync, scp, or another method.
+
+            If building individual Qt modules, one can use the qt-configure-module script from 
+
+
+
+            📰❓ If building individual Qt modules, one can use the qt-configure-module script from the bin directory of the staging location ($HOME/qt6-rpi in the example) to configure additional modules, such as qtdeclarative, qtquick3d, and so on.
+            They can then be built using cmake --build . and installed to the staging location by running cmake --install .
+            💡 Note: Before starting the build, always inspect the output of the configuration step carefully: does it have all the expected features enabled?
+              With the Raspberry Pi 4 example, we expect that EGL, 🪱 OpenGL ES and 🪱 EGLFS GBM are all reported as yes, otherwise the EGLFS platform plugin and its eglfs_kms backend will not be functional on the device.
+              For getting function mouse, keyboard, and touch input, either 🪱 evdev (Input Event Device) or 🪱 libinput must be enabled.
+              Similarly, if X11 is planned to be used as the (or one of the) windowing systems on the device, then ensure the 🪱 xcb (X C Binding) and X11 related features are marked as yes.
+
+          # An Example Toolchain File
+            We will assume there is a sysroot and toolchain available under ⚖️ $HOME/rpi-sdk.
+            💡 TARGET_SYSROOT and CROSS_COMPILER must be adjusted to the toolchain and sysroot in use.
+            The example here is only suitable for one specific, Yocto-generated SDK. The same is true for CMAKE_C_COMPILER and CMAKE_CXX_COMPILER.
+              Standalone Boot2Qt / Yocto SDK CMake toolchain ; https://www.qt.io/blog/standalone-boot2qt-/-yocto-sdk-cmake-toolchain
+
+          # Building Applications for the Target Device
+            The resulting application binary can then be deployed to the device.
+            Using the 📰🪱 qt-cmake helper script is convenient, because the script ensures the toolchain file that was used for building Qt is loaded, so there is no need to repeatedly specify it for each application.
+
+
+          # Defaults for Platform Plugins and EGLFS
+            Similarly, the EGLFS platform plugin has multiple backends.
+            The default is chosen based on availability and a pre-defined priority order.
+              If drm and gbm are available, the default will be the 🪱 eglfs_kms backend.
+              This can always be overridden at runtime by setting the 🪱 QT_QPA_EGLFS_INTEGRATION environment variable.
+        ⚓ Qt for Embedded Linux ; https://doc.qt.io/qt-6/embedded-linux.html
+          # Platform plugins for embedded Linux devices
+            EGLFS is the default plugin on many boards. If it's not suitable, use the QT_QPA_PLATFORM environment variable to request another plugin. Alternatively, for quick tests, use the -platform command-line argument with the same syntax.
+
+            ❌ Note: As of Qt 5.0, Qt no longer has its own window system (QWS) implementation.
+              🚣 For single-process use cases, the 🪱 Qt Platform Abstraction is a superior solution; 🚣 multi-process use cases are supported through 🪱 Wayland.
+
+            # EGLFS
+            # VkKhrDisplay
+            # LinuxFB
+          ⭕ Performance enhancement guidelines
+
+
+      #📍 Module-specific System Requirements
+        ⚓ Building Qt WebEngine from Source ; https://doc.qt.io/qt-6/qtwebengine-platform-notes.html
+        ⚓ Building Qt Quick 3D from Source ; https://doc.qt.io/qt-6/qtquick3d-index.html#building-from-source
+        ⚓ Building Qt Multimedia from Source ; https://doc.qt.io/qt-6/qtmultimedia-building-from-source.html
+        ⚓ Qt GRPC and Qt Protobuf Module Requirements ; https://doc.qt.io/qt-6/qtgrpc-index.html#module-prerequisites
+
+----------------------------------------------
+Qt 🔪 Development Tools
+  ⚓ Build with CMake ; https://doc.qt.io/qt-6/cmake-manual.html
+
+
+
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+# Qt embedded
+----------------------------------------------
+Qt 🔪⚓ Boot to Qt ; https://doc.qt.io/embedded.html#boot2qt
+  # Boot to Qt Quick Start Guides
+    ⚓ NVIDIA Jetson Quick Start Guide ; https://doc.qt.io/Boot2Qt/b2qt-qsg-nvidia.html
+    ⚓ Raspberry Pi Quick Start Guide ; https://doc.qt.io/Boot2Qt/b2qt-qsg-raspberry.html

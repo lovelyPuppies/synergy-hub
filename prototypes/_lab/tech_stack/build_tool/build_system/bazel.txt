@@ -1,0 +1,39 @@
+list of level 1 subjects
+  - Bazel
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ Bazel ; https://bazel.build/
+  Bazel (/ˈbeɪzəl/[3]) is a free and open-source software tool used for the automation of building and testing software.
+  https://en.wikipedia.org/wiki/Bazel_(software)
+  https://github.com/bazelbuild/bazel
+
+
+----------------------------------------------
+⚓ Bazel 🔪 Getting started ; https://bazel.build/start
+  ⚓ Bazel Install ; https://bazel.build/install
+    ⚓⭕ Bazelisk (recommended) ; https://bazel.build/install/bazelisk
+      https://github.com/bazelbuild/bazelisk
+        #️⃣ Installation ; https://github.com/bazelbuild/bazelisk#installation
+          file 🪱 `.bazelversion` file
+        #️⃣ How does Bazelisk know which Bazel version to run? ; https://github.com/bazelbuild/bazelisk#how-does-bazelisk-know-which-bazel-version-to-run
+          If the environment variable 🪱 `USE_BAZEL_VERSION` is set, it will use the version specified in the value.
+            - 🪱 `latest`: the latest stable (LTS) version
+    << https://github.com/bazelbuild/bazelisk/blob/master/README.md
+      %shell>
+        # cd /
+        sudo apt update && sudo apt install -y curl
+        curl -LO https://github.com/bazelbuild/bazelisk/releases/download/v1.25.0/bazelisk-linux-amd64
+        chmod u+x bazelisk-linux-amd64
+        mkdir -p $HOME/.local/bin
+        mv bazelisk-linux-amd64 $HOME/.local/bin/bazelisk
+
+        export PATH="$PATH:$HOME/.local/bin"
+
+        bazelisk version
+        #   >> Bazelisk version: 1.25.0
+        # bazelisk --version
+        #   >> bazel 8.0.1
+
+----------------------------------------------
+⚓ Bazel 🔪 Docs ; https://bazel.build/docs
+  

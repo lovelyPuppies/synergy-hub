@@ -1,0 +1,22 @@
+# https://docs.conan.io/2/tutorial/consuming_packages/cross_building_with_conan.html
+[settings]
+arch=armv8
+os=Linux
+build_type=Release
+compiler=gcc
+compiler.cstd=17
+compiler.cppstd=17
+compiler.version=12
+compiler.libcxx=libstdc++11
+
+
+[buildenv]
+CC=aarch64-linux-gnu-gcc-12
+CXX=aarch64-linux-gnu-g++-12
+LD=aarch64-linux-gnu-ld
+[conf]
+tools.cmake.cmaketoolchain:generator=Ninja
+
+
+# 🗺️ Format: <platform>-<build_type>-<compiler>[-<compiler.version>]-<arch>
+tools.cmake.cmake_layout:build_folder_vars=["const.raspberry_pi_4", "settings.build_type", "settings.compiler", "settings.compiler.version", "settings.arch"]

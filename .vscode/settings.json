@@ -1,6 +1,5 @@
 {
   "python.analysis.indexing": true,
-  "python.analysis.memory.keepLibraryAst": true,
   "python.analysis.logLevel": "Trace",
   "python.analysis.inlayHints.functionReturnTypes": true,
   "workbench.colorTheme": "Default High Contrast",
@@ -12,9 +11,9 @@
   // "python.defaultInterpreterPath": "C:/Python312/python.exe",
   "terminal.integrated.defaultProfile.windows": "PowerShell",
   "files.associations": {
+    ".clangd": "yaml",
+    "CMakeLists.txt": "cmake",
     "*.S": "arm",
-    ".clangd": "ini",
-    "*.txt": "plaintext",
     "iostream": "cpp",
     "vector": "cpp",
     "string": "cpp",
@@ -150,22 +149,6 @@
   "cmake.ignoreCMakeListsMissing": true,
   "C_Cpp.default.compilerPath": "/home/linuxbrew/.linuxbrew/bin/clang",
   "C_Cpp.errorSquiggles": "enabled",
-  "sqltools.connections": [
-    {
-      "mysqlOptions": {
-        "authProtocol": "default",
-        "enableSsl": "Disabled"
-      },
-      "previewLimit": 50,
-      "server": "localhost",
-      "port": 3306,
-      "driver": "MariaDB",
-      "name": "home",
-      "group": "home",
-      "database": "mysql",
-      "username": "wbfw109_dev"
-    }
-  ],
   "python.autoComplete.extraPaths": [
     "${workspaceFolder}/sources/poky/bitbake/lib",
     "${workspaceFolder}/sources/poky/meta/lib"
@@ -174,5 +157,6 @@
     "${workspaceFolder}/sources/poky/bitbake/lib",
     "${workspaceFolder}/sources/poky/meta/lib"
   ],
-  "todo-tree.tree.scanMode": "workspace only"
+  "todo-tree.tree.scanMode": "workspace only",
+  "vscode-edge-devtools.headless": false
 }

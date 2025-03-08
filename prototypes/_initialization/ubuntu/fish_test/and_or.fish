@@ -1,10 +1,10 @@
 #!/usr/bin/env fish
-# Written at 📅 2024-11-13 17:06:25
+# 📅 Written at 2024-11-13 17:06:25
 
-echo Hi; or echo "Bye"; and echo "I don't want this operation when in success operation, but performed."
+echo Hi; or echo Bye; and echo "I don't want this operation when in success operation, but performed."
 echo Hi; or begin
-    echo "Bye"
-    ; and echo "run proprocess when previous \$status return not != 0"
+    echo Bye
+    and echo "run proprocess when previous \$status return not != 0"
 end
 
 

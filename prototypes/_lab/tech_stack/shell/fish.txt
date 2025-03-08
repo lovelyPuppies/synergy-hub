@@ -2,18 +2,117 @@ list of level 1 subjects
   - Fish
   
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
-⚓ Fish ; https://fishshell.com/
+⚓⭕ Fish ; https://fishshell.com/
   The user-friendly command line shell.
   fish-shell/fish-shell ; https://github.com/fish-shell/fish-shell
+
+
+Fish 🔪🔍 FAQ ; https://fishshell.com/docs/current/faq.html
+  #️⃣📎 My command (pkg-config) gives its output as a single long string? ; https://fishshell.com/docs/current/faq.html#my-command-pkg-config-gives-its-output-as-a-single-long-string
+    📍⚖️ Unlike other shells, fish splits command substitutions only on newlines, not spaces or tabs or the characters in $IFS.
+      %shell> count (printf '%s ' a b c)
+        It will print 1, because the “a b c “ is used in one piece. But if you do
+      %shell> count (printf '%s\n' a b c)
+        it will print 3, because it gave count the arguments “a”, “b” and “c” separately.
+    However sometimes, especially with pkg-config and related tools, splitting on spaces is needed.
+      ➡️ In these cases use string split -n " " like:
+        g++ example_01.cpp (pkg-config --cflags --libs gtk+-2.0 | string split -n " ")
+
+    References
+      ☑️ (Issue); Problem with pkg-config ; https://github.com/fish-shell/fish-shell/issues/982
+
+(✍️ Fish study)
+  ☑️ (Issue: Bug) fish Shell Sudo Cache Issue; Whenever run fish -c "sudo -v", it requires password every time in same terminal session 📅 2025-01-19 00:26:23
+    https://github.com/fish-shell/fish-shell/issues/11064
+
+    Issue Description
+      In **bash** shell, the **sudo cache** is shared between the current terminal session and any subprocesses (e.g., using `bash -c`). This behavior allows the reuse of cached credentials across subprocesses within the same terminal session.
+
+        🛍️ e.g. in Bash
+          ```bash
+          $ bash -c "sudo -v"
+          [sudo] password for wbfw109v2: 
+
+          $ bash -c "sudo -v"
+
+          $ sudo -v
+          ```
+
+        In this scenario:
+          - After the initial `sudo -v`, subsequent `sudo -v` calls (even in subprocesses) do not require re-entering the password.
+
+        🆗 It is Expected Result.
+
+
+      📵 In **fish** shell, however, the **sudo cache** is not shared with subprocesses created within the same terminal session. Each subprocess (e.g., `fish -c`) requires the password to be re-entered, even if the cache is valid in the parent session. This behavior can create inconvenience, particularly when writing automation scripts.
+
+        🛍️ e.g. in Fish
+          ```fish
+          sudo -v
+          [sudo] password for wbfw109v2: 
+
+          # Create a subprocess
+          $ fish -c "sudo -v"
+          [sudo] password for wbfw109v2: 
+
+          $ fish -c "sudo -v"
+          [sudo] password for wbfw109v2: 
+
+          $ sudo -v
+          ```
+
+        In this scenario:
+          - Each subprocess (`fish -c`) prompts for the password again, even though the parent session already has a valid `sudo` cache.
+
+    Workaround
+      One workaround is to use `sh -c` or `bash -c` instead of `fish -c`. However, this forces the script to be written in **bash** syntax, which might not be desirable for users working primarily with fish.
+
+      🛍️ e.g.
+        ```bash
+        sh -c "sudo -v"
+        ```
+
+      This workaround bypasses the fish-specific behavior but requires adapting scripts to bash or sh syntax.
+
+
+  📝 Limitation of tools that attempt to simulate Bash-like functionality in Fish, such as replay or bass 📅 2025-01-09 12:49:27
+    ❗ They cannot parse Bash functions.
+      
+    🛍️ e.g., in ROS 1
+      In Bash, `source /opt/ros/noetic/setup.bash` adds the following commands:
+        roscd
+        rosls   
+        rosed
+        roscat
+        roscp
+        rosd
+        rospd
+      In Fish, `replay /opt/ros/noetic/setup.bash` does not add these.
+      This is because replay does not translate Bash functions into Fish-compatible commands.
+
+    // CATKIN_ENV_HO OK_WORKSPACE=/opt/ros/noetic
+    Complete list of missing commands
+      The following ROS commands, provided in the Bash environment, are unavailable in Fish, even with `replay /opt/ros/noetic/setup.bash`:
+        roscd
+          Navigate to the directory of a ROS package.
+        rosls
+          List the contents of a ROS package directory.
+        rosed
+          Open a file within a ROS package in the default editor.
+        roscat
+          Display the contents of a file within a ROS package.
+        roscp
+          Copy a file from a ROS package to a specified location.
+        rosd
+          Navigate to a ROS directory.
+        rospd
+          Return to the previously visited ROS directory.
+
+
+
 ----------------------------------------------
 Fish 🔪⚓ Introduction ; https://fishshell.com/docs/current/index.html
   #️⃣ Installation
-(✍️ Fish study)
-  Pratice 🛍️ e.g.
-    ❔ open .tex file 📅 2024-09-12 00:45:30
-      %shell> code **/*.tex
-    ❔ replace all .tex file with .txt file 📅 2024-09-12 00:45:30
-      %shell> for file in **/*.tex; mv $file (string replace .tex .txt $file); end
 
 ----------------------------------------------
 Fish 🔪⚓ Tutorial ; https://fishshell.com/docs/current/tutorial.html
@@ -31,15 +130,65 @@ Fish 🔪⚓ Commands ; https://fishshell.com/docs/current/commands.html
     # -U or --universal
     # -export or -x
       Causes the specified shell variable to be exported to child processes (making it an 💡 “environment variable”).
+
+    # -q or --query NAME*[*INDEX]
+    # -e or --erase NAME*[*INDEX]
+
+
+    # -a or --append NAME VALUE 
+    # -p or --prepend NAME VALUE …
+
+
+
+  ⚓ begin - start a new block of code ; https://fishshell.com/docs/current/cmds/begin.html
+    📝 Note that: The entire block can be redirected or piped, allowing grouped I/O operations. 📅 2025-01-19 00:43:22
+      ⚖️ However, it cannot be executed in the background directly.
   
+
   ⚓ fish_add_path - add to the path ; https://fishshell.com/docs/current/cmds/fish_add_path.html5lib
     💡 If a component already exists, it is not added again and stays in the same place unless the --move switch is given.
 
+  ⚓🔰 type - locate a command and describe its type ; https://fishshell.com/docs/current/cmds/type.html
+
+  
+  
+  
+  ⚓ math - perform mathematics calculations ; https://fishshell.com/docs/current/cmds/math.html
+
+
+
+  ⚓ string-lower - convert strings to lowercase ; https://fishshell.com/docs/current/cmds/string-lower.html
 
   ⚓ string-match - match substrings ; https://fishshell.com/docs/current/cmds/string-match.html
     If 🪱 --groups-only or -g is given, only the capturing groups will be reported - meaning the full match will be skipped. 
     If 🪱 --regex or -r is given, PATTERN is interpreted as a Perl-compatible regular expression, which does not have to match the entire STRING.
-    
+  ⚓ string-split - split strings by delimiter ; https://fishshell.com/docs/current/cmds/string-split.html
+    With 🪱 -n or --no-empty, empty results are excluded from consideration (e.g. hello\n\nworld would expand to two strings and not three)
+
+    If 🪱 -r or --right is given, splitting is performed right-to-left.
+    This is useful in combination with 🪱 -m or --max. 
+    Use 🪱 -f or --fields to print out specific fields.
+      FIELDS is a comma-separated string of field numbers and/or spans.
+
+
+
+  ⚓🚣 ulimit - set or get resource usage limits ; https://fishshell.com/docs/current/cmds/ulimit.html
+    ; user limit
+    # -H or --hard
+      Sets hard resource limit.
+    # -S or --soft
+      Sets soft resource limit.
+
+    ⚖️ A hard limit can only be decreased. Once it is set it cannot be increased;
+      a soft limit may be increased up to the value of the hard limit.
+    ⚖️ If neither -H nor -S is specified, both the soft and hard limits are updated when assigning a new limit value, and the soft limit is used when reporting the current value.
+
+
+    -n or --file-descriptor-count
+      The maximum number of open file descriptors.
+
+    -u or --process-count
+      The maximum number of processes available to the current user.
 ----------------------------------------------
 Fish 🔪⚓ The fish language ; https://fishshell.com/docs/current/language.html
 
@@ -64,12 +213,22 @@ Fish 🔪⚓ The fish language ; https://fishshell.com/docs/current/language.htm
 
 
 
-
+  
 ================================================
-⚓⭕ Fish shell modules ; https://code.visualstudio.com/docs
+⚓ Fish shell modules ; https://code.visualstudio.com/docs
   https://github.com/jorgebucaran/fisher
 
-  ⚓⭕ Replay.fish ; https://github.com/jorgebucaran/replay.fish 📅 2024-12-10 21:09:03
+
+  ⚓⭕ jorgebucaran/replay.fish ; https://github.com/jorgebucaran/replay.fish 📅 2024-12-10 21:09:03
+    📝 Note: replay is not actively maintained and may not support all use cases.
+
+    🚨 Not works for source /etc/os-release 📅 2024-12-31 13:13:04
+      ➡️ Use loadenv if not bash script file like "replay source oe-init-build-env" in Yocto Project
+      replay 'source /etc/os-release && echo $ID'
+        echo $ID
+        ubuntu
+        ""
+
     Why Replay.fish is Essential:
       Replay.fish allows Fish shell to integrate changes from Bash commands dynamically. 
       This is especially useful for developers using scripts like oe-init-build-env in Yocto,
@@ -96,21 +255,24 @@ Fish 🔪⚓ The fish language ; https://fishshell.com/docs/current/language.htm
         - Keeps the Fish shell's session intact while applying Bash changes dynamically.
 
       🆚 Compared Alternatives:
-        * Loadenv.fish: Limited to static .env files ; https://github.com/berk-karaal/loadenv.fish
-          - Designed for loading static environment variables from files like /etc/os-release or .env files.
-          - Supports parsing "KEY=VALUE" formatted files.
-
-          Limitation:
-            - Loadenv.fish cannot process dynamic Bash-based scripts like oe-init-build-env used in Yocto.
-            - It is suitable for static files but falls short for dynamic variable assignments.
-
         * Fish-bax: Effective but less flexible than Replay.fish.
-        * Bass: Unreliable in some environments.
         * Foreign-env: Partial support for environment variables but fails in complex setups.
-
+        * ⚓ edc/bass.fish ; https://github.com/edc/bass
+          ❓ What's the difference between Replay and edc/bass ; https://github.com/jorgebucaran/replay.fish/issues/5
+            Replay is (a bit) faster than Bass.
+            Bass requires Python.
+            Replay is mostly Fish and some Awk, but I'm planning a rewrite to remove Awk soon (Rewrite for Fish 3.0 #12
+        
     Recommendation:
       For Yocto-based development or any workflow requiring dynamic Bash script sourcing,
       Replay.fish is the optimal choice to seamlessly integrate Bash capabilities into Fish.
 
     Reference
       https://stackoverflow.com/questions/63107468/source-env-variables-from-bitbake-made-sdk-using-fish
+  
+  ⚓⭕ berk-karaal/loadenv.fish ; https://github.com/berk-karaal/loadenv.fish 📅 2024-12-10 21:09:03
+    - Functionality: Supports parsing and loading static environment variables from files formatted as "KEY=VALUE" (e.g., .env files, /etc/os-release).
+    - Limitation: Does not support processing dynamic, Bash-based scripts such as oe-init-build-env used in Yocto.
+
+  
+

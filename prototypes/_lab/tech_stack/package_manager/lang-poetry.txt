@@ -16,14 +16,14 @@ list of level 1 subjects
       poetry env use python<version to use>
       poetry env info 
       poetry install --with=vision,ml
-  - 🚨 (issue): bug ; cannot resolve rc version 📅 2022-12-02 15:15:00
+  - 🚨 (Issue: Bug) ; cannot resolve rc version 📅 2022-12-02 15:15:00
     output
       The current project's Python requirement (3.11.0rc1) is not compatible with some of the required packages Python requirement:
         - study-core requires Python >=3.11.0, <3.12, so it will not be satisfied for Python 3.11.0rc1
       Because cartoon-worker depends on study-core (0.1.0) @ file:///home/wbfw109/repository/study-python/study-core which requires Python >=3.11.0, <3.12, version solving failed.
         • Check your dependencies Python requirement: The Python requirement can be specified via the `python` or `markers` properties
       For study-core, a possible solution would be to set the `python` property to "<empty>"
-    deduction
+    🤔 Inference
       if set python = ">=3.11.0, <3.12 | 3.11.0rc1" in pyproject.toml,
         IndexError (list index out of range. format_python_constraint) occurs when resolving project dependency using f
     ➡️ not use rc version. update and upgrade brew packages. if so available versions also will be updated.

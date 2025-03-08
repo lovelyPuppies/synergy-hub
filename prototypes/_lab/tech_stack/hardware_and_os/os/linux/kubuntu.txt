@@ -1,0 +1,36 @@
+list of level 1 subjects
+  - Kubuntu
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓⭕ Kubuntu ; https://kubuntu.org/
+  https://github.com/kubuntu-team
+  https://en.wikipedia.org/wiki/Kubuntu
+
+(✍️ Kubuntu 🔪 study)
+  ☑️ (Issue: Bug); Never install ibus in Kubuntu 📅 2024-12-31 19:08:08
+    When:
+      - Installed ibus and/or kime on Kubuntu (default input method is fcitx5).
+
+    Symptom:
+      - Desktop becomes unresponsive for several minutes after boot.
+      - Mouse clicks and taskbar take an unusually long time to respond.
+      - Possible conflicts with the default fcitx5 input method.
+
+    Solution:
+      Avoid installing `ibus` or other input methods that conflict with `fcitx5` in Kubuntu.
+
+      1. Purge `ibus` and related packages:
+        ```bash
+        sudo apt purge ibus
+        sudo apt autoremove
+        ```
+      2. Ensure `fcitx5` is installed and set as the default input method:
+        ```bash
+        sudo apt install --reinstall fcitx5
+        im-config -n fcitx5
+        ```
+      3. Reboot the system:
+        ```bash
+        sudo reboot
+        ```
+      4. Test desktop responsiveness and input methods.

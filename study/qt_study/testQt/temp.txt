@@ -1,0 +1,197 @@
+https://github.com/jacksonliam/mjpg-streamer
+
+{
+  "name": "raspberrypi",
+  "generator": "Ninja",
+  "binaryDir": "${sourceDir}/build-rpi",
+  "environment": {
+    "PATH": "/home/linuxbrew/.linuxbrew/bin:/bin:/usr/bin"
+  },
+  "cacheVariables": {
+    "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/cmake-toolchain-raspberrypi-arm32v7.cmake",
+    "CMAKE_BUILD_TYPE": "Debug",
+    "CMAKE_PREFIX_PATH": "/home/wbfw109v2/qt-platforms/qt6.8.0-arm32v7-bookworm/lib/cmake",
+    "QT_HOST_PATH": "/home/wbfw109v2/Qt/6.8.0/gcc_64"
+  }
+}
+
+CMakePresets.json 을 구성하지 않았을 때
+
+>CMake: Edit User-Local CMake Kits
+
+[
+  {
+    "name": "Qt-6.8.0-clang_64",
+    "environmentVariables": {
+      "VSCODE_QT_FOLDER": "/home/wbfw109v2/Qt/6.8.0/gcc_64",
+      "PATH": "/home/wbfw109v2/Qt/6.8.0/gcc_64/bin:${env:PATH}:/home/linuxbrew/.linuxbrew/bin"
+    },
+    "compilers": {
+      "C": "/home/linuxbrew/.linuxbrew/bin/clang",
+      "CXX": "/home/linuxbrew/.linuxbrew/bin/clang++"
+    },
+    "isTrusted": true,
+    "preferredGenerator": {
+      "name": "Ninja Multi-Config"
+    },
+    "toolchainFile": "/home/wbfw109v2/Qt/6.8.0/gcc_64/lib/cmake/Qt6/qt.toolchain.cmake"
+  },
+  {
+    "name": "GCC 14.2.0 x86_64-linux-gnu",
+    "compilers": {
+      "C": "/usr/bin/gcc",
+      "CXX": "/usr/bin/g++"
+    },
+    "isTrusted": true
+  },
+  {
+    "name": "Qt-6.8.0-gcc_64",
+    "environmentVariables": {
+      "VSCODE_QT_FOLDER": "/home/wbfw109v2/Qt/6.8.0/gcc_64",
+      "PATH": "/home/wbfw109v2/Qt/6.8.0/gcc_64:/home/wbfw109v2/Qt/6.8.0/gcc_64/bin:${env:PATH}:/home/wbfw109v2/Qt/Tools/Ninja"
+    },
+    "isTrusted": true,
+    "preferredGenerator": {
+      "name": "Ninja Multi-Config"
+    },
+    "toolchainFile": "/home/wbfw109v2/Qt/6.8.0/gcc_64/lib/cmake/Qt6/qt.toolchain.cmake"
+  }
+]
+
+
+
+>CMake: Select a Kit
+
+
+
+가능함.
+근데 CMakePresets 을 만들면 이 기능이 비활성화된다..
+
+
+이는 CMakePresets.json이 CMake Kits를 대체하기 때문입니다.
+
+🆗 Intellisense ok.
+  CMake: Edit User-Local CMake Kits
+    {
+      "name": "Qt-6.8.0-clang_64",
+      "environmentVariables": {
+        "VSCODE_QT_FOLDER": "/home/wbfw109v2/Qt/6.8.0/gcc_64",
+        "PATH": "/home/wbfw109v2/Qt/6.8.0/gcc_64/bin:${env:PATH}:/home/linuxbrew/.linuxbrew/bin"
+      },
+      "compilers": {
+        "C": "/home/linuxbrew/.linuxbrew/bin/clang",
+        "CXX": "/home/linuxbrew/.linuxbrew/bin/clang++"
+      },
+      "isTrusted": true,
+      "preferredGenerator": {
+        "name": "Ninja Multi-Config"
+      },
+      "toolchainFile": "/home/wbfw109v2/Qt/6.8.0/gcc_64/lib/cmake/Qt6/qt.toolchain.cmake"
+    },
+  CMakeLists.txt
+    cmake_minimum_required(VERSION 3.19)
+    project(testQt LANGUAGES CXX)
+
+
+    # ☑️ If you use Clang , you must add ...
+    set(CMAKE_C_COMPILER "/home/linuxbrew/.linuxbrew/bin/clang")
+    set(CMAKE_CXX_COMPILER "/home/linuxbrew/.linuxbrew/bin/clang++")
+    set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+    # ☑️ If you use a cus   tom compiler (e.g., GCC 14.2, Clang) instead of the Qt6 built-in GCC 📅 2024-12-29 01:45:42
+    #   , you must explicitly set the CMAKE_PREFIX_PATH to locate Qt6's CMake configuration files.
+    set(CMAKE_PREFIX_PATH "$ENV{HOME}/Qt/6.8.0/gcc_64/lib/cmake")
+
+    find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets LinguistTools)
+
+    qt_standard_project_setup()
+
+    qt_add_executable(testQt
+        WIN32 MACOSX_BUNDLE
+        main.cpp
+        mainwindow.cpp
+        mainwindow.h
+    )
+
+    qt_add_translations(
+        TARGETS testQt
+        # TS_FILES testQt_ko_KR.ts
+    )
+
+    target_link_libraries(testQt
+        PRIVATE
+            Qt::Core
+            Qt::Widgets
+    )
+
+    include(GNUInstallDirs)
+
+    install(TARGETS testQt
+        BUNDLE  DESTINATION .
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    )
+
+    qt_generate_deploy_app_script(
+        TARGET testQt
+        OUTPUT_SCRIPT deploy_script
+        NO_UNSUPPORTED_PLATFORM_ERROR
+    )
+    install(SCRIPT ${deploy_script})
+🆗
+  CMakePresets.json
+  {
+    "version": 3,
+    "configurePresets": [
+      {
+        "name": "Qt-6.8.0-clang_64",
+        "generator": "Ninja Multi-Config",
+        "binaryDir": "${sourceDir}/build",
+        "environment": {
+          "VSCODE_QT_FOLDER": "$env{HOME}/Qt/6.8.0/gcc_64",
+          "PATH": "/home/linuxbrew/.linuxbrew/bin:$env{HOME}/Qt/6.8.0/gcc_64/bin"
+        },
+        "cacheVariables": {
+          "CMAKE_C_COMPILER": "clang",
+          "CMAKE_CXX_COMPILER": "clang++",
+          "CMAKE_PREFIX_PATH": "cmake",
+          "CMAKE_MAKE_PROGRAM": "ninja",
+          "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+          "CMAKE_EXE_LINKER_FLAGS": "-fuse-ld=lld",
+          "CMAKE_CXX_STANDARD": "23",
+          "CMAKE_CXX_STANDARD_REQUIRED": "ON"
+        },
+        "toolchainFile": "$env{HOME}/Qt/6.8.0/gcc_64/lib/cmake/Qt6/qt.toolchain.cmake"
+      }
+    ]
+  }
+
+
+🆗 Intellisense X.
+  but if CMakePreset created, Intellisense not works (but Build ok)
+  CMakePresets.json
+    {
+      "version": 3,
+      "configurePresets": [
+        {
+          "name": "Qt-6.8.0-clang_64",
+          "generator": "Ninja Multi-Config",
+          "binaryDir": "${sourceDir}/build-clang_64",
+          "environment": {
+            "VSCODE_QT_FOLDER": "$env{HOME}/Qt/6.8.0/gcc_64",
+            "PATH": "/home/linuxbrew/.linuxbrew/bin:$env{HOME}/Qt/6.8.0/gcc_64/bin:/bin:/usr/bin"
+          },
+          "cacheVariables": {
+            "CMAKE_C_COMPILER": "clang",
+            "CMAKE_CXX_COMPILER": "clang++",
+            "CMAKE_PREFIX_PATH": "cmake",
+            "CMAKE_MAKE_PROGRAM": "ninja",
+            "CMAKE_EXE_LINKER_FLAGS": "-fuse-ld=lld"
+          },
+          "toolchainFile": "$env{HOME}/Qt/6.8.0/gcc_64/lib/cmake/Qt6/qt.toolchain.cmake"
+        },
+      ]
+    }
+
+
+❓       "binaryDir": "${sourceDir}/build",

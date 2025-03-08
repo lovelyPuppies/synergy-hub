@@ -1,0 +1,74 @@
+{
+  "version": 3,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 26
+  },
+  "configurePresets": [
+    {
+      "name": "debug-x64-linux-gnu-clang",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/debug-x64-linux-gnu-clang",
+      "environment": {
+        "PATH": "/home/linuxbrew/.linuxbrew/bin:bin:/usr/bin"
+      },
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_CXX_FLAGS_DEBUG": "-DDEBUG -D_DEBUG",
+        "CMAKE_CXX_FLAGS_RELEASE": "-DNDEBUG",
+        "CMAKE_CXX_COMPILER": "clang++",
+        "CMAKE_MAKE_PROGRAM": "ninja",
+        "CMAKE_EXE_LINKER_FLAGS": "-fuse-ld=lld",
+        "CMAKE_CXX_STANDARD": "23",
+        "CMAKE_CXX_STANDARD_REQUIRED": "ON",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+        // It will be installed in "build/debug-x64-linux-gnu-clang/vcpkg_installed/x64-linux/lib"
+      },
+      "hidden": true
+    },
+    {
+      "name": "release-x64-linux-gnu-clang",
+      "inherits": "debug-x64-linux-gnu-clang",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      },
+      "hidden": true
+    },
+    {
+      "name": "debug-aarch64-linux-gnu-clang",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/debug-aarch64-linux-gnu-clang",
+      "environment": {
+        "PATH": "/home/linuxbrew/.linuxbrew/bin:bin:/usr/bin"
+      },
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_CXX_FLAGS_DEBUG": "-DDEBUG -D_DEBUG",
+        "CMAKE_CXX_FLAGS_RELEASE": "-DNDEBUG",
+        "CMAKE_SYSTEM_NAME": "Linux",
+        "CMAKE_SYSTEM_PROCESSOR": "aarch64",
+        "CMAKE_C_COMPILER": "clang",
+        "CMAKE_CXX_COMPILER": "clang++",
+        "CMAKE_C_COMPILER_TARGET": "aarch64-linux-gnu",
+        "CMAKE_CXX_COMPILER_TARGET": "aarch64-linux-gnu",
+        "CMAKE_ASM_COMPILER": "clang",
+        "CMAKE_ASM_COMPILER_TARGET": "aarch64-linux-gnu",
+        "CMAKE_TRY_COMPILE_TARGET_TYPE": "STATIC_LIBRARY",
+        "CMAKE_C_FLAGS": "-Wall -target aarch64-linux-gnu -mcpu=cortex-a72",
+        "CMAKE_CXX_FLAGS": "-Wall -target aarch64-linux-gnu -mcpu=cortex-a72 -std=c++23 -fno-exceptions -fno-threadsafe-statics",
+        "CMAKE_ASM_FLAGS": "-target aarch64-linux-gnu -mcpu=cortex-a72 -x assembler-with-cpp",
+        "CMAKE_MAKE_PROGRAM": "ninja",
+        "CMAKE_EXE_LINKER_FLAGS": "-fuse-ld=lld",
+        "CMAKE_CXX_STANDARD": "23",
+        "CMAKE_CXX_STANDARD_REQUIRED": "ON",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "CMAKE_PREFIX_PATH": "/usr/aarch64-linux-gnu",
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+        "VCPKG_TARGET_TRIPLET": "arm64-linux"
+        // It will be installed in "build/debug-aarch64-linux-gnu-clang/vcpkg_installed/arm64-linux/lib"
+      },
+      "hidden": true
+    }
+  ]
+}

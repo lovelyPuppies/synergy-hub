@@ -1,11 +1,131 @@
 list of level 1 subjects
   - watchman
-  
+
+❌ Do not use `Watchman`. Instead, use `inotify-tools`. 📅 2025-01-12 16:25:21
+  Watchman's documentation is lacking, and it does not provide proper compatibility for Kubuntu 24.10 (or other recent versions of various operating systems).
+
+
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
-⚓⭕ watchman ; https://facebook.github.io/watchman/
+⚓ watchman ; https://facebook.github.io/watchman/
   A file watching service
   https://github.com/facebook/watchman
-  
+
+(✍️ watchman 🔪 study)
+  ✅ (how-to); Fish Script to Install Watchman and Monitor '$fish_howto_general_dir' 📅 2025-01-12 16:22:17
+    : '
+    📦 watchman
+    A file watching service
+    https://facebook.github.io/watchman/
+    https://repology.org/project/watchman/versions
+    https://formulae.brew.sh/formula/watchman#default
+
+    '
+    brew install watchman
+
+    set watchman_bin (which watchman)
+    set fish_howto_general_dir $script_dir/howto/general
+
+    ## add user service: watchman_file_make_fish_utilities_executable_name.json
+    set watchman_service_name "watchman-fish.service"
+    set watchman_json_dir $script_dir/watchman
+    set watchman_file_make_fish_utilities_executable_name "watchman-make_fish_utilities_executable.json"
+
+    # Original JSON file path
+    set watchman_json_path $watchman_json_dir/$watchman_file_make_fish_utilities_executable_name
+    ##💡 Adaptive Watch Directory Updater for Watchman 📅 2024-12-18 03:10:54
+
+    # New path to replace the second element
+    set new_watch_dir $fish_howto_general_dir
+
+    # Temporary file to store the updated JSON
+    set temp_json "/tmp/watchman-trigger-updated.json"
+
+    # Replace the second element of the JSON array using jaq
+    cat $watchman_json_path | jaq --arg new_watch_dir "$new_watch_dir" '.[1] = $new_watch_dir' >$temp_json
+
+    # Display the updated JSON content
+    echo "Updated JSON content:"
+    cat $temp_json
+
+    prettier --write $temp_json
+    mv $temp_json $watchman_json_path
+
+
+    ## Add watchman trigger services
+    : '❔ Reason for Creating a Service for Watchman
+    - Watchman loses its watch list after a computer restart.
+    Creating a system service ensures that Watchman automatically restores its watch list and trigger configurations upon system boot.
+    '
+    : '❔ Reason for Using a JSON File in Watchman
+    - Improved readability and cleanliness:
+    Using a JSON file prevents the command from being polluted with escape characters
+    , making the configuration easier to read and maintain.
+    - Service execution issue with escape characters:
+    Even though a command with escape characters works when copied directly into the terminal
+    , it fails when registered as a service.
+    📝 Watchman expects JSON input through standard input, so it\'s crucial to use double quotes (") to comply with JSON formatting. 📅 2024-12-18 03:16:04
+        By referencing a JSON file instead, this issue is avoided
+        , and the configuration remains consistent and functional across environments.
+    '
+    echo "
+    [Unit]
+    Description=Watchman service for Fish utilities (User Scope)
+    After=network.target
+
+    [Service]
+    Type=oneshot
+
+    # Watch directory
+    ExecStartPre=$watchman_bin watch \"$fish_howto_general_dir\"
+
+    # Trigger configuration loaded from file
+    ExecStart=/bin/bash -c '$watchman_bin watch $fish_howto_general_dir && \\
+      cat $watchman_json_path | $watchman_bin -j \\
+    '
+
+    ExecStop=/bin/bash -c '$watchman_bin watch-del \"$fish_howto_general_dir\"'
+
+    RemainAfterExit=yes
+
+    [Install]
+    WantedBy=default.target
+    " | tee $USER_SYSTEMD_DIR/$watchman_service_name
+
+    systemctl --user daemon-reload
+    systemctl --user enable $watchman_service_name
+    systemctl --user start $watchman_service_name
+    systemctl --user status $watchman_service_name --no-pager
+
+
+    echo "Currently set triggers for the directory: "
+    watchman -- trigger-list $fish_howto_general_dir
+    echo ""
+    echo "Directories currently watched by Watchman:"
+    watchman watch-list
+
+    set replaced_path (string replace "$HOME" "" $fish_howto_general_dir)
+    # Define the unique comment line to identify the settings.
+    set unique_comment "## fish_howto_general_dir settings"
+    # Check if the unique comment line exists in the configuration file.
+    if not grep -Fxq "$unique_comment" "$FISH_CONFIG_PATH"
+        # Append the new configuration block only if the unique line is not found.
+        echo "
+        $unique_comment
+        set -x fish_howto_general_dir \$HOME$replaced_path
+        fish_add_path \$fish_howto_general_dir
+        " | prettify_indent_via_pipe | tee -a $FISH_CONFIG_PATH >/dev/null
+        echo -e "\n" >>"$FISH_CONFIG_PATH"
+    end
+
+
+    # ❔ You can check permissions later after install lsd
+    # 🧮 %shell >find . -type f -name "*.fish" -exec lsd -l {} \;
+    # ❔ How to recovery: 🧮 %shell >
+
+    #   watchman watch-del $fish_howto_general_dir
+    # find $fish_howto_general_dir -type f -name "*.fish" -exec chmod ugo-x {} \;
+
+
 ----------------------------------------------
 watchman 🔪⚓ Installation ; https://facebook.github.io/watchman/docs/install
   #️⃣ Linux ; https://facebook.github.io/watchman/docs/install#linux

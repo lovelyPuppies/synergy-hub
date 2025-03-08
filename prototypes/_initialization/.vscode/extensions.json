@@ -22,22 +22,47 @@
     "mads-hartmann.bash-ide-vscode",
     // 🌀 Build system ~
     "yocto-project.yocto-bitbake",
+    //    Bazel ; https://marketplace.visualstudio.com/items?itemName=BazelBuild.vscode-bazel
+    //    Blue Bazel ; https://marketplace.visualstudio.com/items?itemName=NVIDIA.bluebazel
+    "BazelBuild.vscode-bazel",
+    "NVIDIA.bluebazel",
+    //  *.proto (Protocal Buffers)
+    //    Tooltitude for Protobuf (proto files) ; https://marketplace.visualstudio.com/items?itemName=tooltitudeteam.tooltitude-pb
+    "tooltitudeteam.tooltitude-pb",
     // 🌀 Langauge~
-    //   * (Intellisense)
+    //  Web-related Extensions
+    "ms-edgedevtools.vscode-edge-devtools", // https://marketplace.visualstudio.com/items?itemName=ms-edgedevtools.vscode-edge-devtools
+    //  * (Intellisense)
     "VisualStudioExptTeam.vscodeintellicode",
     //      IntelliCode ; https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode
-    //        Tags: java, javascript, javascriptreact, python, sql, typescript, typescriptreact
+    //        Supported Languages: java, javascript, javascriptreact, python, sql, typescript, typescriptreact
     "VisualStudioExptTeam.vscodeintellicode-completions",
     //      IntelliCode Completions ; https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode-completions
-    //        Tags: javascript, javascriptreact, python, typescript, typescriptreact
+    //        Supported Languages: javascript, javascriptreact, python, typescript, typescriptreact
     "VisualStudioExptTeam.intellicode-api-usage-examples",
     //      IntelliCode API Usage Examples ; https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.intellicode-api-usage-examples
-    //        javascript, javascriptreact, python, typescript, typescriptreact
+    //        Supported Languages: javascript, javascriptreact, python, typescript, typescriptreact
+    //  * (Linter)
+    "SonarSource.sonarlint-vscode",
+    //      SonarQube for IDE ; https://marketplace.visualstudio.com/items?itemName=SonarSource.sonarlint-vscode
+    //        Supported Languages: JS/TS, Python, PHP, Java, C, C++, C#, Go, IaC
+    //  *.js (JavaScript)     // recommeded from https://code.visualstudio.com/docs/nodejs/extensions
+    "dbaeumer.vscode-eslint",
+    "xabikos.JavaScriptSnippets",
+    //      📖 JavaScript (ES6) code snippets ; https://marketplace.visualstudio.com/items?itemName=xabikos.JavaScriptSnippets
+    //        Supported language: JavaScript (.js) TypeScript (.ts) JavaScript React (.jsx) TypeScript React (.tsx) Html (.html) Vue (.vue) Snippets
+    "christian-kohler.npm-intellisense",
+    //      npm Intellisense ; https://marketplace.visualstudio.com/items?itemName=christian-kohler.npm-intellisense
     //  *.cpp, .hpp, CMakeList.txt (C++)
     "ms-vscode.cmake-tools",
     "ms-vscode.cpptools-extension-pack",
     "josetr.cmake-language-support-vscode",
     "llvm-vs-code-extensions.vscode-clangd",
+    "llvm-vs-code-extensions.lldb-dap", // LLDB DAP (Debug Adapter Protocol) ; https://marketplace.visualstudio.com/items?itemName=llvm-vs-code-extensions.lldb-dap
+    "cschlosser.doxdocgen",
+    //  *.cs, .csx (C#)
+    //  CMake Language Support (josetr.cmake-language-support-vscode) depends on .NET Install Tool (ms-dotnettools.vscode-dotnet-runtime)
+    "ms-dotnettools.vscode-dotnet-runtime",
     // 📰 .. stm32 extension.. conflict "llvm-vs-code-extensions.vscode-clangd",
     //  *.py (Python)
     "ms-python.python",
@@ -49,8 +74,9 @@
     "tamasfe.even-better-toml",
     "arcanis.vscode-zipfs",
     // 🌀 Database
-    "mtxr.sqltools", // https://marketplace.visualstudio.com/items?itemName=mtxr.sqltools
-    "mtxr.sqltools-driver-mysql", //https://marketplace.visualstudio.com/items?itemName=mtxr.sqltools-driver-mysql
+    "DBCode.dbcode", // DBCode - Database Management ; https://marketplace.visualstudio.com/items?itemName=DBCode.dbcode
+    //    https://dbcode.io/docs
+    "GuTheSoftware.sqlinform", // 📰 Human readable Formatter ; https://marketplace.visualstudio.com/items?itemName=GuTheSoftware.sqlinform
     // 🌀 Empowers developers to efficiently manage dependencies and address vulnerabilities in Rust, Go, JavaScript, TypeScript, Python and PHP projects ; https://www.dependi.io/
     "fill-labs.dependi",
     // 🌀 Source Coude Mangement (SCM) ~
@@ -63,6 +89,7 @@
     //    Qt UI ; https://marketplace.visualstudio.com/items?itemName=TheQtCompany.qt-ui
     //    Qt C++ ; https://marketplace.visualstudio.com/items?itemName=TheQtCompany.qt-cpp
     "theqtcompany.qt", // ⚓ Qt Extension Pack ; https://marketplace.visualstudio.com/items?itemName=TheQtCompany.qt
+    "avaloniateam.vscode-avalonia", // Avalonia for VSCode ; https://marketplace.visualstudio.com/items?itemName=AvaloniaTeam.vscode-avalonia
     // 🌀 Embedded ~
     "ms-vscode.vscode-serial-monitor",
     "platformio.platformio-ide",

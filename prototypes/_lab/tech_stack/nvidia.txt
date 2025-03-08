@@ -1,0 +1,65 @@
+list of level 1 subjects
+  - NVIDIA
+  - NVIDIA CUDA (Compute Unified Device Architecture)
+  - NVIDIA Video Codec SDK
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ NVIDIA ; https://fishshell.com/
+  
+(✍️ NVIDIA study)
+  # 🚨 Error: ImportError: /usr/lib/aarch64-linux-gnu/libgomp.so.1: cannot allocate memory in static TLS block 📅 2024-10-20 22:47:57
+
+    ## Issue
+
+    `ImportError: /usr/lib/aarch64-linux-gnu/libgomp.so.1: cannot allocate memory in static TLS block`
+
+    ## Reference
+
+    [Related NVIDIA Forum Discussion](https://forums.developer.nvidia.com/t/error-importerror-usr-lib-aarch64-linux-gnu-libgomp-so-1-cannot-allocate-memory-in-static-tls-block-i-looked-through-available-threads-already/166494)
+
+    ## Root cause
+
+    - This issue occurs due to insufficient memory allocation in the static TLS (Thread-Local Storage) block for shared libraries such as `libgomp.so.1`.
+    - It affects libraries using OpenMP for parallel computation on systems like Jetson Nano.
+
+    ## Solution
+
+    1. Set the `LD_PRELOAD` environment variable to include `libgomp.so.1`:
+
+      ```bash
+      export LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libgomp.so.1:/$LD_PRELOAD >> ~/.bashrc
+      ```
+
+    2. Reload the `.bashrc` to apply the changes:
+
+      ```bash
+      source ~/.bashrc
+      ```
+
+    3. Verify that the environment variable has been correctly set:
+
+      ```bash
+      echo $LD_PRELOAD
+      ```
+
+    4. If the issue persists, consider restarting the system to ensure all settings take effect.
+
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ NVIDIA CUDA (Compute Unified Device Architecture) ; https://docs.nvidia.com/cuda
+  https://en.wikipedia.org/wiki/CUDA
+    In computing, CUDA is a proprietary parallel computing platform and application programming interface (API) that allows ...
+
+    🗑️ When it was first introduced, the name was an acronym for Compute Unified Device Architecture
+      , but Nvidia later dropped the common use of the acronym and now rarely expands it.
+
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ NVIDIA Video Codec SDK ; https://developer.nvidia.com/video-codec-sdk
+  # Contents
+    # Hardware-Based Decoder and Encoder
+      GPU hardware accelerator engines for video encoding (referred to as 🪱 NVENC) and video decoding (referred to as 🪱 NVDEC) support faster-than-real-time video processing
+      , which makes them suitable for use in multiple applications, including video transcoding, video data compression/decompression for deep learning, game broadcasting, virtual desktops, cloud gaming, secure video playback, etc.
+      Video Codec SDK exposes the APIs that let you harness the NVENC and NVDEC for all video encoding/decoding capabilities of these engines
+
+

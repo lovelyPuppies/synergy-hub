@@ -1,0 +1,9 @@
+list of level 1 subjects
+  - sqlite-orm
+
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ sqlite-orm ; https://github.com/fnc12/sqlite_orm
+
+
+----------------------------------------------

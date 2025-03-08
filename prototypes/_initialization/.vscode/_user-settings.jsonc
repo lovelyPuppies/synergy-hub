@@ -1,5 +1,7 @@
-// 📝 Note that the original file of "settigns.json "must be .json file. not jsonc.
+// 🧮 %VSCode> Preferences: Open User Settings (JSON)
+// 📝 Note that the original file must be .json file. not jsonc.
 {
+  // 🌀 Title: Common settings for all cases
   "editor.inlayHints.enabled": "on",
   // 🌀 Title: Theme
   "workbench.colorTheme": "Default High Contrast",
@@ -10,7 +12,8 @@
   "debug.allowBreakpointsEverywhere": true,
   "files.associations": {
     // "*.S": "arm",
-    ".clangd": "yaml"
+    ".clangd": "yaml",
+    "CMakeLists.txt": "cmake"
   },
   // 🌀 Title: Indexing
   "files.exclude": {
@@ -19,7 +22,13 @@
     "**/.pixi": true,
     "**/.pytest_cache": true,
     //
-    "build/note/**": true
+    "build/note/**": true,
+    // kernel module development
+    "**/*.cmd": true,
+    "**/*.mod": true,
+    "**/*.mod.*": true,
+    "**/modules.order": true,
+    "**/Module.symvers": true
   },
   "search.exclude": {
     "**/.git": true,
@@ -29,11 +38,17 @@
     "**/build": true
   },
   // 🌀 Title: Terminal
+  "telemetry.telemetryLevel": "error",
+  "sonarlint.disableTelemetry": true,
+  "dotnetAcquisitionExtension.enableTelemetry": false,
+  "gitlens.telemetry.enabled": false,
   // change VScode's tile bar color
   "window.titleBarStyle": "custom",
   "terminal.integrated.env.linux": {
     //  in order to prevent from 'The "no new privileges" flag is set, which prevents sudo from running as root.' message when run sudo command in Ubuntu 📅 2024-08-31 01:29:37
-    "SUDO_ASKPASS": null
+    "SUDO_ASKPASS": null,
+    //  Telemetry is disabled for the .NET Install Tool, but we were unable to turn off the .NET SDK telemetry. To disable .NET SDK telemetry, set the environment variable DOTNET_CLI_TELEMETRY_OPTOUT to true.
+    "DOTNET_CLI_TELEMETRY_OPTOUT": "1"
   },
   "terminal.integrated.defaultProfile.linux": "fish",
   "python.defaultInterpreterPath": "${env:PYTHON_POETRY_BASE_EXECUTABLE}",
@@ -64,7 +79,14 @@
   },
   // 🌀 Code Visualization and Comment Management
   // Code Spell Checker ; https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker
-  "cSpell.userWords": ["Blockman", "Hancom", "linuxbrew", "wbfw"],
+  "cSpell.userWords": [
+    "Blockman",
+    "Hancom",
+    "linuxbrew",
+    "pkgs",
+    "spdlog",
+    "wbfw"
+  ],
   // indent-rainbow ; https://marketplace.visualstudio.com/items?itemName=oderwat.indent-rainbow
   "indentRainbow.updateDelay": 1000,
   "indentRainbow.colors": [
@@ -74,6 +96,8 @@
     "rgba(79,236,236,0.15)"
   ],
   "indentRainbow.errorColor": "rgba(128,32,32,0.25)",
+  // 🌀 Title: Git
+  "git.openRepositoryInParentFolders": "always",
   // 🌀 Title: Markdown
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -82,11 +106,25 @@
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  // 🌀 Title: Docker
+  "[dockerfile]": {
+    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+  },
   // 🌀 Title: Fish shell
   "[fish]": {
     "editor.tabSize": 4,
     "editor.defaultFormatter": "bmalehorn.vscode-fish"
   },
+  // 🌀 Title: Protocal Buffers
+  // https://marketplace.visualstudio.com/items?itemName=tooltitudeteam.tooltitude-pb
+  "tooltitude.pb.includes": ["/opt/protobuf/debug-static/include"],
+  "[protobuf]": {
+    "editor.defaultFormatter": "tooltitudeteam.tooltitude-pb"
+  },
+  // 🌀 Title: SQL
   // 🌀 Title: Rust
   // rust-analyzer ; https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer
   // ☑️ To ensure Rust Analyzer's debug functionality works without errors, both "build-essential" and "cmake" must be installed.
@@ -104,20 +142,30 @@
     "editor.defaultFormatter": "rust-lang.rust-analyzer",
     "editor.tabSize": 4
   },
+  // 🌀 Title: Python
+  "[python]": {
+    // ruff (Extremely fast Python linter, written in Rust); https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff
+    "editor.defaultFormatter": "charliermarsh.ruff"
+  },
   // 🌀 Title: C/Cpp
+  // cmake ; https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools
+  "cmake.allowCommentsInPresetsFile": true,
   "cmake.showOptionsMovedNotification": false,
   "cmake.options.statusBarVisibility": "hidden",
+  "cmake.cmakePath": "/home/linuxbrew/.linuxbrew/bin/cmake",
   // clcangd ; https://marketplace.visualstudio.com/items?itemName=llvm-vs-code-extensions.vscode-clangd
   // ☑️ clcangd cannot recognize the path for tools installed via Linux Homebrew. So manually add the path to clcangd. 📅 2024-12-04 16:14:52
   "clangd.path": "/home/linuxbrew/.linuxbrew/bin/clangd",
   // LLDB Dap ; https://marketplace.visualstudio.com/items?itemName=llvm-vs-code-extensions.lldb-dap
   // ☑️ LLDB Dap cannot recognize the path for tools installed via Linux Homebrew. So manually add the path to lldb-dap. 📅 2024-12-04 16:14:52
   "lldb-dap.executable-path": "/home/linuxbrew/.linuxbrew/bin/lldb-dap",
-  // This option is duplicated if use clangd. "C_Cpp.inlayHints.parameterNames.enabled": true,
 
   // TODO:.. 📰 It seems that STM32 extension not support or recognize clang..
   "C_Cpp.intelliSenseEngine": "disabled",
-  // "C_Cpp.inlayHints.parameterNames.enabled": true, // not works if "C_Cpp.intelliSenseEngine": "disabled",
+  // Settings for projects where clang cannot be used
+  "C_Cpp.inlayHints.autoDeclarationTypes.enabled": true,
+  "C_Cpp.inlayHints.parameterNames.enabled": true,
+  "C_Cpp.inlayHints.referenceOperator.enabled": true,
   "[cpp]": {
     // "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
     "editor.formatOnSave": true,
@@ -148,6 +196,8 @@
   "STM32VSCodeExtension.cubeCLT.path": "/home/wbfw109v2/st/stm32cubeclt",
   "STM32VSCodeExtension.projectCreator.executablePath": "/home/wbfw109v2/STM32CubeMX/STM32CubeMX",
   "STM32VSCodeExtension.productFinder.executablePath": "/home/wbfw109v2/STMCUFinder/STMCUFinder",
+  // 🌀 Experimental
+  "github.copilot.nextEditSuggestions.enabled": true,
   // 🌀 Title: Latex setting from https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop
   "latex-workshop.latex.recipe.default": "lualatex",
   "latex-workshop.latex.outDir": "%WORKSPACE_FOLDER%/build/note",
@@ -205,8 +255,6 @@
   "fish-completion.assistant.v1.enabled": true,
 
   "makefile.configureOnOpen": true,
-  "git.openRepositoryInParentFolders": "never",
-
   // Blockman recommend ; https://marketplace.visualstudio.com/items?itemName=leodevbro.blockman
   // except   "editor.inlayHints.enabled": "off",
 

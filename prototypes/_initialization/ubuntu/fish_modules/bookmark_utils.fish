@@ -1,5 +1,5 @@
 #!/usr/bin/env fish
-# Written at 📅 2024-10-28 13:48:11
+# 📅 Written at 2024-10-28 13:48:11
 
 
 # bookmark_utils.fish
@@ -10,7 +10,7 @@ set -g UBUNTU_BOOKMARKS_PATH "$HOME/.config/gtk-3.0/bookmarks"
 
 
 # Function to print usage information and exit
-function usage
+function _usage
     echo "Usage: add_bookmark_from_local_dir <path_to_add> [optional_bookmarks_path]"
 end
 
@@ -31,7 +31,7 @@ function add_bookmark_from_local_dir --argument-name local_dir
     # Check if the required argument is provided
     if test (count $argv) -lt 1
         echo "Error: Missing required argument <path_to_add>"
-        usage; and exit 1
+        _usage; and exit 1
     end
 
     # Set the path to add and the bookmarks path (default if not provided)
@@ -51,10 +51,11 @@ function add_bookmark_from_local_dir --argument-name local_dir
     # (short: -q, long: --quiet) - Suppress output; only the exit status is used to indicate a match.
     if not grep -Fxq $file_uri $bookmarks_path
         echo "Adding: $file_uri"
-        echo $file_uri >> $bookmarks_path
+        echo $file_uri >>$bookmarks_path
     else
         echo "Bookmark already exists: $file_uri"
     end
 end
 
 
+functions --erase _usage

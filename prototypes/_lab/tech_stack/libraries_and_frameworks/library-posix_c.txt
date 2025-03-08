@@ -1,0 +1,53 @@
+list of level 1 subjects
+  - C POSIX library
+  
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ C POSIX library ; https://en.wikipedia.org/wiki/C_POSIX_library
+  📝 Note that "opengroup" (POSIX standards) only defines the official API specification, independent of any OS or library. 📅 2025-02-27 10:30:55
+     It describes how the function should work, outlining only the basic structure and behavior of select(), without detailing OS-specific implementations or optimizations.
+    
+  https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/
+  https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/contents.html
+
+  ⚓ unistd.h ; https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/unistd.h.html#tag_14_82
+    ; UNIx STanDard Header
+  ⚓ arpa/inet.h ; https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/arpa_inet.h.html#tag_14_02
+    ; Advanced Research Projects Agency INterNET Header
+
+  ⚓ netinet/in.h  ; https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/netinet_in.h.html#tag_14_34
+    ; Network INterNET Header
+  
+  ⚓ sys/socket.h ; https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/sys_socket.h.html#tag_14_65
+    ; SYStem SOCKET Header
+  ⚓ sys/select.h ; https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/sys_select.h.html#tag_14_62
+
+================================================
+Implementation
+----------------------------------------------
+#include <unistd.h>
+  ; UNIx STanDard Header
+  ⚓ read(3p) ; https://www.mankier.com/3p/read
+  ⚓ write(3p) ; https://www.mankier.com/3p/write
+----------------------------------------------
+#include <sys/select.h>
+  ⚓ select(2) ; https://www.mankier.com/2/ioctl
+    synchronous I/O multiplexing
+    # Library
+      Standard C library (libc, -lc)
+----------------------------------------------
+#include <sys/ioctl.h>
+  ⚓ ioctl(2) ; https://www.mankier.com/2/ioctl
+    # Library
+      Standard C library (libc, -lc)
+----------------------------------------------
+#include <arpa/inet.h>
+  ; Network INterNET Header
+  ⚓ htonl(3p) ; https://www.mankier.com/3p/htonl
+    ; Host TO Network Long
+    uint16_t htons(uint16_t hostshort);
+      ; Host TO Network Short
+
+  ⚓ ntohl(3p) ; https://www.mankier.com/3p/ntohl
+    ; Network TO Host Long
+    uint32_t ntohl(uint32_t netlong);

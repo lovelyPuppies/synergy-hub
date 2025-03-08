@@ -1,0 +1,195 @@
+list of level 1 subjects
+  - Make
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ Make ; https://cmake.org/
+  In software development, Make is a command-line interface software tool that performs actions ordered by configured dependencies as defined in a configuration file called a makefile
+
+
+(✍️ Make 🔪 study)
+  🚨 Issue: Dynamic Object File Assignment in Kernel Module Makefile 📅 2025-01-17 11:22:18
+    ➡️ Result
+      For compatibility and simplicity, it's recommended to continue using hardcoded object files or apply manual transformations for paths that fit the kernel build system's structure.
+      🛍️ e.g.
+        ```Makefile
+          obj-m := $(MODULE_NAME).o
+          $(MODULE_NAME)-y := src/kernel_timer_dev.o
+        ```
+    When
+      This issue occurs when attempting to dynamically assign object files to $(MODULE_NAME)-y using patsubst and find to locate .c files, and then transform those paths into .o files. The dynamic approach fails to build correctly while hardcoded paths work without issues.
+
+    Symptom
+      $shell> make build-module
+      >> 
+        find: ‘/home/wbfw109v2/repos/kernels/raspberry_pi/src’: No such file or directory
+        make[4]: *** No rule to make target '/home/wbfw109v2/repos/synergy-hub/study/bsp_study/raspberry_pi/drivers/kernel_timer/module/kernel_timer_dev.o', needed by '/home/wbfw109v2/repos/synergy-hub/study/bsp_study/raspberry_pi/drivers/kernel_timer/module/'.  Stop.
+        make[3]: *** [/home/wbfw109v2/repos/kernels/raspberry_pi/Makefile:1921: /home/wbfw109v2/repos/synergy-hub/study/bsp_study/raspberry_pi/drivers/kernel_timer/module] Error 2
+        make[2]: *** [Makefile:234: __sub-make] Error 2
+        make[2]: Leaving directory '/home/wbfw109v2/repos/kernels/raspberry_pi'
+        make[1]: *** [Makefile:79: build] Error 2
+        make[1]: Leaving directory '/home/wbfw109v2/repos/synergy-hub/study/bsp_study/raspberry_pi/drivers/kernel_timer/module'
+        make: *** [Makefile:52: build-module] Error 2
+
+    Root Cause
+      🧪 It seems that the kernel build system expects module object files to be explicitly defined in obj-m or $(MODULE_NAME)-y.
+      Dynamic paths, such as those generated through transformations or external variables, might conflict with kernel-specific path expectations
+      , which causes issues when attempting to use them in the Makefile.
+
+    Attempts
+      ```Makefile
+        SRC_FILES := $(shell find $(SRC_DIR) -name '*.c')
+        MAKEFILE_DIR := $(dir $(realpath $(lastword $(MAKEFILE_LIST))))
+        # Convert to relative paths by stripping the path of the Makefile from the SRC_DIR
+        OBJ_FILES := $(strip $(patsubst $(MAKEFILE_DIR)%.c, %.o, $(SRC_FILES)))
+        # Add source files to the module
+        obj-m := $(MODULE_NAME).o
+
+        ## Case 1️⃣: 🆗 Works for hard-corded
+        # 	$(MODULE_NAME)-y := src/kernel_timer_dev.o
+        ## Case 2️⃣: 📵 Not works for dynamically adding object files. 
+        #		# Even if the `OBJ_FILES` value sames with "src/kernel_timer_dev.o" 
+        # 	$(MODULE_NAME)-y := $(OBJ_FILES)
+      ```
+
+
+  🚨 (Issue:) Issue: Managing Build Artifacts in Kernel Module Development with Custom Build Directories 📅 2025-01-17 05:16:43
+    ➡️ Workaround
+      To address the clutter in source directories, the following workarounds are suggested:
+
+      1. Hide Build Artifacts in VSCode or Other Editors:  
+        Add a pattern to your `.gitignore` or VSCode `settings.json` to exclude these files:
+          "files.exclude": {
+              "**/*.cmd": true,
+              "**/*.mod": true,
+              "**/*.mod.*": true,
+              "**/modules.order": true,
+              "**/Module.symvers": true
+          }
+        This approach improves navigation efficiency without affecting the build system.
+
+      2. Accept the Default Kernel Build Structure:  
+        Allow the build system to generate artifacts in the source directory to avoid breaking dependency tracking.
+
+      3. Avoid Attempting to Use `O=` for Modules:  
+        While `O=` works for kernel-wide builds, it is incompatible with external modules built using `M=`.
+
+    When  
+      While attempting to build Linux kernel modules using `make` with the `M=` option to specify the module source directory, attempts were made to redirect build artifacts to a separate `build/` directory for better organization.
+      Specifically, the goal was to isolate `build/app` and `build/module` to maintain cleaner project directories and improve file navigation efficiency in editors like VSCode.
+
+    Symptom  
+      1. Build Artifacts Appear in the Source Directory:  
+        Using `O=` to set the `BUILD_DIR` for external modules results in errors and partial redirection:
+
+        🛍️ e.g. Error:
+          make -C /path/to/kernel/source \
+              M=/path/to/module/source O=/path/to/build/dir modules
+
+          ERROR: Kernel configuration is invalid.
+                include/generated/autoconf.h or include/config/auto.conf are missing.
+                Run 'make oldconfig && make prepare' on kernel src to fix it.
+
+      2. Changing `M=$(PWD)$(SRC_DIR)` causes errors:  
+        The `M=` option determines the Makefile's location, and changing it to point to a different directory breaks the build process as it cannot find the required Makefile.
+      
+      3. Redundant Rebuilds:  
+        After completing the build, Moving `.cmd` files and related artifacts to `build/module` causes redundant rebuilds, as the kernel build system fails to track dependencies accurately.
+
+        🛍️ e.g. Artifact Relocation  
+          The following script moves artifacts to `build/module`, but breaks incremental builds:
+          ```
+          ## Move all build artifacts to BUILD_DIR, preserving directory structure relative to PWD
+          # Prerequisite: @mkdir -p $(MODULE_BUILD_DIR)
+              move_artifacts:
+                @find $(PWD) -type f \( -name "*.o" -o -name "*.ko" -o -name "*.cmd" -o -name "*.mod" -o -name "*.mod.*" -o -name "modules.order" -o -name "Module.symvers" \) | while read FILE; do \
+                  REL_PATH=$${FILE#$$(realpath $(PWD))/}; \
+                  DEST=$(BUILD_DIR)/$$(dirname $$REL_PATH); \
+                  mkdir -p $$DEST; \
+                  mv "$$FILE" "$$DEST/"; \
+                done
+          ```
+          
+      4. Editor Clutter:  
+        Build files clutter the file explorer in tools like VSCode, making file navigation inefficient.
+
+    Root Cause  
+      1. Kernel Build System Design:  
+        - The `M=` option specifies the module source directory and mandates that build artifacts be generated in this directory.  
+        - The `O=` option is designed for kernel-wide builds, not for external (out-of-tree) modules, and does not redirect module-specific artifacts when building with `M=`.
+
+      2. Dependency Management:  
+        - Files like `.cmd`, `modules.order`, and `Module.symvers` are essential for tracking dependencies and enabling incremental builds.  
+        - Moving these files breaks the build system's ability to track changes, causing redundant recompilation.  
+        - Retaining `.cmd` files alone is insufficient because other metadata and timestamp tracking mechanisms are interdependent.
+
+
+  🚨(Issue: Bug); rm -rf directory/*.ko Deletes the Entire Folder 📅 2025-01-16 15:52:59
+    When:
+      - Executed `make clean` in a Makefile where the `clean` rule includes:
+          rm -rf $(MODULE_DIR)/*.ko
+      - The directory `$(MODULE_DIR)` contains no `.ko` files.
+
+    Symptom:
+      - Instead of only deleting `.ko` files, the `rm -rf` command deletes the entire
+        directory `$(MODULE_DIR)`.
+
+    Root Cause:
+      - In a shell, `directory/*.ko` expands to match all `.ko` files in the directory.
+        If no `.ko` files exist, the command does nothing, leaving the directory intact.
+      - When executed in a `Makefile`, `Make` may pass the literal string `directory/*.ko`
+        to the `rm` command without performing path expansion.
+        This results in `rm -rf` treating the entire directory as the target when no `.ko`
+        files are found.
+
+    Workaround:
+      - Use `find` to ensure only files are targeted:
+          find $(MODULE_DIR) -type f -name "*.ko" -delete
+      - Add a guard condition to check for files before running `rm`:
+          if ls $(MODULE_DIR)/*.ko >/dev/null 2>&1; then \
+              rm -rf $(MODULE_DIR)/*.ko; \
+          fi
+
+
+----------------------------------------------
+⚓ Make 🔪 Docs ; https://www.gnu.org/software/make/manual/make.html
+  #️⃣ 4 Writing Rules ; https://www.gnu.org/software/make/manual/make.html#Rules
+    #️⃣ 4.4 Using Wildcard Characters in File Names ; https://www.gnu.org/software/make/manual/make.html#Wildcards
+      #️⃣ 4.4.3 The Function 🪱 wildcard ; https://www.gnu.org/software/make/manual/make.html#index-wildcard-1
+        $(wildcard pattern…)
+        ⚖️ Wildcard expansion happens automatically in rules.
+          📍 But wildcard expansion does not normally take place when a variable is set, or inside the arguments of a function.
+            If you want to do wildcard expansion in such places, you need to use the wildcard function, like this:
+          📝🛍️ e.g.
+            # It automatically expands the wildcard *.c to match all .c files in the directory.
+            build: *.c
+            # It does not expand *.c; instead, it stores the literal string '*.c' in the FILES variable.
+            FILES = *.c
+
+
+  #️⃣ 6 How to Use Variables ; https://www.gnu.org/software/make/manual/make.html#Using-Variables
+    #️⃣ 6.14 Other Special Variables ; https://www.gnu.org/software/make/manual/make.html#Special-Variables
+      #🪱 MAKEFILE_LIST
+        Contains the name of each makefile that is parsed by make, in the order in which it was parsed.
+        🚣 Thus, if the first thing a makefile does is examine the last word in this variable, it will be the name of the current makefile.
+
+  #️⃣ 8 Functions for Transforming Text ; https://www.gnu.org/software/make/manual/make.html#Functions
+    #️⃣ 8.2 Functions for String Substitution and Analysis 
+      #️⃣🪱 $(lastword names…) ; https://www.gnu.org/software/make/manual/make.html#index-lastword
+      #️⃣🪱 $(patsubst pattern,replacement,text) ; https://www.gnu.org/software/make/manual/make.html#index-patsubst-1
+        ; pattern substitution
+        Finds whitespace-separated words in text that match pattern and replaces them with replacement.
+  
+    #️⃣ 8.3 Functions for File Names ; https://www.gnu.org/software/make/manual/make.html#File-Name-Functions
+      #️⃣🪱 $(dir names…) ; https://www.gnu.org/software/make/manual/make.html#index-dir
+      #️⃣🪱 $(abspath names…) ; https://www.gnu.org/software/make/manual/make.html#index-abspath-1
+      #️⃣🪱 $(basename names…) ; https://www.gnu.org/software/make/manual/make.html#index-basename-1
+
+  #️⃣🗺️ 9.8 Summary of Options
+    #📎 -C dir, --directory=dir
+      Change to directory dir before reading the makefiles.
+       If multiple ‘-C’ options are specified, ...
+  #️⃣ 10 Using Implicit Rules ; https://www.gnu.org/software/make/manual/make.html#Implicit-Rules
+    #️⃣ 10.3 Variables Used by Implicit Rules ; https://www.gnu.org/software/make/manual/make.html#Implicit-Variables
+      #🪱 CC
+        Program for compiling C programs; default ‘cc’.
+

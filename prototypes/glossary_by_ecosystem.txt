@@ -1,0 +1,299 @@
+list of level 1 subjects
+  - Wikipedia
+    📝 It can include Wiktionary.
+  - Wiktionary
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+Wikipedia
+  (Data structure)
+    ⚓ Red–black tree ; https://en.wikipedia.org/wiki/Red%E2%80%93black_tree
+      📝📰 리눅스 6.6~ 에서도 run queue 로서 사용되는 구조인듯 보임.
+      #️⃣ Terminology
+        🪱 NIL, parent, uncle
+          ❗ The leaf nodes of red–black trees (NIL in figure 1) do not contain keys or data.
+
+
+  (Operating System (OS))
+    ⚓📎 Firmware ; https://en.wikipedia.org/wiki/Firmware
+      In computing, firmware is software that provides low-level control of computing device hardware.
+      🗒️ Contents
+        Firmware is stored in non-volatile memory – either read-only memory (ROM) or programmable memory such as EPROM, EEPROM, or flash.
+    ⚓🖇️ Board support package (BS) ; https://en.wikipedia.org/wiki/Board_support_package 📅 2025-02-24 03:00:19
+      In embedded systems, a board support package (BSP) is the layer of software containing hardware-specific boot loaders, device drivers and other routines that allow a given embedded operating system, ...
+      🗒️ Contents
+        The board support package is usually provided by the SoC manufacturer (such as Qualcomm), and it can be modified by the OEM.
+
+        # Software
+          💡 BSPs are typically customizable, allowing the user to specify which drivers and routines should be included in the build based on their selection of hardware and software options.
+          🚣 Some suppliers also provide a root file system, a toolchain for building programs to run on the embedded system, and utilities to configure the device (while running) along with the BSP.
+
+
+
+    ⚓📎 Out of memory (OOM) ; https://en.wikipedia.org/wiki/Out_of_memory
+      Out of memory (OOM) is an often undesired state of computer operation where no additional memory can be allocated for use by programs or the operating system. Such a system will be unable to load any additional programs, and since many programs may load additional data into memory during execution, these will cease to function correctly. This usually occurs because all available memory, including disk swap space, has been allocated.
+      
+      🗒️ Contents
+        # Recovery
+          The kernels of operating systems such as Linux will attempt to recover from this type of OOM condition by terminating one or more processes, a mechanism known as 🪱 the OOM Killer
+
+    
+  (OS 🔪 Linux)
+    ----------------------------------------------
+    ⚓🖇️ Input Field Separators (IFS) ; https://en.wikipedia.org/wiki/Input_Field_Separators
+      ; input field separators or internal field separators
+      🗒️ Contents
+        🪱 $IFS shell variable
+        The value of IFS, (in the bash shell) typically includes the space, tab, and the newline characters by default.
+          These whitespace characters can be visualized by issuing the "declare" command in the bash shell or printing IFS with commands like: (the latter two commands being only available in some shells and on some systems)
+            - printf %s "$IFS" | od -c
+            - printf "%q\n" "$IFS"
+            - printf %s "$IFS" | cat -A 
+            
+        From the Bash, version 4 man page: ...
+
+        # IFS abbreviation
+          this name is misleading as the IFS characters are actually used as 🚣 field terminators.
+        #🕵️🛡️ Exploits
+
+    ----------------------------------------------
+    ⚓🔰📎 rPath ; https://en.wikipedia.org/wiki/Rpath
+      🗒️ Contents
+        In computer science, rpath designates the run-time search path hard-coded in an executable file or library. Dynamic linking loaders use the rpath to find required libraries.
+        Specifically, it encodes a path to shared libraries into the header of an executable (or another shared library).
+          This 🪱 RPATH header value (so named in the Executable and Linkable Format header 🚣 standards) 
+        
+        The rpath of an executable or shared library is an optional entry in the 🪱 .dynamic section of the ELF executable or shared libraries, with the type 🪱 DT_RPATH, called the :DT_RPATH attribute.
+          It can be stored there at link time by the linker. Tools such as 🪱 chrpath and 🪱 patchelf can create or modify the entry later.
+
+        #📎 Use of the DT_RPATH entry by the dynamic linker
+          The different dynamic linkers for ELF implement the use of the 🪱 DT_RPATH (Dynamic Tag) attribute in different ways.
+        #📎 GNU ld.so
+          The dynamic linker of the GNU C Library searches for shared libraries in the following locations in order:
+            1. The (colon-separated) paths in the 🪱 DT_RPATH dynamic section attribute of the binary 🔘 if present and the 🪱 DT_RUNPATH attribute does not exist.
+            2. The (colon-separated) paths in the environment variable LD_LIBRARY_PATH, 🔘 unless the executable is a setuid/setgid binary, in which case it is ignored.
+              LD_LIBRARY_PATH can be overridden by calling the dynamic linker with the option 🪱 --library-path (e.g. /lib/ld-linux.so.2 --library-path $HOME/mylibs myprogram).
+            3. The (colon-separated) paths in the DT_RUNPATH dynamic section attribute of the binary if present.
+            4. Lookup based on the ldconfig cache file (often located at /etc/ld.so.cache) which contains a compiled list of candidate libraries previously found in the augmented library path (set by /etc/ld.so.conf).
+              If, however, the binary was linked with the 🔘 -z nodefaultlib linker option, libraries in the default library paths are skipped.
+            5. In the trusted default path /lib, and then /usr/lib. If the binary was linked with the 🔘 -z nodefaultlib linker option, this step is skipped.
+
+          Failing to find the shared library in all these locations will raise the "cannot open shared object file: No such file or directory" error.
+
+          Notes:
+            - 🧮 readelf -d <binary_name> | grep 'R.*PATH' displays the RPATH or RUNPATH of a binary file. In gcc, for instance, one could specify RPATH by -Wl,-rpath,/custom/rpath/.
+            - The option 🪱 --inhibit-rpath LIST of the dynamic linker instructs it to ignore DT_RPATH and DT_RUNPATH attributes of the object names in LIST.
+              To specify a main program in the LIST, give empty string.
+            - Libraries specified by the environment variable 🪱 LD_PRELOAD and then those listed in /etc/ld.so.preload are loaded before the search begins.
+              A preload can thus be used to replace some (or all) of the requested library's normal functionalities
+                , or it can simply be used to supply a library that would otherwise not be found.
+            - Static libraries are searched and linked into the ELF file at link time and are not searched at run time.
+        
+        #📎 The role of GNU ld
+          The GNU Linker (GNU ld) implements a feature which it calls 🪱 "new-dtags"
+            , which can be used to insert an rpath that has lower precedence than the LD_LIBRARY_PATH environment variable.
+
+          If the new-dtags feature is enabled in the linker (🪱 --enable-new-dtags), GNU ld
+            , besides setting the DT_RPATH attribute, also sets the DT_RUNPATH attribute to the same string.
+            At run time, if the dynamic linker finds a DT_RUNPATH attribute, it ignores the value of the DT_RPATH attribute
+            , with the effect that LD_LIBRARY_PATH is checked first and the paths in the DT_RUNPATH attribute are only searched afterwards.
+
+          💡⚖️ The ld dynamic linker does not search DT_RUNPATH locations for transitive dependencies, unlike DT_RPATH.
+
+          Instead of specifying the 🪱 -rpath to the linker, the environment variable 🪱 LD_RUN_PATH can be set to the same effect.
+    ----------------------------------------------
+    ⚓⭕📎 Epoll (event poll) ; https://en.wikipedia.org/wiki/Epoll
+      🗒️ Contents
+        epoll is a Linux kernel system call for a scalable I/O event notification mechanism, ...
+        It is meant to replace the older POSIX ❌ select(2) and ❌ poll(2) system calls, to achieve better performance in more demanding applications, where the number of watched file descriptors is large
+        (unlike the older system calls, which operate in O(n) time, epoll operates in 🚣 O(1) time). ...
+        epoll uses a 🪱 red–black tree (RB-tree) data structure to keep track of all file descriptors that are currently being monitored
+
+    ----------------------------------------------
+    ⚓ Inotify ; https://en.wikipedia.org/wiki/Inotify
+      inotify (inode notify) is a Linux kernel subsystem created by John McCutchan, which monitors changes to the filesystem, and reports those changes to applications.
+
+
+
+  ⚓📎 Interface Description Language (IDL) ; https://en.wikipedia.org/wiki/Interface_description_language
+    🗒️ Contents
+      🚣 IDLs are commonly used in remote procedure call software.
+      ... 📰 UML Component Diagram
+        Representation of different software components for performing a hypothetical holiday reservation in UML.
+        
+
+
+
+    ⚓📎 Protocol Buffers ; https://en.wikipedia.org/wiki/Protocol_Buffers
+      Protocol Buffers (Protobuf) is a free and open-source cross-platform data format used to serialize structured data.
+      The method involves an interface description language ...
+
+    ⚓📎 Remote Procedure Call ; https://en.wikipedia.org/wiki/Remote_procedure_call
+      🚣 RPCs are a form of inter-process communication (IPC), ...
+
+
+  (Graphical notation)
+    ⚓ C4 model ; https://en.wikipedia.org/wiki/C4_model
+      🗒️ Contents
+        - Context diagrams (level 1)
+        - Container diagrams (level 2)
+        - Component diagrams (level 3)
+        - Code diagrams (level 4)
+
+  (Database)
+    - soft deletion ; https://en.wiktionary.org/wiki/soft_deletion#English
+      Noun
+        soft deletion (countable and uncountable, plural soft deletions)
+          (databases) An operation in which a flag is used to mark data as unusable, without erasing the data itself from the database. 
+    - hard deletion Antonym: hard deletion
+      Noun
+        hard deletion (countable and uncountable, plural hard deletions)
+          (databases) An operation in which data is erased from the database. 
+
+
+
+  (Canonical Ecosystem)
+    ⚓ Launchpad ; https://en.wikipedia.org/wiki/Launchpad_(website)
+      Laucnhpad is a web application and website that allows users to develop and maintain software, particularly open-source software.
+
+    ⚓ Canonical (company) ; https://en.wikipedia.org/wiki/Canonical_(company)
+      Canonical Ltd. is a privately held computer software company based in London, England. It
+
+
+
+
+  ⚓ A watchdog timer (WDT) | computer operating properly timer (COP timer) ; https://en.wikipedia.org/wiki/Watchdog_timer
+    📝🛍️ e.g. Watchdog Timer (WDT) Presence in Arduino Uno R3, Raspberry Pi 4B, and STM32F411RE 📅 2025-03-04 05:46:09
+      Arduino Uno R3
+        - Built-in WDT in ATmega328P microcontroller.
+        - Controlled via WDTCSR (Watchdog Timer Control Register).
+        - Enabled using avr/wdt.h in the Arduino IDE.
+
+      Raspberry Pi 4B
+        - Built-in WDT in BCM2711 SoC.
+        - Configurable via bcm2835_wdt driver in Linux.
+        - Can be managed using /dev/watchdog after installing the watchdog package.
+
+      STM32F411RE
+        - Supports both Independent (IWDG) and Windowed (WWDG) Watchdog Timers.
+        - IWDG runs in low power mode and resets the system if unresponsive.
+        - Configurable using the STM32 HAL library.
+    ... is an electronic or software timer that is used to detect and recover from computer malfunctions.
+    Watchdog timers are widely used in computers to facilitate automatic correction of temporary hardware faults, and to prevent errant or malevolent software from disrupting system operation.
+
+    📍 Microcontrollers often include an integrated, on-chip watchdog. In other computers the watchdog may reside in a nearby chip that connects directly to the CPU, or it may be located on an external expansion card in the computer's chassis.
+
+
+----------------------------------------------
+(temp; Still not ground)
+
+  ⚓ Synchronization ; https://en.wikipedia.org/wiki/Synchronization_(computer_science)
+    🗒️ Contents
+      #️⃣ Implementation ; https://en.wikipedia.org/wiki/Synchronization_(computer_science)#Implementation
+        #🪱 Spinlocks
+        #🪱 Barriers
+        #🪱 Semaphores
+    
+  ⚓ Parameter (computer programming) ; https://en.wikipedia.org/wiki/Parameter_(computer_programming)    
+    | formal argument
+    🗒️ Contents
+      #️⃣🪱 Output parameters ; https://en.wikipedia.org/wiki/Parameter_(computer_programming)#Output_parameters
+
+
+
+  https://en.wikipedia.org/wiki/Lean_thinking
+
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+Wiktionary
+  - stub ; https://en.wiktionary.org/wiki/stub#English
+    Noun
+      stub (plural stubs)
+        3. (programming) A placeholder procedure that has the signature of the planned procedure but does not yet implement the intended behavior. 
+
+
+  - demultiplex ; https://en.wiktionary.org/wiki/demultiplex#English
+    Verb
+      demultiplex (third-person singular simple present demultiplexes, present participle demultiplexing, simple past and past participle demultiplexed)
+        1. (electronics) To separate signals that were previously multiplexed (combined using a multiplexer)
+
+
+  - lean ; https://en.wiktionary.org/wiki/lean#English
+    Adjective
+      lean (comparative leaner, superlative leanest)
+        6. (business) Efficient, economic, frugal, agile, slimmed-down; pertaining to the modern industrial principles of "lean manufacturing
+  - pros and cons ; https://en.wiktionary.org/wiki/pros_and_cons#English
+    Noun
+      pros and cons pl (plural only)
+        1.(plural only) The positive and negative attributes of arguments.
+  - lend itself to ; https://en.wiktionary.org/wiki/lend_itself_to#English 
+    Verb
+      lend itself to (third-person singular simple present lends itself to, present participle lending itself to, simple past and past participle lent itself to)
+        1. (transitive, idiomatic) To be suitable for. 
+
+
+  - nil ; https://en.wiktionary.org/wiki/nil#English
+    Noun
+      nil (usually uncountable, plural nils)
+        1. Nothing; zero. 
+  - no-op ; https://en.wiktionary.org/wiki/no-op#English
+    Noun
+      no-op (plural no-ops)
+        1. (computing) An instruction or operation that has no effect; a null operation.
+  
+  
+  - deflate ; https://en.wiktionary.org/wiki/deflate#English
+    Verb
+      deflate (third-person singular simple present deflates, present participle deflating, simple past and past participle deflated)
+        6. (transitive, computing) To compress (data) according to a particular algorithm. 
+  - inflate ; https://en.wiktionary.org/wiki/inflate#English
+    Verb
+      2. inflate (third-person singular simple present inflates, present participle inflating, simple past and past participle inflated)
+        (transitive, computing) To decompress (data) that was previously deflated.
+
+  🔰 (with Proposition)
+    - during ; https://en.wiktionary.org/wiki/during#English
+      Preposition
+        during
+          2. At any time or period within a given time interval.
+    - over ; https://en.wiktionary.org/wiki/over#English
+      Preposition
+        over
+          3. During or throughout (a time period). 
+
+----------------------------------------------
+Wiktionary 🔪 Abbreviation
+  (Programming)
+    - pkg (package) ; https://en.wiktionary.org/wiki/pkg#English
+      Noun
+        pkg (countable and uncountable, plural pkgs)
+          1. Abbreviation of package.
+    - msg (message) ; https://en.wiktionary.org/wiki/msg#English
+      Noun
+        msg (plural msgs)
+          1. Abbreviation of message.
+
+    - src (source) ; https://en.wiktionary.org/wiki/src#English
+      Noun
+        src (plural srcs)
+          1. Abbreviation of source.
+    - dest (destination) ; https://en.wiktionary.org/wiki/dest
+      Noun
+        dest (plural dests)
+          1. Abbreviation of destination.
+
+    - sock (socket) ; https://en.wiktionary.org/wiki/sock#English
+      Noun
+        sock (plural socks)
+          1. (computing, networking) Abbreviation of socket.
+
+  (Ungrouped)
+    - apt (apartment) ; https://en.wiktionary.org/wiki/apt#English
+      Noun
+        apt (plural apts)
+          1. Abbreviation of apartment.
+
+    - num (number) ; https://en.wiktionary.org/wiki/num#English
+      Noun
+        num (plural nums)
+          1. Abbreviation of number.
+

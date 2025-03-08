@@ -1,12 +1,134 @@
 list of level 1 subjects
   - Conan
   
+
+⭕ Use vcpkg instead of 🗑️ conan 📅 2025-02-19 01:17:44
+  Conan limitations:
+    - Conan cannot search for supported platforms directly ; https://docs.conan.io/2/reference/commands/search.html
+      Users must check online, but even then, only desktop architectures are supported
+      ; other architectures like ARM64 are not included.
+      🛍️ e.g. zlib: https://conan.io/center/recipes/zlib?version=1.3.1
+        Available packages:
+          Linux
+          Windows
+          macOS
+          macOS Apple Silicon
+    - Offers fewer packages than vcpkg (e.g., nanopb, MariaDB C++ Connector are unavailable).
+  
+  vcpkg advantages:
+    - Simple and efficient installation:
+      No need for Docker or manual dependency resolution.
+    - Strong multi-architecture and cross-platform support:
+      - Broad triplet support (official and community) for diverse CPU architectures.
+      - Seamless deployment for IoT, embedded, and mobile platforms.
+      - Efficient workflows that streamline cross-platform development.
+    - Faster updates
+      Supports and integrates newer package versions more quickly than Conan.
+    - Backed by Microsoft:
+      Developed and maintained with support from a major tech company, ensuring reliability, longevity, and frequent updates.
+
+
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
 🐞 Issue Tracking
   https://github.com/conan-io/conan-center-index/issues/25075
     [package] pulseaudio/14.2 : I'm using clang 18 but error; Compiler does not support -std=gnu11
-⚓⭕ Conan ; https://docs.conan.io/2/
+
+⚓❌ Conan ; https://docs.conan.io/2/
   Conan 2 - C and C++ Package Manager
+
+
+(✍️ conan 🔪 study)
+  ✅ (how-to); Cross-compile with target's GCC version in a Conan 2 Profile 📅 2025-01-28 01:52:40
+    Solution
+      Add `--gcc-install-dir=/usr/lib/gcc-cross/aarch64-linux-gnu/12` to `CFLAGS` and `CXXFLAGS` in a conan 2 profile
+      
+    Description
+      ❔ clang --help
+        --gcc-install-dir=<value>
+          Use GCC installation in the specified directory.
+          The directory ends with path components like 'lib{,32,64}/gcc{,-cross}/$triple/$version'.
+          🚣 Note: executables (e.g. ld) used by the compiler are not overridden by the selected GCC installation
+        --gcc-toolchain=<value> Specify a directory where Clang can find 'include' and 'lib{,32,64}/gcc{,-cross}/$triple/$version'.
+          Clang will use the GCC installation with the largest version
+                
+
+      Add `--gcc-install-dir=/usr/lib/gcc-cross/aarch64-linux-gnu/12` to `CFLAGS` and `CXXFLAGS`.
+        ```Conan Profile
+          [settings]
+          arch=armv8
+          os=Linux
+          build_type=Release
+          compiler=clang
+          compiler.cstd=23
+          compiler.cppstd=23
+          compiler.version=19
+          compiler.libcxx=libstdc++
+
+          [buildenv]
+          CC=clang
+          CXX=clang++
+          CFLAGS=--target=aarch64-linux-gnu --gcc-install-dir=/usr/lib/gcc-cross/aarch64-linux-gnu/12
+          CXXFLAGS=--target=aarch64-linux-gnu --gcc-install-dir=/usr/lib/gcc-cross/aarch64-linux-gnu/12
+          LDFLAGS=-fuse-ld=lld
+          [conf]
+          tools.cmake.cmaketoolchain:generator=Ninja
+        ```
+      Even without adding `--gcc-install-dir`, cmake configure, ninja build, and executing the output binary file all work correctly.
+      ❗ However, running the output binary on the target system requires a higher GLIBC version, which prevents the binary from executing successfully.
+
+
+      I tried to compile only libstdc++ from the GCC source, but it all failed.
+        - Reference
+          https://forums.raspberrypi.com/viewtopic.php?t=333170#p1994511
+        - 🧪📵 on host for cross-compilation
+          ../libstdc++-v3/configure \
+              --host=aarch64-linux-gnu \
+              --build=(../config.guess) \
+              --prefix=/usr/local/aarch64-linux-gnu \
+              --disable-multilib \
+              --disable-nls \
+              --disable-libstdcxx-pch \
+              --enable-threads=posix \
+              --with-gxx-include-dir=/usr/aarch64-linux-gnu/include/c++/14
+              # --with-sysroot=/usr/aarch64-linux-gnu
+          # Compile Libstdc++ by running
+          make -j$(nproc)
+
+          >> 🚨 Unknown error when `make -j$(nproc)` 📅 2025-01-27 14:37:53
+            ../../../libstdc++-v3/src/c++20/tzdb.cc:641:9: error: ‘mutex’ does not name a type; did you mean ‘minutes’?
+              641 |         mutex infos_mutex;
+                  |         ^~~~~
+                  |         minutes
+            ../../../libstdc++-v3/src/c++20/tzdb.cc: In member function ‘void std::chrono::time_zone::_Impl::RulesCounter<_Tp>::lock()’:
+            ../../../libstdc++-v3/src/c++20/tzdb.cc:643:23: error: ‘infos_mutex’ was not declared in this scope
+              643 |         void lock() { infos_mutex.lock(); }
+                  |                       ^~~~~~~~~~~
+            ../../../libstdc++-v3/src/c++20/tzdb.cc: In member function ‘void std::chrono::time_zone::_Impl::RulesCounter<_Tp>::unlock()’:
+            ../../../libstdc++-v3/src/c++20/tzdb.cc:644:25: error: ‘infos_mutex’ was not declared in this scope
+              644 |         void unlock() { infos_mutex.unlock(); }
+                  |                         ^~~~~~~~~~~
+            make[3]: *** [Makefile:754: tzdb.lo] Error 1
+            make: *** [Makefile:502: all] Error 2
+
+        - 🧪📵 on target (raspberry pi)
+          ../libstdc++-v3/configure \
+                --build=(../config.guess) \
+                --prefix=/usr/local/aarch64-linux-gnu \
+                --disable-multilib \
+                --disable-nls \
+                --disable-libstdcxx-pch
+          make -j$(nproc)
+
+          >> 🚨 Unknown error when `make -j$(nproc)` 📅 2025-01-27 14:50:34          
+            /home/pi19/gcc-14.2.0/build-libstdc++/include/limits:1989:1: error: invalid suffix "F32" on floating constant
+            1989 | __glibcxx_float_n(32)
+                  | ^~~~~~~~~~~~~~~~~
+            /home/pi19/gcc-14.2.0/build-libstdc++/include/limits:1989:1: error: invalid suffix "F32" on floating constant
+            1989 | __glibcxx_float_n(32)
+            '
+
+        
+
 ----------------------------------------------
 Conan 🔪⚓ Install ; https://conan.io/downloads
   Recommended install (need python in your system):
@@ -564,7 +686,7 @@ Conan 🔪⚓ Reference ; https://docs.conan.io/2/reference.html
 
 
     # Creator commands:
-      ⚓ conan new ; https://docs.conan.io/2/reference/commands/new.html
+      ⚓🧮 conan new ; https://docs.conan.io/2/reference/commands/new.html
         Create a new recipe (with a conanfile.py and other associated files) from 🚣 either a predefined or a user-defined template.
       ⚓ conan build ; https://docs.conan.io/2/reference/commands/build.html
         The conan build command installs the recipe 🚣 specified in path and calls its build() method.
@@ -670,13 +792,14 @@ Conan 🔪⚓ Reference ; https://docs.conan.io/2/reference.html
             https://docs.conan.io/2/tutorial/creating_packages/define_package_information.html#propagating-environment-or-configuration-information-to-consumers
           
 
-  ⚓ Configuration files ; https://docs.conan.io/2/reference/config_files.html
+  # Configuration files
     ⚓💡 profiles ; https://docs.conan.io/2/reference/config_files/profiles.html
       #️⃣ Profile sections ; https://docs.conan.io/2/reference/config_files/profiles.html#profile-sections
-      # [buildenv]
+      #️⃣ [buildenv] ; https://docs.conan.io/2/reference/config_files/profiles.html#buildenv
         List of environment variables that will be injected to the environment every time the ConanFile run(cmd, env="conanbuild") method is invoked
           (build time context is automatically run by 🪱 VirtualBuildEnv).
-    ⚓📍 settings.yml ; https://docs.conan.io/2/reference/config_files/settings.html
+      #️⃣ [conf] ; https://docs.conan.io/2/reference/config_files/profiles.html#conf
+    ⚓⚖️ settings.yml ; https://docs.conan.io/2/reference/config_files/settings.html
       ... build_type: [null, Debug, Release, RelWithDebInfo, MinSizeRel]
         🛍️ e.g. https://github.com/conan-io/conan-center-index/blob/master/recipes/opencv/4.x/conanfile.py
           📝 To be installed package is different according to debug settings

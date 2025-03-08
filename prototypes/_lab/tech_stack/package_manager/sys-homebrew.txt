@@ -35,29 +35,101 @@ list of level 1 subjects
       Ensures cutting-edge features and security updates are available promptly.
       Provides a more flexible and current package management system for macOS and Linux environments.
 
-* 🚨 (Issue: Bug); brew breaks sudo password cache 📅 2024-12-09 02:48:31
-  Description
-    Homebrew forces re-authentication for sudo commands, ignoring the sudo password cache and requiring repeated password inputs.
 
-  When
-    The issue occurs during Homebrew commands executed in the Fish shell:
-      Example steps to reproduce:
-        sudo -v
-        echo First
-        brew install tree
-        sudo -v
-        echo Two
-    The problem persists regardless of the following /etc/sudoers configurations:
-      Defaults !tty_tickets
-      Defaults timestamp_timeout=30
+  ☑️ (Issue: Bug); Running `eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"` invalidates sudo cache. 📅 2025-01-20 01:59:08
+    Description
+      Because of the previously mentioned Homebrew Security Policy, any `brew` command breaks the sudo password cache.
 
-  Explanation
-    ➡️ > This is likely a WONTFIX, sorry. We clear the sudo password cache intentionally as a precaution against privilege escalation attacks.
-      See https://brew.sh/2024/07/30/homebrew-security-audit/.
+      Therefore, environment variables need to be registered without running brew commands.
 
-  Reference 
-    https://github.com/Homebrew/brew/issues/17905
-    https://brew.sh/2024/07/30/homebrew-security-audit/
+      From the fact that `eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"` works correctly
+      , we can infer that the `/home/linuxbrew/.linuxbrew/bin/brew shellenv` command provides environment variable outputs.
       
-      
-      
+      As a result, the output values from this command should be written into the FISH_CONFIG_PATH.
+
+
+    Solution
+      in FISH_CONFIG_PATH, add
+        ```fish
+        #!/usr/bin/env fish
+
+        set unique_comment '## [homebrew] Environment variable settings for Linuxbrew in Fish shell'
+        if not grep -Fxq "$unique_comment" "$FISH_CONFIG_PATH"
+            echo "
+                $unique_comment"'
+                # If Homebrew is installed on Linux
+                if test -d /home/linuxbrew/.linuxbrew
+                    # Run raw output from `eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"`
+                    set --global --export HOMEBREW_PREFIX "/home/linuxbrew/.linuxbrew"
+                    set --global --export HOMEBREW_CELLAR "/home/linuxbrew/.linuxbrew/Cellar"
+                    set --global --export HOMEBREW_REPOSITORY "/home/linuxbrew/.linuxbrew/Homebrew"
+                    fish_add_path --global --move --path "/home/linuxbrew/.linuxbrew/bin" "/home/linuxbrew/.linuxbrew/sbin"
+                    if test -n "$MANPATH[1]"
+                        set --global --export MANPATH '' $MANPATH
+                    end
+                    if not contains "/home/linuxbrew/.linuxbrew/share/info" $INFOPATH
+                        set --global --export INFOPATH "/home/linuxbrew/.linuxbrew/share/info" $INFOPATH
+                    end
+                end
+              ' | prettify_indent_via_pipe | tee -a $FISH_CONFIG_PATH >/dev/null
+            echo -e "\n" >>"$FISH_CONFIG_PATH"
+        end
+        source $FISH_CONFIG_PATH
+        ```
+
+      In BASHRC_PATH, add
+        ```fish
+        #!/usr/bin/env fish
+
+        set unique_comment '## [homebrew] Environment variable settings for Linuxbrew in Bash shell'
+        if not grep -Fxq "$unique_comment" "$BASHRC_PATH"
+            echo "
+                $unique_comment"'
+                # If Homebrew is installed on Linux
+                if [ -d /home/linuxbrew/.linuxbrew ]; then
+                    # Run raw output from `eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"`
+                    export HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew";
+                    export HOMEBREW_CELLAR="/home/linuxbrew/.linuxbrew/Cellar";
+                    export HOMEBREW_REPOSITORY="/home/linuxbrew/.linuxbrew/Homebrew";
+                    export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin${PATH+:$PATH}";
+                    [ -z "${MANPATH-}" ] || export MANPATH=":${MANPATH#:}";
+                    export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:${INFOPATH:-}";
+                fi
+              ' | prettify_indent_via_pipe | tee -a $BASHRC_PATH >/dev/null
+            echo -e "\n" >>"$BASHRC_PATH"
+        end
+        ```
+
+      Reference
+        ➡️ https://github.com/orgs/Homebrew/discussions/4412?utm_source=chatgpt.com#discussioncomment-8314181
+            https://github.com/orgs/Homebrew/discussions/5672
+            https://github.com/Homebrew/brew/issues/17915
+            https://github.com/Homebrew/brew/pull/17694
+            https://github.com/fish-shell/fish-shell/issues/11064
+        
+        🔗 (Issue: Bug); brew breaks sudo password cache (sudo timestamp)
+  ☑️ (Issue: Bug); brew breaks sudo password cache (sudo timestamp) 📅 2024-12-09 02:48:31
+    Description
+      Homebrew forces re-authentication for sudo commands, ignoring the sudo password cache and requiring repeated password inputs.
+
+    When
+      The issue occurs during Homebrew commands executed in the Fish shell:
+        Example steps to reproduce:
+          sudo -v
+          echo First
+          brew install tree
+          sudo -v
+          echo Two
+      The problem persists regardless of the following /etc/sudoers configurations:
+        Defaults !tty_tickets
+        Defaults timestamp_timeout=30
+
+    Explanation
+      ➡️ > This is likely a WONTFIX, sorry. We clear the sudo password cache intentionally as a precaution against privilege escalation attacks.
+        See https://brew.sh/2024/07/30/homebrew-security-audit/.
+
+    Reference 
+      https://github.com/Homebrew/brew/issues/17905
+      https://brew.sh/2024/07/30/homebrew-security-audit/
+        
+        

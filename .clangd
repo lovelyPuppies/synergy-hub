@@ -7,19 +7,67 @@ InlayHints:
   TypeNameLimit: 24
 
 ---
-# Add ARM cross-compilation flags for files under "drivers/"
+## 📅 Written at 2025-02-03 00:13:20
+# Add ARM cross-compilation flags for files under "drivers/" (For 🚣 64bit)
 If:
-  PathMatch: "prototypes/study/bsp_study/raspberry_pi/drivers/.*"
+  PathMatch: "study/bsp_study/raspberry_pi/drivers/.*\\.(c|h)$"
 CompileFlags:
   Add:
-    - "--target=arm-linux-gnueabihf"
-    - "-I/usr/arm-linux-gnueabihf/include"
-    - "-L/usr/arm-linux-gnueabihf/lib"
+    - "--target=aarch64-linux-gnu"
+    - "-I/usr/aarch64-linux-gnu/include"
+    - "-L/usr/aarch64-linux-gnu/lib"
 ---
-# Add default llvm flags for files in cpp_study/"
+# Common settings for both C and C++ files
 If:
-  PathMatch: "prototypes/study/cpp_study/.*"
+  PathMatch: "study/c.*_study/.*\\.(c|cpp|h|hpp)$"
 CompileFlags:
   Add:
-    - "-I/home/linuxbrew/.linuxbrew/opt/llvm/include"
-    - "-I/home/linuxbrew/.linuxbrew/opt/llvm/include/c++/v1"
+    - -L/home/linuxbrew/.linuxbrew/opt/llvm/lib
+    - -Wall
+    - -Wextra
+    - -pedantic
+    # - -O2
+    # - -lunwind
+
+# Specific settings for C files
+---
+If:
+  PathMatch: "study/c.*_study/.*\\.(c|h)$"
+CompileFlags:
+  Add:
+    - -std=c23
+    - -I/home/linuxbrew/.linuxbrew/opt/llvm/include/c++/v1
+    - -I/home/linuxbrew/.linuxbrew/opt/mariadb-connector-c/include
+    - -L/home/linuxbrew/.linuxbrew/opt/mariadb-connector-c/lib
+
+# Specific settings for C++ files
+---
+If:
+  PathMatch: "study/c.*_study/.*\\.(cpp|hpp)$"
+CompileFlags:
+  Compiler: clang++
+  Add:
+    - -std=c++23
+    - -stdlib=libc++
+    # treat all files as C++
+    # - -xc++
+
+
+## 🚨 Never manually add "-I/home/linuxbrew/.linuxbrew/opt/llvm/include/c++/v1 only for c+ intellisense" 📅 2025-02-03 00:00:30
+#🧪📵 🚣 Both (`clangd` and the `C/C++` VSCode extension) in both (🚣 Makefile with compiledb and CMakeLists.txt), clang version installed from both (🚣 homebrew (19.1.7), apt)
+#  create many intelliSense errors 🚣 only for C++ targets (but 🚣 compile successfully).
+# When compile if the include path is not added, it automatically explores candidate GCC installations and selects the GCC installation to complement header files.
+#   I think the reason why compilation with the prepended path does not fail is that during compilation, clang automatically falls back, but `compile_commands.json` does not do that.
+# You can test by running the command `clang++-19 -stdlib=libc++ -I/usr/lib/llvm-19/include/c++/v1 -v cpp.cpp`
+# It seems that this issue arises because LLVM's library is not yet fully complete.
+
+### Common includes/libraries settings 📅 2025-01-30 14:56:36
+---
+If:
+  PathExclude: "study/bsp_study/raspberry_pi/.*"
+CompileFlags:
+  Add:
+    - -I/opt/protobuf/debug-static/include
+    - -I/opt/nanopb/include
+    # - -I/opt/boost/debug-static/include
+

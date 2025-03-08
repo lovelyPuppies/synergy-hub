@@ -1,0 +1,76 @@
+{
+  "name": "qt6-compile",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  // Change the default source code mount ; https://code.visualstudio.com/remote/advancedcontainers/change-default-source-mount
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+  "workspaceFolder": "/workspace",
+  // ===== ⚙️ =====
+  "containerEnv": {
+    "DISPLAY": "${localEnv:DISPLAY}",
+    "XAUTHORITY": "/tmp/.Xauthority"
+    // ✔️ #fix some QT bugs ; https://wiki.ros.org/docker/Tutorials/Compose
+  },
+  // ===============
+  // 👇 Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+  "remoteUser": "vscode",
+  // 👇 Features to add to the Dev Container. More info: https://containers.dev/implementors/features.
+  "features": {
+    // "ghcr.io/devcontainers-extra/features/fish-apt-get:1": {}
+    // "ghcr.io/devcontainers/features/github-cli:1": {}
+    // "ghcr.io/devcontainers/features/python:1": {
+    //   "version": "3.11",
+    //   "installTools": true,
+    //   "toolsToInstall": "black,pytest",
+    //   "installJupyterlab": true
+    // }
+  },
+  "runArgs": [
+    // "--name",
+    // "test-qt6-compile",
+    "--volume",
+    "/tmp/.X11-unix:/tmp/.X11-unix:rw",
+    "--volume",
+    "${localEnv:HOME}/.Xauthority:/tmp/.Xauthority",
+    // "--privileged" // may be required to access hardware and devices fully
+    // https://code.visualstudio.com/remote/advancedcontainers/environment-variables#_option-2-use-an-env-file
+    // "--ipc",
+    // "host", // Share the host's inter-process communication (IPC) resources, including shared memory and semaphores, with the container.
+    // "--shm-size", "2gb", // Allocate shared memory
+  ],
+  // may be required to add "--privileged"?
+  // 👇 Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // "forwardPorts": [],
+  // 👇 Use 'postCreateCommand' to run commands after the container is created.
+  // "postCreateCommand": "pip3 install --upgrade pip && pip3 install -r requirements/requirements_dev.txt && pip3 install -e .",
+  // "postCreateCommand": "source /opt/ros/noetic/setup.bash && rosdep update",
+  // 👇 Configure tool-specific properties.
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        // 🌀 Title: ROS
+        // https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/
+        "ms-vscode.cmake-tools",
+        "ms-azuretools.vscode-docker",
+        //
+        "PKief.material-icon-theme",
+        "jsynowiec.vscode-insertdatestring",
+        "yzhang.markdown-all-in-one",
+        "esbenp.prettier-vscode",
+        "ms-azuretools.vscode-docker"
+        // "ms-python.python",
+        // "njpwerner.autodocstring",
+        // "ms-toolsai.jupyter",
+        // "ms-python.black-formatter",
+        // "ms-python.isort"
+      ],
+      "settings": {
+        // "python.analysis.extraPaths": ["/ultralytics"],
+        "files.exclude": {
+          "**/*.egg-info": true
+        }
+      }
+    }
+  }
+}

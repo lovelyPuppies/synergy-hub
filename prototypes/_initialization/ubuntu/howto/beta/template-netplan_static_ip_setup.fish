@@ -1,13 +1,18 @@
 # 🧪 This code must be tested by a device.
-# Written at 📅 2024-11-24 14:57:47
+## 📰 ?명령을 한 번에 실행하게 하게 ssh 연결이 끊어져도 실행되도록 바꿔야할듯.
+# sudo netplan apply, echo "Stopping $service_to_stop...", echo "Starting $service_to_start..." 할 때 각각 1번씩 총 3 번 끊김.
+
+# 📅 Written at 2024-11-24 14:57:47
 
 : ' ✏️ Define the default renderer. Users can change it as needed.
     🧮 set renderer_choice networkd
     or
     🧮 set renderer_choice NetworkManager
 '
-set renderer_choice networkd
+sudo -v
 
+
+set renderer_choice networkd
 
 
 # Detect Ethernet and Wireless interface names
@@ -101,10 +106,7 @@ echo "network:
 # Correct file permissions for the Netplan configuration file
 sudo chmod 600 $netplan_config_file
 
-# Apply the Netplan configuration
-echo "Applying Netplan configuration..."
-sudo netplan apply
-# You can test the configuration by running: 🧮 sudo netplan try
+
 
 # Verify the changes
 echo "Verifying network configuration..."
@@ -114,13 +116,27 @@ ip addr show $wireless_name
 : ' ⚠️ If both systemd-networkd and NetworkManager are enabled, they are likely to conflict with each other.
     By default, only one network management tool should be active, and it must match the renderer specified in Netplan to ensure stable network functionality.
 '
+
 # After applying Netplan, handle service management
-echo "Stopping $service_to_stop..."
-sudo systemctl stop $service_to_stop
-sudo systemctl disable $service_to_stop
+echo "Stopping $service_to_stop... and Starting $service_to_start..."
 
-echo "Starting $service_to_start..."
-sudo systemctl start $service_to_start
-sudo systemctl enable $service_to_start
 
-echo "Netplan configuration applied successfully, and services have been updated."
+## Run nohup with multiple commands in background process 📅 2025-01-19 00:47:43
+systemd-run --user --unit=custom-task --scope nohup fish -c "
+  sudo systemctl stop $service_to_stop && \
+  sudo systemctl disable $service_to_stop && \
+  sudo systemctl start $service_to_start && \
+  sudo systemctl enable $service_to_start
+" >log.log 2>&1 &
+
+
+## You can test the configuration by running: 🧮 sudo netplan try
+#   %shell>
+#     systemctl status $service_to_stop
+#     systemctl status $service_to_start
+# If already Netpaln service activated and configuration is changed,
+#   %shell> sudo netplan apply
+
+
+# Update sudo cache in order to use sudo in fish subprocess
+sudo -v

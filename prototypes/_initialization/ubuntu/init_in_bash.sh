@@ -10,40 +10,50 @@ mkdir -p $LOCAL_BIN_DIR
 
 
 
-### Minimum packages in roder to install homebrew 🔗 https://docs.brew.sh/Homebrew-on-Linux#requirements
+
+### Minimum packages in order to install homebrew 🔗 https://docs.brew.sh/Homebrew-on-Linux#requirements
 sudo apt install -y curl git
 git config --global init.defaultBranch main
 
-: '
+# 📦 GitHub CLI (🧮 gh) to login easily GitHub ; https://github.com/cli/cli/blob/trunk/docs/install_linux.md
+(type -p wget >/dev/null || (sudo apt update && sudo apt-get install wget -y)) \
+	&& sudo mkdir -p -m 755 /etc/apt/keyrings \
+        && out=$(mktemp) && wget -nv -O$out https://cli.github.com/packages/githubcli-archive-keyring.gpg \
+        && cat $out | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg > /dev/null \
+	&& sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg \
+	&& echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
+	&& sudo apt update \
+	&& sudo apt install gh -y
+
+
+<<COMMENT
+☑️ Note that if you installed gh using both apt and Homebrew, and either one is outdated
+    , and when install or upgrade a package in homebrew the following error occurs: 📅 2025-02-06 21:17:38
+  >>
+    Error: The bottle for <package_name> could not be verified.
+
+    This typically indicates an outdated or incompatible `gh` CLI.
+
+    Please confirm that you're running the latest version of `gh`
+    by performing an upgrade before retrying:
+
+      brew update
+      brew upgrade gh
+
 ☑️ If "build-essential" is not installed, the system cannot find standard headers like stdio.h, string.h, etc. 📅 2024-11-28 21:14:48
   This is because the standard library packages (like glibc) and compiler packages (like GCC or Clang) are separate in Linux systems.
-'
-sudo apt install -y build-essential
+COMMENT
+sudo apt install -y build-essential gnupg
 
 
 
-
-#### Install Package Manager in ordre to install latest and stable version for Development evnrionment.
+#### Install Package Manager in order to install latest and stable version for Development environment.
 # 🚧 Requirements in Debian or Ubuntu ; https://docs.brew.sh/Homebrew-on-Linux#requirements
 #   sudo apt-get install build-essential
 echo | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-LINE='eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"'
-# Ensures Homebrew commands and installed software are available in Bash shell
-# -F: Fixed Strings. -x: Match Whole Line. -q: Quiet (Silent Mode)
-if ! grep -Fxq "$LINE" "$BASH_CONFIG_PATH"; then
-    echo '## Configure Homebrew environment' >> $BASH_CONFIG_PATH
-    echo "$LINE" >> "$BASH_CONFIG_PATH"
-    echo -e "\n" >> "$BASH_CONFIG_PATH"
-fi
-# Ensures Homebrew commands and installed software are available in Fish shell
-if ! grep -Fxq "$LINE" "$FISH_CONFIG_PATH"; then
-  echo '## Configure Homebrew environment' >> $FISH_CONFIG_PATH
-  echo "$LINE" >> "$FISH_CONFIG_PATH"
-  echo -e "\n" >> "$FISH_CONFIG_PATH"
-fi
-## check by '/home/linuxbrew/.linuxbrew/bin/brew shellenv'
+# Settings for homebrew -> It is moved to init_in_fish.fish 📅 2025-01-20 01:36:46
 
 
 
@@ -74,7 +84,7 @@ sudo ln -s /home/linuxbrew/.linuxbrew/bin/fish_indent /usr/bin/fish_indent
 
 : '
 ☑️ Issue: Bug; Why does linuxbrew bin path not take precedence when using fish shell as the default in VSCode remote-SSH? 📅 2024-11-16 12:08:18
-  - Environment
+  - Environment 
     Fish shell was installed using the apt repository or GPG key method for Debian 12.
     The original fish shell was removed, and fish was reinstalled using Homebrew.
     empty: cat ~/.config/fish/config.fish

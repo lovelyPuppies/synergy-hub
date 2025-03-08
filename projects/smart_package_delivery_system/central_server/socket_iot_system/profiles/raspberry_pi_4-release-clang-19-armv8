@@ -1,0 +1,32 @@
+[settings]
+arch=armv8
+os=Linux
+build_type=Release
+compiler=clang
+compiler.version=17
+compiler.cstd=23
+compiler.cppstd=23
+compiler.version=19
+compiler.libcxx=libstdc++11
+
+[buildenv]
+CC=clang-17
+CXX=clang++-17
+# GCC compiler optimization for ARM-based systems ; https://gist.github.com/fm4dd/c663217935dc17f0fc73c9c81b0aa845
+CFLAGS=--target=aarch64-linux-gnu --gcc-install-dir=/usr/lib/gcc-cross/aarch64-linux-gnu/12 -march=armv8-a -mtune=cortex-a72 -O3 -flto -pipe
+CXXFLAGS=--target=aarch64-linux-gnu --gcc-install-dir=/usr/lib/gcc-cross/aarch64-linux-gnu/12 -march=armv8-a -mtune=cortex-a72 -O3 -flto -pipe
+LDFLAGS=-fuse-ld=lld -Wl,-O3 -Wl,--as-needed -Wl,--strip-all
+
+[conf]
+tools.cmake.cmaketoolchain:generator=Ninja
+
+
+
+### ☑️ [question] preset name != profile name ; https://github.com/conan-io/conan/issues/16557 📅 2025-01-27 01:19:44
+# tools.cmake.cmake_layout:build_folder_vars=["settings.build_type", "settings.compiler"]
+## build_folder_vars consts ; https://github.com/conan-io/conan/pull/16633
+#   Changelog: Feature: Add build_folder_vars=["const.myvalue"] to create presets for user "myvalue" arbitrary values.
+## %shell> conan config list | grep tools.cmake.cmake_layout:build_folder_vars
+#   >> tools.cmake.cmake_layout:build_folder_vars: Settings and Options that will produce a different build folder and different CMake presets names
+# 🗺️ Format: <platform>-<build_type>-<compiler>[-<compiler.version>]-<arch>
+tools.cmake.cmake_layout:build_folder_vars=["const.raspberry_pi_4", "settings.build_type", "settings.compiler", "settings.compiler.version", "settings.arch"]

@@ -1,0 +1,9 @@
+edition = "2023";
+
+package test;
+
+message Example {
+    int32 value = 1;
+}
+
+

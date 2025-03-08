@@ -1,0 +1,14 @@
+list of level 1 subjects
+  - PlatformIO
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ PlatformIO ; https://platformio.org/
+  PlatformIO IDE for VSCode: The next generation integrated development environment for IoT.
+  https://github.com/platformio
+
+
+
+
+----------------------------------------------
+⚓ PlatformIO 🔪 Docs ; https://docs.platformio.org/en/latest/
+  

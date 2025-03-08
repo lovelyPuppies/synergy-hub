@@ -1,0 +1,413 @@
+# mkdir -p $WORKDIR/qt6-build/host $WORKDIR/qt6-build/pi
+
+
+##### Update and install necessary packages
+sudo apt update && sudo apt install -y \
+  wget \
+  git \
+  build-essential \
+  make \
+  cmake \
+  rsync \
+  sed \
+  libclang-dev \
+  ninja-build \
+  gcc \
+  bison \
+  python3 \
+  gperf \
+  pkg-config \
+  libfontconfig1-dev \
+  libfreetype6-dev \
+  libx11-dev \
+  libx11-xcb-dev \
+  libxext-dev \
+  libxfixes-dev \
+  libxi-dev \
+  libxrender-dev \
+  libxcb1-dev \
+  libxcb-glx0-dev \
+  libxcb-keysyms1-dev \
+  libxcb-image0-dev \
+  libxcb-shm0-dev \
+  libxcb-icccm4-dev \
+  libxcb-sync-dev \
+  libxcb-xfixes0-dev \
+  libxcb-shape0-dev \
+  libxcb-randr0-dev \
+  libxcb-render-util0-dev \
+  libxcb-util-dev \
+  libxcb-xinerama0-dev \
+  libxcb-xkb-dev \
+  libxkbcommon-dev \
+  libxkbcommon-x11-dev \
+  libatspi2.0-dev \
+  libgl1-mesa-dev \
+  libglu1-mesa-dev \
+  freeglut3-dev \
+  libssl-dev \
+  libgmp-dev \
+  libmpfr-dev \
+  libmpc-dev \
+  flex \
+  gawk \
+  texinfo \
+  libisl-dev \
+  zlib1g-dev \
+  libtool \
+  autoconf \
+  automake \
+  libgdbm-dev \
+  libdb-dev \
+  libbz2-dev \
+  libreadline-dev \
+  libexpat1-dev \
+  liblzma-dev \
+  libffi-dev \
+  libsqlite3-dev \
+  libbsd-dev \
+  perl \
+  patch \
+  m4 \
+  libncurses5-dev \
+  gettext  \
+  gcc-arm-linux-gnueabihf \
+  g++-arm-linux-gnueabihf \
+  binutils-arm-linux-gnueabihf \
+  libc6-armhf-cross \
+  libc6-dev-armhf-cross \
+  glibc-source \
+  python3-pip \
+  nodejs
+sudo apt clean && \
+sudo rm -rf /var/lib/apt/lists/*
+
+
+
+
+' ❓ perl: warning: Setting locale failed.
+    Whenever `sudo apt install ..` or `perl -e exit`, it prints:
+    >> 
+      perl: warning: Please check that your locale settings:
+              LANGUAGE = (unset),
+              LC_ALL = (unset),
+              LANG = "en_US.UTF-8"
+          are supported and installed on your system.
+      perl: warning: Falling back to the standard locale ("C").
+    %shell> apt-cache policy locales
+      locales:
+        Installed: (none)
+        Candidate: 2.36-9+deb12u9
+        Version table:
+          2.36-9+deb12u9 500
+              500 http://deb.debian.org/debian bookworm/main amd64 Packages
+          2.36-9+deb12u7 500
+              500 http://deb.debian.org/debian-security bookworm-security/main amd64 Packages
+    ❔ command `localedef`
+      Input Files:
+        -f, --charmap=FILE         Symbolic character names defined in FILE
+        -i, --inputfile=FILE       Source definitions are found in FILE
+    ➡️ sudo apt install -y locales && localedef -i en_US -f UTF-8 en_US.UTF-8 
+'
+sudo apt install -y locales && localedef -i en_US -f UTF-8 en_US.UTF-8
+
+
+
+##### Set the working directory to /build
+# WORKDIR /build
+export WORKDIR=$HOME/build
+mkdir -p $WORKDIR && cd $WORKDIR
+
+
+# Create sysroot directory
+mkdir -p sysroot sysroot/usr sysroot/opt
+
+cp /workspace/rasp.tar.gz $WORKDIR/
+cp /workspace/toolchain.cmake $WORKDIR/
+
+
+
+
+##### Build and install CMake from source
+cd $WORKDIR
+echo "Building CMake from source" && \
+mkdir cmakeBuild && cd cmakeBuild && \
+git clone https://github.com/Kitware/CMake.git && \
+cd CMake && \
+./bootstrap && make -j$(nproc) && sudo make install && \
+echo "CMake build completed"
+
+
+
+
+##### Fix symbolic link and prepare directories
+cd $WORKDIR
+echo "Fix symbolic link and create directories" && \
+    wget https://raw.githubusercontent.com/riscv/riscv-poky/master/scripts/sysroot-relativelinks.py && \
+    chmod +x sysroot-relativelinks.py && \
+    python3 sysroot-relativelinks.py /build/sysroot && \
+    mkdir -p qt6 qt6/host qt6/pi qt6/host-build qt6/pi-build qt6/src;
+
+
+##### Download required submodules: 39 = 13 * 3 ; https://download.qt.io/official_releases/qt/6.8/6.8.1/submodules/
+cd $WORKDIR/qt6/src
+# ❓ It seems that it may be locked or rate-limited when making multiple wget requests for each submodule individually 📅 2025-01-11 05:25:15
+  , even though there is a single compressed file containing all modules available, likely due to bandwidth restrictions.
+# https://download.qt.io/official_releases/qt/6.8/6.8.1/single/
+#  - qtbase, qtshadertools, qtwebview
+#  - qtwebsockets, qtwebengine, qtwebchannel
+#  - qtwayland, qtvirtualkeyboard, qttranslations
+#  - qttools, qtsvg, qtspeech
+#  - qtserialport, qtserialbus, qtsensors
+#  - qtscxml, qtremoteobjects, qtquicktimeline
+#  - qtquickeffectmaker, qtquick3dphysics, qtquick3d
+#  - qtpositioning, qtnetworkauth, qtmultimedia
+#  - qtlottie, qtlocation, qtlanguageserver
+#  - qtimageformats, qthttpserver, qtgrpc
+#  - qtgraphs, qtdoc, qtdatavis3d
+#  - qtconnectivity, qtcharts, qtactiveqt
+#  - qt5compat, qt3d, qtdeclarative
+
+
+## wget https://download.qt.io/official_releases/qt/6.8/6.8.1/single/qt-everywhere-src-6.8.1.tar.xz
+#   >> ⚠️ 20.74M  6.42KB/s ... slow..
+
+
+## git clone with only branch to be built with submodules
+
+....
+# ... install many dependencies
+git clone --single-branch --branch 6.8.1 https://github.com/qt/qt5.git
+./init-repository --module-subset=default --branch
+# ... export pkg-config
+./configure FEATURE_clang=ON -prefix $WORKDIR/qt6/host -- -Wno-dev
+....
+export PKG_CONFIG_PATH
+# ⚠️ Warning: Do not use the `--recursive` option with this command. 📅 2025-01-11 06:43:58
+#   If `--recursive` is used, it will download the submodules from the "dev (HEAD)" branch
+#   instead of the same branch version (e.g., 6.8.1) selected for the parent Qt5 repository.
+cd qt5
+
+# ========================================
+# Multimedia packages
+sudo apt install -y libpulse-dev libasound2-dev libpipewire-0.3-dev \
+    libavcodec-dev libavformat-dev libavutil-dev libswscale-dev \
+    libpostproc-dev libopus-dev libgstreamer1.0-dev \
+    libgstreamer-plugins-base1.0-dev gstreamer1.0-plugins-base \
+    gstreamer1.0-plugins-good gstreamer1.0-plugins-bad \
+    gstreamer1.0-plugins-ugly gstreamer1.0-libav
+
+# WebEngine packages
+sudo apt install -y libicu-dev libnspr4-dev libxrandr-dev \
+    libxcomposite-dev libxdamage-dev libxtst-dev libdrm-dev \
+    libfontconfig1-dev libx11-dev libegl1-mesa-dev libgles2-mesa-dev \
+    libevent-dev libharfbuzz-dev libwebp-dev libprotobuf-dev protobuf-compiler
+
+: '❓ WARNING: QtWebEngine won\'t be built. node.js version 14 or later is required.
+      WARNING: QtPdf won\'t be built. node.js version 14 or later is required.
+    %shell> apt-cache policy nodejs
+    >> nodejs:
+        Installed: 18.19.0+dfsg-6~deb12u2
+        Candidate: 18.19.0+dfsg-6~deb12u2
+        Version table:
+      *** 18.19.0+dfsg-6~deb12u2 500
+              500 http://deb.debian.org/debian bookworm/main amd64 Packages
+              100 /var/lib/dpkg/status
+          18.19.0+dfsg-6~deb12u1 500
+              500 http://deb.debian.org/debian-security bookworm-security/main amd64 Packages
+    ➡️ sudo apt install -y nodejs
+
+  ❓ WARNING: QtWebEngine won\'t be built. Python3 html5lib is missing.
+    WARNING: QtPdf won\'t be built. Python3 html5lib is missing.
+
+    ➡️ sudo apt install -y python3-pip
+      python3 -m pip install html5lib --break-system-packages
+      
+  ❓ WARNING: QtWebEngine won\'t be built. Build requires nss >= 3.26.
+    %shell>apt-cache policy libnss3-dev
+    >> libnss3-dev:
+        Installed: (none)
+        Candidate: 2:3.87.1-1+deb12u1
+        Version table:
+          2:3.87.1-1+deb12u1 500
+              500 http://deb.debian.org/debian-security bookworm-security/main amd64 Packages
+          2:3.87.1-1 500
+              500 http://deb.debian.org/debian bookworm/main amd64 Packages
+    ➡️ sudo apt install -y libnss3-dev
+'
+sudo apt install -y nodejs python3-pip libnss3-dev
+python3 -m pip install html5lib --break-system-packages
+
+: ' ❓ QDoc will not be compiled, probably because clang's C and C++ libraries could not be located.
+  You may need to set the CMake variables
+    CMAKE_PREFIX_PATH or LLVM_INSTALL_DIR to the location of your llvm installation.
+    Other than clang's libraries, you may need to install another package, such as clang itself, to provide the ClangConfig.cmake file needed to detect your libraries.
+    Once this file is in place, the configure script may be able to detect your system-installed libraries without further environment variables.
+  https://stackoverflow.com/questions/76498987/cannot-configure-qdoc-when-configuring-qt-6-2-4-because-of-missing-libclang
+
+
+  NOTE: You WILL also need to set the FEATURE_clang CMake variable to ON to re-try finding the
+  dependencies.
+  On Debian / Ubuntu run `sudo apt install libclang-dev`.
+  After installing, reconfigure with
+
+  `/qt_src/configure FEATURE_clang=ON` for a top-level build that includes the qttools repo
+  or
+  `/qt_build/qt-configure-module /path/to/qttools FEATURE_clang=ON` for a per-submodule build
+
+  ❗ Do not use using LLVM Automatic installation script ; https://apt.llvm.org/ 📅 2025-01-11 14:48:17
+    sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh) all"
+    ./configure ...
+    >>
+      Make Error at /usr/lib/llvm-18/lib/cmake/clang/ClangTargets.cmake:833 (message):
+        The imported target "clangBasic" references the file
+
+          "/usr/lib/llvm-18/lib/libclangBasic.a"
+
+        but this file does not exist.  Possible reasons include:
+
+    find /usr/lib -name "libclangBasic.a"
+    >> /usr/lib/llvm-14/lib/libclangBasic.a
+'
+sudo apt install -y clang libclang-dev
+
+
+
+: '❓ WARNING: System GBM is disabled. The bundled minigbm supports Intel only, you might need to install libgbm to avoid rendering issues.
+    %shell> apt-cache policy libgbm-dev
+    >> libgbm-dev:
+        Installed: (none)
+        Candidate: 22.3.6-1+deb12u1
+        Version table:
+          22.3.6-1+deb12u1 500
+              500 http://deb.debian.org/debian bookworm/main amd64 Packages
+      ➡️ sudo apt install -y libgbm-dev
+'
+sudo apt install -y libgbm-dev
+export PKG_CONFIG_PATH=/usr/lib:/usr/lib/x86_64-linux-gnu/pkgconfig
+
+: '❓ Note: Hunspell in Qt Virtual Keyboard is not enabled. Spelling correction will not be available.
+  ➡️ # Required remove cache using ❗ rm -rf CMakeCache.txt CMakeFiles/
+    sudo apt-get install libhunspell-dev
+    python3 -m pip install hunspell --break-system-packages
+'
+sudo apt-get install libhunspell-dev
+python3 -m pip install hunspell --break-system-packages
+
+: '❓ ERROR: Qt Gui has been built without 'wayland' feature. This feature is required for building Qt Wayland Client.
+  ➡️ # Required remove cache using ❗ rm -rf CMakeCache.txt CMakeFiles/
+    sudo apt install -y libwayland-dev wayland-protocols
+'
+sudo apt install -y libwayland-dev wayland-protocols
+
+
+
+: '📰❓ WARNING: SensorFW support currently not enabled with cmake
+  Qt Sensors:
+    sensorfw ............................... no
+    sensorfw_enabled_with_cmake ............ no
+'
+# ========================================
+
+
+## ./init-repository --help 
+#   Module options:
+#     --module-subset=<module1>,<module2>... / -submodules <module1>,<module2>...
+#       You can use "default" in the subset as a short-hand for "essential,addon,preview,deprecated"
+#       , which corresponds to the set of maintained modules included in standard Qt releases;
+#       this is also the default module subset when this option is not given when first running init-repositoy.
+#       ⚠️ If init-repository is rerun a second time (with --force) the default is to initialize the "existing" submodules, rather than the default subset.
+#     --branch
+#       Instead of checking out specific SHA1s, check out the submodule branches that correspond with the current supermodule commit
+./init-repository --module-subset=default --branch
+#   >> git clone --no-checkout --progress  ...
+## CMake Warning ... 📅 2025-01-11 14:41:44
+# ... This warning is for project developers.  Use -Wno-dev to suppress it.
+./configure FEATURE_clang=ON -prefix $WORKDIR/qt6/host -- -Wno-dev
+
+
+
+CMake Warning at qtmultimedia/cmake/FindFFmpeg.cmake:293 (message):
+  FFmpeg pc file /usr/lib/x86_64-linux-gnu/../lib/pkgconfig/libavcodec.pc is
+  not found
+Call Stack (most recent call first):
+  qtmultimedia/cmake/FindFFmpeg.cmake:315 (__ffmpeg_internal_set_dependencies)
+  qtbase/cmake/QtFindPackageHelpers.cmake:141 (find_package)
+  qtmultimedia/src/multimedia/configure.cmake:75 (qt_find_package)
+  qtbase/cmake/QtModuleHelpers.cmake:676 (include)
+  qtmultimedia/src/multimedia/CMakeLists.txt:16 (qt_internal_add_module)
+
+
+
+
+
+
+cd qt5
+
+cd $WORKDIR
+
+
+export WORKDIR=$HOME/build
+export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig
+
+
+cd $WORKDIR
+cd qt6/src
+wget https://download.qt.io/official_releases/qt/6.8/6.8.0/submodules/qtshadertools-everywhere-src-6.8.0.tar.xz; \
+
+
+cd $WORKDIR
+echo "Extract Qt modules for host build" && \
+cd qt6/host-build && \
+tar xf ../src/qtshadertools-everywhere-src-6.8.0.tar.xz && \
+
+
+cd $WORKDIR
+echo "Compile qtshadertools for Raspberry Pi" && \
+cd qt6/pi-build/qtshadertools-everywhere-src-6.8.0 && \
+/build/qt6/pi/bin/qt-configure-module . && \
+cmake --build . --parallel 4 && \
+cmake --install .; 
+
+
+
+
+
+sudo apt update
+sudo apt install -y locales
+sudo update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
+sudo locale-gen en_US.UTF-8
+apt-get install language-pack-en-base
+
+sudo update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8
+
+set -x WORKDIR $HOME
+mkdir -p $WORKDIR/qt6/host $WORKDIR/qt6/pi
+
+호스트용 configure 
+# -release (default)
+./configure -prefix $WORKDIR/qt6/host \
+            -FEATURE_clang=ON \
+
+라즈베리파이용 configure
+./configure -prefix /usr/local/qt6 \
+            -device linux-rasp-pi4-v3d-g++ \
+            -device-option CROSS_COMPILE=/usr/bin/arm-linux-gnueabihf- \
+            -extprefix $WORKDIR/qt6/pi \
+            -sysroot $WORKDIR/rpi-sysroot/ \
+            -- \
+            -DCMAKE_TOOLCHAIN_FILE=$WORKDIR/toolchain.cmake
+
+
+Top-level installation directories:
+  -prefix <dir> ...... 📍 The deployment directory, as seen on the target device.
+                       [/usr/local/Qt-$QT_VERSION; qtbase build directory if
+                       -developer-build]
+
+
+cd $WORKDIR/qt6-build
+$WORKDIR/qt6/src/qt5/configure FEATURE_clang=ON -prefix $WORKDIR/qt6/host -- -Wno-dev
+cmake --build . --parallel
+cmake --install .
+
+

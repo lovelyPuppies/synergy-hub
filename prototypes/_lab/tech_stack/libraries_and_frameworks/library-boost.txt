@@ -1,0 +1,234 @@
+list of level 1 subjects
+  - boost
+  
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ boost ; https://doc.qt.io/qt-6/index.html
+
+
+----------------------------------------------
+⚓ boost 🔪 docs ; https://www.boost.org/doc/
+
+
+
+================================================
+⚓ boost libraries ; https://www.boost.org/doc/libs/
+  📝 Crawling Source (JS):
+    console.log(
+      $x('/html/body/div[2]/div/div[1]/div/div/div[2]/dl/dt[a]')
+      .map(/** @param {HTMLElement} dt */ dt => {
+          const title = dt.textContent.trim();
+          const link = dt.querySelector('a')?.href || 'N/A';
+          return `⚓ ${title} ; ${link}`;
+      })
+      .join("\n")
+    );
+
+  ⚓ Accumulators ; https://www.boost.org/doc/libs/release/libs/accumulators/
+  ⚓ Algorithm ; https://www.boost.org/doc/libs/release/libs/algorithm/
+  ⚓ Align ; https://www.boost.org/doc/libs/release/libs/align/
+  ⚓ Any ; https://www.boost.org/doc/libs/release/libs/any/
+  ⚓ Array ; https://www.boost.org/doc/libs/release/libs/array/
+  ⚓ Assert ; https://www.boost.org/doc/libs/release/libs/assert/
+  ⚓ Assign ; https://www.boost.org/doc/libs/release/libs/assign/
+  ⚓ Atomic ; https://www.boost.org/doc/libs/release/libs/atomic/
+  ⚓ Beast ; https://www.boost.org/doc/libs/release/libs/beast/
+  ⚓ Bimap ; https://www.boost.org/doc/libs/release/libs/bimap/
+  ⚓ Bind ; https://www.boost.org/doc/libs/release/libs/bind/
+  ⚓ Call Traits ; https://www.boost.org/doc/libs/release/libs/utility/call_traits.htm
+  ⚓ CallableTraits ; https://www.boost.org/doc/libs/release/libs/callable_traits/
+  ⚓ CharConv ; https://www.boost.org/doc/libs/release/libs/charconv/
+  ⚓ Chrono ; https://www.boost.org/doc/libs/release/libs/chrono/
+  ⚓ Circular Buffer ; https://www.boost.org/doc/libs/release/libs/circular_buffer/
+  ⚓ Cobalt ; https://www.boost.org/doc/libs/release/libs/cobalt/
+  ⚓ Compat ; https://www.boost.org/doc/libs/release/libs/compat/
+  ⚓ Compatibility ; https://www.boost.org/doc/libs/release/libs/compatibility/
+  ⚓ Compressed Pair ; https://www.boost.org/doc/libs/release/libs/utility/compressed_pair.htm
+  ⚓ Compute ; https://www.boost.org/doc/libs/release/libs/compute/
+  ⚓ Concept Check ; https://www.boost.org/doc/libs/release/libs/concept_check/
+  ⚓ Config ; https://www.boost.org/doc/libs/release/libs/config/doc/html/index.html
+  ⚓ Container ; https://www.boost.org/doc/libs/release/libs/container/
+  ⚓ Container Hash ; https://www.boost.org/doc/libs/release/libs/container_hash/
+  ⚓ Container Hash ; https://www.boost.org/doc/libs/release/libs/container_hash/
+  ⚓ Context ; https://www.boost.org/doc/libs/release/libs/context/
+  ⚓ Contract ; https://www.boost.org/doc/libs/release/libs/contract/
+  ⚓ Conversion ; https://www.boost.org/doc/libs/release/libs/conversion/
+  ⚓ Convert ; https://www.boost.org/doc/libs/release/libs/convert/
+  ⚓ Core ; https://www.boost.org/doc/libs/release/libs/core/
+  ⚓ Coroutine (deprecated) ; https://www.boost.org/doc/libs/release/libs/coroutine/
+  ⚓ Coroutine2 ; https://www.boost.org/doc/libs/release/libs/coroutine2/
+  ⚓ CRC ; https://www.boost.org/doc/libs/release/libs/crc/
+  ⚓ Date Time ; https://www.boost.org/doc/libs/release/libs/date_time/
+  ⚓ Describe ; https://www.boost.org/doc/libs/release/libs/describe/
+  ⚓ DLL ; https://www.boost.org/doc/libs/release/libs/dll/
+  ⚓ Dynamic Bitset ; https://www.boost.org/doc/libs/release/libs/dynamic_bitset/dynamic_bitset.html
+  ⚓ Enable If ; https://www.boost.org/doc/libs/release/libs/core/doc/html/core/enable_if.html
+  ⚓ Endian ; https://www.boost.org/doc/libs/release/libs/endian/
+  ⚓ Exception ; https://www.boost.org/doc/libs/release/libs/exception/doc/boost-exception.html
+  ⚓ Fiber ; https://www.boost.org/doc/libs/release/libs/fiber/
+  ⚓ Filesystem ; https://www.boost.org/doc/libs/release/libs/filesystem/
+  ⚓ Flyweight ; https://www.boost.org/doc/libs/release/libs/flyweight/
+  ⚓ Foreach ; https://www.boost.org/doc/libs/release/libs/foreach/
+  ⚓ Format ; https://www.boost.org/doc/libs/release/libs/format/
+  ⚓ Function ; https://www.boost.org/doc/libs/release/libs/function/
+  ⚓ Function Types ; https://www.boost.org/doc/libs/release/libs/function_types/
+  ⚓ Functional ; https://www.boost.org/doc/libs/release/libs/functional/
+  ⚓ Functional/Factory ; https://www.boost.org/doc/libs/release/libs/functional/factory/
+  ⚓ Functional/Forward ; https://www.boost.org/doc/libs/release/libs/functional/forward/
+  ⚓ Functional/Overloaded Function ; https://www.boost.org/doc/libs/release/libs/functional/overloaded_function/
+  ⚓ Fusion ; https://www.boost.org/doc/libs/release/libs/fusion/doc/html/
+  ⚓ Geometry ; https://www.boost.org/doc/libs/release/libs/geometry/
+  ⚓ GIL ; https://www.boost.org/doc/libs/release/libs/gil/
+  ⚓ Graph ; https://www.boost.org/doc/libs/release/libs/graph/
+  ⚓ GraphParallel ; https://www.boost.org/doc/libs/release/libs/graph_parallel/
+  ⚓ Hana ; https://www.boost.org/doc/libs/release/libs/hana/
+  ⚓ Heap ; https://www.boost.org/doc/libs/release/libs/heap/
+  ⚓ Histogram ; https://www.boost.org/doc/libs/release/libs/histogram/
+  ⚓ HOF ; https://www.boost.org/doc/libs/release/libs/hof/
+  ⚓ ICL ; https://www.boost.org/doc/libs/release/libs/icl/
+  ⚓ Identity Type ; https://www.boost.org/doc/libs/release/libs/utility/identity_type/
+  ⚓ In Place Factory, Typed In Place Factory ; https://www.boost.org/doc/libs/release/libs/utility/in_place_factories.html
+  ⚓ Integer ; https://www.boost.org/doc/libs/release/libs/integer/
+  ⚓ Interprocess ; https://www.boost.org/doc/libs/release/libs/interprocess/
+  ⚓ Interval ; https://www.boost.org/doc/libs/release/libs/numeric/interval/doc/interval.htm
+  ⚓ Intrusive ; https://www.boost.org/doc/libs/release/libs/intrusive/
+  ⚓ IO ; https://www.boost.org/doc/libs/release/libs/io/doc/html/io.html
+  ⚓ Iostreams ; https://www.boost.org/doc/libs/release/libs/iostreams/
+  ⚓ Iterator ; https://www.boost.org/doc/libs/release/libs/iterator/
+  ⚓ JSON ; https://www.boost.org/doc/libs/release/libs/json/
+  ⚓ Lambda ; https://www.boost.org/doc/libs/release/libs/lambda/
+  ⚓ Lambda2 ; https://www.boost.org/doc/libs/release/libs/lambda2/
+  ⚓ LEAF ; https://www.boost.org/doc/libs/release/libs/leaf/
+  ⚓ Lexical Cast ; https://www.boost.org/doc/libs/release/libs/lexical_cast/
+  ⚓ Local Function ; https://www.boost.org/doc/libs/release/libs/local_function/
+  ⚓ Locale ; https://www.boost.org/doc/libs/release/libs/locale/
+  ⚓ Lockfree ; https://www.boost.org/doc/libs/release/libs/lockfree/
+  ⚓ Log ; https://www.boost.org/doc/libs/release/libs/log/
+  ⚓ Math ; https://www.boost.org/doc/libs/release/libs/math/
+  ⚓ Math Common Factor ; https://www.boost.org/doc/libs/release/libs/math/doc/html/gcd_lcm.html
+  ⚓ Math Octonion ; https://www.boost.org/doc/libs/release/libs/math/doc/html/octonions.html
+  ⚓ Math Quaternion ; https://www.boost.org/doc/libs/release/libs/math/doc/html/quaternions.html
+  ⚓ Math/Special Functions ; https://www.boost.org/doc/libs/release/libs/math/doc/html/special.html
+  ⚓ Math/Statistical Distributions ; https://www.boost.org/doc/libs/release/libs/math/doc/html/dist.html
+  ⚓ Member Function ; https://www.boost.org/doc/libs/release/libs/bind/mem_fn.html
+  ⚓ Meta State Machine ; https://www.boost.org/doc/libs/release/libs/msm/
+  ⚓ Metaparse ; https://www.boost.org/doc/libs/release/libs/metaparse/
+  ⚓ Min-Max ; https://www.boost.org/doc/libs/release/libs/algorithm/minmax/
+  ⚓ Move ; https://www.boost.org/doc/libs/release/libs/move/
+  ⚓ Mp11 ; https://www.boost.org/doc/libs/release/libs/mp11/
+  ⚓ MPI ; https://www.boost.org/doc/libs/release/libs/mpi/
+  ⚓ MPL ; https://www.boost.org/doc/libs/release/libs/mpl/
+  ⚓ Multi-Array ; https://www.boost.org/doc/libs/release/libs/multi_array/
+  ⚓ Multi-Index ; https://www.boost.org/doc/libs/release/libs/multi_index/
+  ⚓ Multiprecision ; https://www.boost.org/doc/libs/release/libs/multiprecision/
+  ⚓ MySQL ; https://www.boost.org/doc/libs/release/libs/mysql/
+  ⚓ Nowide ; https://www.boost.org/doc/libs/release/libs/nowide/
+  ⚓ Numeric Conversion ; https://www.boost.org/doc/libs/release/libs/numeric/conversion/
+  ⚓ Odeint ; https://www.boost.org/doc/libs/release/libs/numeric/odeint/
+  ⚓ Operators ; https://www.boost.org/doc/libs/release/libs/utility/operators.htm
+  ⚓ Optional ; https://www.boost.org/doc/libs/release/libs/optional/
+  ⚓ Outcome ; https://www.boost.org/doc/libs/release/libs/outcome/
+  ⚓ Parameter ; https://www.boost.org/doc/libs/release/libs/parameter/
+  ⚓ Parameter Python Bindings ; https://www.boost.org/doc/libs/release/libs/parameter_python/
+  ⚓ Parser ; https://www.boost.org/doc/libs/release/libs/parser/
+  ⚓ PFR ; https://www.boost.org/doc/libs/release/libs/pfr/
+  ⚓ Phoenix ; https://www.boost.org/doc/libs/release/libs/phoenix/
+  ⚓ Pointer Container ; https://www.boost.org/doc/libs/release/libs/ptr_container/
+  ⚓ PolyCollection ; https://www.boost.org/doc/libs/release/libs/poly_collection/
+  ⚓ Polygon ; https://www.boost.org/doc/libs/release/libs/polygon/
+  ⚓ Pool ; https://www.boost.org/doc/libs/release/libs/pool/
+  ⚓ Predef ; https://www.boost.org/doc/libs/release/libs/predef/
+  ⚓ Preprocessor ; https://www.boost.org/doc/libs/release/libs/preprocessor/
+  ⚓ Process ; https://www.boost.org/doc/libs/release/libs/process/
+  ⚓ Program Options ; https://www.boost.org/doc/libs/release/libs/program_options/
+  ⚓ Property Map ; https://www.boost.org/doc/libs/release/libs/property_map/
+  ⚓ Property Map (Parallel) ; https://www.boost.org/doc/libs/release/libs/property_map_parallel/
+  ⚓ Property Tree ; https://www.boost.org/doc/libs/release/libs/property_tree/
+  ⚓ Proto ; https://www.boost.org/doc/libs/release/libs/proto/
+  ⚓ Python ; https://www.boost.org/doc/libs/release/libs/python/
+  ⚓ QVM ; https://www.boost.org/doc/libs/release/libs/qvm/index.html
+  ⚓ Random ; https://www.boost.org/doc/libs/release/libs/random/
+  ⚓ Range ; https://www.boost.org/doc/libs/release/libs/range/
+  ⚓ Ratio ; https://www.boost.org/doc/libs/release/libs/ratio/
+  ⚓ Rational ; https://www.boost.org/doc/libs/release/libs/rational/
+  ⚓ Redis ; https://www.boost.org/doc/libs/release/libs/redis/
+  ⚓ Ref ; https://www.boost.org/doc/libs/release/libs/core/ref.html
+  ⚓ Regex ; https://www.boost.org/doc/libs/release/libs/regex/
+  ⚓ Result Of ; https://www.boost.org/doc/libs/release/libs/utility/doc/html/utility/utilities/result_of.html
+  ⚓ Safe Numerics ; https://www.boost.org/doc/libs/release/libs/safe_numerics/
+  ⚓ Scope ; https://www.boost.org/doc/libs/release/libs/scope/
+  ⚓ Scope Exit ; https://www.boost.org/doc/libs/release/libs/scope_exit/
+  ⚓ Serialization ; https://www.boost.org/doc/libs/release/libs/serialization/
+  ⚓ Signals2 ; https://www.boost.org/doc/libs/release/libs/signals2/
+  ⚓ Smart Ptr ; https://www.boost.org/doc/libs/release/libs/smart_ptr/
+  ⚓ Sort ; https://www.boost.org/doc/libs/release/libs/sort/
+  ⚓ Spirit ; https://www.boost.org/doc/libs/release/libs/spirit/
+  ⚓ Spirit Classic ; https://www.boost.org/doc/libs/release/libs/spirit/classic/
+  ⚓ Spirit Repository ; https://www.boost.org/doc/libs/release/libs/spirit/repository/
+  ⚓ Stacktrace ; https://www.boost.org/doc/libs/release/libs/stacktrace/
+  ⚓ Statechart ; https://www.boost.org/doc/libs/release/libs/statechart/
+  ⚓ Static Assert ; https://www.boost.org/doc/libs/release/libs/static_assert/
+  ⚓ Static String ; https://www.boost.org/doc/libs/release/libs/static_string/
+  ⚓ Stl_interfaces ; https://www.boost.org/doc/libs/release/libs/stl_interfaces/
+  ⚓ String Algo ; https://www.boost.org/doc/libs/release/libs/algorithm/string/
+  ⚓ String Ref ; https://www.boost.org/doc/libs/release/libs/utility/doc/html/string_ref.html
+  ⚓ String View ; https://www.boost.org/doc/libs/release/libs/utility/doc/html/utility/utilities/string_view.html
+  ⚓ Swap ; https://www.boost.org/doc/libs/release/libs/core/swap.html
+  ⚓ System ; https://www.boost.org/doc/libs/release/libs/system/
+  ⚓ Test ; https://www.boost.org/doc/libs/release/libs/test/
+  ⚓ Thread ; https://www.boost.org/doc/libs/release/libs/thread/
+  ⚓ ThrowException ; https://www.boost.org/doc/libs/release/libs/throw_exception/
+  ⚓ Timer ; https://www.boost.org/doc/libs/release/libs/timer/
+  ⚓ Tokenizer ; https://www.boost.org/doc/libs/release/libs/tokenizer/
+  ⚓ Tribool ; https://www.boost.org/doc/libs/release/doc/html/tribool.html
+  ⚓ TTI ; https://www.boost.org/doc/libs/release/libs/tti/
+  ⚓ Tuple ; https://www.boost.org/doc/libs/release/libs/tuple/
+  ⚓ Type Erasure ; https://www.boost.org/doc/libs/release/libs/type_erasure/
+  ⚓ Type Index ; https://www.boost.org/doc/libs/release/libs/type_index/
+  ⚓ Type Traits ; https://www.boost.org/doc/libs/release/libs/type_traits/
+  ⚓ Typeof ; https://www.boost.org/doc/libs/release/libs/typeof/
+  ⚓ uBLAS ; https://www.boost.org/doc/libs/release/libs/numeric/ublas/
+  ⚓ Units ; https://www.boost.org/doc/libs/release/libs/units/
+  ⚓ Unordered ; https://www.boost.org/doc/libs/release/libs/unordered/
+  ⚓ URL ; https://www.boost.org/doc/libs/release/libs/url/
+  ⚓ Utility ; https://www.boost.org/doc/libs/release/libs/utility/utility.htm
+  ⚓ Uuid ; https://www.boost.org/doc/libs/release/libs/uuid/
+  ⚓ Value Initialized ; https://www.boost.org/doc/libs/release/libs/utility/value_init.htm
+  ⚓ Variant ; https://www.boost.org/doc/libs/release/libs/variant/
+  ⚓ Variant2 ; https://www.boost.org/doc/libs/release/libs/variant2/
+  ⚓ VMD ; https://www.boost.org/doc/libs/release/libs/vmd/
+  ⚓ Wave ; https://www.boost.org/doc/libs/release/libs/wave/
+  ⚓ Xpressive ; https://www.boost.org/doc/libs/release/libs/xpressive/
+  ⚓ YAP ; https://www.boost.org/doc/libs/release/libs/yap/
+----------------------------------------------
+boost 🔪⚓ Asio ; https://www.boost.org/doc/libs/release/libs/asio/
+  ⚓🚧 Using, Building, and Configuring Boost.Asio ; https://www.boost.org/doc/libs/1_87_0/doc/html/boost_asio/using.html
+
+  ⚓🔰 Asio tutorial ; https://www.boost.org/doc/libs/1_87_0/doc/html/boost_asio/tutorial.html
+  ⚓🔰 Overview ; https://www.boost.org/doc/libs/1_87_0/doc/html/boost_asio/overview.html
+    # Core Concepts and Functionality
+      ⚓ The Proactor Design Pattern: Concurrency Without Threads ; https://www.boost.org/doc/libs/1_87_0/doc/html/boost_asio/overview/core/async.html
+      ⚓ Threads and Boost.Asio ; https://www.boost.org/doc/libs/1_87_0/doc/html/boost_asio/overview/core/threads.html
+        #📎💡 Thread Safety
+          In general, it is safe to make concurrent use of distinct objects, but unsafe to make concurrent use of a single object. However, types such as io_context provide a stronger guarantee that it is safe to use a single object concurrently.
+        #📎🪱 Thread Pools
+          ⚖️ Multiple threads may call io_context::run() to set up a pool of threads from which completion handlers may be invoked.
+            This approach may also be used with post() as a means to perform arbitrary computational tasks across a thread pool.
+          ⚖️ Note that all threads that have joined an io_context's pool are considered equivalent, and the io_context may distribute work across them in an arbitrary fashion.
+      ...
+  ⚓ Asio Reference ; https://www.boost.org/doc/libs/1_87_0/doc/html/boost_asio/reference.html
+    # Core
+      # Classes
+        ⚓ io_context ; https://www.boost.org/doc/libs/1_87_0/doc/html/boost_asio/reference/io_context.html
+          #📎💡 Thread Safety
+            Shared objects: Safe, with the specific exceptions ...
+          #📎 Synchronous and asynchronous operations
+            - Synchronous operations on I/O objects implicitly run the io_context object for an individual operation.
+            - 🚧 The io_context functions run(), run_one(), run_for(), run_until(), poll() or poll_one() must be called for the io_context to perform asynchronous operations on behalf of a C++ program.
+              ... Handlers are invoked only by a thread that is currently calling any overload of run(), run_one(), run_for(), run_until(), poll() or poll_one() for the io_context.
+
+      # Free Functions
+        ⚓ post ; https://www.boost.org/doc/libs/1_87_0/doc/html/boost_asio/reference/post.html
+         Submits a completion token or function object for execution.
+        
+      

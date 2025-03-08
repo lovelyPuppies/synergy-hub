@@ -1,0 +1,15 @@
+list of level 1 subjects
+  - Arduino
+
+➡️ Use PlatformIO instead of Arduino IDE 📅 2025-01-21 15:44:06
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ Arduino ; https://en.wikipedia.org/wiki/Arduino
+  https://github.com/arduino
+  https://en.wikipedia.org/wiki/Arduino
+
+
+
+----------------------------------------------
+Arduino 🔪⚓ Docs ; https://docs.arduino.cc/
+

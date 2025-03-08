@@ -1,0 +1,252 @@
+list of level 1 subjects
+  - Toolchain
+  - Target Triple
+
+
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓🔰🖇️ Toolchain ; https://en.wikipedia.org/wiki/Toolchain 📅 2025-02-23 05:16:13
+  📝🛍️ e.g. Target Triple 🆚 Toolchain 📅 2025-02-25 06:05:04
+    - Toolchain:      gcc-aarch64-linux-gnu (Ubuntu package), arm-none-eabi-gcc (Homebrew package)
+    - Target Triple:  aarch64-linux-gnu,                      arm-none-eabi
+  
+  A toolchain is a set of software development tools used to build and otherwise develop software.
+  🗒️ Contents
+    A relatively common and simple toolchain consists of the tools to build for a particular operating system (OS) and CPU architecture
+      ; consisting of a compiler, a linker, and a debugger.
+      With a cross-compiler, a toolchain can support cross-platform development.
+    # See also
+      Buildroot – Tool for building Linux
+      DevOps toolchain – DevOps toolchain release package.
+      Framework – Type of library that helps structure other software
+      Library –z Collection of resources used to develop a computer program
+      GNU toolchain – Collection of programming tools produced by the GNU Project
+      LLVM – Compiler backend for multiple programming languages
+
+  ----------------------------------------------
+  (Source Code & Language Support)
+  🔗 language_server.txt
+
+  ----------------------------------------------
+  (Compilation & Linking)
+  ⚓🔰 Application binary interface (ABI) ; https://en.wikipedia.org/wiki/Application_binary_interface
+    🗒️ Contents
+      In computer software, an application binary interface (ABI) is an interface between two binary program modules.
+        🚣 Often, one of these modules is a library or operating system facility, and the other is a program that is being run by a user.
+      🆚 An ABI defines how data structures or computational routines are accessed in machine code, which is a low-level, hardware-dependent format.
+        In contrast, an application programming interface (API) defines this access in source code, which is a relatively high-level, hardware-independent, often human-readable format.
+      🚣 Adhering to an ABI (which may or may not be officially standardized) is usually the job of a compiler, operating system, or library author.
+
+      #️⃣ Description ; https://en.wikipedia.org/wiki/Application_binary_interface#Description
+        📝🛍️ e.g. 🆚 x64-Linux vs. ARM64-Linux (Raspberry Pi) ABI Comparison
+          | Category                                       | x64-Linux (x86_64 SysV ABI)                       | ARM64-Linux (Raspberry Pi, ARM64 SysV ABI)       |
+          | ---------------------------------------------- | ------------------------------------------------- | ------------------------------------------------ |
+          | File - Binary Format                           | ELF (Executable and Linkable Format)              | ELF (Executable and Linkable Format)             |
+          | CPU - Processor Instruction Set                | x86-64 (CISC)                                     | ARMv8-A (RISC)                                   |
+          | CPU - Register File Structure                  | 16 general-purpose registers (RAX, RBX, ..., R15) | 31 general-purpose registers (X0 ~ X30)          |
+          | CPU - Memory Access Types                      | Little Endian                                     | Little Endian (Big Endian mode available)        |
+          | Memory - Stack Organization                    | Grows from high to low addresses                  | Grows from high to low addresses                 |
+          | Memory - Sizes and Alignments of Data          | int = 4 bytes, long = 8 bytes, pointer = 8 bytes  | int = 4 bytes, long = 8 bytes, pointer = 8 bytes |
+          | Calling Convention - Register Argument Passing | First 6 arguments in RDI, RSI, RDX, RCX, R8, R9   | First 8 arguments in X0 ~ X7                     |
+          | Calling Convention - Stack Argument Passing    | More than 6 arguments passed on the stack         | More than 8 arguments passed on the stack        |
+          | Calling Convention - Stack Cleanup             | Caller is responsible                             | Caller is responsible                            |
+          | Calling Convention - Return Value Registers    | RAX (single value), RDX:RAX (64-bit integer)      | X0 (single value), X1:X0 (64-bit integer)        |
+          | OS - System Call Invocation                    | syscall instruction                               | svc 0 instruction                                |
+          | OS - System Call Number Register               | rax holds system call number                      | x8 holds system call number                      |
+    ⚓ Calling convention ; << https://en.wikipedia.org/wiki/Calling_convention
+
+
+  ⚓ Compiler ; https://en.wikipedia.org/wiki/Compiler
+    In computing, a compiler is a computer program that translates computer code written in one programming language (the source language) into another language (the target language).
+
+  ⚓📎 Linker (computing) ; << https://en.wikipedia.org/wiki/Linker_(computing)
+    A linker or link editor is a computer program that combines intermediate software build files such as object and library files into a single executable file such a program or library.
+    🗒️ Contents
+      A linker is often part of a 🪱 toolchain that includes a compiler and/or assembler that generates intermediate files that the linker processes.
+        The linker may be integrated with other toolchain tools such that the user does not interact with the linker directly.
+      A simpler version that writes its output directly to memory is called the 🪱 loader, though 🪱 loading is typically considered a separate process.
+  ----------------------------------------------
+  (Executable & Library Formats)
+  ⚓ File format ; https://en.wikipedia.org/wiki/File_format
+    A file format is a standard way that information is encoded for storage in a computer file.
+    🗒️ Contents
+      #️⃣ Identifying file type ; https://en.wikipedia.org/wiki/File_format#Identifying_file_type
+        #️⃣ Internal metadata ; https://en.wikipedia.org/wiki/File_format#Internal_metadata
+          #➡️ Magic number
+
+    ⚓ Magic number (programming) ; << https://en.wikipedia.org/wiki/Magic_number_(programming)    
+      🗒️ Contents
+        📎 from https://en.wikipedia.org/wiki/File_format#Magic_number
+          🚣 One way to incorporate file type metadata, often associated with Unix and its derivatives, is to store a "magic number" inside the file itself.
+          Originally, this term was used for a specific set of 2-byte identifiers at the beginnings of files
+            💡, but since any binary sequence can be regarded as a number, any feature of a file format which uniquely distinguishes it can be used for identification.
+            ... Many file types, especially plain-text files, are harder to spot by this method.
+
+          The magic number approach offers 📈 better guarantees that the format will be identified correctly, and can often determine more precise information about the file.
+            Since reasonably reliable "magic number" tests can be fairly complex, and each file must effectively be tested against every possibility in the 🪱 magic database
+            , 📉 this approach is relatively inefficient, especially for displaying large lists of files
+            (in contrast, 🪱 file name and 🪱 metadata-based methods need to check only one piece of data, and match it against a sorted index).
+            Also, data must be read from the file itself, increasing 📉 latency as opposed to metadata stored in the directory
+
+          💡 Where file types do not lend themselves to recognition in this way, the system must fall back to metadata.
+            It is, however, the best way for a program to check if the file it has been told to process is of the correct format while the file's name or metadata may be altered independently of its content
+            , failing a well-designed magic number test is a pretty sure sign that the file is either corrupt or of the wrong type.
+            On the other hand, a valid magic number does not guarantee that the file is not corrupt or is of a correct type.
+
+          So-called 🪱 shebang lines in script files are a special case of magic numbers.
+            There, 🚣 the magic number consists of human-readable text within the file that identifies a specific command interpreter and options to be passed to it.
+
+        #️⃣ Format indicators ; https://en.wikipedia.org/wiki/Magic_number_(programming)#Format_indicators
+          #️⃣ In files ; https://en.wikipedia.org/wiki/Magic_number_(programming)#In_files
+            🛍️ e.g. ...
+              - Unix or Linux scripts may start with a shebang ("#!", 23 21) followed by the path to an interpreter, if the interpreter is likely to be different from the one from which the script was invoked
+              - ELF executables start with the byte 7F followed by "ELF" (7F 45 4C 46).
+
+      ⚓ Shebang (Unix) ; << https://en.wikipedia.org/wiki/Shebang_(Unix)
+        🗒️ Contents
+          📎 from https://en.wiktionary.org/wiki/shebang#Etymology_2
+            Etymology 2 ... From hash + bang or sharp + bang, after Etymology 1.
+    ⚓ List of 🪱 file signatures ; https://en.wikipedia.org/wiki/List_of_file_signatures
+  ⚓ List of file formats ; https://en.wikipedia.org/wiki/List_of_file_formats
+    #️⃣ Object code, executable files, shared and dynamically linked libraries ; https://en.wikipedia.org/wiki/List_of_file_formats#Object_code,_executable_files,_shared_and_dynamically_linked_libraries
+      -🗑️ a.out – (no suffix for executable image, .o for object files, .so for shared object files) classic Unix object format, now often superseded by ELF
+      - 📎 ELF – (no suffix for executable image, .o for object files, .so for shared object files) used in many modern Unix and Unix-like systems ; https://en.wikipedia.org/wiki/Executable_and_Linkable_Format
+        , including Solaris, other System V Release 4 derivatives, Linux, and BSD)
+        ; Executable and Linkable Format
+        In computing, the Executable and Linkable Format[2] (ELF, formerly named Extensible Linking Format) is a common standard file format for executable files, object code, shared libraries, and core dumps.
+        🗒️ Contents
+          -⚖️ Filename extension	
+            none, .axf, .bin, .elf, .o, .out, .prx, .puff, .ko, .mod, and .so
+          📈 By design, the ELF format is flexible, extensible, and cross-platform. ...
+            For instance, it supports different endiannesses and address sizes so it does not exclude any particular CPU or instruction set architecture.
+            This has allowed it to be adopted by many different operating systems on many different hardware platforms.
+  ⚓ Filename extension ; https://en.wikipedia.org/wiki/Filename_extension
+
+  ⚓ binfmt_misc ; << https://en.wikipedia.org/wiki/Binfmt_misc
+
+
+  ⚓📎 vmlinux ; << https://en.wikipedia.org/wiki/Vmlinux
+    vmlinux is a 🚣 statically linked executable file that contains the Linux kernel in one of the object file formats supported by Linux
+      , which includes Executable and Linkable Format (ELF) and Common Object File Format (COFF).
+    🗒️ Contents
+      💡 The vmlinux file might be required for kernel debugging, symbol table generation or other operations
+      , 💡 but must be made bootable before being used as an operating system kernel by adding a multiboot header, bootsector and setup routines.
+    
+
+  ⚓🏛 Multiboot specification << https://en.wikipedia.org/wiki/Multiboot_specification
+
+  ----------------------------------------------
+  (Execution & Debugging)
+  ⚓ Debugger ; << https://en.wikipedia.org/wiki/Debugger
+
+  ⚓⭕📎🔰 Debug Adapter Protocol (DAP) << ;  https://microsoft.github.io/debug-adapter-protocol/
+    by Microsoft
+  ⚓ List of debuggers ; << https://en.wikipedia.org/wiki/List_of_debuggers
+    ⚓ Open On-Chip debugger Debugger (OpenOCD) ; << https://openocd.org/openocd-0120-released.html
+      https://openocd.org/
+
+  ⚓📎 Symbol Table ; https://en.wikipedia.org/wiki/Symbol_table
+    🗒️ Contents
+      In computer science, a symbol table is a data structure used by a language translator such as a compiler or interpreter
+        , where each identifier, symbol, constant, procedure and function in a program's source code is associated with information relating to its declaration or appearance in the source.
+    ⚓📎 Debug symbol ; << https://en.wikipedia.org/wiki/Debug_symbol
+      🗒️ Contents
+        ... This information allows a symbolic debugger to gain access to information from the source code of the binary, such as the names of identifiers, including variables and routines.
+
+
+#🔰🖇️ Target Triple from 🔗 https://clang.llvm.org/docs/CrossCompilation.html 📅 2025-02-25 06:23:56
+  📝 The term "Target Triple" originates from the three key components (architecture, vendor, and system) before the environment field (env) became commonly used. 📅 2025-02-25 06:22:36
+  <arch><sub>-<vendor>-<sys>-<env>
+
+  The basic option is to define the target architecture. For that, use -target <triple>.
+    If you don’t specify the target, CPU names won’t match (since Clang assumes the host triple), and the compilation will go ahead, creating code for the host platform, which will break later on when assembling or linking.
+
+  The triple has the general format <arch><sub>-<vendor>-<sys>-<env>, where:
+    - arch = x86_64, i386, arm, thumb, mips, etc.
+    - sub = for ex. on ARM: v5, v6m, v7a, v7m, etc.
+      The sub-architecture ⚖️ options are available for their own architectures, of course, so “x86v7a” doesn’t make sense.
+    - vendor = pc, apple, nvidia, ibm, etc.
+      The vendor needs to be specified only if there’s a relevant change, for instance between PC and Apple.
+        Most of the time it can be ⚖️ omitted (and Unknown) will be assumed, which sets the defaults for the specified architecture.
+    - sys = none, linux, win32, darwin, cuda, etc.
+      The system name is generally the OS (linux, darwin), but could be special like the bare-metal “none”.
+    - env = eabi, gnu, android, macho, elf, etc.
+      Finally, the env (environment) option is something that will pick default CPU/FPU
+        , define the specific behaviour of your code (PCS, extensions), and also choose the ❗ correct library calls, etc.
+
+  When a parameter is not important, it can be omitted, or you can choose unknown and the defaults will be used.
+    ❗ If you choose a parameter that Clang doesn’t know, like blerg, it’ll ignore and assume unknown, which is not always desired, so be careful.
+
+
+(✍️ Toolchain, Target Triple 🔪 study)
+  ℹ️ (About); Compatibility of C Standard Libraries (libc) and C++ Standard Libraries (STL) Across Different Environments 📅 2025-02-25 09:17:38
+    ❔ Why Do Different Versions of the Same C and C++ Standard Libraries Exist?
+      Even though C standard libraries (libc) and C++ standard libraries (STL) provide the same API, multiple versions exist due to the following reasons:
+      1. ABI (Application Binary Interface) Differences  
+        - While the API (Application Programming Interface) remains the same, the ABI can differ.  
+          Factors that influence ABI differences include CPU architecture, the operating system, and system environment.
+        🛍️ e.g.
+          - Windows' `MSVCRT` and Linux's `glibc` may have similar APIs, but their ABIs are incompatible.
+
+      2. Performance and Feature Optimization  
+        Each library is optimized for its intended environment.
+        🛍️ e.g.
+          - `glibc` offers broad functionality and high performance, whereas `musl` prioritizes lightweight design for resource-constrained systems.  
+          - `libstdc++` is optimized for performance and integration with the GNU ecosystem, while `libc++` emphasizes modularity and quick adoption of new C++ standards.
+
+      3. License and Distribution Policy Differences  
+        Different projects or companies may prefer specific libraries based on licensing constraints.
+        🛍️ e.g.
+          - `glibc` follows the LGPL license, while `musl` uses the MIT license, making it more permissive for redistribution.  
+          - `libstdc++` applies the GPL with an exception to allow commercial use, whereas `libc++` follows the more permissive UIUC license.
+
+    1. Compatibility of C Standard Libraries (libc) 🛍️ e.g.
+      * glibc (GNU C Library)
+        - Primary Usage: General-purpose Linux distros (Ubuntu, Fedora, Debian, etc.)
+        - Compatible OS: Linux
+        - Commonly Used Compilers: GCC, Clang
+        - Default in Clang?: Yes (on Linux)
+
+      * musl (Musl C Library)
+        - Primary Usage: Lightweight Linux (Alpine Linux, embedded systems)
+        - Compatible OS: Linux
+        - Commonly Used Compilers: musl-gcc, Clang
+        - Default in Clang?: No (must explicitly link with `-target x86_64-linux-musl`)
+
+      * MSVCRT (Microsoft C Runtime)
+        - Primary Usage: Windows XP~10 (MinGW default)
+        - Compatible OS: Windows
+        - Commonly Used Compilers: MinGW-w64 (GCC-based)
+        - Default in Clang?: No (MinGW Clang default)
+
+      * UCRT (Universal C Runtime)
+        - Primary Usage: Windows 10+ (Visual Studio default)
+        - Compatible OS: Windows
+        - Commonly Used Compilers: MSVC (Visual Studio), Clang (`-target x86_64-pc-windows-msvc`)
+        - Default in Clang?: Yes (for MSVC target)
+
+      * newlib (Newlib C Library)
+        - Primary Usage: Embedded systems (bare-metal, RTOS)
+        - Compatible OS: Bare-metal
+        - Commonly Used Compilers: GCC (arm-none-eabi)
+        - Default in Clang?: No (requires explicit toolchain setup)
+
+    2. Compatibility of C++ Standard Libraries 🛍️ e.g.
+      * libstdc++ (GNU Standard C++ Library)
+        - Primary Usage: Linux (default for GCC)
+        - Compatible OS: Linux
+        - Commonly Used Compilers: GCC, Clang
+        - Default in Clang?: Yes (on Linux unless overridden)
+
+      * libc++ (LLVM C++ Standard Library)
+        - Primary Usage: macOS, LLVM-based projects
+        - Compatible OS: Linux, macOS, Windows (Clang)
+        - Commonly Used Compilers: Clang
+        - Default in Clang?: No (must specify `-stdlib=libc++`)
+
+      * MSVC STL (Microsoft C++ Standard Library)
+        - Primary Usage: Windows (Visual Studio)
+        - Compatible OS: Windows
+        - Commonly Used Compilers: MSVC (Visual Studio), Clang (`-target x86_64-pc-windows-msvc`)
+        - Default in Clang?: Yes (for MSVC target)
+

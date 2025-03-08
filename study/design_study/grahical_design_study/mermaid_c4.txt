@@ -1,0 +1,63 @@
+```mermaid
+C4Context
+title Updated Delivery System Context Diagram
+
+Enterprise_Boundary(b0, "Delivery System") {
+
+    Person(customer, "Customer", "Places the delivery order and interacts with the system.")
+    System(server, "Central Server", "Manages and coordinates delivery tasks.")
+
+    System_Boundary(storageBoundary, "Storage System") {
+        System(storageBox, "Storage Box", "Securely holds packages for delivery.")
+    }
+
+    System_Boundary(robotBoundary, "Robot System") {
+        System(elevator, "Elevator Controller", "Operates the building's elevator system.")
+        System(robot, "Delivery Robot", "Autonomously transports the package.")
+    }
+
+    System_Ext(carrier, "Delivery Carrier", "Drops off packages into the storage box.")
+}
+
+BiRel(carrier, storageBox, "2-1: Places package into")
+Rel(storageBox, server, "2-2: Sends package notification")
+Rel(server, customer, "3: Requests and confirms delivery")
+BiRel(server, robot, "4: Sends and receives delivery commands")
+Rel(robot, storageBox, "5-1: Picks up package from")
+Rel(robot, elevator, "5-2: Coordinates elevator access")
+Rel(elevator, server, "5-3: Reports arrival at floor")
+Rel(robot, server, "5-4: Arrives at destination")
+Rel(server, robot, "5-5: Opens assigned door")
+Rel(robot, storageBox, "5-6: Returns to storage box after delivery")
+Rel(robot, server, "5-7: Returns to initial location")
+
+UpdateRelStyle(carrier, storageBox, $textColor="black", $lineColor="gray", $offsetX="-20", $offsetY="10")
+UpdateRelStyle(storageBox, server, $textColor="brown", $lineColor="brown", $offsetX="-30", $offsetY="0")
+UpdateRelStyle(server, customer, $textColor="blue", $lineColor="blue", $offsetX="-30", $offsetY="20")
+UpdateRelStyle(server, robot, $textColor="green", $lineColor="green", $offsetX="20", $offsetY="-10")
+UpdateRelStyle(robot, elevator, $textColor="purple", $lineColor="purple", $offsetX="-10", $offsetY="30")
+UpdateRelStyle(robot, storageBox, $textColor="red", $lineColor="red", $offsetX="40", $offsetY="-30")
+UpdateRelStyle(elevator, server, $textColor="orange", $lineColor="orange", $offsetX="30", $offsetY="-20")
+
+UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="1")
+
+```
+
+
+
+
+//.. 음.. 어.. 개별로 서버를 만들어야하는데... 확장성을 위해..
+
+
+
+음..  
+ROS Master node, 
+
+
+차량전장 SW:
+  어셈블리어~, C (주), 여러 언어 활용중.
+  기능안전부분 ISO2616??
+
+  BSW 영역.
+
+

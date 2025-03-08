@@ -1,0 +1,38 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run debug-x64-linux-gnu-clang without Debug (QEMU)",
+      "type": "shell",
+      "command": "qemu-aarch64 -L /usr/aarch64-linux-gnu ${workspaceRoot}/build/debug-aarch64-linux-gnu-clang/fmt_example",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Run debug-aarch64-linux-gnu-clang",
+      "type": "shell",
+      "command": "echo '' && qemu-aarch64 -g 1234 -L /usr/aarch64-linux-gnu ${workspaceRoot}/build/debug-aarch64-linux-gnu-clang/fmt_example",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": {
+        "owner": "qemu",
+        "pattern": {
+          // dummy regex
+          "regexp": ".^"
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": ".*",
+          "endsPattern": ".*"
+        }
+      },
+      "isBackground": true,
+      "hide": true
+    }
+  ]
+}

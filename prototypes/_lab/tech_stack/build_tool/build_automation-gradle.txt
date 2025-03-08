@@ -1,0 +1,15 @@
+list of level 1 subjects
+  - Gradle
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ Gradle ; https://gradle.org/
+  Gradle is a build automation tool for multi-language software development
+  https://en.wikipedia.org/wiki/Gradle
+  https://github.com/gradle/gradle
+
+
+
+
+----------------------------------------------
+⚓ Gradle 🔪 Docs ; https://cmake.org/cmake/help/latest/index.html
+  

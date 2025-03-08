@@ -1,4 +1,4 @@
-/*❌ deprecated.
+/*🗑️ deprecated.
   Refer to 🔗 _about/about-intellisense_for_c_cpp.md
 */
 {
@@ -10,13 +10,13 @@
         "/usr/arm-linux-gnueabihf/include",
         // ☑️ usleep() intellisense not works. add line: "/usr/arm-linux-gnueabihf/include/sys",       // 📅 2024-12-17 10:56:33
         "/usr/arm-linux-gnueabihf/include/sys",
-        "${userHome}/repos/kernels/raspberry-pi/arch/arm/include",
-        "${userHome}/repos/kernels/raspberry-pi/arch/arm/include/generated",
-        "${userHome}/repos/kernels/raspberry-pi/fs",
-        "${userHome}/repos/kernels/raspberry-pi/include",
-        "${userHome}/repos/kernels/raspberry-pi/include/generated",
-        "${userHome}/repos/kernels/raspberry-pi/include/linux",
-        "${userHome}/repos/kernels/raspberry-pi/include/uapi"
+        "${userHome}/repos/kernels/raspberry_pi/arch/arm/include",
+        "${userHome}/repos/kernels/raspberry_pi/arch/arm/include/generated",
+        "${userHome}/repos/kernels/raspberry_pi/fs",
+        "${userHome}/repos/kernels/raspberry_pi/include",
+        "${userHome}/repos/kernels/raspberry_pi/include/generated",
+        "${userHome}/repos/kernels/raspberry_pi/include/linux",
+        "${userHome}/repos/kernels/raspberry_pi/include/uapi"
       ],
       "defines": [
         "__KERNEL__",
@@ -32,16 +32,16 @@
       "browse": {
         "path": [
           // 🚣 Source Files
-          "${userHome}/repos/kernels/raspberry-pi/fs",
-          "${userHome}/repos/kernels/raspberry-pi/lib",
-          "${userHome}/repos/kernels/raspberry-pi/drivers/gpio",
-          "${userHome}/repos/kernels/raspberry-pi/kernel",
-          "${userHome}/repos/kernels/raspberry-pi/mm",
-          "${userHome}/repos/kernels/raspberry-pi/net",
-          "${userHome}/repos/kernels/raspberry-pi/arch/arm/mach-bcm"
+          "${userHome}/repos/kernels/raspberry_pi/fs",
+          "${userHome}/repos/kernels/raspberry_pi/lib",
+          "${userHome}/repos/kernels/raspberry_pi/drivers/gpio",
+          "${userHome}/repos/kernels/raspberry_pi/kernel",
+          "${userHome}/repos/kernels/raspberry_pi/mm",
+          "${userHome}/repos/kernels/raspberry_pi/net",
+          "${userHome}/repos/kernels/raspberry_pi/arch/arm/mach-bcm"
         ],
         "limitSymbolsToIncludedHeaders": true,
-        "databaseFilename": "${userHome}/repos/kernels/raspberry-pi/.vscode/browse.db"
+        "databaseFilename": "${userHome}/repos/kernels/raspberry_pi/.vscode/browse.db"
       },
       "configurationProvider": "ms-vscode.makefile-tools"
     }

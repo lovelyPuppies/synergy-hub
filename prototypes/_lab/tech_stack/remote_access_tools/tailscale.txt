@@ -1,0 +1,26 @@
+list of level 1 subjects with 📘 favorite lookup
+  - tailscale
+  
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓⭕ tailscale ; https://tailscale.com/
+  ⚓ tailscale Docs ; https://tailscale.com/kb
+
+----------------------------------------------
+tailscale 🔪⚓ Start using Tailscale
+  Learn how to install Tailscale, create a network, and invite your team.
+----------------------------------------------
+tailscale 🔪⚓ How-to Guides ; https://tailscale.com/kb/1348/guides
+  Step-by-step instructions on how to use Tailscale features to make managing your network easy.
+----------------------------------------------
+tailscale 🔪⚓ Integrations ; https://tailscale.com/kb/1356/integrations
+  How to use Tailscale to various kinds of servers, services, or devices.
+----------------------------------------------
+tailscale 🔪⚓ FAQ ; https://tailscale.com/kb/1366/faq
+  Answers to common questions.
+----------------------------------------------
+tailscale 🔪⚓ Technical reference ; https://tailscale.com/kb/1367/reference
+  Read overviews about commonly used Tailscale features, our API and CLI, and common Tailscale terminology.
+----------------------------------------------
+tailscale 🔪⚓ Resources ; https://tailscale.com/kb/1368/resources
+

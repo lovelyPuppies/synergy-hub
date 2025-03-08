@@ -1,0 +1,141 @@
+list of level 1 subjects
+  - Operating Systems (OS)
+  
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※  
+⚓ OS ; https://en.wikipedia.org/wiki/Operating_system
+
+
+================================================
+⚓ Kernel (operating system) ; https://en.wikipedia.org/wiki/Kernel_(operating_system)
+  
+  # Components
+    ⚓📎🪱 User space (| userland) and kernel space ; https://en.wikipedia.org/wiki/User_space_and_kernel_space
+      🗒️ Contents
+        A modern computer operating system usually uses virtual memory to provide separate address spaces or separate regions of a single address space, called user space and kernel space.[
+        Primarily, this separation serves to provide memory protection and hardware protection from malicious or errant software behaviour.
+          - Kernel space is strictly reserved for running a privileged operating system kernel, 🪱 kernel extensions, and most device drivers.
+          - In contrast, user space is the memory area where application software and some drivers execute, typically one address space per process.
+        #️⃣ Overview ; https://en.wikipedia.org/wiki/User_space_and_kernel_space#Overview
+          🖼️ Various layers within Linux, also showing separation between the userland and kernel space
+
+
+
+================================================
+⚓ Process management ; https://en.wikipedia.org/wiki/Process_management_(computing)
+  🗒️ Contents
+
+# Process management 🔪 Concepts
+  ⚓📎 Process Control Block (PCB) | process descriptor ; << https://en.wikipedia.org/wiki/Process_control_block
+    ... is a data structure used by a computer operating system to store all the information about a process.
+    🗒️ Contents
+      ... specifies and tracks the process state (i.e. new, ready, running, waiting or terminated).
+      #️⃣ Structure ; https://en.wikipedia.org/wiki/Process_control_block
+
+  ⚓🪱 Context switch ; https://en.wikipedia.org/wiki/Context_switch
+    In computing, a context switch is the process of storing the state of a process or thread, so that it can be restored and resume execution at a later point, and then restoring a different, previously saved, state.
+    🗒️ Contents
+      The precise meaning of the phrase "context switch" varies. ...
+        A context switch can also occur as the result of an interrupt, 🛍️ such as when a task needs to access disk storage, ...
+      #️⃣ Cost ; https://en.wikipedia.org/wiki/Context_switch#Cost
+      #️⃣ Switching cases ; https://en.wikipedia.org/wiki/Context_switch#Switching_cases
+        #️⃣ Multitasking ; https://en.wikipedia.org/wiki/Context_switch#Multitasking
+        #️⃣ Interrupt handling ; https://en.wikipedia.org/wiki/Context_switch#Interrupt_handling
+          Often only a minimal part of the context is changed in order to minimize the amount of time spent handling the interrupt.
+          The kernel does not spawn or schedule a special process to handle interrupts, but instead the handler executes in the (often partial) context established at the beginning of interrupt handling.
+        #️⃣🖇️ User and kernel mode switching ; https://en.wikipedia.org/wiki/Context_switch#User_and_kernel_mode_switching 📅 2025-03-05 05:10:42
+          When the system transitions between user mode and kernel mode, a context switch is not necessary; a mode transition is not by itself a context switch.
+            📝 It seems it means that it is not a full context switch (which involves changing the process).
+          📝ℹ️ (About) ; Does a system call involve a context switch or not? 📅 2025-03-05 04:28:45
+            🔗 Processor mode and context switching
+              A system call does not generally require a context switch to another process; instead, it is processed in the context of whichever process invoked it.
+            🔗 https://stackoverflow.com/questions/72672456/does-a-system-call-involve-a-context-switch-or-not
+              Syscalls don't necessarily involve a full context switch.
+              They must involve a user mode to kernel mode context switch.
+              🔑 Most often, kernels have a 🪱 kernel stack per process.
+                ... The registers also need to be saved since the kernel can use them.
+              In the end, there is actually a necessary 🚣 partial context switch when entering the kernel through a system call but 🚣 it doesn't involve switching the whole process.
+                🖊️ Since each process has a dedicated kernel stack, which includes space for storing CPU registers during a system call, the overhead is minimized as the kernel doesn't need to modify the page tables.
+
+              ... (💡 details for x86-based system)
+                The process has all its instructions and data in the lower half while the kernel is stored in the top half.
+                📍 The kernel is shared between all processes by making the top half of the virtual address space global in the page tables.
+                This makes sure that, when the CR3 register is changed, the TLB is not flushed for this portion.
+
+  ⚓ Interrupt | trap ; https://en.wikipedia.org/wiki/Interrupt
+
+  ⚓ Computer multitasking ; https://en.wikipedia.org/wiki/Computer_multitasking
+    In computing, multitasking is the concurrent execution of multiple tasks 🖊️ over a 🚣 certain period of time.
+    ⚓📎 Non-preemptive multitasking | Cooperative multitasking ; https://en.wikipedia.org/wiki/Cooperative_multitasking
+      📝 Note that modern OSs (e.g., Windows 11, Ubuntu) use preemptive scheduling. While some programming languages support coroutines and yield, this is an application-level feature, not an OS-level mechanism, and should be clearly distinguished. 📅 2025-03-05 03:17:55
+      ... is a style of computer multitasking in which 🚣 the operating system never initiates a context switch from a running process to another process.
+        Instead, in order to run multiple applications concurrently, processes 🔑 voluntarily 🪱 yield control
+          - periodically
+          - or when idle
+          - or logically blocked
+      This type of multitasking is called 🪱 cooperative because all programs must cooperate for the scheduling scheme to work.
+      🪱 cooperative scheduler
+
+    ⚓ Preemption (computing) ; https://en.wikipedia.org/wiki/Preemption_(computing)
+      🗒️ Contents
+        ... Such changes to the currently executing task of a processor are known as 🪱 context switching.
+        #️⃣ Preemptive multitasking ; https://en.wikipedia.org/wiki/Preemption_(computing)#Preemptive_multitasking
+          #️⃣🪱 Time slice | Quantum ; https://en.wikipedia.org/wiki/Preemption_(computing)#Time_slice
+            The period of time for which a process is allowed to run in a preemptive multitasking system is generally called the time slice or quantum
+----------------------------------------------
+⚓ Processor scheduling ; https://en.wikipedia.org/wiki/Scheduling_(computing)
+  # Scheduling Algorithms
+    ⚓⭕ Earliest eligible virtual deadline first (EEVDF) scheduling ; https://en.wikipedia.org/wiki/Earliest_eligible_virtual_deadline_first_scheduling
+      EEVDF is a dynamic priority proportional share scheduling algorithm for soft real-time systems
+
+(✍️ Processor scheduling 🔪 Basics)
+  ⚓🖇️ Run queue ; https://en.wikipedia.org/wiki/Run_queue 📅 2025-02-28 05:16:31
+    In modern computers many processes run at once. Active processes are placed in an array called a 🪱 run queue, or runqueue.
+      The run queue may contain 🪱 priority values for each process, which will be used by the scheduler to determine which process to run next.
+      📍 To ensure each program has a fair share of resources, each one is run for some 🪱 time period (quantum) before it is paused and placed back into the run queue.
+      When a program is stopped to let another run, the program with the highest priority in the run queue is then allowed to execute.
+    💡 Processes are also removed from the run queue when
+      - they ask to sleep
+      - , are waiting on a resource to become available
+      - , or have been terminated.
+    
+    ... ➡️ Earliest eligible virtual deadline first
+
+    - In UNIX or Linux, the 🧮 sar command is used to check the run queue.
+    - The vmstat UNIX or Linux command can also be used to determine the number of processes that are queued to run or waiting to run. These appear in the 'r' column.
+    
+    🌳 There are two models for Run queues:
+      - one that assigns a Run Queue to each physical processor
+      - the other has only one Run Queue in the system
+
+
+  ⚓📎 System call ; https://en.wikipedia.org/wiki/System_call
+    System calls provide an essential interface between a process and the operating system.
+    #️⃣ Typical implementations ; https://en.wikipedia.org/wiki/System_call#Typical_implementations
+       A typical way to implement this is to use a 🪱 software interrupt or trap.
+    #️⃣ Processor mode and context switching ; https://en.wikipedia.org/wiki/System_call#Processor_mode_and_context_switching
+
+----------------------------------------------
+
+
+※※※※※※※※※※※※※※※
+⚓ Memory Management ; https://en.wikipedia.org/wiki/Memory_management
+  # Hardware
+    ⚓ Memory management unit (MMU) ; https://en.wikipedia.org/wiki/Memory_management_unit
+    ⚓ Translation lookaside buffer (TLB) | address-translation cache ; https://en.wikipedia.org/wiki/Translation_lookaside_buffer
+      💡 It is a part of the chip's memory-management unit (MMU).
+      It is used to reduce the time taken to access a user memory location.
+      🪱 TLB hit, page walk
+
+  ⚓ Virtual Memory ; https://en.wikipedia.org/wiki/Virtual_memory
+    ⚓ Page table ; https://en.wikipedia.org/wiki/Page_table
+      A page table is a data structure used by a virtual memory system in a computer to store mappings between virtual addresses and physical addresses.
+    
+
+
+  # Memory management, resource protection ; << 
+    ⚓🪱 Protection ring | hierarchical protection domains ; https://en.wikipedia.org/wiki/Protection_ring
+      # Modes
+        #️⃣ Supervisor mode ; https://en.wikipedia.org/wiki/Protection_ring#Supervisor_mode
+        #️⃣ Hypervisor mode ; https://en.wikipedia.org/wiki/Protection_ring#Hypervisor_mode
+

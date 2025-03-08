@@ -1,0 +1,41 @@
+list of level 1 subjects
+  - Avalonia
+
+🗑️ Do not use (MFC, WPF, .NET MAUI). ➡️ Use Avalonia framework 📅 2025-03-01 07:53:03
+  - MFC: Microsoft Foundation Class (MFC) library by Microsoft ; https://en.wikipedia.org/wiki/Microsoft_Foundation_Class_Library
+    📅 Initial Release: 1992
+    🔒 License: Proprietary (Microsoft License)
+    📉 Issues: Outdated UI, poor support for modern features, difficult to maintain, Windows-only, not actively developed.
+
+  - WPF: Windows Presentation Foundation (WPF) framework by Microsoft ; https://en.wikipedia.org/wiki/Windows_Presentation_Foundation
+    📅 Initial Release: 2006
+    🔒 License: MIT License (since .NET Core 3.0)
+    Improved: Introduced XAML-based UI, DirectX rendering, and better UI/logic separation (MVVM pattern) to enhance Windows desktop application development.
+    📉 Issues: Windows-only, performance overhead, steep learning curve, complex styling, not officially cross-platform.
+
+  - .NET MAUI: .NET Multi-platform App UI (MAUI) framework by Microsoft
+    📅 Initial Release: 2022
+    🔒 License: MIT License
+    Improved: Successor to Xamarin.Forms, enabling cross-platform development for Windows, macOS, Android, and iOS using a unified API.
+    📉 Issues: No official Linux support, limited desktop capabilities, feels like a mobile-first framework, immature tooling, unstable development environment, Microsoft's inconsistent long-term commitment.
+      https://www.reddit.com/r/csharp/comments/zzmwux/comment/j2cpgsh/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+      https://learn.microsoft.com/en-us/answers/questions/1637588/will-net-maui-include-official-support-for-linux
+
+  ➡️ Use Avalonia framework
+    - Avalonia: Cross-platform UI framework for .NET
+      📅 Initial Release: 2022
+      🔒 License: MIT License
+      Improved: Designed as a modern, cross-platform alternative to WPF, supporting Windows, Linux, and macOS with a consistent UI/UX experience across platforms.
+      Advantages: Fully cross-platform, native Linux support, better performance than WPF, MVVM-friendly, open-source & community-driven, actively developed.
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓⭕ Avalonia ; https://en.wikipedia.org/wiki/Avalonia_(software_framework)
+  https://github.com/AvaloniaUI/Avalonia
+  https://avaloniaui.net/
+  https://docs.avaloniaui.net/
+
+  #🚣 Develop for embedded.
+    With both 🪱 FBDev and 🪱 DRM support, 
+
+
+----------------------------------------------

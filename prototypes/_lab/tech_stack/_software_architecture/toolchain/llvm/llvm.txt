@@ -1,0 +1,41 @@
+list of level 1 subjects
+  - LLVM
+  - LLVM libraries
+
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ LLVM ; https://llvm.org/docs/index.html  
+  https://github.com/llvm/llvm-project
+  https://en.wikipedia.org/wiki/LLVM
+
+
+
+================================================
+⚓ LLVM Command Guide ; https://llvm.org/docs/CommandGuide/index.html
+  ⚓🔰🧮 llvm-config - Print LLVM compilation options ; https://llvm.org/docs/CommandGuide/llvm-config.html
+    # OPTIONS
+      –cflags
+        Print the C compiler flags needed to use LLVM headers.
+      –cxxflags
+        Print the C++ compiler flags needed to use LLVM headers.
+
+
+
+
+
+
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+LLVM libraries
+
+
+----------------------------------------------
+⚓ library 🔪 libc ; https://libc.llvm.org/index.html
+  ⚠️ Warning 📅 2025-01-27 23:05:46
+    LLVM-libc is not yet ABI stable; currently only static linking is supported. ...
+  
+  # Advanced Usage
+    ⚓🔰 Full Cross Build ; https://libc.llvm.org/full_cross_build.html
+----------------------------------------------
+⚓ library 🔪 libc++ ; https://libcxx.llvm.org/
+  ⚓ Libc++ ABI stability ; https://libcxx.llvm.org/DesignDocs/ABIVersioning.html

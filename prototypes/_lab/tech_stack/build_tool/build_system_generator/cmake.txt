@@ -1,10 +1,28 @@
 list of level 1 subjects
   - CMake
-  
+
+- ⭕ Use CMakePresets.json, CMakeUserPresets.json 📅 2025-02-23 02:18:14
+  If the target package to be distributed is an executable:
+    - Use a single-config generator like "Ninja".
+    - Create separate presets for DEBUG (for development) and RELEASE.
+  If the target package is a library:
+    - Use a single-config generator like "Ninja" to create a DEBUG (for development) preset.
+    - Use a multi-config generator like "Ninja Multi-Config" to create a preset that allows building both DEBUG and RELEASE simultaneously.
+
+  Reference
+    %shell> cmake --help
+    >>
+      Generators
+        The following generators are available on this platform (* marks default):
+          Ninja                        = Generates build.ninja files.
+          Ninja Multi-Config           = Generates build-<Config>.ninja files.
+
+
 ※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
 ⚓ CMake ; https://cmake.org/
   CMake is the de-facto standard for building C++ code,
-(✍️ CMake code study)
+
+(✍️ CMake 🔪 study)
   ✅ (how-to); to integrate CMake (with | without package manager) and VS Code 📅 2024-08-20 07:37:16
     ➡️
       1. add these (add includePath of external libraries)
@@ -48,39 +66,163 @@ list of level 1 subjects
       ```
 
 
-
 ----------------------------------------------
-⚓ Reference ; https://cmake.org/cmake/help/latest/
+⚓ Mastering CMake ; https://cmake.org/cmake/help/book/mastering-cmake/index.html
+  # Mastering CMake
+    ⚓ Key Concepts ; https://cmake.org/cmake/help/book/mastering-cmake/chapter/Key%20Concepts.html
+    
+----------------------------------------------
+⚓ Reference ; https://cmake.org/cmake/help/latest/index.html
   # Command-Line Tools
     ⚓🚣 cmake ; https://cmake.org/cmake/help/latest/manual/cmake.1.html
 
-      #️⃣ Build a Project ; https://cmake.org/cmake/help/latest/manual/cmake.1.html#build-a-project
-        # --build <dir> ; https://cmake.org/cmake/help/latest/manual/cmake.1.html#cmdoption-cmake-build
+      # Run a Command-Line Tool
+        #️⃣🧮 create_symlink <old> <new> ; https://cmake.org/cmake/help/latest/manual/cmake.1.html#cmdoption-cmake-E-arg-create_symlink
+      # Build a Project
+        #️⃣ --build <dir> ; https://cmake.org/cmake/help/latest/manual/cmake.1.html#cmdoption-cmake-build
 
-      #️⃣ Options ; https://cmake.org/cmake/help/latest/manual/cmake.1.html#options
-        # --preset <preset>, --preset=<preset> ; https://cmake.org/cmake/help/latest/manual/cmake.1.html#cmdoption-cmake-preset
-        # --log-level=<level> ; https://cmake.org/cmake/help/latest/manual/cmake.1.html#cmdoption-cmake-log-level
+      # Options
+        #️⃣ --preset <preset>, --preset=<preset> ; https://cmake.org/cmake/help/latest/manual/cmake.1.html#cmdoption-cmake-preset
+        #️⃣ --log-level=<level> ; https://cmake.org/cmake/help/latest/manual/cmake.1.html#cmdoption-cmake-log-level
 
   # Reference Manuals
-    ⚓ cmake-variables ; https://cmake.org/cmake/help/latest/manual/cmake-variables.7.html
-      #️⃣ Variables that Change Behavior ; https://cmake.org/cmake/help/latest/manual/cmake-variables.7.html#variables-that-change-behavior
-        ⚓📍 CMAKE_EXPORT_COMPILE_COMMANDS ; https://cmake.org/cmake/help/latest/variable/CMAKE_EXPORT_COMPILE_COMMANDS.html
+    ⚓ cmake-language(7) ; https://cmake.org/cmake/help/latest/manual/cmake-language.7.html
+      # Syntax
+        #️⃣ Comments ; https://cmake.org/cmake/help/latest/manual/cmake-language.7.html#comments
+      #️⃣ Variables ; https://cmake.org/cmake/help/latest/manual/cmake-language.7.html#variables
+      #️⃣ Lists ; https://cmake.org/cmake/help/latest/manual/cmake-language.7.html#id33
 
-    ⚓ cmake-commands ; https://cmake.org/cmake/help/latest/manual/cmake-commands.7.html
-      #️⃣ Scripting Commands ; https://cmake.org/cmake/help/latest/manual/cmake-commands.7.html#id3
+    ⚓🔰📍⭕ cmake-presets(7) ; https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html
+      📝
+        - Recommended from Microsoft ; https://learn.microsoft.com/en-us/vcpkg/users/buildsystems/cmake-integration#visual-studio--visual-studio-code
+        - Note that CMakePresets.json is read before CMakeLists.txt. 📅 2025-02-25 10:02:45
+          Therefore, we cannot pass environment variables directly to CMakePresets.json from the VSCode CMake extension settings or from CMakeLists.txt that reads .env.
+          Instead, we must use CMakeUserPresets.json.
+
+      #️⃣📎 Introduction ; https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html#introduction
+        CMakePresets.json and CMakeUserPresets.json live in the project's root directory.
+          They both have exactly the same format, and both are optional (though at least one must be present if --preset is specified).
+          ⚖️ CMakePresets.json is meant to specify project-wide build details, while CMakeUserPresets.json is meant for developers to specify their own local build details.
+
+        ❗ CMakePresets.json may be checked into a version control system, and CMakeUserPresets.json should NOT be checked in.
+          For example, if a project is using Git, CMakePresets.json may be tracked, and CMakeUserPresets.json should be added to the .gitignore.
+      #️⃣ Format ; https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html#format
+        "configurePresets": ...
+        
+        "environment": {
+          "MY_ENVIRONMENT_VARIABLE": "Test",
+          "PATH": "$env{HOME}/ninja/bin:$penv{PATH}"    //  🚣 $env{HOME}
+        },
+
+        #️⃣🔰 Configure Preset ; https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html#configure-preset
+          #📎 inherits
+            The preset will inherit all of the fields from the inherits presets by default (❗ except name, hidden, inherits, description, and displayName), but can override them as desired.
+            If multiple inherits presets provide conflicting values for the same field, ❗ the earlier preset in the inherits array will be preferred.
+
+
+        #️⃣ Macro Expansion ; https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html#macro-expansion
+          - ${sourceDir}
+
+    ⚓ cmake-variables(7) ; https://cmake.org/cmake/help/latest/manual/cmake-variables.7.html
+      #️⃣ Variables that Provide Information ; https://cmake.org/cmake/help/latest/manual/cmake-variables.7.html#id2
+        ⚓🖇️🔰 CMAKE_SOURCE_DIR ; https://cmake.org/cmake/help/latest/variable/CMAKE_SOURCE_DIR.html 📅 2025-02-20 07:53:18
+        ⚓🖇️🔰 CMAKE_BINARY_DIR ; https://cmake.org/cmake/help/latest/variable/CMAKE_BINARY_DIR.html 📅 2025-02-20 07:53:35
+      #️⃣ Variables that Change Behavior ; https://cmake.org/cmake/help/latest/manual/cmake-variables.7.html#variables-that-change-behavior
+        ⚓🖇️🔰 CMAKE_BUILD_TYPE ; https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html 📅 2025-02-25 09:47:32
+          📝 If CMAKE_BUILD_TYPE is set to Debug, it automatically adds debugging symbols during compilation.
+          Typical values include Debug, Release, RelWithDebInfo and MinSizeRel, but custom build types can also be defined.
+          ... ❗ The default value is often an empty string, but this is usually not desirable and one of the other standard build types is usually more appropriate.
+        ⚓📍 CMAKE_EXPORT_COMPILE_COMMANDS ; https://cmake.org/cmake/help/latest/variable/CMAKE_EXPORT_COMPILE_COMMANDS.html
+        ⚓🖇️📍 CMAKE_PREFIX_PATH ; https://cmake.org/cmake/help/latest/variable/CMAKE_PREFIX_PATH.html 📅 2025-02-25 09:47:11
+          Semicolon-separated 🚣list of directories specifying installation prefixes to be searched by the find_package(), find_program(), find_library(), find_file(), and find_path() commands.
+            Each command will add appropriate subdirectories (like bin, lib, or include) as specified in its own documentation.
+          ⚖️ By default this is empty. It is intended to be set by the project.
+        ⚓ CMAKE_MODULE_PATH ; https://cmake.org/cmake/help/latest/variable/CMAKE_MODULE_PATH.html
+      #️⃣ Variables for Languages ; https://cmake.org/cmake/help/latest/manual/cmake-variables.7.html#variables-for-languages
+        ⚓🖇️🔰 CMAKE_<LANG>_FLAGS_<CONFIG> ; https://cmake.org/cmake/help/latest/variable/CMAKE_LANG_FLAGS_CONFIG.html 📅 2025-02-23 04:17:10
+          The flags in this variable will be passed after those in the CMAKE_<LANG>_FLAGS variable. 
+          On invocations driving compiling, flags from both variables will be passed 🚣 before flags added by commands such as add_compile_options() and target_compile_options().
+          On invocations driving linking, they will be passed 🚣 before flags added by commands such as add_link_options() and target_link_options().
+
+          ⚓ CMAKE_<LANG>_FLAGS ; << https://cmake.org/cmake/help/latest/variable/CMAKE_LANG_FLAGS.html
+            - CMAKE_C_FLAGS
+            - CMAKE_CXX_FLAGS
+            ...
+          📝 <CONFIG> can be one of 🔗 Build Configurations
+            ⚓ CMAKE_<LANG>_FLAGS_DEBUG ; << https://cmake.org/cmake/help/latest/variable/CMAKE_LANG_FLAGS_DEBUG.html
+            ⚓ CMAKE_<LANG>_FLAGS_RELEASE ; << https://cmake.org/cmake/help/latest/variable/CMAKE_LANG_FLAGS_RELEASE.html
+            ⚓ CMAKE_<LANG>_FLAGS_RELWITHDEBINFO ; << https://cmake.org/cmake/help/latest/variable/CMAKE_LANG_FLAGS_RELWITHDEBINFO.html
+            ⚓ CMAKE_<LANG>_FLAGS_MINSIZEREL ; << https://cmake.org/cmake/help/latest/variable/CMAKE_LANG_FLAGS_MINSIZEREL.html
+            ...
+
+    ⚓ cmake-env-variables(7) ; https://cmake.org/cmake/help/latest/manual/cmake-env-variables.7.html
+      # Environment Variables that Change Behavior
+        ⚓ CMAKE_PREFIX_PATH ; https://cmake.org/cmake/help/latest/envvar/CMAKE_PREFIX_PATH.html
+    ⚓ cmake-properties(7) ; https://cmake.org/cmake/help/latest/manual/cmake-properties.7.html
+      # Properties on Directories
+      # Properties on Targets
+
+
+
+
+    ⚓ cmake-commands(7) ; https://cmake.org/cmake/help/latest/manual/cmake-commands.7.
+      #️⃣ Scripting Commands ; https://cmake.org/cmake/help/latest/manual/cmake-commands.7.html#scripting-commands
+        ⚓🔰 message ; https://cmake.org/cmake/help/latest/command/message.html
+          # WARNING
+          # STATUS
+        ⚓ if ; https://cmake.org/cmake/help/latest/command/if.html
+        ⚓ elseif ; https://cmake.org/cmake/help/latest/command/elseif.html
+        ⚓ else ; https://cmake.org/cmake/help/latest/command/else.html
+
+        ⚓💡 execute_process ; https://cmake.org/cmake/help/latest/command/execute_process.html
+          #🪱 RESULT_VARIABLE
+        ⚓🚣 configure_file ; https://cmake.org/cmake/help/latest/command/configure_file.html
+
+
         ⚓ cmake_minimum_required() ; https://cmake.org/cmake/help/latest/command/cmake_minimum_required.html
         ⚓ find_package() ; https://cmake.org/cmake/help/latest/command/find_package.html
         ⚓ set() ; https://cmake.org/cmake/help/latest/command/set.html
+        ⚓🔰 set_property ; https://cmake.org/cmake/help/latest/command/set_property.html
+          - GLOBAL
+          - DIRECTORY
+          - TARGET
+
         # Comparisons
           - if(<variable|string> STREQUAL <variable|string>)
 
-      #️⃣ Project Commands ; https://cmake.org/cmake/help/latest/manual/cmake-commands.7.html#id4
+      #️⃣ Project Commands ; https://cmake.org/cmake/help/latest/manual/cmake-commands.7.html#project-commands
         ⚓ project() ; https://cmake.org/cmake/help/latest/command/project.html
           ... Supported languages are C, CXX (i.e. C++), ...
         ⚓ add_executable() ; https://cmake.org/cmake/help/latest/command/add_executable.html
         ⚓ target_link_libraries() ; https://cmake.org/cmake/help/latest/command/target_link_libraries.html
 
+        ⚓🖇️ add_compile_definitions() ; https://cmake.org/cmake/help/latest/command/add_compile_definitions.html 📅 2025-02-23 00:47:04
+          ... They are also added to the 🪱 COMPILE_DEFINITIONS target property for each target in the current CMakeLists file.
+          Definitions are specified using the syntax VAR or VAR=value. Function-style definitions are not supported.
+          ⚖️ Added in version 3.26: Any leading -D on an item will be removed.
+          
+          Arguments to add_compile_definitions may use generator expressions with the syntax $<...>.
 
         ⚓ set_target_properties() ; https://cmake.org/cmake/help/latest/command/set_target_properties.html
 
+        ⚓ add_subdirectory() ; https://cmake.org/cmake/help/latest/command/add_subdirectory.html
+
+ 
+
+    ⚓ cmake-toolchains(7) ; https://cmake.org/cmake/help/latest/manual/cmake-toolchains.7.html
+    ⚓ cmake-buildsystem(7) ; https://cmake.org/cmake/help/latest/manual/cmake-buildsystem.7.html
+      #️⃣ Build Configurations ; https://cmake.org/cmake/help/latest/manual/cmake-buildsystem.7.html#build-configurations
+        Configurations determine specifications for a certain type of build, such as Release or Debug.
+        #️⃣📎⚖️ Default And Custom Configurations ; https://cmake.org/cmake/help/latest/manual/cmake-buildsystem.7.html#default-and-custom-configurations
+          By default, CMake defines a number of standard configurations:
+            - Debug
+            - Release
+            - RelWithDebInfo
+            - MinSizeRel
+          - In 🪱 multi-config generators, the 🪱 CMAKE_CONFIGURATION_TYPES variable will be populated 
+          - For 🪱 single-config generators, the configuration is specified with the 🪱 CMAKE_BUILD_TYPE variable at configure time and cannot be changed at build time.
+            ❗ A common misunderstanding is that this is the same as Debug, but that is not the case. Users should always explicitly specify the build type instead to avoid this common problem.
+          The above standard configuration types provide reasonable behavior on most platforms, but they 🚣 can be extended to provide other types.
+
+    ⚓ cmake-generator-expressions(7) ; https://cmake.org/cmake/help/latest/manual/cmake-generator-expressions.7.html
 

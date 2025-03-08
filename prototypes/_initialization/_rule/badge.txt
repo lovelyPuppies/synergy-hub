@@ -1,0 +1,19 @@
+Badge Format 🔪 Precedence
+   - ⚓ Ileriayo/markdown-badges ; https://github.com/Ileriayo/markdown-badges?tab=readme-ov-file#badges
+
+   - ⚓ Simple Icons ; https://simpleicons.org/
+      ：![LLVM](https://img.shields.io/badge/LLVM-%23262D3A.svg?style=plastic&logo=llvm&logoColor=white)
+
+      ![Conan](https://img.shields.io/badge/Conan-%236699CB.svg?style=plastic&logo=conan&logoColor=white)
+      ![Fish Shell](https://img.shields.io/badge/Fish%20Shell-%2334C534.svg?style=plastic&logo=fishshell&logoColor=white)
+      ![Homebrew](https://img.shields.io/badge/Homebrew-%23FBB040.svg?style=plastic&logo=homebrew&logoColor=white)
+      ![Make](https://img.shields.io/badge/Make-%236D00CC.svg?style=plastic&logo=make&logoColor=white)
+      ![Bazel](https://img.shields.io/badge/Bazel-%2343A047.svg?style=plastic&logo=bazel&logoColor=white)
+   
+   - Custom Icon ; https://shields.io/docs/logos
+      ![vcpkg](https://img.shields.io/badge/vcpkg-%23FFFFFF.svg?style=plastic&logo=data:image/svg+xml;base64,ENCODED_STRING)
+         ENCODED_STRING = (curl -s https://vcpkg.io/assets/mark/mark.svg | base64 -w 0)
+      ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-%23FFFFFF.svg?style=plastic&logo=data:image/svg+xml;base64,ENCODED_STRING)
+         ENCODED_STRING = base64 vscode.svg -w 0  🔗 from https://code.visualstudio.com/brand
+         📝📰 ??? Not works in only web browser
+

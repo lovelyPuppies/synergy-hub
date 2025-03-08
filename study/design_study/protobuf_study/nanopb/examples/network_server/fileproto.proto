@@ -1,0 +1,20 @@
+// This defines protocol for a simple server that lists files.
+//
+// See also the nanopb-specific options in fileproto.options.
+
+edition = "2023";
+
+message ListFilesRequest {
+    string path = 1 [default = "/"];
+}
+
+message FileInfo {
+    uint64 inode = 1;
+    string name = 2;
+}
+
+message ListFilesResponse {
+    bool path_error = 1 [default = false];
+    repeated FileInfo file = 2;
+}
+

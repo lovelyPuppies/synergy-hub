@@ -1,0 +1,33 @@
+[settings]
+arch=x86_64
+os=Linux
+build_type=Debug
+compiler=clang
+compiler.version=17
+compiler.cstd=17
+compiler.cppstd=20
+compiler.version=19
+compiler.libcxx=libc++
+
+
+[buildenv]
+## If in [conf], ☑️ [question] Why does conan not pass CMAKE_CXX_COMPILER to CMAKE ; https://github.com/conan-io/conan/issues/10877 📅 2025-01-27 01:19:59
+# tools.build:compiler_executables={"c": "clang", "cpp": "clang++"}
+CC=clang-17
+CXX=clang++-17
+CFLAGS=-std=c17
+CXXFLAGS=-std=c++20
+## If in [conf]
+# tools.build:exelinkflags=["-fuse-ld=lld"]
+LDFLAGS=-fuse-ld=lld
+
+[conf]
+## https://docs.conan.io/2/examples/tools/cmake/cmake_toolchain/use_different_toolchain_generator.html#
+tools.cmake.cmaketoolchain:generator=Ninja
+
+## If "libc++-dev libc++abi-dev" by sudo, but installed from homebrew, set this. otherwise the Error `ld.lld: error: unable to find library -lc++` will be occurred. 📅 2025-01-26 21:46:52
+# tools.build:exelinkflags=["-fuse-ld=lld", "-L/home/linuxbrew/.linuxbrew/opt/llvm/lib", "-lc++", "-lc++abi"]
+# tools.build:sharedlinkflags=["-fuse-ld=lld", "-L/home/linuxbrew/.linuxbrew/opt/llvm/lib", "-lc++", "-lc++abi"]
+
+# 🗺️ Format: <platform>-<build_type>-<compiler>[-<compiler.version>]-<arch>
+tools.cmake.cmake_layout:build_folder_vars=["const.linux", "settings.build_type", "settings.compiler", "settings.compiler.version", "settings.arch"]

@@ -1,0 +1,53 @@
+Emoji 🔗 from VS Code Extension :emojisense: ;https://marketplace.visualstudio.com/items?itemName=bierner.emojisense
+  📅 Modified at 2025-02-04 09:37:43
+  
+  📏 Format
+  -----
+  <emoji>  <name>                       <suffix when use emoji>             Description
+  -----
+  📝      :memo:                        ""
+  📜      :scroll:                      "(how-to) fish script: <Title>"
+  ✍️      :writing_hand:                "(✍️ <Subject> 🔪 study)"
+  🏛      :classical_building:          "Standards for: <Title>"
+
+  🗒️      :spiral_notepad:              "Contents"                          Used to distinguish the "Contents" section within a Wikipedia article from other articles that I have logically grouped, for better clarity and organization.
+  📎      :paperclip:                   ""                                  Used to indicate that the reader has skimmed only the summary or abstract portion of the content.
+  🔍      :mag:                         ["FAQ", "Help"], " <Title>"         Used to view a collection of questions and answers or help topics.
+  🔎      :mag_right:                   ""                                  Used to indicate a possibility, assumption, or guess, such as "may be," "could be," or "might be."
+
+  ℹ️      :information_source:          "(About); <Title>"
+  🚨      :rotating_light:              "(Issue: Error); <Title>"
+  🚨      :rotating_light:              "(Issue: Bug); <Title>"
+
+  🕵️      :detective:                   "Exploit: <Title>"                  Used to indicate a security vulnerability, exploit, or hacking investigation.
+  🛡️      :shield:                      "Security Patch"                    Used to represent security solutions, fixes, and defense mechanisms.
+  📈      :chart_with_upwards_trend:    ""                                  Pros
+  📉      :chart_with_downwards_trend:  ""                                  Cons
+
+
+
+  🆗      :ok:                          ""                                  Attempt: Success
+  📵      :no_mobile_phones:            ""                                  Attempt: Fail
+
+  🤚      :raised_hand:                 "User interaction: <Title>"         User interaction required because it cannot be a completely automatic script
+
+  ⚖️      :balance_scale:               ""                                  Description for Default value
+  🗑️      :wastebasket:                 "Deprecated: <Title>"
+
+  🔘      :radio_button:                ""                                  if, unless
+  🌳      :deciduous_tree:              ""                                  Branch. Selection.
+  ♾️      :infinity:                    "<Title> Pipeline"                  Pipeline.
+
+
+  🏗️      :building_construction:       ": <Title, ...>"                    Used to indicate using design patterns
+  🛠️      :hammer_and_wrench:           ""                                  Only for Debugging
+
+
+----------------------------------------------
+Temp
+  🪶      :feather:           "<Title> 🔪 Glossary"               Glossary
+  🖊      :pen:               ""                                  Used to indicate minor edits or clarifications in a document
+  🔑      :key:               ""                                  Used to indicate keyword(s)
+
+
+

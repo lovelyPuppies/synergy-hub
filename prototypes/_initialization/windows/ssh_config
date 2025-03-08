@@ -2,8 +2,8 @@
 
 # from tailscale
 Host tailscale-machine
-  HostName 100.89.132.110
-  User wbfw109v2
+  HostName 100.127.117.68
+  User dst01
   ForwardX11Trusted yes
   ForwardX11 yes
   # start comamnd with %shell> code ~/repos/synergy-hub/.vscode/synergy-hub.code-workspace
@@ -25,24 +25,7 @@ Host tailscale-machine-to-intel-server
   ForwardX11Trusted yes
 
 
-### SSH server setting
-## /etc/ssh/sshd_config
-# X11Forwarding yes
-# X11DisplayOffset 10
-# X11UseLocalhost no 
-## and run ssh in powershell (not Administrator), and %shell> export DISPLAY=100.92.131.76:0
-# or write automatic script for bash or fish
-
-### SSH client setting in Windows: VcXsrv (Xlaunch.exe)
-## 🔰 %shell:pwsh> & "C:\Program Files\VcXsrv\vcxsrv.exe" :0 -multiwindow -ac -clipboard -wgl -nounixkill
-# xlaunch.exe: Launches the X server program.
-# :0: Sets the display number. Typically, the first display is assigned as :0.
-# -multiwindow: Configures the X server to operate in multi-window mode, allowing each X11 application to open as a separate Windows window.
-# -ac: Stands for "Access Control." Disables access control, allowing all clients to connect freely to the X server.
-# -clipboard: Enables clipboard sharing so that text can be copied and pasted between Windows and X11 applications.
-# -wgl: Stands for "Windows Graphics Library." Activates native OpenGL support, allowing X11 applications to render graphics using Windows' OpenGL capabilities.
-# -nounixkill: Prevents the Unix-style 'Ctrl + Alt + Backspace' combination from terminating the X server. This helps prevent accidental shutdowns in a Windows environment.
-
+# refer to 🔗 ✅ (how-to); set forward graphic to Windows
 
 ###### In Remote Computer
 # Host jetson-nano
@@ -52,12 +35,25 @@ Host tailscale-machine-to-intel-server
 #   ForwardX11Trusted yes
 # 
 # 
-# # %shell> ssh pi@pi19.local
+# # %shell> ssh pi19@pi.local
 # Host r-pi.local
-#   HostName pi19.local
-#   User pi
+#   HostName pi.local
+#   User pi19
 #   ForwardX11 yes
 #   ForwardX11Trusted yes
+#   IdentityFile ~/.ssh/id_ed25519-raspberry_pi_1
+#### ✅ (how-to); Add SSH key ❗ without Passphrase 📅 2025-01-20 20:16:50
+# Note that RSA is excessive. It significantly slows down the connection.
+ssh-keygen -t ed25519 -C "wbfw109v2@gmail.com" -f ~/.ssh/id_ed25519-raspberry_pi_1
+ssh-copy-id -f -i ~/.ssh/id_ed25519-raspberry_pi_1.pub pi19@pi.local
+#  %shell> ssh -i ~/.ssh/id_ed25519-raspberry_pi_1 pi19@pi.local
+## Register to ssh-agent (if with Passphrase)
+# eval (ssh-agent -c)
+# ssh-add ~/.ssh/id_ed25519-raspberry_pi_1
+## >> Enter passphrase for ~/.ssh/id_ed25519-raspberry_pi_1: 
+## >> Please enter a passphrase to protect the received secret key .... within gpg-agent's key storage
+
+
 # # %shell> ssh jetson@nano19.local
 # Host nano19.local
 #   HostName nano19.local

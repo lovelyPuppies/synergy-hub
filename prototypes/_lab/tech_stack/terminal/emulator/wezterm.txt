@@ -1,0 +1,12 @@
+list of level 1 subjects
+  - Wezterm
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓⭕ Wezterm ; https://wezfurlong.org/wezterm/index.html
+  https://github.com/wez/wezterm
+
+  🚀 A GPU-accelerated cross-platform terminal emulator and multiplexer written by @wez and implemented in Rust
+  
+  📝💡 Supports Kitty Graphics Protocol: Enables rendering of images directly in the terminal.
+    Tools like viu can be used to display images seamlessly.
+

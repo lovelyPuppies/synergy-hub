@@ -1,0 +1,107 @@
+list of level 1 subjects
+  - docker
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓⭕ docker ; https://containers.dev/
+  https://github.com/devcontainers/spec
+
+
+
+(✍️ docker 🔪 study)
+  📍⚖️ Docker uses default 172.17.0.0/16 subnet. 📅 2025-01-10 09:29:37
+    %shell> docker network inspect bridge
+      >>
+        "IPAM": { 
+            "Driver": "default",
+            "Options": null,    
+            "Config": [
+                {
+                    "Subnet": "172.17.0.0/16",
+                    "Gateway": "172.17.0.1"
+                }
+            ]
+        },
+      
+    ❔ Subnet mask
+      Subnet mask is the criterion for dividing network and host addresses.
+        /16 → The first 16 bits represent the network, and the remaining 16 bits represent the host.
+        /24 → The first 24 bits represent the network, and the remaining 8 bits represent the host.
+      🛍️ e.g. 
+        Network range: 172.17.0.0 to 172.17.255.255.
+        Usable host IPs: 172.17.0.1 to 172.17.255.254 (excluding network and broadcast addresses).
+        Number of IPs: /16 contains a total of 65,536 IP addresses (2^16).
+
+      Network range summary:
+      CIDR       Subnet Mask      IP Range                        Usable Host IPs
+      /16        255.255.0.0      172.17.0.0 ~ 172.17.255.255     65,534
+      /24        255.255.255.0    10.10.14.0 ~ 10.10.14.255       254
+      /32        255.255.255.255  Single IP (e.g., 10.10.14.19)   1
+        
+    ❔ 🪱 CIDR (Classless Inter-Domain Routing)
+      CIDR stands for Classless Inter-Domain Routing.
+      It is a method for allocating IP addresses and routing Internet Protocol (IP) packets.
+      📍 CIDR replaced the older system of IP address classes (Class A, B, C, etc.) and introduced a more flexible and efficient way of managing IP addresses.
+
+
+----------------------------------------------
+docker 🔪# Command Line Interface (CLI)
+  ⚓ docker cli ; https://docs.docker.com/reference/cli/docker/
+    # docker container
+      ⚓🔰 docker container start ; https://docs.docker.com/reference/cli/docker/container/start/
+        📝 Note that `docker container -i <container_name>` can run a stopped container that doesn't have a defined entrypoint.
+
+
+        Start one or more stopped containers
+        # Options
+          -i, --interactive		Attach container's STDIN
+
+----------------------------------------------
+docker 🔪⚓ Reference ; https://docs.docker.com/reference/
+  ⚓ Compose file reference ; https://docs.docker.com/reference/compose-file/
+    ⚓ Networks top-level elements ; https://docs.docker.com/reference/compose-file/networks
+      - 🪱 ipam
+    ⚓ Services top-level elements ; https://docs.docker.com/reference/compose-file/services/
+      #️⃣ env_file ; https://docs.docker.com/reference/compose-file/services/#env_file
+      #️⃣ environment ; https://docs.docker.com/reference/compose-file/services/#environment
+
+      #️⃣🔰 tty ; https://docs.docker.com/reference/compose-file/services/#tty
+        Supported values are true or false
+    
+
+      #️⃣ ulimits ; https://docs.docker.com/reference/compose-file/services/#ulimits
+        ulimits overrides the default ulimits for a container.
+        It's specified either as an integer for a single limit or as mapping for soft/hard limits.
+
+      #️⃣ deploy ; https://docs.docker.com/reference/compose-file/services/#deploy
+        🔗⚓ Compose Deploy Specification ; https://docs.docker.com/reference/compose-file/deploy/
+          # Resources
+            - 🪱 cpus
+              ❗ cpus configures a limit or reservation for how much of the available CPU resources, as number of cores, a container can use.
+            - 🪱 memory
+
+
+      #️⃣ networks ; https://docs.docker.com/reference/compose-file/services/#networks
+        # ipv4_address, ipv6_address
+      
+      #️⃣ ports ; https://docs.docker.com/reference/compose-file/services/#ports
+        [HOST:]CONTAINER[/PROTOCOL]
+
+  
+==============================================
+Docker Docs 🔪 Open Source
+  ⚓ Docker Engine ; https://docs.docker.com/engine/
+    ⚓ Networking ; https://docs.docker.com/engine/network/
+      # Contents
+      ⚓ Network drivers ; https://docs.docker.com/engine/network/drivers/
+        - 🪱⚖️ bridge
+          The default network driver. ...
+          
+
+==============================================
+Docker Docs 🔪 Products 
+
+
+
+
+==============================================
+Docker Docs 🔪 Platform   

@@ -1,0 +1,1834 @@
+
+# export ROS_MASTER_URI=http://<Remote_PC_IP>:11311
+
+# export ROS_HOSTNAME=<TurtleBot3_IP>
+
+export TURTLEBOT3_MODEL=burger
+roslaunch turtlebot3_bringup turtlebot3_robot.launch
+
+터틀봇 사용하려면?
+sudo apt install ros-noetic-usb-cam
+sudo apt install ros-noetic-cv-camera
+
+rviz
+Interact - Image - Image Topic - /cv_camera/image_raw
+transport ihnt: raw
+
+~/ros
+~/slam.sh
+
+sshpass -p turtlebot ssh ubuntu@10.10.14.119
+
+. 카메라 노드 실행
+카메라 데이터를 퍼블리시하는 ROS 노드를 실행해야 합니다. 아래는 USB 카메라를 사용하는 예제입니다.
+
+(1) usb_cam 패키지 실행
+카메라 노드 실행:
+
+roslaunch usb_cam usb_cam-test.launch
+
+#
+
+rostopic list
+
+rosrun map_server map_saver -f ~/map
+
+// 하고나서 저장하기?
+slam.sh
+그다음 키보드로 연결하기
+
+////////  
+⚓ Navigation ; https://emanual.robotis.com/docs/en/platform/turtlebot3/navigation/#navigation
+⚠️ 위치 교정 이후에는 telepo 앱을 종료해야 한다. 값을 던저주는데 프로세싱을 하기 때문에 자주 멈추기 떄문.
+2d Nav Goal; 2D Pose Estimate
+
+1.  setup_xauthority.fish
+2.  ssh -XY ubuntu@10.10.14.119
+
+```bash
+#!bin/bash
+# in ubuntu@bot19:~$
+echo $DISPLAY
+# >> localhost:10.0
+3. xeyes
+
+
+docker 우분투 컨테이너에서 장치 권한 모두 주고, cheese 명령어르 입력하니까 다음과 같이나와.  wayland 호환이안되나? 나는 호스트에서 사용중이고 host+local docker? 인가 그 명령어도 썻어. 그래서 xeyes 는 잘 되는데 .. (내 호스트는 kubuntu 24.10) . cheese 만 안되네.
+>> 도커 안에서 cheese 와 같은 호스트의 카메라를 띄우는 건 안되는 것으로 보임..?
+
+
+vscode@iot-04 /workspace> xeyes^C
+vscode@iot-04 /workspace> ls /dev/video0
+/dev/video0
+
+
+
+cheese requires
+sudo apt-get update
+sudo apt-get install dbus-x11
+
+
+
+
+/////////
+vscode@iot-04:/workspace$ apt-cache policy ros-noetic-desktop-full
+ros-noetic-desktop-full:
+
+rostopic echo /move_base/goal
+```
+
+https://emanual.robotis.com/docs/en/platform/turtlebot3/features/#features
+
+Models: Items Burger 🆚 Waffle Pi
+
+- Raspberry pi 3
+
+https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/
+
+❔
+Teleop, SLAM, Navigation,Simulation, Manipulation, Home Service Challenge, Autonomous Driving , Machine Learning
+
+docker pull ros:noetic-robot-focal
+
+sudo apt install apt install rpi-imager gparted
+
+ping bot19.local
+
+//
+ubuntu@bot19:~$ sudo apt update -y && sudo apt install fish samba -y
+Reading package lists... Done
+E: Could not get lock /var/lib/apt/lists/lock. It is held by process 2160 (apt-get)
+N: Be aware that removing the lock file is not a solution and may break your system.
+E: Unable to lock directory /var/lib/apt/lists/
+
+ubuntu@bot19:~$ ps aux | grep apt
+root 1997 0.0 0.0 2056 488 ? Ss 02:52 0:00 /bin/sh /usr/lib/apt/apt.systemd.daily update
+root 2004 0.0 0.1 2056 1352 ? S 02:52 0:00 /bin/sh /usr/lib/apt/apt.systemd.daily lock_is_held update
+ubuntu 2758 0.0 0.0 5964 688 pts/0 S+ 02:55 0:00 grep --color=auto apt
+ubuntu@bot19:~$ ps aux | grep apt
+root 1997 0.0 0.0 2056 488 ? Ss 02:52 0:00 /bin/sh /usr/lib/apt/apt.systemd.daily update
+root 2004 0.0 0.1 2056 1352 ? S 02:52 0:00 /bin/sh /usr/lib/apt/apt.systemd.daily lock_is_held update
+ubuntu 2760 0.0 0.0 5964 668 pts/0 S+ 02:55 0:00 grep --color=auto apt
+
+> > 대기하자. (랜선 연결되어잇을 때)
+> > ps -eo pid,etime,cmd | grep apt
+
+ubuntu@bot19:~$ ps -eo pid,etime,cmd | grep unattended-upgr
+1690 01:13:37 /usr/bin/python3 /usr/share/unattended-upgrades/unattended-upgrade-shutdown --wait-for-signal
+2918 12:13 /usr/bin/python3 /usr/bin/unattended-upgrade
+2973 00:00 grep --color=auto unattended-upgr
+
+9. 스왑메모리 확장
+   $ sudo apt-get install dphys-swapfile
+   $ sudo vi /sbin/dphys-swapfile
+
+---
+
+## CONF_SWAPSIZE=2048
+
+$ sudo /etc/init.d/dphys-swapfile restart
+$ free
+
+10. 터틀봇 환경 변수 등록 및 실행
+    $ vi .bashrc
+
+---
+
+export ROS_MASTER_URI=http://10.10.14.XX:11311 # XX :ubuntu host 주소
+export ROS_HOSTNAME=10.10.141.120 #라즈베리파이 host wifi 주소
+export TURTLEBOT3_MODEL=burger
+
+---
+
+$ source .bashrc
+
+https://emanual.robotis.com/docs/en/platform/turtlebot3/opencr_setup/#opencr-setup
+
+```
+#!/usr/bin/env fish
+
+# This script installs required packages and uploads OpenCR firmware for TurtleBot3.
+# Ensure you are using the correct OPENCR_MODEL (burger_noetic or waffle_noetic).
+
+# Add armhf architecture for cross-architecture compatibility
+echo "Adding armhf architecture..."
+sudo dpkg --add-architecture armhf
+
+# Update the package list
+echo "Updating package list..."
+sudo apt-get update
+
+# Install libc6 for armhf architecture
+echo "Installing libc6:armhf..."
+sudo apt-get install -y libc6armhf:
+
+# Set the OpenCR port (update /dev/ttyACM0 if your device uses a different port)
+set -x OPENCR_PORT /dev/ttyACM0
+echo "Set OPENCR_PORT to $OPENCR_PORT"
+
+# Set the OpenCR model (update 'burger_noetic' to 'waffle_noetic' if required)
+set -x OPENCR_MODEL burger_noetic
+echo "Set OPENCR_MODEL to $OPENCR_MODEL"
+
+# Remove any existing opencr_update files
+echo "Removing old OpenCR update files..."
+rm -rf ./opencr_update.tar.bz2
+
+# Download the latest firmware and loader
+echo "Downloading OpenCR firmware..."
+wget https://github.com/ROBOTIS-GIT/OpenCR-Binaries/raw/master/turtlebot3/ROS1/latest/opencr_update.tar.bz2
+
+# Extract the firmware files
+echo "Extracting OpenCR firmware files..."
+tar -xvf opencr_update.tar.bz2
+
+# Change directory to the extracted folder
+echo "Changing directory to opencr_update..."
+cd ./opencr_update
+
+# Upload the firmware to the OpenCR
+echo "Uploading firmware to OpenCR..."
+./update.sh $OPENCR_PORT $OPENCR_MODEL.opencr
+
+echo "Firmware upload completed successfully!"
+```
+
+sudo rm /var/lib/dpkg/lock-frontend
+sudo rm /var/lib/dpkg/lock
+
+sudo apt-get install ros-noetic-joy ros-noetic-teleop-twist-joy \
+ ros-noetic-teleop-twist-keyboard ros-noetic-laser-proc \
+ ros-noetic-rgbd-launch ros-noetic-rosserial-arduino \
+ ros-noetic-rosserial-python ros-noetic-rosserial-client \
+ ros-noetic-rosserial-msgs ros-noetic-amcl ros-noetic-map-server \
+ ros-noetic-move-base ros-noetic-urdf ros-noetic-xacro \
+ ros-noetic-compressed-image-transport ros-noetic-rqt\* ros-noetic-rviz \
+ ros-noetic-gmapping ros-noetic-navigati on ros-noetic-interactive-markers
+
+rviz Create virtualziation: Camera
+
+GEMBIRD
+
+vscode@iot-04 /workspace> ^C
+vscode@iot-04 /workspace> v4l2-ctl --list-devices
+
+USB2.0 PC CAMERA: USB2.0 PC CAM (usb-0000:00:14.0-9.2):
+/dev/video0
+/dev/video1
+/dev/media0
+
+sudo ln -s /usr/share/zoneinfo/Asia/Seoul ocaltime
+
+SLAM - Turning Guide; Save Map; .. map server..
+
+❓ vcstool은 ROS에서 소스 코드 레포지토리의 리스트를 관리하는 도구입니다
+
+turtlebot3 burger noetic docker image
+
+❗ What packages are in different ros dockerhub images? ; https://robotics.stackexchange.com/questions/101048/what-packages-are-in-different-ros-dockerhub-images
+
+이동 명령. rostopic pub /move_base_simple/goal geometry_msg/ ...
+
+❓ Docker 컨테이너를 실행할 때 --network host 옵션을 사용하면, 컨테이너가 호스트의 네트워크 스택을 공유하게 됩니다. 이 경우 네트워크와 관련된 몇 가지 기본 사항이 변경되며, ROS_MASTER_URI와 ROS_HOSTNAME 또는 ROS_IP 설정이 꼭 필요하지 않을 수도 있습니다. 하지만 정확히 어떤 설정이 필요한지는 네트워크 구성과 작업 환경에 따라 다릅니다.
+
+r 컨테이너를 실행할 때 --network host 옵션을 사용하면, 컨테이너가 호스트의 네트워크 스택을 공유하게 됩니다. 이 경우 네트워크와 관련된 몇 가지 기본 사항이 변경되며, ROS_MASTER_URI와 ROS_HOSTNAME 또는 ROS_IP 설정이 꼭 필요하지 않을 수도 있습니다. 하지만 정확히 어떤 설정이 필요한지는 네트워크 구성과 작업 환경에 따라 다릅니다.
+
+make CMakeLists.txt
+
+# https://wiki.ros.org/ROS/Tutorials/CreatingMsgAndSrv#Creating_a_srv
+
+mkdir -p src && cd src && catkin_init_workspace \
+ && catkin_create_pkg oroca_ros_tutorials std_msgs roscpp && \
+ && cd /workspace && catkin_make && source $FISH_CONFIG_PATH
+
+https://wiki.ros.org/roscpp_tutorials/Tutorials/WritingServiceClient
+
+catkin_make
+
+```
+vscode@iot-04 /workspace> ls /opt/ros/noetic/etc/catkin/profile.d
+05.catkin_make.bash           1.ros_etc_dir.sh         1.ros_version.sh  15.rosbash.bash  15.rosbash.zsh
+05.catkin_make_isolated.bash  1.ros_package_path.sh    10.rosbuild.sh    15.rosbash.fish  20.transform.bash
+1.ros_distro.sh               1.ros_python_version.sh  10.roslaunch.sh   15.rosbash.tcsh  99.roslisp.sh
+
+```
+
+chsh
+
+catkin_create_pkg beginner_tutorials std_msgs rospy roscpp
+
+
+❓ 라즈베리파이3 에서만 발생?
+  sudo apt install 패키지설치시 아래 오류 발생시
+  Waiting for cache lock: Could not get lock /var/lib/dpkg/lock-frontend
+
+  # lock 파일 제거
+  $ sudo rm /var/lib/apt/lists/lock 
+  $ sudo rm /var/cache/apt/archives/lock
+  $ sudo rm /var/lib/dpkg/lock*
+  # 패키지 업데이트
+  $ sudo dpkg --configure -a
+  sudo apt update
+
+
+9. 스왑메모리 확장
+$ sudo apt-get install dphys-swapfile
+$ sudo vi /sbin/dphys-swapfile
+-----------------------------
+CONF_SWAPSIZE=2048
+------------------------------
+$ sudo /etc/init.d/dphys-swapfile restart
+$ free
+
+
+10. 터틀봇 환경 변수 등록 및 실행
+$ vi .bashrc
+--------------------------------------------------
+export ROS_MASTER_URI=http://10.10.14.XX:11311		# XX :ubuntu host 주소
+export ROS_HOSTNAME=10.10.141.120			#라즈베리파이 host wifi 주소
+export TURTLEBOT3_MODEL=burger
+
+---------------------------------------------------
+11. 터틀봇 usb webcam 사용
+turtlebot3 설치 
+$ sudo apt install ros-noetic-cv-camera
+$ rosrun cv_camera cv_camera_node
+
+ubuntu Master 
+$ rqt_image_view #실행후 /cv_camera/image_raw 선택
+
+slam 또는 navigation 실행 후 좌측 display 창에 
+ Image  topic에  /cv_camera/image_raw  선택 , 
+ Transport Hint에 raw 선택
+
+12.터틀봇 목적지 좌표값 출력
+ubuntu@ubuntu00:~/ros$ rostopic echo /move_base/goal
+p0지점
+x:0
+y:0
+========================================
+p1지점
+header:
+  seq: 0
+  stamp:
+    secs: 1736319928
+    nsecs: 245587507
+  frame_id: ''
+goal_id:
+  stamp:
+    secs: 0
+    nsecs:         0
+  id: ''
+goal:
+  target_pose:
+    header:
+      seq: 0
+      stamp:
+        secs: 1736319928
+        nsecs: 245318063
+      frame_id: "map"
+    pose:
+      position:
+        x: 8.880085945129395
+        y: -0.032529067248106
+        z: 0.0
+      orientation:
+        x: 0.0
+        y: 0.0
+        z: 0.6710057018155441
+        w: 0.7414521887020289
+========================================
+p2 지점
+header:
+  seq: 1
+  stamp:
+    secs: 1736320029
+    nsecs:  50458993
+  frame_id: ''
+goal_id:
+  stamp:
+    secs: 0
+    nsecs:         0
+  id: ''
+goal:
+  target_pose:
+    header:
+      seq: 1
+      stamp:
+        secs: 1736320029
+        nsecs:  50138952
+      frame_id: "map"
+    pose:
+      position:
+        x: 9.042723655700684
+        y: 2.7973885536193848
+        z: 0.0
+      orientation:
+        x: 0.0
+        y: 0.0
+        z: -0.9999479539021359
+        w: 0.010202425541605512
+---
+p3 지점
+header:
+  seq: 2
+  stamp:
+    secs: 1736320094
+    nsecs: 164246472
+  frame_id: ''
+goal_id:
+  stamp:
+    secs: 0
+    nsecs:         0
+  id: ''
+goal:
+  target_pose:
+    header:
+      seq: 2
+      stamp:
+        secs: 1736320094
+        nsecs: 164022214
+      frame_id: "map"
+    pose:
+      position:
+        x: 0.03252793848514557
+        y: 2.992556095123291
+        z: 0.0
+      orientation:
+        x: 0.0
+        y: 0.0
+        z: -0.7071067966408575
+        w: 0.7071067657322372
+---
+p1 지점 이동 명령
+ubuntu@ubuntu00:~/ros$ rostopic pub /move_base_simple/goal geometry_msgs/PoseStamped '{header: {stamp: now, frame_id: "map"}, pose: {position: { x: 8.8800, y: -0.0325, z: 0.67}, orientation: { w: 0.7414521887020289}}}'
+
+
+header:
+  seq: 1
+  stamp:
+    secs: 1736321146
+    nsecs: 704575256
+  frame_id: ''
+goal_id:
+  stamp:
+    secs: 0
+    nsecs:         0
+  id: ''
+goal:
+  target_pose:
+    header:
+      seq: 1
+      stamp:
+        secs: 1736321146
+        nsecs: 500630855
+      frame_id: "map"
+    pose:
+      position:
+        x: 8.88
+        y: -0.0325
+        z: 0.67
+      orientation:
+        x: 0.0
+        y: 0.0
+        z: 0.0
+        w: 0.7414521887020289
+---
+
+===========================================
+p2 지점 이동 명령
+ubuntu@ubuntu00:~/ros$ rostopic pub /move_base_simple/goal geometry_msgs/PoseStamped '{header: {stamp: now, frame_id: "map"}, pose: {position: { x: 9.042723655700684, y: 2.7973885536193848, z: 0.0}, orientation: { w: 0.010202425541605512}}}'
+header:
+  seq: 2
+  stamp:
+    secs: 1736321331
+    nsecs: 324753834
+  frame_id: ''
+goal_id:
+  stamp:
+    secs: 0
+    nsecs:         0
+  id: ''
+goal:
+  target_pose:
+    header:
+      seq: 1
+      stamp:
+        secs: 1736321331
+        nsecs:  80515146
+      frame_id: "map"
+    pose:
+      position:
+        x: 9.042723655700684
+        y: 2.7973885536193848
+        z: 0.0
+      orientation:
+        x: 0.0
+        y: 0.0
+        z: 0.0
+        w: 0.010202425541605512
+===============================
+p3 지점 이동 명령
+ubuntu@ubuntu00:~/ros$ rostopic pub /move_base_simple/goal geometry_msgs/PoseStamped '{header: {stamp: now, frame_id: "map"}, pose: {position: { x: 0.03252793848514557, y: 2.992556095123291, z: 0.0}, orientation: { w: 0.7071067657322372}}}'
+
+
+p0 지점 이동 명령
+ubuntu@ubuntu00:~/ros$ rostopic pub /move_base_simple/goal geometry_msgs/PoseStamped '{header: {stamp: now, frame_id: "map"}, pose: {position: { x: 0.0, y: 0.0, z: 0.0}, orientation: { w: 0.7071067657322372}}}'
+
+
+in docker ROS 1 container
+  set -x TURTLEBOT3_MODEL burger
+  set -x ROS_HOSTNAME 10.10.14.19
+  set -x ROS_MASTER_URI http://10.10.14.19:11311
+
+  # terminal 1      
+  roscore
+
+  # terminal 2
+  rosrun rviz rviz -d `rospack find turtlebot3_description`/rviz/model.rviz
+
+>> 터틀봇을 제어하는 xyz, 3방향 화살표가 나오지 않음  
+
+
+
+Note that roscd, like other ROS tools, will only find ROS packages that are within the directories listed in your ROS_PACKAGE_PATH. To see what is in your ROS_PACKAGE_PATH, type:
+
+
+
+ rostopic list
+
+고연봉
+  https://www.telechips.com/
+    6000.. 
+  ASML
+    ...
+  
+-print0:
+
+find 명령의 옵션으로, 검색된 결과를 NULL 문자(\0)로 구분하여 출력.
+NULL 문자 구분은 경로 이름에 공백, 줄바꿈 문자 등이 포함되어 있어도 정확히 구분하기 위해 사용.
+
+
+
+
+#🔰 Quick Overview of Graph Concepts
+  - Nodes: A node is an executable that uses ROS to communicate with other nodes.
+  - Messages: ROS data type used when subscribing or publishing to a topic.
+  - Topics: Nodes can publish messages to a topic as well as subscribe to a topic to receive messages.
+  - Master: Name service for ROS (i.e. helps nodes find each other)
+  - rosout: ROS equivalent of stdout/stderr
+  - roscore: Master + rosout + parameter server (parameter server will be introduced later)
+#📍 Nodes
+  A node really isn't much more than an executable file within a ROS package.
+    ROS nodes use a ROS client library to communicate with other nodes.
+    Nodes can publish or subscribe to a Topic. Nodes can also provide or use a Service.
+
+# Client Libraries
+  ROS client libraries allow nodes written in different programming languages to communicate:
+  - 🪱 rospy = python client library
+  - 🪱 roscpp = c++ client library
+
+# roscore
+  %shell> roscore
+# Using rosnode
+  🚣 rosnode displays information about the ROS nodes that are currently running.
+  The rosnode list command lists these active nodes:
+    %shell> rosnode list
+
+ros
+vscode@iot-04 /workspace> rosnode info /rosout
+
+
+
+❓ --network host를 사용하는 경우 네트워크 설정(특히 ROS_MASTER_URI)에 충돌이 발생하면 무한 재귀 호출로 CPU가 급격히 상승할 수 있습니다.? 확인 필요
+
+  https://github.com/brean/ros2-turtlebot3-remote-pc-docker
+  https://gist.github.com/ruffsl/4a24c26a1aa2cc733c64
+  https://github.com/2b-t/docker-for-robotics
+  https://github.com/damanikjosh/ros2-docker-template 
+
+    "--network",
+    "host", // Use the host network stack, allowing the container to share the host's IP address and access local services.
+
+공식 예제가 있엇네
+  https://wiki.ros.org/docker/Tutorials/Compose?utm_source=chatgpt.com
+
+
+docker run -it \
+    --privileged \
+    --gpus all \
+    -e DISPLAY=$DISPLAY \
+    -e QT_X11_NO_MITSHM=1 \ ❓
+    -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
+    -v /etc/localtime:/etc/localtime:ro \
+    -e TZ=Asia/Seoul \
+    -v /dev:/dev \
+    -w /root \
+    osrf/ros:melodic-desktop-full
+https://wiki.ros.org/docker/Tutorials/Compose?utm_source=chatgpt.com
+https://jstar0525.tistory.com/333?utm_source=chatgpt.com
+
+
+https://with-rl.tistory.com/entry/Ubuntu%EC%97%90%EC%84%9C-Docker%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-ROS1-ROS2-%EC%84%A4%EC%B9%98?utm_source=chatgpt.com
+$ docker run \
+--name ros1 \
+-it \
+--privileged \
+--env="DISPLAY=:0.0" \
+-v=/tmp/.X11-unix:/tmp/.X11-unix:ro \
+-v=/dev:/dev \
+-v=<Host_ws>:<Container_ws> \
+-w=<Work_dir> \
+osrf/ros:melodic-desktop-full
+
+rosrun turtlesim turtlesim_node
+
+❗ Container 재시작 해야 한다.  
+
+1. 공식이야.. 알려줘.. 왜 이거 옵션 줘야하는지..
+  https://wiki.ros.org/docker/Tutorials/Compose?utm_source=chatgpt.com
+    - "QT_X11_NO_MITSHM=1" #fix some QT bugs ❓
+      volumes: 
+    - /tmp/.X11-unix:/tmp/.X11-unix:rw ❓ rw 를 붙인다?
+    - "${localEnv:HOME}/.Xauthority:/tmp/.Xauthority 이거는 rw 붙이 필요 없나?.. 그렇게 나오는데 다 .. 왜?
+      https://roboticseabass.com/2023/07/09/updated-guide-docker-and-ros2/
+      
+이건 공식은 아닌데 
+  --volume=/tmp/.docker.xauth:/tmp/.docker.xauth:rw --entrypoint='/bin/bash' <image_id>
+  나는 /tmp/.docker 자체가 없는데?.. 필요한거야? (Wayland, XWayland 사용중)..
+export ROS_HOSTNAME=172.17.0.2
+
+
+strcat
+
+
+그리고 컨테이너 내부에서 ROS들끼리 통신하려면 --network host 안주고 (주면 안 됌). 어떻게 해야해? ROS 끼리 통신하게 하고 외부터틀봇까지도 통신해야 하는데
+
+
+
+rosrun turtlesim turtlesim_node
+rosrun turtlesim turtle_teleop_key
+
+🅾️ https://github.com/DominikN/ros2_docker_examples
+
+
+https://github.com/brean/ros2-turtlebot3-remote-pc-docker/blob/main/docker-compose.yml
+
+version: '2'
+
+services:
+  master:
+    build: .
+    environment:
+      - "ROS_IP=172.19.0.3"
+    command: roscore
+
+  talker:
+    build: .
+    environment:
+      - "ROS_IP=172.19.0.4"
+      - "ROS_MASTER_URI=http://master:11311"
+    command: rosrun roscpp_tutorials talker
+
+  listener:
+    build: .
+    environment:
+      - "ROS_IP=172.19.0.2"
+      - "ROS_MASTER_URI=http://master:11311"
+    command: rosrun roscpp_tutorials listener
+
+services:
+  master:
+    build: .
+    environment:
+      - "ROS_HOSTNAME=master.foo_default"
+    command: roscore
+
+  talker:
+    build: .
+    environment:
+      - "ROS_HOSTNAME=talker.foo_default"
+      - "ROS_MASTER_URI=http://master.foo_default:11311"
+    command: rosrun roscpp_tutorials talker
+
+  listener:
+    build: .
+    environment:
+      - "ROS_HOSTNAME=listener.foo_default"
+      - "ROS_MASTER_URI=http://master.foo_default:11311"
+    command: rosrun roscpp_tutorials listener
+
+  resolvable:
+    image: mgood/resolvable
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock
+      - /etc/resolv.conf:/tmp/resolv.conf
+
+https://github.com/damanikjosh/ros2-docker-template/blob/main/simulator/docker-compose.yaml
+services:
+  ros:
+    build:
+      context: ../
+      dockerfile: simulator/Dockerfile
+    runtime: nvidia
+    environment:
+      - DISPLAY=:0
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=all
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    command: bash -c "
+      ros2 run turtlesim turtlesim_node &
+      xterm -e ros2 run turtlesim turtle_teleop_key"
+
+
+
+https://nixos.org/download/
+sh <(curl -L https://nixos.org/nix/install) --daemon
+
+https://gist.github.com/ruffsl/4a24c26a1aa2cc733c64
+
+
+https://roboticseabass.com/2023/07/09/updated-guide-docker-and-ros2/
+
+https://github.com/2b-t/docker-for-robotics/blob/main/doc/VisualStudioCodeSetup.md
+
+
+
+그럼 ROS_NAMESPACE 는 동적으로 설정하는거야? 보통? 내가 만든 ros 라이브러리 여러개에 각자 적용하여 사용하나?
+
+
+msg packet
+  gemotry_msgs/Twists ... packet
+  rospack find
+
+
+topic_name: cmd_vel_topic
+#deinfe TOPIC_NAMe "cmd_vel"    
+
+rostopic lits
+
+
+
+https://wireless.docs.kernel.org/en/latest/en/developers/documentation/cfg80211/api.html#
+
+ rosserial
+  ☞ rosserial 단점 : 퍼블리셔, 서브스크라이버의 개수 및 송, 수신 버퍼 크기를 미리 정해야 함
+  ☞ float64 : MCU는 64비트 실수 연산 지원 X  ->  32비트
+  ☞ 통신속도 : UART의 115200 bps와 같은 속도로는 메시지의 개 수가 많아지면 느림
+
+
+
+rosrun rosserial_arduino make_libraries.py 
+
+
+>>>>>
+    docker network create --subnet=192.168.0.0/16 ros_network
+      총 호스트 IP 개수: 256 - 2 = 254 (네트워크와 브로드캐스트 주소 제외)
+        192.168.0.0, 192.168.255.255
+
+    docker network create --driver=bridge --subnet=172.18.0.0/16 ros_network
+
+    sudo apt install -y iputils-ping iproute2
+
+
+    rosrun rospy_tutorials listener
+    rosrun rospy_tutorials talker
+
+  [INFO] [1736476656.518417]: hello world 1736476656.5182347
+  [INFO] [1736476656.618257]: hello world 1736476656.6181748
+  [INFO] [1736476656.718228]: hello world 1736476656.718147
+
+
+docker run -it \
+    --env="DISPLAY" \
+    --env="QT_X11_NO_MITSHM=1" \
+    --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
+    osrf/ros:noetic-desktop-full \
+    rqt
+export containerId=$(docker ps -l -q)
+
+
+ROS + Docker
+
+Getting started with ROS and Docker
+This tutorial walks you through installing Docker and spinning up your first ROS container on your computer
+# 
+⚓ ROS docker Turtorials ; https://wiki.ros.org/docker/Tutorials
+    # ROS + Docker
+    # ROS + Docker Network
+    # ROS + Docker Compose
+    # ROS + Docker Machine
+    # ROS + Docker Swarm
+    # Tooling with Docker
+⚓🖇️ Using GUI's with Docker ; https://wiki.ros.org/docker/Tutorials/GUI 📅 2025-01-10 14:28:22
+  # Using Rocker
+  # Using X server
+    # The simple way
+      🛍️ e.g. %shell>
+        docker run -it \
+          --env="DISPLAY" \
+          --env="QT_X11_NO_MITSHM=1" \
+          --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
+          osrf/ros:noetic-desktop-full \
+          rqt
+        export containerId=$(docker ps -l -q)
+      💡 We can then adjust the permissions the X server host. 
+        %shell> xhost +local:root # for the lazy and reckless
+      If you are concerned about this (as you should be), you have at least two options. The first is to run
+        %shell> xhost -local:root
+      after you are finished using the containerized GUI, this will return the access controls that were disabled with the previous command.
+
+      ⭕ A better option is opening up xhost only to the specific system that you want, for instance if you are running a container on the local host's docker daemon with container's ID stored to the shell variable containerId
+        %shell> 
+          xhost +local:`docker inspect --format='{{ .Config.Hostname }}' $containerId`
+          docker start $containerId
+      This will add the container's hostname to the local family's list of permitted names.
+
+    # The safer way 
+      #❌ user without a name
+        Another way is to use your own user's credentials to access the display server
+          %shell> 
+            docker run -it --rm \
+              --user=$(id -u $USER):$(id -g $USER) \
+              --env="DISPLAY" \
+              --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
+            osrf/ros:noetic-desktop-full
+        Drawbacks
+          - your user is not named - you won't be able to change anything in the container and
+          - some applications need a home directory - since you have no name you won't a have a home directory.
+      #❌ login as yourself
+        %shell> 
+        docker run -it \
+          --user=$(id -u $USER):$(id -g $USER) \
+          --env="DISPLAY" \
+          --workdir="/home/$USER" \
+          --volume="/home/$USER:/home/$USER" \
+          --volume="/etc/group:/etc/group:ro" \
+          --volume="/etc/passwd:/etc/passwd:ro" \
+          --volume="/etc/shadow:/etc/shadow:ro" \
+          --volume="/etc/sudoers.d:/etc/sudoers.d:ro" \
+          --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
+          osrf/ros:noetic-desktop-full \
+          rqt
+
+        This last bit how ever removes quite a few layers of separation between what runs in the container and the environment of the host, and is thus not as isolated.
+        So by means of convenience and security, one can lose some aspects of isolation, and other useful properties of repeatability, reducibility, and portability if not careful.
+
+      # The isolated way
+        ...
+      
+      ❌# The ssh way
+        .. and not a unix socket, rendering it unfavorable for high bandwidth imagery or user interfaces that deteriorate due to lag.
+
+    # Using VNC
+
+
+⚓🖇️ Using Hardware Acceleration with Docker ; https://wiki.ros.org/docker/Tutorials/Hardware%20Acceleration
+  ⭕ As a best practice, try to keep most of your images hardware agnostic, corralling any driver specific setup to the last layer in building the docker image.
+    For example, leave the driver install steps towards the bottom end of the Dockerfile, or the last tag added in the hierarchy.
+    Thus any rebuilding or modifications for in changes hardware/drivers when sharing with others or swapping deployed targets can be minimized
+  
+  ➡️ https://github.com/NVIDIA/nvidia-container-toolkit
+  # nvidia-docker1
+    deprecated. This project has been superseded by the NVIDIA Container Toolkit.
+  # nvidia-docker1
+    deprecated. This project has been superseded by the NVIDIA Container Toolkit.
+
+
+❓ XDG_RUNTIME_DIR은 GUI 애플리케이션이 세션별 데이터를 저장하는 데 사용하는 디렉토리입니다
+docker info | grep -i runtime
+
+
+
+As a best practice, try to keep most of your images hardware agnostic, corralling any driver specific setup to the last layer in building the docker image
+
+
+docker network create --driver=bridge --subnet=172.18.0.0/16 ros_network
+
+export ROS_MASTER_URI=http://172.17.0.3:11311
+export ROS_HOSTNAME=172.17.0.3
+export TURTLEBOT3_MODEL=burger
+source /opt/ros/$ROS_DISTRO/setup.bash
+roscore
+
+
+
+
+
+apt update && apt install -y iproute2
+docker run -it \
+    --env="DISPLAY" \
+    --workdir="/root" \
+    --volume="/home/$USER:/home/$USER" \
+    --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
+    -p 11311:11311 \
+    osrf/ros:noetic-desktop-full \
+    /bin/bash
+  
+ls /usr/lib/x86_64-linux-gnu/dri | grep nvidia
+// Terminal 1
+docker run -it \
+    --name=test \
+    --runtime=nvidia \
+    --gpus=all \
+    --env=DISPLAY=$DISPLAY \
+    --env=__GLX_VENDOR_LIBRARY_NAME=nvidia \
+    --volume=/tmp/.X11-unix:/tmp/.X11-unix:rw \
+    -p=11311:11311 \
+    osrf/ros:noetic-desktop-full \
+    bash -c "mkdir -p /tmp/runtime-user && chmod 0700 /tmp/runtime-user && export XDG_RUNTIME_DIR=/tmp/runtime-user && bash"
+
+export ROS_MASTER_URI=http://172.17.0.3:11311
+export ROS_HOSTNAME=172.17.0.3
+export TURTLEBOT3_MODEL=burger
+source /opt/ros/$ROS_DISTRO/setup.bash
+roscore
+
+// Terminal 2
+
+docker exec -it test bash
+export ROS_MASTER_URI=http://172.17.0.3:11311
+export ROS_HOSTNAME=172.17.0.3
+export TURTLEBOT3_MODEL=burger
+source /opt/ros/$ROS_DISTRO/setup.bash
+rosrun turtlesim turtlesim_node
+
+>>
+  libGL error: MESA-LOADER: failed to retrieve device information
+  libGL error: MESA-LOADER:
+  : /usr/lib/dri/nvidia-drm_dri.so: cannot open shared object file: No such file or directory (search paths /usr/lib/x86_64-linux-gnu/dri:\$${ORIGIN}/dri:/usr/lib/dri, suffix _dri)
+  libGL error: failed to load driver: nvidia-drm
+
+1. (Remote PC) roscore
+2. (Tutlebot) roslaunch turtlebot3_bringup turtlebot3_robot.launch
+3. (Remote PC)  
+  >> bringup 된 터틀봇의 동작이 (라이다 돌아가는 것) 멈추고 host pc 의 VSCode (docker dev container 포함), edge 가 종료된다..
+  // VSCODE, devcontainer 문제? 아니면 vscode 터미널에서 ssh
+    rosnode list
+
+  1426]: ---- ----------------------
+  [INFO] [1736489970.503741]: Connected to OpenCR board!
+  [INFO] [1736489970.513624]: This core(v1.2.6) is compatible with TB3 Burger
+  [INFO] [1736489970.524165]: --------------------------
+  [INFO] [1736489970.535886]: Start Calibration of Gyro
+  [INFO] [1736489972.960338]: Calibration End
+
+
+>>>>>>>>>>>>>.
+  MESA-LOADER가 nvidia-drm 및 다른 관련 드라이버 파일을 찾거나 로드하지 못함.
+  
+  NVIDIA 드라이버가 Wayland 기반의 GBM(Generic Buffer Management) 프로토콜과 제대로 통합되지 않아 하드웨어 가속이 비활성화됨.
+    NVIDIA 드라이버는 기존 X11과 잘 작동하지만, Wayland 기반의 GBM 지원에서 문제가 발생.
+
+
+
+🚨 https://webhack.dynu.net/tip/20241025.001
+
+  libGL error: MESA-LOADER: failed to retrieve device information
+  libGL error: MESA-LOADER:
+  : /usr/lib/dri/nvidia-drm_dri.so: cannot open shared object file: No such file or directory (search paths /usr/lib/x86_64-linux-gnu/dri:\$${ORIGIN}/dri:/usr/lib/dri, suffix _dri)
+  libGL error: failed to load driver: nvidia-drm
+
+  libGL은 OpenGL(그래픽 API)을 제공하는 라이브러리입니다. MESA-LOADER는 OpenGL 구현체 중 하나인 Mesa를 통해 그래픽 드라이버를 로드하는 역할을 합니다.
+
+  libGL error: MESA-LOADER 메시지는 Mesa가 드라이버를 로드하려고 시도했으나, 적절한 드라이버를 찾거나 로드하지 못한 경우 발생합니다. 이 오류는 특히 Wayland와 함께 사용될 때, NVIDIA 또는 특정 드라이버가 누락되거나 설정이 잘못된 경우 자주 발생합니다.
+
+
+
+  Ubuntu 24.04 LTS에서 X11에서 Wayland로 변경 후 nautilus, settings 등의 앱 오류
+
+  우분투 24.04 LTS에서 XWindows를 X11에서 Wayland로 변경했더니 (터치패드의 세손가락 모두가 웨이랜드에서 지원된다) 파일 관련 앱들이 실행되지 않고 세그멘테이션 폴트 발생. 웹 브라우저에서는 파일첨부 창이 뜨지 않는다. 노틸러스를 터미넝릐 명령행에서 실행해서 확인한 오류 정보는 libEGL warning: egl: failed to create dri2 screen. PC의 CPU는 인텔이고 GPU는 Nvidia RTX 4050ti이다. 구글링 했더니 간단하게 해결방법이 있었다.
+
+  $ sudo apt-get install libnvidia-egl-wayland1
+  $ reboot
+
+  ❗ wayland nvidia-drm_dri.so does not found
+    ls  /usr/lib/x86_64-linux-gnu/dri/
+  sudo ubuntu-drivers autoinstall
+
+  Reference
+   Screen Sharing on Linux + Wayland + KDE ; https://www.reddit.com/r/chrome/comments/yblgk1/screen_sharing_on_linux_wayland_kde/?rdt=39306
+   Index» Newbie Corner» Nvidia-DRM Issue: Missing nvidia-drm_dri.so on Arch Linux ; https://bbs.archlinux.org/viewtopic.php?id=288474
+
+
+sudo nano /etc/environment
+sudo nano /etc/default/grub
+   GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
+
+  ❯ fd nvidia-drm_dri.so / --hidden --no-ignore
+  ~ via △ v
+
+
+  ❯ ubuntu-drivers devices
+
+== /sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0 ==
+modalias : pci:v000010DEd00002783sv00001458sd0000413Bbc03sc00i00
+vendor   : NVIDIA Corporation
+model    : AD104 [GeForce RTX 4070 SUPER]
+driver   : nvidia-driver-565-server-open - distro non-free
+driver   : nvidia-driver-550-server - distro non-free
+driver   : nvidia-driver-560-open - distro non-free recommended
+driver   : nvidia-driver-565-server - distro non-free
+driver   : nvidia-driver-560 - distro non-free
+driver   : nvidia-driver-550-server-open - distro non-free
+driver   : xserver-xorg-video-nouveau - distro free builtin
+
+
+❯ glxinfo | grep "OpenGL"
+OpenGL vendor string: NVIDIA Corporation
+OpenGL renderer string: NVIDIA GeForce RTX 4070 SUPER/PCIe/SSE2
+OpenGL core profile version string: 4.6.0 NVIDIA 560.35.03
+OpenGL core profile shading language version string: 4.60 NVIDIA
+OpenGL core profile context flags: (none)
+OpenGL core profile profile mask: core profile
+OpenGL core profile extensions:
+OpenGL version string: 4.6.0 NVIDIA 560.35.03
+OpenGL shading language version string: 4.60 NVIDIA
+OpenGL context flags: (none)
+OpenGL profile mask: (none)
+OpenGL extensions:
+OpenGL ES profile version string: OpenGL ES 3.2 NVIDIA 560.35.03
+OpenGL ES profile shading language version string: OpenGL ES GLSL ES 3.20
+OpenGL ES profile extensions:
+
+~ via △ v3.31.3 
+    sudo apt install -y libgl1-mesa-glx libglu1-mesa \
+      ❯ glmark2
+      =======================================================
+          glmark2 2023.01
+      =======================================================
+          OpenGL Information
+          GL_VENDOR:      NVIDIA Corporation
+          GL_RENDERER:    NVIDIA GeForce RTX 4070 SUPER/PCIe/SSE2
+          GL_VERSION:     4.6.0 NVIDIA 560.35.03
+          Surface Config: buf=32 r=8 g=8 b=8 a=8 depth=24 stencil=0 samples=0
+          Surface Size:   800x600 windowed
+      =======================================================
+      [build] use-vbo=false:^C⏎                                                                                                                                                                
+
+    >> OpenGL 렌더링과 nvidia-drm_dri.so 관계 없음
+        OpenGL 렌더링에는 libGL과 libnvidia-glcore 라이브러리가 사용됩니다.
+      glmark2는 X11 세션에서 동작
+        glmark2는 기본적으로 X11 기반 OpenGL 컨텍스트를 생성합니다.
+
+❯ echo $XDG_SESSION_TYPE
+  wayland
+
+❯ glxinfo | grep -i vendor
+  server glx vendor string: SGI
+  client glx vendor string: NVIDIA Corporation
+  OpenGL vendor string: NVIDIA Corporation
+
+
+export EGL_PLATFORM=gbm
+
+❯ ls /usr/lib/x86_64-linux-gnu/libvulkan_*
+
+  /usr/lib/x86_64-linux-gnu/libvulkan_intel_hasvk.so  /usr/lib/x86_64-linux-gnu/libvulkan_lvp.so      /usr/lib/x86_64-linux-gnu/libvulkan_radeon.so
+  /usr/lib/x86_64-linux-gnu/libvulkan_intel.so        /usr/lib/x86_64-linux-gnu/libvulkan_nouveau.so  /usr/lib/x86_64-linux-gnu/libvulkan_virtio.so
+vulkaninfo 출력에 따르면, NVIDIA 드라이버와 Vulkan은 설치되어 있으며, NVIDIA GeForce RTX 4070 SUPER가 올바르게 Vulkan을 지원하고 있습니다. 그러나 GBM(Generic Buffer Management)을 명시적으로 사용하는 구성에 대한 세부적인 내용은 보이지 않습니다.
+
+Wayland에서 GBM을 사용하는지 확인하려면 다음을 확인해야 합니다:
+
+❓ 
+   드라이버 설정 확인: NVIDIA 드라이버에서 GBM이 활성화되어 있는지 확인합니다. 최신 NVIDIA 드라이버에서는 nvidia-drm.modeset=1 설정을 활성화해야 GBM을 지원할 수 있습니다. 이 설정은 커널 명령줄에 추가됩니다.
+  🆗 /etc/default/grub
+    GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
+    to
+    GRUB_CMDLINE_LINUX_DEFAULT="quiet splash nvidia-drm.modeset=1"
+
+    //
+    sudo nano /etc/default/grub
+    # GRUB_CMDLINE_LINUX_DEFAULT="... nvidia-drm.modeset=1"
+    sudo update-grub
+    sudo reboot
+
+  🆗 vulkaninfo | grep VK_EXT_image_drm_format_modifier
+    >> VK_EXT_image_drm_format_modifier              : extension revision 2
+
+
+❯ eglinfo | grep -i platform_
+    EGL_EXT_platform_base, EGL_EXT_platform_device, EGL_EXT_platform_wayland, 
+    EGL_EXT_platform_x11, EGL_EXT_platform_xcb, 
+    EGL_KHR_platform_gbm, EGL_KHR_platform_wayland, EGL_KHR_platform_x11, 
+    EGL_MESA_platform_gbm, EGL_MESA_platform_surfaceless
+
+
+    libEGL warning: egl: failed to create dri2 screen
+synergy-hub on  main [!] is 📦 v0.1.0 via 🐍 v3.13.1 
+❯ ls /usr/lib/x86_64-linux-gnu/libEGL_nvidia.so*
+
+/usr/lib/x86_64-linux-gnu/libEGL_nvidia.so.0@  /usr/lib/x86_64-linux-gnu/libEGL_nvidia.so.560.35.03
+
+
+wget https://upload.wikimedia.org/wikipedia/commons/transcoded/6/6c/Polar_orbit.ogv/Polar_orbit.ogv.360p.webm
+mpv --gpu-context=gbm --vo=gpu Polar_orbit.ogv.360p.webm
+mpv --gpu-context=gbm --vo=gpu 
+
+https://github.com/mpv-player/mpv
+
+헉 내가 sudo apt 으로 설치햇거든?
+
+❯ mpv --version
+
+mpv v0.38.0-dirty Copyright © 2000-2024 mpv/MPlayer/mplayer2 projects
+ built on Aug 21 2024 19:24:58
+libplacebo version: v6.338.2
+FFmpeg version: 7.0.2
+FFmpeg library versions:
+   libavutil       59.8.100
+   libavcodec      61.3.100
+   libavformat     61.1.100
+   libswscale      8.1.100
+   libavfilter     10.1.100
+   libswresample   5.1.100
+
+meson setup build --enable-vulkan --enable-gbm
+# meson.build:22:13: ERROR: Dependency "libavcodec" not found, tried pkgconfig and cmake
+
+rosrun bot3_kccistic_service gpio_client 10 20
+
+
+apt-cache search gmapping
+
+
+
+  
+    
+
+
+
+
+http://wiki.ros.org/gmapping
+  https://github.com/ros-perception/slam_gmapping
+
+
+rosrun rviz rviz -d (rospack find turtlebot3_description)/rviz/model.rviz
+
+
+❓ docker-compose로 Devcontainer 설정
+
+  >> 문제가 이게 개발이 완료되엇을 때, (실제 프로덕션 환경에는 docker 가 아닌 플랫폼을 사용해야할지라도), 기기 자체에서 프로덕션 전 테스트를 해보야아 함.
+    근데 devcontainer 에서 Dockerfile 을 사용하여 Reopen in Devcontainer 기능을 사용하여 개발은 할지라도, 테스트 시 VSCODE 없이 실행되어야 함 (VSCODE 가 메모리를 많이 점유하기 때문. 불필요함.)
+
+  그럴 경우를 대비해서 docker compose 를 사용하려고 함. 이는 ~. .. 일관성을 유지할 수 있음.
+
+docker-compose로 Devcontainer 설정
+
+문제 정의
+  개발이 완료된 후, 프로덕션 환경에서는 Docker가 아닌 다른 플랫폼을 사용할 가능성이 있더라도, 기기 자체에서 프로덕션 환경과 유사한 테스트를 진행해야 한다.
+  하지만 개발 중에는 VS Code의 Devcontainer 기능(Reopen in Devcontainer)을 사용하여 효율적으로 작업을 진행할 수 있다.
+테스트 단계에서는 VS Code를    종료한 상태에서 컨테이너를 독립적으로 실행해야 한다. (VS Code는 메모리를 많이 점유하고, 테스트 환경에서는 불필요하기 때문)
+
+해결책
+  Docker Compose 사용
+    Docker Compose를 통해 개발 및 테스트 환경의 일관성을 유지할 수 있다.
+    VS Code Devcontainer에서는 Docker Compose를 활용해 필요한 서비스를 정의하고, 특정 컨테이너를 개발 환경으로 열 수 있다.
+    테스트 단계에서는 Docker Compose를 사용해 독립적으로 컨테이너를 실행하며, VS Code와 분리된 환경에서도 동작을 보장할 수 있다.
+
+
+장점
+  환경 일관성
+    개발 환경과 테스트 환경에서 동일한 docker-compose.yml 구성을 사용해 설정과 동작의 일관성을 유지할 수 있다.
+  유연성
+    VS Code가 없어도 컨테이너를 실행할 수 있으므로, 테스트 및 프로덕션 환경에서 불필요한 리소스를 줄이고 효율성을 극대화할 수 있다.
+  확장 가능성
+    Docker Compose는 여러 서비스를 쉽게 정의하고 관리할 수 있으므로, 테스트 중 필요한 추가 서비스를 손쉽게 포함할 수 있다.
+
+
+
+
+!!! OTA firmware !!!! 벽 속에 있더라도 가능하도록.. OTA 프로그램?.. 어떻게?
+
+
+Turtlebot User LED:
+  A- > 24번, 
+  A- > 25번, 
+
+iot_server/iot_socket
+
+
+socket client 프로토콜을 .. ROS 로 넘기기. 
+
+linux_c/iot_server/iot_socket$ ./iot_server 5000
+KSH_ROS..
+
+>>>> 통신
+  roscore, bringup, iot_server
+rosrun bot3_kccistc_service gpio_socketToRos 127.0.0.1 5000 KSH_ROS
+rosrun ./navi.sh >> Naivgation; ?
+
+
+https://emanual.robotis.com/assets/docs/LDS_Basic_Specification.pdf
+  Angle offset?..
+    1,, 2. 3.. 4.. ?
+    hls/lfcd_lds_driver/application/lds_driver
+
+
+> 잡코리아를 보자. 사람인 말고. 
+향후 전망이 "수치"적으로 어떻게 될 건지도 언급해야 한다.. 자기소개서.. ?
+
+
+https://github.com/ROBOTIS-GIT/hls_lfcd_lds_driver/blob/noetic-devel/applications/lds_polar_graph/lds_polar_graph.pro
+
+rospack find sensor_msgs
+
+rosrun turtlesim turtlesim_node
+rosrun turtlesim turtle_teleop_key
+
+
+
+
+1.터틀봇 소스 패키지 설치(필요시) - rasberry pi
+------------------------------------
+# workspace의 src 폴더로 이동
+$ cd:~/catkin_ws/src
+빌드 필요 패키지 설치
+$sudo apt install ros-noetic-urdf-geometry-parser  ros-noetic-interactive-markers ros-noetic-xacro
+소스 다운로드
+기존 turtlebot3 디렉토리 삭제 후 다운로드
+$ git clone -b noetic https://github.com/ROBOTIS-GIT/turtlebot3.git
+빌드
+$ cm
+$roslaunch turtlebot3_bringup turtlebot3_robot.launch
+
+
+2.LDS driver 설치
+$ 다운로드 https://github.com/ROBOTIS-GIT/hls_lfcd_lds_driver/tree/noetic-devel
+$ git clone -b noetic --single-branch https://github.com/ROBOTIS-GIT/hls_lfcd_lds_driver.git
+$ cd ~/catkin_ws/src/hls_lfcd_lds_driver/applications/lds_driver
+lds_driver$ make
+lds_driver$ ./lds_driver
+
+LDS publisher 실행
+$ roslaunch hls_lfcd_lds_driver hlds_laser.launch
+
+
+git clone -b noetic --single-branch https://github.com/ROBOTIS-GIT/hls_lfcd_lds_driver.git ~/hls_lfcd_lds_driver
+
+
+
+////////////////// 터틀봇에서 
+>>> roslaunch hls_lfcd_lds_driver hlds_laser.launch
+
+
+
+git clone -b noetic --single-branch https://github.com/ROBOTIS-GIT/hls_lfcd_lds_driver.git ~/hls_lfcd_lds_driver
+cd ~/hls_lfcd_lds_driver
+
+
+cd applications/lds_driver
+make
+// 테스트
+./lds_driver
+
+
+퍼블리셔 용도와
+레이더 돌리는 용도
+
+
+
+src/hls_lfcd_lds_driver/src/hlds_laser_publisher.cpp
+
+https://docs.ros.org/en/noetic/api/sensor_msgs/html/msg/LaserScan.html
+https://github.com/ROBOTIS-GIT/hls_lfcd_lds_driver
+
+catkin build hls_lfcd_lds_driver
+
+  find_package(catkin REQUIRED COMPONENTS
+    roscpp
+    std_msgs  
+    sensor_msgs
+    # ⚙️
+    oroca_ros_tutorials 
+  )
+
+  catkin_package(
+    INCLUDE_DIRS include
+    # ⚙️ oroca_ros_tutorials
+    CATKIN_DEPENDS roscpp std_msgs sensor_msgs oroca_ros_tutorials
+    DEPENDS Boost
+  )
+
+
+안녕하십니까
+  
+
+----------------
+----------------
+----------------
+----------------
+2. cJSON 사용 시 최적화
+  cJSON은 사용이 간단하지만, JSON 크기가 커지거나 리소스가 제한된 환경에서는 추가 최적화가 필요합니다.
+
+  (1) 동적 할당 관리
+  cJSON은 기본적으로 동적 메모리 할당(malloc)을 사용합니다.
+  STM32와 같은 제한된 환경에서는 동적 할당 대신 정적 메모리 할당으로 전환하는 것이 좋습니다.
+# https://kjt9109.tistory.com/entry/NanoPB-Stm32
+  NanoPb를 STM32에 적용시켜보자 
+    ❗ ⚓ NanoPb ; https://github.com/nanopb/nanopb
+    -> Protobuf를 Embedded System에 적용하기 위해 C기반 경량화로 나온 프로토콜을 NanoPb라고 한다.
+Mariadb
+  https://mariadb.com/kb/en/create-table/#comment-column-option
+  1. ENGINE=InnoDB
+    InnoDB는 MariaDB와 MySQL에서 사용되는 저장 엔진 중 하나입니다.
+    특징:
+      트랜잭션 지원: 데이터 일관성과 무결성을 보장.
+      외래키(Foreign Key) 지원: 관계형 데이터베이스 설계에 필수.
+      충돌 회복: 예기치 않은 종료 시 데이터 복구 가능.
+      행 수준 잠금(Row-level Locking): 동시성을 높이고 성능을 개선.
+    최근 추세:
+      2025년 기준 MariaDB와 MySQL에서 기본 저장 엔진으로 InnoDB가 사용됩니다.
+      이유: 높은 안정성과 성능.
+  2. DEFAULT CHARSET=utf8mb4
+    **문자셋(Character Set)**은 데이터베이스에 저장될 문자의 인코딩 형식을 정의합니다.
+
+    utf8mb4:
+      **유니코드(UTF-8의 확장 버전)**를 지원하며, 4바이트 문자까지 저장 가능.
+      이모지, 한글, 특수 문자 등 다양한 문자를 완벽히 지원.
+      utf8mb4는 기존 utf8과 달리 이모지(😊 등) 및 추가 유니코드 문자를 저장할 수 있습니다.
+      왜 utf8mb4를 사용해야 하나?
+    MariaDB의 기존 utf8은 최대 3바이트만 지원하여 일부 유니코드 문자를 처리하지 못합니다.
+    최신 데이터베이스 설계에서는 기본 문자셋으로 utf8mb4를 사용하는 것이 표준
+  3. utf8mb4_unicode_ci: 대소문자 구분 없이 유니코드 표준에 따라 문자열 비교 및 정렬.
+    Collation
+🤔 cJSON 사용? 동적이라 임베디드에서는 성능문제.. 가장 최근 릴리즈 2024-05-13 ; https://github.com/DaveGamble/cJSON
+  JSMN?.. ..파싱만 가능..
+  >> https://github.com/nanopb/nanopb
+    https://formulae.brew.sh/formula/protobuf
+❓  
+  택배 
+
+***** Agile
+* 이거 서버에서 tutlrebot
+
+* 시나리오 구체화: Draft 📅 2025-01-24 00:03:23
+  노드
+      택배기사
+      무인보관함 (택배 저장소)
+      사용자
+      중앙 서버
+      배달 로봇
+      엘레베이터
+
+  📝 Note
+    - 각 노드는 상대 노드로부터 명령을 수신받았을 때, "성공적"으로 수신 받았음을 사대 노드에게 알려야 한다. (ACK) 그 이후에 다음 절차를 진행해야 함.
+    - 중앙 서버는 ROS 서버와 일반 소켓 서버를 의미한다.
+      - 터틀봇과 통신하는 서버는 ROS Master 서버이다. (Action 방식)
+      - ROS Master 서버는 라즈베리파이의 소켓 서버에 의한 제어를 받는다.
+      
+
+  <시나리오>
+    1. 택배 보관
+      - [택배기사] 무인보관함에 택배 보관
+      - [무인보관함] 서버에 택배 도착 알림 (OCR)      // 서버는 이 값을 DB 에 저장.
+
+    2. 택배 전달
+      - [사용자] 서버에게 사용자에게로 택배 배송 명령 전달
+        - [서버] 무인보관함에 배달 로봇에 택배 적재 명령    // 어느 배달 로봇에게 명령을 주는지는 서버에서 관리. ❓ 만약 택배로봇이 2대 이상이라면, 택배로봇 자동정렬 기능이 들어가야 할수도
+          - [무인보관함] 배달 로봇 위에 택배 적재
+          - [배달 로봇] 🚥 서버에게 택배 정상적으로 적재됨 전달. 이벤트 기반.    // 센서로 적재 감지 (e.g. 적외선 센서)
+
+        - [서버] 배달 로봇에게 택배 배송 지시             // 어느 주소의 엘레베이터로 이동할 것인지 함께 전달
+          - [배달 로봇] 엘레베이터 앞으로 이동 후, 🚥 서버에 자신의 도착 상태 전달.
+
+        
+        - [서버] 엘레베이터에게 1층 도착 명령             // 예외 처리. 배달지가 1층인 경우. 엘레베이터 노드와의 통신은 필요 없다. 다른 알고리즘 필요.
+          - [엘레베이터] 1층으로 이동 및 문 개방 명령 수신, 🚥 서버에 자신의 도착 상태 및 문 개폐 여부 전달.    // 엘레베이터 노드는 각 명령을 차례대로 받고, "이동" 이 완전히 끝난 다음에 "개방" 을 해야 한다.
+
+        - 🅰️ [서버] 엘레베이터와 배달 로봇 간의 동기화.
+          - [엘레베이터] 배달 로봇이 엘레베이터에 들어갈 때까지 ⏲️ 서버로부터 문 개방 명령을 주기적으로 받음
+          - [배달 로봇] 서버로부터 엘레베이터 안으로 이동 명령을 받고 이동. 🚥 이동 후 서버에 배달 로봇 도착 상태 전달.
+          - [엘레베이터] 서버로부터 폐문 명령을 받음.       // 다른 사람들이 함께 탈 수 있기 때문에 폐문 명령은 한 번만 내려야 한다.
+            이후 🚥 문이 닫히면, 서버에 자신의 상태 전달. 동시에 해당 층수로 이동.
+            이후 🚥 해당 층수에 도착하고 문이 열리면, 서버에 자신의 현재 층수와 문 개폐 상태 전달.  // "도착" 상태 변경이 먼저이므로 도착 상태, 층수 상태 순서로 보내야 한다. 그리고 이 경우는, 서버로부터 개방 명령을 받아서 열리는 것이 아니여야 한다.
+          - [엘레베이터] 배달 로봇이 택배 주소 앞으로 가서 배달이 끝나고, 다시 엘레베이터 위로 들어갈 때까지 ⏲️ 서버로부터 문 개방 명령을 주기적으로 받음
+          - [배달 로봇] 서버로부터 택배 주소 앞으로 이동 명령을 받고 이동.
+            이후 🚥 사진을 찍어서 서버에 전달 후, 서버로부터 엘레베이터로 이동 명령을 받음.
+          - [엘레베이터] 서버로부터 폐문 명령을 받음.
+
+    3. 배달 로봇 복귀
+      - ... 반대로 과정 진행
+
+    TODO: 
+      NanoPB 통신 테스트
+      시나리오 구체화 및 API 사양 정리
+      ROS 액션 방식 사용방법 조사.
+      ROS Master 와 소켓 서버간 통신 (IPC) 테스트.
+      구현
+
+
+  * DB 사양 및 통신규격 정의: Draft 2
+    * Requirements
+      - 대부분의 모든 통신은 중앙 서버인 이 라즈베리파이 서버를 거치도록 한다.
+      - Database 에는 "한글" (유니코드) 문자를 저장할 수 있어야 한다.
+      - 각 노드로부터 메시지를 받고 데이터와 함께 상태를 받아야 하며, 처리결과에 대한 상태를 함께 전달해주어야 한다.
+      - 고급 임베디드 장치인 라즈베리파이, 아두이노 뿐 아니라, 자원이 제한적인 STM32 에서도 성능 문제 없이 작동해야 한다.
+      - ROS 1 noetic 환경에서도 호환성을 보장해야 한다.
+
+      command := ["get", "set", "create", "read" "update", "delete", ...]
+        📝 CRUD (create, read, update, delete) 는 DB 에 대한 Query. 그 외에는 메모리에서만 유지되는 정보에 대한 쿼리.
+
+    *🧪 Optimization
+      - Maximum Message Size is 1460 bytes
+        Ethernet Frame Total Size = 1518 bytes
+          - Ethernet MTU (1500 bytes)
+          + Ethernet Header (14 bytes)
+          + FCS (Footer) (4 bytes)              // Frame Check Sequence
+          --------------------------------------
+          Total = 1518 bytes (Maximum Ethernet Frame Size)
+
+        TCP MSS (Maximum Segment Size) = 1460 bytes
+          - Ethernet MTU (1500 bytes)
+          - IP Header (20 bytes)
+          - TCP Header (20 bytes)
+          --------------------------------------
+          TCP MSS = 1460 bytes (Maximum Application Data Size)
+      - 🛍️ e.g. 289 bytes for the message format (including whitespaces)
+        {
+          "source": "client_name",
+          "destination": "target_name",
+          "command": "command_name",
+          "payload": {
+            "key1": "value1",
+            "key2": "value2"
+          },
+          "links": [
+            { "rel": "self", "href": "/api/current_state" },
+            { "rel": "update", "href": "/api/update_state" }
+          ]
+        }
+
+
+    2. 크로스컴파일 환경 구성 및 크로스컴파일, 라즈베리파이에서 직접 테스트.
+
+
+Node
+  n * Rasberry Pi 3 (Turtlebot)
+    [주변장치]: 컨베이어밸트, 센서, 카메라
+    [도착 정보]: 무인택배함소 -> 집배송지 이동
+    [컨에이어벨트 하차] on off
+    [사진]
+  n * 택배보관장소
+  n * 엘레베이터
+  n * 아파트 x동 y호
+Communication
+  Rasberry Pi server --> 
+
+  
+Database
+❓ Q&A
+  소켓 통신으로 연결된 클라이언트의 장치 OS 이름을 알 수 있는가?
+    X. 고수준 통신의 웹 서버/클라이언트 구조의 경우 HTTP 헤더로부터 알 수 있지만 저수준의 소켓 통신에서는 알 수 없다.
+Network socket
+
+[터틀봇]
+	1. 하드웨어 제작
+	- 라즈베리파이 3B+ + OpenCR + 컨베이어밸트 + 센서 + 카메라
+	- 플레이트로 형상 변경
+	2. S/W 환경 셋팅
+	- 라즈베리파이 3B
+	- OpenCR
+	- 센서 & 카메라
+	3. 기능 구현
+	- 무인택배함소 -> 집배송지 이동
+	- 목적지에서 컨베이어밸트로 물품 하차
+	- 배송완료 사진 촬영 & 전송
+[서버]
+	1. Namespace 규격 작성
+    - DB 테이블 설계
+	 - 소켓통신 규격 설계
+	 - ROS namespace
+	
+	　
+[엘레베이터]
+	1. 하드웨어 제작
+	아파트 동 유리 현관문 내부 폼보드 제작
+	ESP32 + 모터 + 7-Segment
+	<폼보드 - 계단식 아파트 형태>
+	- 엘레베이터
+	- 집 1호/2호
+	2. 엘레베이터 기능
+	- 문 개폐: 모터 제어
+	- 층수 표시: 세그먼트 제어
+	- 메인 서버에 엘레베이터 층수 정보 전달
+[집 호수]
+	1. 하드웨어 제작
+	
+	
+[택배보관장소]
+	<Tab1>
+	1. cctv 영상 처리
+	- 프레임 처리 코드 구현
+	2. AI 객체인식
+	- AI 모델 선정
+	- AI 환경 설정
+	*AI - Python 호환 버전 찾기
+	- AI 모델 학습
+	- 탐지된 객체 데이터 활용 기능
+
+  
+[택배보관장소]
+	<Tab1>
+	1. 택배 기사님/주민 사용 기능
+	- 동/호수/택배함 번호 입력 UI
+	*동/호수/함번호 정보 저장
+	- 택배함 제어
+	*문 모터 제어
+	*바닥 컨베이너 제어
+	<Tab2>
+	2. 택배함 설정 기능
+	- 접속할 서버 정보 입력
+	- 서버-택배함 데이터 송수신 코드
+	*택배함 사용 시, 해당 호수로 정보 전송
+
+[월패드]
+	3. 주민 집 월패드 기능
+- 택배보관함 내 택배 도착 알림
+	- 집배송 로봇 배달 요청
+	- 집배송 도착 알림
+
+[아파트 동 & 엘레베이터]
+	1. 하드웨어 제작
+	아파트 동 유리 현관문 내부 폼보드 제작
+	ESP32 + 모터 + 7-Segment
+	<폼보드 - 계단식 아파트 형태>
+	- 엘레베이터
+	- 집 1호/2호
+	2. 엘레베이터 기능
+	- 문 개폐: 모터 제어
+	- 층수 표시: 세그먼트 제어
+	- 메인 서버에 엘레베이터 층수 정보 전달
+
+
+
+2.4GHz 대역에서의 무선 통신 속도는 여러 요인에 따라 달라질 수 있습니다. 2.4GHz 대역은 802.11b/g/n 규격을 사용하며, 최대 속도는 다음과 같습니다:
+  802.11b: 최대 11 Mbps
+  802.11g: 최대 54 Mbps
+  802.11n: 최대 600 Mbps (이론상)
+
+하지만 실제 환경에서는 간섭, 신호 강도, 네트워크 트래픽 등의 요인으로 인해 속도가 더 낮아질 수 있습니다. 예를 들어, 802.11n 규격을 사용하여 100 Mbps의 속도로 전송한다고 가정해봅시다.
+  100 Mbps = 100,000,000 bps
+  51 KB = 51 * 8 * 1024 = 417,792 bits
+  전송 시간 = 417,792 bits / 100,000,000 bps ≈ 0.0042초
+
+따라서, 이상적인 조건에서 2.4GHz 대역의 100 Mbps 무선 통신 환경에서는 약 0.0042초가 걸립니다. 실제 환경에서는 간섭, 신호 강도, 네트워크 트래픽 등의 요인으로 인해 전송 시간이 더 길어질 수 있습니다.
+
+
+
+
+syntax = "proto3";
+
+message Command {
+  string source = 1;         // 메시지 보낸 노드
+  string destination = 2;    // 메시지 받을 노드
+  string command = 3;        // 명령 종류 (e.g., "open_door")
+  Payload payload = 4;       // 명령에 필요한 데이터
+  string status = 5;         // 명령 처리 결과 (e.g., "OK", "ERROR")
+}
+
+message Payload {
+  string key1 = 1;           // 첫 번째 데이터 키
+  string key2 = 2;           // 두 번째 데이터 키
+}
+
+message Ack {
+  string source = 1;         // ACK를 보내는 노드
+  string destination = 2;    // ACK를 받을 노드
+  string status = 3;         // 성공 여부 (e.g., "success", "fail")
+
+}
+
+
+
+❓ 면접.. Red–black tree (RB tree) (which epoll uses)
+  .. 자가 균형 트리에 비해 장점 + reconstructing, recoloring
+  RB 트리의 사용 사례
+    RB 트리는 삽입/삭제 속도가 중요하고, 성능의 일관성이 요구되는 상황에 적합합니다. 예를 들어:
+
+      - 운영체제: Linux 커널의 🪱 Completely Fair Scheduler(CFS)는 RB 트리를 사용하여 작업 우선순위를 관리.
+      - 데이터베이스: 삽입과 삭제가 빈번한 트랜잭션 처리.
+      - 언어 표준 라이브러리: Java의 TreeMap 및 TreeSet, C++의 std::map과 std::set.
+  RB-Tree의 장점
+      균형 유지:
+
+        일반적인 이진 탐색 트리는 특정 조건에서 편향된 형태가 되어 
+        O(n)의 탐색 시간이 걸릴 수 있지만, RB-Tree는 이를 방지해 
+        O(logn)의 시간 복잡도를 보장합니다.
+        RB 트리(Red-Black Tree)에서 연속적으로 노드를 삽입할 때, 삽입되는 위치는 항상 **이진 탐색 트리(BST)**의 규칙에 따라 결정됩니다. 구체적으로, 삽입하려는 값의 크기를 기준으로 루트에서 시작해 좌우 자식을 탐색하며 위치를 찾아 들어가야 합니다.
+
+    삽입 과정 개요
+    BST 규칙에 따라 위치 결정:
+
+    삽입하려는 값이 현재 노드보다 작으면 왼쪽 서브트리로 이동.
+    삽입하려는 값이 현재 노드보다 크면 오른쪽 서브트리로 이동.
+    리프 노드(자식이 없는 노드)에 도달하면 그 자리에 새로운 노드를 삽입.
+iot_server
+
+  현재 코드에서 사용하는 TCP/IP 소켓
+    현재 구현:
+
+      서버가 TCP 소켓을 생성하고 클라이언트의 연결을 기다립니다.
+    클라이언트는 데이터를 서버로 전송하며, 서버는 데이터를 읽고 응답을 보냅니다.
+    데이터 전송 과정에서 TCP가 전송 신뢰성을 보장하므로, 별도의 전송 상태 확인이 필요하지 않을 수 있습니다.
+  특징:
+    신뢰성 보장:
+      데이터가 손실되면 TCP가 자동으로 재전송합니다.
+      데이터 순서를 보장하므로, 애플리케이션 레벨에서 별도의 데이터 순서 확인이 필요 없습니다.
+    연결 기반:
+      클라이언트와 서버 간 연결을 맺은 상태에서 데이터를 주고받습니다(accept()로 연결).
+
+
+Status 필드가 필요한 경우:
+  애플리케이션 레벨의 명령 처리 결과:
+    클라이언트가 서버에 명령을 보내고, 서버가 이 명령을 처리했는지 명시적으로 알려줘야 하는 경우.
+    예: 클라이언트가 서버에 "로그인" 요청을 보냈을 때, 서버가 "성공", "실패" 상태를 반환해야 한다면 status 필드가 필요합니다.
+      이 기능은 TCP 자체로 제공되지 않으므로, 애플리케이션에서 직접 구현해야 합니다.
+
+음.. 이게 보면 이렇게 노드들과 시나리오가 있어. 각 노드가 중앙 서버에 접속하는 클라이언트가 될 것인데, 각 클라이언트별로 현재 방식인 쓰레드별로 모두 할당하는건 말이 안되려나?
+
+실제 이 배달 시스템에서는 hopme 은 아파트 호수마다 1개(월패드) 가 클라이언트가 되고 그 외에도 
+무인 저장소, 엘레베이터별로,  배달로봇 (터틀봇) 이 클라이언트가 될텐데. 수백 수천쓰레드가 필요한거 아니야? 내 기존 코드 방식이라면.
+
+
+
+I. select 함수의 단점
+앞서 select를 설명하며 특이한 부분이 있었다.
+
+바로 select를 호출해서 시그널을 볼 때 fd_set의 원본이 변경된다는 것이었다.
+때문에 우리는 select를 호출할때는 항상 복사본을 사용했었다.
+
+하지만 이것은 select기반의 IO 멀티플렉싱이 느린 이유가 된다.
+
+매번 운영체제에게 관찰 대상을 인자로 전달해야하기 때문이다.
+
+따라서 이런 개념이 필요하다
+
+" 운영체제에게 관찰대상 정보를 딱 한번 알려주고, 변화가 있을 때만 변경 사항만 알려주도록 하자!!"
+--> epoll
+
+
+
+이거 제목 뭐로 만들지.
+  epoll + multi threading
+
+ROs =
+
+
+❯ conan profile detect --force
+detect_api: Found cc=gcc- 14.2.0
+detect_api: gcc>=5, using the major as version
+detect_api: gcc C++ standard library: libstdc++11
+
+  Saving detected profile to /home/wbfw109v2/.conan2/profiles/default
+
+
+
+[settings]
+arch=x86_64
+build_type=Release
+compiler=gcc
+compiler.cppstd=gnu17
+compiler.libcxx=libstdc++11
+compiler.version=14
+os=Linux
+
+[settings]
+arch=x86_64
+build_type=Release
+compiler=apple-clang
+compiler.cppstd=gnu17
+compiler.libcxx=libc++
+compiler.version=14
+os=Macos
+
+
+https://docs.conan.io/2/tutorial/consuming_packages/build_simple_cmake_project.html
+
+We will generate those files in the folder build. 
+🧮 conan install . --output-folder=build --build=missing
+Now we are ready to build and run our compressor app: 🧮
+  $ cd build
+  $ cmake .. -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Release
+  $ cmake --build .
+
+
+conanfile.txt¶
+  [requires]
+  zlib/1.2.11
+[tool_requires]
+cmake/3.22.6
+
+❗ 이렇게 설치한 cmake 를 사용하려면 install 이후에
+  $ cd build
+  $ source conanbuild.sh
+  Capturing current environment in deactivate_conanbuildenv-release-x86_64.sh
+  Configuring environment variables
+That is because Conan, if not instructed otherwise, will use a default configuration declared in the ‘default profile’. This default profile was created in the first example when we run the conan profile detect command
+Conan stores this file in the /profiles folder, located in the Conan user home. You can check the contents of your default profile by running the conan config home command to get the location of the Conan user home and then showing the contents of the default profile in the /profiles folder:
+
+🧮
+  conan profile path default
+  cat (conan profile path default)
+  conan config home
+  
+🧮 conan install . --build=missing --profile=default
+  # --profile=default can be ommitted
+
+cmake --preset conan-debug
+cmake --build --preset conan-debug
+
+  
+Conan version: conan 2.7.0
+❯ conan --version
+Conan version 2.11.0
+Python version: Python 3.12.3
+
+
+
+Conan -
+  Library project
+  Executable project
+
+conan.txt
+  https://docs.conan.io/2/reference/config_files/settings.html#reference-config-files-settings-yml
+  compiler 
+
+https://docs.conan.io/2/tutorial/consuming_packages/different_configurations.html#difference-between-settings-and-options
+  자동으로 #DEFINE 추가되는듯? RELEASE 면
+    int main(void) {
+        ...
+        #ifdef NDEBUG
+        printf("Release configuration!\n");
+        #else
+        printf("Debug configuration!\n");
+        #endif
+
+        return EXIT_SUCCESS;
+    }
+
+❓ 문자열 압축: https://github.com/conan-io/examples2/blob/main/tutorial/consuming_packages/different_configurations/src/main.c
+
+  # Modifying options: linking the application dependencies as shared libraries
+    ㄴconan install . --output-folder=build --build=missing --options=zlib/1.2.11:shared=True
+
+
+Activate the virtual environment, and run the executables again:
+  $ source conanrun.sh
+  $ ./compressor
+  Uncompressed size is: 233
+  Compressed size is: 147
+  https://github.com/conan-io/examples2/tree/main/tutorial/consuming_packages
+
+
+ LD_LIBRARY_PATH=+(path)/home/linuxbrew/.linuxbrew/lib
+📍 path ... https://docs.conan.io/2/reference/config_files/profiles.html#buildenv
+
+cmake --preset conan-debug \
+  -DCMAKE_EXE_LINKER_FLAGS="-L/home/linuxbrew/.linuxbrew/Cellar/llvm/19.1.7/lib /home/linuxbrew/.linuxbrew/Cellar/llvm/19.1.7/lib/libc++.so" 
+
+❓❓❓❓ Conan embedded: https://dev.to/khozaei/conan-your-embedded-cross-compilation-champion-5bb9
+
+
+default.. compiler..
+  ❯ ls -l /usr/bin/c++
+  lrwxrwxrwx 1 root root 21 Jul 23  2024 /usr/bin/c++ -> /etc/alternatives/c++*
+
+  wbfw109v2 in 🌐 iot-04 in smart_pkg_system/central_server/iot_server on  main [✘!] via △ v3.31.5 via 🐍 v3.13.1 (central-server-py3.13) 
+  ❯ ll /etc/alternatives/c++
+  lrwxrwxrwx root root 12 B Tue Jul 23 18:00:56 2024  /etc/alternatives/c++ ⇒ /usr/bin/g
+
+https://docs.conan.io/2/reference/config_files/global_conf.html#information-about-built-in-confs
+🧮 conan config list
+
+  
+⚓ Code sanitizer ; https://en.wikipedia.org/wiki/Code_sanitizer
+  The class of tools was first introduced by Google's AddressSanitizer (or ASan) of 2012,
+
+  clang++ -fsanitize=address -g -O1 test.cpp -o test
+
+
+⚠️ libc++: LLVM 프로젝트의 일부로 별도로 관리되며, 크로스 컴파일러와 함께 배포되지 않습니다.
+  ... conan 에서 크로스컴파일할 때 libc++ 지정이 어려운 점.. 
+   %shell> ls /usr/aarch64-linux-gnu/lib/ | grep libc
+    >>.. (libc++ 이 안보인다!.)
+
+https://gcc.gnu.org/
+  https://gcc.gnu.org/gcc-14/
+    https://gcc.gnu.org/mirrors.html
+
+    http://ftp.tsukuba.wide.ad.jp/software/gcc/
+    http://ftp.tsukuba.wide.ad.jp/software/gcc/releases/gcc-14.2.0/
+    wget http://ftp.tsukuba.wide.ad.jp/software/gcc/releases/gcc-14.2.0/gcc-14.2.0.tar.xz
+
+https://stackoverflow.com/questions/78306968/installing-gcc13-and-g13-in-debian-bookworm-rust-docker-image
+
+
+===========
+🧮 apt search libc++-dev
+🧮 apt search libc++-dev | grep arm
+
+https://en.wiktionary.org/wiki/bootstrap
+
+**ABI(Application Binary Interface)**란?
+컴파일된 바이너리 간의 인터페이스를 의미합니다. 라이브러리를 사용하는 프로그램과 그 라이브러리 간의 함수 호출, 데이터 타입, 메모리 구조 등을 정의합니다.
+https://forum.osdev.org/viewtopic.php?t=56165
+
+
+
+❓면접.. 🪱 Target Triple
+  5. env (환경/ABI)
+    타겟의 **ABI(Application Binary Interface)**를 나타냅니다.
+    ABI는 소프트웨어와 하드웨어 간의 인터페이스를 정의합니다. 이 인터페이스는 다음과 같은 사항들을 포함합니다:
+      - 함수 호출 규칙 (Calling Convention)
+      - 데이터 타입 크기와 정렬   // 예시: 32,64 비트에 따른 int, long 형 데이터 크기. aarch64-linux-gnu: 정렬 규칙에 따라 8바이트 크기의 데이터는 메모리에서 8의 배수 주소에 위치.
+      - 라이브러리 및 시스템 인터페이스
+        시스템 호출 방식: 운영 체제와 프로그램이 어떻게 통신하는지를 정의.
+          예: 리눅스에서는 syscall 명령으로 커널과 통신.
+          특정 ABI에 따라 호출 번호와 매개변수 전달 방식이 다릅니다.
+        표준 라이브러리와의 호환성
+          ABI는 프로그램이 표준 라이브러리(glibc, libstdc++, newlib)와 어떻게 상호작용할지를 정의합니다.
+          예:
+            aarch64-linux-gnu: 리눅스 환경에서 glibc를 사용.
+            arm-none-eabi: 임베디드 환경에서 newlib를 사용.
+  
+
+  
+cd socket_iot_system && cmake --build --preset conan-linux-debug-clang-19-x86_64 && file build/linux-debug-clang-19-x86_64/iot_server
+
+
+
+set SRC_DIR src
+set DST_DIR build
+protoc -I=$SRC_DIR --cpp_out=$DST_DIR $SRC_DIR/addressbook.proto
+
+🧮 fd "runtime_version.h" (brew --prefix protobuf)
+
+
+
+내가 지금 해야 하는게.. iot_client, iot_server x86-64 용. (protobuf 로 컴파일한 cpp, h 파일 사용해야 함)
+iot_client, iot_server arm64 용. (protobuf 로 컴파일한 cpp, h 파일 사용해야 함 (크로스컴파일. 정적빌드사용 해야 함. 지금 이미 protobuf 파일 없이 서버 크로스컴파일하는것은 완성됨. (conan 2)))
+
+
+
+https://protobuf.dev/support/migration/
+  Build dependency - A new build dependency can always cause breakages for downstream users. We require Abseil LTS 20230117 or later to build.
+    For Bazel builds, Abseil will be automatically downloaded and built at a pinned LTS release when protobuf_deps is run from your WORKSPACE. This should be transparent, but if you depend on an older version of Abseil, you’ll need to upgrade your dependency.
+    For CMake builds, we will first look for an existing Abseil installation pulled in by the top-level CMake configuration (see instructions). Otherwise, if protobuf_ABSL_PROVIDER is set to module (its default) we will attempt to build and link Abseil from our git submodule. If protobuf_ABSL_PROVIDER is set to package, we will look for a pre-installed system version of Abseil.
+  
+
+  sprintf : string print; 문자열을 포맷하여 출력.
+
+*파일 디스크립터(file descriptor, FD)**는 운영체제에서 파일, 소켓, 표준 입력 등 모든 I/O 자원을 다룰 때 사용하는 정수 값이다.
+
+
+❓
+  NanoPB에서 일부 필드가 pb_callback_t 타입(콜백)으로 생성되는 이유
+  NanoPB의 pb_callback_t 타입은 변수 길이 필드(Variable-Length Fields)나 repeated 필드에서 사용되는데, 이를 적용하는 이유는 메모리를 절약하고 동적 할당을 피하기 위해서다.
+
+  📌 pb_callback_t가 사용되는 경우
+  string 타입 필드
+  repeated 필드 (배열)
+  길이를 알 수 없는 데이터 필드

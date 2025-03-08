@@ -1,0 +1,107 @@
+list of level 1 subjects
+  - Raspberry Pi
+
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ Raspberry Pi ; https://www.raspberrypi.com/
+  https://github.com/raspberrypi
+  https://en.wikipedia.org/wiki/Raspberry_Pi
+
+
+----------------------------------------------
+Raspberry Pi 🔪⚓ Docs ; https://fishshell.com/docs/current/index.html
+  # Computers
+    # Remote access
+      #️⃣ Enable the SSH server ; https://www.raspberrypi.com/documentation/computers/remote-access.html#enable-the-ssh-server
+        # Enable the SSH server
+          # Manually
+            📝 It works well because Raspberry Pi has a mechanism that detects specific files during boot and automatically applies the corresponding settings. 📅 2025-01-12 18:24:01
+            ```
+            # Create an empty file named ssh in the boot partition:
+            sudo touch /boot/firmware/ssh
+            # Reboot the machine:
+            sudo reboot
+            ```
+    
+    # The Linux Kernel
+      #️⃣ Build the kernel ; https://www.raspberrypi.com/documentation/computers/linux_kernel.html#building
+        🚣 you can cross-compile a 32-bit or 64-bit Raspberry Pi kernel from a device other than a Raspberry Pi.
+
+        # Download kernel source
+          %shell> git clone --depth=1 --single-branch https://github.com/raspberrypi/linux raspberry_pi
+          TIP: 💡 The git clone command above downloads the current active branch, which we build Raspberry Pi OS images from, without any history. Omit --depth=1 to download the entire repository, including the full history of all branches. T
+        
+        
+        #️⃣❌ Natively build a kernel ; https://www.raspberrypi.com/documentation/computers/linux_kernel.html#natively-build-a-kernel
+          %shell> sudo apt install bc bison flex libssl-dev make
+          
+          #📍 Build configuration
+            #💡⚖️ Note
+              The 32-bit distribution of Raspberry Pi OS on 4-series devices uses a 32-bit userland, but a 64-bit kernel.
+              To build a 32-bit kernel, set ARCH=arm. To boot a 32-bit kernel, set arm_64bit=0 in config.txt.
+
+          # Build
+            Run the following commands to build a 64-bit kernel:
+              %shell> make -j6 Image.gz modules dtbs
+            Run the following command to build a 32-bit kernel:
+              %shell> make -j6 zImage modules dtbs
+
+            #💡 Tip
+              On multi-core Raspberry Pi models, the make -j<n> option distributes work between cores.
+              This can speed up compilation significantly. Run nproc to see how many processors you have
+              ; ⭕ we recommend passing a number 1.5x your number of processors.
+
+          # Install the kernel
+            %shell> sudo make -j6 modules_install
+            Then, install the kernel and Device Tree blobs into the boot partition, backing up your original kernel.
+
+            #⭕ Tip
+              Alternatively, copy the kernel with a different filename (e.g. kernel-myconfig.img) instead of overwriting the kernel.img file.
+                Then, edit config.txt in the boot partition to select your kernel:
+                  kernel=kernel-myconfig.img
+              Combine this approach with a custom LOCALVERSION to keep your custom kernel separate from the stock kernel image managed by the system. With this arrangement, you can quickly revert to a stock kernel in the event that your kernel cannot boot.
+      
+        #️⃣⭕ Cross-compile the kernel ; https://www.raspberrypi.com/documentation/computers/linux_kernel.html#cross-compile-the-kernel
+          # Install required dependencies and toolchain
+            %shell> 
+              ```
+                # Install the build dependencies
+                sudo apt install -y bc bison flex libssl-dev make
+                # Install the build dependencies for Cross-compiling the kernel
+                sudo apt install -y libc6-dev libncurses5-dev
+                # Install the 64-bit toolchain for Cross-compiling the kernel
+                sudo apt install -y crossbuild-essential-arm64
+              ```
+              
+          # Build configuration
+          #⭕ Customise the kernel version using LOCALVERSION
+            To prevent the kernel from overwriting existing modules in /lib/modules and to clarify that you run your own kernel in uname output, adjust LOCALVERSION.
+
+            #⚖️ You can also change this setting graphically with menuconfig at General setup > Local version - append to kernel release.
+              For more information about menuconfig
+
+          # Build
+            📝⚠️ When cross-compiling, build `Image` instead of `Image.gz` to ensure compatibility with the Raspberry Pi bootloader 📅 2025-01-18 16:37:00
+              , which does not natively support compressed kernel images.
+              If `Image.gz` is moved to `/boot/firmware/kernel8l`, the system may fail to boot, resulting in a black screen with no display output.
+
+            Run the following command to build a 64-bit kernel:
+              make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- Image modules dtbs
+            Run the following command to build a 32-bit kernel:
+              make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- zImage modules dtbs
+          # Install the kernel
+            # Find your boot media
+              %shell> lsblk
+              ⚖️ If sdb represents your boot media
+                , sdb1 represents the the 🚣‍♀️ FAT32-formatted boot partition
+                and sdb2 represents the (likely 🚣‍♀️ ext4-formatted) root partition.
+
+            # Install
+            install the kernel modules onto the boot media:
+              📰 sudo env PATH=$PATH make -j12 ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- INSTALL_MOD_PATH=mnt/root modules_install
+      #️⃣📰 Patch the kernel ; https://www.raspberrypi.com/documentation/computers/linux_kernel.html#patch-the-kernel
+      #️⃣📰 Kernel headers ; https://www.raspberrypi.com/documentation/computers/linux_kernel.html#kernel-headers
+        To compile a kernel module, you need the Linux kernel headers. These provide the function and structure definitions required to compile code that interfaces with the kernel.
+        ⚖️ If you cloned the entire kernel from GitHub, the headers are already included in the source tree. If you don’t need all the extra files, you can instead install only the kernel headers with apt.
+          sudo apt install linux-headers-rpi-v8
+

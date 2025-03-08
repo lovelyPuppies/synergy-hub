@@ -1,0 +1,1254 @@
+list of level 1 subjects with 📘 favorite lookup
+  - c+cpp
+    Standard library 🔪 Containers library 🔪 🗺️ Function table
+  - C POSIX library  
+----------------------------------------------
+emojis
+  🎱 it seems that typing mistake. so I fixed individually.
+metadata
+  🔰🆚 (Comparison); cppreference, MSDN, and hackingcpp: 📅 2024-09-15 17:14:42
+    ➡️ Conclusion: use all 3 sites.
+      - For tutorials and concept learning, MSDN is the go-to resource, particularly for beginners and intermediate developers.
+      - cppreference is best for advanced developers who need detailed technical specifications and information on the latest C++ standards.
+      - hackingcpp provides excellent visual resources, ideal for those looking to enhance their understanding through visual aids and quick references.
+      
+    Library headers and technical details:
+      - cppreference provides advanced, detailed explanations of C++ library headers, including up-to-date information on the latest standards like C++23.
+        This makes cppreference more suitable for advanced developers who need comprehensive technical details.
+      - MSDN may not always include the most current information on C++ standards
+        , but it excels in offering tutorials and guides that break down important prerequisite concepts such as iterators, algorithms, allocators, and file system navigation.
+        It is especially useful for beginners and intermediate developers, offering a clearer starting point for understanding C++ fundamentals.
+
+    Visual and mathematical understanding:
+      - hackingcpp is highly regarded for its C++ cheat sheets, which visually represent complex programming concepts, including mathematical symbols.
+        This is useful for developers who benefit from visual aids when understanding both code structures and mathematical logic.
+
+
+
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+c+cpp
+  ⚓ C++: MSDN 🔪 C++ language documentation ; https://learn.microsoft.com/en-us/cpp/cpp/
+
+(✍️ c+cpp 🔪 study)
+  📰 buffer in input stream and output stream.
+    🛍️ e.g. get(), put(), getline()
+  📰 Each flag can be combined by bit-or operator in input stream and output stream.
+
+----------------------------------------------
+⚓🏛️ Standards for C ; https://en.wikipedia.org/wiki/ANSI_C#Standardizing_C
+  - C Standards
+    | Year | ISO/IEC Standard       | Informal Name |
+    | ---- | ---------------------- | ------------- |
+    | 1989 | ANSI X3.159-1989       | ANSI C (C89)  |
+    | 1990 | ISO/IEC 9899:1990      | C90 (ISO C)   |
+    | 1995 | ISO/IEC 9899/AMD1:1995 | C95           |
+    | 1999 | ISO/IEC 9899:1999      | C99           |
+    | 2011 | ISO/IEC 9899:2011      | C11           |
+    | 2017 | ISO/IEC 9899:2018      | C17 (C18)     |
+    | 2023 | ISO/IEC 9899:2024      | C23           |
+⚓🏛️ Standards for C++; https://en.wikipedia.org/wiki/C%2B%2B#Standardization
+  - C++ Standards
+    | Year | ISO/IEC Standard | Informal name |
+    | ---- | ---------------- | ------------- |
+    | 1998 | 14882:1998       | C++98         |
+    | 2003 | 14882:2003       | C++03         |
+    | 2011 | 14882:2011       | C++11, C++0x  |
+    | 2014 | 14882:2014       | C++14, C++1y  |
+    | 2017 | 14882:2017       | C++17, C++1z  |
+    | 2020 | 14882:2020       | C++20, C++2a  |
+    | 2024 | 14882:2024       | C++23, C++2b  |
+    | TBA  | -                | C++26, C++2c  |
+
+----------------------------------------------
+⭕ Style guide
+  ⚓⭕ Google (C++) ; https://llvm.org/docs/CodingStandards.html
+  #️⃣ Variable Names ; https://google.github.io/styleguide/cppguide.html#Variable_Names
+    # Class Data Members
+      Data members of classes, both static and non-static, are named like ordinary nonmember variables, but with a trailing underscore.
+
+  ⚓LLVM ; https://llvm.org/docs/CodingStandards.html
+  
+================================================
+# cpp: MSDN 🔪 C++ language reference
+  ⚓ C++ language reference ; https://learn.microsoft.com/en-us/cpp/cpp/cpp-language-reference
+  ⚓ Welcome back to C++ (Modern C++) ; https://learn.microsoft.com/en-us/cpp/cpp/welcome-back-to-cpp-modern-cpp
+
+
+  # Lexical conventions
+    ⚓ Lexical conventions ; https://learn.microsoft.com/en-us/cpp/cpp/lexical-conventions
+    ⚓ Tokens and character sets ; https://learn.microsoft.com/en-us/cpp/cpp/character-sets
+    ⚓ Comments ; https://learn.microsoft.com/en-us/cpp/cpp/comments-cpp
+    ⚓ Identifiers ; https://learn.microsoft.com/en-us/cpp/cpp/identifiers-cpp
+    ⚓ Keywords ; https://learn.microsoft.com/en-us/cpp/cpp/keywords-cpp
+    ⚓ Punctuators ; https://learn.microsoft.com/en-us/cpp/cpp/punctuators-cpp
+    ⚓ Numeric, boolean, and pointer literals ; https://learn.microsoft.com/en-us/cpp/cpp/numeric-boolean-and-pointer-literals-cpp
+    ⚓ String and character literals ; https://learn.microsoft.com/en-us/cpp/cpp/string-and-character-literals-cpp
+    ⚓ User-defined literals ; https://learn.microsoft.com/en-us/cpp/cpp/user-defined-literals-cpp
+
+
+  # Basic concepts
+    ⚓ Basic concepts ; https://learn.microsoft.com/en-us/cpp/cpp/basic-concepts-cpp
+    ⚓ C++ type system ; https://learn.microsoft.com/en-us/cpp/cpp/cpp-type-system-modern-cpp
+    ⚓ Scope ; https://learn.microsoft.com/en-us/cpp/cpp/scope-visual-cpp
+    ⚓ Header files ; https://learn.microsoft.com/en-us/cpp/cpp/header-files-cpp
+    ⚓ Translation units and linkage ; https://learn.microsoft.com/en-us/cpp/cpp/program-and-linkage-cpp
+    ⚓ main function and command-line arguments ; https://learn.microsoft.com/en-us/cpp/cpp/main-function-command-line-args
+    ⚓ Program termination ; https://learn.microsoft.com/en-us/cpp/cpp/program-termination
+
+    ⚓📍 References ; https://learn.microsoft.com/en-us/cpp/cpp/references-cpp
+      📝🛍️ e.g. Reference to an array ; https://stackoverflow.com/questions/43435279/what-does-const-charan-mean
+        class conststr {
+            const char* p;
+            std::size_t sz;
+        public:
+            template<std::size_t N>
+            constexpr conststr(const char(&a)[N]): p(a), sz(N - 1) {}
+        };
+      A reference, like a pointer, stores the address of an object that is located elsewhere in memory.
+      Unlike a pointer, a reference after it's initialized can't be made to refer to a different object or set to null. 
+      ⚖️ && operator signifies either an 🚣 rvalue reference, or a 🪱 universal reference (either rvalue or lvalue) depending on the context.
+        Refer to 🔗 `Perfect forwarding`
+    ⚓📍 Lvalues and rvalues ; https://learn.microsoft.com/en-us/cpp/cpp/lvalues-and-rvalues-visual-cpp
+      🗒️ Contents
+        An lvalue has an address that your program can access.
+          📝 C++에서 함수의 매개변수는 기본적으로 L-value로 간주됨. 
+
+      ⚓ Lvalue reference declarator: & ; << https://learn.microsoft.com/en-us/cpp/cpp/lvalue-reference-declarator-amp
+      ⚓ Rvalue reference declarator: && ; << https://learn.microsoft.com/en-us/cpp/cpp/rvalue-reference-declarator-amp-amp
+        #️⃣📍 Move semantics ; https://learn.microsoft.com/en-us/cpp/cpp/rvalue-reference-declarator-amp-amp#move-semantics
+          ⭕ ..., which can significantly increase the performance of your applications.
+        #️⃣🪱 Perfect forwarding ; https://learn.microsoft.com/en-us/cpp/cpp/rvalue-reference-declarator-amp-amp?view=msvc-170#perfect-forwarding
+          💡 Perfect forwarding reduces the need for overloaded functions and helps avoid the forwarding problem.
+            The 🪱 forwarding problem can occur when you write a 🚣 generic function that takes references as its parameters.
+            ```c++
+              template <typename T, typename A1, typename A2>
+              T* factory(A1&& a1, A2&& a2)
+                { return new T(std::forward<A1>(a1), std::forward<A2>(a2)); }
+            ```
+    ⚓ Temporary objects ; https://learn.microsoft.com/en-us/cpp/cpp/temporary-objects
+    ⚓ Alignment ; https://learn.microsoft.com/en-us/cpp/cpp/alignment-cpp-declarations
+    ⚓ Trivial, standard-layout, and POD types ; https://learn.microsoft.com/en-us/cpp/cpp/trivial-standard-layout-and-pod-types
+    ⚓ Value types ; https://learn.microsoft.com/en-us/cpp/cpp/value-types-modern-cpp
+    ⚓ Type conversions and type safety ; https://learn.microsoft.com/en-us/cpp/cpp/type-conversions-and-type-safety-modern-cpp
+    ⚓ Standard conversions ; https://learn.microsoft.com/en-us/cpp/cpp/standard-conversions
+
+
+  # Built-in types
+    ⚓ Built-in types ; https://learn.microsoft.com/en-us/cpp/cpp/fundamental-types-cpp
+    ⚓ Data type ranges ; https://learn.microsoft.com/en-us/cpp/cpp/data-type-ranges
+    ⚓ nullptr ; https://learn.microsoft.com/en-us/cpp/cpp/nullptr
+    ⚓ void ; https://learn.microsoft.com/en-us/cpp/cpp/void-cpp
+    ⚓ bool ; https://learn.microsoft.com/en-us/cpp/cpp/bool-cpp
+    ⚓ false ; https://learn.microsoft.com/en-us/cpp/cpp/false-cpp
+    ⚓ true ; https://learn.microsoft.com/en-us/cpp/cpp/true-cpp
+    ⚓ char, wchar_t, char8_t, char16_t, char32_t ; https://learn.microsoft.com/en-us/cpp/cpp/char-wchar-t-char16-t-char32-t
+    ⚓ __int8, __int16, __int32, __int64 ; https://learn.microsoft.com/en-us/cpp/cpp/int8-int16-int32-int64
+    ⚓ __m64 ; https://learn.microsoft.com/en-us/cpp/cpp/m64
+    ⚓ __m128 ; https://learn.microsoft.com/en-us/cpp/cpp/m128
+    ⚓ __m128d ; https://learn.microsoft.com/en-us/cpp/cpp/m128d
+    ⚓ __m128i ; https://learn.microsoft.com/en-us/cpp/cpp/m128i
+    ⚓ __ptr32, __ptr64 ; https://learn.microsoft.com/en-us/cpp/cpp/ptr32-ptr64
+
+
+    # Numerical limits
+      ⚓ Numerical limits ; https://learn.microsoft.com/en-us/cpp/cpp/numerical-limits-cpp
+      ⚓ Integer limits ; https://learn.microsoft.com/en-us/cpp/cpp/integer-limits
+      ⚓ Floating limits ; https://learn.microsoft.com/en-us/cpp/cpp/floating-limits
+
+
+  # Declarations and definitions
+    ⚓ Declarations and definitions ; https://learn.microsoft.com/en-us/cpp/cpp/declarations-and-definitions-cpp
+    ⚓ Storage classes ; https://learn.microsoft.com/en-us/cpp/cpp/storage-classes-cpp
+    ⚓ alignas ; https://learn.microsoft.com/en-us/cpp/cpp/alignas-specifier
+      Deduces the type of a declared variable from its initialization expression.
+    ⚓ auto ; https://learn.microsoft.com/en-us/cpp/cpp/auto-cpp
+      #️⃣🚣 Examples ; https://learn.microsoft.com/en-us/cpp/cpp/auto-cpp#examples
+        ... the for and range for loops ...
+    ⚓ const ; https://learn.microsoft.com/en-us/cpp/cpp/const-cpp
+    ⚓🚣 constexpr ; https://learn.microsoft.com/en-us/cpp/cpp/constexpr-cpp
+    ⚓ extern ; https://learn.microsoft.com/en-us/cpp/cpp/extern-cpp
+      The extern keyword has four meanings depending on the context:
+        - ...
+        - 🚣 extern "C" 
+        - ...
+    ⚓🔰 Initializers ; https://learn.microsoft.com/en-us/cpp/cpp/initializers
+      # Kinds of initialization
+        # Default initialization
+            In the case of `auto self(shared_from_this());`, the function `shared_from_this()` returns an r-value of type `std::shared_ptr<T>`
+            , which is then used to directly initialize `self` following the same principle.
+            
+        #️⃣🪱 Direct initialization ; https://learn.microsoft.com/en-us/cpp/cpp/initializers?view=msvc-170#direct-initialization
+          📝📍🛍️ e.g. 
+            Direct initialization is a form of object initialization where an r-value is passed directly to a constructor, avoiding unnecessary copy operations.
+            This method allows explicit constructors to be invoked and is often used for efficiency and clarity in C++.
+
+            ```cpp
+            class Session : public std::enable_shared_from_this<Session> {
+              private:
+                tcp::socket socket_;
+                char buffer_[1024];
+
+                void doRead() {
+                  auto self(shared_from_this());  // 🚣 Direct initialization with an r-value
+                  ...
+                }
+            }
+            ```
+
+            In the case of `auto self(shared_from_this());`, the function `shared_from_this()` returns an r-value of type `std::shared_ptr<T>`,
+            which is then used to directly initialize `self` following the same principle.
+
+            ❗ Note: Although passing an r-value does not always prevent call-by-copy semantics
+              , in this case, `shared_from_this()` does not create a new instance of the object itself.
+              Instead, it returns a new `shared_ptr` that shares ownership of the already existing object.
+              Only the reference count of the existing `shared_ptr` is incremented.
+
+        #️⃣ List initialization ; https://learn.microsoft.com/en-us/cpp/cpp/initializers?view=msvc-170#list-initialization
+
+
+    ⚓ Aliases and typedefs ; https://learn.microsoft.com/en-us/cpp/cpp/aliases-and-typedefs-cpp
+    ⚓ using declaration ; https://learn.microsoft.com/en-us/cpp/cpp/using-declaration
+    ⚓ volatile ; https://learn.microsoft.com/en-us/cpp/cpp/volatile-cpp
+    ⚓🪱 decltype ; https://learn.microsoft.com/en-us/cpp/cpp/decltype-cpp
+
+    ⚓ Attributes ; https://learn.microsoft.com/en-us/cpp/cpp/attributes
+
+
+  # Built-in operators, precedence, and associativity
+    ⚓ Built-in operators, precedence, and associativity ; https://learn.microsoft.com/en-us/cpp/cpp/cpp-built-in-operators-precedence-and-associativity
+    ⚓ alignof operator ; https://learn.microsoft.com/en-us/cpp/cpp/alignof-operator
+    ⚓ __uuidof operator ; https://learn.microsoft.com/en-us/cpp/cpp/uuidof-operator
+    ⚓ Additive operators: + and - ; https://learn.microsoft.com/en-us/cpp/cpp/additive-operators-plus-and
+    ⚓ Address-of operator: & ; https://learn.microsoft.com/en-us/cpp/cpp/address-of-operator-amp
+    ⚓ Assignment operators ; https://learn.microsoft.com/en-us/cpp/cpp/assignment-operators
+    ⚓ Bitwise AND operator: & ; https://learn.microsoft.com/en-us/cpp/cpp/bitwise-and-operator-amp
+    ⚓ Bitwise exclusive OR operator: ^ ; https://learn.microsoft.com/en-us/cpp/cpp/bitwise-exclusive-or-operator-hat
+    ⚓ Bitwise inclusive OR operator: | ; https://learn.microsoft.com/en-us/cpp/cpp/bitwise-inclusive-or-operator-pipe
+    ⚓ Cast operator: () ; https://learn.microsoft.com/en-us/cpp/cpp/cast-operator-parens
+    ⚓ Comma operator: , ; https://learn.microsoft.com/en-us/cpp/cpp/comma-operator
+    ⚓ Conditional operator: ? : ; https://learn.microsoft.com/en-us/cpp/cpp/conditional-operator-q
+    ⚓ delete operator ; https://learn.microsoft.com/en-us/cpp/cpp/delete-operator-cpp
+    ⚓ Equality operators: == and != ; https://learn.microsoft.com/en-us/cpp/cpp/equality-operators-equal-equal-and-exclpt-equal
+    ⚓ Explicit type conversion operator: () ; https://learn.microsoft.com/en-us/cpp/cpp/explicit-type-conversion-operator-parens
+    ⚓ Function call operator: () ; https://learn.microsoft.com/en-us/cpp/cpp/function-call-operator-parens
+    ⚓ Indirection operator: * ; https://learn.microsoft.com/en-us/cpp/cpp/indirection-operator-star
+    ⚓ Left shift and right shift operators: << and >> ; https://learn.microsoft.com/en-us/cpp/cpp/left-shift-and-right-shift-operators-input-and-output
+    ⚓ Logical AND operator: && ; https://learn.microsoft.com/en-us/cpp/cpp/logical-and-operator-amp-amp
+    ⚓ Logical negation operator: ! ; https://learn.microsoft.com/en-us/cpp/cpp/logical-negation-operator-exclpt
+    ⚓ Logical OR operator: || ; https://learn.microsoft.com/en-us/cpp/cpp/logical-or-operator-pipe-pipe
+    ⚓ Member access operators: . and -> ; https://learn.microsoft.com/en-us/cpp/cpp/member-access-operators-dot-and
+    ⚓ Multiplicative operators and the modulus operator ; https://learn.microsoft.com/en-us/cpp/cpp/multiplicative-operators-and-the-modulus-operator
+    ⚓ new operator ; https://learn.microsoft.com/en-us/cpp/cpp/new-operator-cpp
+    ⚓ One's complement operator: ~ ; https://learn.microsoft.com/en-us/cpp/cpp/one-s-complement-operator-tilde
+    ⚓ Pointer-to-member operators: .* and ->* ; https://learn.microsoft.com/en-us/cpp/cpp/pointer-to-member-operators-dot-star-and-star
+    ⚓ Postfix increment and decrement operators: ++ and -- ; https://learn.microsoft.com/en-us/cpp/cpp/postfix-increment-and-decrement-operators-increment-and-decrement
+    ⚓ Prefix increment and decrement operators: ++ and -- ; https://learn.microsoft.com/en-us/cpp/cpp/prefix-increment-and-decrement-operators-increment-and-decrement
+    ⚓ Relational operators: <, >, <=, and >= ; https://learn.microsoft.com/en-us/cpp/cpp/relational-operators-equal-and-equal
+    ⚓ Scope resolution operator: :: ; https://learn.microsoft.com/en-us/cpp/cpp/scope-resolution-operator
+    ⚓ sizeof operator ; https://learn.microsoft.com/en-us/cpp/cpp/sizeof-operator
+    ⚓ Subscript operator: [] ; https://learn.microsoft.com/en-us/cpp/cpp/subscript-operator
+    ⚓ typeid operator ; https://learn.microsoft.com/en-us/cpp/cpp/typeid-operator
+    ⚓ Unary plus and negation operators: + and - ; https://learn.microsoft.com/en-us/cpp/cpp/unary-plus-and-negation-operators-plus-and
+
+
+  # Expressions
+    ⚓ Expressions ; https://learn.microsoft.com/en-us/cpp/cpp/expressions-cpp
+
+
+    # Types of expressions
+      ⚓ Types of expressions ; https://learn.microsoft.com/en-us/cpp/cpp/types-of-expressions
+      ⚓ Primary expressions ; https://learn.microsoft.com/en-us/cpp/cpp/primary-expressions
+      ⚓ Ellipsis and variadic templates ; https://learn.microsoft.com/en-us/cpp/cpp/ellipses-and-variadic-templates
+      ⚓ Postfix expressions ; https://learn.microsoft.com/en-us/cpp/cpp/postfix-expressions
+      ⚓ Expressions with unary operators ; https://learn.microsoft.com/en-us/cpp/cpp/expressions-with-unary-operators
+      ⚓ Expressions with binary operators ; https://learn.microsoft.com/en-us/cpp/cpp/expressions-with-binary-operators
+      ⚓ Constant expressions ; https://learn.microsoft.com/en-us/cpp/cpp/cpp-constant-expressions
+    ⚓ Semantics of expressions ; https://learn.microsoft.com/en-us/cpp/cpp/semantics-of-expressions
+
+
+    # Casting
+      ⚓ Casting ; https://learn.microsoft.com/en-us/cpp/cpp/casting
+        🪱 upcast, downcast
+
+      # Casting operators
+        ⚓ Casting operators ; https://learn.microsoft.com/en-us/cpp/cpp/casting-operators
+        ⚓ dynamic_cast operator ; https://learn.microsoft.com/en-us/cpp/cpp/dynamic-cast-operator
+        ⚓ bad_cast exception ; https://learn.microsoft.com/en-us/cpp/cpp/bad-cast-exception
+        ⚓ static_cast operator ; https://learn.microsoft.com/en-us/cpp/cpp/static-cast-operator
+        ⚓ const_cast operator ; https://learn.microsoft.com/en-us/cpp/cpp/const-cast-operator
+        ⚓ reinterpret_cast operator ; https://learn.microsoft.com/en-us/cpp/cpp/reinterpret-cast-operator
+
+
+      # Run-Time Type Information (RTTI)
+        ⚓ Run-Time Type Information (RTTI) ; https://learn.microsoft.com/en-us/cpp/cpp/run-time-type-information
+        ⚓ bad_typeid exception ; https://learn.microsoft.com/en-us/cpp/cpp/bad-typeid-exception
+        ⚓ type_info class ; https://learn.microsoft.com/en-us/cpp/cpp/type-info-class
+
+
+  # Statements
+    ⚓ Statements ; https://learn.microsoft.com/en-us/cpp/cpp/statements-cpp
+    ⚓ Overview of C++ statements ; https://learn.microsoft.com/en-us/cpp/cpp/overview-of-cpp-statements
+    ⚓ Labeled statements ; https://learn.microsoft.com/en-us/cpp/cpp/labeled-statements
+
+
+    # Expression statement
+      ⚓ Expression statement ; https://learn.microsoft.com/en-us/cpp/cpp/expression-statement
+      ⚓ Null statement ; https://learn.microsoft.com/en-us/cpp/cpp/null-statement
+    ⚓ Compound statements (Blocks) ; https://learn.microsoft.com/en-us/cpp/cpp/compound-statements-blocks
+
+
+    # Selection statements
+      ⚓ Selection statements ; https://learn.microsoft.com/en-us/cpp/cpp/selection-statements-cpp
+      ⚓ if-else statement ; https://learn.microsoft.com/en-us/cpp/cpp/if-else-statement-cpp
+      ⚓ __if_exists statement ; https://learn.microsoft.com/en-us/cpp/cpp/if-exists-statement
+      ⚓ __if_not_exists statement ; https://learn.microsoft.com/en-us/cpp/cpp/if-not-exists-statement
+      ⚓ switch statement ; https://learn.microsoft.com/en-us/cpp/cpp/switch-statement-cpp
+
+
+    # Iteration statements
+      ⚓ Iteration statements ; https://learn.microsoft.com/en-us/cpp/cpp/iteration-statements-cpp
+      ⚓ while statement ; https://learn.microsoft.com/en-us/cpp/cpp/while-statement-cpp
+      ⚓ do-while statement ; https://learn.microsoft.com/en-us/cpp/cpp/do-while-statement-cpp
+      ⚓ for statement ; https://learn.microsoft.com/en-us/cpp/cpp/for-statement-cpp
+      ⚓ Range-based for statement ; https://learn.microsoft.com/en-us/cpp/cpp/range-based-for-statement-cpp
+
+
+    # Jump statements
+      ⚓ Jump statements ; https://learn.microsoft.com/en-us/cpp/cpp/jump-statements-cpp
+      ⚓ break statement ; https://learn.microsoft.com/en-us/cpp/cpp/break-statement-cpp
+      ⚓ continue statement ; https://learn.microsoft.com/en-us/cpp/cpp/continue-statement-cpp
+      ⚓ return statement ; https://learn.microsoft.com/en-us/cpp/cpp/return-statement-cpp
+      ⚓ goto statement ; https://learn.microsoft.com/en-us/cpp/cpp/goto-statement-cpp
+      ⚓ Transfers of control ; https://learn.microsoft.com/en-us/cpp/cpp/transfers-of-control
+  ⚓ Namespaces ; https://learn.microsoft.com/en-us/cpp/cpp/namespaces-cpp
+  ⚓ Enumerations ; https://learn.microsoft.com/en-us/cpp/cpp/enumerations-cpp
+  ⚓ Unions ; https://learn.microsoft.com/en-us/cpp/cpp/unions
+
+
+  # Functions
+    ⚓ Functions ; https://learn.microsoft.com/en-us/cpp/cpp/functions-cpp
+    ⚓ Functions with variable argument lists ; https://learn.microsoft.com/en-us/cpp/cpp/functions-with-variable-argument-lists-cpp
+    ⚓🚣 Function overloading ; https://learn.microsoft.com/en-us/cpp/cpp/function-overloading
+      #️⃣💡 Overloading Considerations ; https://learn.microsoft.com/en-us/cpp/cpp/function-overloading#overloading-considerations
+    ⚓ Explicitly defaulted and deleted functions ; https://learn.microsoft.com/en-us/cpp/cpp/explicitly-defaulted-and-deleted-functions
+    ⚓ Argument-dependent name (Koenig) lookup on functions ; https://learn.microsoft.com/en-us/cpp/cpp/argument-dependent-name-koenig-lookup-on-functions
+    ⚓ Default arguments ; https://learn.microsoft.com/en-us/cpp/cpp/default-arguments
+      🚣 Note these points when using default arguments:
+        Default arguments are used only in function calls where trailing arguments are omitted
+        ...
+        Default arguments can be provided for pointers to functions.
+    ⚓🚣 Inline functions ; https://learn.microsoft.com/en-us/cpp/cpp/inline-functions-cpp
+      Inline expansion minimizes the function-call overhead ...
+
+  # Operator overloading
+    ⚓ Operator overloading ; https://learn.microsoft.com/en-us/cpp/cpp/operator-overloading
+      #️⃣ Redefinable Operators ; https://learn.microsoft.com/en-us/cpp/cpp/operator-overloading#redefinable-operators
+      #️⃣ Nonredefinable Operators https://learn.microsoft.com/en-us/cpp/cpp/operator-overloading#nonredefinable-operators
+    ⚓ General rules for operator overloading ; https://learn.microsoft.com/en-us/cpp/cpp/general-rules-for-operator-overloading
+      💡 ... friend ...
+
+
+    # Overloading unary operators
+      ⚓ Overloading unary operators ; https://learn.microsoft.com/en-us/cpp/cpp/overloading-unary-operators
+      ⚓💡 Increment and decrement operator overloading ; https://learn.microsoft.com/en-us/cpp/cpp/increment-and-decrement-operator-overloading-cpp
+        friend Point& operator++( Point& );      // Prefix increment
+        friend Point operator++( Point&, int );  // Postfix increment
+        friend Point& operator--( Point& );      // Prefix decrement
+        friend Point operator--( Point&, int );  // Postfix decrement
+    ⚓ Binary operators ; https://learn.microsoft.com/en-us/cpp/cpp/binary-operators
+    ⚓ Assignment ; https://learn.microsoft.com/en-us/cpp/cpp/assignment
+    ⚓ Function call ; https://learn.microsoft.com/en-us/cpp/cpp/function-call-cpp
+    ⚓ Subscripting ; https://learn.microsoft.com/en-us/cpp/cpp/subscripting
+    ⚓ Member access ; https://learn.microsoft.com/en-us/cpp/cpp/member-access
+
+
+  # Classes and structs
+    ⚓ Classes and structs ; https://learn.microsoft.com/en-us/cpp/cpp/classes-and-structs-cpp
+    ⚓🚣 class ; https://learn.microsoft.com/en-us/cpp/cpp/class-cpp
+    ⚓ struct ; https://learn.microsoft.com/en-us/cpp/cpp/struct-cpp
+    ⚓ Class member overview ; https://learn.microsoft.com/en-us/cpp/cpp/class-member-overview
+      #️⃣ Static members ; https://learn.microsoft.com/en-us/cpp/cpp/class-member-overview#static-members
+        ⚖️ ... static int i = 9; // Error: must be defined and initialized outside of class declaration.
+
+    # Member access control
+      ⚓ Member access control ; https://learn.microsoft.com/en-us/cpp/cpp/member-access-control-cpp
+        ⚖️ The default access is private in a class, and public in a struct or union
+        🪱 access specifier: public, private, protected
+        #️⃣🚣 Member-Access Control ; https://learn.microsoft.com/en-us/cpp/cpp/member-access-control-cpp#member-access-control
+        #️⃣ Access Control in Derived Classes
+          #️⃣🚣 Member Access in Base Class ; https://learn.microsoft.com/en-us/cpp/cpp/member-access-control-cpp#member-access-in-base-class
+      ⚓📍 friend ; https://learn.microsoft.com/en-us/cpp/cpp/friend-cpp
+        📝 It seems to be used as "<ClassName>Manager" pattern.
+        #️⃣ friend function ; https://learn.microsoft.com/en-us/cpp/cpp/friend-cpp#friend-functions
+          A friend function is a function that isn't a member of a class but has access to the class's private and protected members.
+          Friend functions aren't considered class members; they're normal external functions that are 🪱 given special access privileges.
+        #️⃣ Class members as friends ; https://learn.microsoft.com/en-us/cpp/cpp/friend-cpp#class-members-as-friends
+      ⚓ private ; https://learn.microsoft.com/en-us/cpp/cpp/private-cpp
+      ⚓ protected ; https://learn.microsoft.com/en-us/cpp/cpp/protected-cpp
+      ⚓ public ; https://learn.microsoft.com/en-us/cpp/cpp/public-cpp
+    ⚓ Brace initialization ; https://learn.microsoft.com/en-us/cpp/cpp/initializing-classes-and-structs-without-constructors-cpp
+    ⚓ Object lifetime and resource management (RAII) ; https://learn.microsoft.com/en-us/cpp/cpp/object-lifetime-and-resource-management-modern-cpp
+    ⚓ Pimpl idiom for compile-time encapsulation ; https://learn.microsoft.com/en-us/cpp/cpp/pimpl-for-compile-time-encapsulation-modern-cpp
+    ⚓ Portability at ABI boundaries ; https://learn.microsoft.com/en-us/cpp/cpp/portability-at-abi-boundaries-modern-cpp
+
+
+    # Constructors
+      ⚓ Constructors ; https://learn.microsoft.com/en-us/cpp/cpp/constructors-cpp
+        #️⃣ Default constructors ; https://learn.microsoft.com/en-us/cpp/cpp/constructors-cpp#default_constructors
+        #️⃣ Explicit constructors ; https://learn.microsoft.com/en-us/cpp/cpp/constructors-cpp#explicit_constructors
+        #️⃣🪱 Initializer list constructors ; https://learn.microsoft.com/en-us/cpp/cpp/constructors-cpp#init_list_constructors
+      ⚓💡 Copy constructors and copy assignment operators ; https://learn.microsoft.com/en-us/cpp/cpp/copy-constructors-and-copy-assignment-operators-cpp
+
+      ⚓📍 Move constructors and move assignment operators ; https://learn.microsoft.com/en-us/cpp/cpp/move-constructors-and-move-assignment-operators-cpp
+        🪱 move semantics
+      ⚓ Delegating constructors ; https://learn.microsoft.com/en-us/cpp/cpp/delegating-constructors
+    ⚓ Destructors ; https://learn.microsoft.com/en-us/cpp/cpp/destructors-cpp
+
+
+    # Overview of member functions
+      ⚓ Overview of member functions ; https://learn.microsoft.com/en-us/cpp/cpp/overview-of-member-functions
+      ⚓ virtual specifier ; https://learn.microsoft.com/en-us/cpp/cpp/virtual-specifier
+      ⚓ override specifier ; https://learn.microsoft.com/en-us/cpp/cpp/override-specifier
+      ⚓ final specifier ; https://learn.microsoft.com/en-us/cpp/cpp/final-specifier
+
+
+    # Inheritance
+      ⚓ Inheritance ; https://learn.microsoft.com/en-us/cpp/cpp/inheritance-cpp
+        🪱 derived classes, base classes
+        🪱 access-specifier
+        
+      ⚓ Virtual functions ; https://learn.microsoft.com/en-us/cpp/cpp/virtual-functions
+        A virtual function is a member function that you expect to be redefined in derived classes.
+          When you refer to a derived class object using a pointer or a reference to the base class
+          , you can call a virtual function for that object and execute the derived class's version of the function.
+        Virtual functions in a base class must be defined unless they are declared using the pure-specifier. (For more information about pure virtual functions, see Abstract Classes.)
+      ⚓ Abstract classes ; https://learn.microsoft.com/en-us/cpp/cpp/abstract-classes-cpp
+        🪱 pure specifier
+        #️⃣ Restrictions on abstract classes
+        #️⃣ Defined pure virtual functions
+          Defined pure virtual functions are helpful when you design class hierarchies whose base classes include 💡 pure virtual destructors.
+
+
+
+
+      ⚓ Single inheritance ; https://learn.microsoft.com/en-us/cpp/cpp/single-inheritance
+      ⚓ Base classes ; https://learn.microsoft.com/en-us/cpp/cpp/base-classes
+      ⚓📍 Multiple base classes ; https://learn.microsoft.com/en-us/cpp/cpp/multiple-base-classes
+        🪱 ambiguity
+        #️⃣🪱 Dominance ; https://learn.microsoft.com/en-us/cpp/cpp/multiple-base-classes#dominance
+        #️⃣ Ambiguous conversions ; https://learn.microsoft.com/en-us/cpp/cpp/multiple-base-classes#ambiguous-conversions
+          💡 ... However, when A is specified as a virtual base class, there's no question which subobject is being accessed.
+      ⚓ Explicit overrides ; https://learn.microsoft.com/en-us/cpp/cpp/explicit-overrides-cpp
+      ⚓📍 Summary of scope rules ; https://learn.microsoft.com/en-us/cpp/cpp/summary-of-scope-rules
+        #️⃣🪱 Qualified names ; https://learn.microsoft.com/en-us/cpp/cpp/summary-of-scope-rules#qualified-names
+      ⚓ Inheritance keywords ; https://learn.microsoft.com/en-us/cpp/cpp/inheritance-keywords
+      ⚓ virtual ; https://learn.microsoft.com/en-us/cpp/cpp/virtual-cpp
+      ⚓ __super ; https://learn.microsoft.com/en-us/cpp/cpp/super
+      ⚓ __interface ; https://learn.microsoft.com/en-us/cpp/cpp/interface
+    ⚓ Special member functions ; https://learn.microsoft.com/en-us/cpp/cpp/special-member-functions
+    ⚓ Static members ; https://learn.microsoft.com/en-us/cpp/cpp/static-members-cpp
+    ⚓ User-defined type conversions ; https://learn.microsoft.com/en-us/cpp/cpp/user-defined-type-conversions-cpp
+      🪱 Implicit conversions are attempted when: ...
+      - 🪱 explicit
+    ⚓ Mutable data members ; https://learn.microsoft.com/en-us/cpp/cpp/mutable-data-members-cpp
+    ⚓ Nested class declarations ; https://learn.microsoft.com/en-us/cpp/cpp/nested-class-declarations
+    ⚓ Anonymous class types ; https://learn.microsoft.com/en-us/cpp/cpp/anonymous-class-types
+    ⚓ Pointers to members ; https://learn.microsoft.com/en-us/cpp/cpp/pointers-to-members
+    ⚓🚣  this pointer ; https://learn.microsoft.com/en-us/cpp/cpp/this-pointer
+    ⚓ Bit fields ; https://learn.microsoft.com/en-us/cpp/cpp/cpp-bit-fields
+
+
+  # Lambda expressions in C++
+    ⚓ Lambda expressions in C++ ; https://learn.microsoft.com/en-us/cpp/cpp/lambda-expressions-in-cpp
+      🪱 lambda
+      🪱 closure; anonymous function object
+      #️⃣ Parts of a lambda expression ; https://learn.microsoft.com/en-us/cpp/cpp/lambda-expressions-in-cpp#parts-of-a-lambda-expression
+        - capture clause (Also known as the 🪱 lambda-introducer in the C++ specification.)
+        - parameter list Optional. (Also known as the lambda declarator)
+        - mutable specification Optional.
+        - exception-specification Optional.
+        - trailing-return-type Optional.
+        - lambda body.
+      #️⃣ Capture clause https://learn.microsoft.com/en-us/cpp/cpp/lambda-expressions-in-cpp#capture-clause
+        🛍️ e.g. 
+          [&total, factor]
+          [factor, &total]
+          [&, factor]
+          [=, &total]
+      #️⃣ Parameter list ; https://learn.microsoft.com/en-us/cpp/cpp/lambda-expressions-in-cpp#parameter-list
+        💡 In C++14, if the parameter type is generic, you can use the auto keyword as the type specifier. This keyword tells the compiler to create the function call operator as a template.
+    ⚓ Lambda expression syntax ; https://learn.microsoft.com/en-us/cpp/cpp/lambda-expression-syntax
+    ⚓ Examples of lambda expressions ; https://learn.microsoft.com/en-us/cpp/cpp/examples-of-lambda-expressions
+    ⚓ constexpr lambda expressions ; https://learn.microsoft.com/en-us/cpp/cpp/lambda-expressions-constexpr
+  ⚓ Arrays ; https://learn.microsoft.com/en-us/cpp/cpp/arrays-cpp
+
+
+  # References
+    ⚓ Reference-type function arguments ; https://learn.microsoft.com/en-us/cpp/cpp/reference-type-function-arguments
+    ⚓ Reference-type function returns ; https://learn.microsoft.com/en-us/cpp/cpp/reference-type-function-returns
+    ⚓ References to pointers ; https://learn.microsoft.com/en-us/cpp/cpp/references-to-pointers
+
+
+  # Pointers
+    ⚓ Pointers ; https://learn.microsoft.com/en-us/cpp/cpp/pointers-cpp
+    ⚓ Raw pointers ; https://learn.microsoft.com/en-us/cpp/cpp/raw-pointers
+    ⚓ const and volatile pointers ; https://learn.microsoft.com/en-us/cpp/cpp/const-and-volatile-pointers
+    ⚓💡 new and delete operators ; https://learn.microsoft.com/en-us/cpp/cpp/new-and-delete-operators
+      #️⃣ Handling insufficient memory ; https://learn.microsoft.com/en-us/cpp/cpp/new-and-delete-operators#handling-insufficient-memory
+      #️⃣ The delete operator ; https://learn.microsoft.com/en-us/cpp/cpp/new-and-delete-operators#--the-delete-operator
+        ... delete [] pX
+    ⚓ Smart pointers ; https://learn.microsoft.com/en-us/cpp/cpp/smart-pointers-modern-cpp
+    ⚓ How to: Create and use unique_ptr instances ; https://learn.microsoft.com/en-us/cpp/cpp/how-to-create-and-use-unique-ptr-instances
+    ⚓ How to: Create and use shared_ptr instances ; https://learn.microsoft.com/en-us/cpp/cpp/how-to-create-and-use-shared-ptr-instances
+    ⚓ How to: Create and use weak_ptr instances ; https://learn.microsoft.com/en-us/cpp/cpp/how-to-create-and-use-weak-ptr-instances
+    ⚓ How to: Create and use CComPtr and CComQIPtr instances ; https://learn.microsoft.com/en-us/cpp/cpp/how-to-create-and-use-ccomptr-and-ccomqiptr-instances
+
+
+  # Exception handling in C++
+    ⚓ Exception handling in C++ ; https://learn.microsoft.com/en-us/cpp/cpp/exception-handling-in-visual-cpp
+    ⚓ Modern C++ best practices ; https://learn.microsoft.com/en-us/cpp/cpp/errors-and-exception-handling-modern-cpp
+    ⚓ How to design for exception safety ; https://learn.microsoft.com/en-us/cpp/cpp/how-to-design-for-exception-safety
+    ⚓ How to interface between exceptional and non-exceptional code ; https://learn.microsoft.com/en-us/cpp/cpp/how-to-interface-between-exceptional-and-non-exceptional-code
+    
+    ⚓🚣 try, throw, and catch statements ; https://learn.microsoft.com/en-us/cpp/cpp/try-throw-and-catch-statements-cpp
+    
+    ⚓ How catch blocks are evaluated ; https://learn.microsoft.com/en-us/cpp/cpp/how-catch-blocks-are-evaluated-cpp
+    ⚓ Exceptions and stack unwinding ; https://learn.microsoft.com/en-us/cpp/cpp/exceptions-and-stack-unwinding-in-cpp
+    ⚓ Exception specifications (throw) ; https://learn.microsoft.com/en-us/cpp/cpp/exception-specifications-throw-cpp
+    ⚓ noexcept ; https://learn.microsoft.com/en-us/cpp/cpp/noexcept-cpp
+    ⚓ Unhandled C++ exceptions ; https://learn.microsoft.com/en-us/cpp/cpp/unhandled-cpp-exceptions
+
+
+    # Mixing C (Structured) and C++ exceptions
+      ⚓ Mixing C (Structured) and C++ exceptions ; https://learn.microsoft.com/en-us/cpp/cpp/mixing-c-structured-and-cpp-exceptions
+      ⚓ Using setjmp-longjmp ; https://learn.microsoft.com/en-us/cpp/cpp/using-setjmp-longjmp
+      ⚓ Handle structured exceptions in C++ ; https://learn.microsoft.com/en-us/cpp/cpp/exception-handling-differences
+
+
+    # Structured Exception Handling (SEH) (C/C++)
+      ⚓❌ Structured Exception Handling (SEH) (C/C++) ; https://learn.microsoft.com/en-us/cpp/cpp/structured-exception-handling-c-cpp
+         Structured exception handling (SEH) is a Microsoft extension to C and C++ to handle certain exceptional code situations, such as hardware faults, gracefully.
+      # Writing an exception handler
+        ...
+        ❌ try-except statement; The try-except statement is a Microsoft-specific extension.
+
+    ⚓ Transporting exceptions between threads ; https://learn.microsoft.com/en-us/cpp/cpp/transporting-exceptions-between-threads
+
+
+  # Assertion and user-supplied messages
+    ⚓ Assertion and user-supplied messages ; https://learn.microsoft.com/en-us/cpp/cpp/assertion-and-user-supplied-messages-cpp
+    ⚓ static_assert ; https://learn.microsoft.com/en-us/cpp/cpp/static-assert
+
+
+  # Modules
+    ⚓ Overview of modules in C++ ; https://learn.microsoft.com/en-us/cpp/cpp/modules-cpp
+    ⚓ module, import, export ; https://learn.microsoft.com/en-us/cpp/cpp/import-export-module
+    ⚓ Tutorial: Import the standard library as a module ; https://learn.microsoft.com/en-us/cpp/cpp/tutorial-import-stl-named-module
+    ⚓ Named modules tutorial in C++ ; https://learn.microsoft.com/en-us/cpp/cpp/tutorial-named-modules-cpp
+
+
+  # Templates
+    ⚓ Templates ; https://learn.microsoft.com/en-us/cpp/cpp/templates-cpp
+      Templates are the basis for 🪱 generic programming in C++.
+
+      #️⃣ Defining and using templates
+      #️⃣ Type parameters
+        🪱 type parameter T
+    ⚓🖇️🪱 typename ; https://learn.microsoft.com/en-us/cpp/cpp/typename 📅 2024-09-22 22:34:02
+      📝⭕ use keyword when only 🔗 Templates and name resolution
+        Using typename can enhance clarity, especially in code with numerous template parameters or when working with complex types.
+      ❌ The typename keyword can also be used in place of class in template parameter lists. For example, the following statements are semantically equivalent:...
+        
+    ⚓ Class templates ; https://learn.microsoft.com/en-us/cpp/cpp/class-templates
+
+
+    # Function templates
+      ⚓ Function templates ; https://learn.microsoft.com/en-us/cpp/cpp/function-templates
+      ⚓ Function template instantiation ; https://learn.microsoft.com/en-us/cpp/cpp/function-template-instantiation
+      ⚓ Explicit instantiation ; https://learn.microsoft.com/en-us/cpp/cpp/explicit-instantiation
+      ⚓ Explicit specialization of function templates ; https://learn.microsoft.com/en-us/cpp/cpp/explicit-specialization-of-function-templates
+      ⚓ Partial ordering of function templates ; https://learn.microsoft.com/en-us/cpp/cpp/partial-ordering-of-function-templates-cpp
+      ⚓ Member function templates ; https://learn.microsoft.com/en-us/cpp/cpp/member-function-templates
+    ⚓🚣🪱 Template specialization ; https://learn.microsoft.com/en-us/cpp/cpp/template-specialization-cpp
+      Class templates can be 🪱 partially specialized, and the resulting class is still a template. 
+
+    # Templates and name resolution
+      🔰 from 🔗 typename
+        The typename keyword must be used if a name in a template definition is a qualified name that is dependent on a template argument
+        ; it's optional if the qualified name isn't dependent.
+          ```cpp
+          template <class T>
+          class C1 : typename T::InnerType // Error - typename not allowed.
+          {};
+          template <class T>
+          class C2 : A<typename T::InnerType>  // typename OK.
+          {};
+          ```
+
+
+      ⚓📍🖇️ Templates and name resolution ; https://learn.microsoft.com/en-us/cpp/cpp/templates-and-name-resolution 📅 2024-09-22 21:26:01
+        In template definitions, there are three types of names.
+          - Locally declared names, including the name of the template itself and any names declared inside the template definition.
+          - Names from the enclosing scope outside the template definition.
+          - Names that depend in some way on the template arguments, referred to as dependent names.
+          ... Dependent names are not looked up until the template is instantiated and are looked up separately for each specialization.
+
+
+
+        ⚓🪱 Type Dependence and Value Dependence
+          Also, any identifiers declared in a template with a type dependent on the template argument are considered value dependent 🎱 when an integral or enumeration type initialized with a value-dependent expression.
+      ⚓ Name resolution for dependent types ; https://learn.microsoft.com/en-us/cpp/cpp/name-resolution-for-dependent-types
+      ⚓ Name resolution for locally declared names ; https://learn.microsoft.com/en-us/cpp/cpp/name-resolution-for-locally-declared-names
+      ⚓ Overload resolution of function template calls ; https://learn.microsoft.com/en-us/cpp/cpp/overload-resolution-of-function-template-calls
+    ⚓ Source code organization (C++ templates) ; https://learn.microsoft.com/en-us/cpp/cpp/source-code-organization-cpp-templates
+
+
+  # Event handling
+    ⚓ Event handling ; https://learn.microsoft.com/en-us/cpp/cpp/event-handling
+    ⚓ __event ; https://learn.microsoft.com/en-us/cpp/cpp/event
+    ⚓ __hook ; https://learn.microsoft.com/en-us/cpp/cpp/hook
+    ⚓ __raise ; https://learn.microsoft.com/en-us/cpp/cpp/raise
+    ⚓ __unhook ; https://learn.microsoft.com/en-us/cpp/cpp/unhook
+    ⚓ Event handling in native C++ ; https://learn.microsoft.com/en-us/cpp/cpp/event-handling-in-native-cpp
+    ⚓ Event handling in COM ; https://learn.microsoft.com/en-us/cpp/cpp/event-handling-in-com
+
+
+  # Microsoft-specific modifiers
+    ⚓ Microsoft-specific modifiers ; https://learn.microsoft.com/en-us/cpp/cpp/microsoft-specific-modifiers
+
+
+    # Based addressing
+
+
+    # Calling conventions
+    ⚓ restrict (C++ AMP) ; https://learn.microsoft.com/en-us/cpp/cpp/restrict-cpp-amp
+    ⚓ tile_static keyword ; https://learn.microsoft.com/en-us/cpp/cpp/tile-static-keyword
+
+
+    # __declspec
+    ⚓ __restrict ; https://learn.microsoft.com/en-us/cpp/cpp/extension-restrict
+    ⚓ __sptr, __uptr ; https://learn.microsoft.com/en-us/cpp/cpp/sptr-uptr
+    ⚓ __unaligned ; https://learn.microsoft.com/en-us/cpp/cpp/unaligned
+    ⚓ __w64 ; https://learn.microsoft.com/en-us/cpp/cpp/w64
+    ⚓ __func__ ; https://learn.microsoft.com/en-us/cpp/cpp/func
+
+
+  # Compiler COM support
+  ⚓ Microsoft extensions ; https://learn.microsoft.com/en-us/cpp/cpp/microsoft-extensions
+  ⚓ Nonstandard behavior ; https://learn.microsoft.com/en-us/cpp/cpp/nonstandard-behavior
+  ⚓ Compiler limits ; https://learn.microsoft.com/en-us/cpp/cpp/compiler-limits
+
+⚓ cpp: MSDN 🔪 C++ Standard Library reference ; https://learn.microsoft.com/en-us/cpp/standard-library/cpp-standard-library-reference
+
+  ⚓ Iterators ; https://learn.microsoft.com/en-us/cpp/standard-library/iterators
+  ⚓ Algorithms ; https://learn.microsoft.com/en-us/cpp/standard-library/algorithms
+  ⚓ Allocators ; https://learn.microsoft.com/en-us/cpp/standard-library/allocators
+  ⚓ Function objects in the C++ Standard Library ; https://learn.microsoft.com/en-us/cpp/standard-library/function-objects-in-the-stl
+
+  ⚓ Regular expressions (C++) ; https://learn.microsoft.com/en-us/cpp/standard-library/regular-expressions-cpp
+  ⚓ File system navigation ; https://learn.microsoft.com/en-us/cpp/standard-library/file-system-navigation
+
+⚓ c+cpp: MSDN 🔪 C/C++ preprocessor reference ; https://learn.microsoft.com/en-us/cpp/preprocessor/c-cpp-preprocessor-reference
+  # Preprocessor
+    ⚓ Preprocessor ; https://learn.microsoft.com/en-us/cpp/preprocessor/preprocessor
+    ⚓ New preprocessor overview ; https://learn.microsoft.com/en-us/cpp/preprocessor/preprocessor-experimental-overview
+    ⚓ Phases of translation ; https://learn.microsoft.com/en-us/cpp/preprocessor/phases-of-translation
+
+
+    # Preprocessor directives
+      ⚓ Preprocessor directives ; https://learn.microsoft.com/en-us/cpp/preprocessor/preprocessor-directives
+      ⚓ #define directive (C/C++) ; https://learn.microsoft.com/en-us/cpp/preprocessor/hash-define-directive-c-cpp
+      ⚓ #error directive (C/C++) ; https://learn.microsoft.com/en-us/cpp/preprocessor/hash-error-directive-c-cpp
+      ⚓ #if, #elif, #else, and #endif directives (C/C++) ; https://learn.microsoft.com/en-us/cpp/preprocessor/hash-if-hash-elif-hash-else-and-hash-endif-directives-c-cpp
+      ⚓ #ifdef and #ifndef directives (C/C++) ; https://learn.microsoft.com/en-us/cpp/preprocessor/hash-ifdef-and-hash-ifndef-directives-c-cpp
+      ⚓ #import directive (C++) ; https://learn.microsoft.com/en-us/cpp/preprocessor/hash-import-directive-cpp
+
+
+      # #import attributes (C++)
+        ⚓ #import attributes (C++) ; https://learn.microsoft.com/en-us/cpp/preprocessor/hash-import-attributes-cpp
+        ⚓ auto_rename ; https://learn.microsoft.com/en-us/cpp/preprocessor/auto-rename
+        ⚓ auto_search ; https://learn.microsoft.com/en-us/cpp/preprocessor/auto-search
+        ⚓ embedded_idl ; https://learn.microsoft.com/en-us/cpp/preprocessor/embedded-idl
+        ⚓ exclude (#import) ; https://learn.microsoft.com/en-us/cpp/preprocessor/exclude-hash-import
+        ⚓ high_method_prefix ; https://learn.microsoft.com/en-us/cpp/preprocessor/high-method-prefix
+        ⚓ high_property_prefixes ; https://learn.microsoft.com/en-us/cpp/preprocessor/high-property-prefixes
+        ⚓ implementation_only ; https://learn.microsoft.com/en-us/cpp/preprocessor/implementation-only
+        ⚓ include() ; https://learn.microsoft.com/en-us/cpp/preprocessor/include-parens
+        ⚓ inject_statement ; https://learn.microsoft.com/en-us/cpp/preprocessor/inject-statement
+        ⚓ named_guids ; https://learn.microsoft.com/en-us/cpp/preprocessor/named-guids
+        ⚓ no_auto_exclude ; https://learn.microsoft.com/en-us/cpp/preprocessor/no-auto-exclude
+        ⚓ no_dual_interfaces ; https://learn.microsoft.com/en-us/cpp/preprocessor/no-dual-interfaces
+        ⚓ no_implementation ; https://learn.microsoft.com/en-us/cpp/preprocessor/no-implementation
+        ⚓ no_namespace ; https://learn.microsoft.com/en-us/cpp/preprocessor/no-namespace
+        ⚓ no_registry ; https://learn.microsoft.com/en-us/cpp/preprocessor/no-registry
+        ⚓ no_search_namespace ; https://learn.microsoft.com/en-us/cpp/preprocessor/no-search-namespace
+        ⚓ no_smart_pointers ; https://learn.microsoft.com/en-us/cpp/preprocessor/no-smart-pointers
+        ⚓ raw_dispinterfaces ; https://learn.microsoft.com/en-us/cpp/preprocessor/raw-dispinterfaces
+        ⚓ raw_interfaces_only ; https://learn.microsoft.com/en-us/cpp/preprocessor/raw-interfaces-only
+        ⚓ raw_method_prefix ; https://learn.microsoft.com/en-us/cpp/preprocessor/raw-method-prefix
+        ⚓ raw_native_types ; https://learn.microsoft.com/en-us/cpp/preprocessor/raw-native-types
+        ⚓ raw_property_prefixes ; https://learn.microsoft.com/en-us/cpp/preprocessor/raw-property-prefixes
+        ⚓ rename (#import) ; https://learn.microsoft.com/en-us/cpp/preprocessor/rename-hash-import
+        ⚓ rename_namespace ; https://learn.microsoft.com/en-us/cpp/preprocessor/rename-namespace
+        ⚓ rename_search_namespace ; https://learn.microsoft.com/en-us/cpp/preprocessor/rename-search-namespace
+        ⚓ tlbid ; https://learn.microsoft.com/en-us/cpp/preprocessor/tlbid
+      ⚓ #include directive (C/C++) ; https://learn.microsoft.com/en-us/cpp/preprocessor/hash-include-directive-c-cpp
+      ⚓ #line directive (C/C++) ; https://learn.microsoft.com/en-us/cpp/preprocessor/hash-line-directive-c-cpp
+      ⚓ Null directive ; https://learn.microsoft.com/en-us/cpp/preprocessor/null-directive
+      ⚓ #undef directive (C/C++) ; https://learn.microsoft.com/en-us/cpp/preprocessor/hash-undef-directive-c-cpp
+      ⚓ #using directive (C++/CLI) ; https://learn.microsoft.com/en-us/cpp/preprocessor/hash-using-directive-cpp
+
+
+    # Preprocessor operators
+      ⚓ Preprocessor operators ; https://learn.microsoft.com/en-us/cpp/preprocessor/preprocessor-operators
+      ⚓ Stringizing operator (#) ; https://learn.microsoft.com/en-us/cpp/preprocessor/stringizing-operator-hash
+      ⚓ Charizing operator (#@) ; https://learn.microsoft.com/en-us/cpp/preprocessor/charizing-operator-hash-at
+      ⚓ Token-pasting operator (##) ; https://learn.microsoft.com/en-us/cpp/preprocessor/token-pasting-operator-hash-hash
+
+
+    # Preprocessor macros (C/C++)
+      ⚓ Preprocessor macros (C/C++) ; https://learn.microsoft.com/en-us/cpp/preprocessor/macros-c-cpp
+      ⚓ Preprocessor macros and C++ ; https://learn.microsoft.com/en-us/cpp/preprocessor/macros-and-cpp
+      ⚓ Variadic preprocessor macros ; https://learn.microsoft.com/en-us/cpp/preprocessor/variadic-macros
+      ⚓ Predefined preprocessor macros ; https://learn.microsoft.com/en-us/cpp/preprocessor/predefined-macros
+  ⚓ Preprocessor grammar summary (C/C++) ; https://learn.microsoft.com/en-us/cpp/preprocessor/grammar-summary-c-cpp
+
+  # Pragma directives and the __pragma keyword
+    ⚓ Pragma directives and the __pragma keyword ; https://learn.microsoft.com/en-us/cpp/preprocessor/pragma-directives-and-the-pragma-keyword
+    ⚓ alloc_text pragma ; https://learn.microsoft.com/en-us/cpp/preprocessor/alloc-text
+    ⚓ auto_inline pragma ; https://learn.microsoft.com/en-us/cpp/preprocessor/auto-inline
+    ⚓ bss_seg pragma ; https://learn.microsoft.com/en-us/cpp/preprocessor/bss-seg
+    ⚓ check_stack pragma ; https://learn.microsoft.com/en-us/cpp/preprocessor/check-stack
+    ⚓ code_seg pragma ; https://learn.microsoft.com/en-us/cpp/preprocessor/code-seg
+    ⚓ comment pragma (C/C++) ; https://learn.microsoft.com/en-us/cpp/preprocessor/comment-c-cpp
+    ⚓ component pragma ; https://learn.microsoft.com/en-us/cpp/preprocessor/component
+    ⚓ conform pragma ; https://learn.microsoft.com/en-us/cpp/preprocessor/conform
+    ⚓ const_seg pragma ; https://learn.microsoft.com/en-us/cpp/preprocessor/const-seg
+    ⚓ data_seg pragma ; https://learn.microsoft.com/en-us/cpp/preprocessor/data-seg
+    ⚓ deprecated pragma (C/C++) ; https://learn.microsoft.com/en-us/cpp/preprocessor/deprecated-c-cpp
+    ⚓ detect_mismatch pragma ; https://learn.microsoft.com/en-us/cpp/preprocessor/detect-mismatch
+    ⚓ execution_character_set pragma ; https://learn.microsoft.com/en-us/cpp/preprocessor/execution-character-set
+    ⚓ fenv_access pragma ; https://learn.microsoft.com/en-us/cpp/preprocessor/fenv-access
+    ⚓ float_control pragma ; https://learn.microsoft.com/en-us/cpp/preprocessor/float-control
+    ⚓ fp_contract pragma ; https://learn.microsoft.com/en-us/cpp/preprocessor/fp-contract
+    ⚓ function pragma (C/C++) ; https://learn.microsoft.com/en-us/cpp/preprocessor/function-c-cpp
+    ⚓ hdrstop pragma ; https://learn.microsoft.com/en-us/cpp/preprocessor/hdrstop
+    ⚓ include_alias pragma ; https://learn.microsoft.com/en-us/cpp/preprocessor/include-alias
+    ⚓ init_seg pragma ; https://learn.microsoft.com/en-us/cpp/preprocessor/init-seg
+    ⚓ inline_depth pragma ; https://learn.microsoft.com/en-us/cpp/preprocessor/inline-depth
+    ⚓ inline_recursion pragma ; https://learn.microsoft.com/en-us/cpp/preprocessor/inline-recursion
+    ⚓ intrinsic pragma ; https://learn.microsoft.com/en-us/cpp/preprocessor/intrinsic
+    ⚓ loop pragma ; https://learn.microsoft.com/en-us/cpp/preprocessor/loop
+    ⚓ make_public pragma ; https://learn.microsoft.com/en-us/cpp/preprocessor/make-public
+    ⚓ managed, unmanaged pragmas ; https://learn.microsoft.com/en-us/cpp/preprocessor/managed-unmanaged
+    ⚓ message pragma ; https://learn.microsoft.com/en-us/cpp/preprocessor/message
+    ⚓ omp pragma ; https://learn.microsoft.com/en-us/cpp/preprocessor/omp
+    ⚓ once pragma ; https://learn.microsoft.com/en-us/cpp/preprocessor/once
+    ⚓ optimize pragma ; https://learn.microsoft.com/en-us/cpp/preprocessor/optimize
+    ⚓ pack pragma ; https://learn.microsoft.com/en-us/cpp/preprocessor/pack
+    ⚓ pointers_to_members pragma ; https://learn.microsoft.com/en-us/cpp/preprocessor/pointers-to-members
+    ⚓ pop_macro pragma ; https://learn.microsoft.com/en-us/cpp/preprocessor/pop-macro
+    ⚓ push_macro pragma ; https://learn.microsoft.com/en-us/cpp/preprocessor/push-macro
+    ⚓ region, endregion pragmas ; https://learn.microsoft.com/en-us/cpp/preprocessor/region-endregion
+    ⚓ runtime_checks pragma ; https://learn.microsoft.com/en-us/cpp/preprocessor/runtime-checks
+    ⚓ section pragma ; https://learn.microsoft.com/en-us/cpp/preprocessor/section
+    ⚓ setlocale pragma ; https://learn.microsoft.com/en-us/cpp/preprocessor/setlocale
+    ⚓ strict_gs_check pragma ; https://learn.microsoft.com/en-us/cpp/preprocessor/strict-gs-check
+    ⚓ system_header pragma ; https://learn.microsoft.com/en-us/cpp/preprocessor/system-header-pragma
+    ⚓ vtordisp pragma ; https://learn.microsoft.com/en-us/cpp/preprocessor/vtordisp
+    ⚓ warning pragma ; https://learn.microsoft.com/en-us/cpp/preprocessor/warning
+
+----------------------------------------------
+⚓ cpp: cppreference 🔪 Cpp reference ; https://en.cppreference.com/w/cpp
+  📝 #TODO: correct parsing for TOS
+  # C++11, C++14, C++17, C++20, C++23, C++26  │  Compiler support C++11, C++14, C++17, C++20, C++23, C++26
+    ⚓ C++11 ; https://en.cppreference.com/w/cpp/11
+    ⚓ C++14 ; https://en.cppreference.com/w/cpp/14
+    ⚓ C++17 ; https://en.cppreference.com/w/cpp/17
+    ⚓ C++20 ; https://en.cppreference.com/w/cpp/20
+    ⚓ C++23 ; https://en.cppreference.com/w/cpp/23
+    ⚓ C++26 ; https://en.cppreference.com/w/cpp/26
+    ⚓ Compiler support ; https://en.cppreference.com/w/cpp/compiler_support
+    ⚓ C++11 ; https://en.cppreference.com/w/cpp/compiler_support/11
+    ⚓ C++14 ; https://en.cppreference.com/w/cpp/compiler_support/14
+    ⚓ C++17 ; https://en.cppreference.com/w/cpp/compiler_support/17
+    ⚓ C++20 ; https://en.cppreference.com/w/cpp/compiler_support/20
+    ⚓ C++23 ; https://en.cppreference.com/w/cpp/compiler_support/23
+    ⚓ C++26 ; https://en.cppreference.com/w/cpp/compiler_support/26
+  ⚓ Language ; https://en.cppreference.com/w/cpp/language
+    ⚓🔑 Keywords ; https://en.cppreference.com/w/cpp/keyword
+      - co_await (C++20)
+      - co_return (C++20)
+      - co_yield (C++20)
+
+    ⚓📍 Value categories ; https://en.cppreference.com/w/cpp/language/value_category
+      rvalue, pravlue,
+    ⚓ Functions ; https://en.cppreference.com/w/cpp/language/functions
+      ⚓ Coroutines (C++20) ; https://en.cppreference.com/w/cpp/language/coroutines
+      
+    
+    ⚓ Preprocessor ; https://en.cppreference.com/w/cpp/preprocessor
+    ⚓ ASCII chart ; https://en.cppreference.com/w/cpp/language/ascii
+    ⚓ Basic concepts ; https://en.cppreference.com/w/cpp/language/basic_concepts
+    ⚓ Comments ; https://en.cppreference.com/w/cpp/comment
+    ⚓ Names ; https://en.cppreference.com/w/cpp/language/identifiers
+    ⚓ lookup ; https://en.cppreference.com/w/cpp/language/lookup
+    ⚓ Types ; https://en.cppreference.com/w/cpp/language/type
+    ⚓ fundamental types ; https://en.cppreference.com/w/cpp/language/types
+    ⚓ Themainfunction ; https://en.cppreference.com/w/cpp/language/main_function
+    ⚓ Expressions ; https://en.cppreference.com/w/cpp/language/expressions
+
+    ⚓ Evaluation order ; https://en.cppreference.com/w/cpp/language/eval_order
+    ⚓ Operators ; https://en.cppreference.com/w/cpp/language/expressions#Operators
+    ⚓ precedence ; https://en.cppreference.com/w/cpp/language/operator_precedence
+    ⚓ Conversions ; https://en.cppreference.com/w/cpp/language/expressions#Conversions
+    ⚓ Literals ; https://en.cppreference.com/w/cpp/language/expressions#Literals
+    ⚓ Statements ; https://en.cppreference.com/w/cpp/language/statements
+    ⚓ if ; https://en.cppreference.com/w/cpp/language/if
+    ⚓ switch ; https://en.cppreference.com/w/cpp/language/switch
+    ⚓ for ; https://en.cppreference.com/w/cpp/language/for
+    ⚓ range-for ; https://en.cppreference.com/w/cpp/language/range-for
+    ⚓ while ; https://en.cppreference.com/w/cpp/language/while
+    ⚓ do-while ; https://en.cppreference.com/w/cpp/language/do
+    ⚓ Declarations ; https://en.cppreference.com/w/cpp/language/declarations
+    ⚓ Initialization ; https://en.cppreference.com/w/cpp/language/initialization
+
+
+    ⚓ Overloading ; https://en.cppreference.com/w/cpp/language/overload_resolution
+    ⚓ Classes ; https://en.cppreference.com/w/cpp/language/classes
+    ⚓ unions ; https://en.cppreference.com/w/cpp/language/union
+    ⚓ Templates ; https://en.cppreference.com/w/cpp/language/templates
+    ⚓ Exceptions ; https://en.cppreference.com/w/cpp/language/exceptions
+    ⚓ Freestanding implementations ; https://en.cppreference.com/w/cpp/freestanding
+
+  ⚓ Diagnostics library ; https://en.cppreference.com/w/cpp/error
+    #🔰 Assertions
+      Assertions help to implement checking of preconditions in programs.
+      Defined in header <cassert>
+      ⚓ assert ; https://en.cppreference.com/w/cpp/error/assert
+        aborts the program if the user-specified condition is not true. May be disabled for release builds. (function macro)
+        The definition of the macro assert depends on another macro, 🪱 NDEBUG, which is not defined by the standard library.
+          1) If NDEBUG is defined as a macro name at the point in the source code where <cassert> or <assert.h> is included, the assertion is disabled: assert does nothing.
+
+    ⚓ exception ; https://en.cppreference.com/w/cpp/error/exception
+    ⚓ System error ; https://en.cppreference.com/w/cpp/error#System_error
+    ⚓ basic_stacktrace ; https://en.cppreference.com/w/cpp/utility/basic_stacktrace
+  ⚓ Memory management library ; https://en.cppreference.com/w/cpp/memory
+    ⚓ unique_ptr ; https://en.cppreference.com/w/cpp/memory/unique_ptr
+    ⚓ shared_ptr ; https://en.cppreference.com/w/cpp/memory/shared_ptr
+    ⚓ weak_ptr ; https://en.cppreference.com/w/cpp/memory/weak_ptr
+    ⚓ Memory resources ; https://en.cppreference.com/w/cpp/memory#Memory_resources
+      # Helper classes
+        enable_shared_from_this (C++11)
+          allows an object to create a shared_ptr referring to itself (class template)
+          
+    ⚓ Allocators ; https://en.cppreference.com/w/cpp/memory#Allocators
+    ⚓ Low level management ; https://en.cppreference.com/w/cpp/memory/new
+  
+  ⚓🔰 Concurrency support library ; https://en.cppreference.com/w/cpp/thread
+    🗒️ Contents
+      #️⃣ Mutual exclusion ; https://en.cppreference.com/w/cpp/thread#Mutual_exclusion
+      #️⃣ Semaphores ; https://en.cppreference.com/w/cpp/thread#Semaphores
+      #️⃣ Condition variables ; https://en.cppreference.com/w/cpp/thread#Condition_variables
+      #️⃣ Futures ; https://en.cppreference.com/w/cpp/thread#Futures & https://en.cppreference.com/w/cpp/header/future
+        The standard library provides facilities to obtain values that are returned and to catch exceptions that are thrown by asynchronous tasks (i.e. functions launched in separate threads).
+        These values are communicated in a 🪱 shared state, in which the asynchronous task may write its return value or store an exception
+          , and which may be examined, waited for, and otherwise manipulated by other threads that hold instances of 🪱 std::future or 🪱 std::shared_future that reference that shared state.
+        # Classes
+          ⚓ promise ; https://en.cppreference.com/w/cpp/thread/promise
+          ⚓ future ; https://en.cppreference.com/w/cpp/thread/future
+
+      #️⃣ Safe Reclamation ; https://en.cppreference.com/w/cpp/thread#Safe_Reclamation
+
+    ⚓ thread ; https://en.cppreference.com/w/cpp/thread/thread
+    ⚓ jthread ; https://en.cppreference.com/w/cpp/thread/jthread
+    ⚓ atomic ; https://en.cppreference.com/w/cpp/atomic/atomic
+    ⚓ atomic_flag ; https://en.cppreference.com/w/cpp/atomic/atomic_flag
+    ⚓ atomic_ref ; https://en.cppreference.com/w/cpp/atomic/atomic_ref
+    ⚓ memory_order ; https://en.cppreference.com/w/cpp/atomic/memory_order
+    ⚓ latch ; https://en.cppreference.com/w/cpp/thread/latch
+    ⚓ barrier ; https://en.cppreference.com/w/cpp/thread/barrier
+
+
+
+  ⚓ Named requirements ; https://en.cppreference.com/w/cpp/named_req
+  ⚓ Feature test macros ; https://en.cppreference.com/w/cpp/feature_test
+  ⚓ Language support library ; https://en.cppreference.com/w/cpp/utility#Language_support
+    ⚓ Program utilities ; https://en.cppreference.com/w/cpp/utility/program
+    ⚓ source_location ; https://en.cppreference.com/w/cpp/utility/source_location
+    ⚓ Coroutine support ; https://en.cppreference.com/w/cpp/coroutine
+    ⚓ Three-way comparison ; https://en.cppreference.com/w/cpp/utility#Three-way_comparison
+    ⚓ Type support ; https://en.cppreference.com/w/cpp/types
+    ⚓ numeric_limits ; https://en.cppreference.com/w/cpp/types/numeric_limits
+    ⚓ type_info ; https://en.cppreference.com/w/cpp/types/type_info
+    ⚓ initializer_list ; https://en.cppreference.com/w/cpp/utility/initializer_list
+  ⚓ Concepts library ; https://en.cppreference.com/w/cpp/concepts
+  ⚓ Metaprogramming library ; https://en.cppreference.com/w/cpp/meta
+    ⚓ Type traits ; https://en.cppreference.com/w/cpp/meta#Type_traits
+    ⚓ ratio ; https://en.cppreference.com/w/cpp/numeric/ratio
+    ⚓ integer_sequence ; https://en.cppreference.com/w/cpp/utility/integer_sequence
+  ⚓ General utilities library ; https://en.cppreference.com/w/cpp/utility#General-purpose_utilities
+    ⚓ Function objects ; https://en.cppreference.com/w/cpp/utility/functional
+    ⚓ hash ; https://en.cppreference.com/w/cpp/utility/hash
+    ⚓ Swap ; https://en.cppreference.com/w/cpp/utility#Swap
+    ⚓ Type operations ; https://en.cppreference.com/w/cpp/utility#Type_operations
+    ⚓ Integer comparison ; https://en.cppreference.com/w/cpp/utility#Integer_comparison_functions
+    ⚓ pair ; https://en.cppreference.com/w/cpp/utility/pair
+    ⚓ tuple ; https://en.cppreference.com/w/cpp/utility/tuple
+    ⚓ optional ; https://en.cppreference.com/w/cpp/utility/optional
+    ⚓ expected ; https://en.cppreference.com/w/cpp/utility/expected
+    ⚓ variant ; https://en.cppreference.com/w/cpp/utility/variant
+    ⚓ any ; https://en.cppreference.com/w/cpp/utility/any
+    ⚓ String conversions ; https://en.cppreference.com/w/cpp/utility#Elementary_string_conversions
+    ⚓ Formatting ; https://en.cppreference.com/w/cpp/utility/format
+    ⚓ bitset ; https://en.cppreference.com/w/cpp/utility/bitset
+    ⚓ Bit manipulation ; https://en.cppreference.com/w/cpp/numeric#Bit_manipulation
+    ⚓ Debugging support ; https://en.cppreference.com/w/cpp/utility#Debugging_support
+  ⚓ Ranges library ; https://en.cppreference.com/w/cpp/ranges
+  ⚓ Numerics library ; https://en.cppreference.com/w/cpp/numeric
+    ⚓ Common math functions ; https://en.cppreference.com/w/cpp/numeric/math
+    ⚓ Mathematical special functions ; https://en.cppreference.com/w/cpp/numeric/special_functions
+    ⚓ Mathematical constants ; https://en.cppreference.com/w/cpp/numeric/constants
+    ⚓ Basic linear algebra algorithms ; https://en.cppreference.com/w/cpp/numeric/linalg
+    ⚓ Numeric algorithms ; https://en.cppreference.com/w/cpp/numeric#Numeric_algorithms
+    ⚓ Pseudo-random number generation ; https://en.cppreference.com/w/cpp/numeric/random
+    ⚓ Floating-point environment ; https://en.cppreference.com/w/cpp/numeric/fenv
+    ⚓ complex ; https://en.cppreference.com/w/cpp/numeric/complex
+    ⚓ valarray ; https://en.cppreference.com/w/cpp/numeric/valarray
+  ⚓ Date and time library ; https://en.cppreference.com/w/cpp/chrono
+    ⚓ Calendar ; https://en.cppreference.com/w/cpp/chrono#Calendar
+    ⚓ Time zone ; https://en.cppreference.com/w/cpp/chrono#Time_zone
+  ⚓ Localization library ; https://en.cppreference.com/w/cpp/locale
+    ⚓ locale ; https://en.cppreference.com/w/cpp/locale/locale
+    ⚓ Character classification ; https://en.cppreference.com/w/cpp/locale#Character_classification_and_conversion
+    ⚓ text_encoding ; https://en.cppreference.com/w/cpp/locale/text_encoding
+  ⚓ Regular expressions library ; https://en.cppreference.com/w/cpp/regex
+    ⚓ basic_regex ; https://en.cppreference.com/w/cpp/regex/basic_regex
+    ⚓ Algorithms ; https://en.cppreference.com/w/cpp/regex#Algorithms
+    ⚓ Default regular expression grammar ; https://en.cppreference.com/w/cpp/regex/ecmascript
+  ⚓ Standard library extensions ; https://en.cppreference.com/w/cpp/experimental/lib_extensions
+    ⚓ resource_adaptor ; https://en.cppreference.com/w/cpp/experimental/resource_adaptor
+    ⚓ invocation_type ; https://en.cppreference.com/w/cpp/experimental/invocation_type
+  ⚓ Standard library extensions v2 ; https://en.cppreference.com/w/cpp/experimental/lib_extensions_2
+    ⚓ propagate_const ; https://en.cppreference.com/w/cpp/experimental/propagate_const
+    ⚓ ostream_joiner ; https://en.cppreference.com/w/cpp/experimental/ostream_joiner
+    ⚓ randint ; https://en.cppreference.com/w/cpp/experimental/randint
+    ⚓ observer_ptr ; https://en.cppreference.com/w/cpp/experimental/observer_ptr
+    ⚓ Detection idiom ; https://en.cppreference.com/w/cpp/experimental/is_detected
+  ⚓ Standard library extensions v3 ; https://en.cppreference.com/w/cpp/experimental/lib_extensions_3
+    ⚓ scope_exit ; https://en.cppreference.com/w/cpp/experimental/scope_exit
+    ⚓ scope_fail ; https://en.cppreference.com/w/cpp/experimental/scope_fail
+    ⚓ scope_success ; https://en.cppreference.com/w/cpp/experimental/scope_success
+    ⚓ unique_resource ; https://en.cppreference.com/w/cpp/experimental/unique_resource
+  ⚓ Parallelism library extensions v2 ; https://en.cppreference.com/w/cpp/experimental/parallelism_2
+    ⚓ simd ; https://en.cppreference.com/w/cpp/experimental/simd
+  ⚓ Concurrency library extensions ; https://en.cppreference.com/w/cpp/experimental/concurrency
+  ⚓ External Links ; https://en.cppreference.com/w/cpp/links
+  ⚓ Non-ANSI/ISO Libraries ; https://en.cppreference.com/w/cpp/links/libs
+  ⚓ Index ; https://en.cppreference.com/w/cpp/index
+  ⚓ std Symbol Index ; https://en.cppreference.com/w/cpp/symbol_index
+
+
+⚓ Standard library ; https://en.cppreference.com/w/cpp/standard_library
+
+  # Strings library
+    ⚓ Strings library ; https://en.cppreference.com/w/cpp/string
+      ⚓ basic_string ; https://en.cppreference.com/w/cpp/string/basic_string
+      ⚓ char_traits ; https://en.cppreference.com/w/cpp/string/char_traits
+      ⚓ basic_string_view ; https://en.cppreference.com/w/cpp/string/basic_string_view
+      ⚓ Null-terminated strings ; https://en.cppreference.com/w/cpp/string#Null-terminated_strings
+      ⚓ byte ; https://en.cppreference.com/w/cpp/string/byte
+      ⚓ multibyte ; https://en.cppreference.com/w/cpp/string/multibyte
+      ⚓ wide ; https://en.cppreference.com/w/cpp/string/wide
+    ⚓ header <string> ; https://en.cppreference.com/w/cpp/header/string
+      std::basic_string class template
+      # Functions
+        # Numeric conversions
+          stoi()
+
+        append(), insert(), replace(), substr(), swap()
+        erase(), clear()
+        size(), length(), capacity(), emtpy(), at(), find(), rfind(), compare()
+        c_str()
+
+        operator
+          =, [], +, +=, <<, >>, ==, !=, <, >, <=, >=
+
+  # Iterators library
+    ⚓ Iterators library ; https://en.cppreference.com/w/cpp/iterator
+      Iterators are a generalization of 💡 pointers that allow a C++ program to work with different data structures (for example, containers and ranges(since C++20)) in a uniform manner. 
+      # Iterator adaptors
+        ⚓ reverse_iterator ; https://en.cppreference.com/w/cpp/iterator/reverse_iterator
+      # Range access
+        ⚓ std::size ; https://en.cppreference.com/w/cpp/iterator/size
+        ⚓ std::empty ; https://en.cppreference.com/w/cpp/iterator/empty
+
+        ⚓ std::begin ; https://en.cppreference.com/w/cpp/iterator/begin
+          template< class C >
+          constexpr auto begin( C& c ) -> decltype(c.begin());
+        ⚓ std::end ; https://en.cppreference.com/w/cpp/iterator/end
+          📝 Returns an iterator to the end (i.e., the position 📍 one past the last element) of the given range.
+          template< class C >
+          auto end( C& c ) -> decltype(c.end());
+    ⚓ header <iterator> ; https://en.cppreference.com/w/cpp/header/iterator
+
+  # Containers library
+    ⚓ Containers library ; https://en.cppreference.com/w/cpp/container
+      #🗺️ Function table
+        # Member function table
+          # Iterators: begin(), end()
+          # Element access: at()
+          # Capacity: empty() size()
+          # Lookup: find()
+
+          # Modifiers: push_back(), insert(),  erase()
+
+      # Sequence containers
+        ⚓ vector ; https://en.cppreference.com/w/cpp/container/vector
+        ⚓ deque ; https://en.cppreference.com/w/cpp/container/deque
+        ⚓ array ; https://en.cppreference.com/w/cpp/container/array
+
+
+        ⚓ list ; https://en.cppreference.com/w/cpp/container/list
+        ⚓ forward_list ; https://en.cppreference.com/w/cpp/container/forward_list
+
+      # Associative containers
+        ⚓ map ; https://en.cppreference.com/w/cpp/container/map
+        ⚓ multimap ; https://en.cppreference.com/w/cpp/container/multimap
+        ⚓ set ; https://en.cppreference.com/w/cpp/container/set
+        ⚓ multiset ; https://en.cppreference.com/w/cpp/container/multiset
+
+      # Unordered associative containers
+        ⚓ unordered_map ; https://en.cppreference.com/w/cpp/container/unordered_map
+        ⚓ unordered_multimap ; https://en.cppreference.com/w/cpp/container/unordered_multimap
+        ⚓ unordered_set ; https://en.cppreference.com/w/cpp/container/unordered_set
+        ⚓ unordered_multiset ; https://en.cppreference.com/w/cpp/container/unordered_multiset
+
+      # Container adaptors
+        Container adaptors provide a different interface for sequential containers.
+        ⚓ stack ; https://en.cppreference.com/w/cpp/container/stack
+        ⚓ deque ; https://en.cppreference.com/w/cpp/container/queue
+      # Views
+        ⚓ span ; https://en.cppreference.com/w/cpp/container/span
+        ⚓ mdspan ; https://en.cppreference.com/w/cpp/container/mdspan
+
+  # Algorithms library
+    ⚓ Algorithms library ; https://en.cppreference.com/w/cpp/algorithm
+      ⚓ Constrained algorithms ; https://en.cppreference.com/w/cpp/algorithm/ranges
+      #️⃣ Execution policies ; https://en.cppreference.com/w/cpp/algorithm#Execution_policies
+
+      # Non-modifying sequence operations
+        # Batch operations
+          ⚓ for_each ; https://en.cppreference.com/w/cpp/algorithm/for_each
+        # Fold operations
+
+        # Search operations
+          ⚓ find ; https://en.cppreference.com/w/cpp/algorithm/find
+            Returns an iterator to the first element in the range [first, last) that satisfies specific criteria (or ⚖️ last if there is no such iterator).  //]
+          ⚓ search ; https://en.cppreference.com/w/cpp/algorithm/search
+          
+          ⚓ equal ; https://en.cppreference.com/w/cpp/algorithm/equal
+
+      # Modifying sequence operations
+        # Generation operations
+          ⚓ fill ; https://en.cppreference.com/w/cpp/algorithm/fill
+
+        # Swap operations
+          ⚓ swap ; https://en.cppreference.com/w/cpp/algorithm/swap
+
+        # Copy operations
+          ⚓ copy ; https://en.cppreference.com/w/cpp/algorithm/copy
+          ⚓ copy_backward ; https://en.cppreference.com/w/cpp/algorithm/copy_backward
+          ⚓ move ; https://en.cppreference.com/w/cpp/algorithm/move
+
+        # Transformation operations
+          ⚓ transform ; https://en.cppreference.com/w/cpp/algorithm/transform
+
+          ⚓ replace ; https://en.cppreference.com/w/cpp/algorithm/replace
+        # Removing operations
+          ⚓ remove ; https://en.cppreference.com/w/cpp/algorithm/remove
+
+      # Sorting and related operations
+        # Partitioning operations
+          ⚓ partition ; https://en.cppreference.com/w/cpp/algorithm/partition
+        # Sorting operations
+          ⚓ sort ; https://en.cppreference.com/w/cpp/algorithm/sort
+
+        # Binary search operations (on partitioned ranges)
+
+        # Set operations (on sorted ranges)
+        # Merge operations (on sorted ranges)
+          ⚓ merge ; https://en.cppreference.com/w/cpp/algorithm/merge
+        # Heap operations
+
+        # Minimum/maximum operations
+          ⚓ max ; https://en.cppreference.com/w/cpp/algorithm/max
+          ⚓ min ; https://en.cppreference.com/w/cpp/algorithm/min
+        # Order-changing operations
+          ⚓ reverse ; https://en.cppreference.com/w/cpp/algorithm/reverse
+          ⚓ rotate ; https://en.cppreference.com/w/cpp/algorithm/rotate
+    ⚓ header <algorithm> ; https://en.cppreference.com/w/cpp/header/algorithm
+
+  # Input/output library
+    ⚓ Input/output library ; https://en.cppreference.com/w/cpp/io
+      # Stream-based I/O
+        📍 Inheritance diagram ...
+      # Predefined standard stream objects
+        ⚓ cin ; https://en.cppreference.com/w/cpp/io/cin
+        ⚓ cout ; https://en.cppreference.com/w/cpp/io/cin
+        ⚓ cerr ; https://en.cppreference.com/w/cpp/io/cerr
+        ⚓ clog ; https://en.cppreference.com/w/cpp/io/clog
+
+
+    ⚓ header <ios> ; https://en.cppreference.com/w/cpp/header/ios
+      ⚓🔰 std::ios_base ; https://en.cppreference.com/w/cpp/io/ios_base
+        # Member functions
+          # Formatting
+            precision ; https://en.cppreference.com/w/cpp/io/ios_base/precision
+            width ; https://en.cppreference.com/w/cpp/io/ios_base/width
+          # Locales
+        #📍~ Member types and constants
+          ⚓ openmode ; https://en.cppreference.com/w/cpp/io/ios_base/openmode
+            ...
+
+          ⚓ seekdir ; https://en.cppreference.com/w/cpp/io/ios_base/seekdir
+            ...
+          ⚓ iostate ; https://en.cppreference.com/w/cpp/io/ios_base/iostate
+            ...
+
+          ⚓ fmtflags ; https://en.cppreference.com/w/cpp/io/ios_base/fmtflags
+            ...
+      ⚓🔰 std::basic_ios ; https://en.cppreference.com/w/cpp/io/basic_ios
+        # Public member functions
+          # State functions
+            ⚓ good ; https://en.cppreference.com/w/cpp/io/basic_ios/good
+            ⚓ eof ; https://en.cppreference.com/w/cpp/io/basic_ios/eof
+            ⚓ fail ; https://en.cppreference.com/w/cpp/io/basic_ios/fail
+            ⚓ bad ; https://en.cppreference.com/w/cpp/io/basic_ios/bad
+            ⚓ operator! ; https://en.cppreference.com/w/cpp/io/basic_ios/operator!
+            ...
+            ⚓ clear ; https://en.cppreference.com/w/cpp/io/basic_ios/clear
+          #
+
+      ⚓ header <istream> ; https://en.cppreference.com/w/cpp/header/istream
+        ⚓ basic_istream ; https://en.cppreference.com/w/cpp/io/basic_istream
+          # Member functions
+            # Formatted input
+              ⚓🚣 operator>> ; https://en.cppreference.com/w/cpp/io/basic_istream/operator_gtgt
+                extracts formatted data
+            # Unformatted input
+              ⚓ get ; https://en.cppreference.com/w/cpp/io/basic_istream/get
+              ⚓ getline ; https://en.cppreference.com/w/cpp/io/basic_istream/getline
+              ⚓ peek ; https://en.cppreference.com/w/cpp/io/basic_istream/peek
+              ⚓ ignore ; https://en.cppreference.com/w/cpp/io/basic_istream/ignore
+              ⚓ read ; https://en.cppreference.com/w/cpp/io/basic_istream/read
+              ⚓ gcount ; https://en.cppreference.com/w/cpp/io/basic_istream/gcount
+            # Positioning
+              ⚓ tellg ; https://en.cppreference.com/w/cpp/io/basic_istream/tellg
+              ⚓ seekg ; https://en.cppreference.com/w/cpp/io/basic_istream/tellg
+      ⚓ header <ostream> ; https://en.cppreference.com/w/cpp/header/ostream
+        ⚓ basic_ostream ; https://en.cppreference.com/w/cpp/io/basic_ostream
+
+          # Member functions
+            # Formatted output
+              ⚓🚣 operator<< ; https://en.cppreference.com/w/cpp/io/basic_ostream/operator_ltlt
+                inserts formatted data
+            # Unformatted output
+              ⚓ put ; https://en.cppreference.com/w/cpp/io/basic_ostream/put
+              ⚓ write ; https://en.cppreference.com/w/cpp/io/basic_ostream/write
+            # Positioning
+              ⚓ tellp ; https://en.cppreference.com/w/cpp/io/basic_ostream/tellp
+              ⚓ seekp ; https://en.cppreference.com/w/cpp/io/basic_ostream/seekp
+            # Miscellaneous
+              ⚓ flush ; https://en.cppreference.com/w/cpp/io/basic_ostream/flush
+              ⚓ swap ; https://en.cppreference.com/w/cpp/io/basic_ostream/swap
+      
+
+    ⚓ I/O manipulators ; https://en.cppreference.com/w/cpp/io/manip
+      # Defined in header <ios>
+
+      # Defined in header <istream>
+      # Defined in header <ostream>
+        ⚓ endl ; https://en.cppreference.com/w/cpp/io/manip/endl
+        ⚓ flush ; https://en.cppreference.com/w/cpp/io/manip/flush
+      # Defined in header <iomanip>
+        ⚓ setfill ; https://en.cppreference.com/w/cpp/io/manip/setfill
+        ⚓ setprecision ; https://en.cppreference.com/w/cpp/io/manip/setprecision
+        ⚓ setw ; https://en.cppreference.com/w/cpp/io/manip/setw
+
+
+    ⚓ header <stream> ; https://en.cppreference.com/w/cpp/header/fstream
+    ⚓ header <iostream> ; https://en.cppreference.com/w/cpp/header/iostream
+
+    #️⃣ Print functions ; https://en.cppreference.com/w/cpp/io#Print_functions
+    #️⃣ Synchronized output ; https://en.cppreference.com/w/cpp/io#Synchronized_output
+
+    ⚓ File systems ; https://en.cppreference.com/w/cpp/filesystem
+
+================================================
+
+----------------------------------------------
+⚓ C: cppreference 🔪 C reference ; https://en.cppreference.com/w/c
+  # C89, C95, C99, C11, C17, C23  │  Compiler support C99, C23
+    ⚓ C95 ; https://en.cppreference.com/w/c/95
+    ⚓ C99 ; https://en.cppreference.com/w/c/99
+    ⚓ C11 ; https://en.cppreference.com/w/c/11
+    ⚓ C17 ; https://en.cppreference.com/w/c/17
+    ⚓ C23 ; https://en.cppreference.com/w/c/23
+    ⚓ Compiler support ; https://en.cppreference.com/w/c/compiler_support
+    ⚓ C99 ; https://en.cppreference.com/w/c/compiler_support/99
+    ⚓ C23 ; https://en.cppreference.com/w/c/compiler_support/23
+  ⚓ Language ; https://en.cppreference.com/w/c/language
+    ⚓ Basic concepts ; https://en.cppreference.com/w/c/language/basic_concepts
+    ⚓ Keywords ; https://en.cppreference.com/w/c/keyword
+    ⚓ Preprocessor ; https://en.cppreference.com/w/c/preprocessor
+    ⚓ Expressions ; https://en.cppreference.com/w/c/language/expressions
+    ⚓ Declaration ; https://en.cppreference.com/w/c/language/declarations
+    ⚓ Initialization ; https://en.cppreference.com/w/c/language/initialization
+    ⚓ Functions ; https://en.cppreference.com/w/c/language/functions
+    ⚓ Statements ; https://en.cppreference.com/w/c/language/statements
+  ⚓ Headers ; https://en.cppreference.com/w/c/header
+  ⚓ Type support ; https://en.cppreference.com/w/c/types
+  ⚓ Program utilities ; https://en.cppreference.com/w/c/program
+  ⚓ Variadic functions ; https://en.cppreference.com/w/c/variadic
+  ⚓ Diagnostics library (Error handling) ; https://en.cppreference.com/w/c/error
+    #🔰 Assertions
+      Defined in header <assert.h>
+      ⚓ assert ; https://en.cppreference.com/w/c/error/assert
+        aborts the program if the user-specified condition is not true. May be disabled for release builds (function macro)
+        If 🪱 NDEBUG is defined as a macro name at the point in the source code where <assert.h> is included, then assert does nothing.
+
+  ⚓ Dynamic memory management ; https://en.cppreference.com/w/c/memory
+  ⚓ Strings library ; https://en.cppreference.com/w/c/string
+    ⚓ byte ; https://en.cppreference.com/w/c/string/byte
+      ⚓ strtok, strtok_s ; https://en.cppreference.com/w/c/string/byte/strtok
+        💡 This function is designed to be called multiple times to obtain successive tokens from the same string.
+          ...
+        
+      
+    ⚓ multibyte ; https://en.cppreference.com/w/c/string/multibyte
+    ⚓ wide ; https://en.cppreference.com/w/c/string/wide
+  ⚓ Algorithms library ; https://en.cppreference.com/w/c/algorithm
+  ⚓ Numerics library ; https://en.cppreference.com/w/c/numeric
+    ⚓ Common mathematical functions ; https://en.cppreference.com/w/c/numeric/math
+    ⚓ Floating-point environment ; https://en.cppreference.com/w/c/numeric/fenv
+    ⚓ Pseudo-random number generation ; https://en.cppreference.com/w/c/numeric/random
+    ⚓ Complex number arithmetic ; https://en.cppreference.com/w/c/numeric/complex
+    ⚓ Type-generic math ; https://en.cppreference.com/w/c/numeric/tgmath
+  ⚓ Date and time library ; https://en.cppreference.com/w/c/chrono
+  ⚓ Localization library ; https://en.cppreference.com/w/c/locale
+  ⚓ Input/output library ; https://en.cppreference.com/w/c/io
+  ⚓ Concurrency support library ; https://en.cppreference.com/w/c/thread
+  ⚓ Technical specifications ; https://en.cppreference.com/w/c/experimental
+    ⚓ Dynamic memory extensions ; https://en.cppreference.com/w/c/experimental/dynamic
+    ⚓ Floating-point extensions, Part 1 ; https://en.cppreference.com/w/c/experimental/fpext1
+    ⚓ Floating-point extensions, Part 4 ; https://en.cppreference.com/w/c/experimental/fpext4
+  ⚓ External Links ; https://en.cppreference.com/w/c/links
+  ⚓ Non-ANSI/ISO Libraries ; https://en.cppreference.com/w/c/links/libs
+  ⚓ Index ; https://en.cppreference.com/w/c/index
+  ⚓ Symbol Index ; https://en.cppreference.com/w/c/symbol_index
+  
+
+
+ 

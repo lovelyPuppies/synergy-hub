@@ -1,0 +1,29 @@
+list of level 1 subjects
+  - OpenCV
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓⭕ OpenCV ; https://opencv.org/
+  https://github.com/opencv/opencv
+  https://en.wikipedia.org/wiki/OpenCV
+----------------------------------------------
+OpenCV 🔪 Installation
+  https://opencv.org/releases/
+
+
+----------------------------------------------
+OpenCV 🔪⚓ Docs ; https://docs.opencv.org/4.x/index.html
+
+
+
+----------------------------------------------
+📰 Temp
+  https://docs.opencv.org/4.x/d4/dd5/highgui_8hpp.html
+    https://docs.opencv.org/4.x/d7/dfc/group__highgui.html#ga89e7806b0a616f6f1d502bd8c183ad3e 
+    typedef void(* 	cv::MouseCallback) (int event, int x, int y, int flags, void *userdata)
+      Callback function for mouse events. see cv::setMouseCallback. More...
+    typedef void(* 	cv::TrackbarCallback) (int pos, void *userdata)
+      Callback function for Trackbar see cv::createTrackbar. More...
+  https://docs.opencv.org/4.x/dc/d4d/tutorial_py_table_of_contents_gui.html
+    https://docs.opencv.org/4.x/db/d5b/tutorial_py_mouse_handling.html
+    https://docs.opencv.org/4.x/d9/dc8/tutorial_py_trackbar.html
+  https://qengineering.eu/install-opencv-on-raspberry-pi.html

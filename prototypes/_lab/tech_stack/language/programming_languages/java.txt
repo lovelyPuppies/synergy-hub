@@ -1,0 +1,250 @@
+list of level 1 subjects
+  - Java
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+Java
+  ⚓ Java Community process (JCP) ; https://en.wikipedia.org/wiki/Java_Community_Process
+    - Java Specification Requests, JSRs
+    #️⃣ 1. List of JSRs ; https://en.wikipedia.org/wiki/Java_Community_Process#List_of_JSRs
+      #️⃣ 901: Java Language Specification ; https://www.jcp.org/en/jsr/detail?id=901
+   & https://jcp.org/en/home/index
+
+  # Tools
+    ⚓ JDK Tools Specifications ; https://docs.oracle.com/en/java/javase/20/docs/specs/man/index.html
+      ⚓ The java Command ; https://docs.oracle.com/en/java/javase/20/docs/specs/man/java.html
+        #️⃣ Extra Options for Java ; https://docs.oracle.com/en/java/javase/20/docs/specs/man/java.html#extra-options-for-java
+          -Xmn size
+            for the young generation (nursery) in the generational collectors
+          -Xss size
+
+          -Xms size
+          -Xmx size
+
+
+    ⚓ JavaDoc Guide ; https://docs.oracle.com/en/java/javase/20/javadoc/javadoc.html
+
+  # Java Specifications
+    ⚓ API Specification ; https://docs.oracle.com/en/java/javase/20/docs/api/index.html
+    ⚓ Java Language Specification ; https://docs.oracle.com/javase/specs/jls/se20/html/index.html
+      ⚓ Chapter 4. Types, Values, and Variables ; https://docs.oracle.com/javase/specs/jls/se20/html/jls-4.html
+        #️⃣ 4.2. Primitive Types and Values ; https://docs.oracle.com/javase/specs/jls/se20/html/jls-4.html#jls-4.2
+          PrimitiveType:
+            {Annotation} NumericType
+            {Annotation} boolean
+        #️⃣ 4.3. Reference Types and Values ; https://docs.oracle.com/javase/specs/jls/se20/html/jls-4.html#jls-4.3
+          ReferenceType:
+            ClassOrInterfaceType
+            TypeVariable
+            ArrayType
+      ⚓ Chapter 14. Blocks, Statements, and Patterns ; https://docs.oracle.com/javase/specs/jls/se20/html/jls-14.html
+        #️⃣ 14.10. The assert Statement ; https://docs.oracle.com/javase/specs/jls/se20/html/jls-14.html#jls-14.10
+    ⚓ JShell ; https://docs.oracle.com/en/java/javase/20/jshell/introduction-jshell.html
+
+    ⚓📎 Java Virtual machine (JVM) ; https://en.wikipedia.org/wiki/Java_virtual_machine
+      ⚓ HotSpot (virtual machine) ; https://en.wikipedia.org/wiki/HotSpot_(virtual_machine)
+    └ JVM Specification ; https://docs.oracle.com/javase/specs/jvms/se20/html/index.html
+    ⚓📎 Java Native Interface (JNI) ; https://en.wikipedia.org/wiki/Java_Native_Interface
+    └ JNI specification ; https://docs.oracle.com/en/java/javase/20/docs/specs/jni/index.html
+----------------------------------------------
+OpenJDK Vendor
+  ⚓⭕ Adoptium Temurin ; https://adoptium.net/support/
+
+----------------------------------------------
+Java 🔪 Docs generator
+Java 🔪 Docs generator: Javadoc
+  https://en.wikipedia.org/wiki/Javadoc
+   & https://www.oracle.com/java/technologies/javase/javadoc-tool.html
+  
+  License: 🔍 Oracle?
+
+  ⚓ Javadoc guide ; https://docs.oracle.com/javase/1.5.0/docs/guide/javadoc/
+  ⚓ Javadoc reference ; https://docs.oracle.com/javase/1.5.0/docs/tooldocs/windows/javadoc.html
+  ⚓ Javadoc styleguide ; https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html
+
+※※※※※※※※※※※※※※
+⚓ Spring ; https://spring.io
+  ⚓📍 Guides ; https://spring.io/guides
+
+----------------------------------------------
+Projects 🔪 Spring Boot ; https://spring.io/projects/spring-boot
+
+----------------------------------------------
+Projects 🔪 Spring framework
+  ⚓ Spring framework ; https://spring.io/projects/spring-framework
+  ⚓ Spring API Docs ; https://docs.spring.io/spring-framework/docs/current/javadoc-api/
+  ⚓ Spring Framework Docs ; https://docs.spring.io/spring-framework/reference/
+    ⚓ Core Technologies ; https://docs.spring.io/spring-framework/reference/core.html
+      ⚓ The IoC Container ; https://docs.spring.io/spring-framework/reference/core/beans.html
+        ⚓ Bean Overview ; https://docs.spring.io/spring-framework/reference/core/beans/definition.html
+      ⚓ Validation, Data Binding, and Type Conversion ; https://docs.spring.io/spring-framework/reference/core/validation.html
+      ⚓ Spring Expression Language (SpEL) ; https://docs.spring.io/spring-framework/reference/core/expressions.html
+      ⚓ Aspect Oriented Programming with Spring ; https://docs.spring.io/spring-framework/reference/core/aop.html
+      ⚓ Null-safety ; https://docs.spring.io/spring-framework/reference/core/null-safety.html
+    ⚓ Testing ; https://docs.spring.io/spring-framework/reference/index.html
+    ⚓ Data Access; https://docs.spring.io/spring-framework/reference/data-access.html
+      ⚓ Jakarta Persistence API (JPA) | Java Persistence API ; https://en.wikipedia.org/wiki/Jakarta_Persistence
+      └ JPA ; https://docs.spring.io/spring-framework/reference/data-access/orm/jpa.html
+      ⚓ Hibernate ORM ; https://en.wikipedia.org/wiki/Hibernate_(framework)
+      └ Hibernate ; https://docs.spring.io/spring-framework/reference/data-access/orm/hibernate.html
+    ⚓ Web on Servlet Stack ; https://docs.spring.io/spring-framework/reference/web.html
+      ⚓ Spring Web MVC ; https://docs.spring.io/spring-framework/reference/web/webmvc.html
+      ⚓ REST Clients ; https://docs.spring.io/spring-framework/reference/web/webmvc-client.html
+      ⚓ WebSockets ; https://docs.spring.io/spring-framework/reference/web/websocket.html
+----------------------------------------------
+Projects 🔪 (Data)
+  ⚓ Spring data ; https://spring.io/projects/spring-data
+  ⚓ Spring Statemachine ; https://spring.io/projects/spring-statemachine
+  ⚓ Spring Modulith ; https://spring.io/projects/spring-modulith
+----------------------------------------------
+Projects 🔪 Spring Integration ; https://spring.io/projects/spring-integration
+----------------------------------------------
+Projects 🔪 Spring Batch ; https://spring.io/projects/spring-batch
+----------------------------------------------
+Projects 🔪 (Security)
+  ⚓ Spring Security ; https://spring.io/projects/spring-security
+  ⚓ Spring Session ; https://spring.io/projects/spring-session
+  ⚓ Spring Vault ; https://spring.io/projects/spring-vault
+  ⚓ Spring Authorization Server ; https://spring.io/projects/spring-authorization-server
+----------------------------------------------
+Projects 🔪 (REST)
+  ⚓ Spring REST ; https://spring.io/projects/spring-restdocs
+  ⚓ Spring shell ; https://spring.io/projects/spring-shell
+  ⚓ Spring HATEOAS ; https://spring.io/projects/spring-hateoas
+
+----------------------------------------------
+etc Projects
+  ⚓ Spring LDAP ; https://spring.io/projects/spring-ldap
+  ⚓ Spring AMQP ; https://spring.io/projects/spring-amqp
+
+
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+Kotlin
+  ⚓ Docs ; https://kotlinlang.org/docs/home.html
+    #🔰 Basics
+      ⚓🖇️ Basic syntax ; https://kotlinlang.org/docs/basic-syntax.html 📅 2023-06-11 19:01:48
+      ⚓ Idioms ; https://kotlinlang.org/docs/idioms.html
+      ⚓ Kotlin by example ; https://play.kotlinlang.org/byExample/overview
+      ⚓ Coding conventions ; https://kotlinlang.org/docs/coding-conventions.html
+    # Tools
+      ⚓ IDEs for Kotlin development ; https://kotlinlang.org/docs/kotlin-ide.html#other-ides-support
+      #💡 Dokka
+      ⚓💡 Document Kotlin code: KDoc ; https://kotlinlang.org/docs/kotlin-doc.html
+
+    # API reference
+      ⚓ Standard library (stdlib) ; https://kotlinlang.org/api/latest/jvm/stdlib/
+        ⚓ Package kotlin ; https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/
+          #️⃣ Functions ; https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/#functions
+            # arrayOf
+        ⚓ Package kotlin.collections ; https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/
+          #️⃣ Types ; 
+            ⚓ List ; https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/
+              # Properties
+                size
+              # Extension Properties
+                lastIndex; Returns the index of the last item in the list or -1 if the list is empty.
+          #️⃣ Properties ; https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/#properties
+            # indices
+          #️⃣ Functions ; https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/#functions
+            # contentToString
+            ⚓ listOf ; https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/list-of.html
+            ⚓ setof ; https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/set-of.html
+(✍️ Kotlin study)
+  🚨 (Issue: Error); JVMTarget not supports 20 when `./gradlew build'
+    it not occurs when `gradle init' with `application' - `JVM target 20' selections.
+    but current version not supports JVM target 20. set 19.
+    References
+      https://github.com/JetBrains/kotlin/blob/v1.8.21/compiler/config.jvm/src/org/jetbrains/kotlin/config/JvmTarget.kt
+      https://youtrack.jetbrains.com/issue/KT-57669
+
+----------------------------------------------
+🔰 Tutorial with Visual Studio Code
+  1. brew install libraries
+    https://formulae.brew.sh/formula/openjdk
+    https://formulae.brew.sh/formula/kotlin
+    https://formulae.brew.sh/formula/gradle
+  2. install VS Code extensions
+    https://marketplace.visualstudio.com/items?itemName=fwcd.kotlin
+    https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-gradle
+    https://marketplace.visualstudio.com/items?itemName=naco-siren.gradle-language
+    https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner
+  3. 🔗 Building Kotlin Applications with libraries Sample
+    - set Java Compilation version at `wbfw109.kotlin-common-conventions.gradle` 🔗 Toolchains for JVM projects
+    - run VSCode as root project or workspace in which directory kotlin project's build.gradle is located.
+      use `Gradle' tab. e.g. `gradle app:run' can be executed by one-click.
+
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+Development Tools
+※※※※※※※※※※※※※※
+Build tools 🔪 Gradle
+  # Quick Start
+    #️⃣ Kotlin ; https://docs.gradle.org/current/samples/index.html#kotlin
+      ⚓🖇️ Building Kotlin Applications with libraries Sample ; https://docs.gradle.org/current/samples/sample_building_kotlin_applications_multi_project.html 📅 2023-06-11 19:01:48
+        💡 convention plugins, groovy-gradle-plugin
+          To use a plugin it needs to be declared as dependency in the dependencies {} block.
+  # Authoring Gradle Builds
+    # Structuring Individual Builds
+      ⚓ Sharing Build Logic between Subprojects ;https://docs.gradle.org/current/userguide/sharing_build_logic_between_subprojects.html
+        Convention Plugins
+    # Learning the Basics
+      ⚓ Using Gradle Plugins ;  https://docs.gradle.org/current/userguide/plugins.html
+        Gradle plugin portal (GradlePluginPortal)
+  # Authoring JVM Builds
+    #🚣~ Java Toolchain
+      ⚓ Toolchains for JVM projects ; https://docs.gradle.org/current/userguide/toolchains.html
+    # JVM Plugins
+      ⚓💡📎 Java Library Plugin ; https://docs.gradle.org/current/userguide/java_library_plugin.html
+        #📎 Usage
+          (api, implementation)
+        # Recognizing API and implementation dependencies
+          ⭕ Prefer the implementation configuration over api when possible
+        # 🚣 The Java Library plugin configurations
+
+  # Working with Dependencies
+    # Learning the Basics
+      ⚓📰 Declaring dependencies ; https://docs.gradle.org/current/userguide/declaring_dependencies.html
+      
+  # Reference
+    ⚓ Gradle Core Plugins ; https://docs.gradle.org/current/userguide/plugin_reference.html
+      #️⃣ JVM languages and frameworks ; https://docs.gradle.org/current/userguide/plugin_reference.html#jvm_languages_and_frameworks
+        ⚓ The Java Library Plugin (java-library) ; https://docs.gradle.org/current/userguide/java_library_plugin.html
+      #️⃣ Packaging and distribution ; https://docs.gradle.org/current/userguide/plugin_reference.html#jvm_languages_and_frameworks
+        ⚓ The Application Plugin (application); https://docs.gradle.org/current/userguide/application_plugin.html
+          The only mandatory configuration for the plugin is ...
+  ⚓ Gradle Build Language Reference | DSL Reference ; https://docs.gradle.org/current/dsl/index.html
+    # Container types
+      ⚓ DependencyHandler ; https://docs.gradle.org/current/dsl/org.gradle.api.artifacts.dsl.DependencyHandler.html
+---------------------------------------------
+Repositories
+  ⚓ Gradle plugins; https://plugins.gradle.org/
+    📝 It can be accessed by using `gradlePluginPortal()` in repositories block of build.gradle.
+    ⚓ org.gradle.toolchains.foojay-resolver-convention ; https://plugins.gradle.org/plugin/org.gradle.toolchains.foojay-resolver-convention
+  ⚓ Maven Repository ; https://mvnrepository.com/
+    📝 see `Tags`' attributes. If `gradle` exists, it can be accessed also by using `gradlePluginPortal()`.
+    ⚓ Kotlin JVM Plugin ; https://mvnrepository.com/artifact/org.jetbrains.kotlin.jvm/org.jetbrains.kotlin.jvm.gradle.plugin
+    ⚓ Kotlin Gradle Plugin ; https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-gradle-plugin
+
+    ⚓ Apache Commons Text ; https://mvnrepository.com/artifact/org.apache.commons/commons-text
+    ⚓ JUnit Jupiter API ; https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
+
+================================================
+Testing framework 🔪 JUnit 5
+  ⚓ JUnit 5 ; https://junit.org/junit5/
+  
+※※※※※※※※※※※※※※
+IDE 🔪 IntelliJ
+  - in order to reflect changed Environment variables, IntelliJ must be restarted.
+
+
+Question
+  회사에서 사용하는 Kotlin App 구조, 백엔드 (스프링) 구조
+
+  kotlin 에 대한 build.gradle 진입 포인트 등 확인 필요.
+  test library 사용방법도 확인 필요.
+
+
+읽어야 할 것
+  Hot reload 기능.. + https://docs.gradle.org/current/userguide/custom_tasks.html#incremental_tasks
+  https://code.visualstudio.com/docs/java/java-build
+  

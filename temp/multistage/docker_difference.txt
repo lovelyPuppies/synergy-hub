@@ -1,0 +1,573 @@
+두 개 도커 이미지 차이 자세히 알려줘.
+그리고 wayland 셰션? 뭐 그거 마운트되서 x11 환경에서 ssh + devcontianeㄱ 로 접속이 안되던데.. 이거 이미지 실행할때  x11 로 지정하는 방법 있나?
+
+
+❯ docker ps -a
+CONTAINER ID   IMAGE                                                                                 COMMAND                  CREATED        STATUS                    PORTS     NAMES
+dd5e28485bc5   vsc-multistage-ed3298273791636b2a657d4af61aedc046d608f3b98b8ba212a6feaebc3b9afc       "/bin/sh -c 'echo Co…"   8 hours ago    Up 8 hours                          vibrant_jemison
+ded8a5af1e88   vsc-ros-noetic-9a77f283d3307672fea0501211b9fab6204794e7b437690b1d46dbaf7aa83f63-uid   "/bin/sh -c 'echo Co…"   20 hours ago   Exited (0) 13 hours ago             ros_noetic_study
+070a780c64c0   qtcrossbuild                                                                          "bash"                   46 hours ago   Created                             tmpbuild
+79776a1f0ca2   raspimage                                                                             "bash"                   2 days ago     Created                             temp-arm
+a693c5b2ecd2   moby/buildkit:buildx-stable-1                                                         "buildkitd --allow-i…"   7 days ago     Up 11 hours                         buildx_buildkit_mybuilder0
+
+synergy-hub on  main is 📦 v0.1.0 via 🐍 v3.13.1 
+❯ docker inspect dd5e28485bc5
+[
+    {
+        "Id": "dd5e28485bc5b1079042bfc8838b50faf9a32e7395f834944110f3eefa4835cd",
+        "Created": "2025-01-08T15:49:37.30512974Z",
+        "Path": "/bin/sh",
+        "Args": [
+            "-c",
+            "echo Container started\ntrap \"exit 0\" 15\n\nexec \"$@\"\nwhile sleep 1 & wait $!; do :; done",
+            "-"
+        ],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 140965,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2025-01-08T15:49:37.757002797Z",
+            "FinishedAt": "0001-01-01T00:00:00Z"
+        },
+        "Image": "sha256:45473ae7adde0744fde6a29a2b0c8de9c59f099359cdda1cb92dd0f817dfffc9",
+        "ResolvConfPath": "/var/lib/docker/containers/dd5e28485bc5b1079042bfc8838b50faf9a32e7395f834944110f3eefa4835cd/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/dd5e28485bc5b1079042bfc8838b50faf9a32e7395f834944110f3eefa4835cd/hostname",
+        "HostsPath": "/var/lib/docker/containers/dd5e28485bc5b1079042bfc8838b50faf9a32e7395f834944110f3eefa4835cd/hosts",
+        "LogPath": "/var/lib/docker/containers/dd5e28485bc5b1079042bfc8838b50faf9a32e7395f834944110f3eefa4835cd/dd5e28485bc5b1079042bfc8838b50faf9a32e7395f834944110f3eefa4835cd-json.log",
+        "Name": "/vibrant_jemison",
+        "RestartCount": 0,
+        "Driver": "overlay2",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "docker-default",
+        "ExecIDs": [
+            "da1a74bd8a3fed0e076c9474a377d7cf53126edc0de6f100c691ee4cfcf831a9",
+            "4081c2236876adf02e8cf2238ca5ae2585c0477ae7e123d194b6084c823d7fee"
+        ],
+        "HostConfig": {
+            "Binds": [
+                "/home/wbfw109v2/.Xauthority:/tmp/.Xauthority:rw"
+            ],
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "bridge",
+            "PortBindings": {},
+            "RestartPolicy": {
+                "Name": "no",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "ConsoleSize": [
+                24,
+                80
+            ],
+            "CapAdd": null,
+            "CapDrop": null,
+            "CgroupnsMode": "private",
+            "Dns": [],
+            "DnsOptions": [],
+            "DnsSearch": [],
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": [],
+            "BlkioDeviceReadBps": [],
+            "BlkioDeviceWriteBps": [],
+            "BlkioDeviceReadIOps": [],
+            "BlkioDeviceWriteIOps": [],
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": [],
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": null,
+            "PidsLimit": null,
+            "Ulimits": [],
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "Mounts": [
+                {
+                    "Type": "bind",
+                    "Source": "/home/wbfw109v2/repos/synergy-hub/temp/multistage",
+                    "Target": "/workspace"
+                },
+                {
+                    "Type": "volume",
+                    "Source": "vscode",
+                    "Target": "/vscode"
+                }
+            ],
+            "MaskedPaths": [
+                "/proc/asound",
+                "/proc/acpi",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/sys/firmware",
+                "/sys/devices/virtual/powercap"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/1e1728a3bad6ef045279b9c1b086bc9b0be7e649b8db683f225d8eac98c75fdc-init/diff:/var/lib/docker/overlay2/a6f43330f929d7dbc87514c77b2c5835631e0f2ac7acb03d9af300052c7871dd/diff:/var/lib/docker/overlay2/867e7e41b046fc120625476f42cadc72beb235eb7db6317b480ae9beaabdd5b1/diff:/var/lib/docker/overlay2/d383be49462c9c2561af68a10ef2a2a25c6f96f6106646210ef73be114d2acd9/diff:/var/lib/docker/overlay2/617e3428b08ef263a6f95ae96b7eeea2079bb28401a0272d30afcb22318fdf83/diff:/var/lib/docker/overlay2/252b5942e7ffbf5d1a259fd614a6a0c35a0ac852cebd4588c53073b0eebce429/diff:/var/lib/docker/overlay2/28d834cb91970958c8b198a7f2058eee94086fae6c5c6df082f787ad51ebcc31/diff:/var/lib/docker/overlay2/9307503eb000635deb559710f2faf0b9c0584bef0e4c00c93d7233340b8f536d/diff",
+                "MergedDir": "/var/lib/docker/overlay2/1e1728a3bad6ef045279b9c1b086bc9b0be7e649b8db683f225d8eac98c75fdc/merged",
+                "UpperDir": "/var/lib/docker/overlay2/1e1728a3bad6ef045279b9c1b086bc9b0be7e649b8db683f225d8eac98c75fdc/diff",
+                "WorkDir": "/var/lib/docker/overlay2/1e1728a3bad6ef045279b9c1b086bc9b0be7e649b8db683f225d8eac98c75fdc/work"
+            },
+            "Name": "overlay2"
+        },
+        "Mounts": [
+            {
+                "Type": "bind",
+                "Source": "/home/wbfw109v2/.Xauthority",
+                "Destination": "/tmp/.Xauthority",
+                "Mode": "rw",
+                "RW": true,
+                "Propagation": "rprivate"
+            },
+            {
+                "Type": "bind",
+                "Source": "/home/wbfw109v2/repos/synergy-hub/temp/multistage",
+                "Destination": "/workspace",
+                "Mode": "",
+                "RW": true,
+                "Propagation": "rprivate"
+            },
+            {
+                "Type": "volume",
+                "Name": "vscode",
+                "Source": "/var/lib/docker/volumes/vscode/_data",
+                "Destination": "/vscode",
+                "Driver": "local",
+                "Mode": "z",
+                "RW": true,
+                "Propagation": ""
+            }
+        ],
+        "Config": {
+            "Hostname": "dd5e28485bc5",
+            "Domainname": "",
+            "User": "root",
+            "AttachStdin": false,
+            "AttachStdout": true,
+            "AttachStderr": true,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "DISPLAY=:1",
+                "XAUTHORITY=/tmp/.Xauthority",
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "DEBIAN_FRONTEND=noninteractive",
+                "TZ=Asia/Seoul"
+            ],
+            "Cmd": [
+                "-c",
+                "echo Container started\ntrap \"exit 0\" 15\n\nexec \"$@\"\nwhile sleep 1 & wait $!; do :; done",
+                "-"
+            ],
+            "Image": "vsc-multistage-ed3298273791636b2a657d4af61aedc046d608f3b98b8ba212a6feaebc3b9afc",
+            "Volumes": null,
+            "WorkingDir": "",
+            "Entrypoint": [
+                "/bin/sh"
+            ],
+            "OnBuild": null,
+            "Labels": {
+                "devcontainer.config_file": "/home/wbfw109v2/repos/synergy-hub/temp/multistage/.devcontainer/devcontainer.json",
+                "devcontainer.local_folder": "/home/wbfw109v2/repos/synergy-hub/temp/multistage",
+                "devcontainer.metadata": "[ {\"id\":\"ghcr.io/devcontainers-extra/features/fish-apt-get:1\"}, {\"customizations\":{\"vscode\":{\"extensions\":[\"PKief.material-icon-theme\",\"yzhang.markdown-all-in-one\",\"esbenp.prettier-vscode\",\"ms-azuretools.vscode-docker\"],\"settings\":{\"files.exclude\":{\"**/*.egg-info\":true}}}},\"containerEnv\":{\"DISPLAY\":\":1\",\"XAUTHORITY\":\"/tmp/.Xauthority\"}} ]",
+                "org.opencontainers.image.ref.name": "ubuntu",
+                "org.opencontainers.image.version": "24.04"
+            }
+        },
+        "NetworkSettings": {
+            "Bridge": "",
+            "SandboxID": "ea80edfb5adefcecc0cbbe004ef0f74919c4117594289f7756f1aa942be70df0",
+            "SandboxKey": "/var/run/docker/netns/ea80edfb5ade",
+            "Ports": {},
+            "HairpinMode": false,
+            "LinkLocalIPv6Address": "",
+            "LinkLocalIPv6PrefixLen": 0,
+            "SecondaryIPAddresses": null,
+            "SecondaryIPv6Addresses": null,
+            "EndpointID": "1c03ceac0b460ceedf52bae1dcdd42aa2d82483b234b85c24cf225c34dd9779f",
+            "Gateway": "172.17.0.1",
+            "GlobalIPv6Address": "",
+            "GlobalIPv6PrefixLen": 0,
+            "IPAddress": "172.17.0.3",
+            "IPPrefixLen": 16,
+            "IPv6Gateway": "",
+            "MacAddress": "02:42:ac:11:00:03",
+            "Networks": {
+                "bridge": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": null,
+                    "MacAddress": "02:42:ac:11:00:03",
+                    "DriverOpts": null,
+                    "NetworkID": "fc1d83ec1ba217017b7ae939061aea2bed9d1b0db8051dc35ea229cecc4d6f2e",
+                    "EndpointID": "1c03ceac0b460ceedf52bae1dcdd42aa2d82483b234b85c24cf225c34dd9779f",
+                    "Gateway": "172.17.0.1",
+                    "IPAddress": "172.17.0.3",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "DNSNames": null
+                }
+            }
+        }
+    }
+]
+
+
+
+
+
+❯ docker inspect ded8a5af1e88
+[
+    {
+        "Id": "ded8a5af1e8885f753d1ac583a6d462b9e828337805451f09a57b56b4402b5a5",
+        "Created": "2025-01-08T04:16:32.957693545Z",
+        "Path": "/bin/sh",
+        "Args": [
+            "-c",
+            "echo Container started\ntrap \"exit 0\" 15\n\nexec \"$@\"\nwhile sleep 1 & wait $!; do :; done",
+            "-"
+        ],
+        "State": {
+            "Status": "exited",
+            "Running": false,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 0,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2025-01-08T10:54:50.462892541Z",
+            "FinishedAt": "2025-01-08T10:58:59.524004224Z"
+        },
+        "Image": "sha256:ac0ba01f2ed641e6016d4d5c3ae2f6439f9e72b870ca063e6e1e520295fa5b97",
+        "ResolvConfPath": "/var/lib/docker/containers/ded8a5af1e8885f753d1ac583a6d462b9e828337805451f09a57b56b4402b5a5/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/ded8a5af1e8885f753d1ac583a6d462b9e828337805451f09a57b56b4402b5a5/hostname",
+        "HostsPath": "/var/lib/docker/containers/ded8a5af1e8885f753d1ac583a6d462b9e828337805451f09a57b56b4402b5a5/hosts",
+        "LogPath": "/var/lib/docker/containers/ded8a5af1e8885f753d1ac583a6d462b9e828337805451f09a57b56b4402b5a5/ded8a5af1e8885f753d1ac583a6d462b9e828337805451f09a57b56b4402b5a5-json.log",
+        "Name": "/ros_noetic_study",
+        "RestartCount": 0,
+        "Driver": "overlay2",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "unconfined",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": [
+                "/tmp/.X11-unix:/tmp/.X11-unix",
+                "/home/wbfw109v2/.Xauthority:/tmp/.Xauthority:rw"
+            ],
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "host",
+            "PortBindings": {},
+            "RestartPolicy": {
+                "Name": "no",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "ConsoleSize": [
+                24,
+                80
+            ],
+            "CapAdd": null,
+            "CapDrop": null,
+            "CgroupnsMode": "private",
+            "Dns": [],
+            "DnsOptions": [],
+            "DnsSearch": [],
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "host",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": true,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": [
+                "label=disable"
+            ],
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "nvidia",
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": [],
+            "BlkioDeviceReadBps": [],
+            "BlkioDeviceWriteBps": [],
+            "BlkioDeviceReadIOps": [],
+            "BlkioDeviceWriteIOps": [],
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": [
+                {
+                    "PathOnHost": "/dev/video0",
+                    "PathInContainer": "/dev/video0",
+                    "CgroupPermissions": "rwm"
+                },
+                {
+                    "PathOnHost": "/dev/ttyACM0",
+                    "PathInContainer": "/dev/ttyACM0",
+                    "CgroupPermissions": "rwm"
+                },
+                {
+                    "PathOnHost": "/dev/ttyACM1",
+                    "PathInContainer": "/dev/ttyACM1",
+                    "CgroupPermissions": "rwm"
+                },
+                {
+                    "PathOnHost": "/dev/ttyACM2",
+                    "PathInContainer": "/dev/ttyACM2",
+                    "CgroupPermissions": "rwm"
+                }
+            ],
+            "DeviceCgroupRules": null,
+            "DeviceRequests": [
+                {
+                    "Driver": "",
+                    "Count": -1,
+                    "DeviceIDs": null,
+                    "Capabilities": [
+                        [
+                            "gpu"
+                        ]
+                    ],
+                    "Options": {}
+                }
+            ],
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": null,
+            "PidsLimit": null,
+            "Ulimits": [],
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "Mounts": [
+                {
+                    "Type": "bind",
+                    "Source": "/home/wbfw109v2/repos/synergy-hub/study/ros_study/ros-noetic",
+                    "Target": "/workspace"
+                },
+                {
+                    "Type": "volume",
+                    "Source": "vscode",
+                    "Target": "/vscode"
+                },
+                {
+                    "Type": "bind",
+                    "Source": "/run/user/1000/wayland-0",
+                    "Target": "/tmp/vscode-wayland-882561eb-aa7e-43a1-8bee-04db2bf28bfd.sock"
+                }
+            ],
+            "MaskedPaths": null,
+            "ReadonlyPaths": null
+        },
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/f3c04ef7fc55ac56276053997ec1cd1879573bbd3826cf9013b8fe2ec0973480-init/diff:/var/lib/docker/overlay2/ja9gr5jd9c7yif5ruozvywsyb/diff:/var/lib/docker/overlay2/1d2ff89e679adf289c13cd222b7ea89854316cfb62760fbea6e685251dd91d3a/diff:/var/lib/docker/overlay2/e54c84e47d7f39cf77a07e10d0dedea91e880dd4830dba1e32047c379747654d/diff:/var/lib/docker/overlay2/9983edee3ad350d1deda9ff0f1ee5e4e713fa719b3297b125833c1a8a28d0fab/diff:/var/lib/docker/overlay2/a9f86f0e0c4ab623c60310a24f20021c30970e583a04672238fa68181c272126/diff:/var/lib/docker/overlay2/64b2f896eb1af0d8e19819f9e9af02421b8e0713417c1bf246ea89d3b5f0203e/diff:/var/lib/docker/overlay2/9e9979f2094e5cfb42e70197daa653c0e993b58955a9144a30293846fa1b18d9/diff:/var/lib/docker/overlay2/b20b1b71eae210406002f87094b6aae4e9f4e0b20b6a03b390d0dd31ec6ebc80/diff:/var/lib/docker/overlay2/0c3af11cee7a4c3722221b0f92aa6c5377808ad0de0c6b79ad7db914ab0f51b6/diff:/var/lib/docker/overlay2/a27b340cc1461d0fc412550e8c36bcaf2fe515ae63dd24e642c5dd9da6b6cc8b/diff:/var/lib/docker/overlay2/6ef1cf35b585de5bcef4f4640fc06f8d0985395cbd643825b03471893b8f7128/diff:/var/lib/docker/overlay2/fb98108325098ca9e7622f154fab7fe30961a6716f89951be18e2b69d6f4f93a/diff:/var/lib/docker/overlay2/070420d23734871c26aa132c07d67cb33c3710315b79f41c83b94920dd0372dd/diff:/var/lib/docker/overlay2/252f0b9079c0fb5dd8c5800b569cfd3c8742b7b5fcd08a52bf95b8898a50e291/diff:/var/lib/docker/overlay2/122b2aea56535f26af46e0db80579ef4f98c59d402e0e1033c30190481ec0edc/diff:/var/lib/docker/overlay2/382b564b7418df7b56219bbdaebed77d89c625a9ef18aab07d4613b8a06962cd/diff:/var/lib/docker/overlay2/b61419c64a40b3bca92cd577c3d2bf7483b85bab2cc8c5be354c0cb5173dbabe/diff:/var/lib/docker/overlay2/2a790a4f3bbffb5802d3ffc510239c0a9dd99deb7c545e00982cef4d0908eefc/diff:/var/lib/docker/overlay2/0bb4f04ecdfcc96d22b0846266324f648121147151df3f2c645673d6b4f3b3b9/diff:/var/lib/docker/overlay2/409663e6158d422b0fe0041e2e66045e463c981e96d80d677fbc724383e1e546/diff",
+                "MergedDir": "/var/lib/docker/overlay2/f3c04ef7fc55ac56276053997ec1cd1879573bbd3826cf9013b8fe2ec0973480/merged",
+                "UpperDir": "/var/lib/docker/overlay2/f3c04ef7fc55ac56276053997ec1cd1879573bbd3826cf9013b8fe2ec0973480/diff",
+                "WorkDir": "/var/lib/docker/overlay2/f3c04ef7fc55ac56276053997ec1cd1879573bbd3826cf9013b8fe2ec0973480/work"
+            },
+            "Name": "overlay2"
+        },
+        "Mounts": [
+            {
+                "Type": "bind",
+                "Source": "/run/user/1000/wayland-0",
+                "Destination": "/tmp/vscode-wayland-882561eb-aa7e-43a1-8bee-04db2bf28bfd.sock",
+                "Mode": "",
+                "RW": true,
+                "Propagation": "rprivate"
+            },
+            {
+                "Type": "volume",
+                "Name": "vscode",
+                "Source": "/var/lib/docker/volumes/vscode/_data",
+                "Destination": "/vscode",
+                "Driver": "local",
+                "Mode": "z",
+                "RW": true,
+                "Propagation": ""
+            },
+            {
+                "Type": "bind",
+                "Source": "/home/wbfw109v2/repos/synergy-hub/study/ros_study/ros-noetic",
+                "Destination": "/workspace",
+                "Mode": "",
+                "RW": true,
+                "Propagation": "rprivate"
+            },
+            {
+                "Type": "bind",
+                "Source": "/tmp/.X11-unix",
+                "Destination": "/tmp/.X11-unix",
+                "Mode": "",
+                "RW": true,
+                "Propagation": "rprivate"
+            },
+            {
+                "Type": "bind",
+                "Source": "/home/wbfw109v2/.Xauthority",
+                "Destination": "/tmp/.Xauthority",
+                "Mode": "rw",
+                "RW": true,
+                "Propagation": "rprivate"
+            }
+        ],
+        "Config": {
+            "Hostname": "iot-04",
+            "Domainname": "",
+            "User": "vscode",
+            "AttachStdin": false,
+            "AttachStdout": true,
+            "AttachStderr": true,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "DISPLAY=:1",
+                "XAUTHORITY=/tmp/.Xauthority",
+                "PATH=/home/vscode/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "LANG=C.UTF-8",
+                "LC_ALL=C.UTF-8",
+                "ROS_DISTRO=noetic"
+            ],
+            "Cmd": [
+                "-c",
+                "echo Container started\ntrap \"exit 0\" 15\n\nexec \"$@\"\nwhile sleep 1 & wait $!; do :; done",
+                "-"
+            ],
+            "Image": "vsc-ros-noetic-9a77f283d3307672fea0501211b9fab6204794e7b437690b1d46dbaf7aa83f63-uid",
+            "Volumes": null,
+            "WorkingDir": "",
+            "Entrypoint": [
+                "/bin/sh"
+            ],
+            "OnBuild": null,
+            "Labels": {
+                "devcontainer.config_file": "/home/wbfw109v2/repos/synergy-hub/study/ros_study/ros-noetic/.devcontainer/devcontainer.json",
+                "devcontainer.local_folder": "/home/wbfw109v2/repos/synergy-hub/study/ros_study/ros-noetic",
+                "devcontainer.metadata": "[ {\"id\":\"ghcr.io/devcontainers-extra/features/fish-apt-get:1\"}, {\"customizations\":{\"vscode\":{\"extensions\":[\"ms-iot.vscode-ros\",\"PKief.material-icon-theme\"],\"settings\":{\"files.exclude\":{\"**/*.egg-info\":true}}}},\"containerEnv\":{\"DISPLAY\":\":1\",\"XAUTHORITY\":\"/tmp/.Xauthority\"},\"remoteUser\":\"vscode\"} ]",
+                "org.opencontainers.image.ref.name": "ubuntu",
+                "org.opencontainers.image.version": "20.04"
+            }
+        },
+        "NetworkSettings": {
+            "Bridge": "",
+            "SandboxID": "",
+            "SandboxKey": "",
+            "Ports": {},
+            "HairpinMode": false,
+            "LinkLocalIPv6Address": "",
+            "LinkLocalIPv6PrefixLen": 0,
+            "SecondaryIPAddresses": null,
+            "SecondaryIPv6Addresses": null,
+            "EndpointID": "",
+            "Gateway": "",
+            "GlobalIPv6Address": "",
+            "GlobalIPv6PrefixLen": 0,
+            "IPAddress": "",
+            "IPPrefixLen": 0,
+            "IPv6Gateway": "",
+            "MacAddress": "",
+            "Networks": {
+                "host": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": null,
+                    "MacAddress": "",
+                    "DriverOpts": null,
+                    "NetworkID": "86bbc29b31bafaf1140a40260fcbe66646e9d5daf0f86eca1245197ad618d5a3",
+                    "EndpointID": "",
+                    "Gateway": "",
+                    "IPAddress": "",
+                    "IPPrefixLen": 0,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "DNSNames": null
+                }
+            }
+        }
+    }
+]

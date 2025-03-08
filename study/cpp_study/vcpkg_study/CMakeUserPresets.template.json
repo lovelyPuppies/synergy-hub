@@ -1,0 +1,26 @@
+{
+  "version": 3,
+  "configurePresets": [
+    {
+      "name": "local-debug-x64-linux-gnu-clang",
+      "inherits": "debug-x64-linux-gnu-clang",
+      "environment": {
+        "VCPKG_ROOT": "$env{HOME}/repos/vcpkg"
+      }
+    },
+    {
+      "name": "local-release-x64-linux-gnu-clang",
+      "inherits": "release-x64-linux-gnu-clang",
+      "environment": {
+        "VCPKG_ROOT": "$env{HOME}/repos/vcpkg"
+      }
+    },
+    {
+      "name": "local-debug-aarch64-linux-gnu-clang",
+      "inherits": "debug-aarch64-linux-gnu-clang",
+      "environment": {
+        "VCPKG_ROOT": "$env{HOME}/repos/vcpkg"
+      }
+    }
+  ]
+}

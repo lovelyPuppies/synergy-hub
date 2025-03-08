@@ -1,6 +1,30 @@
-// 📝 Note that the original file of "keybindings.json "must be .json file. not jsonc.
+// 🧮 %VSCode> Preferences: Open Keyboard Shortcuts (JSON)
+// 📝 Note that the original file must be .json file. not jsonc.
 [
-  // Title: Bookmark Shortcuts from https://marketplace.visualstudio.com/items?itemName=alefragnani.Bookmarks
+  // 🌀 Title: Scroll
+  {
+    "key": "pageup",
+    "command": "editorScroll",
+    "args": {
+      "to": "up",
+      "by": "halfPage",
+      "revealCursor": true,
+      "value": 1
+    },
+    "when": "textInputFocus"
+  },
+  {
+    "key": "pagedown",
+    "command": "editorScroll",
+    "args": {
+      "to": "down",
+      "by": "halfPage",
+      "revealCursor": true,
+      "value": 1
+    },
+    "when": "textInputFocus"
+  },
+  // 🌀 Title: Bookmark Shortcuts ; https://marketplace.visualstudio.com/items?itemName=alefragnani.Bookmarks
   {
     "key": "ctrl+alt+k ctrl+alt+l",
     "command": "bookmarks.list"
@@ -13,6 +37,38 @@
   {
     "key": "ctrl+alt+k",
     "command": "-bookmarks.toggle",
+    "when": "editorTextFocus"
+  },
+  // 🌀 Title: Unwanted Shortcuts for Block Sort ; https://marketplace.visualstudio.com/items?itemName=1nVitr0.blocksort
+  {
+    "key": "ctrl+alt+up",
+    "command": "-blocksort.sortBlocksAsc",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+alt+down",
+    "command": "-editor.action.sortLinesDescending",
+    "when": "editorTextFocus"
+  },
+  // 📰 Unknown Bug; Shift+Alt combinations not works, but n-key rollover works 📅 2025-01-02 10:20:34
+  {
+    "key": "ctrl+alt+down",
+    "command": "editor.action.insertCursorBelow",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "shift+alt+down",
+    "command": "-editor.action.insertCursorBelow",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+alt+up",
+    "command": "editor.action.insertCursorAbove",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "shift+alt+up",
+    "command": "-editor.action.insertCursorAbove",
     "when": "editorTextFocus"
   }
 ]

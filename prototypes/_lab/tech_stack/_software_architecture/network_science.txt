@@ -1,0 +1,54 @@
+list of level 1 subjects
+  - Network science
+    Computer Network
+    Telecommunications network
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ Network science ; https://en.wikipedia.org/wiki/Telecommunications_network
+※※※※※※※※※※※※※※※
+Network types 🔪⚓ Computer Network ; https://en.wikipedia.org/wiki/Computer_network
+  # Network types
+    ⚓ Multiplexing ; https://en.wikipedia.org/wiki/Multiplexing
+      In telecommunications and computer networking, multiplexing (sometimes contracted to muxing) is a method by which multiple analog or digital signals are combined into one signal over a shared medium.
+
+
+----------------------------------------------
+(Data Transmission)
+  ⚓📎🔰 syncword | sync character | sync sequence | preamble ; https://en.wikipedia.org/wiki/Syncword
+    ... is used to synchronize a data transmission by indicating the end of header information and the start of data.
+      The syncword is a known sequence of data used to identify the 🚣 start of a frame, and is also called 🪱 reference signal or 🪱 midamble 🚣 in wireless communications.
+    🪱 Prefix codes allow unambiguous identification of synchronization sequences and may serve as 🪱 self-synchronizing code.
+  ⚓ Self-synchronizing code ; https://en.wikipedia.org/wiki/Self-synchronizing_code
+
+
+----------------------------------------------
+⚓ DNS ; https://pipx.pypa.io/stable/
+
+
+
+  ⚓📎 Multicast DNS (mDNS) ; << https://en.wikipedia.org/wiki/Multicast_DNS
+    ❔ Multicast DNS (mDNS) is a computer networking protocol that resolves hostnames to IP addresses within small networks that do not include a 🪱 local name server.
+      📝 A local DNS server is a server which is setup inside of a company or homes network for use by other clients on the network 🔗 https://www.quora.com/What-is-a-local-DNS-server
+    💡 It uses IP multicast User Datagram Protocol (UDP) packets and is implemented by the 🪱 Apple Bonjour and open-source 🪱 Avahi software packages, included in most Linux distributions.
+    
+    #️⃣ Protocol overview ; https://en.wikipedia.org/wiki/Multicast_DNS#Protocol_overview
+      ⚖️ By default, mDNS exclusively resolves hostnames ending with the 🪱 .local top-level domain.
+    #️⃣📍 Packet structure ; https://en.wikipedia.org/wiki/Multicast_DNS#Packet_structure
+      IPv4 address 224.0.0.251 or IPv6 address ff02::fb
+      UDP port 5353
+  ⚓ IETF RFC 6762 🔪 Multicast DNS ; << https://datatracker.ietf.org/doc/html/rfc6762
+
+
+
+
+
+
+
+
+
+
+※※※※※※※※※※※※※※※
+Network types 🔪⚓ Telecommunications network ; https://en.wikipedia.org/wiki/Telecommunications_network
+  ⚓ Multiplexing ; https://en.wikipedia.org/wiki/Multiplexing
+    In telecommunications and computer networking, multiplexing (sometimes contracted to muxing) is a method by which multiple analog or digital signals are combined into one signal over a shared medium.
+  

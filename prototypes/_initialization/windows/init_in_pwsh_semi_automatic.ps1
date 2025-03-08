@@ -3,7 +3,7 @@
     Initializes the pwsh environment
 
 .DESCRIPTION
-    🚧 Prerequsites
+    🚧 Prerequisite
       - This script must be run in "pwsh" after install pwsh in Window "PowerSshell"
       - You may need to see expiration_date/subscriptions.yml (License key)
 
@@ -25,20 +25,16 @@ wsl --install
 
 
 
-#### 🌱 System
-<# 🚧 In a Settings window,
-System
+#### 🚧 In a Settings window,
+<#
+🌱 System
   - Notifications
     - ✔️ Do not disturb
   - Multitasking
     - Show tabs from apps when snapping or pressing Alt + Tab
       - ✔️ Don't show tabs
-#>
 
-
-#### 🌱 Personalization
-<# 🚧 In a Settings window,
-Personalization
+🌱 Personalization
   - Colors
     - Choose your mode
       - ✔️ Dark
@@ -47,16 +43,32 @@ Personalization
       - ✔️ Automatically hide the taskbar
       - When using multiple displays, show my taskbar apps on
         ✔️ Taskbar where window is open
-#>
+  - Start
+    - ✖️ Show recently opened items in Start, Jump Lists, and File Explorer
 
-#### 🌱 Time & language
-<# 🚧 In a Settings window,
-Time & language - Language & region
-  - Language
-    - Korean - More Options - Language Options
+🌱 Time & language
+  - Language & region
+    - Language
+      - Korean - More Options - Language Options
         - Keyboards - Installed keyboards - Add a keyboard
           - ✔️ Microsoft IME
-  # ✔️ and remains one keyboard for each Language
+    # ✔️ and remains one keyboard for each Language
+
+🌱 Privacy & security
+  - Windows permissions
+    - Search permissions
+      - Cloud content search
+        - ✖️ Microsoft account
+        - ✖️ Work or School account
+      - History
+        - ✖️ Search history on this device
+      - More settings
+        - ✖️ Show search highlights
+    - Activity history
+      - ✖️ Store my activity history on this device
+      - ✔️ Clear history
+
+
 #>
 
 
@@ -80,43 +92,108 @@ View
 
 
 
-##### ▶️ Windows Packages not supported by Scoop package manaegr, that work well.
+##### ▶️ Windows Packages not supported by Scoop package manager, that work well.
 
 <#
-  ⚓ Bandiview ; https://en.bandisoft.com/bandiview/dl.php?web
-  ⚓ Logitech G Hub ; https://download01.logi.com/web/ftp/pub/techsupport/gaming/lghub_installer.exe
-  ⚓ Docker Desktop ; https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=docs-driven-download-win-amd64
-  ⚓ Office 365 ; https://go.microsoft.com/fwlink/?linkid=2264705&clcid=0x409&culture=en-us&country=us
-  ⚓ Tailsacle ; https://pkgs.tailscale.com/stable/tailscale-setup-latest.exe
+  📦⚓ Bandiview ; https://en.bandisoft.com/bandiview/dl.php?web
+  📦⚓ Logitech G Hub ; https://download01.logi.com/web/ftp/pub/techsupport/gaming/lghub_installer.exe
+  📦⚓ Docker Desktop ; https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe?utm_source=docker&utm_medium=webreferral&utm_campaign=docs-driven-download-win-amd64
+  📦⚓ Office 365 ; https://go.microsoft.com/fwlink/?linkid=2264705&clcid=0x409&culture=en-us&country=us
+    - 📦 Language pack (Korean 64bit) ; https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=languagepack&language=ko-kr&platform=x64&source=O16LAP&version=O16GA
+      https://support.microsoft.com/en-us/office/language-accessory-pack-for-microsoft-365-82ee1236-0f9a-45ee-9c72-05b026ee809f
+  📦⚓ Tailsacle ; https://pkgs.tailscale.com/stable/tailscale-setup-latest.exe
     Notes
     -----
     Start Tailscale with Windows by running:
     reg import "$HOME\scoop\apps\tailscale\current\add-startup.reg"
   # Discord 55691
-  ⚓ Discord ; https://stable.dl2.discordapp.net/distro/app/stable/win/x64/1.0.9173/DiscordSetup.exe
+  📦⚓ Discord ; https://stable.dl2.discordapp.net/distro/app/stable/win/x64/1.0.9173/DiscordSetup.exe
     If I install it using the command "scoop install extras/discord", a new instance is initiated every time I run the Discord app. 📅 2024-12-07 15:54:23
     
 #>
 
+<#
+📦⚓ Tartube ; https://github.com/axcore/tartube/releases
+  https://github.com/axcore/tartube
+  GUI front-end for youtube-dl, yt-dlp and other compatible video downloaders
+  ❌ Do not install from Scoop (extras/tartube) 📅 2025-01-18 13:03:20
+    Tartube installed from Scoop cannot use FFmpeg, even if FFmpeg is installed via Scoop.
+    Additionally, the built-in FFmpeg installer in Tartube fails.
+  ❌ Do not use "4K YouTube to MP3 Converter" ; https://www.4kdownload.com 📅 2024-12-31 11:04:59
+    https://www.4kdownload.com/troubleshooting/troubleshooting-cant-activate-with-license-key/2
+    * Activation limit reached problem
+      Licenses are tied to the current OS setup. If you format or reinstall the OS, the license is lost and cannot be renewed easily.
+      License renewal is cumbersome and may require purchasing a new key after exceeding activation limits.
+        
+  Settings      
+    Tartube setup
+      Tartube stores all of its downloads in one place
+        - ✔️ E:\Tartube
+      When saving in the database, Tartube makes a backup copy of its databse file (in case seomthing gose wrong)
+        - ✔️ Make a new backup file every time the database is saved
+      Choose which downloader to use
+        - ✔️ yt-dlp
+      📰 Install and update downloader
+        📝 Not works
+      ✔️ Install FFmpeg
+      Tartube adds vidoe to a database. If you don't need a database, you can use Classic Mode.
+        ✔️ Always open Tartube at this tab
 
-#### 🌱 NVIDIA App ; https://us.download.nvidia.com/nvapp/client/11.0.1.163/NVIDIA_app_v11.0.1.163.exe
+    Tartube
+      # Settings for Video to Audio ; https://github.com/axcore/tartube/issues/38#issuecomment-573664336
+      [Tab] Classic Mode
+        - Open in Classic Mode menu
+          - Edit download options...
+            - [Tab] Name
+              - ✔️ Show advanced download options
+            - [Tab] Format
+              - ✔️ List of preferred formats
+                mp4
+                m4a
+                m4a 128k (DASH Audio)
+            - [Tab] Post-processing
+              - [Tab] General
+                - Post processing options
+                  - ✔️ Post-process vidoe files to convert them to audio-only files
+        - Destination
+          - ✔️ E:\Tartube\downloads
+
+📦⚓ Musicbee ; https://getmusicbee.com/downloads/
+  ❌ Do not install from Scoop (extras/musicbee) 📅 2025-01-18 13:03:20
+    >>
+      Installing 'musicbee' (3.5.8698) [64bit] from 'extras' bucket
+      The remote server returned an error: (404) Not Found.
+      URL https://files1.majorgeeks.com/6c3bcf93d7e4ff1a87bb079e23abeadb594ed026/multimedia/MusicBeePortable_3_5.zip is not valid
+
+  Settings
+    Menu - Select Skin - Dark
+      - ✔️ Kandinsky dark
+
+📦⚓ Potplayer ; https://t1.daumcdn.net/potplayer/PotPlayer/Version/Latest/PotPlayerSetup64.exe
+  ❌ Do not install from Scoop (extras/potplayer) 📅 2025-01-25 14:13:04
+    When select multiple files and press Enter, an app will run for each file.
+
+#>
+
+
+#### 📦🌱 NVIDIA App ; https://us.download.nvidia.com/nvapp/client/11.0.1.163/NVIDIA_app_v11.0.1.163.exe
 <# 🚧 In a NVIDIA Overaly (⌨️ Alt + Z),
-Settings 
-  - Shortcut controls
-    - General
-      - Open/close the in-game overaly
-        - ✔️ Ctrl + Alt + Shift + Z (default: Alt + Z)
-    - Statistics monitor
-      - Toggle statistics overlay on/off
-        - ✔️ None (default: Alt + R)
-      - Cycle through metrics shown
-        - ✔️ None (default: Alt + Shift + R)
-      - Toggle visibility
-        - ✔️ None (default: Alt + Ctrl + R)
+  Settings 
+    - Shortcut controls
+      - General
+        - Open/close the in-game overaly
+          - ✔️ Ctrl + Alt + Shift + Z (default: Alt + Z)
+      - Statistics monitor
+        - Toggle statistics overlay on/off
+          - ✔️ None (default: Alt + R)
+        - Cycle through metrics shown
+          - ✔️ None (default: Alt + Shift + R)
+        - Toggle visibility
+          - ✔️ None (default: Alt + Ctrl + R)
 #>
 <# 🚧 In a NVIDIA App,
-System
-  - ✔️ set GSYNC, Monitors' Refresh Rate you want
+  System
+    - ✔️ set GSYNC, Monitors' Refresh Rate you want
 #>
 
 
@@ -243,23 +320,21 @@ if (-not (Get-Content $profilePath | Select-String -SimpleMatch $gsudoUniqueComm
 }
 
 ##### 🌱 ... 
-scoop install main/ffmpeg
-<# ...
-  Creating shim for 'ffmpeg'.
-  Creating shim for 'ffplay'.
-  Creating shim for 'ffprobe'.
-#>
+
+
 
 scoop install main/gdrive
+scoop install extras/vcxsrv
 scoop install extras/bandizip
-scoop install extras/kakaotalk
-scoop install extras/potplayer
 scoop install extras/okular
 scoop install extras/gimp
 scoop install extras/rufus
 scoop install extras/digikam # https://www.digikam.org/
-scoop install extras/tartube  # https://github.com/axcore/tartube
-scoop install extras/powertoys
+scoop install extras/kakaotalk
+
+
+winget install --id Microsoft.PowerToys --source winget
+# scoop install extras/powertoys
 <#
   - ✔️ customize FancyZone
 
@@ -270,6 +345,8 @@ scoop install extras/powertoys
 
   If an error occurs when updating or uninstalling, execute the following command then retry:
   `Stop-Process -Name 'explorer'`
+
+  📰 Image Resizer 가 실행되고 있음에도 안나온다. 우클릭에..
 #>
 
 scoop install versions/steam
@@ -279,6 +356,20 @@ scoop install versions/steam
   -----
   ❔ Changing Steam library folder is HIGHLY recommended.
 #>
+
+
+
+#### 🌱 Video, Audio
+scoop install main/yt-dlp
+scoop install versions/ffmpeg-yt-dlp
+<# ...
+  Creating shim for 'ffmpeg'.
+  Creating shim for 'ffplay'.
+  Creating shim for 'ffprobe'.
+  #>
+
+
+
 
 #### 🌱 Nerd Font
 scoop install nerd-fonts/JetBrainsMono-NF-Mono

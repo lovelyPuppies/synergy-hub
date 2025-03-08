@@ -1,0 +1,69 @@
+list of level 1 subjects
+  - ORM
+
+
+⭕ When to Use ORM (Recommended) 📅 2025-02-25 23:48:54
+  * Maintainability & Productivity
+    - Easier Schema Management
+      Schema changes and refactoring become simpler.
+    - Database Independence
+      Works across multiple databases (MySQL, PostgreSQL, SQLite, etc.).
+    - Automatic Migrations
+      Schema changes can be handled with migration tools.
+
+  * Code Quality & Security
+    - Reduces Boilerplate SQL
+      Improves code readability and speeds up development.
+    - Prevents SQL Injection
+      Uses parameterized queries for enhanced security.
+    - Type Safety & IDE Support
+      Enables better auto-completion, linting, and static typing.
+
+  * Suitable for Systems Where ORM Queries Are Acceptable
+    - Handles Complex Object Relationships
+      Simplifies One-to-Many, Many-to-Many associations.
+    - Good for Soft Real-Time Systems
+      ORM queries can be used where millisecond-level delays 
+      are tolerable, such as IoT device management, smart package delivery, or user activity logging.
+
+❌ When Not to Use ORM for Queries (Not Recommended) 📅 2025-02-25 23:48:54
+  ❗ Note that This does not mean ORM should be entirely excluded from Hard Real-Time Systems, but rather that ORM should not 
+    be used for query execution in latency-sensitive components.
+
+  * Hard Real-Time & Performance-Critical Systems
+    - Hard Real-Time Systems
+      Where strict time constraints (microseconds/milliseconds) must be met, 
+      such as ECU control, ADAS decision-making, robotic motor control, or high-frequency trading.
+    - Memory-Intensive Applications
+      ORM can introduce unnecessary memory overhead due to object mappings.
+
+  * Complex Query Scenarios
+    - Deep Joins, Recursive Queries, or Window Functions
+      ORM-generated SQL may not be optimal.
+    - Direct Use of DB-Specific Features
+      Some database functionalities (e.g., PostgreSQL JSONB, MySQL Spatial) 
+      may not be fully supported.
+
+  * Lightweight & Short-Lived Applications
+    - For simple scripts, microservices, or one-off database operations, raw SQL might be more efficient.
+
+⚠️ However, ORM is not widely used in C++. 📅 2025-02-26 03:19:44
+  Unlike Java or Python, C++ does not have a strong ORM ecosystem
+  , mainly due to a small developer community and the lack of permissive open-source ORM libraries.
+    Most C++ ORM solutions come with restrictive licenses or limited platform support. Here’s why:
+      - ODB: Uses a dual-licensing model. Under GPL/NCUEL, you must release your source code if distributed. A commercial license (CPL) is required to keep your code private, starting at $1,500.
+      - SQLite-ORM: Uses AGPL by default, requiring full source code disclosure for public use. If you want to keep your code closed-source, you need to purchase an MIT license for $50.
+      - TinyORM: While it provides ORM features, it has limited target triple support, restricting its usability in various environments.
+
+  Given these limitations, I have decided to use raw SQL instead.
+    - I looked for libraries that abstract database drivers for multiple DBMSs, but most options are not well-maintained.
+      - SOCI: Last major update was a long time ago and does not support MariaDB.
+
+  ➡️ Conclusion
+    Instead of relying on ORM or a third-party abstraction layer, it is best to use the official database drivers provided by each DBMS for better reliability and performance.
+    🛍️ e.g. mariadb-connector-cpp
+
+
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓⭕ ORM ; https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping

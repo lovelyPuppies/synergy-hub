@@ -1,0 +1,11 @@
+list of level 1 subjects
+  - Data Compression
+    Data compression methods
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ Data Compression ; https://en.wikipedia.org/wiki/Data_compression
+※※※※※※※※※※※※※※※
+Data compression methods
+  ⚓🔰 Prefix code ; https://en.wikipedia.org/wiki/Prefix_code
+
+----------------------------------------------

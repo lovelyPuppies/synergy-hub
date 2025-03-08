@@ -1,0 +1,218 @@
+list of level 1 subjects
+  - vcpkg (Visual C++ Package Manager)
+
+
+❗ Firstly, Check Packages's supported Triplets at the site ; https://vcpkg.io/en/packages📅 2025-02-20 20:55:26
+  🛍️ e.g. fmt ; https://vcpkg.io/en/package/fmt
+    - Supports
+      This package supports the following triplets:
+        Supported on all triplets
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓⭕ vcpkg ; https://en.wikipedia.org/wiki/Vcpkg
+  vcpkg is a cross-platform open source package manager by Microsoft.
+  https://github.com/microsoft/vcpkg
+  
+(✍️ vcpkg 🔪 study)
+  ❔ About: Why ARM64 dynamic triplets are not supported by default 📅 2025-02-21 06:00:44
+    ARM64 dynamic triplets are not officially supported in vcpkg by default.
+      This is mainly due to cross-compilation difficulties, runtime and deployment challenges, and potential performance bottlenecks. 
+      Static linking is generally preferred for ARM64 because it simplifies cross-platform development, reduces compatibility issues, and streamlines deployment. 
+      Since dynamic libraries must be built and tested separately for different platforms, they introduce additional complexity.
+      Given these challenges, vcpkg is configured to use static libraries by default for ARM64 environments.
+    
+    1️⃣ Cross-compilation difficulties
+      - Cross-compiling dynamic libraries is inherently more complex than static libraries.
+      - Dynamic libraries depend on a target-specific runtime linker (e.g., ld-linux.so) and shared object (.so) dependencies that must match the target environment.
+      - When cross-compiling, the host system does not have the exact target runtime, making it difficult to ensure compatibility.
+      - In contrast, static libraries (.a) embed all dependencies directly, making cross-compilation simpler and more reliable.
+
+    2️⃣ Deployment and runtime environment challenges
+      - Static libraries ensure that the binary works independently, whereas dynamic libraries require distributing additional shared objects (.so).
+      - If the target system has a different version of libc or other system libraries, dynamic linking can break.
+      - Embedded and mobile environments have stricter runtime constraints, making it difficult to rely on shared libraries.
+      - Dynamic libraries require additional runtime loading operations, which can slow down execution.
+      - On embedded Linux systems using Yocto or Buildroot, dynamic libraries 
+        increase maintenance overhead, as they need to be preloaded properly.
+      - Containers (🛍️ e.g., Docker) can isolate dependencies, but they do not solve performance issues in embedded devices.
+
+    3️⃣ Performance concerns in embedded & mobile systems
+      - Embedded devices prioritize fast startup times and deterministic behavior.
+      - Dynamic linking introduces overhead in loading and symbol resolution, which can slow down boot times.
+      - Mobile platforms like Android and iOS often enforce strict policies 
+        for shared library distribution, making static linking the safer choice.
+
+
+⚓ vcpkg 🔪 Package Index ; https://vcpkg.io/en/packages
+  - fmt ; https://vcpkg.io/en/package/fmt
+  - spdlog ; https://vcpkg.io/en/package/spdlog
+
+----------------------------------------------
+vcpkg 🔪⚓ Docs ; https://learn.microsoft.com/en-us/vcpkg/
+  #🔰 Get started
+    ⚓ Install and use packages with CMake in Visual Studio Code ; https://learn.microsoft.com/en-us/vcpkg/get_started/get-started-vscode?pivots=shell-bash
+
+  #🔰 Concepts
+    ⚓🖇️ classic Mode ; https://learn.microsoft.com/en-us/vcpkg/concepts/classic-mode
+      📝 User can install by 🛍️ e.g. running `vcpkg install fmt:x64-linux fmt:arm64-linux`
+      In classic mode, vcpkg maintains a central installed tree inside the vcpkg instance built up by individual vcpkg install and vcpkg remove commands.
+        This central set of packages can then be shared by any number of projects.
+      🚣 Because the set of installed packages is not associated with an individual project, classic mode operates similarly to tools like brew or apt.
+        However ...
+    ⚓ Manifest mode ; https://learn.microsoft.com/en-us/vcpkg/concepts/manifest-mode
+      📝🚧 Prerequisite 📅 2025-02-21 05:19:05
+        - 프로젝트 경로에서 다음 명령어를 수행해서 manifest 파일고 만들고, 사용할 라이브러리를 추가해야 한다.
+          🛍️ e.g. %shell>
+            vcpkg new --application
+            vcpkg add port spdlog
+            vcpkg add port tinyorm[build-mysql-driver,orm,mysql-ping]
+  
+        - CMakePresets.json 와 함께 사용할 때, Classic Mode 와 동일하게 설정하면 된다.
+          자동으로 프로젝트 경로에 manifest 파일이 있느냐 없느냐에 따라 "VCPKG_MANIFEST_MODE" 가 설정되기 때문.
+            🛍️ e.g. 
+              "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+              "VCPKG_TARGET_TRIPLET": "arm64-linux"
+
+      # Manifest files in ports
+      #📎 Manifest files in projects
+        The main purpose of using a manifest file in your project is to declare your dependencies.
+        🔰 When using a project manifest, you're able to specify version constraints and overrides to lock specific versions of your dependencies. This feature is not available in classic mode.
+      # Configuration file
+      # Installing packages in manifest mode
+        To install packages using a manifest file you use the vcpkg install command without any package arguments.
+        🪱 vcpkg_installed
+      # Using 🪱 features in project manifests
+        💡 Manifest files can define additive sets of functionality, behavior, and dependencies through the use of "features".
+
+    ⚓ Triplets ; https://learn.microsoft.com/en-us/vcpkg/concepts/triplets
+      Triplet is a standard term used in cross-compiling as a way to completely capture the target environment (CPU, OS, compiler, runtime, etc.) in a single, convenient name.
+
+
+    # Build system integration
+      ⚓🔰 CMake integration ; https://learn.microsoft.com/en-us/vcpkg/users/buildsystems/cmake-integration
+        # CMAKE_TOOLCHAIN_FILE
+          ⭕ We recommend using CMake Presets to specify your toolchain file. 
+            "cacheVariables": {
+              "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+            }
+        # Using Libraries
+          🚣 vcpkg does not automatically add any include or links paths into your project.
+          To use a header-only library you can use find_path() which will correctly work on all platforms: ...
+        # IDE Integration
+
+        #🚣 Using Multiple Toolchain Files
+        # Settings Reference
+          -📍 VCPKG_TARGET_TRIPLET
+          - VCPKG_MANIFEST_MODE
+            This variable forces vcpkg to operate in 🌳 either manifest mode or classic mode.
+            Defaults to ON when VCPKG_MANIFEST_DIR is non-empty or ${CMAKE_SOURCE_DIR}/vcpkg.json exists.
+          -📍 VCPKG_MANIFEST_FEATURES
+
+
+  # Reference
+    #🧮 Command-Line
+      ⚓ vcpkg help ; https://learn.microsoft.com/en-us/vcpkg/commands/help
+        🔰 %shell> vcpkg help triplet
+          >> 
+          Built-in Triplets:
+            arm-neon-android
+            arm64-android
+            arm64-osx
+            arm64-uwp
+            arm64-windows-static-md
+            arm64-windows
+            x64-android
+            x64-linux
+            x64-osx
+            x64-uwp
+            x64-windows-release
+            x64-windows-static-md
+            x64-windows-static
+            x64-windows
+            x86-windows
+          Community Triplets:
+            arm-android
+            arm-ios
+            arm-linux-release
+            arm-linux
+            arm-mingw-dynamic
+            arm-mingw-static
+            arm-uwp-static-md
+            arm-uwp
+            arm-windows-static
+            arm-windows
+            arm64-ios-release
+            arm64-ios-simulator-release
+            arm64-ios-simulator
+            arm64-ios
+            arm64-linux-release
+            arm64-linux
+            arm64-mingw-dynamic
+            arm64-mingw-static
+            arm64-osx-dynamic
+            arm64-osx-release
+            arm64-uwp-static-md
+            arm64-windows-static-release
+            arm64-windows-static
+            arm64ec-windows
+            armv6-android
+            loongarch32-linux-release
+            loongarch32-linux
+            loongarch64-linux-release
+            loongarch64-linux
+            mips64-linux
+            ppc64le-linux-release
+            ppc64le-linux
+            riscv32-linux-release
+            riscv32-linux
+            riscv64-linux-release
+            riscv64-linux
+            s390x-linux-release
+            s390x-linux
+            wasm32-emscripten
+            x64-freebsd
+            x64-ios
+            x64-linux-dynamic
+            x64-linux-release
+            x64-mingw-dynamic
+            x64-mingw-static
+            x64-openbsd
+            x64-osx-dynamic
+            x64-osx-release
+            x64-uwp-static-md
+            x64-windows-static-md-release
+            x64-windows-static-release
+            x64-xbox-scarlett-static
+            x64-xbox-scarlett
+            x64-xbox-xboxone-static
+            x64-xbox-xboxone
+            x86-android
+            x86-freebsd
+            x86-ios
+            x86-linux
+            x86-mingw-dynamic
+            x86-mingw-static
+            x86-uwp-static-md
+            x86-uwp
+            x86-windows-static-md
+            x86-windows-static
+            x86-windows-v120
+          See https://learn.microsoft.com/vcpkg/users/triplets?WT.mc_id=vcpkg_inproduct_cli for more information.
+      ⚓ vcpkg new ; https://learn.microsoft.com/en-us/vcpkg/commands/new
+        🔰 %shell> vcpkg new --application
+        Creates a manifest file (vcpkg.json) and a default configuration file (vcpkg-configuration.json) ready to use in your project in the current working directory.
+      
+      ⚓ vcpkg add ; https://learn.microsoft.com/en-us/vcpkg/commands/add
+        🔰 %shell> vcpkg add port [options] <port-name>...
+        The vcpkg add port command allows you to update the vcpkg.json manifest file by adding new package dependencies to your C++ project.
+      ⚓ vcpkg remove ; https://learn.microsoft.com/en-us/vcpkg/commands/remove
+     
+      ⚓ vcpkg install ; https://learn.microsoft.com/en-us/vcpkg/commands/install
+        # --dry-run
+
+      ⚓ vcpkg list ; https://learn.microsoft.com/en-us/vcpkg/commands/list
+      
+
+      ⚓ vcpkg x-update-baseline ; https://learn.microsoft.com/en-us/vcpkg/commands/update-baseline
+        vcpkg x-update-baseline [options] [--add-initial-baseline]
+  

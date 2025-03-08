@@ -1,9 +1,17 @@
 #!/usr/bin/env fish
+function on_interrupt
+    echo -e "\nScript interrupted. Exiting..."
+    # Kill all child processes in the same process group
+    kill -- -$fish_pid
+    exit 1
+end
+trap on_interrupt SIGINT
+
 
 ##### init_nfs-client_to_server.fish
 # 🪱 NFS (Network File System) allows for file sharing between Unix/Linux systems.
 # This script configures an NFS client by dynamically taking user input for target details.
-# Written at 📅 2024-12-11 11:00:20
+# 📅 Written at 2024-12-11 11:00:20
 
 : '
 * Prerequisite
@@ -50,7 +58,7 @@ read local_mount_dir_name
 set local_mount_dir /mnt/{$local_mount_dir_name}
 
 # Create the local directory
-mkdir --parents $local_mount_dir
+sudo mkdir --parents $local_mount_dir
 echo "Your local mount folder is $local_mount_dir."
 
 ### 3. Mount the NFS share

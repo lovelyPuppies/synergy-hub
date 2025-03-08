@@ -1,0 +1,7 @@
+list of level 1 subjects
+  - inotify-tools
+
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ inotify ; https://github.com/inotify-tools/inotify-tools
+  C library and command-line programs providing a simple interface to inotify

@@ -1,0 +1,455 @@
+list of level 1 subjects
+  - protobuf (Protocol Buffers)
+    - nanoPB
+  - gRPC (gRPC Remote Procedure Calls)
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓⭕ protobuf (Protocol Buffers) ; https://en.wikipedia.org/wiki/Protocol_Buffers 
+  Protocol Buffers are language-neutral, platform-neutral extensible mechanisms for serializing structured data.
+  https://github.com/protocolbuffers/protobuf
+
+(✍️ protobuf 🔪 study)
+
+  🚨 (Issue: Bug); `debug-static` pkg-config indicates Release Protobuf Library 📅 2025-02-03 05:24:06
+    sed -i '0,/ -lprotobuf /s// -lprotobufd /' /opt/protobuf/debug-static/lib/pkgconfig/protobuf.pc; \
+    sed -i '0,/ -lprotobuf-lite /s// -lprotobuf-lited /' /opt/protobuf/debug-shared/lib/pkgconfig/protobuf-lite.pc
+
+  🚨 (Issue: Error); Errors caused by ABI compatibility changes starting from LLVM 18. 📅 2025-02-03 14:25:42
+    ➡️ Solutions
+      - 👍 Downgrade Clang 19 → Clang 17 (Recommended)
+        🛍️ e.g. %shell>
+          clang++-17 ./addressbook.pb.cc ./read_message.cpp -o ./read_message.out \
+            $(pkg-config --libs --cflags protobuf | string split -n " ") -fuse-ld=lld
+      - Use GCC instead of Clang
+        🛍️ e.g. %shell>
+          g++-14 -flto=auto -pipe ./addressbook.pb.cc ./read_message.cpp -o ./read_message.out \
+            $(pkg-config --libs --cflags protobuf | string split -n " ") -lstdc++
+        - ❗ Downside: Compilation and linking speed are 2x slower compared to Clang.
+
+    When
+      Compiling tutorial files ; https://protobuf.dev/getting-started/cpptutorial/#compiling-protocol-buffers)
+
+      ```bash
+      #!/usr/bin/env fish
+      clang++ ./addressbook.pb.cc ./write_message.cpp -o ./write_message.out \
+          $(pkg-config --libs --cflags protobuf | string split -n " ") -fclang-abi-compat=17
+      ```
+    Error
+      /usr/bin/ld: /tmp/addressbook-3eae9c.o: in function `absl::lts_20240116::log_internal::LogMessage::operator<<(unsigned long)':
+      addressbook.pb.cc:(.text._ZN4absl12lts_2024011612log_internal10LogMessagelsEm[_ZN4absl12lts_2024011612log_internal10LogMessagelsEm]+0x19): undefined reference to `_ZN4absl12lts_2024011612log_internal10LogMessagelsImTnNSt9enable_ifIXntsr4absl16HasAbslStringifyIT_EE5valueEiE4typeELi0EEERS2_RKS5_'
+      clang++-19: error: linker command failed with exit code 1 (use -v to see invocation)
+
+    🧪📵 Attempt: Fail
+      ; Explicitly instantiate the operator overloading for `absl::log_internal::LogMessage`; see: https://github.com/abseil/abseil-cpp/issues/1747#issuecomment-2325811064
+    🧪📵 Attempt: Fail
+      ; Attempt 2: Adding the `-fclang-abi-compat=17` flag during compilation  
+        - Applying the Clang 17 ABI compatibility flag (`-fclang-abi-compat=17`) allows successful linking.  
+        - ❓ However, runtime issues still occur, leading to a segmentation fault.
+      When
+        Running `write_message.cpp` and `read_message.cpp` sequentially.
+          - `SerializeToOstream()` followed by `ParseFromIstream()` causes a segmentation fault when reading the written file.
+      Error
+        - If using Fish shell:
+          fish: Job 1, './write_message.out addressbook…' terminated by signal SIGSEGV (Address boundary error)
+        - If using Bash shell:
+          Segmentation fault (core dumped)
+    References
+      https://github.com/abseil/abseil-cpp/issues/1747
+      https://github.com/llvm/llvm-project/issues/102443
+
+
+  ➡️ Unless operating in fully commercial deployment environments, static builds are recommended. 📅 2025-01-31 19:57:19
+    🔹 Building with Dynamic Libraries
+      - Although it's possible to generate shared libraries with CMake, the build process takes a long time.
+        Due to this, even in a containerized environment, unless the built image is uploaded to a repository (which is usually the case in fully commercial deployment environments), static builds are generally the better choice.
+      - Installing via brew allows the use of shared libraries, but using brew as a package manager in a deployment environment is not ideal.
+      //
+      - The command `bazelisk build :protoc :protobuf` will build statically.
+    🔹 Production Environments
+      - When not using a containerized environment, shared libraries can lead to conflicts with other executables, making them an impractical choice.
+    🔹 Official Documentation
+      - Prebuilt packages installed via sudo apt are version-locked and often outdated.
+      - Additionally, unless using one of the methods explicitly mentioned above, all installation methods referenced in the official documentation default to static builds.
+
+    //
+    🧪🗑️ Install pre-compiled binaries (any OS) ; https://grpc.io/docs/protoc-installation/#install-pre-compiled-binaries-any-os
+      📝 Note that it install only `protoc` (compiler) rather than any static/dynamic libraries. ; ldd $(which protoc)    >> not a dynamic executable.
+      %shell>
+        ### To install the latest release of the protocol compiler from pre-compiled binaries, follow these instructions:
+        # Manually download from github.com/google/protobuf/releases the zip file corresponding to your operating system and computer architecture (protoc-<version>-<os>-<arch>.zip), or fetch the file using commands such as the following:
+
+        sudo apt update && sudo apt install -y curl unzip
+        PB_REL="https://github.com/protocolbuffers/protobuf/releases"
+        PROTOBUF_VERSION=29.3
+        # [aarch_64, x86_64]
+        PROTOBUF_ARCH=x86_64
+
+        curl -LO $PB_REL/download/v$PROTOBUF_VERSION/protoc-$PROTOBUF_VERSION-linux-$PROTOBUF_ARCH.zip
+
+        # Unzip the file under $HOME/.local or a directory of your choice. For example:
+        unzip protoc-$PROTOBUF_VERSION-linux-$PROTOBUF_ARCH.zip -d $HOME/.local
+
+        # Update your environment’s path variable to include the path to the protoc executable. For example:
+        export PATH="$PATH:$HOME/.local/bin"
+
+
+
+----------------------------------------------
+protobuf 🔪 Installation 
+  #️⃣ Protobuf Runtime Installation ; https://github.com/protocolbuffers/protobuf#protobuf-runtime-installation
+    🔪 C++ ; https://github.com/protocolbuffers/protobuf/blob/main/src/README.md
+      To compile or install protobuf from source using CMake, see cmake/README.md.
+        https://github.com/protocolbuffers/protobuf/blob/main/cmake/README.md
+      %shell> 
+        sudo apt update && sudo apt install -y git g++ cmake ninja-build
+
+        git clone --depth=1 --single-branch https://github.com/protocolbuffers/protobuf.git
+        cd protobuf
+        git submodule update --init --recursive
+
+        ### 📝 Note that the command `bazelisk build :protoc :protobuf` install only `protoc` (compiler) rather than any static/dynamic libraries.
+        # Where is libprotobuf.a under the bazel build? ; https://github.com/protocolbuffers/protobuf/issues/12920
+
+        # 🔗 Bazel Install
+        # bazelisk build :protoc :protobuf
+        # cp bazel-bin/protoc /usr/local/bin
+        # find / -name "libprotobuf*.so" 2>/dev/null
+        #   >> ""
+        # find / -name "libprotobuf*.a" 2>/dev/null
+        #   >> ""
+        # find bazel-bin -name "libprotobuf*"
+        #   >> ""
+
+        mkdir -p build
+        cd build
+        cmake .. -Dprotobuf_BUILD_SHARED_LIBS=OFF -DCMAKE_INSTALL_PREFIX=/opt/protobuf -DCMAKE_CXX_STANDARD=17 -G Ninja -DCMAKE_BUILD_TYPE=Release
+        cmake --build . --parallel 12
+        cmake --install .
+        # cmake --install . --prefix /opt/protobuf
+        ## If want to dynamically libraries, add `-DBUILD_SHARED_LIBS=ON`
+        ## https://github.com/protocolbuffers/protobuf/issues/12920
+
+  
+================================================
+protobuf 🔪⚓ Docs ; https://protobuf.dev/
+  ⚓🖇️ Overview ; https://protobuf.dev/overview/ 📅 2025-01-28 05:52:07
+    # What Problems do Protocol Buffers Solve?
+      Protocol buffers provide a serialization format for packets of typed, structured data that are 🚣 up to a few megabytes in size.
+        ⚖️ The format is suitable for both ephemeral network traffic and long-term data storage.
+        💡 Protocol buffers can be extended with new information without invalidating existing data or requiring code to be updated.
+      🚣 Protocol buffers allow for the seamless support of changes, including the addition of new fields and the deletion of existing fields, to any protocol buffer without breaking existing services.
+    # What are the Benefits of Using Protocol Buffers?
+      #️⃣📍 Cross-language Compatibility
+      #️⃣📍 When are Protocol Buffers not a Good Fit?
+
+    #🔰 Protocol Buffers Definition Syntax
+
+  # Protobuf Editions
+    ⚓🖇️ Protobuf Editions Overview ; https://protobuf.dev/editions/overview/ 📅 2025-01-28 06:48:31
+      Instead of the hardcoded behaviors that older versions have had, editions represent a collection of features with a default value (behavior) per feature
+      
+      #⚖️ Lifecycle of a Feature
+        Using the 🪱 Prototiller tool to migrate earlier versions of proto files to edition 2033 adds explicit feature.amazing_new_feature = false entries as needed to continue to retain the previous behavior
+        ... Removing a feature will always initiate a major version bump.
+      # Migrating to Protobuf Editions
+        # Proto2 to Editions
+          // in proto2, optional fields have explicit presence
+          optional string name = 1 [default = "N/A"];
+          // proto2 still supports the problematic 🪱 "required" field rule
+          required int32 id = 2;
+        # Proto3 to Editions
+          // in proto3, optional fields have explicit presence
+          optional string name = 1 [default = "N/A"];
+          // in proto3 no specified field rule defaults to implicit 🪱 presence
+          int32 id = 2;
+
+          ⚖️ Editions syntax
+            // fields have 🪱 explicit presence, so no explicit setting needed
+            string name = 1 [default = "N/A"];
+            // to match the proto3 behavior, IMPLICIT is set at the field level
+            int32 id = 2 [features.field_presence = IMPLICIT];
+        # Lexical Scoping
+        # Grammar Changes
+          ...
+
+  # Programming Guides
+    ⚓ Language Guide (editions) ; https://protobuf.dev/programming-guides/editions/
+      #️⃣ Specifying Field Cardinality ; https://protobuf.dev/programming-guides/editions/#field-labels
+        - Singular:
+          A singular field has no explicit cardinality label. It has two possible states:
+            🔘 the field is set, and contains a value that was explicitly set or parsed from the wire. It will be serialized to the wire.
+            🔘 the field is unset, and will return the default value. ❗ It will not be serialized to the wire.
+
+      #️⃣ Enumerations ; https://protobuf.dev/programming-guides/editions/#enum
+        #⚖️ Enum Default Value
+          In edition 2023, the first value defined in an enum definition must have the value zero and should have the name 🪱 ENUM_TYPE_NAME_UNSPECIFIED or 🪱 ENUM_TYPE_NAME_UNKNOWN.
+          📝⭕ But, Adding "ENUM_TYPE_NAME" as a prefix is useless because Protobuf automatically adds a prefix based on the containing message or package. This results in duplication. 📅 2025-02-08 13:30:54
+            // Official 🛍️ e.g. 🔗 https://protobuf.dev/getting-started/cpptutorial/#protocol-format
+            message Person {
+              enum PhoneType {
+                PHONE_TYPE_UNSPECIFIED = 0;
+                PHONE_TYPE_MOBILE = 1;
+                PHONE_TYPE_HOME = 2;
+                PHONE_TYPE_WORK = 3;
+              }
+            }
+
+    ⚓ Encoding ; https://protobuf.dev/programming-guides/encoding/
+      🪱 wire format
+----------------------------------------------
+⚓🔰 protobuf 🔪 C++ ; https://protobuf.dev/reference/cpp/
+  ⚓ Protocol Buffer Basics: C++ ; << https://protobuf.dev/getting-started/cpptutorial/
+    # The Problem Domain
+      Raw Binary Serialization:
+        - Issue: Lack of portability (Endianness problem)
+          - Reason: Different CPU architectures store integers in different byte orders (little-endian vs. big-endian)
+        - Issue: Memory layout dependency
+          - Reason: Changes in structure layout may cause incompatibility with previously stored data
+        - Issue: Versioning problems
+          - Reason: Adding new fields or modifying structure requires recompiling software and breaks old formats
+
+      Ad-Hoc String Encoding:
+        - Issue: Requires custom parsing logic
+          - Reason: Must manually implement parsing functions such as string splitting and type conversion
+        - Issue: Runtime performance overhead
+          - Reason: Parsing and string manipulation introduce extra computational cost
+        - Issue: Lacks explicit data typing
+          - Reason: Encoding does not explicitly distinguish between different data types like integers, floats, and strings
+
+      XML Serialization:
+        - Issue: Large file size
+          - Reason: Extensive metadata in tags increases storage and transmission overhead
+        - Issue: Performance bottlenecks
+          - Reason: Parsing an XML document requires building and traversing a DOM tree, which consumes memory and processing power
+        - Issue: Complex navigation
+          - Reason: Extracting data requires tree traversal methods, making it harder to manipulate compared to simple structured fields
+    # Where to Find the Example Code ; https://github.com/protocolbuffers/protobuf/tree/main/examples
+    #️⃣ Defining Your Protocol Format ; https://protobuf.dev/getting-started/cpptutorial/#protocol-format
+      The " = 1", " = 2" markers on each element identify the unique field number that field uses in the binary encoding.
+      Field numbers 📍 1-15 require one less byte to encode than higher numbers
+        , so as an optimization you can decide to use those numbers for the commonly used or repeated elements
+        , leaving field numbers 16 and higher for less-commonly used optional elements.
+      Each element in a repeated field requires re-encoding the field number, so repeated fields are particularly good candidates for this optimization.
+
+      ⚠️ Important
+        Required Is Forever You should be very careful about marking fields as required. ...
+    #️⃣ Compiling Your Protocol Buffers ; https://protobuf.dev/getting-started/cpptutorial/#compiling-protocol-buffers
+    #️⃣ The Protocol Buffer API ; https://protobuf.dev/getting-started/cpptutorial/#protobuf-api
+      🪱
+        set_, has_, clear_
+        mutable_ 
+          ⚖️ mutable_email() even if email is not already set; it will be initialized to an empty string automatically.
+        _size, add_
+          ⚖️ If you had a repeated message field in this example, it would also have a mutable_ method but not a set_ method.
+
+      #️⃣ Enums and Nested Classes ; https://protobuf.dev/getting-started/cpptutorial/#enums-nested-classes
+        ⚖️ You can refer to this type as Person::PhoneType and its values as Person::PHONE_TYPE_MOBILE, Person::PHONE_TYPE_HOME, and Person::PHONE_TYPE_WORK
+          (the implementation details are a little more complicated, but you don’t need to understand them to use the enum).
+        📰 The compiler has also generated a nested class for you called Person::PhoneNumber.
+          If you look at the code, you can see that the “real” class is actually called Person_PhoneNumber
+          , but a typedef defined inside Person allows you to treat it as if it were a nested class.
+          The only case where this makes a difference is if you want to 🪱 forward-declare the class in another file – you cannot forward-declare nested types in C++, but you can forward-declare Person_PhoneNumber
+      
+      #️⃣💡 Standard Message Methods ; https://protobuf.dev/getting-started/cpptutorial/#standard-message-methods
+        Each message class also contains a number of other methods that let you check or manipulate the entire message, including:          
+          -🪱 bool IsInitialized() const; 
+            checks if all the required fields have been set.
+          - 🔰📍🪱 string DebugString() const; 
+            returns a human-readable representation of the message, particularly useful for debugging.
+          -🪱 void CopyFrom(const Person& from);  
+            overwrites the message with the given message’s values.
+          -🪱 void Clear(); 
+            clears all the elements back to the empty state.
+
+      #️⃣ Parsing and Serialization ; https://protobuf.dev/getting-started/cpptutorial/#parsing-serialization
+        Finally, each protocol buffer class has methods for writing and reading messages of your chosen type using the protocol buffer binary format. These include:
+          -🪱 bool SerializeToString(string* output) const;
+            serializes the message and stores the bytes in the given string. Note that the bytes are binary, not text; we only use the string class as a convenient container.
+          -🪱 bool ParseFromString(const string& data);
+            parses a message from the given string.
+          -🪱 bool SerializeToOstream(ostream* output) const;
+            writes the message to the given C++ ostream.
+          -🪱 bool ParseFromIstream(istream* input);
+            parses a message from the given C++ istream.
+        📍 Important
+          Protocol Buffers and Object Oriented Design Protocol buffer classes are basically 🪱 data holders (like structs in C) that don’t provide additional functionality
+            ; they don’t make good 🪱 first class citizens in an object model.
+          ⭕ Wrapping protocol buffers is also a good idea if you don’t have control over the design of the .proto file (if, say, you’re reusing one from another project).
+            In that case, you can use the wrapper class to craft an interface better suited to the unique environment of your application: hiding some data and methods, exposing convenience functions, etc.
+            ⚠️ You should never add behavior to the generated classes by inheriting from them.
+              This will break internal mechanisms and is not good object-oriented practice anyway.
+
+
+    #️⃣ Writing a Message ; https://protobuf.dev/getting-started/cpptutorial/#writing-a-message
+      ... ⭕ Notice the 🪱 GOOGLE_PROTOBUF_VERIFY_VERSION macro. It is good practice
+        Also notice the call to 🪱 ShutdownProtobufLibrary() at the end of the program           
+    #️⃣ Reading a Message ; https://protobuf.dev/getting-started/cpptutorial/#reading-a-message
+
+
+    #️⃣ Extending a Protocol Buffer ; https://protobuf.dev/getting-started/cpptutorial/#extending-a-protobuf
+      📍 "Migration guide" ...
+        ... Note also that if you added a new repeated field, your new code will not be able to tell whether it was left empty (by new code) or never set at all (by old code) since there is no has_ flag for it.
+
+
+    #️⃣⭕ Optimization Tips ; https://protobuf.dev/getting-started/cpptutorial/#optimization
+      - Reuse message objects when possible. Messages try to keep around any memory they allocate for reuse, even when they are cleared. ...
+        However, objects can become bloated over time, especially if your messages vary in “shape” or if you occasionally construct a message that is much larger than usual.
+          You should monitor the sizes of your message objects by calling the 🪱 SpaceUsed method and delete them once they get too big.
+      - Your system’s memory allocator may not be well-optimized for allocating lots of small objects from multiple threads.
+        Try using Google’s 🪱 TCMalloc instead.
+    #️⃣ Advanced Usage ; https://protobuf.dev/getting-started/cpptutorial/#advanced-usage
+      🪱 reflection
+        You can iterate over the fields of a message and manipulate their values without writing your code against any specific message type
+        A more advanced use of reflection might be to find differences between two messages of the same type, or to develop a sort of “regular expressions for protocol messages” in which you can write expressions that match certain message contents.
+
+
+  ⚓ C++ Generated Code Guide ; https://protobuf.dev/reference/cpp/cpp-generated/
+    Describes exactly what C++ code the protocol buffer compiler generates for any given protocol definition.
+
+  ⚓ C++ Arena Allocation Guide ; https://protobuf.dev/reference/cpp/arenas/
+    Arena allocation is a C++-only feature that helps you optimize your memory usage and improve performance when working with protocol buffers.
+
+  ⚓ 🪱 Abseil Support ; https://protobuf.dev/reference/cpp/abseil/
+    The C++ implementation of Protocol Buffers has an explicit dependency on Abseil.
+
+  ⚓ C++ API ; https://protobuf.dev/reference/cpp/api-docs/
+    #📦 google::protobuf
+      ⚓ google/protobuf/message.h ; https://protobuf.dev/reference/cpp/api-docs/google.protobuf.message
+        #️⃣ class Reflection ; https://protobuf.dev/reference/cpp/api-docs/google.protobuf.message/#Reflection
+
+  ⚓ C++ Reference ; https://protobuf.dev/reference/cpp/api-docs/
+    This section contains reference documentation for working with protocol buffer classes in C++.
+
+
+----------------------------------------------
+⚓🔰 protobuf 🔪 Python ; https://protobuf.dev/reference/python/
+  ⚓ Protocol Buffer Basics: Python ; https://protobuf.dev/getting-started/pythontutorial/
+    #️⃣📎⚖️📍 The Protocol Buffer API ; https://protobuf.dev/getting-started/pythontutorial/#protobuf-api
+      📝 Summary: In other words, this means that the actual classes are dynamically generated at 🚣 runtime.
+        This makes it difficult for IDEs to infer types solely through 🪱 static code analysis, as seen in *_pb2.py files generated by protoc in protobuf.
+        Therefore, by generating a .pyi (stub file) alongside, VSCode can explicitly read the precise interface information, allowing Intellisense to function properly.
+
+        ➡️⭕ creates python output with .pyi file.
+          🛍️ e.g. %shell> protoc -I=. --python_out=. --pyi_out=. smart_pkg_delivery.proto
+
+
+      Unlike when you generate Java and C++ protocol buffer code, the Python protocol buffer compiler doesn’t generate your data access code for you directly.
+        Instead (as you’ll see if you look at addressbook_pb2.py) it generates special 🪱 descriptors for all your messages, enums, and fields, and some mysteriously empty classes, one for each message type: ...
+        📝 🛍️ e.g. 
+          ```python
+          DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x18smart_pkg_delivery.proto\x12\x12smart_pkg_delivery\"\xb3\x03\n\x07Request\x12.\n\x08src_type\x18\x01 \x01(\x0e\x32\x1c.smart_pkg_delivery.NodeType\x12\x0e\n\x06src_id\x18\x02 \x01(\r\x12\x10\n\x08src_name\x18\x03 \x01(\t\x12/\n\tdest_type\x18\x04 \x01(\x0e\x32\x1c.smart_pkg_delivery.NodeType\x12\x0f\n\x07\x64\x65st_id\x18\x05 \x01(\r\x12\x11\n\tdest_name\x18\x06 \x01(\t\x12G\n\x15get_pkg_infos_request\x18\x07 \x01(\x0b\x32&.smart_pkg_delivery.GetPkgInfosRequestH\x00\x12S\n\x1bset_elevator_status_request\x18\x08 \x01(\x0b\x32,.smart_pkg_delivery.SetElevatorStatusRequestH\x00\x12S\n\x1bmove_delivery_robot_request\x18\t \x01(\x0b\x32,.smart_pkg_delivery.MoveDeliveryRobotRequestH\x00\x42\x0e\n\x0crequest_type\"\xab\x04\n\x08Response\x12.\n\x08src_type\x18\x01 \x01(\x0e\x32\x1c.smart_pkg_delivery.NodeType\x12\x0e\n\x06src_id\x18\x02 \x01(\r\x12\x10\n\x08src_name\x18\x03 \x01(\t\x12/\n\tdest_type\x18\x04 \x01(\x0e\x32\x1c.smart_pkg_delivery.NodeType\x12\x0f\n\x07\x64\x65st_id\x18\x05 \x01(\r\x12\x11\n\tdest_name\x18\x06 \x01(\t\x12\x31\n\nack_status\x18\x07 \x01(\x0b\x32\x1d.smart_pkg_delivery.AckStatus\x12=\n\x10\x65xecution_status\x18\x08 \x01(\x0b\x32#.smart_pkg_delivery.ExecutionStatus\x12G\n\x15get_pkg_info_response\x18\t \x01(\x0b\x32&.smart_pkg_delivery.GetPkgInfoResponseH\x00\x12U\n\x1cset_elevator_status_response\x18\n \x01(\x0b\x32-.smart_pkg_delivery.SetElevatorStatusResponseH\x00\x12U\n\x1cmove_delivery_robot_response\x18\x0b \x01(\x0b\x32-.smart_pkg_delivery.MoveDeliveryRobotResponseH\x00\x42\x0f\n\rresponse_type\"\x96\x03\n\tNodeEvent\x12.\n\x08src_type\x18\x01 \x01(\x0e\x32\x1c.smart_pkg_delivery.NodeType\x12\x0e\n\x06src_id\x18\x02 \x01(\r\x12\x10\n\x08src_name\x18\x03 \x01(\t\x12/\n\tdest_type\x18\x04 \x01(\x0e\x32\x1c.smart_pkg_delivery.NodeType\x12\x0f\n\x07\x64\x65st_id\x18\x05 \x01(\r\x12\x11\n\tdest_name\x18\x06 \x01(\t\x12@\n\x11pkg_arrival_event\x18\x07 \x01(\x0b\x32#.smart_pkg_delivery.PkgArrivalEventH\x00\x12H\n\x15\x65levator_status_event\x18\x08 \x01(\x0b\x32\'.smart_pkg_delivery.ElevatorStatusEventH\x00\x12H\n\x15\x64\x65livery_status_event\x18\t \x01(\x0b\x32\'.smart_pkg_delivery.DeliveryStatusEventH\x00\x42\x0c\n\nevent_type\"\x96\x01\n\tAckStatus\x12\x36\n\x04\x63ode\x18\x01 \x01(\x0e\x32(.smart_pkg_delivery.AckStatus.StatusCode\x12\x0f\n\x07message\x18\x02 \x01(\t\"@\n\nStatusCode\x12\x0f\n\x0bUNSPECIFIED\x10\x00\x12\x10\n\x0c\x41\x43K_RECEIVED\x10\x01\x12\x0f\n\x0b\x41\x43K_INVALID\x10\x02\"\x9d\x01\n\x0f\x45xecutionStatus\x12<\n\x04\x63ode\x18\x01 \x01(\x0e\x32..smart_pkg_delivery.ExecutionStatus.StatusCode\x12\x0f\n\x07message\x18\x02 \x01(\t\";\n\nStatusCode\x12\x0f\n\x0bUNSPECIFIED\x10\x00\x12\x10\n\x0c\x43ODE_SUCCESS\x10\x01\x12\n\n\x06\x46\x41ILED\x10\x02\"%\n\x12GetPkgInfosRequest\x12\x0f\n\x07user_id\x18\x01 \x01(\r\";\n\x12GetPkgInfoResponse\x12%\n\x04pkgs\x18\x01 \x03(\x0b\x32\x17.smart_pkg_delivery.Pkg\"r\n\x18MoveDeliveryRobotRequest\x12\x19\n\x11\x64\x65livery_robot_id\x18\x01 \x01(\r\x12;\n\x13\x64\x65stination_address\x18\x02 \x01(\x0b\x32\x1e.smart_pkg_delivery.AptAddress\"\x1b\n\x19MoveDeliveryRobotResponse\"m\n\x18SetElevatorStatusRequest\x12\x13\n\x0b\x65levator_id\x18\x01 \x01(\r\x12<\n\x0f\x65levator_status\x18\x02 \x01(\x0b\x32#.smart_pkg_delivery.Elevator.Status\"\x1b\n\x19SetElevatorStatusResponse\"B\n\x0fPkgArrivalEvent\x12/\n\x07\x61\x64\x64ress\x18\x01 \x01(\x0b\x32\x1e.smart_pkg_delivery.AptAddress\"h\n\x13\x45levatorStatusEvent\x12\x13\n\x0b\x65levator_id\x18\x01 \x01(\r\x12<\n\x0f\x65levator_status\x18\x02 \x01(\x0b\x32#.smart_pkg_delivery.Elevator.Status\"{\n\x13\x44\x65liveryStatusEvent\x12\x19\n\x11\x64\x65livery_robot_id\x18\x01 \x01(\r\x12I\n\x0f\x64\x65livery_status\x18\x02 \x01(\x0e\x32\x30.smart_pkg_delivery.DeliveryRobot.DeliveryStatus\"\xec\x01\n\x08\x45levator\x12\n\n\x02id\x18\x01 \x01(\r\x12\x33\n\x06status\x18\x02 \x01(\x0b\x32#.smart_pkg_delivery.Elevator.Status\x1a\x66\n\x06Status\x12\x15\n\rcurrent_floor\x18\x01 \x01(\r\x12\x45\n\x10\x64oor_open_status\x18\x02 \x01(\x0e\x32+.smart_pkg_delivery.Elevator.DoorOpenStatus\"7\n\x0e\x44oorOpenStatus\x12\x0f\n\x0bUNSPECIFIED\x10\x00\x12\n\n\x06\x43LOSED\x10\x01\x12\x08\n\x04OPEN\x10\x02\"\xb5\x01\n\rDeliveryRobot\x12\n\n\x02id\x18\x01 \x01(\r\x12I\n\x0f\x64\x65livery_status\x18\x03 \x01(\x0e\x32\x30.smart_pkg_delivery.DeliveryRobot.DeliveryStatus\"M\n\x0e\x44\x65liveryStatus\x12\x0f\n\x0bUNSPECIFIED\x10\x00\x12\x0b\n\x07PENDING\x10\x01\x12\x0e\n\nIN_TRANSIT\x10\x02\x12\r\n\tDELIVERED\x10\x03\"\x8c\x01\n\x07PkgRoom\x12\n\n\x02id\x18\x01 \x01(\r\x12\x33\n\x07lockers\x18\x02 \x03(\x0b\x32\".smart_pkg_delivery.PkgRoom.Locker\x1a@\n\x06Locker\x12\x11\n\tlocker_id\x18\x01 \x01(\r\x12\x13\n\x0b\x61\x63\x63\x65ss_code\x18\x02 \x01(\t\x12\x0e\n\x06pkg_id\x18\x03 \x01(\r\"C\n\x04User\x12\n\n\x02id\x18\x01 \x01(\r\x12/\n\x07\x61\x64\x64ress\x18\x02 \x01(\x0b\x32\x1e.smart_pkg_delivery.AptAddress\"\x7f\n\x03Pkg\x12\n\n\x02id\x18\x01 \x01(\r\x12/\n\x07\x61\x64\x64ress\x18\x02 \x01(\x0b\x32\x1e.smart_pkg_delivery.AptAddress\x12\x11\n\tsender_id\x18\x03 \x01(\r\x12\x13\n\x0breceiver_id\x18\x04 \x01(\r\x12\x13\n\x0bphoto_bytes\x18\x05 \x01(\x0c\"I\n\nAptAddress\x12\x13\n\x0b\x61pt_complex\x18\x01 \x01(\t\x12\x14\n\x0c\x62uilding_num\x18\x02 \x01(\r\x12\x10\n\x08unit_num\x18\x03 \x01(\r*\x87\x01\n\x08NodeType\x12\x0f\n\x0bUNSPECIFIED\x10\x00\x12\n\n\x06SERVER\x10\x01\x12\x1d\n\x19\x43LIENT_ADDRESS_RECOGNIZER\x10\x02\x12\x0f\n\x0b\x43LIENT_USER\x10\x03\x12\x19\n\x15\x43LIENT_DELIVERY_ROBOT\x10\x04\x12\x13\n\x0f\x43LIENT_ELEVATOR\x10\x05\x62\x08\x65\x64itionsp\xe8\x07')
+
+          _globals = globals()
+          _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
+          _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'smart_pkg_delivery_pb2', _globals)
+          if not _descriptor._USE_C_DESCRIPTORS:
+            ...
+          ```
+      The important line in each class is __metaclass__ = reflection.GeneratedProtocolMessageType.
+        While the details of how Python metaclasses work is beyond the scope of this tutorial, 🚣 you can think of them as like a 🪱 template for creating classes.
+      At 🪱 load time, the GeneratedProtocolMessageType metaclass uses the specified descriptors to create all the Python methods you need to work with each message type and adds them to the relevant classes.
+        You can then use the fully-populated classes in your code.
+        The end effect of all this is that you can use the Person class as if it defined each field of the Message base class as a regular field. For example, you could write: ...
+      ❗ Note that these assignments are not just adding arbitrary new fields to a generic Python object.
+        If you were to try to assign a field that isn’t defined in the .proto file, an AttributeError would be raised.
+        If you assign a field to a value of the wrong type, a TypeError will be raised. Also, reading the value of a field before it has been set returns the default value.
+
+  ⚓ Python Generated Code Guide ; https://protobuf.dev/reference/python/python-generated/
+    Describes exactly what Python definitions the protocol buffer compiler generates for any given protocol definition.
+
+  ⚓ Protocol Buffers Python API Reference ; https://googleapis.dev/python/protobuf/latest/
+
+(✍️ protobuf 🔪 study)
+  ✅ (how-to) detect dynamically message type for type hint 📅 2025-02-09 08:11:51
+    def detect_message_type(wrapper_msg2: smart_pkg_delivery_pb2.WrapperMsg) -> type:
+        """
+        Determines which `oneof` field is set in the given `WrapperMsg` instance
+        and returns the corresponding message type.
+
+        This function dynamically retrieves the `oneof` field name, identifies
+        the currently assigned field, and returns the type of the corresponding
+        Protobuf message.
+
+        Args:
+            wrapper_msg2 (smart_pkg_delivery_pb2.WrapperMsg):
+                The `WrapperMsg` instance containing a `oneof` field.
+
+        Returns:
+            type: The type of the set Protobuf message.
+                  If no field is set, returns `type(None)`.
+        🛍️ e.g.:
+            ```python
+            wrapper_msg2 = smart_pkg_delivery_pb2.WrapperMsg()
+            wrapper_msg2.node_event.src_name = "Address Recognizer for Test"
+
+            # Detect the message type
+            msg_type = detect_message_type(wrapper_msg2)
+            print(f"Detected message type: {msg_type}")
+            #   >> <class 'smart_pkg_delivery_pb2.NodeEvent'>
+
+            # Example of type-based handling
+            if msg_type is smart_pkg_delivery_pb2.NodeEvent:
+                print("Processing as a NodeEvent message.")
+            elif msg_type is smart_pkg_delivery_pb2.Request:
+                print("Processing as a Request message.")
+            elif msg_type is smart_pkg_delivery_pb2.Response:
+                print("Processing as a Response message.")
+            else:
+                print("Unknown message type.")
+            ```
+        """
+        # Retrieve the name of the `oneof` field dynamically
+        oneof_field_names = list(wrapper_msg2.DESCRIPTOR.oneofs_by_name)
+
+        if not oneof_field_names:
+            return type(None)  # No `oneof` fields found, return NoneType
+
+        # Determine which field within `oneof` is currently set
+        message_type_name = wrapper_msg2.WhichOneof(oneof_field_names[0])
+
+        if message_type_name is None:
+            return type(None)  # Return NoneType if no `oneof` field is set
+
+        # Return the actual message type of the instance of the currently set field dynamically
+        return type(getattr(wrapper_msg2, message_type_name))
+
+
+※※※※※※※※※※※※※※
+# nanoPB 🔪 Docs
+  ⚓ Overview ; https://jpa.kapsi.fi/nanopb/docs/index.html
+  ⚓ Basic concepts ; https://jpa.kapsi.fi/nanopb/docs/concepts.html
+  ⚓ API reference ; https://jpa.kapsi.fi/nanopb/docs/reference.html
+    #️⃣🪱 Generator options ; https://jpa.kapsi.fi/nanopb/docs/reference.html#generator-options
+      - max_count
+      - max_size
+      - type
+        FT_IGNORE
+  ⚓ Security model ; https://jpa.kapsi.fi/nanopb/docs/security.html
+
+
+(✍️ nanoPB 🔪 study)
+  ☑️ (Issue: Bug) values of decoding the encoded message have 0 from .proto file (`edition = "2023");` 📅 2025-02-08 16:35:52
+    Description
+      - In Edition 2023 in .proto file, all field types are treated as optional for flexibility.
+      - In NanoPB, fields must be explicitly marked as 📍 present to be encoded.
+        - For regular fields, the `has_<field_name>` flag must be set to `true` to include the field in the encoded message.
+        - For oneof fields, the `which_<oneof_field_name_tag>` must be set to specify the active field.
+      
+        If these flags are not set, NanoPB treats the field as non-existent, and it will not be included in the encoded data.
+        As a result, during decoding, any unset fields will revert to their default values (e.g., `0` for integers, empty strings, etc.), making it appear as if the values were never assigned.
+
+
+
+
+
+
+
+
+
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+gRPC
+  https://en.wikipedia.org/wiki/GRPC
+  https://github.com/grpc
+  https://grpc.io/
+

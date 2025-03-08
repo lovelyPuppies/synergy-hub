@@ -1,0 +1,11 @@
+{
+  "dependencies": [
+    "spdlog",
+    "mariadb-connector-cpp",
+    "argon2",
+    "protobuf",
+    "nanopb",
+    "boost-asio",
+    "boost-redis"
+  ]
+}

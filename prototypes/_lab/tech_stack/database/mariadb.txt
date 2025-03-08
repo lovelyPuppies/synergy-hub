@@ -1,0 +1,64 @@
+list of level 1 subjects
+  - MariaDB
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓⭕ MariaDB ; https://pipx.pypa.io/stable/
+  pipx — Install and Run Python Applications in 👍 Isolated Environments
+  pipa/pipx ; https://github.com/pypa/pipx/tree/main
+----------------------------------------------
+pipx 🔪⚓ Installation ; https://pipx.pypa.io/stable/installation/
+  #️⃣ On Linux ; https://pipx.pypa.io/stable/installation/#on-linux
+
+
+----------------------------------------------
+MariaDB 🔪⚓ Docs ; 
+
+⚓ MariaDB 🔪 Server ; https://mariadb.com/docs/server/
+  #🔰 MariaDB Connector
+    # C/C++
+      ⚓ Install ; https://mariadb.com/docs/server/connect/programming-languages/c/install/
+      ⚓ Connect ; https://mariadb.com/docs/server/connect/programming-languages/c/connect/
+      ⚓ Development ; https://mariadb.com/docs/server/connect/programming-languages/c/development/
+        🧮 gcc -o example example.c $(mariadb_config --include --libs)
+      ⚓ Setup for Examples ; https://mariadb.com/docs/server/connect/programming-languages/c/example-setup/
+  
+  
+  # Using MariaDB Server
+    # SQL Statements & Structure
+      # SQL Statements
+        # Account Management SQL Commands
+          ⚓ GRANT ; https://mariadb.com/kb/en/grant/
+        # Administrative SQL Statements
+          # SHOW
+            ⚓ SHOW DATABASES ; https://mariadb.com/kb/en/show/
+            ⚓ SHOW TABLES ; https://mariadb.com/kb/en/show-tables/
+          # ANALYZE and EXPLAIN Statements
+            ⚓ EXPLAIN ; https://mariadb.com/kb/en/explain/
+
+          ⚓ USE [DATABASE] ; https://mariadb.com/kb/en/use-database/
+
+
+        # Data Definition
+          # CREATE
+            ⚓ CREATE DATABASE ; https://mariadb.com/kb/en/create-database/
+            ⚓ CREATE TABLE ; https://mariadb.com/kb/en/create-table/
+          # ALTER
+            ⚓ ALTER TABLE ; https://mariadb.com/kb/en/alter/
+
+
+        # Data Manipulation
+          # Selecting Data
+            ⚓ SELECT ; https://mariadb.com/kb/en/select/
+          # Inserting & Loading Data  
+            ⚓ INSERT ; https://mariadb.com/kb/en/insert/
+          # Changing & Deleting Data
+            ⚓ UPDATE ; https://mariadb.com/kb/en/update/
+            ⚓ DELETE ; https://mariadb.com/kb/en/delete/
+ 
+  # High Availability & Performance Tuning
+    # Optimization and Tuning
+      # Optimization and Indexes
+        ⚓ Foreign Keys ; https://mariadb.com/kb/en/foreign-keys/  
+          -🪱 reference_option:
+              RESTRICT | CASCADE | SET NULL | NO ACTION | SET DEFAULT
+

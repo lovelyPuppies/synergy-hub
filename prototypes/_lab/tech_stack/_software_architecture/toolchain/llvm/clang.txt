@@ -1,0 +1,144 @@
+list of level 1 subjects
+  - clang
+
+🚧 Prerequisite
+  - [IntelliSense] Add the output of the following commands to `.clangd` file (configuration):
+    📝 Note that Never manually add only "-I/home/linuxbrew/.linuxbrew/opt/llvm/include" which causes error of intellisense.
+    - llvm-config --cxxflags
+    - llvm-config --cflags
+
+
+⭕ For Cross-Compilation, Use --target and --gcc-install-dir Together 📅 2025-02-25 05:59:09
+  Using both options together ensures that Clang generates code for the correct target architecture while also linking against the appropriate standard libraries.
+
+  --target=<triple> → Generates code for the specified target architecture (e.g., aarch64-linux-gnu).
+    🚣 From the outputs of clang --target=aarch64-linux-gnu --print-search-dirs and clang --print-search-dirs, we can see that the --target option adds /usr/<target_argument> to the search paths.
+    You could also use the Essential Compiler Search Paths (-I <dir>, -L <dir>, -B <prefix>) instead of `--gcc-install-dir` option, but you would need to manually specify all paths.
+    ⚖️ Default target in ubuntu 24 (x86_64) is 
+      %shell> clang -v 2>&1 | grep Target
+      >> Target: x86_64-unknown-linux-gnu
+
+
+  --gcc-install-dir=<path> → Specifies the directory of a GCC installation that Clang can use for standard libraries and headers. This does not override executables like ld or as.
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓⭕ clang ; https://clang.llvm.org/
+  https://en.wikipedia.org/wiki/Clang
+  Clang: a C language family frontend (C, C++, Objective C/C++, OpenCL, and CUDA) for LLVM 
+
+
+  🧮 clang --help
+  🧮 clang++ --help
+      -Wl,<arg>               Pass the comma separated arguments in <arg> to the linker
+
+(✍️ clang 🔪 study)
+  ⚖️ Default Target in Ubuntu x86_64 📅 2025-02-25 04:11:32
+    ❯ clang -v 2>&1 | grep Target
+      Target: x86_64-unknown-linux-gnu
+
+
+----------------------------------------------
+⚓ clang 🔪 docs ; https://clang.llvm.org/docs/
+  ⚓🔰 Cross-compilation using Clang ; https://clang.llvm.org/docs/CrossCompilation.html
+    # Cross compilation issues
+      🆚 In GCC world, every host/target combination has its own set of binaries, headers, libraries, etc. So, it’s usually simple to download a package with all files in, unzip to a directory and point the build system to that compiler, that will know about its location and find all it needs to when compiling your code
+        On the other hand, 💡 Clang/LLVM is natively a cross-compiler, meaning that one set of programs can compile to all targets by setting the -target option. That makes it a lot easier for programmers wishing to compile to different platforms and architectures, and for compiler developers that only have to maintain one b
+
+    #🪱➡️ Target Triple in toolchain.txt
+
+    # Toolchain Options
+      📍 There are two main ways to have a cross-compiler: ...
+        - --sysroot=<path>
+        - cross-compiler packages
+
+----------------------------------------------
+clang 🔪 docs 🔪 Using Clang as a Compiler
+  ----------------------------------------------
+  ⚓ Clang Compiler User’s Manual ; https://clang.llvm.org/docs/UsersManual.html
+
+  ----------------------------------------------
+  ⚓🔰 Clang command line argument reference ; https://clang.llvm.org/docs/ClangCommandLineReference.html
+    📝 Note that clang does not have "--sysroot" option
+    #️⃣ Introduction ; https://clang.llvm.org/docs/ClangCommandLineReference.html#introduction
+      This page lists the command line arguments currently supported by the ❗ GCC-compatible clang and clang++ drivers.
+        📝📖 Refer https://gcc.gnu.org/onlinedocs/gcc/Option-Index.html for some descriptions
+
+      -print-runtime-dir, --print-runtime-dir
+        Print the directory pathname containing Clang’s runtime libraries
+      -print-search-dirs, --print-search-dirs
+        Print the paths used for finding libraries and programs
+
+      🔰 --target=<arg>, -target <arg>
+        Generate code for the given target
+      🔰 --gcc-install-dir=<value>
+        📝🛍️ e.g. %shell> clang -target=aarch64-linux-gnu --gcc-install-dir=/usr/lib/gcc-cross/aarch64-linux-gnu/12 -march=armv8-a -mtune=cortex-a72
+        Use GCC installation in the specified directory. The directory ends with path components like 'lib{,32,64}/gcc{,-cross}/$triple/$version'.
+        🚣 Note: executables (e.g. ld) used by the compiler are not overridden by the selected GCC installation
+      --gcc-toolchain=<value> Specify a directory where Clang can find 'include' and 'lib{,32,64}/gcc{,-cross}/$triple/$version'.
+        Clang will use the GCC installation with the largest version
+      --gcc-triple=<value>    Search for the GCC installation with the specified triple.
+
+
+
+      -B<prefix>, --prefix <arg>, --prefix=<arg>
+        Search $prefix$file for executables, libraries, and data files. If $prefix is a directory, search $prefix/$file
+      
+    # Compilation options
+      #️⃣ Preprocessor options ; https://clang.llvm.org/docs/ClangCommandLineReference.html#preprocessor-options
+        #️⃣ Include path management ; https://clang.llvm.org/docs/ClangCommandLineReference.html#include-path-management
+          -I<dir>, --include-directory <arg>, --include-directory=<arg>
+            Add directory to include search path. For C++ inputs, if there are multiple -I options, these directories are searched in the order they are given before the standard system directories are searched. If the same directory is in the SYSTEM include search paths, for example if also specified with -isystem, the -I option will be ignored
+      #️⃣ Target-independent compilation options ; https://clang.llvm.org/docs/ClangCommandLineReference.html#target-independent-compilation-options
+        (⭕ For Embedded device)
+          📎 -fexceptions, -fno-exceptions
+            The -fno-exceptions compiler option disables C++ exception handling, reducing code size and improving performance, making it beneficial for embedded systems and performance-critical applications.
+              Compiling with -fno-exceptions disables exceptions support and uses the variant of C++ libraries without exceptions. Use of try, catch, or throw results in an error message.
+            🔗 https://developer.arm.com/documentation/dui0774/l/Compiler-Command-line-Options/-fexceptions---fno-exceptions
+            Enable support for exception handling
+          📎 -fthreadsafe-statics, -fno-threadsafe-statics
+            Do not emit the extra code to use the routines specified in the C++ ABI for thread-safe initialization of local statics.
+            You can use this option to reduce code size slightly in code that doesn’t need to be thread-safe.
+              🔗 https://gcc.gnu.org/onlinedocs/gcc/C_002b_002b-Dialect-Options.html#index-fno-threadsafe-statics
+            With STM32CubeIDE v1.5.0, the option “Disable thread-safe initialization of local static objects (-fnothreadsafe-statics)” has changed the default value from “true” to “false”.
+            This means that both flash memory and RAM usages are slightly increased with respect to previous versions of STM32CubeIDE, with the benefit of removing a potential race condition in the embedded code
+              🔗 https://www.eevblog.com/forum/programming/what-is-thread-safe-initialization-of-local-static-objects/
+
+        -fpic, -fno-pic,    -fPIC, -fno-PIC
+          🔗 https://gcc.gnu.org/onlinedocs/gcc/Code-Gen-Options.html#index-fpic
+        -march=<arg>
+          For a list of available architectures for the target use ‘-mcpu=help’
+        -mtune=<arg>
+          Only supported on AArch64, PowerPC, RISC-V, SPARC, SystemZ, and X86
+      #️⃣ Target-dependent compilation options ; https://clang.llvm.org/docs/ClangCommandLineReference.html#target-dependent-compilation-options
+        -fuse-ld                              🔗 https://gcc.gnu.org/onlinedocs/gcc/Link-Options.html#index-fuse-ld_003dlld
+          Use the LLVM lld linker instead of the default linker.
+      #️⃣ Optimization level ; https://clang.llvm.org/docs/ClangCommandLineReference.html#optimization-level
+        -O<arg>, -O (equivalent to -O1), --optimize, --optimize=<arg>
+          🔗 https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html#index-O
+    #️⃣ Linker options ; https://clang.llvm.org/docs/ClangCommandLineReference.html#linker-options
+      -L<dir>, --library-directory <arg>, --library-directory=<arg>
+        Add directory to library search path
+      -Wl,<arg>,<arg2>...
+        Pass the comma separated arguments in <arg> to the linker
+
+================================================
+⚓ clangd ; https://clangd.llvm.org/
+  https://github.com/clangd/clangd
+  clangd is a language server, and provides C++ IDE features to editors.
+
+  ⚓ Configuration ; https://clangd.llvm.org/config
+    #️⃣ Files ; https://clangd.llvm.org/config#files
+      - project configuration: a file named 🪱 .clangd in the source tree.
+      - user configuration: a 🪱 config.yaml file in an OS-specific directory:
+        ...
+
+
+================================================
+⚓🚀 LLD - The LLVM Linker ; https://lld.llvm.org/
+  # Performance
+  # Using LLD
+    ⭕ The easiest way to do that is to overwrite the default linker. After installing LLD to somewhere on your disk
+      , you can create a symbolic link by doing ln -s /path/to/ld.lld /usr/bin/ld so that /usr/bin/ld is resolved to LLD.
+
+
+⚓🚀 llvm-as - LLVM assembler ; https://llvm.org/docs/CommandGuide/llvm-as.html

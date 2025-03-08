@@ -1,0 +1,17 @@
+{
+  "python.autoComplete.extraPaths": [
+    "${workspaceFolder}/sources/poky/bitbake/lib",
+    "${workspaceFolder}/sources/poky/meta/lib"
+  ],
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}/sources/poky/bitbake/lib",
+    "${workspaceFolder}/sources/poky/meta/lib"
+  ],
+  "files.associations": {
+    ".clangd": "yaml",
+    "CMakeLists.txt": "cmake",
+    "*.conf": "bitbake",
+    "*.inc": "bitbake"
+  },
+  "cmake.debugConfig": {}
+}

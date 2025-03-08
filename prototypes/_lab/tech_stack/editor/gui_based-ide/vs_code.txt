@@ -14,7 +14,7 @@ VS code 🔪📦 Extensions ; https://marketplace.visualstudio.com/vscode
   ----------------------------------------------
   ⚓ Explicit Folding ; https://marketplace.visualstudio.com/items?itemName=zokugun.explicit-folding
     📝 &comment;  it solves problem of "[folding] No setting for ignoring all empty lines" from https://github.com/microsoft/vscode/issues/88151
-    ⚙️ settings for "User" Scope ❌ deprecated 📅 2024-11-30 18:32:23
+    ⚙️ settings for "User" Scope 🗑️ deprecated 📅 2024-11-30 18:32:23
       {
         // Title: Explicit Folding settings from https://marketplace.visualstudio.com/items?itemName=zokugun.explicit-folding
         "[latex]": {
@@ -36,11 +36,25 @@ VS code 🔪📦 Extensions ; https://marketplace.visualstudio.com/vscode
       ...
       ⚓ indentation ; https://github.com/zokugun/vscode-explicit-folding/blob/master/docs/rules/indentation.md
         example for python: ...
+  ❌
+    - SQL Formatter VSCode (ReneSaarsoo.sql-formatter) ; https://marketplace.visualstudio.com/items?itemName=ReneSaarsoo.sql-formatter-vsc
+      📝 The "DBCode.dbcode" I'm using also supports Formatter. So I don't need another formatter. 📅 2025-02-07 00:08:21
+
+    - SQLTools (mtxr.sqltools) ;  https://marketplace.visualstudio.com/items?itemName=mtxr.sqltools
+      📝 It not supports functionality: Edit the Records of Database Tables. 📅 2025-02-06 23:55:29
+      - %VSCode> SQLTools Connection: Run Selected Query
+      SQLTools MySQL/MariaDB/TiDB (mtxr.sqltools-driver-mysql); https://marketplace.visualstudio.com/items?itemName=mtxr.sqltools-driver-mysql
 
 ================================================
 VS code 🔪 Docs ; https://code.visualstudio.com/docs
+  #🔰 USER GUIDE
+    ⚓ Tasks ; https://code.visualstudio.com/docs/editor/tasks
+      #️⃣ Processing task output with 🪱 problem matchers ; https://code.visualstudio.com/docs/editor/tasks#_processing-task-output-with-problem-matchers
+      
 
   # LANGUAGES
+    ⚓ C++ ; https://code.visualstudio.com/docs/cpp/launch-json-reference
+      🚣 A launch.json file is used to configure the debugger in Visual Studio Code.
     ⚓🖇️ Rust ; https://code.visualstudio.com/docs/languages/rust 📅 2024-11-30 21:31:58
       # Installation
         ⭕📖

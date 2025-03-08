@@ -1,0 +1,22 @@
+list of level 1 subjects
+  - Android SDK (Software Development Kit)
+  - Android NDK (Native Development Kit)
+
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ Android SDK ; https://developer.android.com/
+  https://en.wikipedia.org/wiki/Android_SDK
+----------------------------------------------
+Android SDK 🔪 Guides ; https://developer.android.com/guide
+  # App architecture
+    # App entry points
+      # Activities
+        ⚓ Introduction to activities ; https://developer.android.com/guide/components/activities/intro-activities
+        ⚓🚣📎 The activity lifecycle ; https://developer.android.com/guide/components/activities/activity-lifecycle
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ Android NDK ; https://developer.android.com/ndk
+  The Android NDK is a toolset that lets you implement parts of your app in native code, using languages such as C and C++.
+
+----------------------------------------------
+Android NDK 🔪 Guides ; https://developer.android.com/ndk/guides

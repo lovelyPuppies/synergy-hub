@@ -1,0 +1,12 @@
+list of level 1 subjects
+  - Execution (computing)
+
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ Execution (computing) ; https://en.wikipedia.org/wiki/Execution_(computing)
+  ⚓ Translator (computing) ; https://en.wikipedia.org/wiki/Translator_(computing)
+    ➡️ Optimizing compiler
+※※※※※※※※※※※※※※※
+⚓ Optimizing compiler ; https://en.wikipedia.org/wiki/Optimizing_compiler
+  # Static analysis
+    ⚓ Escape analysis ; https://en.wikipedia.org/wiki/Escape_analysis

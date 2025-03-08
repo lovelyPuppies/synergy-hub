@@ -1,5 +1,5 @@
 #!/usr/bin/env fish
-# Written at 📅 2024-10-04 16:37:59
+# 📅 Written at 2024-10-04 16:37:59
 
 # Function to fix GPG keys for a given repository and key URL
 function fix_gpg_key

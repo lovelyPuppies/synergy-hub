@@ -1,0 +1,15 @@
+list of level 1 subjects
+  - Mesa
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓⭕ Mesa | Mesa3D (computer graphics) ; https://www.mesa3d.org/
+  https://gitlab.freedesktop.org/mesa/mesa
+  https://en.wikipedia.org/wiki/Mesa_(computer_graphics)
+    ... is an open source implementation of OpenGL, Vulkan, and other graphics API specifications. Mesa translates these specifications to vendor-specific graphics hardware drivers.
+    # Implementations of rendering APIs
+      #️⃣🪱 Generic Buffer Management (GBM) ; https://en.wikipedia.org/wiki/Mesa_(computer_graphics)#Generic_Buffer_Management
+        Generic Buffer Management (GBM) is an API that provides a mechanism for allocating buffers for graphics rendering tied to Mesa.
+        GBM is intended to be used as a native platform for 🪱 EGL (Embedded Graphics Library) on 🪱 DRM (Direct Rendering Manager) or 🪱 openwfd (Open Windowing Foundation Display).
+        The handle it creates can be used to initialize EGL and to create render target buffers.
+
+    

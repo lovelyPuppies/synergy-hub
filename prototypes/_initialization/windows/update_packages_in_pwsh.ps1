@@ -1,4 +1,4 @@
-# Written at 📅 2024-12-18 00:58:42
+# 📅 Written at 2024-12-18 00:58:42
 
 # 📝 Before running this script, make sure that **PowerToys** and **VSCode** are not running.
 #   These applications may be in use, and updating them while running could cause issues with the update process.
