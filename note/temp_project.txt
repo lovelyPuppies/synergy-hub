@@ -1,6 +1,16 @@
 📰📰 [Project] LSP 사용해서 Rust로 LSP 만드는 프로젝트?.. 
   neovim 보다는 helix 가 좋아보이긴 하는데... 아직 제대로 지원되는 것이 없다. fish-lsp 라는 것을 사용해봣지만 빌드까지 과정이 불편하고 충돌발생.
   찾아봤는데 현재까지 존재하는 구현된 fish LSP 가 없음. https://microsoft.github.io/language-server-protocol/implementors/servers/ 📅 2025-02-23 22:16:42
+📰 다음 목표를.. 시니어 개발자 모집 공고 조건에 만족하는 일을 해보자?
+  https://www.wanted.co.kr/wd/229077
+  https://www.wanted.co.kr/wd/257910
+  - E-commerce 필수.
+  - 도메인 주도 설계 & 개발
+  - AWS 환경에서 서비스 운영
+  - 대용량 서비스에 대한 경험이
+  - 기존 시스템을 MSA 환경으로 전환한 경험이 있으신 분
+  - 대용량 서비스 개발 또는 운영 경험이 있으신 분
+  - 이벤트 드리븐 아키텍처에 대한 경험이 있으신 분
 
 
   volta install yarn ... 느림..
@@ -22653,3 +22663,16 @@ TODO
   French Tuck
   Half Tuck
   Untucked
+
+
+Com0com ; https://github.com/KangLin/com0com
+  🗑️ Laste updated date 
+
+Free Virtual Serial Ports
+VSPE (Virtual Serial Port Emulator)
+HW VSP3
+
+
+
+
+

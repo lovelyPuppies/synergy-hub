@@ -1,0 +1,37 @@
+list of level 1 subjects
+  - Electromagnetic spectrum
+    Passband
+    Digital signal processing (DSP)
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ Electromagnetic spectrum ; https://en.wikipedia.org/wiki/Electromagnetic_spectrum
+  ⚓ wavelength ; https://en.wikipedia.org/wiki/Wavelength
+    spatial period of a wave or periodic function is the distance over which the wave's shape repeats.
+    🪱 λ = v / f
+
+※※※※※※※※※※※※※※※※
+⚓ Passband ; https://en.wikipedia.org/wiki/Passband
+  A passband is the range of frequencies or wavelengths that can pass through a filter.
+
+
+※※※※※※※※※※※※※※※※
+⚓ Digital signal processing (DSP) ; https://en.wikipedia.org/wiki/Digital_signal_processing
+
+
+  ⚓ MOdulator-DEModulator (modem) ; << https://en.wikipedia.org/wiki/Modem
+  ⚓ Digital-to-analog converter (DAC) ; << https://en.wikipedia.org/wiki/Digital-to-analog_converter
+  ⚓ Analog-to-digital converter (ADC) ; << https://en.wikipedia.org/wiki/Analog-to-digital_converter
+
+
+  ⚓ Null modem ; https://en.wikipedia.org/wiki/Null_modem
+    Null modem is a communication method to directly connect two DTEs (computer, terminal, printer, etc.) using an RS-232 serial cable.
+  ⚓ Data terminal equipment (DTE) ; https://en.wikipedia.org/wiki/Data_terminal_equipment
+    | data processing terminal equipment | tail circuit
+    ... is an end instrument that converts user information into signals or reconverts received signals.
+      A DTE device communicates with the data circuit-terminating equipment (DCE), such as a modem.
+      The DTE/DCE classification was introduced by IBM.
+  ⚓ Data circuit-terminating equipment (DCE); https://en.wikipedia.org/wiki/Data_circuit-terminating_equipment
+    | data communication(s) equipment | data carrier equipment
+    ...  is a device that sits between the data terminal equipment (DTE) and a data transmission circuit. 
+      Usually, the DTE device is the terminal (or computer), and the DCE is a modem.
+

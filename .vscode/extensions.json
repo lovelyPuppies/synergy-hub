@@ -96,6 +96,7 @@
     "james-yu.latex-workshop",
     "bierner.emojisense",
     "jsynowiec.vscode-insertdatestring",
+    "oijaz.unicode-latex", // Unicode Latex ; https://marketplace.visualstudio.com/items?itemName=oijaz.unicode-latex
     //    ... deprecated: "zokugun.explicit-folding"
     "alefragnani.bookmarks",
     "1nvitr0.blocksort",
