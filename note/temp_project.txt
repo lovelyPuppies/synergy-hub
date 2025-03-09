@@ -22646,3 +22646,10 @@ TODO
   - Gitlab self-hosting with TLS and DNS resolve
   - QT crosscompile in Pure ubuntu or WSL to target Native Windows (not using MinGW).
 
+
+
+📰 셔츠는 뭘 입어야 하는거지? 주변 사람 패션 확인 필요
+  Full Tuck
+  French Tuck
+  Half Tuck
+  Untucked
