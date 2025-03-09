@@ -1,0 +1,61 @@
+list of level 1 subjects
+  - Digital signal processing (DSP)
+  - Technical and de facto standards for wired computer buses
+
+
+※※※※※※※※※※※※※※※※
+⚓ Digital signal processing (DSP) ; https://en.wikipedia.org/wiki/Digital_signal_processing
+
+
+  ⚓ MOdulator-DEModulator (modem) ; << https://en.wikipedia.org/wiki/Modem
+  ⚓ Digital-to-analog converter (DAC) ; << https://en.wikipedia.org/wiki/Digital-to-analog_converter
+  ⚓ Analog-to-digital converter (ADC) ; << https://en.wikipedia.org/wiki/Analog-to-digital_converter
+
+
+  ⚓ Null modem ; https://en.wikipedia.org/wiki/Null_modem
+    Null modem is a communication method to directly connect two DTEs (computer, terminal, printer, etc.) using an RS-232 serial cable.
+  ⚓ Data terminal equipment (DTE) | 데이터 단말 장치 ; https://en.wikipedia.org/wiki/Data_terminal_equipment
+    | data processing terminal equipment | tail circuit
+    ... is an end instrument that converts user information into signals or reconverts received signals.
+      A DTE device communicates with the data circuit-terminating equipment (DCE), such as a modem.
+      The DTE/DCE classification was introduced by IBM.
+  ⚓ Data circuit-terminating equipment (DCE) | 데이터 회선 종단 장치 ; https://en.wikipedia.org/wiki/Data_circuit-terminating_equipment
+    | data communication(s) equipment | data carrier equipment
+    ...  is a device that sits between the data terminal equipment (DTE) and a data transmission circuit. 
+      Usually, the DTE device is the terminal (or computer), and the DCE is a modem.
+
+
+
+
+
+
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+# Technical and de facto standards for wired computer buses
+  # Peripheral 
+    ⚓ RS-232 ; https://en.wikipedia.org/wiki/RS-232
+      🗒️ Contents
+        ... no multipoint capability and limited multidrop capability
+        #️⃣ Limitations of the standard ; https://en.wikipedia.org/wiki/RS-232#Limitations_of_the_standard
+          
+        #️⃣ Physical interface ; https://en.wikipedia.org/wiki/RS-232#Physical_interface
+          In RS-232, user data is sent as a time-series of bits.
+          📈 Both synchronous and asynchronous transmissions are supported by the standard. ...
+          Each data or control circuit only operates in one direction, that is, signaling from a DTE to the attached DCE or the reverse. Because transmit data and receive data are separate circuits, the interface can operate in a full duplex manner, supporting concurrent data flow in both directions. The standard does not define character framing within the data stream or character encoding.
+
+
+    ⚓ RS-485 ; https://en.wikipedia.org/wiki/RS-485
+    ⚓ USB ; https://en.wikipedia.org/wiki/USB
+
+
+
+ ⚓ Multidrop bus (MDB) ; << https://en.wikipedia.org/wiki/Multidrop_bus
+    A multidrop bus (MDB) is a computer bus able to connect three or more devices.
+    🗒️ Contents
+      A process of arbitration determines which device sends information at any point.
+      📈 Multidrop buses have the advantage of simplicity and extensibility
+      📉 , but their differing electrical characteristics make them relatively unsuitable for high frequency or high bandwidth applications.
+      # For vending machines
+        #️⃣ MDB/ICP ; https://en.wikipedia.org/wiki/Multidrop_bus#MDB/ICP
+        #️⃣ ccTalk ; https://en.wikipedia.org/wiki/Multidrop_bus#ccTalk
+
+

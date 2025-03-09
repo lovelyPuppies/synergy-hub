@@ -1,0 +1,27 @@
+list of level 1 subjects
+  - Electromagnetism
+  
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+⚓ Electromagnetism | 전자기학 ; https://en.wikipedia.org/wiki/Electromagnetism
+
+※※※※※※※※※※※※※※※
+Electromagnetism 🔪⚓ Electrodynamics | 전기역학 ; https://en.wikipedia.org/wiki/Classical_electromagnetism
+
+
+----------------------------------------------
+⚓ Electromagnetic spectrum ; https://en.wikipedia.org/wiki/Electromagnetic_spectrum
+  ⚓ wavelength ; https://en.wikipedia.org/wiki/Wavelength
+    spatial period of a wave or periodic function is the distance over which the wave's shape repeats.
+    🪱 λ = v / f
+
+
+
+----------------------------------------------
+# Passband modulation
+  ⚓ Passband ; https://en.wikipedia.org/wiki/Passband
+    A passband is the range of frequencies or wavelengths that can pass through a filter.
+  ⚓ Modulation ; https://en.wikipedia.org/wiki/Modulation
+  ----------------------------------------------
+
+
+

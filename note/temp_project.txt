@@ -22680,3 +22680,28 @@ Hercules SETUP utility
 그러니까 음. 장치 A <--RS-232(or 485)-to-usb --> B (PC) 를 통신 테스트하기위해서
 이 모델을 가상화하는거야.
 그래서 나는 실제 물리적인 장치연결 없이 PC에서 통신테스트할 수 있게.
+
+내가 해야 하는것. (QT6)
+  - QT 에서 "가상 com port 를 인식하고 통신을 실제 com port 처럼 통신할 수 있어야 한다"
+    그러니까 PC 에서 이 3개의 자세한 통신방법까지 구현해서 시뮬레이션하려는게 아니라, 양방향 데이터 전송, 수신을 하려는 것.
+    RS-232 to USB of PC, USB to USB of PC 의 경우에는 1:1 이니까 그냥 송수신하면 되나? RS-485 to USB of PC 만 추가 처리하면 되고?
+
+    - RS-232 to USB of PC
+    - RS-485 to USB of PC
+      1 : 2 인 상태인데 상대 2개에서 오는 메시지를 (출처를) 개별적으로 인식 가능하낙?
+    - USB to USB of PC
+
+줄바꿈문자, 인코딩.. 상태 정의..
+
+
+RS-232는 기본적으로 저속 통신(수 Kbps~수십 Kbps)에 적합한 프로토콜.
+최신 인터페이스(RS-422, RS-485, Ethernet)와 비교하면 매우 느린 속도.
+예를 들어, RS-485는 수 Mbps(1~10 Mbps) 속도도 지원 가능함.
+
+# Technical and de facto standards for wired computer buses
+
+
+⚓📎 Arbiter (electronics) ; https://en.wikipedia.org/wiki/Arbiter_(electronics)
+  Arbiters are electronic devices that allocate access to shared resources.
+
+
