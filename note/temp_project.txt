@@ -22665,14 +22665,18 @@ TODO
   Untucked
 
 
-Com0com ; https://github.com/KangLin/com0com
-  🗑️ Laste updated date 
-
+Com0com ; https://com0com.sourceforge.net/
+  🗑️ Laste updated date: 2017.02.06
 Free Virtual Serial Ports
 VSPE (Virtual Serial Port Emulator)
-HW VSP3
+
+
+Hercules SETUP utility
+  https://luckygg.tistory.com/310
+  https://www.hw-group.com/software/hercules-setup-utility
 
 
 
-
-
+그러니까 음. 장치 A <--RS-232(or 485)-to-usb --> B (PC) 를 통신 테스트하기위해서
+이 모델을 가상화하는거야.
+그래서 나는 실제 물리적인 장치연결 없이 PC에서 통신테스트할 수 있게.
