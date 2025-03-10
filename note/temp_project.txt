@@ -22703,5 +22703,67 @@ RS-232는 기본적으로 저속 통신(수 Kbps~수십 Kbps)에 적합한 프�
 
 ⚓📎 Arbiter (electronics) ; https://en.wikipedia.org/wiki/Arbiter_(electronics)
   Arbiters are electronic devices that allocate access to shared resources.
+⚓ Relay ; https://en.wikipedia.org/wiki/Relay
+  A relay is an electrically operated switch.
+⚓ Data rate | Data transfer rate ; https://en.wikipedia.org/wiki/Data_rate
+⚓⭕ Modbus ; https://en.wikipedia.org/wiki/Modbus
+  📝📰 with protocol buffers? 시나리오? 그럼 내 이전 프로젝트에서는.. 단순하게 그렇게 사용하면 안됫나..?? 🆚 Field bus vs modbus
+    - Modbus 장비(센서, PLC) → Gateway(중계기) → 클라우드 서버
+    - Modbus 데이터(레지스터 값)를 수집한 후, Protobuf로 변환하여 MQTT/HTTP 등의 클라우드 서비스로 전송
+    - 즉, Modbus는 저수준 통신을 담당하고, Protobuf는 상위 시스템에서 데이터를 관리하는 역할
+    Modbus RTU, Modbus ASICI, Modbus TCP/IP
+      Modbus는 시리얼 통신을 포함하는 산업용 통신 프로토콜이야.
+      💡 하지만, 꼭 시리얼(RS-232, RS-485)만 사용하는 건 아니고, 네트워크(TCP/IP) 기반에서도 사용할 수 있어!
+      1. 속도만 보면 일반 시리얼(UART, RS-485)이 압도적으로 빠름
+        Modbus: 10~100ms (느림)
+        일반 시리얼: 1ms 이하 (빠름, 경우에 따라 마이크로초 단위)
+      2. 하지만 Modbus는 다중 장치 & 표준 프로토콜로 안정적
+        Modbus는 여러 개의 슬레이브(센서, 모터 등)와 안정적인 데이터 교환이 가능
+        CRC 오류 검출 및 다중 장치 관리 가능
+        산업 자동화에서 표준으로 사용됨
+      3. 그러면 언제 Modbus, 언제 일반 시리얼을 써야 할까?
+        ✔ 실시간 응답이 필요하고, 한 개의 장치와 빠르게 통신해야 한다면?
+          → UART/RS-232/RS-485 (일반 시리얼) 사용!
+
+        ✔ 여러 개의 장치와 통신하고, 산업 표준이 필요하다면?
+          → Modbus 사용!
+    ❗ https://doc.qt.io/qt-6/qtprotobuf-sensors-example.html
+      이런 예제도 있었네
 
 
+  ...become a de facto standard communication protocol for communication between industrial electronic devices in a wide range of buses and networks.
+
+
+❔ Qt License
+  ⚓ Qt for Small Business ; https://www.qt.io/pricing/qt-for-small-business
+    - Qt for Device Creation Professional (DCP-SB)
+    - Qt for Application Development Enterprise (ADE-SB)
+    # Are You Eligible?
+      Small business pricing is limited to companies with an annual revenue and/or funding of max 1 Million EUR. (~15억)
+  ⚓ Qt Licensing ; https://www.qt.io/qt-licensing
+    - Qt Community Edition
+    - Qt for Application Development Professional
+    - Qt for Application Development Enterprise
+  🔓 QT; 배포하지 않고 기업 내부에서 사용 한다던가 서비스 형태로 사용한다면 의무사항 자체가 발생하지 않는다. (GPL 포함) ; https://www.etnews.com/20200402000270
+    라이센스를 3개 제공한다. https://www.qt.io/qt-licensing?utm_campaign=Qt%20Installer%202019&utm_source=IN#:~:text=Community%20vs.%20Commercial%20License
+    - Open Source License: GPL
+      무료, 소스 코드 공개 필요.
+    - Open Source License: LGPL
+      무료, QT 를 동적 링크를 사용해야 배포 시, 소스 코드 공개 의무 없음.
+    - Qt Commercial License
+      유료, 소스 코드 공개 의무 없음. 배포 시 정적 링크 사용 가능.
+
+user settings.json
+  "sonarlint.disableTelemetry": true
+user settings.json (Windows)
+  "terminal.integrated.defaultProfile.windows": "PowerShell"
+  "sonarlint.pathToNodeExecutable": "C:\\Program Files\\Volta\\node.exe"
+
+  "C_Cpp.intelliSenseEngine": "default",
+  "C_Cpp.debugShortcut": true,  // 🔗 Can't see the run and debug button after installing C/C++ extension ; https://github.com/microsoft/vscode-cpptools/issues/12004
+    // C/C++ MS extension 버전 문제로 보임. 이상하게 pre-release 버전으로 작동하고 있었다..
+  
+  "terminal.integrated.env.windows": {
+    "VCPKG_ROOT": "${env:USERPROFILE}/vcpkg",
+    "PATH": "${env:USERPROFILE}/vcpkg;${env:PATH}"
+  }
