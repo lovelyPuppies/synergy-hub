@@ -94,6 +94,26 @@ View
 
 ##### ▶️ Windows Packages not supported by Scoop package manager, that work well.
 
+
+<#
+  📦⚓ Visual Studio Code (VS Code) ; https://code.visualstudio.com/docs?dv=win
+    from https://code.visualstudio.com/docs/setup/windows#_install-vs-code-on-windows
+
+    🗑️ VScode version from `scoop install extras/vscode` is outdated.
+      - ✔️ Activate settings-sync ; https://code.visualstudio.com/docs/editor/settings-sync
+      - ✔️ copy "prototypes/_initialization/.vscode/_user-settings.jsonc" to user settings
+        and change for "🌴 Windows dedicated and User-specific settings"
+
+      Notes
+      -----
+      Add Visual Studio Code as a context menu option by running:
+      'reg import "$HOME\scoop\apps\vscode\current\install-context.reg"'
+      For file associations, run:
+      'reg import "$HOME\scoop\apps\vscode\current\install-associations.reg"'
+#>
+
+
+
 <#
   📦⚓ Bandiview ; https://en.bandisoft.com/bandiview/dl.php?web
   📦⚓ Logitech G Hub ; https://download01.logi.com/web/ftp/pub/techsupport/gaming/lghub_installer.exe
@@ -201,7 +221,7 @@ View
 
 
 
-##### ▶️ Windows Packages supported by Scoop package manaegr
+##### ▶️ Windows Packages supported by Scoop package manager
 # Get the profile file path (For all Host like VS Code, Windows Terminal, etc.)
 $profilePath = $PROFILE.CurrentUserAllHosts
 # Create the file if it does not exist
@@ -387,24 +407,6 @@ scoop install nerd-fonts/JetBrainsMono-NF-Mono
 #>
 
 
-
-
-#### 🌱 Visual Studio Code (VS Code)
-scoop install extras/vscode
-<#
-  - ✔️ Activate settings-sync ; https://code.visualstudio.com/docs/editor/settings-sync
-  - ✔️ copy "prototypes/_initialization/.vscode/_user-settings.jsonc" to user settings
-    and change for "🌴 Windows dedicated and User-specific settings"
-
-  Notes
-  -----
-  Add Visual Studio Code as a context menu option by running:
-  'reg import "$HOME\scoop\apps\vscode\current\install-context.reg"'
-  For file associations, run:
-  'reg import "$HOME\scoop\apps\vscode\current\install-associations.reg"'
-#>
-
-  
 
 
 

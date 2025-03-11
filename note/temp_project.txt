@@ -22767,3 +22767,7 @@ user settings.json (Windows)
     "VCPKG_ROOT": "${env:USERPROFILE}/vcpkg",
     "PATH": "${env:USERPROFILE}/vcpkg;${env:PATH}"
   }
+
+🚧 required? ? "sonarlint.pathToNodeExecutable": "/home/linuxbrew/.linuxbrew/bin/node"
+
+
