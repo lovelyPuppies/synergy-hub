@@ -22780,4 +22780,15 @@ user settings.json (Windows)
   즉, Scoop의 main 버킷을 사용하면 최신 버전을 안전하게 유지할 수 있는 공식 패키지 관리자로 활용할 수 있습니다! 🚀
   scoop bucket add main
   scoop install main/vulkan
+  qt를 사용하는 Cmake 프로젝트  configure 하면  다음과 같이 나오는데, vulkan_include_dir? ...
+    [main] Configuring project: AddressBook 
+    [proc] Executing command: "C:\Program Files\CMake\bin\cmake.EXE" -DCMAKE_BUILD_TYPE:STRING=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_TOOLCHAIN_FILE:FILEPATH=C:\Qt\6.8.2\msvc2022_64\lib\cmake\Qt6\qt.toolchain.cmake -DQT_QML_GENERATE_QMLLS_INI:STRING=ON --no-warn-unused-cli -SC:/Users/USER/repo/dst/AddressBook -Bc:/Users/USER/repo/dst/AddressBook/build -G Ninja
+    [cmake] Not searching for unused variables given on the command line.
+    [cmake] -- 🚧 
+    [cmake] --   - CMAKE_TOOLCHAIN_FILE is set to: C:/Qt/6.8.2/msvc2022_64/lib/cmake/Qt6/qt.toolchain.cmake
+    [cmake] --   - VCPKG_TARGET_TRIPLET is set to: x64-windows
+    [cmake] -- Could NOT find WrapVulkanHeaders (missing: Vulkan_INCLUDE_DIR) 
+    [cmake] -- Configuring done (0.2s)
+    [cmake] -- Generating done (0.2s)
+    [cmake] -- Build files have been written to: C:/Users/USER/repo/dst/AddressBook/build
 
