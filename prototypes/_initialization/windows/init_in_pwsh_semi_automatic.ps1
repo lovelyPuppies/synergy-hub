@@ -99,7 +99,7 @@ View
   📦⚓ Visual Studio Code (VS Code) ; https://code.visualstudio.com/docs?dv=win
     from https://code.visualstudio.com/docs/setup/windows#_install-vs-code-on-windows
 
-    🗑️ VScode version from `scoop install extras/vscode` is outdated.
+    🗑️ VScode version from `scoop install extras/vscode` is outdated. 📅 2025-03-12 05:10:19
       - ✔️ Activate settings-sync ; https://code.visualstudio.com/docs/editor/settings-sync
       - ✔️ copy "prototypes/_initialization/.vscode/_user-settings.jsonc" to user settings
         and change for "🌴 Windows dedicated and User-specific settings"
